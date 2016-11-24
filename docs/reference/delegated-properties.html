@@ -1,0 +1,808 @@
+<html>
+<head>
+<meta charset="utf-8">
+
+
+<title>委托属性 - Kotlin Programming Language</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" sizes="72x72"
+      href="/assets/images/apple-touch-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="114x114"
+      href="/assets/images/apple-touch-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="144x144"
+      href="/assets/images/apple-touch-icon-144x144.png"/>
+<link rel="stylesheet" href="/0_assets//styles.css">
+
+
+<!-- Social Media tag Starts -->
+<!-- Place this data between the <head> tags of your website -->
+<!-- Open Graph data -->
+<meta property="og:title" content="委托属性 - Kotlin Programming Language"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://kotlinlang.org/docs/reference/delegated-properties.html"/>
+<meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
+    <meta property="og:description"
+          content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
+<meta property="og:site_name" content="Kotlin"/>
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kotlin">
+<meta name="twitter:title" content="委托属性 - Kotlin Programming Language">
+    <meta name="twitter:description"
+          content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
+<meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
+<!-- Social Media tag Ends -->    <script src="/0_assets//default.js"></script>
+    <script src="/0_assets//common.js"></script>
+</head>
+<body>
+<!--  -->
+
+<div class="global-layout">
+
+<header class="global-header">
+
+    <div class="global-header-panel">
+        <div class="g-layout">
+            <a class="global-header-logo" href="/">Kotlin</a>
+<nav role="navigation" class="global-nav">
+
+    <div class="nav-links">
+
+            <a href="/docs/reference/"
+               class="nav-item "
+            >
+                学习
+            </a>
+
+            <a href="/contribute.html"
+               class="nav-item "
+            >
+                贡献
+            </a>
+
+            <a href="http://try.kotlinlang.org"
+               class="nav-item "
+            >
+                在线试用
+            </a>
+    </div>
+
+
+<div id="global-search" class=" global-search" title="Search">
+    <div class="search-button">
+        <div class="icon"></div>
+    </div>
+    <div class="search-box">
+        <div class="gcse-searchbox-only"
+             data-resultsUrl="/search.html"
+             data-newWindow="false"
+        ></div>
+    </div>
+</div></nav>        </div>
+    </div>
+
+    <div class="g-layout">
+    </div>
+</header>
+    <div class="g-layout global-content">
+    <div class="g-grid">
+
+        <div class="g-12">
+<nav role="navigation" class="docs-nav">
+        <div class="nav-item-wrap">
+                <a href="/docs/reference/" class="nav-item is_active">
+                        <span class="nav-item-text">
+                            参考
+                        </span>
+                </a>
+        </div>
+        <div class="nav-item-wrap">
+                <a href="/docs/tutorials/" class="nav-item">
+                    <span class="nav-item-text">
+                        教程
+                    </span>
+                </a>
+
+        </div>
+        <div class="nav-item-wrap">
+                <a href="/docs/videos.html" class="nav-item">
+                    <span class="nav-item-text">
+                        视频
+                    </span>
+                </a>
+
+        </div>
+        <div class="nav-item-wrap">
+                <a href="/docs/events.html" class="nav-item">
+                    <span class="nav-item-text">
+                        事件
+                    </span>
+                </a>
+
+        </div>
+        <div class="nav-item-wrap">
+                <a href="/docs/resources.html" class="nav-item">
+                    <span class="nav-item-text">
+                        更多资源
+                    </span>
+                </a>
+
+        </div>
+</nav>        </div>
+
+        <aside class="g-3">
+            <div id="reference-nav">
+                    <nav role="navigation" class="side-tree-nav">
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="开始">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">开始</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/basic-syntax.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">基础语法</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/idioms.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">习惯用法</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/coding-conventions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">编码习惯</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="基础">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">基础</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/basic-types.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">基本类型</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/packages.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">包</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/control-flow.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">控制流</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/returns.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">返回和跳转</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _opened"
+                 data-id="类和对象">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">类和对象</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">类和继承</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/properties.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">属性和字段</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/interfaces.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">接口</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/visibility-modifiers.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">可见性修饰符</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/extensions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">扩展</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/data-classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">数据类</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/generics.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">泛型</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/nested-classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">嵌套类</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/enum-classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">枚举类</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/object-declarations.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">对象</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/delegation.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">委托</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">委托属性</div>
+                            </div>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="函数和 Lambda 表达式">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">函数和 Lambda 表达式</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/functions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">函数</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/lambdas.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Lambda 表达式</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/inline-functions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">内联函数</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="其他">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">其他</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/multi-declarations.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">解构声明</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/collections.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">集合</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/ranges.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">范围</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/typecasts.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">类型检查与转换</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/this-expressions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">This 表达式</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/equality.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">相等性</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/operator-overloading.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">操作符重载</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/null-safety.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">空安全</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/exceptions.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">异常</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/annotations.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">注解</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/reflection.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">反射</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/type-safe-builders.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">类型安全的构建器</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="参考">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">参考</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/api/latest/jvm/stdlib/index.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">API 参考</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/grammar.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">语法</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Java 互操作">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Java 互操作</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/java-interop.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 调用 Java</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/java-to-kotlin-interop.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Java 调用 Kotlin</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="JavaScript">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">JavaScript</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/dynamic-type.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">动态类型</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-interop.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript 互操作性</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-reflection.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript 反射</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="工具">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">工具</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/kotlin-doc.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">生成 Kotlin 代码文档</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/using-maven.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Maven</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/using-ant.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Ant</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/using-gradle.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Gradle</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/kotlin-osgi.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 和 OSGi</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="常见问题">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">常见问题</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/faq.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">常见问题</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/comparison-to-java.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">与 Java 比较</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/comparison-to-scala.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">与 Scala 比较</span>
+                            </a>
+                    </div>
+
+            </div>
+    </nav>
+
+
+                <a href="/docs/kotlin-docs.pdf" class="reference-pdf-link">
+                    <span class="icon"></span>
+                    <span class="text">完整 Kotlin 参考</span>
+                </a>
+            </div>
+        </aside>
+
+        <article role="main" class="page-content g-9">
+<a href="https://github.com/JetBrains/kotlin-web-site/edit/master/pages/docs/reference/delegated-properties.md"
+   class="page-link-to-github"
+   target="_blank"
+   title="Edit this page on GitHub">
+        <i class="github-icon"></i>
+        <span class="text">Edit Page</span>
+</a>
+                
+<h1 id="委托属性">委托属性</h1>
+<p>有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们，
+但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括：</p>
+<ul>
+<li>延迟属性（lazy properties）: 其值只在第一次被访问的时候计算。</li>
+<li>可观察属性（observable properties）: 属性变化时监听器收到通知，</li>
+<li>把多个属性储存在一个映射（map）中，而不是每个存在单独的字段中。</li>
+</ul>
+<p>为了支持这些（及其他）情况，Kotlin 支持 <em>委托属性</em>:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example {
+    var p: String by Delegate()
+}
+</code></pre>
+<p>语法是： <code>val/var &lt;属性名&gt;: &lt;类型&gt; by &lt;表达式&gt;</code>。在 <em class="keyword">by</em> 后面的表达式是该 <em>委托</em>，
+因为属性对应的 <code>get()</code>（和 <code>set()</code>）会被委托给它的 <code>getValue()</code> 和 <code>setValue()</code> 方法。
+属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（和 <code>setValue()</code>——对于 <em class="keyword">var</em> 属性）。
+例如:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Delegate {
+    operator fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): String {
+        return "$thisRef, thank you for delegating '${property.name}' to me!"
+    }
+ 
+    operator fun setValue(thisRef: Any?, property: KProperty&lt;*&gt;, value: String) {
+        println("$value has been assigned to '${property.name} in $thisRef.'")
+    }
+}
+</code></pre>
+<p>当我们从委托到一个 <code>Delegate</code> 实例的 <code>p</code> 读取时，将调用 <code>Delegate</code> 中的 <code>getValue()</code>，
+所以它第一个参数是读出 <code>p</code> 的对象、第二个参数包含 <code>p</code> 自身的描述 
+（例如你可以取他们的名字)。 例如:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val e = Example()
+println(e.p)
+</code></pre>
+<p>打印结果：</p>
+<pre><code>Example@33a17727, thank you for delegating ‘p’ to me!
+</code></pre>
+<p>类似地，当我们给 <code>p</code> 赋值, <code>setValue()</code> 函数就被调用. 前两个参数是一样的，第三个参数持有将要被赋予的值：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">e.p = "NEW"
+</code></pre>
+<p>打印结果：</p>
+<pre><code>NEW has been assigned to ‘p’ in Example@33a17727.
+</code></pre>
+<h2 id="属性委托要求">属性委托要求</h2>
+<p>这里我们总结委托对象的要求。</p>
+<p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个 <code>getValue</code>函数，该函数接受下面的参数：</p>
+<ul>
+<li>接收者 —— 必须与 <em>属性所有者</em> 类型相同或者是其父类（对于扩展属性——类型允许扩展），</li>
+<li>元数据 —— 一定要是 <code>KProperty&lt;*&gt;</code> 的类型或它的父类型,</li>
+</ul>
+<p>这个函数必须返回与属性相同的类型（或者对应的子类型）。</p>
+<p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须<em>额外</em>提供一个名为 <code>setValue</code> 的函数，该函数接受下面的参数：</p>
+<ul>
+<li>接收者 —— 同 <code>getValue()</code>,</li>
+<li>元数据 —— 同 <code>getValue()</code>,</li>
+<li>新的值 —— 必须和属性同类型或者是它的父类型。</li>
+</ul>
+<p><code>getValue()</code> 或/和 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
+当你需要委托属性到原本未提供的这些函数的对象时后者会更便利。
+两函数都需要用 <code>operator</code> 关键字来进行标记。</p>
+<h2 id="标准委托">标准委托</h2>
+<p>Kotlin 标准库中对于一些有用的委托类型提供了工厂方法。</p>
+<h3 id="延迟属性-lazy">延迟属性 Lazy</h3>
+<p>函数 <code>lazy()</code> 接受一个 lambda 然后返回一个可以作为实现延迟属性的委托 <code>Lazy&lt;T&gt;</code> 的实例：
+第一次调用 <code>get()</code> 会执行已传递给 <code>lazy()</code> 的 lamda 表达式并记录结果，
+后续调用 <code>get()</code> 会直接返回记录的结果。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val lazyValue: String by lazy {
+    println("computed!")
+    "Hello"
+}
+
+fun main(args: Array&lt;String&gt;) {
+    println(lazyValue)
+    println(lazyValue)
+}
+</code></pre>
+<p>This example prints:</p>
+<pre><code>computed!
+Hello
+Hello
+</code></pre>
+<p>默认地，对于 lazy 属性的计算是<strong>同步锁（synchronized）</strong> 的：该值只在一个线程中计算，并且所有的线程
+会看到相同的值。如果初始化代理的同步锁不是必需的，这样于多个线程
+可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为一个参数传递给 <code>lazy()</code> 函数。
+而且如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
+它不会有任何线程安全的保证和相关的开销。</p>
+<h3 id="可观察属性-observable">可观察属性 Observable</h3>
+<p><code>Delegates.observable()</code> 接受两个参数：初始值和修改时处理程序（handler）。
+在每次我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个
+参数：被赋值的属性、旧的值和新的值：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.properties.Delegates
+
+class User {
+    var name: String by Delegates.observable("&lt;no name&gt;") {
+        prop, old, new -&gt;
+        println("$old -&gt; $new")
+    }
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val user = User()
+    user.name = "first"
+    user.name = "second"
+}
+</code></pre>
+<p>这个例子输出：</p>
+<pre><code>&lt;no name&gt; -&gt; first
+first -&gt; second
+</code></pre>
+<p>如果你想能够打断和“否决”它，就使用 <code>vetoable()</code> 取代 <code>observable()</code>。
+在属性被赋新值<em>之前</em>会执行传递给 <code>vetoable</code> 的处理程序。</p>
+<h2 id="把属性储存在映射map中">把属性储存在映射（Map）中</h2>
+<p>一个常见的用例是在一个映射里存储属性的值。
+这经常出现在像解析 JSON 或者做其他“动态”的事情的应用中。
+在这中情况下，你可以使用 map 实例自身作为代理来代理属性。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class User(val map: Map&lt;String, Any?&gt;) {
+    val name: String by map
+    val age: Int     by map
+}
+</code></pre>
+<p>在这个例子中，构造函数会接收一个 map 参数：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val user = User(mapOf(
+    "name" to "John Doe",
+    "age"  to 25
+))
+</code></pre>
+<p>委托属性会从这个 map 中取值（通过 string 类型的 key——属性的名字）：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">println(user.name) // Prints "John Doe"
+println(user.age)  // Prints 25
+</code></pre>
+<p>这对 <em class="keyword">var</em> 属性也奏效，只要把只读的 <code>Map</code> 换成 <code>MutableMap</code>：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MutableUser(val map: MutableMap&lt;String, Any?&gt;) {
+    var name: String by map
+    var age: Int     by map
+}
+</code></pre>
+
+        </article>
+    </div>
+
+    <script src="/0_assets//reference.js"></script>
+    </div>
+
+</div>
+
+<footer role="contentinfo" class="global-footer">
+
+    <div class="global-footer-terms">
+        <div class="g-layout">
+
+            <div class="terms-copyright">
+                &copy; 2000&ndash;2016 JetBrains. All rights reserved
+            </div>
+
+            <div class="terms-sponsor">
+                Sponsored and developed by <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains" target="_blank">JetBrains</a> Translation by <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>
+            </div>
+        </div>
+    </div>
+
+</footer></body>
+</html>
