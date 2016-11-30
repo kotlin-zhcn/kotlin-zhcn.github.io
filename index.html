@@ -117,7 +117,7 @@
     </div>
 </header>
     <section class="kotlin-overview-section _features">
-        <h2 class="section-header">Why Kotlin?</h2>
+        <h2 class="section-header">为什么选择 Kotlin？</h2>
         <div class="section-content">
 
             <div class="kotlin-features-carousel-wrap" id="features-carousel-wrap">
@@ -130,8 +130,8 @@
                                     <div class="feature-icon _简洁"></div>
                                 </div>
                                 <h3 class="feature-title">简洁</h3>
-                                <p class="feature-description">大幅度减少你需要写的重复代码。</p>
-                                <span class="feature-example-link">See example</span>
+                                <p class="feature-description">大大减少你需要写的样板代码的数量。</p>
+                                <span class="feature-example-link">参见示例</span>
                             </li>
                             <li class="kotlin-feature _安全 js-popup-open-button"
                                 data-popup-id="kotlin-feature_安全">
@@ -139,8 +139,8 @@
                                     <div class="feature-icon _安全"></div>
                                 </div>
                                 <h3 class="feature-title">安全</h3>
-                                <p class="feature-description">避免整个类中类似空指针异常这样的错误。</p>
-                                <span class="feature-example-link">See example</span>
+                                <p class="feature-description">避免空指针异常等整个类的错误。</p>
+                                <span class="feature-example-link">参见示例</span>
                             </li>
                             <li class="kotlin-feature _通用 js-popup-open-button"
                                 data-popup-id="kotlin-feature_通用">
@@ -148,8 +148,8 @@
                                     <div class="feature-icon _通用"></div>
                                 </div>
                                 <h3 class="feature-title">通用</h3>
-                                <p class="feature-description">构建服务器端程序，Android程序或者运行在浏览器里的前端程序。</p>
-                                <span class="feature-example-link">See example</span>
+                                <p class="feature-description">构建服务器端程序、Android 应用程序或者在浏览器中运行的前端程序。</p>
+                                <span class="feature-example-link">参见示例</span>
                             </li>
                             <li class="kotlin-feature _互操作性 js-popup-open-button"
                                 data-popup-id="kotlin-feature_互操作性">
@@ -157,8 +157,8 @@
                                     <div class="feature-icon _互操作性"></div>
                                 </div>
                                 <h3 class="feature-title">互操作性</h3>
-                                <p class="feature-description">重用已有的JVM平台框架或库，与Java无缝兼容。</p>
-                                <span class="feature-example-link">See example</span>
+                                <p class="feature-description">通过 100% Java 互操作性，利用 JVM 既有框架和库。</p>
+                                <span class="feature-example-link">参见示例</span>
                             </li>
                             <li class="kotlin-feature _工具化 js-popup-open-button"
                                 data-popup-id="kotlin-feature_工具化">
@@ -166,8 +166,8 @@
                                     <div class="feature-icon _工具化"></div>
                                 </div>
                                 <h3 class="feature-title">工具化</h3>
-                                <p class="feature-description">命令行编译器还是一流的IDE支持，随意选。</p>
-                                <span class="feature-example-link">See example</span>
+                                <p class="feature-description">命令行编译器还是一流的 IDE 支持，随意选。</p>
+                                <span class="feature-example-link">参见示例</span>
                             </li>
                     </ul>
                 </div>
@@ -181,13 +181,13 @@
                  id="kotlin-feature_简洁">
                 <div class="popup-content">
                     <h3 id="简洁">简洁</h3>
-<p>使用一行代码创建一个包含getters, setters, <code>equals()</code>, <code>hashCode()</code>, <code>toString()</code> and <code>copy()</code> 的POJO</p>
+<p>使用一行代码创建一个包含 getters、 setters、 <code>equals()</code>、 <code>hashCode()</code>、 <code>toString()</code> 以及 <code>copy()</code> 的 POJO：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Customer(val name: String, val email: String, val company: String)
 </code></pre>
-<p>或者使用lambda表达式来过滤链表：</p>
+<p>或者使用 lambda 表达式来过滤列表：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val positiveNumbers = list.filter {it &gt; 0}
 </code></pre>
-<p>想要单例？创建object就可以了：</p>
+<p>想要单例？创建一个 object 就可以了：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object ThisIsASingleton {
     val companyName: String = "JetBrains"
 }
@@ -203,16 +203,15 @@
                  id="kotlin-feature_安全">
                 <div class="popup-content">
                     <h3 id="安全">安全</h3>
-<p>彻底告别那些烦人的 NullPointerExceptions, <a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">毕竟价值万亿</a></p>
+<p>彻底告别那些烦人的 NullPointerException，毕竟<a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">价值万亿</a>。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">var output : String
 output = null
 </code></pre>
-<p>And of course, Kotlin protects you from mistakenly operating on nullable types,
-including those from Java
-Kotlin会预防你对可能为null的对象进行操作, 哪怕是Java中传递过来的</p>
+<p>当然，Kotlin 会保护你避免操作可控类型，
+包括来自 Java 的</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println(output.length())
 </code></pre>
-<p>如果你进行了类型检测, 那么编译器会在检测后的代码分支内自动帮你转换类型</p>
+<p>并且如果你检查类型是正确的，编译器会为你做自动类型转换</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun calculateTotal(obj: Any) {
     if (obj is Invoice) {
         obj.calculateTotal()
@@ -237,38 +236,38 @@ Kotlin会预防你对可能为null的对象进行操作, 哪怕是Java中传递�
     <p class="logos-list-item">
         <span class="logo _android" title="Android"></span>
         <span class="description">
-            Android开发<br>
-            不影响性能<br>
-            超小的运行时依赖
+            Android开发。<br>
+            不影响性能。<br>
+            超小的运行时。
         </span>
     </p>
 
     <p class="logos-list-item">
         <span class="logo _tomcat" title="Tomcat"></span>
         <span class="description">
-            服务器端程序<br>
-            与JVM框架百分百兼容, 用什么服务器请随意
+            服务器端程序。<br>
+            不用担心所用技术，100% 兼容 JVM 框架。
         </span>
     </p>
 
     <p class="logos-list-item">
         <span class="logo _js" title="JavaScript"></span>
         <span class="description">
-            JavaScript. 用Kotlin写的代码可以生成JavaScript运行于Node.js或者浏览器中
+            JavaScript。用 Kotlin 写的代码可以生成运行于 Node.js 或者浏览器中的 JavaScript
         </span>
     </p>
 
     <p class="logos-list-item">
         <span class="logo _javaee" title="JavaEE"></span>
         <span class="description">
-            企业版. 使用Kotlin进行任何类型的企业级应用程序Java EE开发.
+            企业开发。使用 Kotlin 进行任何类型的企业级 Java EE 开发。
         </span>
     </p>
 
     <p class="logos-list-item">
         <span class="logo _html5" title="HTML5"></span>
         <span class="description">
-            Web. 无论是强类型的HTML与CSS开发亦或纯web开发
+            Web。无论是强类型的 HTML 与 CSS 构建器还是纯web开发。
         </span>
     </p>
 </div>
@@ -283,8 +282,8 @@ Kotlin会预防你对可能为null的对象进行操作, 哪怕是Java中传递�
                  id="kotlin-feature_互操作性">
                 <div class="popup-content">
                     
-<h3 id="interoperable">Interoperable</h3>
-<p>Create and consume Java code at will</p>
+<h3 id="互操作性">互操作性</h3>
+<p>随意创建和使用 Java 代码</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import io.netty.channel.ChannelInboundMessageHandlerAdapter
 import io.netty.channel.ChannelHandlerContext
 
@@ -294,8 +293,8 @@ public class NettyHandler: ChannelInboundMessageHandlerAdapter&lt;Any&gt;() {
     }
 }
 </code></pre>
-<p>或者在JVM上使用已有Java库, 百分百兼容, 包括SAM支持</p>
-<p>无论是JVM还是JavaScript, 用Kotlin写代码, 然后部署到你想要的地方.</p>
+<p>或者使用任何 JVM 上已有的库，因为百分百兼容，包括 SAM 支持。</p>
+<p>无论是 JVM 还是 JavaScript 目标平台，都可用 Kotlin 写代码然后部署到你想要的地方</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import js.dom.html.*
 
 fun onLoad() {
@@ -331,13 +330,13 @@ fun onLoad() {
         <div class="g-layout">
             <div class="tab is_active js-tab" data-tab-id="kotlin-code-example-simplest"><div class="text">最简版</div></div>
             <div class="tab js-tab" data-tab-id="kotlin-code-example-name-reading"><div class="tab-text">读名字</div></div>
-            <div class="tab js-tab" data-tab-id="kotlin-code-example-object-oriented"><div class="tab-text">">"面向对象"式Hello</div></div>
+            <div class="tab js-tab" data-tab-id="kotlin-code-example-object-oriented"><div class="tab-text">“面向对象”的 Hello</div></div>
         </div>
 
     </div>
 
-    <h2 class="section-header">Kotlin看起来是什么样的？</h2>
-    <p class="section-description">简洁，简单，易读，易写</p>
+    <h2 class="section-header">Kotlin 看起来是什么样的？</h2>
+    <p class="section-description">简洁、简单、易读、易写</p>
     <div class="section-content">
 
         <!-- code example -->
@@ -361,7 +360,7 @@ fun onLoad() {
                 <div class="code-legend align_right">
                     <div class="code-legend-line"></div>
                     <div class="code-legend-text">
-                        包级别可见的函数，返回Unit，接受一个String数组作为参数
+                        包级可见的函数，返回 Unit、接受一个字符串数组作为参数
                     </div>
                 </div>
 
@@ -408,7 +407,7 @@ fun onLoad() {
                 <div class="code-legend align_right">
                     <div class="code-legend-line"></div>
                     <div class="code-legend-text">
-                        String内嵌，以缩减String处理流程
+                        字符串内插，以缩减字符串处理流程
                     </div>
                 </div>
 
@@ -459,7 +458,7 @@ fun onLoad() {
                         "></div>
                     </div>
                     <div class="code-legend-text">
-                        创建一个实例的时候，无需new关键字
+                        创建一个实例的时候，无需 new 关键字
                     </div>
                 </div>
             </div>
@@ -506,7 +505,7 @@ fun onLoad() {
     </section>
 
     <section class="kotlin-overview-section _get-kotlin" id="get-kotlin">
-        <h2 class="section-header">Try Kotlin</h2>
+        <h2 class="section-header">试用 Kotlin</h2>
 
         <p class="kotlin-version">1.0.5-2</p>
 
@@ -514,34 +513,34 @@ fun onLoad() {
             <div class="get-kotlin-options-list">
                 <div class="option-item _try-online">
                     <div class="option-image _try-online"></div>
-                    <div class="option-title-pre-text">In the browser</div>
-                    <h3 class="option-title">Try Online</h3>
+                    <div class="option-title-pre-text">在浏览器中</div>
+                    <h3 class="option-title">在线试用</h3>
 
                     <p class="option-description">
-                        Explore Kotlin code samples and solve problems directly in your browser.
+                        在浏览器中直接浏览 Kotlin 代码示例并解决问题。
                     </p>
 
 
                     <div class="option-link-wrap">
                         <a href="http://try.kotlinlang.org"
                            class="option-link">
-                            Try Online
+                            在线试用
                         </a>
                     </div>
                 </div>
 
                 <div class="option-item _standalone-compiler">
                     <div class="option-image _standalone-compiler"></div>
-                    <div class="option-title-pre-text">Standalone</div>
-                    <h3 class="option-title">Compiler</h3>
+                    <div class="option-title-pre-text">独立的</div>
+                    <h3 class="option-title">编译器</h3>
 
                     <p class="option-description">
-                        Compile your code from the command line or use build tools such as Ant, Gradle and Maven.
+                        从命令行或者试用构建工具如 Ant、Gradle 和 Maven 编译你的代码。
                     </p>
 
                     <div class="option-link-wrap">
                         <a href="/docs/tutorials/command-line.html"
-                           class="option-link">Download Compiler</a>
+                           class="option-link">下载编译器</a>
                     </div>
                 </div>
 
@@ -549,17 +548,17 @@ fun onLoad() {
                     <div class="option-image">
                         <div class="jetbrains-logo _logo-intellij-idea _size-2"></div>
                     </div>
-                    <div class="option-title-pre-text">Use</div>
+                    <div class="option-title-pre-text">使用</div>
                     <h3 class="option-title">IntelliJ IDEA</h3>
 
                     <p class="option-description">
-                        Kotlin works with the free Community Edition, IntelliJ IDEA Ultimate or Android Studio.
+                        在免费社区版、IntelliJ IDEA Ultimate 或者 Android Studio 中 Kotlin 都可使用。
                     </p>
 
                     <div class="option-link-wrap">
                         <a href="/docs/tutorials/getting-started.html"
                            class="option-link">
-                            Setup Plugin
+                            安装插件
                         </a>
                     </div>
 
@@ -567,17 +566,17 @@ fun onLoad() {
 
                 <div class="option-item _source-code">
                     <div class="option-image _source-code"></div>
-                    <div class="option-title-pre-text">Use</div>
+                    <div class="option-title-pre-text">使用</div>
                     <h3 class="option-title">Eclipse</h3>
 
                     <p class="option-description">
-                        Get a preview version of the Kotlin plugin for Eclipse Luna.
+                        获取 Eclipse Luna 的 Kotlin 插件的预览版本。
                     </p>
 
                     <div class="option-link-wrap">
                         <a href="/docs/tutorials/getting-started-eclipse.html"
                            class="option-link">
-                            Setup Plugin
+                            安装插件
                         </a>
                     </div>
                 </div>
@@ -630,7 +629,7 @@ fun onLoad() {
     </section>
 
     <section class="kotlin-overview-section _testimonials">
-        <div class="section-header">Who's using Kotlin</div>
+        <div class="section-header">谁在使用 Kotlin</div>
         <div class="section-content">
 
             <div class="g-layout2 testimonials-carousel-wrap" id="testimonials-carousel-wrap">
@@ -1286,20 +1285,20 @@ fun onLoad() {
     </section>
 
     <section class="kotlin-overview-section _community">
-        <h2 class="section-header">Stay in touch</h2>
+        <h2 class="section-header">保持联系</h2>
         <div class="section-content">
             <ul class="links-list">
                 <li class="links-list-item">
                     <a href="http://blog.jetbrains.com/kotlin" class="link" target="_blank">
                         <span class="link-icon _blog"></span>
-                        <span class="link-text">Blog</span>
+                        <span class="link-text">博客</span>
                     </a>
                 </li>
 
                 <li class="links-list-item">
                     <a href="community.html" class="link">
                         <span class="link-icon _forum"></span>
-                        <span class="link-text">Community</span>
+                        <span class="link-text">社区</span>
                     </a>
                 </li>
 
@@ -1315,7 +1314,7 @@ fun onLoad() {
                     <span class="link-icon _issue-tracker">
                         <div class="jetbrains-logo _logo-youtrack _size-2"></div>
                     </span>
-                        <span class="link-text">Issue Tracker</span>
+                        <span class="link-text">问题跟踪</span>
                     </a>
                 </li>
             </ul>
