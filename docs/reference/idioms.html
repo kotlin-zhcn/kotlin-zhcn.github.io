@@ -379,7 +379,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">范围</span>
+                                <span class="text">区间</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -684,9 +684,9 @@
 }
 </code></pre>
 <p><code>k</code>、<code>v</code> 可以改成任意名字。</p>
-<h3 id="使用区间range">使用区间（range）</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { ... }  // closed range: includes 100
-for (i in 1 until 100) { ... } // half-open range: does not include 100
+<h3 id="使用区间">使用区间</h3>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { ... }  // 闭区间：包含 100
+for (i in 1 until 100) { ... } // 半开区间：不包含 100
 for (x in 2..10 step 2) { ... }
 for (x in 10 downTo 1) { ... }
 if (x in 1..10) { ... }
@@ -703,7 +703,7 @@ map["key"] = value
 </code></pre>
 <h3 id="延迟属性">延迟属性</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val p: String by lazy {
-    // compute the string
+    // 计算该字符串
 }
 </code></pre>
 <h3 id="扩展函数">扩展函数</h3>
@@ -755,7 +755,7 @@ data?.let {
         throw IllegalStateException(e)
     }
 
-    // Working with result
+    // 使用 result
 }
 </code></pre>
 <h3 id="if-表达式">'if' 表达式</h3>
@@ -799,7 +799,7 @@ data?.let {
 }
 
 val myTurtle = Turtle()
-with(myTurtle) { //draw a 100 pix square
+with(myTurtle) { // 画一个 100 像素的正方形
     penDown()
     for(i in 1..4) {
         forward(100.0)

@@ -379,7 +379,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">范围</span>
+                                <span class="text">区间</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -714,10 +714,10 @@ print(boxedA === anotherBoxedA) // !!!输出 'false'!!!
 </code></pre>
 <p>另一方面，它保留了相等性:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 10000
-print(a == a) // Prints 'true'
+print(a == a) // 输出 'true'
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA == anotherBoxedA) // Prints 'true'
+print(boxedA == anotherBoxedA) // 输出 'true'
 </code></pre>
 <h3 id="显式转换">显式转换</h3>
 <p>由于不同的表示方式，较小类型并不是较大类型的子类型。
@@ -757,9 +757,9 @@ val i: Int = b // 错误
 </code></pre>
 <p>这是完整的位运算列表（只用于 <code>Int</code> 和 <code>Long</code>）：</p>
 <ul>
-<li><code>shl(bits)</code> – 有符号左移 (Java's <code>&lt;&lt;</code>)</li>
-<li><code>shr(bits)</code> – 有符号右移 (Java's <code>&gt;&gt;</code>)</li>
-<li><code>ushr(bits)</code> – 无符号右移 (Java's <code>&gt;&gt;&gt;</code>)</li>
+<li><code>shl(bits)</code> – 有符号左移 (Java 的 <code>&lt;&lt;</code>)</li>
+<li><code>shr(bits)</code> – 有符号右移 (Java 的 <code>&gt;&gt;</code>)</li>
+<li><code>ushr(bits)</code> – 无符号右移 (Java 的 <code>&gt;&gt;&gt;</code>)</li>
 <li><code>and(bits)</code> – 位与</li>
 <li><code>or(bits)</code> – 位或</li>
 <li><code>xor(bits)</code> – 位异或</li>
@@ -773,7 +773,7 @@ val i: Int = b // 错误
     }
 }
 </code></pre>
-<p>字符串字面值用单引号括起来: <code>'1'</code>。
+<p>字符字面值用单引号括起来: <code>'1'</code>。
 特殊字符可以用反斜杠转义。
 支持这几个转义序列：<code>\t</code>、 <code>\b</code>、<code>\n</code>、<code>\r</code>、<code>\'</code>、<code>\"</code>、<code>\\</code> 和 <code>\$</code>。
 编码其他字符要用 Unicode 转义序列语法：<code>'\uFF00'</code>。</p>
@@ -831,7 +831,7 @@ x[0] = x[1] + x[2]
 }
 </code></pre>
 <h3 id="字符串字面值">字符串字面值</h3>
-<p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串白可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
+<p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = "Hello, world!\n"
 </code></pre>
 <p>转义采用传统的反斜杠方式。参见上面的 <a href="#字符">字符</a> 查看支持的转义序列。</p>

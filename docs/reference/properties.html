@@ -379,7 +379,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">范围</span>
+                                <span class="text">区间</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -678,7 +678,7 @@
 var initialized = 1 // 类型 Int、默认 getter 和 setter
 </code></pre>
 <p>一个只读属性的语法和一个可变的属性的语法有两方面的不同：1、只读属性的用 <code>val</code>开始代替<code>var</code> 2、只读属性不允许 setter</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val simple: Int? // 类型 Int、默认 getter 必须在构造函数中初始化
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val simple: Int? // 类型 Int、默认 getter、必须在构造函数中初始化
 val inferredType = 1 // 类型 Int 、默认 getter
 </code></pre>
 <p>我们可以编写自定义的访问器，非常像普通函数，刚好在属性声明内部。这里有一个自定义 getter 的例子:</p>

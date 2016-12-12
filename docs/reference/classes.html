@@ -379,7 +379,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">范围</span>
+                                <span class="text">区间</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -730,7 +730,7 @@ Kotlin 更易于使用像 Jackson 或者 JPA 这样的通过无参构造函数�
 val customer = Customer("Joe Smith")
 </code></pre>
 <p>注意 Kotlin 并没有 <em class="keyword">new</em> 关键字。</p>
-<p>Creating instances of nested, inner and anonymous inner classes is described in <a href="nested-classes.html">Nested classes</a>.</p>
+<p>创建嵌套类、内部类和匿名内部类的类实例在<a href="nested-classes.html">嵌套类</a>中有述。</p>
 <h3 id="类成员">类成员</h3>
 <p>类可以包含</p>
 <ul>
@@ -754,7 +754,7 @@ class Derived(p: Int) : Base(p)
 <p>如果该类有一个主构造函数，其基类型可以（并且必须）
 用（基类型的）主构造函数参数就地初始化。</p>
 <p>如果类没有主构造函数，那么每个次构造函数必须
-使用 <em>super</em>{：.keyword} 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
+使用 <em class="keyword">super</em> 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyView : View {
     constructor(ctx: Context) : super(ctx)
@@ -762,7 +762,7 @@ class Derived(p: Int) : Base(p)
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
 }
 </code></pre>
-<p>类上的 <em>open</em>{：.keyword} 标注与 Java 中 <em>final</em>{：.keyword} 相反，它允许其他类
+<p>类上的 <em class="keyword">open</em> 标注与 Java 中 <em class="keyword">final</em> 相反，它允许其他类
 从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
 对应于 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>书中的
 第 17 条：<strong>要么为继承而设计，并提供文档说明，要么就禁止继承</strong>。</p>
@@ -780,7 +780,7 @@ class Derived() : Base() {
 <p>Derived.v() 函数上必须加上 <strong>override</strong>标注。如果没写，编译器将会报错。
 如果函数没有标注 <strong>open</strong> 如 <code>Base.nv()</code>，则子类中不允许定义相同签名的函数，
 不论加不加 <strong>override</strong>。在一个 <strong>final</strong> 类中（没有用 <strong>open</strong> 标注的类），开放成员是禁止的。</p>
-<p>标记为 <em>override</em>{：.keyword} 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 <em>final</em>{：.keyword} 关键字：</p>
+<p>标记为 <em class="keyword">override</em> 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 <em class="keyword">final</em> 关键字：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class AnotherDerived() : Base() {
     final override fun v() {}
 }
@@ -823,7 +823,7 @@ class C() : A(), B {
 但是 <code>f()</code> 由 <code>C</code> 继承了两个实现，所以我们<strong>必须</strong>在 <code>C</code> 中覆盖 <code>f()</code> 
 并且提供我们自己的实现来消除歧义。</p>
 <h2 id="抽象类">抽象类</h2>
-<p>类和其中的某些成员可以声明为 <em>abstract</em>{：.keyword}。
+<p>类和其中的某些成员可以声明为 <em class="keyword">abstract</em>。
 抽象成员在本类中可以不用实现。
 需要注意的是，我们并不需要用 <code>open</code> 标注一个抽象类或者函数——因为这不言而喻。</p>
 <p>我们可以用一个抽象成员覆盖一个非抽象的开放成员</p>

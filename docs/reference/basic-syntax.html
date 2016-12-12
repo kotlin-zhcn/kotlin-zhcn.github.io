@@ -379,7 +379,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">范围</span>
+                                <span class="text">区间</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -655,7 +655,7 @@ import java.util.*
 // ...
 </code></pre>
 <p>目录与包的结构无需匹配：源代码可以在文件系统的任意位置。</p>
-<p>参见<a href="packages.html">包</a>.</p>
+<p>参见<a href="packages.html">包</a>。</p>
 <h2 id="定义函数">定义函数</h2>
 <p>带有两个 <code>Int</code> 参数、返回 <code>Int</code> 的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun sum(a: Int, b: Int): Int {
@@ -675,11 +675,11 @@ import java.util.*
   print(a + b)
 }
 </code></pre>
-<p>参见<a href="functions.html">函数</a>.</p>
+<p>参见<a href="functions.html">函数</a>。</p>
 <h2 id="定义局部变量">定义局部变量</h2>
 <p>一次赋值（只读）的局部变量:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 1
-val b = 1  // `Int` 类型自动推断
+val b = 1  // 自动推断出 `Int` 类型
 val c: Int // 如果没有初始值类型不能省略
 c = 1      // 明确赋值
 </code></pre>
@@ -687,7 +687,7 @@ c = 1      // 明确赋值
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">var x = 5 // `自动推断出 Int` 类型
 x += 1
 </code></pre>
-<p>参见<a href="properties.html">属性和字段</a>.</p>
+<p>参见<a href="properties.html">属性和字段</a>。</p>
 <h2 id="注释">注释</h2>
 <p>正如 Java 和 JavaScript，Kotlin 支持行注释及块注释。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 这是一个行注释
@@ -704,7 +704,7 @@ x += 1
     print("First argument: ${args[0]}")
 }
 </code></pre>
-<p>参见<a href="basic-types.html#字符串模板">字符串模板</a>.</p>
+<p>参见<a href="basic-types.html#字符串模板">字符串模板</a>。</p>
 <h2 id="使用条件表达式">使用条件表达式</h2>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun max(a: Int, b: Int): Int {
     if (a &gt; b) {
@@ -717,7 +717,7 @@ x += 1
 <p>使用 <em class="keyword">if</em> 作为表达式:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun max(a: Int, b: Int) = if (a &gt; b) a else b
 </code></pre>
-<p>参见<a href="control-flow.html#if表达式"><em class="keyword">if</em> 表达式</a>.</p>
+<p>参见<a href="control-flow.html#if表达式"><em class="keyword">if</em> 表达式</a>。</p>
 <h2 id="使用可空值及-null-检测">使用可空值及 <em class="keyword">null</em> 检测</h2>
 <p>当某个变量的值可以为 <em class="keyword">null</em> 的时候，必须在声明处的类型后添加 <code>?</code> 来标识该引用可为空。</p>
 <p>如果 <code>str</code> 的内容不是数字返回 <em class="keyword">null</em>：</p>
@@ -756,7 +756,7 @@ x += 1
     // 在空检测后，x 和 y 会自动转换为非空值
     print(x * y)
 </code></pre>
-<p>参见<a href="null-safety.html">空安全</a>.</p>
+<p>参见<a href="null-safety.html">空安全</a>。</p>
 <h2 id="使用类型检测及自动类型转换">使用类型检测及自动类型转换</h2>
 <p><em class="keyword">is</em> 运算符检测一个表达式是否某类型的一个实例。
 如果一个不可变的局部变量或属性已经判断出为某类型，那么检测后的分支中可以直接当作该类型使用，无需显式转换：</p>
@@ -801,7 +801,7 @@ x += 1
     print(args[i])
 } 
 </code></pre>
-<p>参见<a href="control-flow.html#for循环">for循环</a>.</p>
+<p>参见<a href="control-flow.html#for循环">for循环</a>。</p>
 <h2 id="using-a--loop">Using a <code>while</code> loop</h2>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
     var i = 0
@@ -810,7 +810,7 @@ x += 1
     }  
 }
 </code></pre>
-<p>参见<a href="control-flow.html#while循环">while 循环</a>.</p>
+<p>参见<a href="control-flow.html#while循环">while 循环</a>。</p>
 <h2 id="使用--表达式">使用 <code>when</code> 表达式</h2>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun cases(obj: Any) {
     when (obj) {
@@ -822,7 +822,7 @@ x += 1
     }
 }
 </code></pre>
-<p>参见<a href="control-flow.html#when表达式">when表达式</a>.</p>
+<p>参见<a href="control-flow.html#when表达式">when表达式</a>。</p>
 <h2 id="使用区间range">使用区间（range）</h2>
 <p>使用 <em class="keyword">in</em> 运算符来检测某个数字是否在指定区间内：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (x in 1..y-1) {
@@ -839,7 +839,7 @@ x += 1
     print(x)
 }
 </code></pre>
-<p>参见<a href="ranges.html">区间 Range</a>.</p>
+<p>参见<a href="ranges.html">区间</a>。</p>
 <h2 id="使用集合">使用集合</h2>
 <p>对集合进行迭代:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (name in names) {
@@ -858,7 +858,7 @@ x += 1
         .map { it.toUpperCase() }
         .forEach { print(it) }
 </code></pre>
-<p>参见<a href="lambdas.html">高阶函数及Lambda表达式</a>.</p>
+<p>参见<a href="lambdas.html">高阶函数及Lambda表达式</a>。</p>
 
         </article>
     </div>
