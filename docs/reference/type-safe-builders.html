@@ -699,7 +699,7 @@ fun result(args: Array&lt;String&gt;) =
  // ...
 }
 </code></pre>
-<p><code>html</code>实际上是一个函数，其参数是一个<a href="lambdas.html">lambda 表达式</a>
+<p><code>html</code>实际上是一个函数，其参数是一个<a href="lambdas.html">lambda 表达式</a>。
 这个函数定义如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun html(init: HTML.() -&gt; Unit): HTML {
     val html = HTML()
@@ -808,7 +808,7 @@ abstract class Tag(val name: String) : Element {
         builder.append("$indent&lt;/$name&gt;\n")
     }
 
-    private fun renderAttributes(): String? {
+    private fun renderAttributes(): String {
         val builder = StringBuilder()
         for (a in attributes.keys) {
             builder.append(" $a=\"${attributes[a]}\"")

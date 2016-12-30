@@ -723,7 +723,7 @@ fun C.foo(i: Int) { println("extension") }
 }
 </code></pre>
 <h2 id="扩展属性">扩展属性</h2>
-<p>和方法类似，Kotlin 支持扩展属性：</p>
+<p>和函数类似，Kotlin 支持扩展属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
     get() = size - 1
 </code></pre>
@@ -788,7 +788,7 @@ class C {
 }
 </code></pre>
 <p>对于分发接收者和扩展接收者的成员名字冲突的情况，扩展接收者
-优先。要引用分发接收者的成员你可以使用 <a href="this-expressions.html#限定"><code>this</code> 限定语法</a>.</p>
+优先。要引用分发接收者的成员你可以使用 <a href="this-expressions.html#限定"><code>this</code> 限定语法</a>。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     fun D.foo() {
         toString()         // 调用 D.toString()

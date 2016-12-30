@@ -893,11 +893,11 @@ Functions that overload operators need to be marked with the <code>operator</cod
 <tbody>
 <tr>
 <td><code>a == b</code></td>
-<td><code>a?.equals(b) ?: b === null</code></td>
+<td><code>a?.equals(b) ?: (b === null)</code></td>
 </tr>
 <tr>
 <td><code>a != b</code></td>
-<td><code>!(a?.equals(b) ?: b === null)</code></td>
+<td><code>!(a?.equals(b) ?: (b === null))</code></td>
 </tr>
 </tbody>
 </table>

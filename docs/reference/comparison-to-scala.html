@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 
-<title>对比Scala - Kotlin 编程语言</title>
+<title>对比 Scala - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -19,7 +19,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="对比Scala - Kotlin 编程语言"/>
+<meta property="og:title" content="对比 Scala - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/comparison-to-scala.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -30,7 +30,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="对比Scala - Kotlin 编程语言">
+<meta name="twitter:title" content="对比 Scala - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -645,63 +645,63 @@
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="对比scala">对比Scala</h1>
-<p>The main goal of the Kotlin team is to create a pragmatic and productive programming language, rather than to advance the state of the art in programming language research.
-稍作考虑, 如果你对Scala已相当得心应手,你或许不需要再学习Kotlin</p>
-<h2 id="scala有什么kotlin没有的">Scala有什么Kotlin没有的</h2>
+<h1 id="对比-scala">对比 Scala</h1>
+<p>Kotlin 团队的主要目标是创建一种务实且高效的编程语言，而不是提高编程语言研究中的最新技术水平。
+考虑到这一点，如果你对 Scala 感到满意，那你很可能不需要 Kotlin。</p>
+<h2 id="scala-有而-kotlin没有的东西">Scala 有而 Kotlin没有的东西</h2>
 <ul>
-<li>隐式转换, 限定性因素, 等等
+<li>隐式转换、参数……等等
     <ul>
-<li>在Scala中, 由于画面中有太多的隐式转换，有时不使用debugger,会很难弄清code中具体发生了什么</li>
-<li>为了做到功能多样性，Kotlin会使用<a href="extensions.html">扩展函数</a>.</li>
+<li>在 Scala 中，由于画面中有太多的隐式转换，有时不使用 debugger 会很难弄清代码中具体发生了什么</li>
+<li>在 Kotlin 中使用<a href="extensions.html">扩展函数</a>来给类型扩充功能/函数（双关：functions）。</li>
 </ul>
 </li>
-<li>重写类型成员</li>
+<li>可覆盖的类型成员</li>
 <li>路径依赖性类型</li>
 <li>宏</li>
 <li>存在类型
     <ul>
-<li><a href="generics.html#type-projections">类型预测</a> 是一种非常特殊的情况</li>
+<li><a href="generics.html#类型预测">类型预测</a>是一种非常特殊的情况</li>
 </ul>
 </li>
-<li>特性初始化的复杂逻辑
+<li>特性（trait）初始化的复杂逻辑
     <ul>
-<li>参照 <a href="classes.html">类和接口</a></li>
+<li>参见<a href="classes.html">类和接口</a></li>
 </ul>
 </li>
-<li>自定义符号运算
+<li>自定义符号操作
     <ul>
-<li>参照 <a href="operator-overloading.html">运算符重载</a></li>
+<li>参见<a href="operator-overloading.html">操作符重载</a></li>
 </ul>
 </li>
 <li>结构类型</li>
 <li>值类型
     <ul>
-<li>We plan to support <a href="http://openjdk.java.net/projects/valhalla/">Project Valhalla</a> once it is released as part of the JDK</li>
+<li>我们计划支持<a href="http://openjdk.java.net/projects/valhalla/">Project Valhalla</a>当它作为 JDK 一部分发布时。</li>
 </ul>
 </li>
-<li>Yield operator</li>
+<li>Yield 操作符</li>
 <li>Actors
     <ul>
-<li>Kotlin supports <a href="http://www.paralleluniverse.co/quasar/">Quasar</a>, a third-party framework for actor support on the JVM</li>
+<li>Kotlin 支持<a href="http://www.paralleluniverse.co/quasar/">Quasar</a>——一个用于JVM上的actor支持的第三方框架</li>
 </ul>
 </li>
 <li>并行集合
     <ul>
-<li>Kotlin supports Java 8 streams, which provide similar functionality</li>
+<li>Kotlin 支持 Java 8 streams，它提供了类似的功能</li>
 </ul>
 </li>
 </ul>
-<h2 id="kotlin有什么scala没有的">Kotlin有什么Scala没有的</h2>
+<h2 id="kotlin-有而-scala-没有的东西">Kotlin 有而 Scala 没有的东西</h2>
 <ul>
-<li><a href="null-safety.html">零开销 空安全</a>
+<li><a href="null-safety.html">零开销空安全</a>
 <ul>
-<li>Scala 的 Option，它是语法和运行时包装</li>
+<li>Scala 有 Option，它是一个语法糖和运行时的包装器</li>
 </ul>
 </li>
 <li><a href="typecasts.html">智能转换</a></li>
-<li><a href="inline-functions.html#inline-functions">Kotlin的内联函数助力非局部跳跃</a></li>
-<li><a href="delegation.html">第一类 授权</a>. Also implemented via 3rd party plugin: Autoproxy</li>
+<li><a href="inline-functions.html#内联函数">Kotlin的内联函数便于非局部跳转</a></li>
+<li><a href="delegation.html">一等公民的委托</a>。也通过第三方插件 Autoproxy 实现</li>
 </ul>
 
         </article>
