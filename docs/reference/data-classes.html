@@ -605,7 +605,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">常见问题</span>
+                                <span class="text">FAQ</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -646,49 +646,49 @@
 </a>
                 
 <h1 id="数据类">数据类</h1>
-<p>我们经常创建一些只是处理数据的类。在这些类里的标准功能经常是
-衍生自数据。在Kotlin中，这叫做 <em>数据类</em> 并标记为<code>data</code>：</p>
+<p>我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从
+数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String, val age: Int)
 </code></pre>
-<p>编译器自动从在主构造函数定义的全部特性中得到以下成员：</p>
+<p>编译器自动从主构造函数中声明的所有属性导出以下成员：</p>
 <ul>
 <li><code>equals()</code>/<code>hashCode()</code> 对，</li>
 <li><code>toString()</code> 格式是 <code>"User(name=John, age=42)"</code>，</li>
-<li><a href="multi-declarations.html"><code>componentN()</code> functions</a> 对应按声明顺序出现的所有属性，</li>
-<li><code>copy()</code> 函数（见下面）。</li>
+<li><a href="multi-declarations.html"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性，</li>
+<li><code>copy()</code> 函数（见下文）。</li>
 </ul>
-<p>如果有某个函数被明确地定义在类里或者被继承，编译器就不会生成这个函数。</p>
-<p>To ensure consistency and meaningful behavior of the generated code, data classes have to fulfil the following requirements:</p>
+<p>如果这些函数中的任何一个在类体中显式定义或继承自其基类型，则不会生成该函数。</p>
+<p>为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：</p>
 <ul>
-<li>The primary constructor needs to have at least one parameter;</li>
-<li>All primary constructor parameters need to be marked as <code>val</code> or <code>var</code>;</li>
-<li>Data classes cannot be abstract, open, sealed or inner;</li>
-<li>Data classes may not extend other classes (but may implement interfaces).</li>
+<li>主构造函数需要至少有一个参数；</li>
+<li>主构造函数的所有参数需要标记为 <code>val</code> 或 <code>var</code>；</li>
+<li>数据类不能是抽象、开放、密封或者内部的；</li>
+<li>数据类不能扩展其他类（但可以实现接口）。</li>
 </ul>
 <blockquote>
-<p>在JVM中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须有默认值。
-(查看 <a href="classes.html#constructors">Constructors</a>).</p>
+<p>在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
+(参见<a href="classes.html#构造函数">构造函数</a>).</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String = "", val age: Int = 0)
 </code></pre>
 </blockquote>
 <h2 id="复制">复制</h2>
-<p>在很多情况下，我们我们需要对一些属性做修改而其他的不变。
-这就是<code>copy()</code>这个方法的来源。对于上文的<code>User</code>类，应该是这么实现这个方法的</p>
+<p>在很多情况下，我们需要复制一个对象改变它的一些属性，但其余部分保持不变。
+<code>copy()</code> 函数就是为此而生成。对于上文的 <code>User</code> 类，其实现会类似下面这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
 </code></pre>
-<p>也可以这么写</p>
+<p>这让我们可以写</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 </code></pre>
-<h2 id="数据类和多重声明">数据类和多重声明</h2>
-<p>_成员方法_用于使数据类可以<a href="multi-declarations.html">多声明</a>：</p>
+<h2 id="数据类和解构声明">数据类和解构声明</h2>
+<p>为数据类生成的 <em>Component 函数</em> 使它们可在<a href="multi-declarations.html">解构声明</a>中使用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val jane = User("Jane", 35)
 val (name, age) = jane
-println("$name, $age years of age") // prints "Jane, 35 years of age"
+println("$name, $age years of age") // 输出 "Jane, 35 years of age"
 </code></pre>
 <h2 id="标准数据类">标准数据类</h2>
-<p>在标准库提供了<code>Pair</code>和<code>Triple</code>。在很多情况下，即使命名数据类是一个更好的设计选择，
-因为这能让代码可读性更强。</p>
+<p>标准库提供了 <code>Pair</code> 和 <code>Triple</code>。尽管在很多情况下命名数据类是更好的设计选择，
+因为它们通过为属性提供有意义的名称使代码更具可读性。</p>
 
         </article>
     </div>
@@ -704,7 +704,7 @@ println("$name, $age years of age") // prints "Jane, 35 years of age"
         <div class="g-layout">
 
             <div class="terms-copyright">
-                &copy; 2000&ndash;2016 JetBrains. All rights reserved
+                &copy; 2000&ndash;2017 JetBrains. All rights reserved
             </div>
 
             <div class="terms-sponsor">

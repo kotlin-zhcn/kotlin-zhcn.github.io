@@ -605,7 +605,7 @@
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">常见问题</span>
+                                <span class="text">FAQ</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -646,7 +646,7 @@
 </a>
                 
 <h1 id="嵌套类">嵌套类</h1>
-<p>在类的内部可以嵌套其他的类</p>
+<p>类可以嵌套在其他类中</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
     private val bar: Int = 1
     class Nested {
@@ -657,7 +657,7 @@
 val demo = Outer.Nested().foo() // == 2
 </code></pre>
 <h2 id="内部类">内部类</h2>
-<p>为了能被外部类访问一个类可以被标记为内部类（“inner” 关键词）。内部类会带有一个来自外部类的对象的引用：</p>
+<p>类可以标记为 <em class="keyword">inner</em> 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
     private val bar: Int = 1
     inner class Inner {
@@ -667,9 +667,9 @@ val demo = Outer.Nested().foo() // == 2
 
 val demo = Outer().Inner().foo() // == 1
 </code></pre>
-<p>参见<a href="this-expressions.html">this-expressions.html</a>中“this”关键词用法来学习在内部类中如何消除“this”关键词的歧义。</p>
-<h2 id="anonymous-inner-classes">Anonymous inner classes</h2>
-<p>Anonymous inner class instances are created using an <a href="object-declarations.html#object-expressions">object expression</a>:</p>
+<p>参见<a href="this-expressions.html">限定的 <em class="keyword">this</em> 表达式</a>以了解内部类中的 <em class="keyword">this</em> 的消歧义用法。</p>
+<h2 id="匿名内部类">匿名内部类</h2>
+<p>使用<a href="object-declarations.html#对象表达式">对象表达式</a>创建匿名内部类实例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">window.addMouseListener(object: MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -680,8 +680,8 @@ val demo = Outer().Inner().foo() // == 1
     }
 })
 </code></pre>
-<p>If the object is an instance of a functional Java interface (i.e. a Java interface with a single abstract method),
-you can create it using a lambda expression prefixed with the type of the interface:</p>
+<p>如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
+你可以使用带接口类型前缀的lambda表达式创建它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val listener = ActionListener { println("clicked") }
 </code></pre>
 
@@ -699,7 +699,7 @@ you can create it using a lambda expression prefixed with the type of the interf
         <div class="g-layout">
 
             <div class="terms-copyright">
-                &copy; 2000&ndash;2016 JetBrains. All rights reserved
+                &copy; 2000&ndash;2017 JetBrains. All rights reserved
             </div>
 
             <div class="terms-sponsor">
