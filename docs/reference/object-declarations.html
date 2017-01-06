@@ -646,11 +646,11 @@
 </a>
                 
 <h1 id="对象表达式和对象声明">对象表达式和对象声明</h1>
-<p>有些时候我们需要创建一个对某些类做了轻微改变的一个对象，而不用为了它显式地定义一个新的子类。
-Java把这种情况处理为<em>匿名内部类</em>。
-在Kotlin稍微推广了这个概念，称它们为<em>对象表达式</em>和<em>对象声明</em>。</p>
+<p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。
+Java 用<em>匿名内部类</em> 处理这种情况。
+Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p>
 <h2 id="对象表达式">对象表达式</h2>
-<p>创建一个继承自某些类型的匿名类的对象，我们会这么写：</p>
+<p>要创建一个继承自某个（或某些）类型的匿名类的对象，我们会这么写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">window.addMouseListener(object : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -661,8 +661,8 @@ Java把这种情况处理为<em>匿名内部类</em>。
     }
 })
 </code></pre>
-<p>如果父类型有一个构造函数，合适的构造函数参数必须传递给它。
-多个父类型用逗号隔开，跟在冒号后面：</p>
+<p>如果超类型有一个构造函数，则必须传递适当的构造函数参数给它。
+多个超类型可以由跟在冒号后面的逗号分隔的列表指定：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class A(x: Int) {
     public open val y: Int = x
 }
@@ -673,15 +673,15 @@ val ab: A = object : A(1), B {
     override val y = 15
 }
 </code></pre>
-<p>或许，我们需要的仅是无父类的一个对象，那么我们可以简单地写为：</p>
+<p>任何时候，如果我们只需要“一个对象而已”，并不需要特殊父类，那么我们可以简单地写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val adHoc = object {
     var x: Int = 0
     var y: Int = 0
 }
 print(adHoc.x + adHoc.y)
 </code></pre>
-<p>就像Java的匿名内部类，在对象表达式里代码可以访问封闭的作用域
-（但与Java不同的是，它能访问非final修饰的变量）</p>
+<p>就像 Java 匿名内部类一样，对象表达式中的代码可以访问来自包含它的作用域的变量。
+（与 Java 不同的是，这不仅限于 final 变量。）</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun countClicks(window: JComponent) {
     var clickCount = 0
     var enterCount = 0
@@ -699,7 +699,7 @@ print(adHoc.x + adHoc.y)
 }
 </code></pre>
 <h2 id="对象声明">对象声明</h2>
-<p><a href="http://en.wikipedia.org/wiki/Singleton_pattern">单例模式</a>是一种非常有用的模式，而在Kotilin（在Scala之后）中很容易就能声明一个单例。</p>
+<p><a href="http://en.wikipedia.org/wiki/Singleton_pattern">单例模式</a>是一种非常有用的模式，而 Kotlin（继 Scala 之后）使单例声明变得很容易：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object DataProviderManager {
     fun registerDataProvider(provider: DataProvider) {
         // ...
@@ -709,13 +709,13 @@ print(adHoc.x + adHoc.y)
         get() = // ...
 }
 </code></pre>
-<p>-
-这被称为<em>对象声明</em>。如果有一个<em class="keyword">object</em>关键字在名字前面，这不能再被称为一个_表达式_。
-我们不能把这样的东西赋值给变量，但我们可以通过它的名字来引用它。这样的对象可以有父类型：</p>
-<p>To refer to the object, we use its name directly:</p>
+<p>——
+这称为<em>对象声明</em>。并且它总是在 <em class="keyword">object</em> 关键字后跟一个名称。
+就像变量声明一样，对象声明不是一个表达式，不能用在赋值语句的右边。</p>
+<p>要引用该对象，我们直接使用其名称即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">DataProviderManager.registerDataProvider(...)
 </code></pre>
-<p>Such objects can have supertypes:</p>
+<p>这些对象可以有超类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object DefaultListener : MouseAdapter() {
     override fun mouseClicked(e: MouseEvent) {
         // ...
@@ -726,19 +726,19 @@ print(adHoc.x + adHoc.y)
     }
 }
 </code></pre>
-<p><strong>NOTE</strong>: 对象声明不能是本地的（即直接嵌套在函数里面），但它们可以被嵌套进另外的对象声明或者非内部类里。</p>
+<p><strong>注意</strong>：对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。</p>
 <h3 id="伴生对象">伴生对象</h3>
-<p>一个对象声明在一个类里可以标志上<em class="keyword">companion</em>这个关键字：</p>
+<p>类内部的对象声明可以用 <em class="keyword">companion</em> 关键字标记：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyClass {
     companion object Factory {
         fun create(): MyClass = MyClass()
     }
 }
 </code></pre>
-<p>伴生对象的成员可以使用类名称作为限定符来调用：</p>
+<p>该伴生对象的成员可通过只使用类名作为限定符来调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val instance = MyClass.create()
 </code></pre>
-<p>使用<code>companion</code>关键字时候，伴生对象的名称可以省略：</p>
+<p>可以省略伴生对象的名称，在这种情况下将使用名称 <code>Companion</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyClass {
     companion object {
     }
@@ -746,8 +746,8 @@ print(adHoc.x + adHoc.y)
 
 val x = MyClass.Companion
 </code></pre>
-<p>注意，虽然伴生对象的成员在其他语言中看起来像静态成员，但在运行时它们
-仍然是实体的实例成员，举例来说，我们能用它实现接口：</p>
+<p>请注意，即使伴生对象的成员看起来像其他语言的静态成员，在运行时他们
+仍然是真实对象的实例成员，而且，例如还可以实现接口：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Factory&lt;T&gt; {
     fun create(): T
 }
@@ -759,15 +759,15 @@ class MyClass {
     }
 }
 </code></pre>
-<p>然而，在JVM中，如果你使用<code>@JvmStatic</code>注解，你可以让伴生对象的成员生成为实际存在的静态方法和域。
-可以从<a href="java-interop.html#static-methods-and-fields">Java interoperability</a> 这里
-查看详情。</p>
-<h3 id="对象表达式与对象声明语义上的不同">对象表达式与对象声明语义上的不同</h3>
-<p>这是一个在对象表达式与对象声明上重要的不同之处：</p>
+<p>当然，在 JVM 平台，如果使用 <code>@JvmStatic</code> 注解，你可以将伴生对象的成员生成为真正的
+静态方法和字段。更详细信息请参见<a href="java-interop.html#static-methods-and-fields">Java 互操作性</a>一节
+。</p>
+<h3 id="对象表达式和对象声明之间的语义差异">对象表达式和对象声明之间的语义差异</h3>
+<p>对象表达式和对象声明之间有一个重要的语义差别：</p>
 <ul>
-<li>当对象表达式被用到的时候，它会被<strong>立即</strong>执行（并且初始化）</li>
-<li>当对象声明被第一次访问的时候,它会被<strong>延迟（lazily）</strong>初始化</li>
-<li>a companion object is initialized when the corresponding class is loaded (resolved), matching the semantics of a Java static initializer</li>
+<li>对象表达式是在使用他们的地方<strong>立即</strong>执行（及初始化）的</li>
+<li>对象声明是在第一次被访问到时<strong>延迟</strong>初始化的</li>
+<li>伴生对象的初始化是在相应的类被加载（解析）时，与 Java 静态初始化器的语义相匹配</li>
 </ul>
 
         </article>

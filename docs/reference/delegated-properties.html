@@ -647,13 +647,13 @@
                 
 <h1 id="委托属性">委托属性</h1>
 <p>有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们，
-但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括：</p>
+但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括</p>
 <ul>
-<li>延迟属性（lazy properties）: 其值只在第一次被访问的时候计算。</li>
-<li>可观察属性（observable properties）: 属性变化时监听器收到通知，</li>
+<li>延迟属性（lazy properties）: 其值只在首次访问时计算，</li>
+<li>可观察属性（observable properties）: 监听器会收到有关此属性变更的通知，</li>
 <li>把多个属性储存在一个映射（map）中，而不是每个存在单独的字段中。</li>
 </ul>
-<p>为了支持这些（及其他）情况，Kotlin 支持 <em>委托属性</em>:</p>
+<p>为了涵盖这些（以及其他）情况，Kotlin 支持 <em>委托属性</em>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example {
     var p: String by Delegate()
 }
@@ -672,44 +672,44 @@
     }
 }
 </code></pre>
-<p>当我们从委托到一个 <code>Delegate</code> 实例的 <code>p</code> 读取时，将调用 <code>Delegate</code> 中的 <code>getValue()</code>，
-所以它第一个参数是读出 <code>p</code> 的对象、第二个参数包含 <code>p</code> 自身的描述 
-（例如你可以取他们的名字)。 例如:</p>
+<p>当我们从委托到一个 <code>Delegate</code> 实例的 <code>p</code> 读取时，将调用 <code>Delegate</code> 中的 <code>getValue()</code> 函数，
+所以它第一个参数是读出 <code>p</code> 的对象、第二个参数保存了对 <code>p</code> 自身的描述 
+（例如你可以取它的名字)。 例如:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val e = Example()
 println(e.p)
 </code></pre>
-<p>打印结果：</p>
+<p>输出结果：</p>
 <pre><code>Example@33a17727, thank you for delegating ‘p’ to me!
 </code></pre>
-<p>类似地，当我们给 <code>p</code> 赋值, <code>setValue()</code> 函数就被调用. 前两个参数是一样的，第三个参数持有将要被赋予的值：</p>
+<p>类似地，当我们给 <code>p</code> 赋值时，将调用 <code>setValue()</code> 函数。前两个参数相同，第三个参数保存将要被赋予的值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">e.p = "NEW"
 </code></pre>
-<p>打印结果：</p>
+<p>输出结果：</p>
 <pre><code>NEW has been assigned to ‘p’ in Example@33a17727.
 </code></pre>
 <h2 id="属性委托要求">属性委托要求</h2>
-<p>这里我们总结委托对象的要求。</p>
-<p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个 <code>getValue</code>函数，该函数接受下面的参数：</p>
+<p>这里我们总结了委托对象的要求。</p>
+<p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个名为 <code>getValue</code> 的函数，该函数接受以下参数：</p>
 <ul>
-<li>接收者 —— 必须与 <em>属性所有者</em> 类型相同或者是其父类（对于扩展属性——类型允许扩展），</li>
-<li>元数据 —— 一定要是 <code>KProperty&lt;*&gt;</code> 的类型或它的父类型,</li>
+<li>接收者 —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型，</li>
+<li>元数据 —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型,</li>
 </ul>
-<p>这个函数必须返回与属性相同的类型（或者对应的子类型）。</p>
-<p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须<em>额外</em>提供一个名为 <code>setValue</code> 的函数，该函数接受下面的参数：</p>
+<p>这个函数必须返回与属性相同的类型（或其子类型）。</p>
+<p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须<em>额外</em>提供一个名为 <code>setValue</code> 的函数，该函数接受以下参数：</p>
 <ul>
 <li>接收者 —— 同 <code>getValue()</code>,</li>
 <li>元数据 —— 同 <code>getValue()</code>,</li>
-<li>新的值 —— 必须和属性同类型或者是它的父类型。</li>
+<li>新的值 —— 必须和属性同类型或者是它的超类型。</li>
 </ul>
 <p><code>getValue()</code> 或/和 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
 当你需要委托属性到原本未提供的这些函数的对象时后者会更便利。
 两函数都需要用 <code>operator</code> 关键字来进行标记。</p>
 <h2 id="标准委托">标准委托</h2>
-<p>Kotlin 标准库中对于一些有用的委托类型提供了工厂方法。</p>
+<p>Kotlin 标准库为几种有用的委托提供了工厂方法。</p>
 <h3 id="延迟属性-lazy">延迟属性 Lazy</h3>
-<p>函数 <code>lazy()</code> 接受一个 lambda 然后返回一个可以作为实现延迟属性的委托 <code>Lazy&lt;T&gt;</code> 的实例：
+<p><code>lazy()</code> 是接受一个 lambda 并返回一个 <code>Lazy &lt;T&gt;</code> 实例的函数，返回的实例可以作为实现延迟属性的委托：
 第一次调用 <code>get()</code> 会执行已传递给 <code>lazy()</code> 的 lamda 表达式并记录结果，
-后续调用 <code>get()</code> 会直接返回记录的结果。</p>
+后续调用 <code>get()</code> 只是返回记录的结果。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val lazyValue: String by lazy {
     println("computed!")
     "Hello"
@@ -725,15 +725,15 @@ fun main(args: Array&lt;String&gt;) {
 Hello
 Hello
 </code></pre>
-<p>默认地，对于 lazy 属性的计算是<strong>同步锁（synchronized）</strong> 的：该值只在一个线程中计算，并且所有的线程
-会看到相同的值。如果初始化代理的同步锁不是必需的，这样于多个线程
-可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为一个参数传递给 <code>lazy()</code> 函数。
-而且如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
+<p>默认情况下，对于 lazy 属性的求值是<strong>同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程
+会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程
+可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
+而如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
 它不会有任何线程安全的保证和相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
 <p><code>Delegates.observable()</code> 接受两个参数：初始值和修改时处理程序（handler）。
-在每次我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个
-参数：被赋值的属性、旧的值和新的值：</p>
+每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个
+参数：被赋值的属性、旧值和新值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.properties.Delegates
 
 class User {
@@ -753,28 +753,28 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code>&lt;no name&gt; -&gt; first
 first -&gt; second
 </code></pre>
-<p>如果你想能够打断和“否决”它，就使用 <code>vetoable()</code> 取代 <code>observable()</code>。
-在属性被赋新值<em>之前</em>会执行传递给 <code>vetoable</code> 的处理程序。</p>
-<h2 id="把属性储存在映射map中">把属性储存在映射（Map）中</h2>
-<p>一个常见的用例是在一个映射里存储属性的值。
-这经常出现在像解析 JSON 或者做其他“动态”的事情的应用中。
-在这中情况下，你可以使用 map 实例自身作为代理来代理属性。</p>
+<p>如果你想能够截获一个赋值并“否决”它，就使用 <code>vetoable()</code> 取代 <code>observable()</code>。
+在属性被赋新值生效<em>之前</em>会调用传递给 <code>vetoable</code> 的处理程序。</p>
+<h2 id="把属性储存在映射中">把属性储存在映射中</h2>
+<p>一个常见的用例是在一个映射（map）里存储属性的值。
+这经常出现在像解析 JSON 或者做其他“动态”事情的应用中。
+在这种情况下，你可以使用映射实例自身作为委托来实现委托属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class User(val map: Map&lt;String, Any?&gt;) {
     val name: String by map
     val age: Int     by map
 }
 </code></pre>
-<p>在这个例子中，构造函数会接收一个 map 参数：</p>
+<p>在这个例子中，构造函数接受一个映射参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val user = User(mapOf(
     "name" to "John Doe",
     "age"  to 25
 ))
 </code></pre>
-<p>委托属性会从这个 map 中取值（通过 string 类型的 key——属性的名字）：</p>
+<p>委托属性会从这个映射中取值（通过字符串键——属性的名称）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println(user.name) // Prints "John Doe"
 println(user.age)  // Prints 25
 </code></pre>
-<p>这对 <em class="keyword">var</em> 属性也奏效，只要把只读的 <code>Map</code> 换成 <code>MutableMap</code>：</p>
+<p>这也适用于 <em class="keyword">var</em> 属性，如果把只读的 <code>Map</code> 换成 <code>MutableMap</code> 的话：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MutableUser(val map: MutableMap&lt;String, Any?&gt;) {
     var name: String by map
     var age: Int     by map
