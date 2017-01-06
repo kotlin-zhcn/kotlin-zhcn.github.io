@@ -809,7 +809,7 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 <li><code>Function&lt;*, *&gt;</code> 表示 <code>Function&lt;in Nothing, out Any?&gt;</code>。</li>
 </ul>
 <p><em>注意</em>：星投影非常像 Java 的原始类型，但是安全。</p>
-<h1 id="泛型函数">泛型函数</h1>
+<h2 id="泛型函数">泛型函数</h2>
 <p>不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称之前：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
     // ...
@@ -822,9 +822,9 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
 <p>要调用泛型函数，在调用处函数名<strong>之后</strong>指定类型参数即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList&lt;Int&gt;(1)
 </code></pre>
-<h1 id="泛型约束">泛型约束</h1>
+<h2 id="泛型约束">泛型约束</h2>
 <p>能够替换给定类型参数的所有可能类型的集合可以由<strong>泛型约束</strong>限制。</p>
-<h2 id="上界">上界</h2>
+<h3 id="上界">上界</h3>
 <p>最常见的约束类型是与 Java 的 <em>extends</em> 关键字对应的 <strong>上界</strong>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T : Comparable&lt;T&gt;&gt; sort(list: List&lt;T&gt;) {
     // ...
