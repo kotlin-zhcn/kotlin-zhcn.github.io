@@ -646,61 +646,61 @@
 </a>
                 
 <h1 id="解构声明">解构声明</h1>
-<p>有时把一个对象_解构_成很多变量很比较方便，比如:</p>
+<p>有时把一个对象 <em>解构</em> 成很多变量会很方便，例如:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val (name, age) = person
 </code></pre>
-<p>这种语法叫做_解构声明_。一个解构声明同时创造多个变量。
-我们申明了两个新变量：<code>name</code> 和 <code>age</code>,并且可以独立使用他们。</p>
+<p>这种语法称为 <em>解构声明</em> 。一个解构声明同时创建多个变量。
+我们已经声明了两个新变量：<code>name</code> 和 <code>age</code>，并且可以独立使用它们：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println(name)
 println(age)
 </code></pre>
-<p>一个解构声明会被向下编译成下面的代码：</p>
+<p>一个解构声明会被编译成以下代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val name = person.component1()
 val age = person.component2()
 </code></pre>
-<p><code>component1()</code> 和 <code>component2()</code> 函数是 <em>principle of conventions</em> widely 在Kotlin 中的另一个例子。
-(参考运算符如 <code>+</code> ， <code>*</code>, <em class="keyword">for</em>-loops 等)
-任何可以被放在解构声明右边的和组件函数的需求数字都可以调用它。
-当然，这里可以有更多的如 <code>component3()</code> 和 <code>component4()</code>.</p>
-<p>解构声明对 <em class="keyword">for</em>-loops有效：</p>
-<p>Destructuring declarations also work in <em class="keyword">for</em>-loops: when you say</p>
+<p>其中的 <code>component1()</code> 和 <code>component2()</code> 函数是在 Kotlin 中广泛使用的 <em>约定原则</em> 的另一个例子。
+（参见像 <code>+</code> 和 <code>*</code>、<em class="keyword">for</em>-循环等操作符）。
+任何表达式都可以出现在解构声明的右侧，只要可以对它调用所需数量的 component 函数即可。
+当然，可以有 <code>component3()</code> 和 <code>component4()</code> 等等。</p>
+<p>请注意，<code>componentN()</code> 函数需要用 <code>operator</code> 关键字标记，以允许在解构声明中使用它们。</p>
+<p>解构声明也可以用在 <em class="keyword">for</em>-循环中：当你写</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((a, b) in collection) { ... }
 </code></pre>
-<p>变量 <code>a</code> 和 <code>b</code> 从调用从 <code>component1()</code> 和 <code>component2()</code> 返回的集合collection中的对象。</p>
+<p>变量 <code>a</code> 和 <code>b</code> 的值取自对集合中的元素上调用 <code>component1()</code> 和 <code>component2()</code> 的返回值。</p>
 <h2 id="例从函数中返回两个变量">例：从函数中返回两个变量</h2>
-<p>让我们从一个函数中返回两个变量。例如，一个结果对象和一些排序的状态。
-在Kotlin中一个简单的实现方式是申明一个<a href="data-classes.html"><em>data class</em></a>并且返回他的实例：</p>
+<p>让我们假设我们需要从一个函数返回两个东西。例如，一个结果对象和一个某种状态。
+在 Kotlin 中一个简洁的实现方式是声明一个<a href="data-classes.html"><em>数据类</em></a>并返回其实例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Result(val result: Int, val status: Status)
 fun function(...): Result {
-    // computations
+    // 各种计算
 
     return Result(result, status)
 }
 
-// Now, to use this function:
+// 现在，使用该函数：
 val (result, status) = function(...)
 </code></pre>
-<p>既然数据类自动申明 <code>componentN()</code> 函数，解构声明在这里也有效。</p>
-<p><strong>NOTE</strong>: 我们也可用标准类 <code>Pair</code> 并且让 <code>function()</code> 返回 <code>Pair&lt;Int, Status&gt;</code>,
-但是如果让数据合理命名通常还是更好。</p>
-<h2 id="例-解构和映射">例: 解构和映射。</h2>
-<p>可能最好的遍历一个映射的方式就是这样：</p>
+<p>因为数据类自动声明 <code>componentN()</code> 函数，所以这里可以用解构声明。</p>
+<p><strong>注意</strong>：我们也可以使用标准类 <code>Pair</code> 并且让 <code>function()</code> 返回 <code>Pair&lt;Int, Status&gt;</code>，
+但是让数据合理命名通常更好。</p>
+<h2 id="例解构声明和映射">例：解构声明和映射</h2>
+<p>可能遍历一个映射（map）最好的方式就是这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((key, value) in map) {
-   // do something with the key and the value
+   // 使用该 key、value 做些事情
 }
 </code></pre>
-<p>为了实现这个，我们需要</p>
+<p>为使其能用，我们应该</p>
 <ul>
-<li>通过提供一个 <code>iterator()</code>迭代函数来表示一系列有序值来表示映射。</li>
-<li>把每个元素标识为一对函数 <code>component1()</code> 和 <code>component2()</code>.</li>
+<li>通过提供一个 <code>iterator()</code> 函数将映射表示为一个值的序列，</li>
+<li>通过提供函数 <code>component1()</code> 和 <code>component2()</code> 来将每个元素呈现为一对。</li>
 </ul>
-<p>当然，标准库中提供了这一扩展:</p>
+<p>当然事实上，标准库提供了这样的扩展：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">operator fun &lt;K, V&gt; Map&lt;K, V&gt;.iterator(): Iterator&lt;Map.Entry&lt;K, V&gt;&gt; = entrySet().iterator()
 operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component1() = getKey()
 operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component2() = getValue()
 
 </code></pre>
-<p>于是你可以自由的使用解构声明 <em class="keyword">for</em>-loops 来操作映射(也可以用在数据类实例的集合等)。</p>
+<p>因此你可以在 <em class="keyword">for</em>-循环中对映射（以及数据类实例的集合等）自由使用解构声明。</p>
 
         </article>
     </div>

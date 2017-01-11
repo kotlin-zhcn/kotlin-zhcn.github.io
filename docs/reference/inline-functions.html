@@ -646,14 +646,15 @@
 </a>
                 
 <h1 id="内联函数">内联函数</h1>
-<p>使用<a href="lambdas.html">高阶函数</a>会带来一些运行时间效率的损失：每一个函数都是一个对象，并且都会捕获一个闭包。
-即那些在函数体内会被访问的变量。
-内存分配(对于函数对象和类)和虚拟调用会引入运行时间开销。</p>
+<p>使用<a href="lambdas.html">高阶函数</a>会带来一些运行时的效率损失：每一个函数都是一个对象，并且会捕获一个闭包。
+即那些在函数体内会访问到的变量。
+内存分配（对于函数对象和类）和虚拟调用会引入运行时间开销。</p>
 <p>但是在许多情况下通过内联化 lambda 表达式可以消除这类的开销。
-我们通过下面的示例函数来分析上面这些内容。如，<code>lock()</code> 函数可以被很容易地在调用点被内联。考虑下面的例子：</p>
+下述函数是这种情况的很好的例子。即 <code>lock()</code> 函数可以很容易地在调用处内联。
+考虑下面的情况：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">lock(l) { foo() }
 </code></pre>
-<p>编译器没有为参数创建一个函数对象和产生一个调用点。取而代之，编译器产生了下面的代码：</p>
+<p>编译器没有为参数创建一个函数对象并生成一个调用。取而代之，编译器可以生成以下代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">l.lock()
 try {
     foo()
@@ -662,57 +663,58 @@ finally {
     l.unlock()
 }
 </code></pre>
-<p>这个不是我们在一开始时候想要的么？</p>
-<p>为了让编译器做这个，我们需要在<code>lock()</code>函数前面加上<code>inline</code>修饰符:</p>
+<p>这个不是我们从一开始就想要的吗？</p>
+<p>为了让编译器这么做，我们需要使用 <code>inline</code> 修饰符标记 <code>lock()</code> 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun lock&lt;T&gt;(lock: Lock, body: () -&gt; T): T {
     // ...
 }
 </code></pre>
-<p><code>inline</code>修饰符会影响函数体本身以及传递过来的lambdas: 所有的这些会被内联到
-调用点。</p>
-<p>内联本身有时会引起生成的代码数量增加，但是如果我们使用得当(不要内联大的函数)。它将在
-性能上有所提升，尤其是在超多态(megamorphic)调用点的循环中。</p>
-<h2 id="禁止内联noinline">禁止内联（noinline）</h2>
-<p>为了预防 有时候你只希望被（作为参数）传递到一个内联函数的lamdas 只有一些被内联，你可以用 <code>noinline</code> 修饰符标记你的参数:</p>
+<p><code>inline</code> 修饰符影响函数本身和传给它的 lambda 表达式：所有这些都将内联
+到调用处。</p>
+<p>内联可能导致生成的代码增加，但是如果我们使用得当（不内联大函数），它将在
+性能上有所提升，尤其是在循环中的“超多态（megamorphic）”调用处。</p>
+<h2 id="禁用内联">禁用内联</h2>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 <code>noinline</code> 修饰符标记
+一些函数参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun foo(inlined: () -&gt; Unit, noinline notInlined: () -&gt; Unit) {
     // ...
 }
 </code></pre>
-<p>可以内联的lambdas只能在内联函数内部被调用或者被当作一个可内联的参数传递。
-但是通过 <code>noinline</code> 我们可以把它变化成任何的方式：储存在指定地点，传递它等等。</p>
-<p>需要注意的是，如果一个内联函数没有可以内联的函数参数并且没有
-<a href="#reified-type-parameters">泛型变量</a>, 编译器会产生一个警告。因为内联这样的函数
-很可能是无意义的(你可以supress这个警告如果你确定内联是必须的).</p>
-<h2 id="非本地non-local的返回">非本地（Non-local）的返回</h2>
-<p>在Kotlin中，我们只能使用一个普通的，无限制的<code>return</code>来退出一个有名的函数或者匿名函数。
-这个意味着为了退出一个lambda,我们不得不用一个 <a href="returns.html#return-at-labels">标签</a>,同时 在一个
-lambda中<code>return</code>单独出现时不允许的，因为一个lambda不可能让外围的函数返回:</p>
+<p>可以内联的 lambda 表达式只能在内联函数内部调用或者作为可内联的参数传递，
+但是 <code>noinline</code> 的可以以任何我们喜欢的方式操作：存储在字段中、传送它等等。</p>
+<p>需要注意的是，如果一个内联函数没有可内联的函数参数并且没有
+<a href="#具体化的类型参数">具体化的类型参数</a>，编译器会产生一个警告，因为内联这样的函数
+很可能并无益处（如果你确认需要内联，则可以关掉该警告）。</p>
+<h2 id="非局部返回">非局部返回</h2>
+<p>在 Kotlin 中，我们可以只使用一个正常的、非限定的 <code>return</code> 来退出一个命名或匿名函数。
+这意味着要退出一个 lambda 表达式，我们必须使用一个<a href="returns.html#标签处返回">标签</a>，并且
+在 lambda 表达式内部禁止使用裸 <code>return</code>，因为 lambda 表达式不能使包含它的函数返回：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     ordinaryFunction {
-        return // ERROR: can not make `foo` return here
+        return // 错误：不能使 `foo` 在此处返回
     }
 }
 </code></pre>
-<p>但是如果lambda所传递到的函数是内联的，那么return也会被内联。于是下面就是允许的：</p>
+<p>但是如果 lambda 表达式传给的函数是内联的，该 return 也可以内联，所以它是允许的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     inlineFunction {
-        return // OK: the lambda is inlined
+        return // OK：该 lambda 表达式是内联的
     }
 }
 </code></pre>
-<p>这样的返回(在lambda中，但是退出封闭的函数)被称作<em>non-local</em>返回。我们把
-这种排序构造用在循环中。通常这些内联函数是封闭的：</p>
+<p>这种返回（位于 lambda 表达式中，但退出包含它的函数）称为<em>非局部</em>返回。 我们习惯了
+在循环中用这种结构，其内联函数通常包含：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun hasZeros(ints: List&lt;Int&gt;): Boolean {
     ints.forEach {
-        if (it == 0) return true // returns from hasZeros
+        if (it == 0) return true // 从 hasZeros 返回
     }
     return false
 }
 </code></pre>
-<p>注意有些内联函数可能会不直接地在函数体中调用那些被作为参数传递过来的lambdas，
-而从其他执行上下文中调用，比如一个本地对象或者一个嵌套函数。在这种情况下， non-local的控制流程
-也会被lambdas禁止。为了标识这种情况，lambda参数需要
-以<code>crossinline</code> 修饰:</p>
+<p>请注意，一些内联函数可能调用传给它们的不是直接来自函数体、而是来自另一个执行
+上下文的 lambda 表达式参数，例如来自局部对象或嵌套函数。在这种情况下，该 lambda 表达式中
+也不允许非局部控制流。为了标识这种情况，该 lambda 表达式参数需要
+用 <code>crossinline</code> 修饰符标记:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun f(crossinline body: () -&gt; Unit) {
     val f = object: Runnable {
         override fun run() = body()
@@ -721,10 +723,10 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
 }
 </code></pre>
 <blockquote>
-<p><code>break</code> 和 <code>continue</code> 在内联的lambdas还不能使用, 但是我们正在计划支持他们。</p>
+<p><code>break</code> 和 <code>continue</code> 在内联的 lambda 表达式中还不可用，但我们也计划支持它们</p>
 </blockquote>
-<h2 id="泛型变量">泛型变量</h2>
-<p>有时候我们需要访问一个作为参数传递过来的一个类型：</p>
+<h2 id="具体化的类型参数">具体化的类型参数</h2>
+<p>有时候我们需要访问一个作为参数传给我们的一个类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; TreeNode.findParentOfType(clazz: Class&lt;T&gt;): T? {
     var p = parent
     while (p != null &amp;&amp; !clazz.isInstance(p)) {
@@ -735,13 +737,13 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
 }
 </code></pre>
 <p>在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。
-这都没有问题，但是函数调用点十分不优雅：</p>
+这都没有问题，但是调用处不是很优雅：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">myTree.findParentOfType(MyTreeNodeType::class.java)
 </code></pre>
-<p>我们真正想要的只是简单的传递一个类型给函数，例如这样调用：</p>
+<p>我们真正想要的只是传一个类型给该函数，即像这样调用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">myTree.findParentOfType&lt;MyTreeNodeType&gt;()
 </code></pre>
-<p>为了实现这个，内联函数支持 <em>泛型变量</em>, 于是我们就可以这样写：</p>
+<p>为能够这么做，内联函数支持<em>具体化的类型参数</em>，于是我们可以这样写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; TreeNode.findParentOfType(): T? {
     var p = parent
     while (p != null &amp;&amp; p !is T) {
@@ -750,21 +752,20 @@ lambda中<code>return</code>单独出现时不允许的，因为一个lambda不�
     return p as T
 }
 </code></pre>
-<p>我们用泛型修饰符<code>reified</code>来修饰这个类型参数，现在它就像一个普通的类一样，能在函数内部被正常访问了。
-因为这个函数是内联的，不需要反射，一般的运算符 <code>!is</code>
-和 <code>as</code>就可以工作了。 此外，我们可以像上面说的调用它:
-<code>myTree.findParentOfType&lt;MyTreeNodeType&gt;()</code>.</p>
-<p>虽然反射在很多情况下不一定需要，我们还是可以在泛型参数里使用它：</p>
+<p>我们使用 <code>reified</code> 修饰符来限定类型参数，现在可以在函数内部访问它了，
+几乎就像是一个普通的类一样。由于函数是内联的，不需要反射，正常的操作符如 <code>!is</code>
+和 <code>as</code> 现在都能用了。此外，我们还可以按照上面提到的方式调用它：<code>myTree.findParentOfType&lt;MyTreeNodeType&gt;()</code>。</p>
+<p>虽然在许多情况下可能不需要反射，但我们仍然可以对一个具体化的类型参数使用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; membersOf() = T::class.members
 
 fun main(s: Array&lt;String&gt;) {
     println(membersOf&lt;StringBuilder&gt;().joinToString("\n"))
 }
 </code></pre>
-<p>普通的函数 (没有被标记为内联) 不能够有泛型参数.
-一个没有一个运行时表示的类型 (例如一个非泛型参数或者一个虚构类型如 <code>Nothing</code>)
-不能被用做泛型参数的变量。</p>
-<p>更详细解释参考 <a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md">spec document</a>.</p>
+<p>普通的函数（未标记为内联函数的）不能有具体化参数。
+不具有运行时表示的类型（例如非具体化的类型参数或者类似于<code>Nothing</code>的虚构类型）
+不能用作具体化的类型参数的实参。</p>
+<p>相关底层描述，请参见<a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md">规范文档</a>。</p>
 
         </article>
     </div>
