@@ -682,14 +682,14 @@ items.last() == 4
 items.filter { it % 2 == 0 }   // 返回 [2, 4]
 
 val rwList = mutableListOf(1, 2, 3)
-rwList.requireNoNulls()        // returns [1, 2, 3]
-if (rwList.none { it &gt; 6 }) println("No items above 6")  // prints "No items above 6"
+rwList.requireNoNulls()        // 返回 [1, 2, 3]
+if (rwList.none { it &gt; 6 }) println("No items above 6")  // 输出“No items above 6”
 val item = rwList.firstOrNull()
 </code></pre>
 <p>…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。</p>
 <p>Map 遵循同样模式。它们可以容易地实例化和访问，像这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
-println(readWriteMap["foo"])  // prints "1"
+println(readWriteMap["foo"])  // 输出“1”
 val snapshot: Map&lt;String, Int&gt; = HashMap(readWriteMap)
 </code></pre>
 

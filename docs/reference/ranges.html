@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 
-<title>范围 - Kotlin 编程语言</title>
+<title>区间 - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -19,7 +19,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="范围 - Kotlin 编程语言"/>
+<meta property="og:title" content="区间 - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/ranges.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -30,7 +30,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="范围 - Kotlin 编程语言">
+<meta name="twitter:title" content="区间 - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -645,70 +645,70 @@
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="范围">范围</h1>
-<p>范围表达式是由“rangeTo”函数组成的，操作符的形式是<code>..</code>由<em class="keyword">in</em>和<em class="keyword">!in</em>补充。
-范围被定义为任何可比类型,但是用于原生类型有更优化的实现。下面是使用范围的例子</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in 1..10) { // equivalent of 1 &lt;= i &amp;&amp; i &lt;= 10
+<h1 id="区间">区间</h1>
+<p>区间表达式由具有操作符形式 <code>..</code> 的 <code>rangeTo</code> 函数辅以 <em class="keyword">in</em> 和 <em class="keyword">!in</em> 形成。
+区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in 1..10) { // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10
     println(i)
 }
 </code></pre>
-<p>整型范围（<code>IntRange</code>, <code>LongRange</code>, <code>CharRange</code>）有一个额外的功能:他们可以遍历。
-编译者需要关心的转换是简单模拟Java的索引<em class="keyword">for</em>循环,不用担心越界。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4) print(i) // prints "1234"
+<p>整型区间（<code>IntRange</code>、 <code>LongRange</code>、 <code>CharRange</code>）有一个额外的特性：它们可以迭代。
+编译器负责将其转换为类似 Java 的基于索引的 <em class="keyword">for</em>-循环而无额外开销。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4) print(i) // 输出“1234”
 
-for (i in 4..1) print(i) // prints nothing
+for (i in 4..1) print(i) // 什么都不输出
 </code></pre>
-<p>你想要遍历数字颠倒顺序吗?这很简单。您可以使用标准库里面的<code>downTo()</code>函数</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 4 downTo 1) print(i) // prints "4321"
+<p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 4 downTo 1) print(i) // 输出“4321”
 </code></pre>
-<p>是否可以任意进行数量的迭代,而不必每次的变化都是1呢?当然, <code>step()</code>函数可以实现</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4 step 2) print(i) // prints "13"
+<p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4 step 2) print(i) // 输出“13”
 
-for (i in 4 downTo 1 step 2) print(i) // prints "42"
+for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 </code></pre>
-<p>To create a range which does not include its end element, you can use the <code>until</code> function:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1 until 10) { // i in [1, 10), 10 is excluded
+<p>要创建一个不包括其结束元素的区间，可以使用 <code>until</code> 函数：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1 until 10) {   // i in [1, 10) 排除了 10
      println(i)
 }
 </code></pre>
 <h2 id="它是如何工作的">它是如何工作的</h2>
-<p>Ranges implement a common interface in the library: <code>ClosedRange&lt;T&gt;</code>.</p>
-<p><code>ClosedRange&lt;T&gt;</code> 在数学意义上表示一个间隔,是对比较类型的定义。
-它有两个端点:‘start’和‘endInclusive’,这是包含在范围内。
-主要的操作是<code>contains</code>,通常用<em class="keyword">in</em> /<em>!in</em> {: .keyword }操作符内。</p>
-<p>Integral type progressions (<code>IntProgression</code>, <code>LongProgression</code>, <code>CharProgression</code>) denote an arithmetic progression.
-Progressions are defined by the <code>first</code> element, the <code>last</code> element and a non-zero <code>increment</code>.
-The first element is <code>first</code>, subsequent elements are the previous element plus <code>increment</code>. The <code>last</code> element is always hit by iteration unless the progression is empty.</p>
-<p>A progression is a subtype of <code>Iterable&lt;N&gt;</code>, where <code>N</code> is <code>Int</code>, <code>Long</code> or <code>Char</code> respectively, so it can be used in <em class="keyword">for</em>-loops and functions like <code>map</code>, <code>filter</code>, etc.
-迭代<code>Progression</code>与Java/JavaScript的基于索引的<em class="keyword">for</em>循环等价:</p>
+<p>区间实现了该库中的一个公共接口：<code>ClosedRange&lt;T&gt;</code>。</p>
+<p><code>ClosedRange&lt;T&gt;</code> 在数学意义上表示一个闭区间，它是为可比较类型定义的。
+它有两个端点：<code>start</code> 和 <code>endInclusive</code> 他们都包含在区间内。
+其主要操作是 <code>contains</code>，通常以 <em class="keyword">in</em>/<em class="keyword">!in</em> 操作符形式使用。</p>
+<p>整型数列（<code>IntProgression</code>、 <code>LongProgression</code>、 <code>CharProgression</code>）表示等差数列。
+数列由 <code>first</code> 元素、<code>last</code> 元素和非零的 <code>increment</code> 定义。
+第一个元素是 <code>first</code>，后续元素是前一个元素加上 <code>increment</code>。 <code>last</code> 元素总会被迭代命中，除非该数列是空的。</p>
+<p>数列是 <code>Iterable&lt;N&gt;</code> 的子类型，其中 <code>N</code> 分别为 <code>Int</code>、 <code>Long</code> 或者 <code>Char</code>，所以它可用于 <em class="keyword">for</em>-循环以及像 <code>map</code>、<code>filter</code> 等函数中。
+对 <code>Progression</code> 迭代相当于 Java/JavaScript 的基于索引的 <em class="keyword">for</em>-循环：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += increment) {
   // ...
 }
 </code></pre>
-<p>对于整型, <code>..</code>操作符创建一个对象既实现了<code>ClosedRange</code>也实现了<code>Progression</code>。
-For example, <code>IntRange</code> implements <code>ClosedRange&lt;Int&gt;</code> and extends <code>IntProgression</code>, thus all operations defined for <code>IntProgression</code> are available for <code>IntRange</code> as well.
-<code>downTo()</code>和 <code>step()</code>函数的结果一直是<code>Progression</code>。</p>
-<p>Progressions are constructed with the <code>fromClosedRange</code> function defined in their companion objects:</p>
+<p>对于整型类型，<code>..</code> 操作符创建一个同时实现 <code>ClosedRange&lt;T&gt;</code> 和 <code>*Progression</code> 的对象。
+例如，<code>IntRange</code> 实现了 <code>ClosedRange&lt;Int&gt;</code> 并扩展自 <code>IntProgression</code>，因此为 <code>IntProgression</code> 定义的所有操作也可用于 <code>IntRange</code>。
+<code>downTo()</code> 和 <code>step()</code> 函数的结果总是一个 <code>*Progression</code>。</p>
+<p>数列由在其伴生对象中定义的 <code>fromClosedRange</code> 函数构造：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">    IntProgression.fromClosedRange(start, end, increment)
 </code></pre>
-<p>The <code>last</code> element of the progression is calculated to find maximum value not greater than the <code>end</code> value for positive <code>increment</code> or minimum value not less than the <code>end</code> value for negative <code>increment</code> such that <code>(last - first) % increment == 0</code>.</p>
+<p>数列的 <code>last</code> 元素这样计算：对于正的 <code>increment</code> 找到不大于 <code>end</code> 值的最大值、或者对于负的 <code>increment</code> 找到不小于 <code>end</code> 值的最小值，使得 <code>(last - first) % increment == 0</code>。</p>
 <h2 id="一些实用函数">一些实用函数</h2>
 <h3><code>rangeTo()</code></h3>
-<p>整型得<code>rangeTo()</code>运算符只要简单地调用构造函数<code>*Range</code>类,例如:</p>
+<p>整型类型的 <code>rangeTo()</code> 操作符只是调用 <code>*Range</code> 类的构造函数，例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Int {
-    //...
+    //……
     operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
-    //...
+    //……
     operator fun rangeTo(other: Int): IntRange = IntRange(this, other)
-    //...
+    //……
 }
 </code></pre>
-<p>Floating point numbers (<code>Double</code>, <code>Float</code>) do not define their <code>rangeTo</code> operator, and the one provided by the standard library for generic <code>Comparable</code> types is used instead:</p>
+<p>浮点数（<code>Double</code>、 <code>Float</code>）未定义它们的 <code>rangeTo</code> 操作符，而使用标准库提供的泛型 <code>Comparable</code> 类型的操作符：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
 </code></pre>
-<p>The range returned by this function cannot be used for iteration.</p>
+<p>该函数返回的区间不能用于迭代。</p>
 <h3 id="-1"><code>downTo()</code></h3>
-<p><code>downTo()</code>的扩展函数可以为任何数字整型对定义,这里有两个例子:</p>
+<p>扩展函数 <code>downTo()</code> 是为任何整型类型对定义的，这里有两个例子：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Long.downTo(other: Int): LongProgression {
     return LongProgression.fromClosedRange(this, other, -1.0)
 }
@@ -718,15 +718,15 @@ fun Byte.downTo(other: Int): IntProgression {
 }
 </code></pre>
 <h3 id="-2"><code>reversed()</code></h3>
-<p>定义<code>reversed()</code>扩展函数是为了每个 <code>*Progression</code> 类定义的,它们返回反向的级数。</p>
+<p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
     return IntProgression.fromClosedRange(last, first, -increment)
 }
 </code></pre>
 <h3 id="-3"><code>step()</code></h3>
-<p><code>step()</code>扩展函数是为每个 <code>*Progression</code> 类定义的,
-他们返回级数与都修改了<code>step</code>值(函数参数)。
-注意,step值必需总是正的，因此这个函数从不改变的迭代方向。</p>
+<p>扩展函数 <code>step()</code> 是为每个 <code>*Progression</code> 类定义的，
+所有这些函数都返回带有修改了 <code>step</code> 值（函数参数）的数列。
+步长（step）值必须始终为正，因此该函数不会更改迭代的方向。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.step(step: Int): IntProgression {
     if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
     return IntProgression.fromClosedRange(first, last, if (increment &gt; 0) step else -step)
@@ -737,10 +737,10 @@ fun CharProgression.step(step: Int): CharProgression {
     return CharProgression.fromClosedRange(first, last, step)
 }
 </code></pre>
-<p>Note that the <code>last</code> value of the returned progression may become different from the <code>last</code> value of the original progression in order to preserve the invariant <code>(last - first) % increment == 0</code>. Here is an example:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    (1..12 step 2).last == 11  // progression with values [1, 3, 5, 7, 9, 11]
-    (1..12 step 3).last == 10  // progression with values [1, 4, 7, 10]
-    (1..12 step 4).last == 9   // progression with values [1, 5, 9]
+<p>请注意，返回数列的 <code>last</code> 值可能与原始数列的 <code>last</code> 值不同，以便保持不变式 <code>(last - first) % increment == 0</code> 成立。这里是一个例子：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">    (1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
+    (1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
+    (1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
 </code></pre>
 
         </article>

@@ -646,13 +646,13 @@
 </a>
                 
 <h1 id="类型的检查与转换">类型的检查与转换</h1>
-<h2 id="-和-运算符"><code>is</code> 和 <code>!is</code>运算符</h2>
-<p>我们可以使用<code>is</code> 或者它的否定<code>!is</code>运算符检查一个对象在运行中是否符合所给出的类型：</p>
+<h2 id="-和--操作符"><code>is</code> 和 <code>!is</code> 操作符</h2>
+<p>我们可以在运行时通过使用 <code>is</code> 操作符或其否定形式 <code>!is</code> 来检查对象是否符合给定类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (obj is String) {
     print(obj.length)
 }
 
-if (obj !is String) { // same as !(obj is String)
+if (obj !is String) { // 与 !(obj is String) 相同
     print("Not a String")
 }
 else {
@@ -660,54 +660,58 @@ else {
 }
 </code></pre>
 <h2 id="智能转换">智能转换</h2>
-<p>在很多情况下，在Kotlin有时不用使用明确的转换运算符，因为编译器会在需要的时候自动为了不变的值和输入（安全）而使用<code>is</code>进行监测：</p>
+<p>在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪
+不可变值的 <code>is</code>-检查，并在需要时自动插入（安全的）转换：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun demo(x: Any) {
     if (x is String) {
-        print(x.length) // x is automatically cast to String
+        print(x.length) // x 自动转换为字符串
     }
 }
 </code></pre>
-<p>如果错误的检查导致返回，编译器会清楚地转换为一个正确的：</p>
+<p>编译器足够聪明，能够知道如果反向检查导致返回那么该转换是安全的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">    if (x !is String) return
-    print(x.length) // x is automatically cast to String
+    print(x.length) // x 自动转换为字符串
 </code></pre>
-<p>或者在右边是<code>&amp;&amp;</code> 和 <code>||</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    // x is automatically cast to string on the right-hand side of `||`
+<p>或者在 <code>&amp;&amp;</code> 和 <code>||</code> 的右侧：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">    // `||` 右侧的 x 自动转换为字符串
     if (x !is String || x.length == 0) return
 
-    // x is automatically cast to string on the right-hand side of `&amp;&amp;`
+    // `&amp;&amp;` 右侧的 x 自动转换为字符串
     if (x is String &amp;&amp; x.length &gt; 0) {
-        print(x.length) // x is automatically cast to String
+        print(x.length) // x 自动转换为字符串
     }
 </code></pre>
-<p>这些智能转换在 <a href="control-flow.html#when-expressions"><em class="keyword">when</em>-expressions</a>
-和 <a href="control-flow.html#while-loops"><em class="keyword">while</em>-loops</a> 也一样：</p>
+<p>这些 <em>智能转换</em> 用于 <a href="control-flow.html#when表达式"><em class="keyword">when</em>-表达式</a>
+和 <a href="control-flow.html#while循环"><em class="keyword">while</em>-循环 </a> 也一样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
     is Int -&gt; print(x + 1)
     is String -&gt; print(x.length + 1)
     is IntArray -&gt; print(x.sum())
 }
 </code></pre>
-<p>Note that smart casts do not work when the compiler cannot guarantee that the variable cannot change between the check and the usage.
-More specifically, smart casts are applicable according to the following rules:</p>
+<p>请注意，当编译器不能保证变量在检查和使用之间不可改变时，智能转换不能用。
+更具体地，智能转换能否适用根据以下规则：</p>
 <ul>
-<li><em class="keyword">val</em> local variables - always;</li>
-<li><em class="keyword">val</em> properties - if the property is private or internal or the check is performed in the same module where the property is declared. Smart casts aren't applicable to open properties or properties that have custom getters;</li>
-<li><em class="keyword">var</em> local variables - if the variable is not modified between the check and the usage and is not captured in a lambda that modifies it;</li>
-<li><em class="keyword">var</em> properties - never (because the variable can be modified at any time by other code).</li>
+<li><em class="keyword">val</em> 局部变量——总是可以；</li>
+<li><em class="keyword">val</em> 属性——如果属性是 private 或 internal，或者该检查在声明属性的同一模块中执行。智能转换不适用于 open 的属性或者具有自定义 getter 的属性；</li>
+<li><em class="keyword">var</em> 局部变量——如果变量在检查和使用之间没有修改、并且没有在会修改它的 lambda 中捕获；</li>
+<li><em class="keyword">var</em> 属性——决不可能（因为该变量可以随时被其他代码修改）。</li>
 </ul>
-<h2 id="不安全的转换运算符">“不安全”的转换运算符</h2>
-<p>通常，如果转换是不可能的，转换运算符会抛出一个异常。于是，我们称之为<em>不安全的</em>。在Kotlin这种不安全的转换会出现在插入运算符<em class="keyword">as</em> (see <a href="grammar.html#operator-precedence">operator precedence</a>)：</p>
+<h2 id="不安全的转换操作符">“不安全的”转换操作符</h2>
+<p>通常，如果转换是不可能的，转换操作符会抛出一个异常。因此，我们称之为<em>不安全的</em>。
+Kotlin 中的不安全转换由中缀操作符 <em class="keyword">as</em>（参见<a href="grammar.html#operator-precedence">operator precedence</a>）完成：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: String = y as String
 </code></pre>
-<p>记住<em class="keyword">null</em>不能被转换为<a href="null-safety.html">不可为空的</a><code>String</code>。例如，如果<code>y</code>是空，则这段代码会抛出异常。为了匹配Jave的转换语义，我们不得不在右边拥有可空的类型，就像：</p>
+<p>请注意，<em class="keyword">null</em> 不能转换为 <code>String</code> 因该类型不是<a href="null-safety.html">可空的</a>，
+即如果 <code>y</code> 为空，上面的代码会抛出一个异常。
+为了匹配 Java 转换语义，我们必须在转换右边有可空类型，就像：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: String? = y as String?
 </code></pre>
-<h2 id="安全的可为空的转换运算符">“安全的”（可为空的）转换运算符</h2>
-<p>为了避免异常的抛出，一个可以使用<em>安全的</em>转换运算符——<em class="keyword">as?</em> ，它可以在失败时返回一个<em class="keyword">null</em>：</p>
+<h2 id="安全的可空转换操作符">“安全的”（可空）转换操作符</h2>
+<p>为了避免抛出异常，可以使用<em>安全</em>转换操作符 <em class="keyword">as?</em>，它可以在失败时返回 <em class="keyword">null</em>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: String? = y as? String
 </code></pre>
-<p>记住尽管事实是右边的<em class="keyword">as?</em>可使一个不为空的<code>String</code>类型的转换结果为可空的。</p>
+<p>请注意，尽管事实上 <em class="keyword">as?</em> 的右边是一个非空类型的 <code>String</code>，但是其转换的结果是可空的。</p>
 
         </article>
     </div>
