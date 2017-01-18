@@ -766,7 +766,7 @@ class Derived(p: Int) : Base(p)
 从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
 对应于 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>书中的
 第 17 条：<strong>要么为继承而设计，并提供文档说明，要么就禁止继承</strong>。</p>
-<h3 id="覆盖成员">覆盖成员</h3>
+<h3 id="覆盖方法">覆盖方法</h3>
 <p>我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式
 标注可覆盖的成员（我们称之为<em>开放</em>）和覆盖后的成员：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Base {
@@ -785,18 +785,28 @@ class Derived() : Base() {
     final override fun v() {}
 }
 </code></pre>
-<p>属性覆盖与方法覆盖类似。
-注：你可以用 <code>override</code> 关键字作为主构造函数属性声明的一部分：</p>
+<h3 id="覆盖属性">覆盖属性</h3>
+<p>属性覆盖与方法覆盖类似；在超类中声明然后在派生类中重新声明的属性必须以 <em class="keyword">override</em> 开头，并且它们必须具有兼容的类型。每个声明的属性可以由具有初始化器的属性或者具有 getter 方法的属性覆盖。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Foo {
     open val x: Int get { ... }
 }
 
-class Bar1(override val x: Int) : Foo() {
-
+class Bar1 : Foo() {
+    override val x: Int = ...
 }
 </code></pre>
-<p>你也可以用一个 <code>var</code> 属性覆盖一个 <code>val</code> 属性，但反之则不行。
-这是允许的，因为一个 <code>val</code> 属性本质上声明了一个 getter 方法，而将其覆盖为 <code>var</code> 只是在子类中额外声明一个 setter 方法。</p>
+<p>你也可以用一个 <code>var</code> 属性覆盖一个 <code>val</code> 属性，但反之则不行。这是允许的，因为一个 <code>val</code> 属性本质上声明了一个 getter 方法，而将其覆盖为 <code>var</code> 只是在子类中额外声明一个 setter 方法。</p>
+<p>请注意，你可以在主构造函数中使用 <em class="keyword">override</em> 关键字作为属性声明的一部分。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Foo {
+    val count: Int
+}
+
+class Bar1(override val count: Int) : Foo
+
+class Bar2 : Foo {
+    override var count: Int = 0
+}
+</code></pre>
 <h3 id="覆盖规则">覆盖规则</h3>
 <p>在 Kotlin 中，实现继承由下述规则规定：如果一个类从它的直接超类继承相同成员的多个实现，
 它必须覆盖这个成员并提供其自己的实现（也许用继承来的其中之一）。
