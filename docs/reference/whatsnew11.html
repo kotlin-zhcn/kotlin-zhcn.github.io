@@ -136,7 +136,7 @@
         <aside class="g-3">
             <div id="reference-nav">
                     <nav role="navigation" class="side-tree-nav">
-            <div class="tree-item tree-branch js-item js-branch _closed"
+            <div class="tree-item tree-branch js-item js-branch _opened"
                  data-id="开始">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -167,6 +167,12 @@
                                 <span class="marker"></span>
                                 <span class="text">编码习惯</span>
                             </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">1.1 的新特性</div>
+                            </div>
                     </div>
 
             </div>
@@ -850,17 +856,34 @@ so the outer receivers of types which also have this annotation will be blocked.
 <h3 id="string-to-number-conversions">String to number conversions</h3>
 <p>There is a bunch of new extensions on the String class to convert it to a number without throwing an exception on invalid number:
 <code>String.toIntOrNull(): Int?</code>, <code>String.toDoubleOrNull(): Double?</code> etc.</p>
-<p>Also integer conversion functions, like <code>Int.toString()</code>, <code>String.toInt()</code>, <code>String.toIntOrNull(),
-each got an overload with </code>radix` parameter, which allows to specify the base of conversion.</p>
+<p>Also integer conversion functions, like <code>Int.toString()</code>, <code>String.toInt()</code>, <code>String.toIntOrNull()</code>,
+each got an overload with <code>radix</code> parameter, which allows to specify the base of conversion.</p>
 <h3 id="oneach">onEach()</h3>
 <p><code>onEach</code> is a small, but useful extension function for collections and sequences, which allows to perform some action,
 possibly with side-effects, on each element of the collection/sequence in a chain of operations.
 On iterables it behaves like <code>forEach</code> but also returns the iterable instance further. And on sequences it returns a
 wrapping sequence, which applies the given action lazily as the elements are being iterated.</p>
+<h3 id="takeif-and-also">takeIf() and also()</h3>
+<p>These are two general-purpose extension functions applicable to any receiver.</p>
+<p><code>also</code> is like <code>apply</code>: it takes the receiver, does some action on it, and returns that receiver. 
+The difference is that in the block inside <code>apply</code> the receiver is available as <code>this</code>, 
+while in the block inside <code>also</code> it's available as <code>it</code> (and you can give it another name if you want).
+This comes handy when you do not want to shadow <code>this</code> from the outer scope:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Block.copy() = Block().also { it.content = this.content }
+</code></pre>
+<p><code>takeIf</code> is like <code>filter</code> for a single value. It checks whether the receiver meets the predicate, and
+returns the receiver, if it does or <code>null</code> if it doesn't. 
+Combined with an elvis-operator and early returns it allows to write constructs like:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
+// do something with existing outDirFile
+
+val index = input.indexOf(keyword).takeIf { it &gt;= 0 } ?: error("keyword not found")
+// do something with index of keyword in input string, given that it's found
+</code></pre>
 <h3 id="groupingby">groupingBy()</h3>
 <p>This API can be used to group a collection by key and fold each group simultaneously. For example, it can be used
 to count the frequencies of characters in a text:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val frequencies = words.groupingBy { it }.countEach()
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val frequencies = words.groupingBy { it }.eachCount()
 </code></pre>
 <h3 id="maptomap-and-maptomutablemap">Map.toMap() and Map.toMutableMap()</h3>
 <p>These functions can be used for easy copying of maps:</p>
@@ -879,16 +902,20 @@ MutableList(size) { index -&gt; element }
 <h3 id="mapgetvalue">Map.getValue()</h3>
 <p>This method on <code>Map</code> returns an existing value corresponding to the given key or throws an exception, mentioning which key was not found.
 If the map was produced with <code>withDefault</code>, this method will return the default value instead of throwing an exception.</p>
-<h3 id="abstractcollection-and-abstractmutablecollection">AbstractCollection and AbstractMutableCollection</h3>
-<p>These abstract classes can be used as base classes when implementing Kotlin collection classes.</p>
+<h3 id="abstract-collections">Abstract collections</h3>
+<p>These abstract classes can be used as base classes when implementing Kotlin collection classes.
+For implementing read-only collections there are <code>AbstractCollection</code>, <code>AbstractList</code>, <code>AbstractSet</code> and <code>AbstractMap</code>, 
+and for mutable collections there are <code>AbstractMutableCollection</code>, <code>AbstractMutableList</code>, <code>AbstractMutableSet</code> and <code>AbstractMutableMap</code>.
+On JVM these abstract mutable collections inherit most of their functionality from JDK's abstract collections.</p>
 <h2 id="jvm-backend">JVM Backend</h2>
 <h3 id="java-8-bytecode-support">Java 8 bytecode support</h3>
 <p>Kotlin has now the option of generating Java 8 bytecode (<code>-jvm-target 1.8</code> command line option or the corresponding options
 in Ant/Maven/Gradle). For now this doesn't change the semantics of the bytecode (in particular, default methods in interfaces
-and lambdas are generated exactly as in Kotlin 1.1), but we plan to make further use of this later.</p>
+and lambdas are generated exactly as in Kotlin 1.0), but we plan to make further use of this later.</p>
 <h3 id="java-8-standard-library-support">Java 8 standard library support</h3>
 <p>There are now separate versions of the standard library supporting the new JDK APIs added in Java 7 and 8.
-If you need access to the new APIs, use <code>kotlin-stdlib-jre7</code> and <code>kotlin-stdlib-jre8</code> artifacts instead of the standard <code>kotlin-stdlib</code>.</p>
+If you need access to the new APIs, use <code>kotlin-stdlib-jre7</code> and <code>kotlin-stdlib-jre8</code> maven artifacts instead of the standard <code>kotlin-stdlib</code>.
+These artifacts are tiny extensions on top of <code>kotlin-stdlib</code> and they bring it to your project as a transitive dependency.</p>
 <h3 id="parameter-names-in-the-bytecode">Parameter names in the bytecode</h3>
 <p>Kotlin now supports storing parameter names in the bytecode. This can be enabled using the <code>-java-parameters</code> command line option.</p>
 <h3 id="constant-inlining">Constant inlining</h3>

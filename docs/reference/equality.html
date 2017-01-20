@@ -168,6 +168,14 @@
                                 <span class="text">编码习惯</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/whatsnew11.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">1.1 的新特性</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -646,20 +654,20 @@
 </a>
                 
 <h1 id="相等性">相等性</h1>
-<p>Kotlin中有两种类型的相等性:</p>
+<p>Kotlin 中有两种类型的相等性：</p>
 <ul>
-<li>引用相等(两个引用指向相同的对象)</li>
-<li>结构相等 (<code>equals()</code>)</li>
+<li>引用相等（两个引用指向同一对象）</li>
+<li>结构相等（用 <code>equals()</code> 检查）</li>
 </ul>
 <h2 id="引用相等">引用相等</h2>
-<p>引用相等使用<code>===</code>操作符判断(它的否定是<code>!==</code>). <code>a === b</code>
-只有当<code>a</code>和<code>b</code>指向同一个对象才返回true。</p>
+<p>引用相等由 <code>===</code>（以及其否定形式 <code>!==</code>）操作判断。<code>a === b</code>
+当且仅当 <code>a</code> 和 <code>b</code> 指向同一个对象时求值为 true。</p>
 <h2 id="结构相等">结构相等</h2>
-<p>结构相等使用<code>==</code>操作符判断(它的否定是<code>!=</code>). 通常,<code>a == b</code>表达式被翻译为：</p>
+<p>结构相等由 <code>==</code>（以及其否定形式 <code>!=</code>）操作判断。按照惯例，像 <code>a == b</code> 这样的表达式会翻译成</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">a?.equals(b) ?: (b === null)
 </code></pre>
-<p>就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 的是不是 <code>null</code> 引用。</p>
-<p>注意当与 <code>null</code> 比较时完全没有必要为优化你的代码而将 <code>a == null</code> 写成 <code>a === null</code> 编译器会自动帮你做的。</p>
+<p>也就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 是否与 <code>null</code> 引用相等。</p>
+<p>请注意，当与 <code>null</code> 显式比较时完全没必要优化你的代码：<code>a == null</code> 会被自动转换为 <code>a=== null</code>。</p>
 
         </article>
     </div>
