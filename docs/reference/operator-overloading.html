@@ -654,13 +654,13 @@
 </a>
                 
 <h1 id="操作符符重载">操作符符重载</h1>
-<p>Kotlin允许我们实现一些我们自定义类型的运算符实现。这些操作符有固定的表示
-（像 <code>+</code> 或者 <code>*</code>），和固定的<a href="grammar.html#precedence">优先级</a>。为实现这样的操作符，我们提供了固定名字的<a href="functions.html#member-functions">成员函数</a>
-或<a href="extensions.html">扩展函数</a>，比如二元操作符的左值和一元操作符的参数类型。
-Functions that overload operators need to be marked with the <code>operator</code> modifier.</p>
-<h2 id="转换">转换</h2>
-<p>这里我们描述了一些常用操作符的重载。</p>
-<h3 id="一元操作符">一元操作符</h3>
+<p>Kotlin 允许我们为自己的类型提供预定义的一组操作符的实现。这些操作符具有固定的符号表示
+（如 <code>+</code> 或 <code>*</code>）和固定的<a href="grammar.html#precedence">优先级</a>。为实现这样的操作符，我们为相应的类型（即二元操作符左侧的类型和一元操作符的参数类型）提供了一个固定名字的<a href="functions.html#成员函数">成员函数</a>
+或<a href="extensions.html">扩展函数</a>。
+重载操作符的函数需要用 <code>operator</code> 修饰符标记。</p>
+<h2 id="约定">约定</h2>
+<p>在这里我们描述为不同操作符规范操作符重载的约定。</p>
+<h3 id="一元操作">一元操作</h3>
 <table>
 <thead>
 <tr>
@@ -683,14 +683,14 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>这张表解释了当编译器运行时，比如，表达式 <code>+a</code> ，是这样运行的：</p>
+<p>这个表是说，当编译器处理例如表达式 <code>+a</code> 时，它执行以下步骤：</p>
 <ul>
-<li>决定<code>a</code>的类型, 假设为<code>T</code>。</li>
-<li>寻找接收者是<code>T</code>带有<code>operator</code>修饰的无参函数<code>unaryPlus()</code>,例如一个成员方法或者扩展方法。</li>
-<li>如果找不到或者不明确就返回一个错误。</li>
-<li>如果函数是当前函数或返回类型是<code>R</code>则表达式<code>+a</code>是<code>R</code>类型。</li>
+<li>确定 <code>a</code> 的类型，令其为 <code>T</code>。</li>
+<li>为接收者 <code>T</code> 查找一个带有 <code>operator</code> 修饰符的无参函数 <code>unaryPlus（）</code>，即成员函数或扩展函数。</li>
+<li>如果函数不存在或不明确，则导致编译错误。</li>
+<li>如果函数存在且其返回类型为 <code>R</code>，那就表达式 <code>+a</code> 具有类型 <code>R</code>。</li>
 </ul>
-<p><em>注意</em> 这些操作符和其它的一样, 都被优化为<a href="basic-types.html">基本类型</a>并且不会产生多余的开销。</p>
+<p><em>注意</em> 这些操作以及所有其他操作都针对<a href="basic-types.html">基本类型</a>做了优化，不会为它们引入函数调用的开销。</p>
 <table>
 <thead>
 <tr>
@@ -701,38 +701,38 @@ Functions that overload operators need to be marked with the <code>operator</cod
 <tbody>
 <tr>
 <td><code>a++</code></td>
-<td><code>a.inc()</code> + 见下方</td>
+<td><code>a.inc()</code> + 见下文</td>
 </tr>
 <tr>
 <td><code>a--</code></td>
-<td><code>a.dec()</code> + 见下方</td>
+<td><code>a.dec()</code> + 见下文</td>
 </tr>
 </tbody>
 </table>
-<p>这些操作符允许修改接收者和返回类型。</p>
+<p>这些操作应该改变它们的接收者并且（可选地）返回一个值。</p>
 <blockquote class="note">
-<p><strong><code>inc()/dec()</code> 不应该改变接收对象</strong>.<br/>
-"修改接收者"你应该修改接收者变量而非对象。</p>
+<p><strong><code>inc()/dec()</code> 不应该改变接收者对象</strong>.<br/>
+“改变接收者”我们的指的是 <em>该接收者变量值</em> 而不是接收者对象指向。</p>
 </blockquote>
-<p>编译器是这样解决有<em>后缀</em>的操作符的比如<code>a++</code>:</p>
+<p>编译器执行以下步骤来解析<em>后缀</em>形式的操作符，例如 <code>a++</code>：</p>
 <ul>
-<li>决定<code>a</code>的类型, 假设为<code>T</code>。</li>
-<li>查找接收类型为<code>T</code>带有<code>operator</code>修饰的无参数函数`inc()。</li>
-<li>如果返回类型为<code>R</code>,那么<code>R</code>为<code>T</code>子类型.</li>
+<li>确定 <code>a</code> 的类型，令其为 <code>T</code>。</li>
+<li>查找一个适用于类型为 <code>T</code> 的接收者的、带有 <code>operator</code> 修饰符的无参数函数 <code>inc()</code>。</li>
+<li>如果该函数返回类型 <code>R</code>，那么 <code>R</code> 必须是 <code>T</code> 的子类型。</li>
 </ul>
 <p>计算表达式的步骤是：</p>
 <ul>
-<li>把<code>a</code>的值存在<code>a0</code>中,</li>
-<li>把<code>a.inc()</code>结果作用于 <code>a</code>,</li>
-<li>把 <code>a0</code>作为表达式的结果.</li>
+<li>把 <code>a</code> 的初始值存储到临时存储 <code>a0</code> 中，</li>
+<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>，</li>
+<li>把 <code>a0</code> 作为表达式的结果返回。</li>
 </ul>
-<p>a– 的运算步骤也是一样的。</p>
-<p>对于前缀操作符<code>++a</code>和<code>--a</code>的解决方式也是一样的, 步骤是:</p>
+<p>对于 <code>a--</code>，步骤是完全类似的。</p>
+<p>对于<em>前缀</em>形式 <code>++a</code> 和 <code>--a</code> 以相同方式解析，其步骤是：</p>
 <ul>
-<li>把<code>a.inc()</code>作用于<code>a</code>,</li>
-<li>返回新值<code>a</code>作为表达式结果。</li>
+<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>，</li>
+<li>把 <code>a</code> 的新值作为表达式结果返回。</li>
 </ul>
-<h3 id="二元操作符">二元操作符</h3>
+<h3 id="二元操作">二元操作</h3>
 <table>
 <thead>
 <tr>
@@ -767,7 +767,7 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>编译器只是解决了该表中翻译为列的表达式。</p>
+<p>对于此表中的操作，编译器只是解析成<em>翻译为</em>列中的表达式。</p>
 <table>
 <thead>
 <tr>
@@ -786,7 +786,7 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p id="in">in 和 !in 的产生步骤是一样的，但参数顺序是相反的。</p>
+<p id="in">对于 <code>in</code> 和 <code>!in</code>，过程是相同的，但是参数的顺序是相反的。</p>
 <table>
 <thead>
 <tr>
@@ -821,7 +821,7 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>方括号被转换为 get set 函数。</p>
+<p>方括号转换为调用带有适当数量参数的 <code>get</code> 和 <code>set</code>。</p>
 <table>
 <thead>
 <tr>
@@ -848,7 +848,7 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>括号被转换为带有正确参数的 <code>invoke</code> 函数。</p>
+<p>圆括号转换为调用带有适当数量参数的 <code>invoke</code>。</p>
 <table id="assignments">
 <thead>
 <tr>
@@ -879,18 +879,18 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>在分配 a+= b时编译器是下面这样实现的:</p>
+<p>对于赋值操作，例如 <code>a += b</code>，编译器执行以下步骤：</p>
 <ul>
-<li>右边函数是否可用。
+<li>如果右列的函数可用
     <ul>
-<li>对应的二元函数是否 (如<code>plus()</code>和<code>plusAssign()</code>)也可用, 不可用就报告错误.</li>
-<li>确定它的返回值是<code>Unit</code>类型, 否则报告错误。</li>
-<li>生成<code>a.plusAssign(b)</code>
-*否则试着生成<code>a = a + b</code>代码 (这里包含类型检查: <code>a + b</code>一定要是<code>a</code>的子类型).</li>
+<li>如果相应的二元函数（即 <code>plusAssign()</code> 对应于 <code>plus()</code>）也可用，那么报告错误（模糊）。</li>
+<li>确保其返回类型是 <code>Unit</code>，否则报告错误。</li>
+<li>生成 <code>a.plusAssign(b)</code> 的代码</li>
 </ul>
 </li>
+<li>否则试着生成 <code>a = a + b</code> 的代码（这里包含类型检查：<code>a + b</code> 的类型必须是 <code>a</code> 的子类型）。</li>
 </ul>
-<p id="Equals"><em>注意</em>: assignments在Kotlin中不是表达式.</p>
+<p id="Equals"><em>注意</em>：赋值在 Kotlin 中<em>不是</em>表达式。</p>
 <table>
 <thead>
 <tr>
@@ -909,8 +909,8 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p><em>注意</em>: <code>===</code> 和 <code>!==</code> (实例检查)不能重载, 所以没有转换方式。</p>
-<p>The <code>==</code> 操作符有点特殊: 它被翻译成一个复杂的表达式，用于筛选<code>null</code>值，而且 <code>null == null</code> 是 <code>true</code>。</p>
+<p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定</p>
+<p>这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值，而 <code>null == null</code> 是 <code>true</code>。</p>
 <table>
 <thead>
 <tr>
@@ -937,9 +937,9 @@ Functions that overload operators need to be marked with the <code>operator</cod
 </tr>
 </tbody>
 </table>
-<p>所有的比较都转换为<code>compareTo</code>的调用，这个函数需要返回<code>Int</code>值</p>
+<p>所有的比较都转换为对 <code>compareTo</code> 的调用，这个函数需要返回 <code>Int</code> 值</p>
 <h2 id="命名函数的中缀调用">命名函数的中缀调用</h2>
-<p>我们可以通过<a href="functions.html#infix-notation">中缀函数的调用</a> 来模拟自定义中缀操作符。</p>
+<p>我们可以通过<a href="functions.html#中缀表示法">中缀函数的调用</a> 来模拟自定义中缀操作符。</p>
 
         </article>
     </div>

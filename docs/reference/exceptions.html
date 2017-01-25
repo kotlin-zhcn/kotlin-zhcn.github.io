@@ -655,58 +655,58 @@
                 
 <h1 id="异常">异常</h1>
 <h2 id="异常类">异常类</h2>
-<p>Kotlin中所有异常类都是 <code>Throwable</code> 的子类。
-每一个异常都含有一条信息、栈回溯信息和一个可选的原因。</p>
-<p>可以使用 <em class="keyword">throw</em>-expression 来抛出一个异常。</p>
+<p>Kotlin 中所有异常类都是 <code>Throwable</code> 类的子孙类。
+每个异常都有消息、堆栈回溯信息和可选的原因。</p>
+<p>使用 <em class="keyword">throw</em>-表达式来抛出异常。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">throw MyException("Hi There!")
 </code></pre>
-<p>使用 <code>*try*{: .keyword }-expression</code> 来捕获一个异常。</p>
+<p>使用 <em class="keyword">try</em>-表达式来捕获异常。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">try {
-    // some code
+    // 一些代码
 }
 catch (e: SomeException) {
-    // handler
+    // 处理程序
 }
 finally {
-    // optional finally block
+    // 可选的 finally 块
 }
 </code></pre>
-<p>可以有零或多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。
-<em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块应该至少出现一个。</p>
-<h3 id="try是一个表达式">Try是一个表达式</h3>
-<p><em class="keyword">try</em> 是一个表达式，比如，它可以有一个返回值。</p>
+<p>可以有零到多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。
+但是 <em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块至少应该存在一个。</p>
+<h3 id="try-是一个表达式">Try 是一个表达式</h3>
+<p><em class="keyword">try</em> 是一个表达式，即它可以有一个返回值。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 </code></pre>
-<p><em class="keyword">try</em>-expression 的返回值是 <em class="keyword">try</em> 中
-最后一个表达式或者是 <em class="keyword">catch</em> 块中最后一个表达式。
-<em class="keyword">finally</em> 块中的内容不会影响到表达式的结果。</p>
+<p><em class="keyword">try</em>-表达式的返回值是 <em class="keyword">try</em> 块中的
+最后一个表达式或者是（所有）<em class="keyword">catch</em> 块中的最后一个表达式。
+<em class="keyword">finally</em> 块中的内容不会影响表达式的结果。</p>
 <h2 id="受检的异常">受检的异常</h2>
-<p>Kotlin中没有受检的异常。这是有很多原因的，但是我们会提供一个简单的示例。</p>
-<p>以下示例是JDK中<code>StringBuilder</code>类实现中的</p>
+<p>Kotlin 没有受检的异常。这其中有很多原因，但我们会提供一个简单的例子。</p>
+<p>以下是 JDK 中 <code>StringBuilder</code> 类实现的一个示例接口</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Appendable append(CharSequence csq) throws IOException;
 </code></pre>
-<p>What does this signature say? It says that every time I append a string to something (a <code>StringBuilder</code>, some kind of a log, a console, etc.)
-I have to catch those <code>IOExceptions</code>. Why? Because it might be performing IO (<code>Writer</code> also implements <code>Appendable</code>)…
-So it results into this kind of code all over the place:</p>
+<p>这个签名是什么意思？ 它是说，每次我追加一个字符串到一些东西（一个 <code>StringBuilder</code>、某种日志、一个控制台等）上时
+我就必须捕获那些 <code>IOException</code>。 为什么？因为它可能正在执行 IO 操作（<code>Writer</code> 也实现了 <code>Appendable</code>）……
+所以它导致这种代码随处可见的出现：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">try {
     log.append(message)
 }
 catch (IOException e) {
-    // Must be safe
+    // 必须要安全
 }
 </code></pre>
-<p>这样做是没有好处的，参阅 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>,Item 65: <em>不要忽略异常</em>。</p>
-<p>Bruce Eckel在<a href="http://www.mindview.net/Etc/Discussions/CheckedExceptions">Does Java need Checked Exceptions?</a> 中指出:</p>
+<p>这并不好，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》</a> 第 65 条：<em>不要忽略异常</em>。</p>
+<p>Bruce Eckel 在<a href="http://www.mindview.net/Etc/Discussions/CheckedExceptions">《Java 是否需要受检的异常？》（Does Java need Checked Exceptions?）</a> 中指出：</p>
 <blockquote>
-<p>通过一些小程序测试得出的结论是规范的异常会提高开发者的生产效率和提高代码质量，但是大型软件项目的经验告诉我们一个不同的结论 - 这会降低生产效率并且不会对代码质量有明显提高。</p>
+<p>通过一些小程序测试得出的结论是异常规范会同时提高开发者的生产力和代码质量，但是大型软件项目的经验表明一个不同的结论——生产力降低、代码质量很少或没有提高。</p>
 </blockquote>
-<p>相关引用：</p>
+<p>其他相关引证：</p>
 <ul>
-<li><a href="http://radio-weblogs.com/0122027/stories/2003/04/01/JavasCheckedExceptionsWereAMistake.html">Java's checked exceptions were a mistake</a> (Rod Waldhoff)</li>
-<li><a href="http://www.artima.com/intv/handcuffs.html">The Trouble with Checked Exceptions</a> (Anders Hejlsberg)</li>
+<li><a href="http://radio-weblogs.com/0122027/stories/2003/04/01/JavasCheckedExceptionsWereAMistake.html">《Java 的受检异常是一个错误》（Java's checked exceptions were a mistake）</a>（Rod Waldhoff）</li>
+<li><a href="http://www.artima.com/intv/handcuffs.html">《受检异常的烦恼》（The Trouble with Checked Exceptions）</a>（Anders Hejlsberg）</li>
 </ul>
 <h2 id="java-互操作性">Java 互操作性</h2>
-<p>请在 <a href="java-interop.html">Java Interoperability section</a> 异常章节中参阅Java交互相关信息。</p>
+<p>与 Java 互操作性相关的信息，请参见 <a href="java-interop.html">Java 互操作性章节</a>中的异常部分。</p>
 
         </article>
     </div>

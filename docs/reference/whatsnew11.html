@@ -873,7 +873,7 @@ fun Tag.td(init: TD.() -&gt; Unit) {
 </code></pre>
 <p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检查接收者是否满足该谓词，并
 在满足时返回该接收者否则不满足时返回 <code>null</code>。
-结合鹅-操作符和及早返回，它允许编写如下结构：</p>
+结合 elvis-操作符和及早返回，它允许编写如下结构：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
 // 对现有的 outDirFile 做些事情
 
