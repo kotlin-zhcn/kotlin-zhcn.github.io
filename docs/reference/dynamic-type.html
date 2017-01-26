@@ -655,34 +655,34 @@
                 
 <h1 id="动态类型">动态类型</h1>
 <blockquote class="note">
-<p>The dynamic type is not supported in code targeting the JVM</p>
+<p>在面向 JVM 平台的代码中不支持动态类型</p>
 </blockquote>
-<p>作为一个静态类型语言,Kotlin仍然可能会与无类型或者弱类型语言相互调用，
-比如JavaScript,为了这方面使用可以使用<code>dynamic</code>类型。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val dyn: dynamic = ...
+<p>作为一种静态类型的语言，Kotlin仍然需要与无类型或松散类型的环境（例如
+JavaScript生态系统）进行互操作。为了方便这些使用场景，语言中有 <code>dynamic</code> 类型可用：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val dyn: dynamic = ……
 </code></pre>
-<p><code>dynamic</code>类型关闭了Kotlin类型检查:</p>
+<p><code>dynamic</code> 类型基本上关闭了 Kotlin 的类型检查系统：</p>
 <ul>
-<li>这样的类型可以分配任意变量或者在任意的地方作为参数传递,</li>
-<li>任何值都可以分配为<code>dynamic</code>类型，或者作为参数传递给任何接受 <code>dynamic</code>类型参数的函数，</li>
-<li>这样的值不<code>null</code>检查。</li>
+<li>该类型的值可以赋值给任何变量或作为参数传递到任何位置，</li>
+<li>任何值都可以赋值给 <code>dynamic</code> 类型的变量，或者传递给一个接受 <code>dynamic</code> 作为参数的函数，</li>
+<li><code>null</code>-检查对这些值是禁用的。</li>
 </ul>
-<p><code>dynamic</code>最奇特的特性就是可以在<code>dynamic</code>变量上调用<strong>任何</strong>属性或<strong>任何</strong>函数
+<p><code>dynamic</code> 最特别的特性是，我们可以对 <code>dynamic</code> 变量调用<strong>任何</strong>属性或以任意参数调用<strong>任何</strong>函数
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.whatever(1, "foo", dyn) // 'whatever' is not defined anywhere
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.whatever(1, "foo", dyn) // 'whatever' 在任何地方都没有定义
 dyn.whatever(*arrayOf(1, 2, 3))
 </code></pre>
-<p>在JavaScript平台这段代码被编译为"as is": <code>dyn.whatever(1)</code>在Kotlin中<code>dyn.whatever(1)</code> 
-生成的 JavaScript 代码.</p>
-<p>动态调用返回<code>dynamic</code>作为结果，因此我们可以轻松实现链式调用：</p>
+<p>在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin中的 <code>dyn.whatever(1)</code> 变为 <code>dyn.whatever(1)</code>
+。</p>
+<p>动态调用总是返回 <code>dynamic</code> 作为结果，所以我们可以自由地这样链接调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.foo().bar.baz()
 </code></pre>
-<p>当给动态调用传递一个 lambda 表达式时，所有的参数默认都是<code>dynamic</code>：</p>
+<p>当我们把一个 lambda 表达式传给一个动态调用时，它的所有参数默认都是 <code>dynamic</code> 类型的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.foo {
-    x -&gt; x.bar() // x is dynamic
+    x -&gt; x.bar() // x 是 dynamic
 }
 </code></pre>
-<p>更多细节, 查看<a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md">规范文档</a>.</p>
+<p>更多技术说明请参见<a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md">规范文档</a>。</p>
 
         </article>
     </div>

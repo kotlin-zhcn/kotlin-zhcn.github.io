@@ -668,7 +668,7 @@ classpath 中。</p>
 静态已知的 Kotlin 类的引用，可以使用 <em>类字面值</em> 语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val c = MyClass::class
 </code></pre>
-<p>该引用是 <a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a> 类型的值。</p>
+<p>该引用是 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a> 类型的值。</p>
 <p>请注意，Kotlin 类引用与 Java 类引用不同。要获得 Java 类引用，
 请在 <code>KClass</code> 实例上使用 <code>.java</code> 属性。</p>
 <h2 id="函数引用">函数引用</h2>
@@ -693,7 +693,7 @@ println(numbers.filter(::isOdd)) // 引用到 isOdd(x: Int)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val predicate: (String) -&gt; Boolean = ::isOdd   // 引用到 isOdd(x: String)
 </code></pre>
 <p>如果我们需要使用类的成员函数或扩展函数，它需要是限定的。
-例如 <code>String::toCharArray</code> 为类型 <code>String</code> 提供了一个扩展函数：<code>String.() -&gt; CharArray</code>。</p>
+例如 <code>String::toCharArray</code> 为类型 <code>String</code> 提供了一个扩展函数：<code>String.() -&gt; CharArray</code>。</p>
 <h3 id="示例函数组合">示例：函数组合</h3>
 <p>考虑以下函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;A, B, C&gt; compose(f: (B) -&gt; C, g: (A) -&gt; B): (A) -&gt; C {
@@ -722,7 +722,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>表达式 <code>::x</code> 求值为 <code>KProperty&lt;Int&gt;</code> 类型的属性对象，它允许我们使用
 <code>get()</code> 读取它的值，或者使用 <code>name</code> 属性来获取属性名。更多信息请参见
 <a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
-<p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
+<p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
 该类型有一个 <code>set()</code> 方法。</p>
 <p>属性引用可以用在不需要参数的函数处：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val strs = listOf("a", "bc", "def")
@@ -771,7 +771,7 @@ fun function(factory : () -&gt; Foo) {
     val x : Foo = factory()
 }
 </code></pre>
-<p>使用 <code>::Foo</code>，类 Foo 的零参数构造函数，我们可以这样简单地调用它：</p>
+<p>使用 <code>::Foo</code>，类 Foo 的零参数构造函数，我们可以这样简单地调用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">function(::Foo)
 </code></pre>
 

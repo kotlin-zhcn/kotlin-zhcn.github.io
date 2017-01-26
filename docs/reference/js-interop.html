@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 
 
-<title>JavaScript Interoperability - Kotlin 编程语言</title>
+<title>JavaScript 互操作性 - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -19,7 +19,7 @@
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="JavaScript Interoperability - Kotlin 编程语言"/>
+<meta property="og:title" content="JavaScript 互操作性 - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/js-interop.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -30,7 +30,7 @@
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="JavaScript Interoperability - Kotlin 编程语言">
+<meta name="twitter:title" content="JavaScript 互操作性 - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -653,28 +653,28 @@
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="javascript-interoperability">JavaScript Interoperability</h1>
-<h2 id="javascript-modules">JavaScript Modules</h2>
-<p>Since Kotlin version 1.0.4 you can compile your Kotlin projects to JS modules for popular module systems. Here is
-the list of available options:</p>
+<h1 id="javascript-互操作性">JavaScript 互操作性</h1>
+<h2 id="javascript-模块">JavaScript 模块</h2>
+<p>从 Kotlin 1.0.4 版开始，你可以将 Kotlin 项目编译为热门模块系统的 JS 模块。以下是
+可用选项的列表：</p>
 <ol>
-<li>Plain. Don't compile for any module system. As usual, you can access module <code>moduleName</code>
-via <code>kotlin.modules.moduleName</code>, or by just <code>moduleName</code> identifier put in the global scope.
-This option is used by default.</li>
-<li><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">Asynchronous Module Definition (AMD)</a>, which is in particular
-used by require.js library.</li>
-<li><a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS</a> convention, widely used by node.js/npm
-(<code>require</code> function and <code>module.exports</code> object)</li>
-<li>Unified Module Definitions (UMD), which is compatible with both <em>AMD</em> and <em>CommonJS</em>, and works as "plain"
-when neither <em>AMD</em> nor <em>CommonJS</em> is available.</li>
+<li>无模块（Plain）。不为任何模块系统编译。像往常一样，你可以
+通过 <code>kotlin.modules.moduleName</code> 访问模块 <code>moduleName</code>，或者直接通过 <code>moduleName</code> 标识符访问放在全局作用域内的。
+默认使用此选项。</li>
+<li><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义（AMD，Asynchronous Module Definition）</a>，它尤其为
+require.js 库所使用。</li>
+<li><a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS</a> 约定，广泛用于 node.js/npm
+（<code>require</code> 函数和 <code>module.exports</code> 对象）</li>
+<li>统一模块定义（UMD，Unified Module Definitions），它与 <em>AMD</em> 和 <em>CommonJS</em> 兼容，
+并且当 <em>AMD</em> 和 <em>CommonJS</em> 都不可用时，作为“plain”使用。</li>
 </ol>
-<p>Choosing the target module system depends on your build environment:</p>
-<h3 id="from-idea">From IDEA</h3>
-<p>Open File -&gt; Settings, select "Build, Execution, Deployment" -&gt; "Compiler" -&gt; "Kotlin compiler". Choose appropriate
-module system in "Module kind" field.</p>
-<h3 id="from-maven">From Maven</h3>
-<p>To select module system when compiling via Maven, you should set <code>moduleKind</code> configuration property, i.e. your
-<code>pom.xml</code> should look like this:</p>
+<p>选择目标模块系统的方式取决于你的构建环境：</p>
+<h3 id="对于-idea">对于 IDEA</h3>
+<p>打开“File → Settings”，选择“Build, Execution, Deployment”→“Compiler”→“Kotlin compiler”。 在
+“Module kind”字段中选择合适的模块系统。</p>
+<h3 id="对于-maven">对于 Maven</h3>
+<p>要选择通过 Maven 编译时的模块系统，你应该设置 <code>moduleKind</code> 配置属性，即你的
+<code>pom.xml</code> 应该看起来像这样：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
     &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
     &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
@@ -687,28 +687,28 @@ module system in "Module kind" field.</p>
             &lt;/goals&gt;
         &lt;/execution&gt;
     &lt;/executions&gt;
-    &lt;!-- Insert these lines --&gt;
+    &lt;!-- 插入这些行 --&gt;
     &lt;configuration&gt;
         &lt;moduleKind&gt;commonjs&lt;/moduleKind&gt;
     &lt;/configuration&gt;
-    &lt;!-- end of inserted text --&gt;
+    &lt;!-- 插入文本结束 --&gt;
 &lt;/plugin&gt;
 </code></pre>
-<p>Available values are: <code>plain</code>, <code>amd</code>, <code>commonjs</code>, <code>umd</code>.</p>
-<h3 id="from-gradle">From Gradle</h3>
-<p>To select module system when compiling via Gradle, you should set <code>moduleKind</code> property, i.e.</p>
+<p>可用值包括：<code>plain</code>、 <code>amd</code>、 <code>commonjs</code>、 <code>umd</code>。</p>
+<h3 id="对于-gradle">对于 Gradle</h3>
+<p>要选择通过 Gradle 编译时的模块系统，你应该设置 <code>moduleKind</code> 属性，即</p>
 <pre><code>compileKotlin2Js.kotlinOptions.moduleKind = "commonjs"
 </code></pre>
-<p>Available values are similar to Maven</p>
-<h3 id="notes">Notes</h3>
-<p>We ship <code>kotlin.js</code> standard library as a single file, which is itself compiled as an UMD module, so
-you can use it with any module system described above.</p>
-<p>Although for now we don't support WebPack and Browserify directly, we tested <code>.js</code> files produced by Kotlin
-compiler with WebPack and Browserify, so Kotlin should work with these tools properly.</p>
-<h2 id="jsname-annotation">@JsName Annotation</h2>
-<p>In some cases (for example, to support overloads), the Kotlin compiler mangles the names of generated functions and attributes
-in JavaScript code. To control the generated names, you can use the <code>@JsName</code> annotation:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Module 'kjs'
+<p>可用的值类似于 Maven</p>
+<h3 id="注意事项">注意事项</h3>
+<p>我们将 <code>kotlin.js</code> 标准库作为一个单独的文件，它本身编译为一个 UMD 模块，所以
+你可以与上述任何模块系统一起使用。</p>
+<p>虽然现在我们没有直接支持 WebPack 和 Browserify，但是我们测试了由 Kotlin 编译器生成的 <code>.js</code> 文件
+与 WebPack 和 Browserify 一同使用，所以 Kotlin 应该能正确使用这些工具。</p>
+<h2 id="jsname-注解">@JsName 注解</h2>
+<p>在某些情况下（例如，为了支持重载），Kotlin编译器会修饰（mangle）
+JavaScript 代码中生成的函数和属性的名称。如果要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 模块 'kjs'
 
 class Person(val name: String) {
     fun hello() {
@@ -721,13 +721,13 @@ class Person(val name: String) {
     }
 }
 </code></pre>
-<p>Now you can use this class from JavaScript in the following way:</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // refers to module 'kjs'
-person.hello();                          // prints "Hello Dmitry!"
-person.helloWithGreeting("Servus");      // prints "Servus Dmitry!"
+<p>现在你可以从 JavaScript 中用以下方式使用该类：</p>
+<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // 引用到模块 'kjs'
+person.hello();                          // 输出 "Hello Dmitry!"
+person.helloWithGreeting("Servus");      // 输出 "Servus Dmitry!"
 </code></pre>
-<p>If we didn't specify the <code>@JsName</code> annotation, the name of the corresponding function would contain a suffix
-calculated from the function signature, for example <code>hello_61zpoe$</code>.</p>
+<p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称将包含
+从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
 
         </article>
     </div>

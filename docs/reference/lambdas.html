@@ -731,7 +731,7 @@ val result = lock(lock, ::toBeSynchronized)
     return max
 }
 </code></pre>
-<p>参数 <code>less</code> 的类型是 <code>(T, T) -&gt; Boolean</code>，即一个接受两个类型<code>T</code>的参数并返回一个布尔值的函数：
+<p>参数 <code>less</code> 的类型是 <code>(T, T) -&gt; Boolean</code>，即一个接受两个类型<code>T</code>的参数并返回一个布尔值的函数：
 如果第一个参数小于第二个那么该函数返回 true。</p>
 <p>在上面第 4 行代码中，<code>less</code> 作为一个函数使用：通过传入两个 <code>T</code> 类型的参数来调用。</p>
 <p>如上所写的是就函数类型，或者可以有命名参数，如果你想文档化每个参数的含义的话。</p>
