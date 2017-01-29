@@ -686,37 +686,37 @@ class Group&lt;T&gt;(val name: String) {
 </code></pre>
 <h2 id="块标签">块标签</h2>
 <p>KDoc现在支持如下的块标签：</p>
-<h4><code>@param &lt;name&gt;</code></h4>
+<h4 id="param-name"><code>@param &lt;name&gt;</code></h4>
 <p>代表一个函数的参数值或者一个类、属性或者函数的类型参数。
 为了更好的区分描述中的参数值，如果你喜欢，你可以在参数名
 括在方括号中，下面是两个符合条件的句法：</p>
 <pre><code>@param name description.
 @param[name] description.
 </code></pre>
-<h4 id="-1"><code>@return</code></h4>
+<h4 id="return"><code>@return</code></h4>
 <p>函数的返回值</p>
-<h4 id="-2"><code>@constructor</code></h4>
+<h4 id="constructor"><code>@constructor</code></h4>
 <p>类构造函数</p>
-<h4 id="-3"><code>@receiver</code></h4>
+<h4 id="receiver"><code>@receiver</code></h4>
 <p>Documents the receiver of an extension function.</p>
-<h4 id="-4"><code>@property &lt;name&gt;</code></h4>
+<h4 id="property-name"><code>@property &lt;name&gt;</code></h4>
 <p>Documents the property of a class which has the specified name. This tag can be used for documenting properties
 declared in the primary constructor, where putting a doc comment directly before the property definition would be
 awkward.</p>
-<h4 id="-"><code>@throws &lt;class&gt;</code>, <code>@exception &lt;class&gt;</code></h4>
+<h4 id="throws-class-exception-class"><code>@throws &lt;class&gt;</code>, <code>@exception &lt;class&gt;</code></h4>
 <p>用来标记一个方法抛出的异常。鉴于Kotlin没有异常检查，
 因此不能期待所有可能异常都写出来，但是我们仍然可以使用这个标记来提示给这个类使用这一个
 很好的信息。</p>
-<h4 id="-5"><code>@sample &lt;identifier&gt;</code></h4>
+<h4 id="sample-identifier"><code>@sample &lt;identifier&gt;</code></h4>
 <p>给当前的元素嵌入一个包含特殊名字的方法，为了能够包含例子
 来展示这个元素是如何使用的。</p>
-<h4 id="-6"><code>@see &lt;identifier&gt;</code></h4>
+<h4 id="see-identifier"><code>@see &lt;identifier&gt;</code></h4>
 <p>给类或者方法加一个链接来<strong>查看</strong> 文档的信息</p>
-<h4 id="-7"><code>@author</code></h4>
+<h4 id="author"><code>@author</code></h4>
 <p>文档编写人员的名字</p>
-<h4 id="-8"><code>@since</code></h4>
+<h4 id="since"><code>@since</code></h4>
 <p>来指定什么版本引入了这个方法类</p>
-<h4 id="-9"><code>@suppress</code></h4>
+<h4 id="suppress"><code>@suppress</code></h4>
 <p>不包含生成的文档中的元素。可用于不属于官方API的
 模块的应用接口，但仍必须对外部可见。</p>
 <blockquote class="note">

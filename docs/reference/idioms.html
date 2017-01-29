@@ -777,7 +777,7 @@ data?.let {
     }
 }
 </code></pre>
-<h3 id="返回类型为--的方法的-builder-风格用法">返回类型为 <code>Unit</code> 的方法的 Builder 风格用法</h3>
+<h3 id="返回类型为-unit-的方法的-builder-风格用法">返回类型为 <code>Unit</code> 的方法的 Builder 风格用法</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun arrayOfMinusOnes(size: Int): IntArray {
     return IntArray(size).apply { fill(-1) }
 }
@@ -798,7 +798,7 @@ data?.let {
     else -&gt; throw IllegalArgumentException("Invalid color param value")
 }
 </code></pre>
-<h3 id="对一个对象实例调用多个方法-">对一个对象实例调用多个方法 （<code>with</code>）</h3>
+<h3 id="对一个对象实例调用多个方法-with">对一个对象实例调用多个方法 （<code>with</code>）</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Turtle {
     fun penDown()
     fun penUp()

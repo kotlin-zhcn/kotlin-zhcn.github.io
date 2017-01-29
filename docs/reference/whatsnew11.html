@@ -654,7 +654,7 @@
 </a>
                 
 <h1 id="kotlin-11-的新特性">Kotlin 1.1 的新特性</h1>
-<p>Kotlin 1.1 目前提供测试版。在这里你可以找到该版本中提供的新功能列表。
+<p>Kotlin 1.1 目前<a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-beta-is-here/">提供测试版</a>。在这里你可以找到该版本中提供的新功能列表。
 请注意，任何新功能都可能会在 Kotlin 1.1 发布之前更改。</p>
 <h2 id="javascript">JavaScript</h2>
 <p>从 Kotlin 1.1 开始，JavaScript 目标平台不再当是实验性的。所有语言功能都支持，
@@ -850,7 +850,7 @@ fun Tag.td(init: TD.() -&gt; Unit) {
 <p>现在，传递给 <code>td</code> 函数的lambda 表达式 <code>init</code> 的隐式接收者是一个用 <code>@HtmlTagMarker</code> 注解过的类，
 因此也具有此注解的类型的外部接收者会被阻止。</p>
 <p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
-<h3 id="-操作符"><code>rem</code> 操作符</h3>
+<h3 id="rem-操作符"><code>rem</code> 操作符</h3>
 <p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650">这个问题</a>。</p>
 <h2 id="标准库">标准库</h2>
 <h3 id="字符串到数字的转换">字符串到数字的转换</h3>
@@ -936,7 +936,7 @@ MutableList(size) { index -&gt; element }
 <h3 id="更好的代码生成">更好的代码生成</h3>
 <p>JavaScript 后端现在生成更加可静态检查的代码，这对 JS 代码处理工具（如
 minifiers、 optimisers、 linters 等）更加友好。</p>
-<h3 id="-修饰符"><code>external</code> 修饰符</h3>
+<h3 id="external-修饰符"><code>external</code> 修饰符</h3>
 <p>如果你需要以类型安全的方式从 Kotlin 访问 JavaScript 实现的类，
 你可以使用 <code>external</code> 修饰符写一个 Kotlin 声明。（在 Kotlin 1.0 中，使用了 <code>@native</code> 注解。）
 与 JVM 目标平台不同，JS 平台允许对类和属性使用外部修饰符。

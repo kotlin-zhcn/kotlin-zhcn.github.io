@@ -701,7 +701,7 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 </code></pre>
 <p>数列的 <code>last</code> 元素这样计算：对于正的 <code>increment</code> 找到不大于 <code>end</code> 值的最大值、或者对于负的 <code>increment</code> 找到不小于 <code>end</code> 值的最小值，使得 <code>(last - first) % increment == 0</code>。</p>
 <h2 id="一些实用函数">一些实用函数</h2>
-<h3><code>rangeTo()</code></h3>
+<h3 id="rangeto"><code>rangeTo()</code></h3>
 <p>整型类型的 <code>rangeTo()</code> 操作符只是调用 <code>*Range</code> 类的构造函数，例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Int {
     //……
@@ -715,7 +715,7 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
 </code></pre>
 <p>该函数返回的区间不能用于迭代。</p>
-<h3 id="-1"><code>downTo()</code></h3>
+<h3 id="downto"><code>downTo()</code></h3>
 <p>扩展函数 <code>downTo()</code> 是为任何整型类型对定义的，这里有两个例子：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Long.downTo(other: Int): LongProgression {
     return LongProgression.fromClosedRange(this, other, -1.0)
@@ -725,13 +725,13 @@ fun Byte.downTo(other: Int): IntProgression {
     return IntProgression.fromClosedRange(this, other, -1)
 }
 </code></pre>
-<h3 id="-2"><code>reversed()</code></h3>
+<h3 id="reversed"><code>reversed()</code></h3>
 <p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
     return IntProgression.fromClosedRange(last, first, -increment)
 }
 </code></pre>
-<h3 id="-3"><code>step()</code></h3>
+<h3 id="step"><code>step()</code></h3>
 <p>扩展函数 <code>step()</code> 是为每个 <code>*Progression</code> 类定义的，
 所有这些函数都返回带有修改了 <code>step</code> 值（函数参数）的数列。
 步长（step）值必须始终为正，因此该函数不会更改迭代的方向。</p>
