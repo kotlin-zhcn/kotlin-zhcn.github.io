@@ -1,11 +1,11 @@
-webpackJsonp([3],{
+webpackJsonp([4],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(2);
-	var Carousel = __webpack_require__(18);
-	var Player = __webpack_require__(20);
+	var Carousel = __webpack_require__(72);
+	var Player = __webpack_require__(74);
 
 
 	var initTabs = function () {
@@ -152,11 +152,11 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 18:
+/***/ 72:
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(2);
-	__webpack_require__(19);
+	__webpack_require__(73);
 
 	function Carousel(config) {
 	  var that = this,
@@ -201,7 +201,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 19:
+/***/ 73:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*! jCarousel - v0.3.4 - 2015-09-23
@@ -1678,7 +1678,7 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 20:
+/***/ 74:
 /***/ function(module, exports, __webpack_require__) {
 
 	var $ = __webpack_require__(2);
