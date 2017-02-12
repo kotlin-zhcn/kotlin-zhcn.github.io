@@ -688,18 +688,18 @@ a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器
 不能引用它们。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">interface MyInterface {
-    val property: Int // 抽象的
+    val prop: Int // 抽象的
 
     val propertyWithImplementation: String
         get() = "foo"
 
     fun foo() {
-        print(property)
+        print(prop)
     }
 }
 
 class Child : MyInterface {
-    override val property: Int = 29
+    override val prop: Int = 29
 }
 </code></pre>
 <h2 id="解决覆盖冲突">解决覆盖冲突</h2>
