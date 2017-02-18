@@ -48,14 +48,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5P98"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
-<!-- CrazyEgg -->
-<script type="text/javascript">
-setTimeout(function(){var a=document.createElement("script");
-var b=document.getElementsByTagName("script")[0];
-a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0013/6939.js?"+Math.floor(new Date().getTime()/3600000);
-a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-</script>
-<!-- End CrazyEgg -->
+
 <div class="global-layout">
 
 <header class="global-header">
@@ -664,145 +657,11 @@ a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 <h1 id="使用-maven">使用 Maven</h1>
 <h2 id="插件与版本">插件与版本</h2>
 <p><em>kotlin-maven-plugin</em> 用于编译 Kotlin 源码与模块，当前只支持 Marven V3</p>
-<p>通过 <em>kotlin.version</em> 指定所要使用的 Kotlin 版本，The correspondence between Kotlin releases and versions is displayed below:</p>
-<table>
-<thead>
-<tr>
-<th>Milestone</th>
-<th>Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1.0.6</td>
-<td>1.0.6</td>
-</tr>
-<tr>
-<td>1.0.5-2</td>
-<td>1.0.5-2</td>
-</tr>
-<tr>
-<td>1.0.5</td>
-<td>1.0.5</td>
-</tr>
-<tr>
-<td>1.0.4</td>
-<td>1.0.4</td>
-</tr>
-<tr>
-<td>1.0.3</td>
-<td>1.0.3</td>
-</tr>
-<tr>
-<td>1.0.2 hotfix update</td>
-<td>1.0.2-1</td>
-</tr>
-<tr>
-<td>1.0.2</td>
-<td>1.0.2</td>
-</tr>
-<tr>
-<td>1.0.1 hotfix update 2</td>
-<td>1.0.1-2</td>
-</tr>
-<tr>
-<td>1.0.1 hotfix update</td>
-<td>1.0.1-1</td>
-</tr>
-<tr>
-<td>1.0.1</td>
-<td>1.0.1</td>
-</tr>
-<tr>
-<td>1.0 GA</td>
-<td>1.0.0</td>
-</tr>
-<tr>
-<td>Release Candidate</td>
-<td>1.0.0-rc-1036</td>
-</tr>
-<tr>
-<td>Beta 4</td>
-<td>1.0.0-beta-4589</td>
-</tr>
-<tr>
-<td>Beta 3</td>
-<td>1.0.0-beta-3595</td>
-</tr>
-<tr>
-<td>Beta 2</td>
-<td>1.0.0-beta-2423</td>
-</tr>
-<tr>
-<td>Beta</td>
-<td>1.0.0-beta-1103</td>
-</tr>
-<tr>
-<td>Beta Candidate</td>
-<td>1.0.0-beta-1038</td>
-</tr>
-<tr>
-<td>M14</td>
-<td>0.14.449</td>
-</tr>
-<tr>
-<td>M13</td>
-<td>0.13.1514</td>
-</tr>
-<tr>
-<td>M12.1</td>
-<td>0.12.613</td>
-</tr>
-<tr>
-<td>M12</td>
-<td>0.12.200</td>
-</tr>
-<tr>
-<td>M11.1</td>
-<td>0.11.91.1</td>
-</tr>
-<tr>
-<td>M11</td>
-<td>0.11.91</td>
-</tr>
-<tr>
-<td>M10.1</td>
-<td>0.10.195</td>
-</tr>
-<tr>
-<td>M10</td>
-<td>0.10.4</td>
-</tr>
-<tr>
-<td>M9</td>
-<td>0.9.66</td>
-</tr>
-<tr>
-<td>M8</td>
-<td>0.8.11</td>
-</tr>
-<tr>
-<td>M7</td>
-<td>0.7.270</td>
-</tr>
-<tr>
-<td>M6.2</td>
-<td>0.6.1673</td>
-</tr>
-<tr>
-<td>M6.1</td>
-<td>0.6.602</td>
-</tr>
-<tr>
-<td>M6</td>
-<td>0.6.69</td>
-</tr>
-<tr>
-<td>M5.3</td>
-<td>0.5.998</td>
-</tr>
-</tbody>
-</table>
+<p>Define the version of Kotlin you want to use via a <em>kotlin.version</em> property:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;properties&gt;
+    &lt;kotlin.version&gt;1.0.6&lt;/kotlin.version&gt;
+&lt;/properties&gt;
+</code></pre>
 <h2 id="依赖">依赖</h2>
 <p>Kotlin 提供了大量的标准库以供开发使用，需要在 pom 文件中设置以下依赖：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;dependencies&gt;
