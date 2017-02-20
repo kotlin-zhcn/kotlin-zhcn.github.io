@@ -756,7 +756,7 @@ val customer = Customer("Joe Smith")
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example // 从 Any 隐式继承
 </code></pre>
 <p><code>Any</code> 不是 <code>java.lang.Object</code>；尤其是，它除了 <code>equals()</code>、<code>hashCode()</code>和<code>toString()</code>外没有任何成员。
-更多细节请查阅<a href="java-interop.html#object-methods">Java互操作性</a>部分。</p>
+更多细节请查阅<a href="java-interop.html#对象方法">Java互操作性</a>部分。</p>
 <p>要声明一个显式的超类型，我们把类型放到类头的冒号之后：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Base(p: Int)
 
@@ -862,7 +862,7 @@ abstract class Derived : Base() {
 <p>如果你需要写一个可以无需用一个类的实例来调用、但需要访问类内部的
 函数（例如，工厂方法），你可以把它写成该类内<a href="object-declarations.html">对象声明</a>
 中的一员。</p>
-<p>更具体地讲，如果在你的类内声明了一个<a href="object-declarations.html#companion-objects">伴生对象</a>，
+<p>更具体地讲，如果在你的类内声明了一个<a href="object-declarations.html#伴生对象">伴生对象</a>，
 你就可以使用像在 Java/C# 中调用静态方法相同的语法来调用其成员，只使用类名
 作为限定符。</p>
 <h2 id="密封类">密封类</h2>
@@ -880,7 +880,7 @@ abstract class Derived : Base() {
 </code></pre>
 <p>值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在
 这个密封类声明内部。</p>
-<p>使用密封类的关键好处在于使用<a href="control-flow.html#when-expression"><code>when</code> 表达式</a> 的时候，如果能够
+<p>使用密封类的关键好处在于使用<a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够
 验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
     is Expr.Const -&gt; expr.number

@@ -661,7 +661,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 请注意，任何新功能都可能会在 Kotlin 1.1 发布之前更改。</p>
 <h2 id="javascript">JavaScript</h2>
 <p>从 Kotlin 1.1 开始，JavaScript 目标平台不再当是实验性的。所有语言功能都支持，
-并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见<a href="#javascript-backend">下文</a>
+并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见<a href="#javascript-后端">下文</a>
 。</p>
 <h2 id="协程实验性的">协程（实验性的）</h2>
 <p>Kotlin 1.1 的关键新特性是<em>协程</em>，它带来了 <code>future</code>/<code>await</code>、 <code>yield</code> 以及类似的编程模式的
@@ -721,7 +721,7 @@ typealias MouseEventHandler = (Any, MouseEvent) -&gt; Unit
 </code></pre>
 <p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md">KEEP</a>。</p>
 <h3 id="已绑定的可调用引用">已绑定的可调用引用</h3>
-<p>现在可以使用 <code>::</code> 操作符来获取指向特定对象实例的方法或属性的<a href="reflection.html#function-references">成员引用</a>。
+<p>现在可以使用 <code>::</code> 操作符来获取指向特定对象实例的方法或属性的<a href="reflection.html#函数引用">成员引用</a>。
 以前这只能用 lambda 表达式表示。
 这里有一个例子：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val numberRegex = "\\d+".toRegex()

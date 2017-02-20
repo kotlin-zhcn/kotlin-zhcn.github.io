@@ -727,7 +727,7 @@ class JavaClient {
     }
 }
 </code></pre>
-<p><a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性（在Java中）也可以被作为字段调用，字段的可见性和　<code>lateinit</code>　属性的　setter　相同。</p>
+<p><a href="properties.html#惰性初始化属性">延迟初始化</a> 的属性（在Java中）也可以被作为字段调用，字段的可见性和　<code>lateinit</code>　属性的　setter　相同。</p>
 <h2 id="静态字段">静态字段</h2>
 <p>在一个命名对象或者伴生对象中声明的Koltin属性会持有静态幕后字段（backing fields），这些字段存在于该命名对象或者伴生对象中的。</p>
 <p>通常，这些字段都是private的，但是他们可以通过以下方式暴露出来。</p>
@@ -748,7 +748,7 @@ class JavaClient {
 Key.COMPARATOR.compare(key1, key2);
 // public static final field in Key class
 </code></pre>
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#late-initialized-properties">延迟初始化</a> 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。</p>
+<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化</a> 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Singleton {
     lateinit var provider: Provider
 }
@@ -841,7 +841,7 @@ void f(String a) { }
 </code></pre>
 <p>构造函数，静态函数等也能用这个标记。但他不能用在抽象方法上，包括
 接口中的方法。</p>
-<p>注意一下，<a href="classes.html#secondary-constructors">Secondary Constructors</a> 描述过，如果一个类的所有构造函数参数都有默认
+<p>注意一下，<a href="classes.html#次构造函数">次构造函数</a> 描述过，如果一个类的所有构造函数参数都有默认
 值，会生成一个公开的无参构造函数。这就算
 没有@JvmOverloads 注解也有效。</p>
 <h2 id="受检异常">受检异常</h2>
@@ -876,7 +876,7 @@ fun foo() {
 这就是为什么 Kotlin 给所有期望非空参数的公开函数生成运行时检测。
 这样我们就能在 Java 代码里立即得到 <code>NullPointerException</code>。</p>
 <h2 id="可变泛型">可变泛型</h2>
-<p>当Kotlin 的类使用了 <a href="generics.html#declaration-site-variance">declaration-site variance</a>，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。</p>
+<p>当Kotlin 的类使用了 <a href="generics.html#声明处型变">declaration-site variance</a>，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Box&lt;out T&gt;(val value: T)
 
 interface Base
@@ -893,7 +893,7 @@ Base unboxBase(Box&lt;Base&gt; box) { ... }
 [//]:# (The problem is that in Kotlin we can say , but in Java that would be impossible, because in Java the class <code>Box</code> is <em>invariant</em> in its parameter <code>T</code>, and thus <code>Box&lt;Derived&gt;</code> is not a subtype of <code>Box&lt;Base&gt;</code>.   To make it work in Java we'd have to define <code>unboxBase</code> as follows:)</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { ... }  
 </code></pre>
-<p>我们在这里通过使用 Java 的 <em>通配符类型</em> (<code>? extends Base</code>) 去模拟<a href="generics.html#declaration-site-variance">declaration-site variance</a>，因为在 Java   中只能这么做。</p>
+<p>我们在这里通过使用 Java 的 <em>通配符类型</em> (<code>? extends Base</code>) 去模拟<a href="generics.html#声明处型变">declaration-site variance</a>，因为在 Java   中只能这么做。</p>
 <p>当作为参数的时候，为了让 Kotlin 的 API 工作，针对<code>Box</code> 我们将Koltin 中的 <code>Box&lt;Super&gt;</code> 在 Java 中生成为 <code>Box&lt;? extends Super&gt;</code>(<code>Foo</code>将生成为 <code>Foo&lt;? super Bar&gt;</code>) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// 作为返回类型 - 没有泛型
 Box&lt;Derived&gt; boxDerived(Derived value) { ... }

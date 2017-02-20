@@ -687,7 +687,7 @@ val max = if (a &gt; b) a else b
 <p>如果你使用 <em class="keyword">if</em> 作为表达式而不是语句（例如：返回它的值或者
 把它赋给变量），该表达式需要有 <code>else</code> 分支。</p>
 <p>参见 <a href="grammar.html#if"><em class="keyword">if</em> 语法</a>。</p>
-<h2 id="when表达式">When表达式</h2>
+<h2 id="when-表达式">When 表达式</h2>
 <p><em class="keyword">when</em> 取代了类 C 语言的 switch 操作符。其最简单的形式如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
     1 -&gt; print("x == 1")
@@ -726,7 +726,7 @@ val max = if (a &gt; b) a else b
 }
 </code></pre>
 <p>另一种可能性是检测一个值是（<em class="keyword">is</em>）或者不是（<em class="keyword">!is</em>）一个特定类型的值。注意：
-由于<a href="typecasts.html#smart-casts">智能转换</a>，你可以访问该类型的方法和属性而无需
+由于<a href="typecasts.html#智能转换">智能转换</a>，你可以访问该类型的方法和属性而无需
 任何额外的检测。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val hasPrefix = when(x) {
     is String -&gt; x.startsWith("prefix")
