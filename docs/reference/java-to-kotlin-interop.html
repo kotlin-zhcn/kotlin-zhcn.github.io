@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Java调用Kotlin代码 - Kotlin 编程语言</title>
+<title>Java 调用 Kotlin - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Java调用Kotlin代码 - Kotlin 编程语言"/>
+<meta property="og:title" content="Java 调用 Kotlin - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Java调用Kotlin代码 - Kotlin 编程语言">
+<meta name="twitter:title" content="Java 调用 Kotlin - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -656,13 +656,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="java调用kotlin代码">Java调用Kotlin代码</h1>
-<p>Java可以轻松调用Kotlin代码。</p>
+<h1 id="java-调用-kotlin">Java 调用 Kotlin</h1>
+<p>Java 可以轻松调用 Kotlin 代码。</p>
 <h2 id="属性">属性</h2>
-<p>属性getters被转换成 <em>get</em>-方法，setters转换成<em>set</em>-方法。</p>
-<h2 id="包级别的函数">包级别的函数</h2>
-<p><code>example.kt</code> 文件中 <code>org.foo.bar</code> 包内声明的所有的函数和属性，都会被放到一个
-叫<code>org.foo.bar.ExampleKt</code>的java类里。</p>
+<p>属性的 getter 会转换成 <em>get</em>-方法、setter 会转换成 <em>set</em>-方法。</p>
+<h2 id="包级函数">包级函数</h2>
+<p>在 <code>org.foo.bar</code> 包内的 <code>example.kt</code> 文件中声明的所有的函数和属性，都会被放到一个
+名为 <code>org.foo.bar.ExampleKt</code> 的java类中。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// example.kt
 package demo
 
@@ -676,7 +676,7 @@ fun bar() {
 new demo.Foo();
 demo.ExampleKt.bar();
 </code></pre>
-<p>可以使用 <code>@JvmName</code> 注解自定义生成的Java 类的类名：</p>
+<p>可以使用 <code>@JvmName</code> 注解修改生成的 Java 类的类名：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JvmName("DemoUtils")
 
 package demo
@@ -691,7 +691,10 @@ fun bar() {
 new demo.Foo();
 demo.DemoUtils.bar();
 </code></pre>
-<p>如果多个文件中生成了相同的Java类名（包名相同，类名相同或者有相同的<code>@JvmName</code>注解）通常会报错，然而，可以在每个文件添加 <code>@JvmMultifileClass</code>注解，可以让编译器生成一个统一的带有特殊名字的类，这个类包含了对应这些文件中所有的声明。</p>
+<p>如果多个文件中生成了相同的 Java 类名（包名相同并且类名相同或者有相同的
+<code>@JvmName</code> 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观
+类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。
+要启用生成这样的外观，请在所有相关文件中使用 @JvmMultifileClass 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// oldutils.kt
 @file:JvmName("Utils")
 @file:JvmMultifileClass
@@ -715,7 +718,9 @@ demo.Utils.foo();
 demo.Utils.bar();
 </code></pre>
 <h2 id="实例字段">实例字段</h2>
-<p>如果在 Java 需要像字段一样调用一个 Kotlin 的属性，你需要使用<code>@JvmField</code>注解。这个字段与属性具有相同的可见性。属性符合有幕后字段（backing field）、非私有、没有<code>open</code>, <code>override</code> 或者 <code>const</code>修饰符、不是被委托的属性这些条件才可以使用<code>@JvmField</code>注解。</p>
+<p>如果需要在 Java 中将 Kotlin 属性作为字段暴露，那就需要使用 <code>@JvmField</code> 注解对其标注。
+该字段将具有与底层属性相同的可见性。如果一个属性有幕后字段（backing field）、非私有、没有 <code>open</code>
+/<code>override</code> 或者 <code>const</code> 修饰符并且不是被委托的属性，那么你可以用 <code>@JvmField</code> 注解该属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C(id: String) {
     @JvmField val ID = id
 }
@@ -727,16 +732,18 @@ class JavaClient {
     }
 }
 </code></pre>
-<p><a href="properties.html#惰性初始化属性">延迟初始化</a> 的属性（在Java中）也可以被作为字段调用，字段的可见性和　<code>lateinit</code>　属性的　setter　相同。</p>
+<p><a href="properties.html#惰性初始化属性">延迟初始化的</a>属性（在Java中）也会暴露为字段。
+该字段的可见性与 <code>lateinit</code> 属性的 setter 相同。</p>
 <h2 id="静态字段">静态字段</h2>
-<p>在一个命名对象或者伴生对象中声明的Koltin属性会持有静态幕后字段（backing fields），这些字段存在于该命名对象或者伴生对象中的。</p>
-<p>通常，这些字段都是private的，但是他们可以通过以下方式暴露出来。</p>
+<p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中
+具有静态幕后字段。</p>
+<p>通常这些字段是私有的，但可以通过以下方式之一暴露出来：</p>
 <ul>
-<li><code>@JvmField</code> 注解;</li>
-<li><code>lateinit</code> 修饰符;</li>
-<li><code>const</code> 修饰符.</li>
+<li><code>@JvmField</code> 注解；</li>
+<li><code>lateinit</code> 修饰符；</li>
+<li><code>const</code> 修饰符。</li>
 </ul>
-<p>用 <code>@JvmField</code> 注解该属性可以生成一个与该属性相同可见性的静态字段。</p>
+<p>使用 <code>@JvmField</code> 标注这样的属性使其成为与属性本身具有相同可见性的静态字段。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Key(val value: Int) {
     companion object {
         @JvmField
@@ -746,19 +753,20 @@ class JavaClient {
 </code></pre>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 Key.COMPARATOR.compare(key1, key2);
-// public static final field in Key class
+// Key 类中的 public static final 字段
 </code></pre>
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化</a> 的属性都有一个静态实际字段，字段和该属性的setter也有相同的可见性。</p>
+<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化的</a>属性
+具有与属性 setter 相同可见性的静态幕后字段。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Singleton {
     lateinit var provider: Provider
 }
 </code></pre>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 Singleton.provider = new Provider();
-// public static non-final field in Singleton class
+// 在 Singleton 类中的 public static 非-final 字段
 </code></pre>
-<p>使用<code>const</code> 注解可以将 Kotlin 属性转换成 Java 中的静态字段。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// file example.kt
+<p>用 <code>const</code> 标注的（在类中以及在顶层的）属性在 Java 中会成为静态字段：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 文件 example.kt
 
 object Obj {
     const val CONST = 1
@@ -772,14 +780,14 @@ class C {
 
 const val MAX = 239
 </code></pre>
-<p>In Java:</p>
+<p>在 Java 中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">int c = Obj.CONST;
 int d = ExampleKt.MAX;
 int v = C.VERSION;
 </code></pre>
 <h2 id="静态方法">静态方法</h2>
-<p>正如上面所说，Kotlin 自动为包级函数生成了静态方法
-在Kotlin 中，还可以通过<code>@JvmStatic</code>注解在命名对象或者伴生对象中定义的函数来生成对应的静态方法。
+<p>如上所述，Kotlin 会为包级函数生成静态方法。
+Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 <code>@JvmStatic</code> 的话。
 例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     companion object {
@@ -788,37 +796,44 @@ int v = C.VERSION;
     }
 }
 </code></pre>
-<p>现在，<code>foo()</code>在java里就是静态的了，而<code>bar()</code> 不是：</p>
+<p>现在，<code>foo()</code> 在 Java 中是静态的，而 <code>bar()</code> 不是：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">C.foo(); // 没问题
-C.bar(); // 错误: 不是一个静态方法
+C.bar(); // 错误：不是一个静态方法
 </code></pre>
-<p>同样的，命名对象：</p>
+<p>对于命名对象也同样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Obj {
     @JvmStatic fun foo() {}
     fun bar() {}
 }
 </code></pre>
-<p>Java 里：</p>
+<p>在 Java 中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Obj.foo(); // 没问题
 Obj.bar(); // 错误
-Obj.INSTANCE.bar(); // 对单例的方法调用
-Obj.INSTANCE.foo(); // 也行
+Obj.INSTANCE.bar(); // 没问题，通过单例实例调用
+Obj.INSTANCE.foo(); // 也没问题
 </code></pre>
-<p>通过使用　<code>@JvmStatic</code>　注解对象的属性或伴生对象，使对应的getter 和 setter 方法在这个对象或者包含这个伴生对象的类中也成为静态成员。</p>
-<h2 id="用jvmname解决签名冲突">用@JvmName解决签名冲突</h2>
-<p>有时我们想让一个 Kotlin 里的命名函数在字节码里有另外一个 JVM 名字。
-最突出的例子就是 <em>类名型擦除</em>:</p>
+<p><code>@JvmStatic</code>　注解也可以应用于对象或伴生对象的属性，
+使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。</p>
+<h2 id="kclass">KClass</h2>
+<p>有时你需要调用有 <code>KClass</code> 类型参数的 Kotlin 方法。
+因为没有从 <code>Class</code> 到 <code>KClass</code> 的自动转换，所以你必须通过调用
+<code>Class&lt;T&gt;.kotlin</code> 扩展属性的等价形式来手动进行转换：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">kotlin.jvm.JvmClassMappingKt.getKotlinClass(MainView.class)
+</code></pre>
+<h2 id="用-jvmname-解决签名冲突">用 @JvmName 解决签名冲突</h2>
+<p>有时我们想让一个 Kotlin 中的命名函数在字节码中有另外一个 JVM 名称。
+最突出的例子是由于<em>类型擦除</em>引发的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun List&lt;String&gt;.filterValid(): List&lt;String&gt;
 fun List&lt;Int&gt;.filterValid(): List&lt;Int&gt;
 </code></pre>
-<p>这两个函数不能同时定义，因为它们的 JVM 签名是一样的：<code>filterValid(Ljava/util/List;)Ljava/util/List;</code>.
-如果我们真的相让它们在 Kotlin里用同一个名字，我们需要用<code>@JvmName</code>去注释它们中的一个（或两个），指定的另外一个名字当参数：</p>
+<p>这两个函数不能同时定义，因为它们的 JVM 签名是一样的：<code>filterValid(Ljava/util/List;)Ljava/util/List;</code>。
+如果我们真的希望它们在 Kotlin 中用相同名称，我们需要用 <code>@JvmName</code> 去标注其中的一个（或两个），并指定不同的名称作为参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun List&lt;String&gt;.filterValid(): List&lt;String&gt;
 
 @JvmName("filterValidInt")
 fun List&lt;Int&gt;.filterValid(): List&lt;Int&gt;
 </code></pre>
-<p>在Kotlin里它们可以都用<code>filterValid</code>来访问，但是在Java里，它们是<code>filterValid</code> 和 <code>filterValidInt</code>.</p>
+<p>在 Kotlin 中它们可以用相同的名称 <code>filterValid</code> 来访问，而在 Java 中，它们分别是 <code>filterValid</code> 和 <code>filterValidInt</code>。</p>
 <p>同样的技巧也适用于属性 <code>x</code> 和函数 <code>getX()</code> 共存：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: Int
     @JvmName("getX_prop")
@@ -827,27 +842,30 @@ fun List&lt;Int&gt;.filterValid(): List&lt;Int&gt;
 fun getX() = 10
 </code></pre>
 <h2 id="生成重载">生成重载</h2>
-<p>通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 里，只会有一个有完整参数的签名。如果你要暴露多个重载给java调用者，你可以使用
+<p>通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数
+签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
 @JvmOverloads 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
     ...
 }
 </code></pre>
-<p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和它右边的所有参数都移除掉。在上面这个例子里，生成下面的方法：</p>
+<p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和
+它右边的所有参数都移除掉。在上例中，会生成以下方法
+：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 void f(String a, int b, String c) { }
 void f(String a, int b) { }
 void f(String a) { }
 </code></pre>
-<p>构造函数，静态函数等也能用这个标记。但他不能用在抽象方法上，包括
-接口中的方法。</p>
-<p>注意一下，<a href="classes.html#次构造函数">次构造函数</a> 描述过，如果一个类的所有构造函数参数都有默认
-值，会生成一个公开的无参构造函数。这就算
-没有@JvmOverloads 注解也有效。</p>
+<p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括
+在接口中定义的方法。</p>
+<p>请注意，如<a href="classes.html#次构造函数">次构造函数</a>中所述，如果一个类的所有构造函数参数都有默认
+值，那么会为其生成一个公有的无参构造函数。这就算
+没有 @JvmOverloads 注解也有效。</p>
 <h2 id="受检异常">受检异常</h2>
-<p>上面说过，kotlin没有受检异常。
-所以，通常，kotlin函数的java签名没有声明抛出异常。
-于是如果我们有一个kotlin函数：</p>
+<p>如上所述，Kotlin 没有受检异常。
+所以，通常 Kotlin 函数的 Java 签名不会声明抛出异常。
+于是如果我们有一个这样的 Kotlin 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// example.kt
 package demo
 
@@ -855,28 +873,29 @@ fun foo() {
     throw IOException()
 }
 </code></pre>
-<p>然后我们想要在java里调用它，捕捉这个异常：</p>
+<p>然后我们想要在 Java 中调用它并捕捉这个异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 try {
   demo.Example.foo();
 }
-catch (IOException e) { // 错误: foo() 没有声明 IOException
+catch (IOException e) { // 错误：foo() 未在 throws 列表中声明 IOException
   // ...
 }
 </code></pre>
-<p>因为<code>foo()</code>没有声明 <code>IOException</code>，java编译器报了错误信息。
-为了解决这个问题，要在kotlin里使用<code>@throws</code>标记。</p>
+<p>因为 <code>foo()</code> 没有声明 <code>IOException</code>，我们从 Java 编译器得到了一个报错消息。
+为了解决这个问题，要在 Kotlin 中使用 <code>@Throws</code> 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Throws(IOException::class)
 fun foo() {
     throw IOException()
 }
 </code></pre>
-<h2 id="null安全性">Null安全性</h2>
-<p>当从 Java 中调用 Kotlin 函数时，没人阻止我们传递 <em class="keyword">null</em> 给一个非空参数。
-这就是为什么 Kotlin 给所有期望非空参数的公开函数生成运行时检测。
+<h2 id="空安全性">空安全性</h2>
+<p>当从 Java 中调用 Kotlin 函数时，没人阻止我们将 <em class="keyword">null</em> 作为非空参数传递。
+这就是为什么 Kotlin 给所有期望非空参数的公有函数生成运行时检测。
 这样我们就能在 Java 代码里立即得到 <code>NullPointerException</code>。</p>
 <h2 id="可变泛型">可变泛型</h2>
-<p>当Kotlin 的类使用了 <a href="generics.html#声明处型变">declaration-site variance</a>，从Java 的角度看起来有两种用法，比如我们下面涉及到的这种用法的类和两个函数。</p>
+<p>当 Kotlin 的类使用了<a href="generics.html#声明处型变">声明处型变</a>，有两种选择
+可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Box&lt;out T&gt;(val value: T)
 
 interface Base
@@ -885,38 +904,47 @@ class Derived : Base
 fun boxDerived(value: Derived): Box&lt;Derived&gt; = Box(value)
 fun unboxBase(box: Box&lt;Base&gt;): Base = box.value
 </code></pre>
-<p>一种看似理所当然地将函数转换成 Java 代码的方式可能会是这样：</p>
+<p>一种看似理所当然地将这俩函数转换成 Java 代码的方式可能会是：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Box&lt;Derived&gt; boxDerived(Derived value) { ... }
 Base unboxBase(Box&lt;Base&gt; box) { ... }
 </code></pre>
-<p>问题是，在Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code> ，但是这样的写法在 Java 中是无法通过的，因为在 Java 中<code>Box</code>的泛型参数 <code>T</code> 是<em>不可变的</em>，<code>Box&lt;Derived&gt;</code> 实际上并不是<code>Box&lt;Base&gt;</code>的子类。如果在 Java 中要编译通过我们需要像下面这样定义<code>unboxBase</code>：
-[//]:# (The problem is that in Kotlin we can say , but in Java that would be impossible, because in Java the class <code>Box</code> is <em>invariant</em> in its parameter <code>T</code>, and thus <code>Box&lt;Derived&gt;</code> is not a subtype of <code>Box&lt;Base&gt;</code>.   To make it work in Java we'd have to define <code>unboxBase</code> as follows:)</p>
+<p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code>，但是在 Java 中是行不通的，因为在 Java 中
+类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不协变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
+要使其在 Java 中工作，我们按以下这样定义 <code>unboxBase</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { ... }  
 </code></pre>
-<p>我们在这里通过使用 Java 的 <em>通配符类型</em> (<code>? extends Base</code>) 去模拟<a href="generics.html#声明处型变">declaration-site variance</a>，因为在 Java   中只能这么做。</p>
-<p>当作为参数的时候，为了让 Kotlin 的 API 工作，针对<code>Box</code> 我们将Koltin 中的 <code>Box&lt;Super&gt;</code> 在 Java 中生成为 <code>Box&lt;? extends Super&gt;</code>(<code>Foo</code>将生成为 <code>Foo&lt;? super Bar&gt;</code>) 。当作为返回值的时候，我们不需要生成通配符类型，因为如果生成通配符在 Java 中还需要做其他操作来转换(这是常见的 Java 代码风格)。因此上面例子中的函数实际上会被转换成下面的代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// 作为返回类型 - 没有泛型
+<p>这里我们使用 Java 的<em>通配符类型</em>（<code>? extends Base</code>）来
+通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。</p>
+<p>当它<em>作为参数</em>出现时，为了让 Kotlin 的 API 在 Java 中工作，对于协变定义的 <code>Box</code> 我们生成 <code>Box&lt;Super&gt;</code> 作为 <code>Box&lt;? extends Super&gt;</code>
+（或者对于逆变定义的 <code>Foo</code> 生成 <code>Foo&lt;? super Bar&gt;</code>）。当它是一个返回值时，
+我们不生成通配符，因为否则 Java 客户端将必须处理它们（并且它违反常用
+Java 编码风格）。因此，我们的示例中的对应函数实际上翻译如下：</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">// 作为返回类型——没有通配符
 Box&lt;Derived&gt; boxDerived(Derived value) { ... }
  
-// 作为参数 - 带有泛型 
+// 作为参数——有通配符
 Base unboxBase(Box&lt;? extends Base&gt; box) { ... }
 </code></pre>
-<p>注意：如果参数类型是 final 的，就不用生成泛型了，比如，无论在什么地方<code>Box&lt;String&gt;</code>转换成 Java 代码始终还是　<code>Box&lt;String&gt;</code>，</p>
-<p>如果我们不想要默认生成的通配符，需要自己指定可以使用<code>@JvmWildcard</code> 注解：</p>
+<p>注意：当参数类型是 final 时，生成通配符通常没有意义，所以无论在什么地方 <code>Box&lt;String&gt;</code> 
+始终转换为 <code>Box&lt;String&gt;</code>。</p>
+<p>如果我们在默认不生成通配符的地方需要通配符，我们可以使用 <code>@JvmWildcard</code> 注解：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun boxDerived(value: Derived): Box&lt;@JvmWildcard Derived&gt; = Box(value)
 // 将被转换成
 // Box&lt;? extends Derived&gt; boxDerived(Derived value) { ... }
 </code></pre>
 <p>另一方面，如果我们根本不需要默认的通配符转换，我们可以使用<code>@JvmSuppressWildcards</code></p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun unboxBase(box: Box&lt;@JvmSuppressWildcards Base&gt;): Base = box.value
-// 将被转换成
+// 会翻译成
 // Base unboxBase(Box&lt;Base&gt; box) { ... }
 </code></pre>
-<p>注意：<code>@JvmSuppressWildcards</code> 不是只可以用在单独的类型参数上面，是可以是用在所有声明上，比如 函数，类等，其对应下面所有的泛型都不会自动转换为Java 中的通配符。</p>
-<h3 id="nothing-类型的转换">Nothing 类型的转换</h3>
-<p><code>Nothing</code> 是一种特殊的类型，因为它在 Java 中没有类型相对应。事实上，每个 Java 的引用类型，包括 <code>java.lang.Void</code> 都可以接受 <code>null</code>值，但是 Nothing 不行，因此在 Java 世界中没有什么可以代表这个类型，这就是为什么在Kotlin 中要生成原始类型需要使用 <code>Nothing</code>。</p>
+<p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如
+函数或类），从而抑制其中的所有通配符。</p>
+<h3 id="nothing-类型翻译">Nothing 类型翻译</h3>
+<p><code>Nothing</code> 是一种特殊的类型，因为它在 Java 中没有自然对应。事实上，每个 Java 的引用类型，包括
+<code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在Java世界中
+准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun emptyList(): List&lt;Nothing&gt; = listOf()
-// 被转换为
+// 会翻译成
 // List emptyList() { ... }
 </code></pre>
 
