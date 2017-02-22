@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Kotlin and OSGi - Kotlin 编程语言</title>
+<title>Kotlin 与 OSGi - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Kotlin and OSGi - Kotlin 编程语言"/>
+<meta property="og:title" content="Kotlin 与 OSGi - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/kotlin-osgi.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Kotlin and OSGi - Kotlin 编程语言">
+<meta name="twitter:title" content="Kotlin 与 OSGi - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -598,7 +598,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
                                 <div class="marker"></div>
-                                <div class="text">Kotlin 和 OSGi</div>
+                                <div class="text">Kotlin 与 OSGi</div>
                             </div>
                     </div>
 
@@ -656,13 +656,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="kotlin-and-osgi">Kotlin and OSGi</h1>
-<p>To enable Kotlin OSGi support you need to include <code>kotlin-osgi-bundle</code> instead of regular Kotlin libraries.
-It is recommended to remove <code>kotlin-runtime</code>, <code>kotlin-stdlib</code> and <code>kotlin-reflect</code> dependencies as <code>kotlin-osgi-bundle</code>
-already contains all of them. You also should pay attention in case when external Kotlin libraries are included.
-Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them and should remove them from your project.</p>
+<h1 id="kotlin-与-osgi">Kotlin 与 OSGi</h1>
+<p>要启用 Kotlin OSGi 支持，你需要引入 <code>kotlin-osgi-bundle</code> 而不是常规的 Kotlin 库。
+建议删除 <code>kotlin-runtime</code>、 <code>kotlin-stdlib</code> 和 <code>kotlin-reflect</code> 依赖，因为 <code>kotlin-osgi-bundle</code>
+已经包含了所有这些。当引入外部 Kotlin 库时你也应该注意。
+大多数常规 Kotlin 依赖不是 OSGi-就绪的，所以你不应该使用它们，且应该从你的项目中删除它们。</p>
 <h2 id="maven">Maven</h2>
-<p>To include the Kotlin OSGi bundle to a Maven project:</p>
+<p>将 Kotlin OSGi 包引入到 Maven 项目中：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">   &lt;dependencies&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
@@ -671,7 +671,7 @@ Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them a
         &lt;/dependency&gt;
     &lt;/dependencies&gt;
 </code></pre>
-<p>To exclude the standard library from external libraries (notice that "star exclusion" works in Maven 3 only)</p>
+<p>从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）</p>
 <pre><code class="code _highlighted" data-lang="application/xml">        &lt;dependency&gt;
             &lt;groupId&gt;some.group.id&lt;/groupId&gt;
             &lt;artifactId&gt;some.library&lt;/artifactId&gt;
@@ -686,10 +686,10 @@ Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them a
         &lt;/dependency&gt;
 </code></pre>
 <h2 id="gradle">Gradle</h2>
-<p>To include <code>kotlin-osgi-bundle</code> to a gradle project:</p>
+<p>将 <code>kotlin-osgi-bundle</code> 引入到 gradle 项目中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 </code></pre>
-<p>To exclude default Kotlin libraries that comes as transitive dependencies you can use the following approach</p>
+<p>要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
  compile (
    [group: 'some.group.id', name: 'some.library', version: 'someversion'],
@@ -698,11 +698,11 @@ Most regular Kotlin dependencies are not OSGi-ready, so you shouldn't use them a
 }
 </code></pre>
 <h2 id="faq">FAQ</h2>
-<h4 id="why-not-just-add-required-manifest-options-to-all-kotlin-libraries">Why not just add required manifest options to all Kotlin libraries</h4>
-<p>Even though it is the most preferred way to provide OSGi support, unfortunately it couldn't be done for now due to so called
-<a href="http://wiki.osgi.org/wiki/Split_Packages">"package split" issue</a> that couldn't be easily eliminated and such a big change is
-not planned for now. There is <code>Require-Bundle</code> feature but it is not the best option too and not recommended to use.
-So it was decided to make a separate artifact for OSGi.</p>
+<h4 id="为什么不只是添加必需的清单选项到所有-kotlin-库">为什么不只是添加必需的清单选项到所有 Kotlin 库</h4>
+<p>尽管它是提供 OSGi 支持的最好的方式，遗憾的是现在做不到，是因为不能轻易消除的所谓的
+<a href="http://wiki.osgi.org/wiki/Split_Packages">“包拆分”问题</a>并且这么大的变化
+不可能现在规划。有 <code>Require-Bundle</code> 功能，但它也不是最好的选择，不推荐使用。
+所以决定为 OSGi 做一个单独的构件。</p>
 
         </article>
     </div>
