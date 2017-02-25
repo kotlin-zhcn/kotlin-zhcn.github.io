@@ -893,7 +893,7 @@ fun foo() {
 <p>当从 Java 中调用 Kotlin 函数时，没人阻止我们将 <em class="keyword">null</em> 作为非空参数传递。
 这就是为什么 Kotlin 给所有期望非空参数的公有函数生成运行时检测。
 这样我们就能在 Java 代码里立即得到 <code>NullPointerException</code>。</p>
-<h2 id="可变泛型">可变泛型</h2>
+<h2 id="型变的泛型">型变的泛型</h2>
 <p>当 Kotlin 的类使用了<a href="generics.html#声明处型变">声明处型变</a>，有两种选择
 可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Box&lt;out T&gt;(val value: T)
@@ -909,7 +909,7 @@ fun unboxBase(box: Box&lt;Base&gt;): Base = box.value
 Base unboxBase(Box&lt;Base&gt; box) { ... }
 </code></pre>
 <p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code>，但是在 Java 中是行不通的，因为在 Java 中
-类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不协变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
+类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不型变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
 要使其在 Java 中工作，我们按以下这样定义 <code>unboxBase</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { ... }  
 </code></pre>

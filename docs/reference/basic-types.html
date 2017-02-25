@@ -824,7 +824,7 @@ val i: Int = b // 错误
 val asc = Array(5, { i -&gt; (i * i).toString() })
 </code></pre>
 <p>如上所述，<code>[]</code> 运算符代表调用成员函数 <code>get()</code> 和 <code>set()</code>。</p>
-<p>注意: 与 Java 不同的是，Kotlin 中数组是不协变的（invariant）。这意味着 Kotlin 不让我们把 <code>Array&lt;String&gt;</code>
+<p>注意: 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 <code>Array&lt;String&gt;</code>
 赋值给 <code>Array&lt;Any&gt;</code>，以防止可能的运行时失败（但是你可以使用 <code>Array&lt;out Any&gt;</code>,
 参见<a href="generics.html#类型投影">类型投影</a>）。</p>
 <p>Kotlin 也有无装箱开销的专门的类来表示原生类型数组: <code>ByteArray</code>、

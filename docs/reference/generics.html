@@ -672,8 +672,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Java 类型系统中最棘手的部分之一是通配符类型（参见 <a href="http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">Java Generics FAQ</a>）。
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。</p>
 <p>首先，让我们思考为什么 Java 需要那些神秘的通配符。在 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 解释了该问题——第28条：<em>利用有限制通配符来提升 API 的灵活性</em>。
-首先，Java 中的泛型是<strong>不协变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
-为什么这样？ 如果 List 不是<strong>不协变的</strong>，它就没
+首先，Java 中的泛型是<strong>不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
+为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没
 比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 List&lt;String&gt; strs = new ArrayList&lt;String&gt;();
@@ -786,7 +786,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 val any = Array&lt;Any&gt;(3)
 copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 </code></pre>
-<p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不协变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是
+<p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是
 另一个的子类型。为什么？ 再次重复，因为 copy <strong>可能</strong>做坏事，也就是说，例如它可能尝试<strong>写</strong>一个 String 到 <code>from</code>，
 并且如果我们实际上传递一个 <code>Int</code> 的数组，一段时间后将会抛出一个 <code>ClassCastException</code> 异常。</p>
 <p>那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong>写</strong>到 <code>from</code>，我们可以：</p>
@@ -810,7 +810,7 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 <ul>
 <li>对于 <code>Foo &lt;out T&gt;</code>，其中 <code>T</code> 是一个具有上界 <code>TUpper</code> 的协变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;out TUpper&gt;</code>。 这意味着当 <code>T</code> 未知时，你可以安全地从 <code>Foo &lt;*&gt;</code> <em>读取</em> <code>TUpper</code> 的值。</li>
 <li>对于 <code>Foo &lt;in T&gt;</code>，其中 <code>T</code> 是一个逆变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;in Nothing&gt;</code>。 这意味着当 <code>T</code> 未知时，没有什么可以以安全的方式<em>写入</em> <code>Foo &lt;*&gt;</code>。</li>
-<li>对于 <code>Foo &lt;T&gt;</code>，其中 <code>T</code> 是一个具有上界 <code>TUpper</code> 的不协变类型参数，<code>Foo&lt;*&gt;</code> 对于读取值时等价于 <code>Foo&lt;out TUpper&gt;</code> 而对于写值时等价于 <code>Foo&lt;in Nothing&gt;</code>。</li>
+<li>对于 <code>Foo &lt;T&gt;</code>，其中 <code>T</code> 是一个具有上界 <code>TUpper</code> 的不型变类型参数，<code>Foo&lt;*&gt;</code> 对于读取值时等价于 <code>Foo&lt;out TUpper&gt;</code> 而对于写值时等价于 <code>Foo&lt;in Nothing&gt;</code>。</li>
 </ul>
 <p>如果泛型类型具有多个类型参数，则每个类型参数都可以单独投影。
 例如，如果类型被声明为 <code>interface Function &lt;in T, out U&gt;</code>，我们可以想象以下星投影：</p>
