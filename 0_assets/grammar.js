@@ -3,7 +3,9 @@ webpackJsonp([3],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var Toc = __webpack_require__(71);
+	'use strict';
+
+	var Toc = __webpack_require__(261);
 
 	var $ = __webpack_require__(2);
 
@@ -17,16 +19,24 @@ webpackJsonp([3],{
 
 /***/ },
 
-/***/ 71:
+/***/ 261:
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _typeof2 = __webpack_require__(69);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var $ = __webpack_require__(2);
 
 	function Toc(options) {
 	  var that = this,
-	    option;
+	      option;
 
-	  if (typeof options == 'object') {
+	  if ((typeof options === 'undefined' ? 'undefined' : (0, _typeof3.default)(options)) == 'object') {
 	    for (option in options) {
 	      if (option in that) {
 	        that[option] = options[option];
@@ -56,21 +66,21 @@ webpackJsonp([3],{
 	    tocListItem: 'toc-item_level_#'
 	  },
 
-	  init: function (options) {
+	  init: function init(options) {
 	    var that = this;
 
 	    that.map = that.get();
 	  },
 
-	  __getMap: function (selector, scope) {
+	  __getMap: function __getMap(selector, scope) {
 	    var that = this;
-	    var sections = [], sectionNode, section;
+	    var sections = [],
+	        sectionNode,
+	        section;
 	    var i, len;
-	    var selector = (typeof selector != 'undefined') ? selector : that.selector;
-	    var scope = (typeof scope != 'undefined') ? scope : that.scope;
-	    var sectionsNodes = ('querySelectorAll' in scope)
-	      ? scope.querySelectorAll(selector)
-	      : $(selector, scope);
+	    var selector = typeof selector != 'undefined' ? selector : that.selector;
+	    var scope = typeof scope != 'undefined' ? scope : that.scope;
+	    var sectionsNodes = 'querySelectorAll' in scope ? scope.querySelectorAll(selector) : $(selector, scope);
 
 	    for (i = 0, len = sectionsNodes.length; i < len; i++) {
 	      sectionNode = sectionsNodes[i];
@@ -86,10 +96,10 @@ webpackJsonp([3],{
 	    return sections;
 	  },
 
-	  get: function (options) {
+	  get: function get(options) {
 	    var that = this;
-	    var selector = (options && typeof options.selector != 'undefined') ? options.selector : that.selector;
-	    var scope = (options && typeof options.scope != 'undefined') ? options.scope : that.scope;
+	    var selector = options && typeof options.selector != 'undefined' ? options.selector : that.selector;
+	    var scope = options && typeof options.scope != 'undefined' ? options.scope : that.scope;
 	    var sectMap, tocList;
 
 	    sectMap = that.__getMap(selector, scope);
@@ -101,11 +111,11 @@ webpackJsonp([3],{
 	    return tocList;
 	  },
 
-	  render: function (opts) {
+	  render: function render(opts) {
 	    var that = this;
-	    var from = (opts && typeof opts.from != 'undefined') ? opts.from : that.from;
-	    var to = (opts && typeof opts.to != 'undefined') ? opts.to : that.to;
-	    var target = (opts && typeof opts.target != 'undefined') ? opts.target : null;
+	    var from = opts && typeof opts.from != 'undefined' ? opts.from : that.from;
+	    var to = opts && typeof opts.to != 'undefined' ? opts.to : that.to;
+	    var target = opts && typeof opts.target != 'undefined' ? opts.target : null;
 	    var toc;
 
 	    toc = that.__create(that.map, from, to);
@@ -117,7 +127,7 @@ webpackJsonp([3],{
 	    return toc;
 	  },
 
-	  __create: function (list, from, to) {
+	  __create: function __create(list, from, to) {
 	    var that = this;
 	    var createLinks = that.createLinks;
 	    var ul, li, a, title;
@@ -141,16 +151,13 @@ webpackJsonp([3],{
 	        title = document.createElement('a');
 	        title.href = "#" + section.id;
 	        title.appendChild(document.createTextNode(section.title));
-	      }
-	      else {
+	      } else {
 	        title = document.createTextNode(section.title);
 	      }
 
 	      li.appendChild(title);
 
-	      if (section.content.length > 0 &&
-	        section.content[0].level >= from &&
-	        section.content[0].level <= to) {
+	      if (section.content.length > 0 && section.content[0].level >= from && section.content[0].level <= to) {
 	        sectionContent = that.__create(section.content, from, to);
 	        li.appendChild(sectionContent);
 	      }
@@ -160,30 +167,26 @@ webpackJsonp([3],{
 	    return ul;
 	  },
 
-	  __getBranch: function (sections, level, start, firstRun) {
+	  __getBranch: function __getBranch(sections, level, start, firstRun) {
 	    var that = this;
-	    var firstRun = (typeof firstRun !== 'undefined') ? firstRun : true;
+	    var firstRun = typeof firstRun !== 'undefined' ? firstRun : true;
 	    var end = sections.length;
 	    var tree = [];
 	    var section, prevSect;
 
 	    for (var i = start; i < end; i++) {
 	      section = sections[i];
-	      prevSect = (typeof sections[i - 1] !== 'undefined')
-	        ? sections[i - 1]
-	        : null;
+	      prevSect = typeof sections[i - 1] !== 'undefined' ? sections[i - 1] : null;
 
 	      if (section.level == level) {
 	        // siblings
 	        tree.push(section);
-	      }
-	      else if (section.level > level) {
+	      } else if (section.level > level) {
 	        // inner branch
 	        if (prevSect && prevSect.level < section.level) {
 	          prevSect.content = this.__getBranch(sections, section.level, i, false);
 	        }
-	      }
-	      else if (section.level < level) {
+	      } else if (section.level < level) {
 	        // out of branch
 	        if (!firstRun) {
 	          break;

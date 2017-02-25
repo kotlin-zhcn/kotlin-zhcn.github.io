@@ -3,17 +3,18 @@ webpackJsonp([4],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(2);
-	var Carousel = __webpack_require__(72);
-	var Player = __webpack_require__(74);
+	var Carousel = __webpack_require__(262);
+	var Player = __webpack_require__(264);
 
-
-	var initTabs = function () {
+	var initTabs = function initTabs() {
 	  var $tabs = $('.js-tab');
 
 	  $tabs.on('click', function () {
 	    var $tab = $(this),
-	      tabId = $tab.attr('data-tab-id');
+	        tabId = $tab.attr('data-tab-id');
 
 	    if ($tab.hasClass('is_active')) {
 	      return;
@@ -21,8 +22,8 @@ webpackJsonp([4],{
 
 	    $tabs.each(function () {
 	      var $currentTab = $(this),
-	        currentTabId = $currentTab.attr('data-tab-id'),
-	        $tabContentNode = $('#' + currentTabId);
+	          currentTabId = $currentTab.attr('data-tab-id'),
+	          $tabContentNode = $('#' + currentTabId);
 
 	      if (tabId === currentTabId) {
 	        $currentTab.addClass('is_active');
@@ -35,14 +36,13 @@ webpackJsonp([4],{
 	  });
 	};
 
-	var initPopups = function () {
-	  var popups =
-	  {
-	    init: function () {
+	var initPopups = function initPopups() {
+	  var popups = {
+	    init: function init() {
 	      var that = this,
-	        $popups = $('.js-popup'),
-	        $popupShowButtons = $('.js-popup-open-button'),
-	        $popupHideButtons = $('.js-popup-close-button');
+	          $popups = $('.js-popup'),
+	          $popupShowButtons = $('.js-popup-open-button'),
+	          $popupHideButtons = $('.js-popup-close-button');
 
 	      $popupShowButtons.on('click', function (e) {
 	        var popupId = this.getAttribute('data-popup-id');
@@ -61,7 +61,7 @@ webpackJsonp([4],{
 	      $(document.body).on('click', function () {
 	        $popups.each(function () {
 	          var $popup = $(this),
-	            popupId = this.id;
+	              popupId = this.id;
 
 	          if (!$popup.hasClass('_hidden')) {
 	            that.hidePopup(popupId);
@@ -71,12 +71,12 @@ webpackJsonp([4],{
 
 	      $popups.on('click', function (e) {
 	        e.stopPropagation();
-	      })
+	      });
 	    },
 
-	    togglePopup: function (id) {
+	    togglePopup: function togglePopup(id) {
 	      var that = this,
-	        $popupNode = $('#' + id);
+	          $popupNode = $('#' + id);
 
 	      if ($popupNode.hasClass('_hidden')) {
 	        that.showPopup(id);
@@ -85,13 +85,13 @@ webpackJsonp([4],{
 	      }
 	    },
 
-	    showPopup: function (id) {
+	    showPopup: function showPopup(id) {
 	      var $popupNode = $('#' + id);
 
 	      $popupNode.removeClass('_hidden');
 	    },
 
-	    hidePopup: function (id) {
+	    hidePopup: function hidePopup(id) {
 	      var $popupNode = $('#' + id);
 
 	      $popupNode.addClass('_hidden');
@@ -101,17 +101,17 @@ webpackJsonp([4],{
 	  popups.init();
 	};
 
-	var initPlayer = function () {
+	var initPlayer = function initPlayer() {
 	  var $playerBlock = $('.js-video-player-wrap'),
-	    $playerPlaceholder = $playerBlock.find('.js-video-player'),
-	    $thumbLink = $playerBlock.find('.js-video-thumb-link'),
-	    playerHeight = $playerBlock.get(0).offsetHeight;
+	      $playerPlaceholder = $playerBlock.find('.js-video-player'),
+	      $thumbLink = $playerBlock.find('.js-video-thumb-link'),
+	      playerHeight = $playerBlock.get(0).offsetHeight;
 
 	  $playerBlock.css('height', playerHeight);
 
 	  $thumbLink.on('click', function (e) {
 	    var $thumbLink = $(this),
-	      videoId = Player.getVideoIdFromUrl(this.href);
+	        videoId = Player.getVideoIdFromUrl(this.href);
 
 	    if (!videoId) {
 	      return;
@@ -127,7 +127,6 @@ webpackJsonp([4],{
 	        videoId: videoId,
 	        autoPlay: true
 	      });
-
 	    }, 400);
 
 	    e.preventDefault();
@@ -152,16 +151,18 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 72:
+/***/ 262:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(2);
-	__webpack_require__(73);
+	__webpack_require__(263);
 
 	function Carousel(config) {
 	  var that = this,
-	    $wrapElem,
-	    $carousel;
+	      $wrapElem,
+	      $carousel;
 
 	  that._elem = config.elem;
 
@@ -172,27 +173,21 @@ webpackJsonp([4],{
 	    list: '.js-carousel-list'
 	  });
 
-	  $wrapElem.find('.js-carousel-nav-prev')
-	    .jcarouselControl({
-	      target: '-=1'
-	    })
-	    .on('jcarouselcontrol:active', function () {
-	      $(this).removeClass('is_disabled');
-	    })
-	    .on('jcarouselcontrol:inactive', function () {
-	      $(this).addClass('is_disabled');
-	    });
+	  $wrapElem.find('.js-carousel-nav-prev').jcarouselControl({
+	    target: '-=1'
+	  }).on('jcarouselcontrol:active', function () {
+	    $(this).removeClass('is_disabled');
+	  }).on('jcarouselcontrol:inactive', function () {
+	    $(this).addClass('is_disabled');
+	  });
 
-	  $wrapElem.find('.js-carousel-nav-next')
-	    .jcarouselControl({
-	      target: '+=1'
-	    })
-	    .on('jcarouselcontrol:active', function () {
-	      $(this).removeClass('is_disabled');
-	    })
-	    .on('jcarouselcontrol:inactive', function () {
-	      $(this).addClass('is_disabled');
-	    });
+	  $wrapElem.find('.js-carousel-nav-next').jcarouselControl({
+	    target: '+=1'
+	  }).on('jcarouselcontrol:active', function () {
+	    $(this).removeClass('is_disabled');
+	  }).on('jcarouselcontrol:inactive', function () {
+	    $(this).addClass('is_disabled');
+	  });
 	}
 
 	Carousel.prototype._elem = null;
@@ -201,7 +196,7 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 73:
+/***/ 263:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*! jCarousel - v0.3.4 - 2015-09-23
@@ -1678,8 +1673,10 @@ webpackJsonp([4],{
 
 /***/ },
 
-/***/ 74:
+/***/ 264:
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var $ = __webpack_require__(2);
 
@@ -1691,10 +1688,10 @@ webpackJsonp([4],{
 	 */
 	function Player(elem, config) {
 	  var that = this,
-	    playerElem;
+	      playerElem;
 
 	  playerElem = document.createElement('div');
-	  elem = (typeof elem === 'string') ? document.getElementById(elem) : elem;
+	  elem = typeof elem === 'string' ? document.getElementById(elem) : elem;
 	  elem.appendChild(playerElem);
 
 	  that._elem = playerElem;
@@ -1708,9 +1705,8 @@ webpackJsonp([4],{
 	        window.onYouTubeIframeAPIReady = function () {
 	          prev();
 	          that._createPlayer();
-	        }
-	      }
-	      else {
+	        };
+	      } else {
 	        window.onYouTubeIframeAPIReady = function () {
 	          that._createPlayer();
 	        };
@@ -1739,10 +1735,10 @@ webpackJsonp([4],{
 
 	Player.QUALITY = {
 	  DEFAULT: 'default',
-	  SMALL: 'small',      // max 640х360
-	  MEDIUM: 'medium',    // min 640x360
-	  LARGE: 'large',      // min 854x80
-	  HD720: 'hd720'       // min 1280x720
+	  SMALL: 'small', // max 640х360
+	  MEDIUM: 'medium', // min 640x360
+	  LARGE: 'large', // min 854x80
+	  HD720: 'hd720' // min 1280x720
 	};
 
 	Player.VIDEO_ID_REGEXP = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -1800,7 +1796,7 @@ webpackJsonp([4],{
 	 */
 	Player.createConfigForYTPlayer = function (config) {
 	  var config = config || Player.getConfig(config),
-	    ytPlayerConfig;
+	      ytPlayerConfig;
 
 	  ytPlayerConfig = {
 	    width: config.width,
@@ -1835,8 +1831,8 @@ webpackJsonp([4],{
 
 	Player.prototype._createPlayer = function () {
 	  var that = this,
-	    elem = that._elem,
-	    player;
+	      elem = that._elem,
+	      player;
 
 	  player = new YT.Player(elem, Player.createConfigForYTPlayer(that._config));
 
@@ -1847,7 +1843,7 @@ webpackJsonp([4],{
 
 	  player.addEventListener('onStateChange', function (currentState) {
 	    var events = that._events,
-	      eventName = Player.EVENT;
+	        eventName = Player.EVENT;
 
 	    switch (currentState.data) {
 	      case YT.PlayerState.ENDED:
@@ -1927,7 +1923,6 @@ webpackJsonp([4],{
 	  } else {
 	    this._player.loadVideoById(videoId);
 	  }
-
 	};
 
 	module.exports = Player;

@@ -1,22 +1,25 @@
-webpackJsonp([2],[
-/* 0 */
+webpackJsonp([2],{
+
+/***/ 0:
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var $ = __webpack_require__(2);
 	window.$ = $;
 
-	var Map = __webpack_require__(22);
-	var EventsStore = __webpack_require__(46);
-	var EventsList = __webpack_require__(56);
-	var emitter = __webpack_require__(23);
-	var EVENTS = __webpack_require__(39);
-	var FilterPanel = __webpack_require__(60);
-	var Fixer = __webpack_require__(69);
+	var Map = __webpack_require__(212);
+	var EventsStore = __webpack_require__(236);
+	var EventsList = __webpack_require__(246);
+	var emitter = __webpack_require__(213);
+	var EVENTS = __webpack_require__(229);
+	var FilterPanel = __webpack_require__(250);
+	var Fixer = __webpack_require__(259);
 
-	__webpack_require__(70);
+	__webpack_require__(260);
 
 	function refreshMapSize(node, map) {
-	  var width = Math.floor( $(window).width() / 2 );
+	  var width = Math.floor($(window).width() / 2);
 	  $(node).css('width', width);
 	  google.maps.event.trigger(map, 'resize');
 	}
@@ -28,8 +31,7 @@ webpackJsonp([2],[
 	  eventsStorePromise.then(function (eventsStore) {
 	    store = eventsStore;
 	    return Map.create('.js-map', eventsStore);
-	  })
-	  .then(function (map) {
+	  }).then(function (map) {
 	    var list = new EventsList('.js-events-list', store);
 
 	    list.applyFilteredResults(store.events);
@@ -50,47 +52,74 @@ webpackJsonp([2],[
 
 	    var node = document.querySelector('.js-events-map-panel-wrap');
 	    refreshMapSize(node, map.instance);
-	    var mapPanel = new Fixer().addElement('.js-events-map-panel', {stretchTo: '.global-footer'});
+	    var mapPanel = new Fixer().addElement('.js-events-map-panel', { stretchTo: '.global-footer' });
 	    mapPanel.on('stretched', refreshMapSize.bind(null, node, map.instance));
 	    $(window).on('resize', refreshMapSize.bind(null, node, map.instance));
 
-	    setTimeout(function() {
+	    setTimeout(function () {
 	      panel.timeSelector.select(1);
 	    }, 300);
 	  });
-
 	});
 
 /***/ },
-/* 1 */,
-/* 2 */,
-/* 3 */,
-/* 4 */,
-/* 5 */,
-/* 6 */,
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */,
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */,
-/* 18 */,
-/* 19 */,
-/* 20 */,
-/* 21 */,
-/* 22 */
+
+/***/ 161:
 /***/ function(module, exports, __webpack_require__) {
 
+	// most Object methods by ES6 should accept primitives
+	var $export = __webpack_require__(78)
+	  , core    = __webpack_require__(80)
+	  , fails   = __webpack_require__(89);
+	module.exports = function(KEY, exec){
+	  var fn  = (core.Object || {})[KEY] || Object[KEY]
+	    , exp = {};
+	  exp[KEY] = exec(fn);
+	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+	};
+
+/***/ },
+
+/***/ 180:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(181), __esModule: true };
+
+/***/ },
+
+/***/ 181:
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(182);
+	module.exports = __webpack_require__(80).Object.keys;
+
+/***/ },
+
+/***/ 182:
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.14 Object.keys(O)
+	var toObject = __webpack_require__(115)
+	  , $keys    = __webpack_require__(99);
+
+	__webpack_require__(161)('keys', function(){
+	  return function keys(it){
+	    return $keys(toObject(it));
+	  };
+	});
+
+/***/ },
+
+/***/ 212:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var $ = __webpack_require__(2);
-	var emitter = __webpack_require__(23);
-	var EVENTS = __webpack_require__(39);
-	var Marker = __webpack_require__(40);
-	var limitMap = __webpack_require__(44);
+	var emitter = __webpack_require__(213);
+	var EVENTS = __webpack_require__(229);
+	var Marker = __webpack_require__(230);
+	var limitMap = __webpack_require__(234);
 
 	var MAP_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF-gJllft62W5l9xfgE6DBhaa6YmIJs0';
 
@@ -104,7 +133,7 @@ webpackJsonp([2],[
 	  zoomControl: true,
 	  maxZoom: 12,
 	  minZoom: 2,
-	  styles: __webpack_require__(45)
+	  styles: __webpack_require__(235)
 	};
 
 	/**
@@ -215,13 +244,10 @@ webpackJsonp([2],[
 	  this.markers = markers;
 	};
 
-	Map.prototype._limitWorldBounds = function() {
+	Map.prototype._limitWorldBounds = function () {
 	  var map = this.instance;
 
-	  var maxBounds = new google.maps.LatLngBounds(
-	    new google.maps.LatLng(-85, -175),
-	    new google.maps.LatLng(85, 175)
-	  );
+	  var maxBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-85, -175), new google.maps.LatLng(85, 175));
 
 	  limitMap(map, maxBounds);
 	};
@@ -237,9 +263,7 @@ webpackJsonp([2],[
 	  var map = this.instance;
 
 	  this.store.events.forEach(function (event) {
-	    filteredEvents.indexOf(event) > -1
-	      ? event.marker.show()
-	      : event.marker.hide();
+	    filteredEvents.indexOf(event) > -1 ? event.marker.show() : event.marker.hide();
 	  });
 
 	  var eventsBounds = new google.maps.LatLngBounds(null);
@@ -256,29 +280,32 @@ webpackJsonp([2],[
 
 	  var zoom = map.getZoom();
 	  if (zoom <= 2) {
-	    map.setCenter({lat: 39.90971744298563, lng: -49.34941524999998});
+	    map.setCenter({ lat: 39.90971744298563, lng: -49.34941524999998 });
 	  }
 	};
-
 
 	module.exports = Map;
 
 /***/ },
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
 
-	var emitter = __webpack_require__(24);
-
-	module.exports = emitter({});
-
-/***/ },
-/* 24 */
+/***/ 213:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var d        = __webpack_require__(25)
-	  , callable = __webpack_require__(38)
+	var emitter = __webpack_require__(214);
+
+	module.exports = emitter({});
+
+/***/ },
+
+/***/ 214:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var d        = __webpack_require__(215)
+	  , callable = __webpack_require__(228)
 
 	  , apply = Function.prototype.apply, call = Function.prototype.call
 	  , create = Object.create, defineProperty = Object.defineProperty
@@ -410,15 +437,16 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 25 */
+
+/***/ 215:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var assign        = __webpack_require__(26)
-	  , normalizeOpts = __webpack_require__(33)
-	  , isCallable    = __webpack_require__(34)
-	  , contains      = __webpack_require__(35)
+	var assign        = __webpack_require__(216)
+	  , normalizeOpts = __webpack_require__(223)
+	  , isCallable    = __webpack_require__(224)
+	  , contains      = __webpack_require__(225)
 
 	  , d;
 
@@ -479,18 +507,20 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 26 */
+
+/***/ 216:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(27)()
+	module.exports = __webpack_require__(217)()
 		? Object.assign
-		: __webpack_require__(28);
+		: __webpack_require__(218);
 
 
 /***/ },
-/* 27 */
+
+/***/ 217:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -505,13 +535,14 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 28 */
+
+/***/ 218:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var keys  = __webpack_require__(29)
-	  , value = __webpack_require__(32)
+	var keys  = __webpack_require__(219)
+	  , value = __webpack_require__(222)
 
 	  , max = Math.max;
 
@@ -533,18 +564,20 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 29 */
+
+/***/ 219:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(30)()
+	module.exports = __webpack_require__(220)()
 		? Object.keys
-		: __webpack_require__(31);
+		: __webpack_require__(221);
 
 
 /***/ },
-/* 30 */
+
+/***/ 220:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -558,7 +591,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 31 */
+
+/***/ 221:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -571,7 +605,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 32 */
+
+/***/ 222:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -583,7 +618,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 33 */
+
+/***/ 223:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -606,7 +642,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 34 */
+
+/***/ 224:
 /***/ function(module, exports) {
 
 	// Deprecated
@@ -617,18 +654,20 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 35 */
+
+/***/ 225:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(36)()
+	module.exports = __webpack_require__(226)()
 		? String.prototype.contains
-		: __webpack_require__(37);
+		: __webpack_require__(227);
 
 
 /***/ },
-/* 36 */
+
+/***/ 226:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -642,7 +681,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 37 */
+
+/***/ 227:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -655,7 +695,8 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 38 */
+
+/***/ 228:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -667,8 +708,11 @@ webpackJsonp([2],[
 
 
 /***/ },
-/* 39 */
+
+/***/ 229:
 /***/ function(module, exports) {
+
+	'use strict';
 
 	var events = {
 	  /**
@@ -705,14 +749,17 @@ webpackJsonp([2],[
 	module.exports = events;
 
 /***/ },
-/* 40 */
+
+/***/ 230:
 /***/ function(module, exports, __webpack_require__) {
 
-	var icon = __webpack_require__(41);
-	var inactiveIcon = __webpack_require__(42);
-	var highlightedIcon = __webpack_require__(43);
-	var EVENTS = __webpack_require__(39);
-	var emitter = __webpack_require__(23);
+	'use strict';
+
+	var icon = __webpack_require__(231);
+	var inactiveIcon = __webpack_require__(232);
+	var highlightedIcon = __webpack_require__(233);
+	var EVENTS = __webpack_require__(229);
+	var emitter = __webpack_require__(213);
 
 	/**
 	 * @param {Event} event
@@ -831,26 +878,32 @@ webpackJsonp([2],[
 	module.exports = Marker;
 
 /***/ },
-/* 41 */
+
+/***/ 231:
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2MkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2M0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu8kvhoAAAEdSURBVHjaYvj//z8DGnYF4gVAfAeIf0LpBVBxFLXIHFMgPvMfPzgDVYei2QyIP/4nDnyEqodrPguX+vPt//+bdf//71X+/38b2///+5QhfJA4AoDUMzACCTcGBoadDCDw9xsDw3FXBoZ3xxgYGBkgAEYLWjEwWOxmYGDmggowuDIBiSgYj+FmBwPDa6DGvwwQ/A+JfgsUv9PFgARiQZpt4NyHyxAasRnwaDGyZhsWICEL535+DAwEJOcyorG/PkHWLAOy+TGcyw405w8Dpu0wzCqNrPkpSPMROFc+ElXxHzS2XCyy5iMgzcvhXJ1KBgYRK0z/grAQUFyzHFnzYuzxfBYYr6uB8bsAGM9rgPQ57PFMlRRGUdomK1cBBBgA22PnG6kCJJEAAAAASUVORK5CYII="
 
 /***/ },
-/* 42 */
+
+/***/ 232:
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NkNDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZFMDlDQ0NDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2QUM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2QkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnJIETYAAAFFSURBVHjapFMxa4NAGH0aEYekGQRRbAWdMre0U8amP6KQ39U10KG/oXumkHTM1ExixOCiiEGC2vvsXbi0JRTy4HHf0/e+u/NOtW1b/OCEccb4yVjxccafn3hlcc+4bM9jyX0n4QfGrP0fMu6Hhm+8MF5R0TQN4jhGmqY4HA7QdR2macJxHKiqCu4j/53COjyx4l0E1+s1iqLoOiqKchz7/T5Go5FoQJhQ9SxUGIbIsgx1XXeNZOZ5ju12CwlTCo+FSpLkGKRRrmnc7XZyeEx7vhGqLMvuA8rLlev9fi+Hr2nmUChN044z/kV6LyGi8Fwo27bPhi3LksNzCr8J5fs+hsPhr30TB4MBPM+Tw69Kd1OAFeMtFWTcbDaIoghVVcEwDLiuiyAI0Ov1RPCDzvmiGyZOfMH4yFdwDivuW3Tqkr/qS4ABAMsPtTbiv1/WAAAAAElFTkSuQmCC"
 
 /***/ },
-/* 43 */
+
+/***/ 233:
 /***/ function(module, exports) {
 
 	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjhDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjlDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2NkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2N0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBIRlgAAAD/SURBVHjarJO9CsIwFEZv/EEHF3GTOjiKTopOrvUhBN9NcPAZ3LsI6uKoKCo6KVJQodAav5Q0NrUoqIGT5JZ7btImJc45abhkgj5YAkeOff95JDcsNcEE8DdM/DxNdqkF7A9igO3nw2N+BY9NiahOonlgBQ7AAVlQBGWQpKDNKMkbDFU6CEZKHIMzYDItGPOgqRUwE+i6KlyAoywiuIfGk9zRs/WE3FbhJiTGFdhqcjuFrqTCC+Ch7bLI/KbJhlh5p8IMcGNWD0hr8l7IlgpLkWQ3Mjc02RLyUIVVUIh5X09+7YomD+LPeQ7W4Apy8oxrr+f80w37w93+8q96CDAAS8tJ7FUFwroAAAAASUVORK5CYII="
 
 /***/ },
-/* 44 */
+
+/***/ 234:
 /***/ function(module, exports) {
+
+	'use strict';
 
 	/**
 	 * Partially taken from https://github.com/ubilabs/google-map-bounds-limit
@@ -954,56 +1007,48 @@ webpackJsonp([2],[
 	module.exports = limit;
 
 /***/ },
-/* 45 */
+
+/***/ 235:
 /***/ function(module, exports) {
 
-	module.exports = [
-	  {
-	    featureType: 'all',
-	    'stylers': [
-	      {'visibility': 'on'},
-	      {'hue': '#0044ff'},
-	      {'saturation': -80}
-	    ]
-	  },
-	  {
-	    'featureType': 'road.arterial',
-	    'stylers': [
-	      {'visibility': 'on'},
-	      {'color': '#ffffff'}
-	    ]
-	  },
-	  {
-	    'featureType': 'water',
-	    'stylers': [
-	      {'color': '#d1dbe1'},
-	      {'visibility': 'on'}
-	    ]
-	  },
-	  {
-	    'featureType': 'water',
-	    'elementType': 'labels.text.fill',
-	    'stylers': [
-	      {'color': '#456184'}
-	    ]
-	  },
-	  {
-	    'featureType': 'water',
-	    'elementType': 'labels.text.stroke',
-	    'stylers': [
-	      {'weight': 2}
-	    ]
-	  }
-	];
+	'use strict';
+
+	module.exports = [{
+	  featureType: 'all',
+	  'stylers': [{ 'visibility': 'on' }, { 'hue': '#0044ff' }, { 'saturation': -80 }]
+	}, {
+	  'featureType': 'road.arterial',
+	  'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }]
+	}, {
+	  'featureType': 'water',
+	  'stylers': [{ 'color': '#d1dbe1' }, { 'visibility': 'on' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.fill',
+	  'stylers': [{ 'color': '#456184' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.stroke',
+	  'stylers': [{ 'weight': 2 }]
+	}];
 
 /***/ },
-/* 46 */
+
+/***/ 236:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _keys = __webpack_require__(180);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var $ = __webpack_require__(2);
-	var Event = __webpack_require__(47);
-	var City = __webpack_require__(54);
-	var languages = __webpack_require__(55);
+	var Event = __webpack_require__(237);
+	var City = __webpack_require__(244);
+	var languages = __webpack_require__(245);
 
 	/**
 	 * @param {Object} eventsData Raw events data
@@ -1015,21 +1060,23 @@ webpackJsonp([2],[
 	  this.events = [];
 	  this.cities = [];
 
-	  var citiesNames = citiesData.map(function(data) {
+	  var citiesNames = citiesData.map(function (data) {
 	    return data.name;
 	  });
 
 	  var citiesMissedInDict = [];
 
-	  eventsData
-	    .filter(function (data) { return typeof data.location !== 'undefined'; })
-	    .map(function (data) { return data.location; })
-	    .filter(function (value, index, self) { return self.indexOf(value) === index; })
-	    .forEach(function(eventCity) {
-	      if (citiesNames.indexOf(eventCity) === -1) {
-	        citiesMissedInDict.push(eventCity);
-	      }
-	    });
+	  eventsData.filter(function (data) {
+	    return typeof data.location !== 'undefined';
+	  }).map(function (data) {
+	    return data.location;
+	  }).filter(function (value, index, self) {
+	    return self.indexOf(value) === index;
+	  }).forEach(function (eventCity) {
+	    if (citiesNames.indexOf(eventCity) === -1) {
+	      citiesMissedInDict.push(eventCity);
+	    }
+	  });
 
 	  if (citiesMissedInDict.length > 0) {
 	    console.warn('Cities missed in cities.yml:\n' + citiesMissedInDict.join('\n'));
@@ -1071,39 +1118,38 @@ webpackJsonp([2],[
 	  var events;
 	  var cities;
 
-	  return $.getJSON(eventsUrl)
-	    .then(function (result) { events = result })
-	    .then(function () { return $.getJSON(citiesUrl) })
-	    .then(function (result) { cities = result })
-	    .then(function () { return new EventsStore(events, cities) })
+	  return $.getJSON(eventsUrl).then(function (result) {
+	    events = result;
+	  }).then(function () {
+	    return $.getJSON(citiesUrl);
+	  }).then(function (result) {
+	    cities = result;
+	  }).then(function () {
+	    return new EventsStore(events, cities);
+	  });
 	};
 
 	/**
 	 * @static
 	 */
 	EventsStore.filters = {
-	  time: function (time, event) {
+	  time: function time(_time, event) {
 	    var isMatch = false;
-	    if (time == 'upcoming')
-	      isMatch = event.isUpcoming();
-	    else if (time == 'past')
-	      isMatch = !event.isUpcoming();
-	    else
-	      isMatch = true;
+	    if (_time == 'upcoming') isMatch = event.isUpcoming();else if (_time == 'past') isMatch = !event.isUpcoming();else isMatch = true;
 
 	    return isMatch;
 	  },
 
-	  lang: function (lang, event) {
-	    return event.lang == lang;
+	  lang: function lang(_lang, event) {
+	    return event.lang == _lang;
 	  },
 
-	  materials: function (materialType, event) {
+	  materials: function materials(materialType, event) {
 	    return event.content && event.content.hasOwnProperty(materialType);
 	  },
 
-	  bounds: function (bounds, event) {
-	    return bounds.contains(event.getBounds());
+	  bounds: function bounds(_bounds, event) {
+	    return _bounds.contains(event.getBounds());
 	  }
 	};
 
@@ -1127,7 +1173,7 @@ webpackJsonp([2],[
 	      return 0;
 	    }
 
-	    return (compareA < compareB) ? 1 : -1;
+	    return compareA < compareB ? 1 : -1;
 	  });
 	};
 
@@ -1139,7 +1185,7 @@ webpackJsonp([2],[
 	  var events = events || this.events;
 	  return events.filter(function (event) {
 	    return event.isUpcoming();
-	  }).sort(function(eventA, eventB) {
+	  }).sort(function (eventA, eventB) {
 	    var startA = eventA.startDate;
 	    var startB = eventB.startDate;
 
@@ -1174,7 +1220,7 @@ webpackJsonp([2],[
 	EventsStore.prototype.filter = function (constraints, events) {
 	  var events = events || this.events;
 	  var filtered = [];
-	  var constraintNames = Object.keys(constraints);
+	  var constraintNames = (0, _keys2.default)(constraints);
 
 	  events.forEach(function (event) {
 	    var performedConstraintsCount = 0;
@@ -1187,8 +1233,7 @@ webpackJsonp([2],[
 	      }
 	    });
 
-	    if (performedConstraintsCount == constraintNames.length)
-	      filtered.push(event);
+	    if (performedConstraintsCount == constraintNames.length) filtered.push(event);
 	  });
 
 	  return filtered;
@@ -1198,7 +1243,9 @@ webpackJsonp([2],[
 	 * @returns {Object<string, string>}
 	 */
 	EventsStore.prototype.getLanguages = function () {
-	  var idsList = $.unique( this.events.map(function(event){ return event.lang }) );
+	  var idsList = $.unique(this.events.map(function (event) {
+	    return event.lang;
+	  }));
 	  var map = {};
 
 	  idsList.forEach(function (langId) {
@@ -1219,7 +1266,7 @@ webpackJsonp([2],[
 
 	  this.events.forEach(function (event) {
 	    if (event.content) {
-	      list = list.concat(Object.keys(event.content));
+	      list = list.concat((0, _keys2.default)(event.content));
 	    }
 	  });
 
@@ -1235,11 +1282,14 @@ webpackJsonp([2],[
 	module.exports = EventsStore;
 
 /***/ },
-/* 47 */
+
+/***/ 237:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(48);
-	var template = __webpack_require__(51);
+	'use strict';
+
+	__webpack_require__(238);
+	var template = __webpack_require__(241);
 
 	var $ = __webpack_require__(2);
 
@@ -1315,7 +1365,7 @@ webpackJsonp([2],[
 	};
 
 	Event.prototype.render = function (mountNode) {
-	  var rendered = template.render({event: this, mode: 'normal'});
+	  var rendered = template.render({ event: this, mode: 'normal' });
 
 	  if (mountNode) {
 	    var tempElement = document.createElement('div');
@@ -1329,9 +1379,8 @@ webpackJsonp([2],[
 	};
 
 	Event.prototype.renderDetailed = function () {
-	  return template.render({event: this, mode: 'detailed'});
+	  return template.render({ event: this, mode: 'detailed' });
 	};
-
 
 	Event.prototype.highlight = function () {
 	  $(this.node).addClass('_highlighted');
@@ -1349,33 +1398,16 @@ webpackJsonp([2],[
 	  $(this.node).hide();
 	};
 
-
 	function formatDate(startDate, endDate) {
 	  var formatted = '';
 	  var isRange = startDate == endDate;
 	  var nowYear = new Date().getFullYear();
 	  var year, month, day;
 
-	  var months = [
-	    'January',
-	    'February',
-	    'March',
-	    'April',
-	    'May',
-	    'June',
-	    'July',
-	    'August',
-	    'September',
-	    'October',
-	    'November',
-	    'December'
-	  ];
+	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 	  if (isRange) {
-	    month = [
-	      months[startDate.getMonth()],
-	      months[endDate.getMonth()]
-	    ];
+	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
 	    year = [startDate.getFullYear(), endDate.getFullYear()];
 	    day = [startDate.getDate(), endDate.getDate()];
 
@@ -1388,8 +1420,7 @@ webpackJsonp([2],[
 	    if (year[0] !== nowYear || year[1] !== nowYear) {
 	      formatted += ', ' + year[1];
 	    }
-	  }
-	  else {
+	  } else {
 	    year = startDate.getFullYear();
 	    month = months[startDate.getMonth()];
 	    day = startDate.getDate();
@@ -1406,18 +1437,18 @@ webpackJsonp([2],[
 	module.exports = Event;
 
 /***/ },
-/* 48 */
+
+/***/ 238:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 49 */,
-/* 50 */,
-/* 51 */
+
+/***/ 241:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(52);
+	var nunjucks = __webpack_require__(242);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -1429,7 +1460,7 @@ webpackJsonp([2],[
 
 
 
-	var shim = __webpack_require__(53);
+	var shim = __webpack_require__(243);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/event/view.twig"] = (function() {
@@ -1572,7 +1603,8 @@ webpackJsonp([2],[
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/event/view.twig"] , dependencies)
 
 /***/ },
-/* 52 */
+
+/***/ 242:
 /***/ function(module, exports) {
 
 	/*! Browser bundle of nunjucks 2.4.2 (slim, only works with precompiled templates) */
@@ -4258,7 +4290,8 @@ webpackJsonp([2],[
 	module.exports = nunjucks;
 
 /***/ },
-/* 53 */
+
+/***/ 243:
 /***/ function(module, exports) {
 
 	module.exports = function (nunjucks, env, obj, dependencies){
@@ -4309,8 +4342,11 @@ webpackJsonp([2],[
 	};
 
 /***/ },
-/* 54 */
+
+/***/ 244:
 /***/ function(module, exports) {
+
+	"use strict";
 
 	/**
 	 *
@@ -4334,8 +4370,7 @@ webpackJsonp([2],[
 	City.prototype.getBounds = function () {
 	  var position = this.position;
 
-	  if (!this.bounds)
-	    this.bounds = new google.maps.LatLng(position.lat, position.lng);
+	  if (!this.bounds) this.bounds = new google.maps.LatLng(position.lat, position.lng);
 
 	  return this.bounds;
 	};
@@ -4343,8 +4378,11 @@ webpackJsonp([2],[
 	module.exports = City;
 
 /***/ },
-/* 55 */
+
+/***/ 245:
 /***/ function(module, exports) {
+
+	"use strict";
 
 	var isoLangs = {
 	  "ab": {
@@ -5080,15 +5118,18 @@ webpackJsonp([2],[
 	module.exports = isoLangs;
 
 /***/ },
-/* 56 */
+
+/***/ 246:
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(57);
+	'use strict';
+
+	__webpack_require__(247);
 	var $ = __webpack_require__(2);
-	var template = __webpack_require__(58);
-	var emitter = __webpack_require__(23);
-	var EVENTS = __webpack_require__(39);
-	var checkElementIsInViewport = __webpack_require__(59);
+	var template = __webpack_require__(248);
+	var emitter = __webpack_require__(213);
+	var EVENTS = __webpack_require__(229);
+	var checkElementIsInViewport = __webpack_require__(249);
 
 	/**
 	 * @param {HTMLElement|string} node
@@ -5129,7 +5170,7 @@ webpackJsonp([2],[
 	  // Filter events when map zoomed
 	  emitter.on(EVENTS.MAP_BOUNDS_CHANGED, function (bounds) {
 	    return;
-	    var request = $.extend({}, that.currentFilters, {bounds: bounds});
+	    var request = $.extend({}, that.currentFilters, { bounds: bounds });
 	    that.currentFilters = request;
 	    var filteredEvents = store.filter(request);
 	    that.applyFilteredResults(filteredEvents);
@@ -5188,18 +5229,12 @@ webpackJsonp([2],[
 	  var pastEventsInResults = store.getPastEvents(filteredEvents);
 
 	  store.events.forEach(function (event) {
-	    (filteredEvents.indexOf(event) > -1)
-	      ? event.show()
-	      : event.hide();
+	    filteredEvents.indexOf(event) > -1 ? event.show() : event.hide();
 	  });
 
-	  upcomingEventsInResults.length > 0
-	    ? this.$upcomingGroup.show()
-	    : this.$upcomingGroup.hide();
+	  upcomingEventsInResults.length > 0 ? this.$upcomingGroup.show() : this.$upcomingGroup.hide();
 
-	  pastEventsInResults.length > 0
-	    ? this.$pastGroup.show()
-	    : this.$pastGroup.hide();
+	  pastEventsInResults.length > 0 ? this.$pastGroup.show() : this.$pastGroup.hide();
 	};
 
 	/**
@@ -5231,16 +5266,18 @@ webpackJsonp([2],[
 	module.exports = EventsList;
 
 /***/ },
-/* 57 */
+
+/***/ 247:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 58 */
+
+/***/ 248:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(52);
+	var nunjucks = __webpack_require__(242);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -5252,7 +5289,7 @@ webpackJsonp([2],[
 
 
 
-	var shim = __webpack_require__(53);
+	var shim = __webpack_require__(243);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/events-list/view.twig"] = (function() {
@@ -5285,7 +5322,8 @@ webpackJsonp([2],[
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/events-list/view.twig"] , dependencies)
 
 /***/ },
-/* 59 */
+
+/***/ 249:
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {module.exports = inViewport;
@@ -5545,18 +5583,27 @@ webpackJsonp([2],[
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 60 */
+
+/***/ 250:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
-	var Switcher = __webpack_require__(61);
-	var Dropdown = __webpack_require__(64);
-	var pageEmitter = __webpack_require__(23);
-	var PAGE_EVENTS = __webpack_require__(39);
-	var Emitter = __webpack_require__(24);
+	'use strict';
 
-	__webpack_require__(67);
-	var template = __webpack_require__(68);
+	var _keys = __webpack_require__(180);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var $ = __webpack_require__(2);
+	var Switcher = __webpack_require__(251);
+	var Dropdown = __webpack_require__(254);
+	var pageEmitter = __webpack_require__(213);
+	var PAGE_EVENTS = __webpack_require__(229);
+	var Emitter = __webpack_require__(214);
+
+	__webpack_require__(257);
+	var template = __webpack_require__(258);
 
 	var EVENTS = {
 	  SELECT: 'select'
@@ -5594,9 +5641,8 @@ webpackJsonp([2],[
 	    eventData[type] = value;
 	    $.extend(currentFilters, eventData);
 
-	    Object.keys(currentFilters).forEach(function (name) {
-	      if (currentFilters[name] === 'all')
-	        delete currentFilters[name];
+	    (0, _keys2.default)(currentFilters).forEach(function (name) {
+	      if (currentFilters[name] === 'all') delete currentFilters[name];
 	    });
 
 	    //pageEmitter.emit(PAGE_EVENTS.EVENTS_FILTERED, currentFilters);
@@ -5604,23 +5650,23 @@ webpackJsonp([2],[
 	  }
 
 	  this.timeSelector = new Switcher($timeSelector, {
-	    items: {all: 'All', upcoming: 'Upcoming', past: 'Past'},
+	    items: { all: 'All', upcoming: 'Upcoming', past: 'Past' },
 	    // selectedIndex: 1,
-	    onSelect: function (time) {
+	    onSelect: function onSelect(time) {
 	      handleSelect('time', time);
 	    }
 	  });
 
 	  this.languageSelector = new Dropdown($languageSelectorNode, {
-	    items: $.extend({all: 'All'}, config.languages),
-	    onSelect: function (lang) {
+	    items: $.extend({ all: 'All' }, config.languages),
+	    onSelect: function onSelect(lang) {
 	      handleSelect('lang', lang);
 	    }
 	  });
 
 	  this.materialsSelector = new Dropdown($materialSelectorNode, {
-	    items: $.extend({all: 'All'}, config.materials),
-	    onSelect: function (materials) {
+	    items: $.extend({ all: 'All' }, config.materials),
+	    onSelect: function onSelect(materials) {
 	      handleSelect('materials', materials);
 	    }
 	  });
@@ -5640,14 +5686,17 @@ webpackJsonp([2],[
 	module.exports = FilterPanel;
 
 /***/ },
-/* 61 */
+
+/***/ 251:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
-	var Emitter = __webpack_require__(24);
+	'use strict';
 
-	__webpack_require__(62);
-	var template = __webpack_require__(63);
+	var $ = __webpack_require__(2);
+	var Emitter = __webpack_require__(214);
+
+	__webpack_require__(252);
+	var template = __webpack_require__(253);
 
 	var CLASSES = {
 	  ITEM_SELECTED: '_selected'
@@ -5691,7 +5740,7 @@ webpackJsonp([2],[
 	};
 
 	Switcher.prototype.render = function () {
-	  var rendered = template.render({switcher: this});
+	  var rendered = template.render({ switcher: this });
 	  var $rendered = $(rendered);
 	  this.$node.append($rendered);
 
@@ -5707,16 +5756,13 @@ webpackJsonp([2],[
 	  var emit = typeof emit == 'boolean' ? emit : true;
 	  var $switcher = this.$switcher;
 	  var $items = $switcher.find('.js-item');
-	  var $selectedItem =  $( $items.get(index) );
+	  var $selectedItem = $($items.get(index));
 	  var selectedValue = $selectedItem.attr('data-value');
 
 	  $items.each(function (i, elem) {
 	    var $item = $(elem);
 
-	    if (i === index)
-	      $item.addClass(CLASSES.ITEM_SELECTED);
-	    else
-	      $item.removeClass(CLASSES.ITEM_SELECTED);
+	    if (i === index) $item.addClass(CLASSES.ITEM_SELECTED);else $item.removeClass(CLASSES.ITEM_SELECTED);
 	  });
 
 	  emit && this._emitter.emit('select', selectedValue);
@@ -5725,16 +5771,18 @@ webpackJsonp([2],[
 	module.exports = Switcher;
 
 /***/ },
-/* 62 */
+
+/***/ 252:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 63 */
+
+/***/ 253:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(52);
+	var nunjucks = __webpack_require__(242);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -5746,7 +5794,7 @@ webpackJsonp([2],[
 
 
 
-	var shim = __webpack_require__(53);
+	var shim = __webpack_require__(243);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/switcher/view.twig"] = (function() {
@@ -5829,14 +5877,17 @@ webpackJsonp([2],[
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/switcher/view.twig"] , dependencies)
 
 /***/ },
-/* 64 */
+
+/***/ 254:
 /***/ function(module, exports, __webpack_require__) {
 
-	var $ = __webpack_require__(2);
-	var Emitter = __webpack_require__(24);
+	'use strict';
 
-	__webpack_require__(65);
-	var template = __webpack_require__(66);
+	var $ = __webpack_require__(2);
+	var Emitter = __webpack_require__(214);
+
+	__webpack_require__(255);
+	var template = __webpack_require__(256);
 
 	var CLASSES = {
 	  OPENED: '_opened',
@@ -5855,8 +5906,7 @@ webpackJsonp([2],[
 	 * @constructor
 	 */
 	function Dropdown(node, config) {
-	  if (!(this instanceof Dropdown))
-	    return new Dropdown(node, config);
+	  if (!(this instanceof Dropdown)) return new Dropdown(node, config);
 
 	  this._emitter = Emitter({});
 	  var that = this;
@@ -5866,10 +5916,8 @@ webpackJsonp([2],[
 	  var $items = $dropdown.find('.js-item');
 	  var selectedValueNode = $dropdown.find('.js-selected-value').get(0);
 
-	  $(document.body).on('click', function(event) {
-	    event.target === selectedValueNode
-	      ? that.toggle()
-	      : that.close();
+	  $(document.body).on('click', function (event) {
+	    event.target === selectedValueNode ? that.toggle() : that.close();
 	  });
 
 	  $items.each(function (i, elem) {
@@ -5894,7 +5942,7 @@ webpackJsonp([2],[
 	    selectedIndex: config.selectedIndex || 0
 	  });
 
-	  var rendered = template.render({dropdown: data});
+	  var rendered = template.render({ dropdown: data });
 	  return $(rendered);
 	};
 
@@ -5906,7 +5954,7 @@ webpackJsonp([2],[
 	  this.$dropdown.removeClass(CLASSES.OPENED);
 	};
 
-	Dropdown.prototype.toggle = function() {
+	Dropdown.prototype.toggle = function () {
 	  this.isOpened() ? this.close() : this.open();
 	};
 
@@ -5923,17 +5971,14 @@ webpackJsonp([2],[
 	  var emit = typeof emit == 'boolean' ? emit : true;
 	  var $dropdown = this.$dropdown;
 	  var $items = $dropdown.find('.js-item');
-	  var $selectedItem =  $( $items.get(index) );
+	  var $selectedItem = $($items.get(index));
 	  var selectedValue = $selectedItem.attr('data-value');
 	  var selectedText = $selectedItem.text();
 
 	  $items.each(function (i, elem) {
 	    var $item = $(elem);
 
-	    if (i === index)
-	      $item.addClass(CLASSES.ITEM_SELECTED);
-	    else
-	      $item.removeClass(CLASSES.ITEM_SELECTED);
+	    if (i === index) $item.addClass(CLASSES.ITEM_SELECTED);else $item.removeClass(CLASSES.ITEM_SELECTED);
 	  });
 
 	  $dropdown.find('.js-selected-value').text(selectedText);
@@ -5944,16 +5989,18 @@ webpackJsonp([2],[
 	module.exports = Dropdown;
 
 /***/ },
-/* 65 */
+
+/***/ 255:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 66 */
+
+/***/ 256:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(52);
+	var nunjucks = __webpack_require__(242);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -5965,7 +6012,7 @@ webpackJsonp([2],[
 
 
 
-	var shim = __webpack_require__(53);
+	var shim = __webpack_require__(243);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/dropdown/view.twig"] = (function() {
@@ -6050,16 +6097,18 @@ webpackJsonp([2],[
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/dropdown/view.twig"] , dependencies)
 
 /***/ },
-/* 67 */
+
+/***/ 257:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 68 */
+
+/***/ 258:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(52);
+	var nunjucks = __webpack_require__(242);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -6071,7 +6120,7 @@ webpackJsonp([2],[
 
 
 
-	var shim = __webpack_require__(53);
+	var shim = __webpack_require__(243);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/filter-panel/view.twig"] = (function() {
@@ -6104,7 +6153,8 @@ webpackJsonp([2],[
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/filter-panel/view.twig"] , dependencies)
 
 /***/ },
-/* 69 */
+
+/***/ 259:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -7615,10 +7665,12 @@ webpackJsonp([2],[
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 70 */
+
+/***/ 260:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }
-]);
+
+});

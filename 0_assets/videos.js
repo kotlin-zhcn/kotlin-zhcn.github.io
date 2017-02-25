@@ -3,7 +3,9 @@ webpackJsonp([7],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	var VideoGallery = __webpack_require__(89);
+	'use strict';
+
+	var VideoGallery = __webpack_require__(279);
 	var $ = __webpack_require__(2);
 
 	$(document).ready(function () {
@@ -18,19 +20,21 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 14:
+/***/ 147:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(2);
-	var render = __webpack_require__(15);
-	var localStorage = __webpack_require__(16);
+	var render = __webpack_require__(148);
+	var localStorage = __webpack_require__(149);
 
 	var templates = {},
-	  helpers = {};
+	    helpers = {};
 
 	function NavTree(elem, config) {
 	  var that = this,
-	    fromExistingNodes;
+	      fromExistingNodes;
 
 	  that.config = config = $.extend(that.defaults, config);
 
@@ -40,9 +44,7 @@ webpackJsonp([7],{
 
 	  fromExistingNodes = 'data' in config === false;
 
-	  that.nodes = fromExistingNodes
-	    ? elem
-	    : that.render(config.data);
+	  that.nodes = fromExistingNodes ? elem : that.render(config.data);
 
 	  that._initEvents();
 
@@ -93,16 +95,16 @@ webpackJsonp([7],{
 
 	NavTree.prototype._initEvents = function () {
 	  var that = this,
-	    nodes = that.nodes;
+	      nodes = that.nodes;
 
 	  $(nodes.querySelectorAll('.js-item-title')).on('click', function (e) {
 	    var $elem = $(this),
-	      branchElem = this.parentNode,
-	      $branch = $(branchElem),
-	      itemId = $branch.attr('data-id'),
-	      isActive = $elem.hasClass('is_active'),
-	      isLeaf = $branch.hasClass('js-leaf'),
-	      isLeafWereSelected;
+	        branchElem = this.parentNode,
+	        $branch = $(branchElem),
+	        itemId = $branch.attr('data-id'),
+	        isActive = $elem.hasClass('is_active'),
+	        isLeaf = $branch.hasClass('js-leaf'),
+	        isLeafWereSelected;
 
 	    if (isLeaf) {
 	      that._selectLeaf(this, e);
@@ -111,8 +113,7 @@ webpackJsonp([7],{
 
 	    if (isActive) {
 	      that._closeBranch(this, e);
-	    }
-	    else {
+	    } else {
 	      that._openBranch(this, e);
 	    }
 
@@ -138,19 +139,16 @@ webpackJsonp([7],{
 
 	NavTree.prototype.restoreItemsState = function () {
 	  var that = this,
-	    states = that.getItemsStateInfo();
+	      states = that.getItemsStateInfo();
 
 	  if (states) {
 	    $(that.nodes.querySelectorAll('.js-item-title')).each(function () {
 	      var $elem = $(this),
-	        $parent = $elem.parent(),
-	        itemId = $parent.attr('data-id');
+	          $parent = $elem.parent(),
+	          itemId = $parent.attr('data-id');
 
 	      if (itemId in states) {
-	        if (states[itemId] === true)
-	          that._openBranch(this);
-	        else
-	          that._closeBranch(this);
+	        if (states[itemId] === true) that._openBranch(this);else that._closeBranch(this);
 	      }
 	    });
 	  }
@@ -158,8 +156,8 @@ webpackJsonp([7],{
 
 	NavTree.prototype._openBranch = function (branchTitleElem, e) {
 	  var that = this,
-	    $elem = $(branchTitleElem),
-	    $parent = $elem.parent();
+	      $elem = $(branchTitleElem),
+	      $parent = $elem.parent();
 
 	  $elem.addClass('is_active');
 	  $parent.addClass('_opened');
@@ -170,8 +168,8 @@ webpackJsonp([7],{
 
 	NavTree.prototype._closeBranch = function (branchTitleElem, e) {
 	  var that = this,
-	    $elem = $(branchTitleElem),
-	    $parent = $elem.parent();
+	      $elem = $(branchTitleElem),
+	      $parent = $elem.parent();
 
 	  $elem.removeClass('is_active');
 	  $parent.addClass('_closed');
@@ -182,11 +180,11 @@ webpackJsonp([7],{
 
 	NavTree.prototype._selectLeaf = function (leafElem, e, branchElem) {
 	  var that = this,
-	    nodes = that.nodes;
+	      nodes = that.nodes;
 
 	  $(nodes).find('.js-leaf-title').each(function (i, elem) {
 	    var $elem = $(elem),
-	      isActive = $elem.hasClass('is_active');
+	        isActive = $elem.hasClass('is_active');
 
 	    if (elem === leafElem) {
 	      if (!isActive) {
@@ -205,17 +203,16 @@ webpackJsonp([7],{
 
 	NavTree.prototype.templates.main = function (items) {
 	  var templates = this;
-	  return [
-	    ['.nav-tree', templates.itemsList(items)]
-	  ];
+	  return [['.nav-tree', templates.itemsList(items)]];
 	};
 
 	NavTree.prototype.templates.itemsList = function (items, parentId) {
 	  var t = [],
-	    templates = this,
-	    item, itemTemplate,
-	    hasContent,
-	    parentId = parentId || null;
+	      templates = this,
+	      item,
+	      itemTemplate,
+	      hasContent,
+	      parentId = parentId || null;
 
 	  for (var i = 0, len = items.length; i < len; i++) {
 	    item = items[i];
@@ -224,9 +221,7 @@ webpackJsonp([7],{
 	    itemTemplate = templates.item(item, parentId);
 
 	    if (hasContent) {
-	      itemTemplate.push(
-	        templates.itemsList(item.content, parentId === null ? item.title : parentId)
-	      );
+	      itemTemplate.push(templates.itemsList(item.content, parentId === null ? item.title : parentId));
 	    }
 
 	    t.push(itemTemplate);
@@ -237,15 +232,15 @@ webpackJsonp([7],{
 
 	NavTree.prototype.templates.item = function (item, parentId) {
 	  var templates = this,
-	    hasUrl = 'url' in item,
-	    hasTitle = 'title' in item,
-	    hasContent = 'content' in item && item.content !== null && item.content.length > 0,
-	    isBranch = hasContent,
-	    isLeaf = !isBranch,
-	    type = isBranch ? 'branch' : 'leaf',
-	    itemId,
-	    itemUrl = hasUrl ? item.url : null,
-	    itemTitle = hasTitle ? item.title : null;
+	      hasUrl = 'url' in item,
+	      hasTitle = 'title' in item,
+	      hasContent = 'content' in item && item.content !== null && item.content.length > 0,
+	      isBranch = hasContent,
+	      isLeaf = !isBranch,
+	      type = isBranch ? 'branch' : 'leaf',
+	      itemId,
+	      itemUrl = hasUrl ? item.url : null,
+	      itemTitle = hasTitle ? item.title : null;
 
 	  if (!hasTitle) {
 	    for (itemUrl in item) {
@@ -254,74 +249,59 @@ webpackJsonp([7],{
 	    hasUrl = !!itemUrl;
 	  }
 
-	  itemId = (parentId !== null) ? parentId + '.' + itemTitle : itemTitle;
+	  itemId = parentId !== null ? parentId + '.' + itemTitle : itemTitle;
 
 	  item.id = itemId;
 	  item.title = itemTitle;
 	  item.url = itemUrl;
 
-	  var t = isBranch
-	    ? templates.branchItem(item)
-	    : templates.leafItem(item)
+	  var t = isBranch ? templates.branchItem(item) : templates.leafItem(item);
 	  return t;
 	};
 
 	NavTree.prototype.templates.branchItem = function (item) {
-	  var t =
-	    ['.tree-item.tree-branch.js-item.js-branch._closed', {'data-id': item.id},
-	      ['.tree-item-title.tree-branch-title.js-item-title.js-branch-title',
-	        ['span.marker'],
-	        ['span.text', item.title]
-	      ]
-	    ];
+	  var t = ['.tree-item.tree-branch.js-item.js-branch._closed', { 'data-id': item.id }, ['.tree-item-title.tree-branch-title.js-item-title.js-branch-title', ['span.marker'], ['span.text', item.title]]];
 
 	  return t;
 	};
 
 	NavTree.prototype.templates.leafItem = function (item) {
 	  var hasUrl = 'url' in item;
-	  var t =
-	    ['.tree-item.tree-leaf.js-item.js-leaf',
-	      [(hasUrl ? 'a' : 'div') + '.tree-item-title.tree-leaf-title.js-item-title.js-leaf-title', hasUrl ? {href: item.url} : null,
-	        ['span.marker'],
-	        ['span.text', item.title]
-	      ]
-	    ];
+	  var t = ['.tree-item.tree-leaf.js-item.js-leaf', [(hasUrl ? 'a' : 'div') + '.tree-item-title.tree-leaf-title.js-item-title.js-leaf-title', hasUrl ? { href: item.url } : null, ['span.marker'], ['span.text', item.title]]];
 
 	  return t;
 	};
 
-	module.exports = NavTree
+	module.exports = NavTree;
 
 /***/ },
 
-/***/ 15:
+/***/ 148:
 /***/ function(module, exports) {
 
+	'use strict';
+
 	var util = {
-	  isObject: function (object) {
+	  isObject: function isObject(object) {
 	    return Object.prototype.toString.call(object) === '[object Object]';
 	  },
 
-	  isArray: function (object) {
+	  isArray: function isArray(object) {
 	    return Object.prototype.toString.call(object) === '[object Array]';
 	  },
 
-	  selectorPatterns: [
-	    {
-	      name: 'class',
-	      regex: new RegExp('\\.([a-zA-Z0-9-_])*')
-	    },
-	    {
-	      name: 'id',
-	      regex: new RegExp('#([a-zA-Z0-9-_])*')
-	    }
-	  ],
+	  selectorPatterns: [{
+	    name: 'class',
+	    regex: new RegExp('\\.([a-zA-Z0-9-_])*')
+	  }, {
+	    name: 'id',
+	    regex: new RegExp('#([a-zA-Z0-9-_])*')
+	  }],
 
-	  parseSelector: function (selector) {
+	  parseSelector: function parseSelector(selector) {
 	    var patterns = util.selectorPatterns,
-	      props = {},
-	      value = '';
+	        props = {},
+	        value = '';
 
 	    for (var i = 0, len = patterns.length; i < len; i++) {
 	      var pattern = patterns[i];
@@ -357,10 +337,13 @@ webpackJsonp([7],{
 	 */
 	function render(data, target) {
 	  var context = target || document.createDocumentFragment(),
-	    dataLength = data.length,
-	    i,
-	    item, elem, props, attrName,
-	    isNull;
+	      dataLength = data.length,
+	      i,
+	      item,
+	      elem,
+	      props,
+	      attrName,
+	      isNull;
 
 	  for (i = 0; i < dataLength; i++) {
 	    item = data[i];
@@ -414,11 +397,22 @@ webpackJsonp([7],{
 
 	module.exports = render;
 
-
 /***/ },
 
-/***/ 16:
-/***/ function(module, exports) {
+/***/ 149:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _stringify = __webpack_require__(150);
+
+	var _stringify2 = _interopRequireDefault(_stringify);
+
+	var _typeof2 = __webpack_require__(69);
+
+	var _typeof3 = _interopRequireDefault(_typeof2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = {
 	    /**
@@ -426,11 +420,11 @@ webpackJsonp([7],{
 	     * @param {*} value
 	     * @returns {*}
 	     */
-	    setItem: function (key, value) {
-	        var type = typeof value;
+	    setItem: function setItem(key, value) {
+	        var type = typeof value === 'undefined' ? 'undefined' : (0, _typeof3.default)(value);
 
 	        if (type !== 'string' || type !== 'number' || type !== 'boolean' || type === null) {
-	            value = JSON.stringify(value);
+	            value = (0, _stringify2.default)(value);
 	        }
 
 	        localStorage.setItem(key, value);
@@ -442,16 +436,14 @@ webpackJsonp([7],{
 	     * @param {string} key
 	     * @returns {*}
 	     */
-	    getItem: function (key) {
+	    getItem: function getItem(key) {
 	        var value = localStorage.getItem(key),
 	            valueLength,
 	            isNeedToParse;
 
 	        if (value !== null) {
 	            valueLength = value.length;
-	            isNeedToParse =
-	                (value.substring(0, 1) === '[' && value.substring(valueLength - 1, valueLength) === ']') ||
-	                    (value.substring(0, 1) === '{' && value.substring(valueLength - 1, valueLength) === '}');
+	            isNeedToParse = value.substring(0, 1) === '[' && value.substring(valueLength - 1, valueLength) === ']' || value.substring(0, 1) === '{' && value.substring(valueLength - 1, valueLength) === '}';
 
 	            if (isNeedToParse) {
 	                value = JSON.parse(value);
@@ -464,14 +456,14 @@ webpackJsonp([7],{
 	    /**
 	     * @param {string} key
 	     */
-	    removeItem: function (key) {
+	    removeItem: function removeItem(key) {
 	        localStorage.removeItem(key);
 	    },
 
 	    /**
 	     * @returns {object|null}
 	     */
-	    getAllItems: function () {
+	    getAllItems: function getAllItems() {
 	        var key,
 	            items = {},
 	            i = 0;
@@ -487,15 +479,35 @@ webpackJsonp([7],{
 	    /**
 	     * @returns void
 	     */
-	    clear: function () {
+	    clear: function clear() {
 	        localStorage.clear();
 	    }
 	};
 
 /***/ },
 
-/***/ 74:
+/***/ 150:
 /***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(151), __esModule: true };
+
+/***/ },
+
+/***/ 151:
+/***/ function(module, exports, __webpack_require__) {
+
+	var core  = __webpack_require__(80)
+	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
+	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
+	  return $JSON.stringify.apply($JSON, arguments);
+	};
+
+/***/ },
+
+/***/ 264:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var $ = __webpack_require__(2);
 
@@ -507,10 +519,10 @@ webpackJsonp([7],{
 	 */
 	function Player(elem, config) {
 	  var that = this,
-	    playerElem;
+	      playerElem;
 
 	  playerElem = document.createElement('div');
-	  elem = (typeof elem === 'string') ? document.getElementById(elem) : elem;
+	  elem = typeof elem === 'string' ? document.getElementById(elem) : elem;
 	  elem.appendChild(playerElem);
 
 	  that._elem = playerElem;
@@ -524,9 +536,8 @@ webpackJsonp([7],{
 	        window.onYouTubeIframeAPIReady = function () {
 	          prev();
 	          that._createPlayer();
-	        }
-	      }
-	      else {
+	        };
+	      } else {
 	        window.onYouTubeIframeAPIReady = function () {
 	          that._createPlayer();
 	        };
@@ -555,10 +566,10 @@ webpackJsonp([7],{
 
 	Player.QUALITY = {
 	  DEFAULT: 'default',
-	  SMALL: 'small',      // max 640х360
-	  MEDIUM: 'medium',    // min 640x360
-	  LARGE: 'large',      // min 854x80
-	  HD720: 'hd720'       // min 1280x720
+	  SMALL: 'small', // max 640х360
+	  MEDIUM: 'medium', // min 640x360
+	  LARGE: 'large', // min 854x80
+	  HD720: 'hd720' // min 1280x720
 	};
 
 	Player.VIDEO_ID_REGEXP = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
@@ -616,7 +627,7 @@ webpackJsonp([7],{
 	 */
 	Player.createConfigForYTPlayer = function (config) {
 	  var config = config || Player.getConfig(config),
-	    ytPlayerConfig;
+	      ytPlayerConfig;
 
 	  ytPlayerConfig = {
 	    width: config.width,
@@ -651,8 +662,8 @@ webpackJsonp([7],{
 
 	Player.prototype._createPlayer = function () {
 	  var that = this,
-	    elem = that._elem,
-	    player;
+	      elem = that._elem,
+	      player;
 
 	  player = new YT.Player(elem, Player.createConfigForYTPlayer(that._config));
 
@@ -663,7 +674,7 @@ webpackJsonp([7],{
 
 	  player.addEventListener('onStateChange', function (currentState) {
 	    var events = that._events,
-	      eventName = Player.EVENT;
+	        eventName = Player.EVENT;
 
 	    switch (currentState.data) {
 	      case YT.PlayerState.ENDED:
@@ -743,34 +754,34 @@ webpackJsonp([7],{
 	  } else {
 	    this._player.loadVideoById(videoId);
 	  }
-
 	};
 
 	module.exports = Player;
 
 /***/ },
 
-/***/ 89:
+/***/ 279:
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var $ = __webpack_require__(2);
-	var NavTree = __webpack_require__(14);
-	var Player = __webpack_require__(74);
+	var NavTree = __webpack_require__(147);
+	var Player = __webpack_require__(264);
 
 	NavTree.prototype.templates.leafItem = function (item) {
 	  var hasUrl = 'url' in item,
-	    hasDuration = 'duration' in item,
-	    hasDescription = 'description' in item,
-	    isExternal = hasUrl && Player.getVideoIdFromUrl(item.url) === null,
-	    itemClassNames,
-	    itemLinkClassNames,
-	    attrs = {};
+	      hasDuration = 'duration' in item,
+	      hasDescription = 'description' in item,
+	      isExternal = hasUrl && Player.getVideoIdFromUrl(item.url) === null,
+	      itemClassNames,
+	      itemLinkClassNames,
+	      attrs = {};
 
 	  itemClassNames = ['tree-item', 'tree-leaf', 'js-item', 'js-leaf', 'video-item'];
 	  itemLinkClassNames = ['tree-item-title', 'tree-leaf-title', 'js-item-title', 'js-leaf-title', 'video-item-title'];
 
-	  if (isExternal)
-	    itemLinkClassNames.push('is_external');
+	  if (isExternal) itemLinkClassNames.push('is_external');
 
 	  if (hasUrl) {
 	    attrs['href'] = item.url;
@@ -780,24 +791,14 @@ webpackJsonp([7],{
 	    attrs['data-description'] = item.description;
 	  }
 
-	  var t =
-	    ['.' + itemClassNames.join('.'),
-	      [
-	        (hasUrl ? 'a.' : 'div.') + itemLinkClassNames.join('.'), attrs,
-	        ['span.marker'],
-	        ['span.text', item.title],
-	        hasDuration
-	          ? ['span.duration', item.duration]
-	          : null
-	      ]
-	    ];
+	  var t = ['.' + itemClassNames.join('.'), [(hasUrl ? 'a.' : 'div.') + itemLinkClassNames.join('.'), attrs, ['span.marker'], ['span.text', item.title], hasDuration ? ['span.duration', item.duration] : null]];
 
 	  return t;
 	};
 
 	function VideoGallery(elem, config) {
 
-	  var tree = new NavTree(elem, {data: config.data});
+	  var tree = new NavTree(elem, { data: config.data });
 
 	  var player = new Player(config.playerElem, {
 	    width: '100%',
@@ -807,9 +808,9 @@ webpackJsonp([7],{
 
 	  tree.on('selectLeaf', function (e, branch, elem) {
 	    var videoUrl = elem.href,
-	      videoId,
-	      description = elem.getAttribute('data-description') || '',
-	      $elem = $(elem);
+	        videoId,
+	        description = elem.getAttribute('data-description') || '',
+	        $elem = $(elem);
 
 	    videoId = Player.getVideoIdFromUrl(videoUrl);
 
@@ -824,11 +825,7 @@ webpackJsonp([7],{
 	    var $el = $(this);
 	    var isExternal = $el.hasClass('is_external');
 
-	    if (isExternal)
-	      $el.attr('target', '_blank');
-	    else
-	      e.preventDefault();
-
+	    if (isExternal) $el.attr('target', '_blank');else e.preventDefault();
 	  });
 	}
 

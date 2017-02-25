@@ -42,8 +42,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <script src="/0_assets/default.js"></script>
+<!-- Social Media tag Ends -->
+    <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
+    <link rel="stylesheet" href="/0_assets/common.css"/>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -857,15 +859,22 @@ fun Tag.td(init: TD.() -&gt; Unit) {
 <h3 id="字符串到数字的转换">字符串到数字的转换</h3>
 <p>在 String 类中有一些新的扩展，用来将它转换为数字，而不会在无效数字上抛出异常：
 <code>String.toIntOrNull(): Int?</code>、 <code>String.toDoubleOrNull(): Double?</code> 等。</p>
+<pre><code>val port = System.getenv("PORT")?.toIntOrNull() ?: 80
+</code></pre>
 <p>还有整数转换函数，如 <code>Int.toString()</code>、 <code>String.toInt()</code>、 <code>String.toIntOrNull()</code>，
-每个都有一个带有 <code>radix</code> 参数的重载，它允许指定转换的基数。</p>
+每个都有一个带有 <code>radix</code> 参数的重载，它允许指定转换的基数（2 到 36）。</p>
 <h3 id="oneach">onEach()</h3>
 <p><code>onEach</code> 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中
 的集合/序列的每个元素执行一些操作，可能带有副作用。
 对于迭代其行为像 <code>forEach</code> 但是也进一步返回可迭代实例。 对于序列它返回一个
 包装序列，它在元素迭代时延迟应用给定的动作。</p>
-<h3 id="takeif-和-also">takeIf() 和 also()</h3>
-<p>这俩是适用于任何接收者的两个通用扩展函数。</p>
+<pre><code>inputDir.walk()
+        .filter { it.isFile &amp;&amp; it.name.endsWith(".txt") }
+        .onEach { println("Moving $it to $outputDir") }
+        .forEach { moveFile(it, File(outputDir, it.toRelativeString(inputDir))) }
+</code></pre>
+<h3 id="takeiftakeunless-和-also">takeIf()、takeUnless() 和 also()</h3>
+<p>这些是适用于任何接收者的三个通用扩展函数。</p>
 <p><code>also</code> 就像 <code>apply</code>：它接受接收者、做一些动作、并返回该接收者。
 二者区别是在 <code>apply</code> 内部的代码块中接收者是 <code>this</code>，
 而在 <code>also</code> 内部的代码块中是 <code>it</code>（并且如果你想的话，你可以给它另一个名字）。
@@ -881,6 +890,12 @@ fun Tag.td(init: TD.() -&gt; Unit) {
 val index = input.indexOf(keyword).takeIf { it &gt;= 0 } ?: error("keyword not found")
 // 对输入字符串中的关键字索引做些事情，假定它找到
 </code></pre>
+<p><code>takeUnless</code> 与 <code>takeIf</code> 相同，只是它采用了反向谓词。当它 <em>不</em> 满足谓词时返回接收者，否则返回 <code>null</code>。因此，上面的示例之一可以用 <code>takeUnless</code> 重写如下：</p>
+<pre><code>val index = input.indexOf(keyword).takeUnless { it &lt; 0 } ?: error("keyword not found")
+</code></pre>
+<p>当你有一个可调用的引用而不是 lambda 时，使用也很方便：</p>
+<pre><code>val notEmptyString = string.takeUnless(String::isEmpty)
+</code></pre>
 <h3 id="groupingby">groupingBy()</h3>
 <p>此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于
 计算文本中字符的频率：</p>
@@ -892,8 +907,19 @@ val index = input.indexOf(keyword).takeIf { it &gt;= 0 } ?: error("keyword not f
     private val mapCopy = map.toMap()
 }
 </code></pre>
+<h3 id="mapminuskey">Map.minus(key)</h3>
+<p>运算符 <code>plus</code> 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 Map.filter() 或 Map.filterKeys()。
+现在运算符 <code>minus</code> 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。</p>
+<pre><code>val map = mapOf("key" to 42)
+val emptyMap = map - "key"
+</code></pre>
 <h3 id="minof-和-maxof">minOf() 和 maxOf()</h3>
-<p>这俩函数可用于查找两个给定数字的最小值和最大值。</p>
+<p>这些函数可用于查找两个或三个给定值中的最小和最大值，其中值是原生数字或 <code>Comparable</code> 对象。每个函数还有一个重载，它接受一个额外的 <code>Comparator</code> 实例，如果你想比较自身不可比的对象的话。</p>
+<pre><code>val list1 = listOf("a", "b")
+val list2 = listOf("x", "y", "z")
+val minSize = minOf(list1.size, list2.size)
+val longestList = maxOf(list1, list2, compareBy { it.size })
+</code></pre>
 <h3 id="类似数组的列表实例化函数">类似数组的列表实例化函数</h3>
 <p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 和 <code>MutableList</code> 实例的函数，并通过
 调用 lambda 表达式来初始化每个元素：</p>
@@ -901,8 +927,18 @@ val index = input.indexOf(keyword).takeIf { it &gt;= 0 } ?: error("keyword not f
 MutableList(size) { index -&gt; element }
 </code></pre>
 <h3 id="mapgetvalue">Map.getValue()</h3>
-<p><code>Map</code> 上的这个方法返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。
-如果该映射是用 <code>withDefault</code> 生成的，这个方法将返回默认值，而不是抛异常。</p>
+<p><code>Map</code> 上的这个扩展函数返回一个与给定键相对应的现有值，或者抛出一个异常，提示找不到该键。
+如果该映射是用 <code>withDefault</code> 生成的，这个函数将返回默认值，而不是抛异常。</p>
+<pre><code>val map = mapOf("key" to 42)
+// 返回不可空 Int 值 42
+val value: Int = map.getValue("key")
+// 抛出 NoSuchElementException
+map.getValue("key2")
+
+val mapWithDefault = map.withDefault { k -&gt; k.length }
+// 返回 4
+val value2 = mapWithDefault.getValue("key2")
+</code></pre>
 <h3 id="抽象集合">抽象集合</h3>
 <p>这些抽象类可以在实现 Kotlin 集合类时用作基类。
 对于实现只读集合，有 <code>AbstractCollection</code>、 <code>AbstractList</code>、 <code>AbstractSet</code> 和 <code>AbstractMap</code>，
@@ -984,8 +1020,6 @@ external fun JQuery(selector: String): JQuery
 
         </article>
     </div>
-
-    <script src="/0_assets/reference.js"></script>
     </div>
 
 </div>
