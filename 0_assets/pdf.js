@@ -1,14 +1,14 @@
-webpackJsonp([5],{
+webpackJsonp([6],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(265);
-	var CodeMirror = __webpack_require__(138);
+	__webpack_require__(266);
+	var CodeMirror = __webpack_require__(162);
 
-	var $ = __webpack_require__(2);
+	var $ = __webpack_require__(7);
 
 	$(document).ready(function () {
 	  var sampleStartComment = '//sampleStart';
@@ -29,25 +29,25 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 138:
+/***/ 162:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var CodeMirror = __webpack_require__(139);
-	__webpack_require__(140);
+	var CodeMirror = __webpack_require__(163);
+	__webpack_require__(164);
 
-	__webpack_require__(142);
-	__webpack_require__(143);
-	__webpack_require__(144);
-	__webpack_require__(145);
-	__webpack_require__(146);
+	__webpack_require__(166);
+	__webpack_require__(167);
+	__webpack_require__(168);
+	__webpack_require__(169);
+	__webpack_require__(170);
 
 	module.exports = CodeMirror;
 
 /***/ },
 
-/***/ 139:
+/***/ 163:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -9284,7 +9284,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 140:
+/***/ 164:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -9292,7 +9292,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139), __webpack_require__(141));
+	    mod(__webpack_require__(163), __webpack_require__(165));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror", "./runmode"], mod);
 	  else // Plain browser env
@@ -9331,7 +9331,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 141:
+/***/ 165:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -9339,7 +9339,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -9410,7 +9410,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 142:
+/***/ 166:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -9418,7 +9418,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -10204,7 +10204,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 143:
+/***/ 167:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -10212,7 +10212,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -10441,7 +10441,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 144:
+/***/ 168:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -10449,7 +10449,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -10842,7 +10842,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 145:
+/***/ 169:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -10850,7 +10850,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -11650,7 +11650,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 146:
+/***/ 170:
 /***/ function(module, exports, __webpack_require__) {
 
 	// CodeMirror, copyright (c) by Marijn Haverbeke and others
@@ -11658,7 +11658,7 @@ webpackJsonp([5],{
 
 	(function(mod) {
 	  if (true) // CommonJS
-	    mod(__webpack_require__(139));
+	    mod(__webpack_require__(163));
 	  else if (typeof define == "function" && define.amd) // AMD
 	    define(["../../lib/codemirror"], mod);
 	  else // Plain browser env
@@ -11800,7 +11800,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 265:
+/***/ 266:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

@@ -1,22 +1,22 @@
-webpackJsonp([2],{
+webpackJsonp([3],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
+	var $ = __webpack_require__(7);
 	window.$ = $;
 
-	var Map = __webpack_require__(212);
-	var EventsStore = __webpack_require__(236);
-	var EventsList = __webpack_require__(246);
-	var emitter = __webpack_require__(213);
-	var EVENTS = __webpack_require__(229);
-	var FilterPanel = __webpack_require__(250);
-	var Fixer = __webpack_require__(259);
+	var Map = __webpack_require__(233);
+	var EventsStore = __webpack_require__(242);
+	var EventsList = __webpack_require__(250);
+	var emitter = __webpack_require__(234);
+	var EVENTS = __webpack_require__(235);
+	var FilterPanel = __webpack_require__(254);
+	var Fixer = __webpack_require__(260);
 
-	__webpack_require__(260);
+	__webpack_require__(261);
 
 	function refreshMapSize(node, map) {
 	  var width = Math.floor($(window).width() / 2);
@@ -64,248 +64,130 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 161:
-/***/ function(module, exports, __webpack_require__) {
-
-	// most Object methods by ES6 should accept primitives
-	var $export = __webpack_require__(78)
-	  , core    = __webpack_require__(80)
-	  , fails   = __webpack_require__(89);
-	module.exports = function(KEY, exec){
-	  var fn  = (core.Object || {})[KEY] || Object[KEY]
-	    , exp = {};
-	  exp[KEY] = exec(fn);
-	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
-	};
-
-/***/ },
-
-/***/ 180:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(181), __esModule: true };
-
-/***/ },
-
-/***/ 181:
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(182);
-	module.exports = __webpack_require__(80).Object.keys;
-
-/***/ },
-
-/***/ 182:
-/***/ function(module, exports, __webpack_require__) {
-
-	// 19.1.2.14 Object.keys(O)
-	var toObject = __webpack_require__(115)
-	  , $keys    = __webpack_require__(99);
-
-	__webpack_require__(161)('keys', function(){
-	  return function keys(it){
-	    return $keys(toObject(it));
-	  };
-	});
-
-/***/ },
-
-/***/ 212:
+/***/ 6:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
-	var emitter = __webpack_require__(213);
-	var EVENTS = __webpack_require__(229);
-	var Marker = __webpack_require__(230);
-	var limitMap = __webpack_require__(234);
+	var $ = __webpack_require__(7);
+	var Emitter = __webpack_require__(8);
 
-	var MAP_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF-gJllft62W5l9xfgE6DBhaa6YmIJs0';
+	__webpack_require__(23);
+	var template = __webpack_require__(24);
 
-	var mapOptions = {
-	  center: {
-	    lat: 20,
-	    lng: 0
-	  },
-	  zoom: 2,
-	  disableDefaultUI: true,
-	  zoomControl: true,
-	  maxZoom: 12,
-	  minZoom: 2,
-	  styles: __webpack_require__(235)
+	var CLASSES = {
+	  OPENED: '_opened',
+	  ITEM_SELECTED: '_selected'
+	};
+
+	var EVENTS = {
+	  SELECT: 'select'
 	};
 
 	/**
-	 * @param {HTMLElement} node
-	 * @param {EventsStore} store
+	 * @param {HTMLElement|string} node
+	 * @param {Object} config
+	 * @param {number} [config.selectedIndex=0]
+	 * @param {string} [config.selected]
+	 * @param {Function} [config.onSelect]
 	 * @constructor
 	 */
-	function Map(node, store) {
-	  var $mapNode = $(node);
+	function Dropdown(node, config) {
+	  if (!(this instanceof Dropdown)) return new Dropdown(node, config);
+
+	  this._emitter = Emitter({});
 	  var that = this;
-	  this.node = $mapNode.get(0);
-	  this.store = store;
-	  this.markers = [];
+	  this.config = config;
+	  var $dropdown = this.render();
+	  this.$dropdown = $dropdown;
+	  var $items = $dropdown.find('.js-item');
+	  var selectedValueNode = $dropdown.find('.js-selected-value').get(0);
 
-	  var instance = new google.maps.Map($mapNode.get(0), mapOptions);
-	  this.instance = instance;
-
-	  // Restore state after user clicks anywhere except of event marker
-	  instance.addListener('click', function () {
-	    that.reset.bind(this);
-	    emitter.emit(EVENTS.EVENT_DESELECTED);
+	  $(document.body).on('click', function (event) {
+	    event.target === selectedValueNode ? that.toggle() : that.close();
 	  });
 
-	  // Emit bounds change event
-	  var isFirstBoundsChangedEvent = true;
-	  instance.addListener('bounds_changed', function () {
-	    if (isFirstBoundsChangedEvent) {
-	      isFirstBoundsChangedEvent = false;
-	      return;
+	  $items.each(function (i, elem) {
+	    var $elem = $(elem);
+	    if ($elem.attr('data-value') == config.selected) {
+	      config.selectedIndex = i;
 	    }
-
-	    setTimeout(function () {
-	      emitter.emit(EVENTS.MAP_BOUNDS_CHANGED, instance.getBounds());
-	    }, 200);
+	    $elem.on('click', that.select.bind(that, i));
 	  });
 
-	  // Restore state when marker deselected
-	  emitter.on(EVENTS.EVENT_DESELECTED, function () {
-	    that.reset();
-	  });
+	  $(node).append($dropdown);
 
-	  // Filter markers when filtering event fired
-	  emitter.on(EVENTS.EVENTS_FILTERED, function (filters) {
-	    var filteredEvents = store.filter(filters);
-	    that.applyFilteredResults(filteredEvents);
-	  });
+	  config.onSelect && this.onSelect(config.onSelect);
 
-	  emitter.on(EVENTS.EVENT_HIGHLIGHTED, function (event) {
-	    event.marker.highlight();
-	  });
-
-	  emitter.on(EVENTS.EVENT_UNHIGHLIGHTED, function (event) {
-	    event.marker.unhighlight();
-	  });
-
-	  // MARKERS
-	  this._createMarkers(store.events);
-	  var markers = this.markers;
-
-	  emitter.on(EVENTS.EVENT_SELECTED, function (event) {
-	    var currentMarker = event.marker;
-
-	    markers.forEach(function (marker) {
-	      if (marker === currentMarker) {
-	        marker.activate();
-	        marker.openWindow();
-	      } else {
-	        marker.deactivate();
-	        marker.closeWindow();
-	      }
-	    });
-
-	    instance.panTo(event.getBounds());
-	  });
+	  this.select(config.selectedIndex || 0, false);
 	}
 
-	/**
-	 * @static
-	 * @param {HTMLElement} node
-	 * @param {EventsStore} store
-	 * @returns {Deferred}
-	 */
-	Map.create = function (node, store) {
-	  return $.getScript(MAP_API_URL).then(function () {
-	    return new Map(node, store);
-	  });
+	Dropdown.prototype.onSelect = function (callback) {
+	  this._emitter.on(EVENTS.SELECT, callback);
 	};
 
-	/**
-	 * @type {Array<Marker>}
-	 */
-	Map.prototype.markers = null;
-
-	/**
-	 * @param {Array<Event>} events
-	 */
-	Map.prototype._createMarkers = function (events) {
-	  var map = this;
-	  var markers = [];
-
-	  events.forEach(function (event) {
-	    if (!event.city) {
-	      return;
-	    }
-	    markers.push(new Marker(event, map));
+	Dropdown.prototype.render = function () {
+	  var config = this.config;
+	  var data = $.extend({}, {
+	    items: config.items,
+	    selectedIndex: config.selectedIndex || 0
 	  });
 
-	  this.markers = markers;
+	  var rendered = template.render({ dropdown: data });
+	  return $(rendered);
 	};
 
-	Map.prototype._limitWorldBounds = function () {
-	  var map = this.instance;
-
-	  var maxBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-85, -175), new google.maps.LatLng(85, 175));
-
-	  limitMap(map, maxBounds);
+	Dropdown.prototype.open = function () {
+	  this.$dropdown.addClass(CLASSES.OPENED);
 	};
 
-	Map.prototype.reset = function () {
-	  this.markers.forEach(function (marker) {
-	    marker.activate();
-	    marker.closeWindow();
-	  });
+	Dropdown.prototype.close = function () {
+	  this.$dropdown.removeClass(CLASSES.OPENED);
 	};
 
-	Map.prototype.applyFilteredResults = function (filteredEvents) {
-	  var map = this.instance;
+	Dropdown.prototype.toggle = function () {
+	  this.isOpened() ? this.close() : this.open();
+	};
 
-	  this.store.events.forEach(function (event) {
-	    filteredEvents.indexOf(event) > -1 ? event.marker.show() : event.marker.hide();
-	  });
+	Dropdown.prototype.isOpened = function () {
+	  return this.$dropdown.hasClass(CLASSES.OPENED);
+	};
 
-	  var eventsBounds = new google.maps.LatLngBounds(null);
-
-	  filteredEvents.forEach(function (event) {
-	    eventsBounds.extend(event.getBounds());
-	  });
-
-	  if (filteredEvents.length == 0) {
+	Dropdown.prototype.select = function (index, emit) {
+	  if (this.selectedIndex == index) {
 	    return;
 	  }
+	  this.selectedIndex = index;
 
-	  map.fitBounds(eventsBounds);
+	  var emit = typeof emit == 'boolean' ? emit : true;
+	  var $dropdown = this.$dropdown;
+	  var $items = $dropdown.find('.js-item');
+	  var $selectedItem = $($items.get(index));
+	  var selectedValue = $selectedItem.attr('data-value');
+	  var selectedText = $selectedItem.text();
 
-	  var zoom = map.getZoom();
-	  if (zoom <= 2) {
-	    map.setCenter({ lat: 39.90971744298563, lng: -49.34941524999998 });
-	  }
+	  $items.each(function (i, elem) {
+	    var $item = $(elem);
+
+	    if (i === index) $item.addClass(CLASSES.ITEM_SELECTED);else $item.removeClass(CLASSES.ITEM_SELECTED);
+	  });
+
+	  $dropdown.find('.js-selected-value').text(selectedText);
+
+	  emit && this._emitter.emit('select', selectedValue);
 	};
 
-	module.exports = Map;
+	module.exports = Dropdown;
 
 /***/ },
 
-/***/ 213:
+/***/ 8:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var emitter = __webpack_require__(214);
-
-	module.exports = emitter({});
-
-/***/ },
-
-/***/ 214:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var d        = __webpack_require__(215)
-	  , callable = __webpack_require__(228)
+	var d        = __webpack_require__(9)
+	  , callable = __webpack_require__(22)
 
 	  , apply = Function.prototype.apply, call = Function.prototype.call
 	  , create = Object.create, defineProperty = Object.defineProperty
@@ -438,15 +320,15 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 215:
+/***/ 9:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var assign        = __webpack_require__(216)
-	  , normalizeOpts = __webpack_require__(223)
-	  , isCallable    = __webpack_require__(224)
-	  , contains      = __webpack_require__(225)
+	var assign        = __webpack_require__(10)
+	  , normalizeOpts = __webpack_require__(17)
+	  , isCallable    = __webpack_require__(18)
+	  , contains      = __webpack_require__(19)
 
 	  , d;
 
@@ -508,19 +390,19 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 216:
+/***/ 10:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(217)()
+	module.exports = __webpack_require__(11)()
 		? Object.assign
-		: __webpack_require__(218);
+		: __webpack_require__(12);
 
 
 /***/ },
 
-/***/ 217:
+/***/ 11:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -536,13 +418,13 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 218:
+/***/ 12:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var keys  = __webpack_require__(219)
-	  , value = __webpack_require__(222)
+	var keys  = __webpack_require__(13)
+	  , value = __webpack_require__(16)
 
 	  , max = Math.max;
 
@@ -565,19 +447,19 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 219:
+/***/ 13:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(220)()
+	module.exports = __webpack_require__(14)()
 		? Object.keys
-		: __webpack_require__(221);
+		: __webpack_require__(15);
 
 
 /***/ },
 
-/***/ 220:
+/***/ 14:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -592,7 +474,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 221:
+/***/ 15:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -606,7 +488,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 222:
+/***/ 16:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -619,7 +501,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 223:
+/***/ 17:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -643,7 +525,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 224:
+/***/ 18:
 /***/ function(module, exports) {
 
 	// Deprecated
@@ -655,19 +537,19 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 225:
+/***/ 19:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	module.exports = __webpack_require__(226)()
+	module.exports = __webpack_require__(20)()
 		? String.prototype.contains
-		: __webpack_require__(227);
+		: __webpack_require__(21);
 
 
 /***/ },
 
-/***/ 226:
+/***/ 20:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -682,7 +564,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 227:
+/***/ 21:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -696,7 +578,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 228:
+/***/ 22:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -709,746 +591,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 229:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var events = {
-	  /**
-	   * @param {Object} Filters request
-	   */
-	  EVENTS_FILTERED: 'events_filtered',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_HIGHLIGHTED: 'event_highlighted',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_UNHIGHLIGHTED: 'event_unhighlighted',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_SELECTED: 'event_selected',
-
-	  /**
-	   * No params
-	   */
-	  EVENT_DESELECTED: 'event_deselected',
-
-	  /**
-	   * @param {google.maps.LatLng} New map bounds
-	   */
-	  MAP_BOUNDS_CHANGED: 'map_bounds_changed'
-	};
-
-	module.exports = events;
-
-/***/ },
-
-/***/ 230:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var icon = __webpack_require__(231);
-	var inactiveIcon = __webpack_require__(232);
-	var highlightedIcon = __webpack_require__(233);
-	var EVENTS = __webpack_require__(229);
-	var emitter = __webpack_require__(213);
-
-	/**
-	 * @param {Event} event
-	 * @param {Object} map Google Map instance
-	 * @constructor
-	 */
-	function Marker(event, map) {
-	  var marker = this;
-	  this.event = event;
-	  event.marker = this;
-	  this.map = map;
-	  this.isActive = true;
-	  this.isHighlighted = false;
-
-	  // Marker instance
-	  var markerInstance = new google.maps.Marker({
-	    title: event.title,
-	    position: event.city.position,
-	    draggable: false,
-	    visible: true,
-	    icon: this.getIcon(),
-	    map: map ? map.instance : null
-	  });
-
-	  this.marker = markerInstance;
-
-	  markerInstance.addListener('click', function () {
-	    emitter.emit(EVENTS.EVENT_SELECTED, event);
-	  });
-
-	  markerInstance.addListener('mouseover', function () {
-	    marker.highlight();
-	    emitter.emit(EVENTS.EVENT_HIGHLIGHTED, event);
-	  });
-
-	  markerInstance.addListener('mouseout', function () {
-	    //marker.isActive ? marker.activate() : marker.deactivate();
-	    marker.unhighlight();
-	    emitter.emit(EVENTS.EVENT_UNHIGHLIGHTED, event);
-	  });
-
-	  // Info window
-	  var infoWindow = new google.maps.InfoWindow({
-	    content: event.title
-	  });
-
-	  infoWindow.addListener('closeclick', function () {
-	    emitter.emit(EVENTS.EVENT_DESELECTED);
-	  });
-
-	  this.infoWindow = infoWindow;
-	}
-
-	Marker.prototype.getIcon = function () {
-	  var mapZoom = this.map.instance.getZoom();
-	  var isActive = this.isActive;
-	  var isHighlighted = this.isHighlighted;
-	  var iconUrl = isActive ? icon : inactiveIcon;
-
-	  if (isHighlighted) {
-	    iconUrl = highlightedIcon;
-	  }
-
-	  return {
-	    scaledSize: {
-	      width: 15,
-	      height: 15
-	    },
-	    opacity: 1,
-	    url: iconUrl
-	  };
-	};
-
-	Marker.prototype.openWindow = function () {
-	  this.infoWindow.open(this.map.instance, this.marker);
-	};
-
-	Marker.prototype.closeWindow = function () {
-	  this.infoWindow.close();
-	};
-
-	Marker.prototype.highlight = function () {
-	  this.isHighlighted = true;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(30);
-	};
-
-	Marker.prototype.unhighlight = function () {
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(this.isActive ? 2 : 1);
-	};
-
-	Marker.prototype.activate = function () {
-	  this.isActive = true;
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(2);
-	};
-
-	Marker.prototype.deactivate = function () {
-	  this.isActive = false;
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(1);
-	};
-
-	Marker.prototype.show = function () {
-	  this.marker.setVisible(true);
-	};
-
-	Marker.prototype.hide = function () {
-	  this.marker.setVisible(false);
-	};
-
-	module.exports = Marker;
-
-/***/ },
-
-/***/ 231:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2MkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2M0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu8kvhoAAAEdSURBVHjaYvj//z8DGnYF4gVAfAeIf0LpBVBxFLXIHFMgPvMfPzgDVYei2QyIP/4nDnyEqodrPguX+vPt//+bdf//71X+/38b2///+5QhfJA4AoDUMzACCTcGBoadDCDw9xsDw3FXBoZ3xxgYGBkgAEYLWjEwWOxmYGDmggowuDIBiSgYj+FmBwPDa6DGvwwQ/A+JfgsUv9PFgARiQZpt4NyHyxAasRnwaDGyZhsWICEL535+DAwEJOcyorG/PkHWLAOy+TGcyw405w8Dpu0wzCqNrPkpSPMROFc+ElXxHzS2XCyy5iMgzcvhXJ1KBgYRK0z/grAQUFyzHFnzYuzxfBYYr6uB8bsAGM9rgPQ57PFMlRRGUdomK1cBBBgA22PnG6kCJJEAAAAASUVORK5CYII="
-
-/***/ },
-
-/***/ 232:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NkNDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZFMDlDQ0NDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2QUM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2QkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnJIETYAAAFFSURBVHjapFMxa4NAGH0aEYekGQRRbAWdMre0U8amP6KQ39U10KG/oXumkHTM1ExixOCiiEGC2vvsXbi0JRTy4HHf0/e+u/NOtW1b/OCEccb4yVjxccafn3hlcc+4bM9jyX0n4QfGrP0fMu6Hhm+8MF5R0TQN4jhGmqY4HA7QdR2macJxHKiqCu4j/53COjyx4l0E1+s1iqLoOiqKchz7/T5Go5FoQJhQ9SxUGIbIsgx1XXeNZOZ5ju12CwlTCo+FSpLkGKRRrmnc7XZyeEx7vhGqLMvuA8rLlev9fi+Hr2nmUChN044z/kV6LyGi8Fwo27bPhi3LksNzCr8J5fs+hsPhr30TB4MBPM+Tw69Kd1OAFeMtFWTcbDaIoghVVcEwDLiuiyAI0Ov1RPCDzvmiGyZOfMH4yFdwDivuW3Tqkr/qS4ABAMsPtTbiv1/WAAAAAElFTkSuQmCC"
-
-/***/ },
-
-/***/ 233:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjhDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjlDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2NkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2N0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBIRlgAAAD/SURBVHjarJO9CsIwFEZv/EEHF3GTOjiKTopOrvUhBN9NcPAZ3LsI6uKoKCo6KVJQodAav5Q0NrUoqIGT5JZ7btImJc45abhkgj5YAkeOff95JDcsNcEE8DdM/DxNdqkF7A9igO3nw2N+BY9NiahOonlgBQ7AAVlQBGWQpKDNKMkbDFU6CEZKHIMzYDItGPOgqRUwE+i6KlyAoywiuIfGk9zRs/WE3FbhJiTGFdhqcjuFrqTCC+Ch7bLI/KbJhlh5p8IMcGNWD0hr8l7IlgpLkWQ3Mjc02RLyUIVVUIh5X09+7YomD+LPeQ7W4Apy8oxrr+f80w37w93+8q96CDAAS8tJ7FUFwroAAAAASUVORK5CYII="
-
-/***/ },
-
-/***/ 234:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/**
-	 * Partially taken from https://github.com/ubilabs/google-map-bounds-limit
-	 */
-
-	var ignoreNextMapMove = false;
-	var lastValidCenter = null;
-
-	/**
-	 * Limits panning on the map beyond the given latitude.
-	 * @param  {google.maps.Map} map  The google maps instance
-	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
-	 */
-	function limitMapMove(map, maxBounds) {
-	  if (ignoreNextMapMove) {
-	    ignoreNextMapMove = false;
-	    return;
-	  }
-
-	  var bounds = map.getBounds();
-
-	  if (maxBounds.contains(bounds.getNorthEast()) && maxBounds.contains(bounds.getSouthWest())) {
-	    lastValidCenter = map.getCenter();
-	    return;
-	  }
-
-	  ignoreNextMapMove = true;
-
-	  if (lastValidCenter) {
-	    map.setCenter(lastValidCenter);
-	    return;
-	  }
-
-	  lastValidCenter = recalculateMapCenter(map, maxBounds);
-	  map.setCenter(lastValidCenter);
-	}
-
-	/**
-	 * Calculate a new map-center such that the visible area of the map is
-	 * completely within given max bounds.
-	 * @param  {google.maps.Map} map  The google maps instance
-	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
-	 * @return {google.maps.LatLng}  The recalculated map center
-	 */
-	function recalculateMapCenter(map, maxBounds) {
-	  var center = map.getCenter();
-	  var bounds = map.getBounds();
-	  var offsets = getBoundsOffsets(bounds, maxBounds);
-	  var newCenter = {
-	    lat: center.lat(),
-	    lng: center.lng()
-	  };
-
-	  if (offsets.north > 0) {
-	    newCenter.lat = center.lat() - offsets.n;
-	  }
-
-	  if (offsets.east > 0) {
-	    newCenter.lng = center.lng() - offsets.e;
-	  }
-
-	  if (offsets.south > 0) {
-	    newCenter.lat = center.lat() + offsets.s;
-	  }
-
-	  if (offsets.west > 0) {
-	    newCenter.lng = center.lng() + offsets.w;
-	  }
-
-	  return new google.maps.LatLng(newCenter.lat, newCenter.lng);
-	}
-
-	/**
-	 * Calculates the boundary-offsets in every direction for the given pair of
-	 * LatLngBounds. Returned values are > 0 if inner is smaller than outer in
-	 * that direction (when all values are >= 0, inner is a true subset of outer).
-	 * @param {google.maps.LatLngBounds} inner The first bounds
-	 * @param {google.maps.LatLngBounds} outer The second bounds
-	 * @return {Object} The numeric offset per direction.
-	 */
-	function getBoundsOffsets(inner, outer) {
-	  return {
-	    north: inner.getNorthEast().lat() - outer.getNorthEast().lat(),
-	    east: inner.getNorthEast().lng() - outer.getNorthEast().lng(),
-	    south: outer.getSouthWest().lat() - inner.getSouthWest().lat(),
-	    west: outer.getSouthWest().lng() - inner.getSouthWest().lng()
-	  };
-	}
-
-	/**
-	 * Limits latitude panning to a given limit.
-	 * @param  {google.maps.Map} map  The google map object
-	 * @param  {google.maps.LatLngBounds} maxBounds  The bounds limit
-	 */
-	function limit(map, maxBounds) {
-	  map.addListener('center_changed', function () {
-	    limitMapMove(map, maxBounds);
-	  });
-	}
-
-	module.exports = limit;
-
-/***/ },
-
-/***/ 235:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = [{
-	  featureType: 'all',
-	  'stylers': [{ 'visibility': 'on' }, { 'hue': '#0044ff' }, { 'saturation': -80 }]
-	}, {
-	  'featureType': 'road.arterial',
-	  'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }]
-	}, {
-	  'featureType': 'water',
-	  'stylers': [{ 'color': '#d1dbe1' }, { 'visibility': 'on' }]
-	}, {
-	  'featureType': 'water',
-	  'elementType': 'labels.text.fill',
-	  'stylers': [{ 'color': '#456184' }]
-	}, {
-	  'featureType': 'water',
-	  'elementType': 'labels.text.stroke',
-	  'stylers': [{ 'weight': 2 }]
-	}];
-
-/***/ },
-
-/***/ 236:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _keys = __webpack_require__(180);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var $ = __webpack_require__(2);
-	var Event = __webpack_require__(237);
-	var City = __webpack_require__(244);
-	var languages = __webpack_require__(245);
-
-	/**
-	 * @param {Object} eventsData Raw events data
-	 * @param {Object} citiesData Raw cities data
-	 * @constructor
-	 */
-	function EventsStore(eventsData, citiesData) {
-	  var store = this;
-	  this.events = [];
-	  this.cities = [];
-
-	  var citiesNames = citiesData.map(function (data) {
-	    return data.name;
-	  });
-
-	  var citiesMissedInDict = [];
-
-	  eventsData.filter(function (data) {
-	    return typeof data.location !== 'undefined';
-	  }).map(function (data) {
-	    return data.location;
-	  }).filter(function (value, index, self) {
-	    return self.indexOf(value) === index;
-	  }).forEach(function (eventCity) {
-	    if (citiesNames.indexOf(eventCity) === -1) {
-	      citiesMissedInDict.push(eventCity);
-	    }
-	  });
-
-	  if (citiesMissedInDict.length > 0) {
-	    console.warn('Cities missed in cities.yml:\n' + citiesMissedInDict.join('\n'));
-	  }
-
-	  citiesData.forEach(function (data) {
-	    store.cities.push(new City(data));
-	  });
-
-	  eventsData.forEach(function (data, i) {
-	    var eventCityExistInDict = data.location && citiesNames.indexOf(data.location) !== -1;
-
-	    if (!eventCityExistInDict) {
-	      return;
-	    }
-
-	    data.id = i.toString();
-	    store.events.push(new Event(data));
-	  });
-
-	  store.events.forEach(function (event) {
-	    var eventCity = store.cities.filter(function (city) {
-	      return city.name == event.city;
-	    })[0];
-
-	    event.city = eventCity;
-	  });
-
-	  this.sort();
-	}
-
-	/**
-	 * @static
-	 * @param {string} eventsUrl
-	 * @param {string} citiesUrl
-	 * @returns {Deferred}
-	 */
-	EventsStore.create = function (eventsUrl, citiesUrl) {
-	  var events;
-	  var cities;
-
-	  return $.getJSON(eventsUrl).then(function (result) {
-	    events = result;
-	  }).then(function () {
-	    return $.getJSON(citiesUrl);
-	  }).then(function (result) {
-	    cities = result;
-	  }).then(function () {
-	    return new EventsStore(events, cities);
-	  });
-	};
-
-	/**
-	 * @static
-	 */
-	EventsStore.filters = {
-	  time: function time(_time, event) {
-	    var isMatch = false;
-	    if (_time == 'upcoming') isMatch = event.isUpcoming();else if (_time == 'past') isMatch = !event.isUpcoming();else isMatch = true;
-
-	    return isMatch;
-	  },
-
-	  lang: function lang(_lang, event) {
-	    return event.lang == _lang;
-	  },
-
-	  materials: function materials(materialType, event) {
-	    return event.content && event.content.hasOwnProperty(materialType);
-	  },
-
-	  bounds: function bounds(_bounds, event) {
-	    return _bounds.contains(event.getBounds());
-	  }
-	};
-
-	/**
-	 * @static
-	 */
-	EventsStore.materialsDict = {
-	  examples: 'Examples',
-	  slides: 'Slides',
-	  video: 'Video',
-	  pdf: 'PDF',
-	  article: 'Article'
-	};
-
-	EventsStore.prototype.sort = function () {
-	  this.events.sort(function (a, b) {
-	    var compareA = a.endDate;
-	    var compareB = b.endDate;
-
-	    if (compareA === compareB) {
-	      return 0;
-	    }
-
-	    return compareA < compareB ? 1 : -1;
-	  });
-	};
-
-	/**
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.getUpcomingEvents = function (events) {
-	  var events = events || this.events;
-	  return events.filter(function (event) {
-	    return event.isUpcoming();
-	  }).sort(function (eventA, eventB) {
-	    var startA = eventA.startDate;
-	    var startB = eventB.startDate;
-
-	    if (startA === startB) {
-	      return 0;
-	    }
-
-	    return startA < startB ? -1 : 1;
-	  });
-	};
-
-	/**
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.getPastEvents = function (events) {
-	  var events = events || this.events;
-	  return events.filter(function (event) {
-	    return !event.isUpcoming();
-	  });
-	};
-
-	/**
-	 * @param {Object} constraints
-	 * @param {string} constraints.time
-	 * @param {string} constraints.lang
-	 * @param {string} constraints.materials
-	 * @param {google.maps.LatLng} constraints.bounds
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.filter = function (constraints, events) {
-	  var events = events || this.events;
-	  var filtered = [];
-	  var constraintNames = (0, _keys2.default)(constraints);
-
-	  events.forEach(function (event) {
-	    var performedConstraintsCount = 0;
-
-	    constraintNames.forEach(function (name) {
-	      var constraint = constraints[name];
-	      var filter = EventsStore.filters[name];
-	      if (filter(constraint, event)) {
-	        performedConstraintsCount++;
-	      }
-	    });
-
-	    if (performedConstraintsCount == constraintNames.length) filtered.push(event);
-	  });
-
-	  return filtered;
-	};
-
-	/**
-	 * @returns {Object<string, string>}
-	 */
-	EventsStore.prototype.getLanguages = function () {
-	  var idsList = $.unique(this.events.map(function (event) {
-	    return event.lang;
-	  }));
-	  var map = {};
-
-	  idsList.forEach(function (langId) {
-	    if (langId in languages) {
-	      map[langId] = languages[langId].name;
-	    }
-	  });
-
-	  return map;
-	};
-
-	/**
-	 * @see EventsStore.materialsDict
-	 * @returns {Object<string, string>}
-	 */
-	EventsStore.prototype.getMaterials = function () {
-	  var list = [];
-
-	  this.events.forEach(function (event) {
-	    if (event.content) {
-	      list = list.concat((0, _keys2.default)(event.content));
-	    }
-	  });
-
-	  var listMap = {};
-	  list = $.unique(list);
-	  list.forEach(function (materialId) {
-	    listMap[materialId] = EventsStore.materialsDict[materialId];
-	  });
-
-	  return listMap;
-	};
-
-	module.exports = EventsStore;
-
-/***/ },
-
-/***/ 237:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(238);
-	var template = __webpack_require__(241);
-
-	var $ = __webpack_require__(2);
-
-	var DEFAULT_LANG = 'en';
-
-	/**
-	 * @param {Object} data
-	 * @constructor
-	 */
-	function Event(data) {
-	  this.id = data.id;
-	  this.title = data.title;
-	  this.url = data.url;
-	  this.subject = data.subject;
-	  this.speaker = data.speaker;
-	  this.description = data.description;
-
-	  if (!data.location) {
-	    console.warn(data.title + ' has no location');
-	  }
-
-	  this.city = data.location;
-	  this.lang = data.lang || DEFAULT_LANG;
-	  this.content = data.content;
-
-	  this.startDate = new Date(data.startDate);
-	  this.endDate = new Date(data.endDate);
-	  this.formattedDate = formatDate(this.startDate, this.endDate);
-	}
-
-	/** @type {string} */
-	Event.prototype.title = null;
-
-	/** @type {string} */
-	Event.prototype.url = null;
-
-	/** @type {string} */
-	Event.prototype.subject = null;
-
-	/** @type {string} */
-	Event.prototype.speaker = null;
-
-	/** @type {City} */
-	Event.prototype.city = null;
-
-	/** @type {Array<Date>} */
-	Event.prototype.startDate = null;
-
-	/** @type {Array<Date>} */
-	Event.prototype.endDate = null;
-
-	/** @type {string} */
-	Event.prototype.formattedDate = null;
-
-	/** @type {string} */
-	Event.prototype.lang = null;
-
-	/** @type {Object} Materials */
-	Event.prototype.content = null;
-
-	/** @type {string} */
-	Event.prototype.description = null;
-
-	/** @type {Marker} */
-	Event.prototype.marker = null;
-
-	Event.prototype.isUpcoming = function () {
-	  return this.endDate >= new Date();
-	};
-
-	Event.prototype.getBounds = function () {
-	  return this.city.getBounds();
-	};
-
-	Event.prototype.render = function (mountNode) {
-	  var rendered = template.render({ event: this, mode: 'normal' });
-
-	  if (mountNode) {
-	    var tempElement = document.createElement('div');
-	    tempElement.innerHTML = rendered;
-	    var node = tempElement.childNodes[0];
-	    this.node = node;
-	    mountNode.appendChild(node);
-	  }
-
-	  return rendered;
-	};
-
-	Event.prototype.renderDetailed = function () {
-	  return template.render({ event: this, mode: 'detailed' });
-	};
-
-	Event.prototype.highlight = function () {
-	  $(this.node).addClass('_highlighted');
-	};
-
-	Event.prototype.unhighlight = function () {
-	  $(this.node).removeClass('_highlighted');
-	};
-
-	Event.prototype.show = function () {
-	  $(this.node).show();
-	};
-
-	Event.prototype.hide = function () {
-	  $(this.node).hide();
-	};
-
-	function formatDate(startDate, endDate) {
-	  var formatted = '';
-	  var isRange = startDate == endDate;
-	  var nowYear = new Date().getFullYear();
-	  var year, month, day;
-
-	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-	  if (isRange) {
-	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
-	    year = [startDate.getFullYear(), endDate.getFullYear()];
-	    day = [startDate.getDate(), endDate.getDate()];
-
-	    if (month[0] !== month[1]) {
-	      formatted = month[0] + ' ' + day[0] + '-' + month[1] + ' ' + day[1];
-	    } else {
-	      formatted = month[0] + ' ' + day[0] + '-' + day[1];
-	    }
-
-	    if (year[0] !== nowYear || year[1] !== nowYear) {
-	      formatted += ', ' + year[1];
-	    }
-	  } else {
-	    year = startDate.getFullYear();
-	    month = months[startDate.getMonth()];
-	    day = startDate.getDate();
-
-	    formatted = month + ' ' + day;
-	    if (year !== nowYear) {
-	      formatted += ', ' + year;
-	    }
-	  }
-
-	  return formatted;
-	}
-
-	module.exports = Event;
-
-/***/ },
-
-/***/ 238:
+/***/ 23:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 241:
+/***/ 24:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(242);
+	var nunjucks = __webpack_require__(25);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -1460,71 +613,29 @@ webpackJsonp([2],{
 
 
 
-	var shim = __webpack_require__(243);
+	var shim = __webpack_require__(26);
 
 
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/event/view.twig"] = (function() {
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/com/dropdown/view.twig"] = (function() {
 	function root(env, context, frame, runtime, cb) {
 	var lineno = null;
 	var colno = null;
 	var output = "";
 	try {
 	var parentTemplate = null;
-	output += "<div class=\"event _";
-	output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "mode"), env.opts.autoescape);
-	output += "\" data-id=\"";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"id"), env.opts.autoescape);
-	output += "\">\n    ";
-	if(runtime.contextOrFrameLookup(context, frame, "mode") == "detailed") {
-	output += "\n        <span class=\"event-close js-close\"></span>\n    ";
-	;
-	}
-	output += "\n\n    <div class=\"event-date\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"formattedDate"), env.opts.autoescape);
-	output += "</div>\n    <div class=\"event-title\">\n        ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url")) {
-	output += "\n            <a class=\"event-url\" href=\"";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url"), env.opts.autoescape);
-	output += "\" target=\"_blank\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
-	output += "</a>,\n        ";
-	;
-	}
-	else {
-	output += "\n            ";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
-	output += "\n        ";
-	;
-	}
-	output += "\n        ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city")) {
-	output += "\n            <span class=\"event-location\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city"), env.opts.autoescape);
-	output += "</span>\n        ";
-	;
-	}
-	output += "\n    </div>\n\n    <div class=\"event-subject\">\n        <span class=\"text\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
-	output += "</span>\n\n        <div class=\"event-info-indicators\">\n            ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
-	output += "\n                <div class=\"event-lang\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
-	output += "</div>\n            ";
-	;
-	}
-	output += "\n            ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
-	output += "\n                ";
+	output += "<div class=\"dropdown js-dropdown\">\n  <div class=\"dropdown-selected-value js-selected-value\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"items")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"selectedIndex")), env.opts.autoescape);
+	output += "</div>\n  <div class=\"dropdown-items\">\n    ";
 	frame = frame.push();
-	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
+	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"items");
 	if(t_3) {var t_1;
 	if(runtime.isArray(t_3)) {
 	var t_2 = t_3.length;
 	for(t_1=0; t_1 < t_3.length; t_1++) {
 	var t_4 = t_3[t_1][0]
-	frame.set("type", t_3[t_1][0]);
+	frame.set("value", t_3[t_1][0]);
 	var t_5 = t_3[t_1][1]
-	frame.set("href", t_3[t_1][1]);
+	frame.set("label", t_3[t_1][1]);
 	frame.set("loop.index", t_1 + 1);
 	frame.set("loop.index0", t_1);
 	frame.set("loop.revindex", t_2 - t_1);
@@ -1532,13 +643,11 @@ webpackJsonp([2],{
 	frame.set("loop.first", t_1 === 0);
 	frame.set("loop.last", t_1 === t_2 - 1);
 	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
+	output += "\n      <div class=\"dropdown-item js-item\" data-value=\"";
 	output += runtime.suppressValue(t_4, env.opts.autoescape);
-	output += "\" href=\"";
+	output += "\">";
 	output += runtime.suppressValue(t_5, env.opts.autoescape);
-	output += "\" target=\"_blank\" title=\"";
-	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_4), env.opts.autoescape);
-	output += "\"></a>\n                ";
+	output += "</div>\n    ";
 	;
 	}
 	} else {
@@ -1547,8 +656,8 @@ webpackJsonp([2],{
 	for(var t_6 in t_3) {
 	t_1++;
 	var t_7 = t_3[t_6];
-	frame.set("type", t_6);
-	frame.set("href", t_7);
+	frame.set("value", t_6);
+	frame.set("label", t_7);
 	frame.set("loop.index", t_1 + 1);
 	frame.set("loop.index0", t_1);
 	frame.set("loop.revindex", t_2 - t_1);
@@ -1556,31 +665,17 @@ webpackJsonp([2],{
 	frame.set("loop.first", t_1 === 0);
 	frame.set("loop.last", t_1 === t_2 - 1);
 	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
+	output += "\n      <div class=\"dropdown-item js-item\" data-value=\"";
 	output += runtime.suppressValue(t_6, env.opts.autoescape);
-	output += "\" href=\"";
+	output += "\">";
 	output += runtime.suppressValue(t_7, env.opts.autoescape);
-	output += "\" target=\"_blank\" title=\"";
-	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_6), env.opts.autoescape);
-	output += "\"></a>\n                ";
+	output += "</div>\n    ";
 	;
 	}
 	}
 	}
 	frame = frame.pop();
-	output += "\n            ";
-	;
-	}
-	output += "\n        </div>\n    </div>\n\n    <div class=\"event-speaker\">\n        ";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"speaker"), env.opts.autoescape);
-	output += "\n    </div>\n\n    ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")) {
-	output += "\n        <div class=\"event-description\">\n            ";
-	output += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")), env.opts.autoescape);
-	output += "\n        </div>\n    ";
-	;
-	}
-	output += "\n</div>";
+	output += "\n  </div>\n</div>";
 	if(parentTemplate) {
 	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
 	} else {
@@ -1600,11 +695,11 @@ webpackJsonp([2],{
 
 
 
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/event/view.twig"] , dependencies)
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/com/dropdown/view.twig"] , dependencies)
 
 /***/ },
 
-/***/ 242:
+/***/ 25:
 /***/ function(module, exports) {
 
 	/*! Browser bundle of nunjucks 2.4.2 (slim, only works with precompiled templates) */
@@ -4291,7 +3386,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 243:
+/***/ 26:
 /***/ function(module, exports) {
 
 	module.exports = function (nunjucks, env, obj, dependencies){
@@ -4343,7 +3438,1137 @@ webpackJsonp([2],{
 
 /***/ },
 
+/***/ 183:
+/***/ function(module, exports, __webpack_require__) {
+
+	// most Object methods by ES6 should accept primitives
+	var $export = __webpack_require__(103)
+	  , core    = __webpack_require__(3)
+	  , fails   = __webpack_require__(113);
+	module.exports = function(KEY, exec){
+	  var fn  = (core.Object || {})[KEY] || Object[KEY]
+	    , exp = {};
+	  exp[KEY] = exec(fn);
+	  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+	};
+
+/***/ },
+
+/***/ 202:
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(203), __esModule: true };
+
+/***/ },
+
+/***/ 203:
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(204);
+	module.exports = __webpack_require__(3).Object.keys;
+
+/***/ },
+
+/***/ 204:
+/***/ function(module, exports, __webpack_require__) {
+
+	// 19.1.2.14 Object.keys(O)
+	var toObject = __webpack_require__(139)
+	  , $keys    = __webpack_require__(123);
+
+	__webpack_require__(183)('keys', function(){
+	  return function keys(it){
+	    return $keys(toObject(it));
+	  };
+	});
+
+/***/ },
+
+/***/ 233:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var $ = __webpack_require__(7);
+	var emitter = __webpack_require__(234);
+	var EVENTS = __webpack_require__(235);
+	var Marker = __webpack_require__(236);
+	var limitMap = __webpack_require__(240);
+
+	var MAP_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF-gJllft62W5l9xfgE6DBhaa6YmIJs0';
+
+	var mapOptions = {
+	  center: {
+	    lat: 20,
+	    lng: 0
+	  },
+	  zoom: 2,
+	  disableDefaultUI: true,
+	  zoomControl: true,
+	  maxZoom: 12,
+	  minZoom: 2,
+	  styles: __webpack_require__(241)
+	};
+
+	/**
+	 * @param {HTMLElement} node
+	 * @param {EventsStore} store
+	 * @constructor
+	 */
+	function Map(node, store) {
+	  var $mapNode = $(node);
+	  var that = this;
+	  this.node = $mapNode.get(0);
+	  this.store = store;
+	  this.markers = [];
+
+	  var instance = new google.maps.Map($mapNode.get(0), mapOptions);
+	  this.instance = instance;
+
+	  // Restore state after user clicks anywhere except of event marker
+	  instance.addListener('click', function () {
+	    that.reset.bind(this);
+	    emitter.emit(EVENTS.EVENT_DESELECTED);
+	  });
+
+	  // Emit bounds change event
+	  var isFirstBoundsChangedEvent = true;
+	  instance.addListener('bounds_changed', function () {
+	    if (isFirstBoundsChangedEvent) {
+	      isFirstBoundsChangedEvent = false;
+	      return;
+	    }
+
+	    setTimeout(function () {
+	      emitter.emit(EVENTS.MAP_BOUNDS_CHANGED, instance.getBounds());
+	    }, 200);
+	  });
+
+	  // Restore state when marker deselected
+	  emitter.on(EVENTS.EVENT_DESELECTED, function () {
+	    that.reset();
+	  });
+
+	  // Filter markers when filtering event fired
+	  emitter.on(EVENTS.EVENTS_FILTERED, function (filters) {
+	    var filteredEvents = store.filter(filters);
+	    that.applyFilteredResults(filteredEvents);
+	  });
+
+	  emitter.on(EVENTS.EVENT_HIGHLIGHTED, function (event) {
+	    event.marker.highlight();
+	  });
+
+	  emitter.on(EVENTS.EVENT_UNHIGHLIGHTED, function (event) {
+	    event.marker.unhighlight();
+	  });
+
+	  // MARKERS
+	  this._createMarkers(store.events);
+	  var markers = this.markers;
+
+	  emitter.on(EVENTS.EVENT_SELECTED, function (event) {
+	    var currentMarker = event.marker;
+
+	    markers.forEach(function (marker) {
+	      if (marker === currentMarker) {
+	        marker.activate();
+	        marker.openWindow();
+	      } else {
+	        marker.deactivate();
+	        marker.closeWindow();
+	      }
+	    });
+
+	    instance.panTo(event.getBounds());
+	  });
+	}
+
+	/**
+	 * @static
+	 * @param {HTMLElement} node
+	 * @param {EventsStore} store
+	 * @returns {Deferred}
+	 */
+	Map.create = function (node, store) {
+	  return $.getScript(MAP_API_URL).then(function () {
+	    return new Map(node, store);
+	  });
+	};
+
+	/**
+	 * @type {Array<Marker>}
+	 */
+	Map.prototype.markers = null;
+
+	/**
+	 * @param {Array<Event>} events
+	 */
+	Map.prototype._createMarkers = function (events) {
+	  var map = this;
+	  var markers = [];
+
+	  events.forEach(function (event) {
+	    if (!event.city) {
+	      return;
+	    }
+	    markers.push(new Marker(event, map));
+	  });
+
+	  this.markers = markers;
+	};
+
+	Map.prototype._limitWorldBounds = function () {
+	  var map = this.instance;
+
+	  var maxBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-85, -175), new google.maps.LatLng(85, 175));
+
+	  limitMap(map, maxBounds);
+	};
+
+	Map.prototype.reset = function () {
+	  this.markers.forEach(function (marker) {
+	    marker.activate();
+	    marker.closeWindow();
+	  });
+	};
+
+	Map.prototype.applyFilteredResults = function (filteredEvents) {
+	  var map = this.instance;
+
+	  this.store.events.forEach(function (event) {
+	    filteredEvents.indexOf(event) > -1 ? event.marker.show() : event.marker.hide();
+	  });
+
+	  var eventsBounds = new google.maps.LatLngBounds(null);
+
+	  filteredEvents.forEach(function (event) {
+	    eventsBounds.extend(event.getBounds());
+	  });
+
+	  if (filteredEvents.length == 0) {
+	    return;
+	  }
+
+	  map.fitBounds(eventsBounds);
+
+	  var zoom = map.getZoom();
+	  if (zoom <= 2) {
+	    map.setCenter({ lat: 39.90971744298563, lng: -49.34941524999998 });
+	  }
+	};
+
+	module.exports = Map;
+
+/***/ },
+
+/***/ 234:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var emitter = __webpack_require__(8);
+
+	module.exports = emitter({});
+
+/***/ },
+
+/***/ 235:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	var events = {
+	  /**
+	   * @param {Object} Filters request
+	   */
+	  EVENTS_FILTERED: 'events_filtered',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_HIGHLIGHTED: 'event_highlighted',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_UNHIGHLIGHTED: 'event_unhighlighted',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_SELECTED: 'event_selected',
+
+	  /**
+	   * No params
+	   */
+	  EVENT_DESELECTED: 'event_deselected',
+
+	  /**
+	   * @param {google.maps.LatLng} New map bounds
+	   */
+	  MAP_BOUNDS_CHANGED: 'map_bounds_changed'
+	};
+
+	module.exports = events;
+
+/***/ },
+
+/***/ 236:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var icon = __webpack_require__(237);
+	var inactiveIcon = __webpack_require__(238);
+	var highlightedIcon = __webpack_require__(239);
+	var EVENTS = __webpack_require__(235);
+	var emitter = __webpack_require__(234);
+
+	/**
+	 * @param {Event} event
+	 * @param {Object} map Google Map instance
+	 * @constructor
+	 */
+	function Marker(event, map) {
+	  var marker = this;
+	  this.event = event;
+	  event.marker = this;
+	  this.map = map;
+	  this.isActive = true;
+	  this.isHighlighted = false;
+
+	  // Marker instance
+	  var markerInstance = new google.maps.Marker({
+	    title: event.title,
+	    position: event.city.position,
+	    draggable: false,
+	    visible: true,
+	    icon: this.getIcon(),
+	    map: map ? map.instance : null
+	  });
+
+	  this.marker = markerInstance;
+
+	  markerInstance.addListener('click', function () {
+	    emitter.emit(EVENTS.EVENT_SELECTED, event);
+	  });
+
+	  markerInstance.addListener('mouseover', function () {
+	    marker.highlight();
+	    emitter.emit(EVENTS.EVENT_HIGHLIGHTED, event);
+	  });
+
+	  markerInstance.addListener('mouseout', function () {
+	    //marker.isActive ? marker.activate() : marker.deactivate();
+	    marker.unhighlight();
+	    emitter.emit(EVENTS.EVENT_UNHIGHLIGHTED, event);
+	  });
+
+	  // Info window
+	  var infoWindow = new google.maps.InfoWindow({
+	    content: event.title
+	  });
+
+	  infoWindow.addListener('closeclick', function () {
+	    emitter.emit(EVENTS.EVENT_DESELECTED);
+	  });
+
+	  this.infoWindow = infoWindow;
+	}
+
+	Marker.prototype.getIcon = function () {
+	  var mapZoom = this.map.instance.getZoom();
+	  var isActive = this.isActive;
+	  var isHighlighted = this.isHighlighted;
+	  var iconUrl = isActive ? icon : inactiveIcon;
+
+	  if (isHighlighted) {
+	    iconUrl = highlightedIcon;
+	  }
+
+	  return {
+	    scaledSize: {
+	      width: 15,
+	      height: 15
+	    },
+	    opacity: 1,
+	    url: iconUrl
+	  };
+	};
+
+	Marker.prototype.openWindow = function () {
+	  this.infoWindow.open(this.map.instance, this.marker);
+	};
+
+	Marker.prototype.closeWindow = function () {
+	  this.infoWindow.close();
+	};
+
+	Marker.prototype.highlight = function () {
+	  this.isHighlighted = true;
+	  this.marker.setIcon(this.getIcon());
+	  this.marker.setZIndex(30);
+	};
+
+	Marker.prototype.unhighlight = function () {
+	  this.isHighlighted = false;
+	  this.marker.setIcon(this.getIcon());
+	  this.marker.setZIndex(this.isActive ? 2 : 1);
+	};
+
+	Marker.prototype.activate = function () {
+	  this.isActive = true;
+	  this.isHighlighted = false;
+	  this.marker.setIcon(this.getIcon());
+	  this.marker.setZIndex(2);
+	};
+
+	Marker.prototype.deactivate = function () {
+	  this.isActive = false;
+	  this.isHighlighted = false;
+	  this.marker.setIcon(this.getIcon());
+	  this.marker.setZIndex(1);
+	};
+
+	Marker.prototype.show = function () {
+	  this.marker.setVisible(true);
+	};
+
+	Marker.prototype.hide = function () {
+	  this.marker.setVisible(false);
+	};
+
+	module.exports = Marker;
+
+/***/ },
+
+/***/ 237:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2MkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2M0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu8kvhoAAAEdSURBVHjaYvj//z8DGnYF4gVAfAeIf0LpBVBxFLXIHFMgPvMfPzgDVYei2QyIP/4nDnyEqodrPguX+vPt//+bdf//71X+/38b2///+5QhfJA4AoDUMzACCTcGBoadDCDw9xsDw3FXBoZ3xxgYGBkgAEYLWjEwWOxmYGDmggowuDIBiSgYj+FmBwPDa6DGvwwQ/A+JfgsUv9PFgARiQZpt4NyHyxAasRnwaDGyZhsWICEL535+DAwEJOcyorG/PkHWLAOy+TGcyw405w8Dpu0wzCqNrPkpSPMROFc+ElXxHzS2XCyy5iMgzcvhXJ1KBgYRK0z/grAQUFyzHFnzYuzxfBYYr6uB8bsAGM9rgPQ57PFMlRRGUdomK1cBBBgA22PnG6kCJJEAAAAASUVORK5CYII="
+
+/***/ },
+
+/***/ 238:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NkNDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZFMDlDQ0NDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2QUM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2QkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnJIETYAAAFFSURBVHjapFMxa4NAGH0aEYekGQRRbAWdMre0U8amP6KQ39U10KG/oXumkHTM1ExixOCiiEGC2vvsXbi0JRTy4HHf0/e+u/NOtW1b/OCEccb4yVjxccafn3hlcc+4bM9jyX0n4QfGrP0fMu6Hhm+8MF5R0TQN4jhGmqY4HA7QdR2macJxHKiqCu4j/53COjyx4l0E1+s1iqLoOiqKchz7/T5Go5FoQJhQ9SxUGIbIsgx1XXeNZOZ5ju12CwlTCo+FSpLkGKRRrmnc7XZyeEx7vhGqLMvuA8rLlev9fi+Hr2nmUChN044z/kV6LyGi8Fwo27bPhi3LksNzCr8J5fs+hsPhr30TB4MBPM+Tw69Kd1OAFeMtFWTcbDaIoghVVcEwDLiuiyAI0Ov1RPCDzvmiGyZOfMH4yFdwDivuW3Tqkr/qS4ABAMsPtTbiv1/WAAAAAElFTkSuQmCC"
+
+/***/ },
+
+/***/ 239:
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjhDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjlDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2NkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2N0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBIRlgAAAD/SURBVHjarJO9CsIwFEZv/EEHF3GTOjiKTopOrvUhBN9NcPAZ3LsI6uKoKCo6KVJQodAav5Q0NrUoqIGT5JZ7btImJc45abhkgj5YAkeOff95JDcsNcEE8DdM/DxNdqkF7A9igO3nw2N+BY9NiahOonlgBQ7AAVlQBGWQpKDNKMkbDFU6CEZKHIMzYDItGPOgqRUwE+i6KlyAoywiuIfGk9zRs/WE3FbhJiTGFdhqcjuFrqTCC+Ch7bLI/KbJhlh5p8IMcGNWD0hr8l7IlgpLkWQ3Mjc02RLyUIVVUIh5X09+7YomD+LPeQ7W4Apy8oxrr+f80w37w93+8q96CDAAS8tJ7FUFwroAAAAASUVORK5CYII="
+
+/***/ },
+
+/***/ 240:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Partially taken from https://github.com/ubilabs/google-map-bounds-limit
+	 */
+
+	var ignoreNextMapMove = false;
+	var lastValidCenter = null;
+
+	/**
+	 * Limits panning on the map beyond the given latitude.
+	 * @param  {google.maps.Map} map  The google maps instance
+	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
+	 */
+	function limitMapMove(map, maxBounds) {
+	  if (ignoreNextMapMove) {
+	    ignoreNextMapMove = false;
+	    return;
+	  }
+
+	  var bounds = map.getBounds();
+
+	  if (maxBounds.contains(bounds.getNorthEast()) && maxBounds.contains(bounds.getSouthWest())) {
+	    lastValidCenter = map.getCenter();
+	    return;
+	  }
+
+	  ignoreNextMapMove = true;
+
+	  if (lastValidCenter) {
+	    map.setCenter(lastValidCenter);
+	    return;
+	  }
+
+	  lastValidCenter = recalculateMapCenter(map, maxBounds);
+	  map.setCenter(lastValidCenter);
+	}
+
+	/**
+	 * Calculate a new map-center such that the visible area of the map is
+	 * completely within given max bounds.
+	 * @param  {google.maps.Map} map  The google maps instance
+	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
+	 * @return {google.maps.LatLng}  The recalculated map center
+	 */
+	function recalculateMapCenter(map, maxBounds) {
+	  var center = map.getCenter();
+	  var bounds = map.getBounds();
+	  var offsets = getBoundsOffsets(bounds, maxBounds);
+	  var newCenter = {
+	    lat: center.lat(),
+	    lng: center.lng()
+	  };
+
+	  if (offsets.north > 0) {
+	    newCenter.lat = center.lat() - offsets.n;
+	  }
+
+	  if (offsets.east > 0) {
+	    newCenter.lng = center.lng() - offsets.e;
+	  }
+
+	  if (offsets.south > 0) {
+	    newCenter.lat = center.lat() + offsets.s;
+	  }
+
+	  if (offsets.west > 0) {
+	    newCenter.lng = center.lng() + offsets.w;
+	  }
+
+	  return new google.maps.LatLng(newCenter.lat, newCenter.lng);
+	}
+
+	/**
+	 * Calculates the boundary-offsets in every direction for the given pair of
+	 * LatLngBounds. Returned values are > 0 if inner is smaller than outer in
+	 * that direction (when all values are >= 0, inner is a true subset of outer).
+	 * @param {google.maps.LatLngBounds} inner The first bounds
+	 * @param {google.maps.LatLngBounds} outer The second bounds
+	 * @return {Object} The numeric offset per direction.
+	 */
+	function getBoundsOffsets(inner, outer) {
+	  return {
+	    north: inner.getNorthEast().lat() - outer.getNorthEast().lat(),
+	    east: inner.getNorthEast().lng() - outer.getNorthEast().lng(),
+	    south: outer.getSouthWest().lat() - inner.getSouthWest().lat(),
+	    west: outer.getSouthWest().lng() - inner.getSouthWest().lng()
+	  };
+	}
+
+	/**
+	 * Limits latitude panning to a given limit.
+	 * @param  {google.maps.Map} map  The google map object
+	 * @param  {google.maps.LatLngBounds} maxBounds  The bounds limit
+	 */
+	function limit(map, maxBounds) {
+	  map.addListener('center_changed', function () {
+	    limitMapMove(map, maxBounds);
+	  });
+	}
+
+	module.exports = limit;
+
+/***/ },
+
+/***/ 241:
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = [{
+	  featureType: 'all',
+	  'stylers': [{ 'visibility': 'on' }, { 'hue': '#0044ff' }, { 'saturation': -80 }]
+	}, {
+	  'featureType': 'road.arterial',
+	  'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }]
+	}, {
+	  'featureType': 'water',
+	  'stylers': [{ 'color': '#d1dbe1' }, { 'visibility': 'on' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.fill',
+	  'stylers': [{ 'color': '#456184' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.stroke',
+	  'stylers': [{ 'weight': 2 }]
+	}];
+
+/***/ },
+
+/***/ 242:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _keys = __webpack_require__(202);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var $ = __webpack_require__(7);
+	var Event = __webpack_require__(243);
+	var City = __webpack_require__(248);
+	var languages = __webpack_require__(249);
+
+	/**
+	 * @param {Object} eventsData Raw events data
+	 * @param {Object} citiesData Raw cities data
+	 * @constructor
+	 */
+	function EventsStore(eventsData, citiesData) {
+	  var store = this;
+	  this.events = [];
+	  this.cities = [];
+
+	  var citiesNames = citiesData.map(function (data) {
+	    return data.name;
+	  });
+
+	  var citiesMissedInDict = [];
+
+	  eventsData.filter(function (data) {
+	    return typeof data.location !== 'undefined';
+	  }).map(function (data) {
+	    return data.location;
+	  }).filter(function (value, index, self) {
+	    return self.indexOf(value) === index;
+	  }).forEach(function (eventCity) {
+	    if (citiesNames.indexOf(eventCity) === -1) {
+	      citiesMissedInDict.push(eventCity);
+	    }
+	  });
+
+	  if (citiesMissedInDict.length > 0) {
+	    console.warn('Cities missed in cities.yml:\n' + citiesMissedInDict.join('\n'));
+	  }
+
+	  citiesData.forEach(function (data) {
+	    store.cities.push(new City(data));
+	  });
+
+	  eventsData.forEach(function (data, i) {
+	    var eventCityExistInDict = data.location && citiesNames.indexOf(data.location) !== -1;
+
+	    if (!eventCityExistInDict) {
+	      return;
+	    }
+
+	    data.id = i.toString();
+	    store.events.push(new Event(data));
+	  });
+
+	  store.events.forEach(function (event) {
+	    var eventCity = store.cities.filter(function (city) {
+	      return city.name == event.city;
+	    })[0];
+
+	    event.city = eventCity;
+	  });
+
+	  this.sort();
+	}
+
+	/**
+	 * @static
+	 * @param {string} eventsUrl
+	 * @param {string} citiesUrl
+	 * @returns {Deferred}
+	 */
+	EventsStore.create = function (eventsUrl, citiesUrl) {
+	  var events;
+	  var cities;
+
+	  return $.getJSON(eventsUrl).then(function (result) {
+	    events = result;
+	  }).then(function () {
+	    return $.getJSON(citiesUrl);
+	  }).then(function (result) {
+	    cities = result;
+	  }).then(function () {
+	    return new EventsStore(events, cities);
+	  });
+	};
+
+	/**
+	 * @static
+	 */
+	EventsStore.filters = {
+	  time: function time(_time, event) {
+	    var isMatch = false;
+	    if (_time == 'upcoming') isMatch = event.isUpcoming();else if (_time == 'past') isMatch = !event.isUpcoming();else isMatch = true;
+
+	    return isMatch;
+	  },
+
+	  lang: function lang(_lang, event) {
+	    return event.lang == _lang;
+	  },
+
+	  materials: function materials(materialType, event) {
+	    return event.content && event.content.hasOwnProperty(materialType);
+	  },
+
+	  bounds: function bounds(_bounds, event) {
+	    return _bounds.contains(event.getBounds());
+	  }
+	};
+
+	/**
+	 * @static
+	 */
+	EventsStore.materialsDict = {
+	  examples: 'Examples',
+	  slides: 'Slides',
+	  video: 'Video',
+	  pdf: 'PDF',
+	  article: 'Article'
+	};
+
+	EventsStore.prototype.sort = function () {
+	  this.events.sort(function (a, b) {
+	    var compareA = a.endDate;
+	    var compareB = b.endDate;
+
+	    if (compareA === compareB) {
+	      return 0;
+	    }
+
+	    return compareA < compareB ? 1 : -1;
+	  });
+	};
+
+	/**
+	 * @param {Array<Event>} [events]
+	 * @returns {Array<Event>}
+	 */
+	EventsStore.prototype.getUpcomingEvents = function (events) {
+	  var events = events || this.events;
+	  return events.filter(function (event) {
+	    return event.isUpcoming();
+	  }).sort(function (eventA, eventB) {
+	    var startA = eventA.startDate;
+	    var startB = eventB.startDate;
+
+	    if (startA === startB) {
+	      return 0;
+	    }
+
+	    return startA < startB ? -1 : 1;
+	  });
+	};
+
+	/**
+	 * @param {Array<Event>} [events]
+	 * @returns {Array<Event>}
+	 */
+	EventsStore.prototype.getPastEvents = function (events) {
+	  var events = events || this.events;
+	  return events.filter(function (event) {
+	    return !event.isUpcoming();
+	  });
+	};
+
+	/**
+	 * @param {Object} constraints
+	 * @param {string} constraints.time
+	 * @param {string} constraints.lang
+	 * @param {string} constraints.materials
+	 * @param {google.maps.LatLng} constraints.bounds
+	 * @param {Array<Event>} [events]
+	 * @returns {Array<Event>}
+	 */
+	EventsStore.prototype.filter = function (constraints, events) {
+	  var events = events || this.events;
+	  var filtered = [];
+	  var constraintNames = (0, _keys2.default)(constraints);
+
+	  events.forEach(function (event) {
+	    var performedConstraintsCount = 0;
+
+	    constraintNames.forEach(function (name) {
+	      var constraint = constraints[name];
+	      var filter = EventsStore.filters[name];
+	      if (filter(constraint, event)) {
+	        performedConstraintsCount++;
+	      }
+	    });
+
+	    if (performedConstraintsCount == constraintNames.length) filtered.push(event);
+	  });
+
+	  return filtered;
+	};
+
+	/**
+	 * @returns {Object<string, string>}
+	 */
+	EventsStore.prototype.getLanguages = function () {
+	  var idsList = $.unique(this.events.map(function (event) {
+	    return event.lang;
+	  }));
+	  var map = {};
+
+	  idsList.forEach(function (langId) {
+	    if (langId in languages) {
+	      map[langId] = languages[langId].name;
+	    }
+	  });
+
+	  return map;
+	};
+
+	/**
+	 * @see EventsStore.materialsDict
+	 * @returns {Object<string, string>}
+	 */
+	EventsStore.prototype.getMaterials = function () {
+	  var list = [];
+
+	  this.events.forEach(function (event) {
+	    if (event.content) {
+	      list = list.concat((0, _keys2.default)(event.content));
+	    }
+	  });
+
+	  var listMap = {};
+	  list = $.unique(list);
+	  list.forEach(function (materialId) {
+	    listMap[materialId] = EventsStore.materialsDict[materialId];
+	  });
+
+	  return listMap;
+	};
+
+	module.exports = EventsStore;
+
+/***/ },
+
+/***/ 243:
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	__webpack_require__(244);
+	var template = __webpack_require__(247);
+
+	var $ = __webpack_require__(7);
+
+	var DEFAULT_LANG = 'en';
+
+	/**
+	 * @param {Object} data
+	 * @constructor
+	 */
+	function Event(data) {
+	  this.id = data.id;
+	  this.title = data.title;
+	  this.url = data.url;
+	  this.subject = data.subject;
+	  this.speaker = data.speaker;
+	  this.description = data.description;
+
+	  if (!data.location) {
+	    console.warn(data.title + ' has no location');
+	  }
+
+	  this.city = data.location;
+	  this.lang = data.lang || DEFAULT_LANG;
+	  this.content = data.content;
+
+	  this.startDate = new Date(data.startDate);
+	  this.endDate = new Date(data.endDate);
+	  this.formattedDate = formatDate(this.startDate, this.endDate);
+	}
+
+	/** @type {string} */
+	Event.prototype.title = null;
+
+	/** @type {string} */
+	Event.prototype.url = null;
+
+	/** @type {string} */
+	Event.prototype.subject = null;
+
+	/** @type {string} */
+	Event.prototype.speaker = null;
+
+	/** @type {City} */
+	Event.prototype.city = null;
+
+	/** @type {Array<Date>} */
+	Event.prototype.startDate = null;
+
+	/** @type {Array<Date>} */
+	Event.prototype.endDate = null;
+
+	/** @type {string} */
+	Event.prototype.formattedDate = null;
+
+	/** @type {string} */
+	Event.prototype.lang = null;
+
+	/** @type {Object} Materials */
+	Event.prototype.content = null;
+
+	/** @type {string} */
+	Event.prototype.description = null;
+
+	/** @type {Marker} */
+	Event.prototype.marker = null;
+
+	Event.prototype.isUpcoming = function () {
+	  return this.endDate >= new Date();
+	};
+
+	Event.prototype.getBounds = function () {
+	  return this.city.getBounds();
+	};
+
+	Event.prototype.render = function (mountNode) {
+	  var rendered = template.render({ event: this, mode: 'normal' });
+
+	  if (mountNode) {
+	    var tempElement = document.createElement('div');
+	    tempElement.innerHTML = rendered;
+	    var node = tempElement.childNodes[0];
+	    this.node = node;
+	    mountNode.appendChild(node);
+	  }
+
+	  return rendered;
+	};
+
+	Event.prototype.renderDetailed = function () {
+	  return template.render({ event: this, mode: 'detailed' });
+	};
+
+	Event.prototype.highlight = function () {
+	  $(this.node).addClass('_highlighted');
+	};
+
+	Event.prototype.unhighlight = function () {
+	  $(this.node).removeClass('_highlighted');
+	};
+
+	Event.prototype.show = function () {
+	  $(this.node).show();
+	};
+
+	Event.prototype.hide = function () {
+	  $(this.node).hide();
+	};
+
+	function formatDate(startDate, endDate) {
+	  var formatted = '';
+	  var isRange = startDate == endDate;
+	  var nowYear = new Date().getFullYear();
+	  var year, month, day;
+
+	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+	  if (isRange) {
+	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
+	    year = [startDate.getFullYear(), endDate.getFullYear()];
+	    day = [startDate.getDate(), endDate.getDate()];
+
+	    if (month[0] !== month[1]) {
+	      formatted = month[0] + ' ' + day[0] + '-' + month[1] + ' ' + day[1];
+	    } else {
+	      formatted = month[0] + ' ' + day[0] + '-' + day[1];
+	    }
+
+	    if (year[0] !== nowYear || year[1] !== nowYear) {
+	      formatted += ', ' + year[1];
+	    }
+	  } else {
+	    year = startDate.getFullYear();
+	    month = months[startDate.getMonth()];
+	    day = startDate.getDate();
+
+	    formatted = month + ' ' + day;
+	    if (year !== nowYear) {
+	      formatted += ', ' + year;
+	    }
+	  }
+
+	  return formatted;
+	}
+
+	module.exports = Event;
+
+/***/ },
+
 /***/ 244:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 247:
+/***/ function(module, exports, __webpack_require__) {
+
+	var nunjucks = __webpack_require__(25);
+	var env;
+	if (!nunjucks.currentEnv){
+		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
+	} else {
+		env = nunjucks.currentEnv;
+	}
+	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
+
+
+
+
+	var shim = __webpack_require__(26);
+
+
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/event/view.twig"] = (function() {
+	function root(env, context, frame, runtime, cb) {
+	var lineno = null;
+	var colno = null;
+	var output = "";
+	try {
+	var parentTemplate = null;
+	output += "<div class=\"event _";
+	output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "mode"), env.opts.autoescape);
+	output += "\" data-id=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"id"), env.opts.autoescape);
+	output += "\">\n    ";
+	if(runtime.contextOrFrameLookup(context, frame, "mode") == "detailed") {
+	output += "\n        <span class=\"event-close js-close\"></span>\n    ";
+	;
+	}
+	output += "\n\n    <div class=\"event-date\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"formattedDate"), env.opts.autoescape);
+	output += "</div>\n    <div class=\"event-title\">\n        ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url")) {
+	output += "\n            <a class=\"event-url\" href=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url"), env.opts.autoescape);
+	output += "\" target=\"_blank\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
+	output += "</a>,\n        ";
+	;
+	}
+	else {
+	output += "\n            ";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
+	output += "\n        ";
+	;
+	}
+	output += "\n        ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city")) {
+	output += "\n            <span class=\"event-location\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city"), env.opts.autoescape);
+	output += "</span>\n        ";
+	;
+	}
+	output += "\n    </div>\n\n    <div class=\"event-subject\">\n        <span class=\"text\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
+	output += "</span>\n\n        <div class=\"event-info-indicators\">\n            ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
+	output += "\n                <div class=\"event-lang\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
+	output += "</div>\n            ";
+	;
+	}
+	output += "\n            ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
+	output += "\n                ";
+	frame = frame.push();
+	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
+	if(t_3) {var t_1;
+	if(runtime.isArray(t_3)) {
+	var t_2 = t_3.length;
+	for(t_1=0; t_1 < t_3.length; t_1++) {
+	var t_4 = t_3[t_1][0]
+	frame.set("type", t_3[t_1][0]);
+	var t_5 = t_3[t_1][1]
+	frame.set("href", t_3[t_1][1]);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n                    <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_4, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_5, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_4), env.opts.autoescape);
+	output += "\"></a>\n                ";
+	;
+	}
+	} else {
+	t_1 = -1;
+	var t_2 = runtime.keys(t_3).length;
+	for(var t_6 in t_3) {
+	t_1++;
+	var t_7 = t_3[t_6];
+	frame.set("type", t_6);
+	frame.set("href", t_7);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n                    <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_6, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_7, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_6), env.opts.autoescape);
+	output += "\"></a>\n                ";
+	;
+	}
+	}
+	}
+	frame = frame.pop();
+	output += "\n            ";
+	;
+	}
+	output += "\n        </div>\n    </div>\n\n    <div class=\"event-speaker\">\n        ";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"speaker"), env.opts.autoescape);
+	output += "\n    </div>\n\n    ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")) {
+	output += "\n        <div class=\"event-description\">\n            ";
+	output += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")), env.opts.autoescape);
+	output += "\n        </div>\n    ";
+	;
+	}
+	output += "\n</div>";
+	if(parentTemplate) {
+	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+	} else {
+	cb(null, output);
+	}
+	;
+	} catch (e) {
+	  cb(runtime.handleError(e, lineno, colno));
+	}
+	}
+	return {
+	root: root
+	};
+
+	})();
+	})();
+
+
+
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/event/view.twig"] , dependencies)
+
+/***/ },
+
+/***/ 248:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -4379,7 +4604,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 245:
+/***/ 249:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -5119,17 +5344,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 246:
+/***/ 250:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	__webpack_require__(247);
-	var $ = __webpack_require__(2);
-	var template = __webpack_require__(248);
-	var emitter = __webpack_require__(213);
-	var EVENTS = __webpack_require__(229);
-	var checkElementIsInViewport = __webpack_require__(249);
+	__webpack_require__(251);
+	var $ = __webpack_require__(7);
+	var template = __webpack_require__(252);
+	var emitter = __webpack_require__(234);
+	var EVENTS = __webpack_require__(235);
+	var checkElementIsInViewport = __webpack_require__(253);
 
 	/**
 	 * @param {HTMLElement|string} node
@@ -5267,17 +5492,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 247:
+/***/ 251:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 248:
+/***/ 252:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(242);
+	var nunjucks = __webpack_require__(25);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -5289,7 +5514,7 @@ webpackJsonp([2],{
 
 
 
-	var shim = __webpack_require__(243);
+	var shim = __webpack_require__(26);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/events-list/view.twig"] = (function() {
@@ -5323,7 +5548,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 249:
+/***/ 253:
 /***/ function(module, exports) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {module.exports = inViewport;
@@ -5584,26 +5809,26 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 250:
+/***/ 254:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _keys = __webpack_require__(180);
+	var _keys = __webpack_require__(202);
 
 	var _keys2 = _interopRequireDefault(_keys);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var $ = __webpack_require__(2);
-	var Switcher = __webpack_require__(251);
-	var Dropdown = __webpack_require__(254);
-	var pageEmitter = __webpack_require__(213);
-	var PAGE_EVENTS = __webpack_require__(229);
-	var Emitter = __webpack_require__(214);
+	var $ = __webpack_require__(7);
+	var Switcher = __webpack_require__(255);
+	var Dropdown = __webpack_require__(6);
+	var pageEmitter = __webpack_require__(234);
+	var PAGE_EVENTS = __webpack_require__(235);
+	var Emitter = __webpack_require__(8);
 
-	__webpack_require__(257);
-	var template = __webpack_require__(258);
+	__webpack_require__(258);
+	var template = __webpack_require__(259);
 
 	var EVENTS = {
 	  SELECT: 'select'
@@ -5687,16 +5912,16 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 251:
+/***/ 255:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
-	var Emitter = __webpack_require__(214);
+	var $ = __webpack_require__(7);
+	var Emitter = __webpack_require__(8);
 
-	__webpack_require__(252);
-	var template = __webpack_require__(253);
+	__webpack_require__(256);
+	var template = __webpack_require__(257);
 
 	var CLASSES = {
 	  ITEM_SELECTED: '_selected'
@@ -5772,17 +5997,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 252:
+/***/ 256:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
 
-/***/ 253:
+/***/ 257:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(242);
+	var nunjucks = __webpack_require__(25);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -5794,7 +6019,7 @@ webpackJsonp([2],{
 
 
 
-	var shim = __webpack_require__(243);
+	var shim = __webpack_require__(26);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/switcher/view.twig"] = (function() {
@@ -5878,237 +6103,17 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 254:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var $ = __webpack_require__(2);
-	var Emitter = __webpack_require__(214);
-
-	__webpack_require__(255);
-	var template = __webpack_require__(256);
-
-	var CLASSES = {
-	  OPENED: '_opened',
-	  ITEM_SELECTED: '_selected'
-	};
-
-	var EVENTS = {
-	  SELECT: 'select'
-	};
-
-	/**
-	 * @param {HTMLElement|string} node
-	 * @param {Object} config
-	 * @param {number} [config.selectedIndex=0]
-	 * @param {Function} [config.onSelect]
-	 * @constructor
-	 */
-	function Dropdown(node, config) {
-	  if (!(this instanceof Dropdown)) return new Dropdown(node, config);
-
-	  this._emitter = Emitter({});
-	  var that = this;
-	  this.config = config;
-	  var $dropdown = this.render();
-	  this.$dropdown = $dropdown;
-	  var $items = $dropdown.find('.js-item');
-	  var selectedValueNode = $dropdown.find('.js-selected-value').get(0);
-
-	  $(document.body).on('click', function (event) {
-	    event.target === selectedValueNode ? that.toggle() : that.close();
-	  });
-
-	  $items.each(function (i, elem) {
-	    $(elem).on('click', that.select.bind(that, i));
-	  });
-
-	  $(node).append($dropdown);
-
-	  config.onSelect && this.onSelect(config.onSelect);
-
-	  this.select(config.selectedIndex || 0, false);
-	}
-
-	Dropdown.prototype.onSelect = function (callback) {
-	  this._emitter.on(EVENTS.SELECT, callback);
-	};
-
-	Dropdown.prototype.render = function () {
-	  var config = this.config;
-	  var data = $.extend({}, {
-	    items: config.items,
-	    selectedIndex: config.selectedIndex || 0
-	  });
-
-	  var rendered = template.render({ dropdown: data });
-	  return $(rendered);
-	};
-
-	Dropdown.prototype.open = function () {
-	  this.$dropdown.addClass(CLASSES.OPENED);
-	};
-
-	Dropdown.prototype.close = function () {
-	  this.$dropdown.removeClass(CLASSES.OPENED);
-	};
-
-	Dropdown.prototype.toggle = function () {
-	  this.isOpened() ? this.close() : this.open();
-	};
-
-	Dropdown.prototype.isOpened = function () {
-	  return this.$dropdown.hasClass(CLASSES.OPENED);
-	};
-
-	Dropdown.prototype.select = function (index, emit) {
-	  if (this.selectedIndex == index) {
-	    return;
-	  }
-	  this.selectedIndex = index;
-
-	  var emit = typeof emit == 'boolean' ? emit : true;
-	  var $dropdown = this.$dropdown;
-	  var $items = $dropdown.find('.js-item');
-	  var $selectedItem = $($items.get(index));
-	  var selectedValue = $selectedItem.attr('data-value');
-	  var selectedText = $selectedItem.text();
-
-	  $items.each(function (i, elem) {
-	    var $item = $(elem);
-
-	    if (i === index) $item.addClass(CLASSES.ITEM_SELECTED);else $item.removeClass(CLASSES.ITEM_SELECTED);
-	  });
-
-	  $dropdown.find('.js-selected-value').text(selectedText);
-
-	  emit && this._emitter.emit('select', selectedValue);
-	};
-
-	module.exports = Dropdown;
-
-/***/ },
-
-/***/ 255:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 256:
-/***/ function(module, exports, __webpack_require__) {
-
-	var nunjucks = __webpack_require__(242);
-	var env;
-	if (!nunjucks.currentEnv){
-		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
-	} else {
-		env = nunjucks.currentEnv;
-	}
-	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
-
-
-
-
-	var shim = __webpack_require__(243);
-
-
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/dropdown/view.twig"] = (function() {
-	function root(env, context, frame, runtime, cb) {
-	var lineno = null;
-	var colno = null;
-	var output = "";
-	try {
-	var parentTemplate = null;
-	output += "<div class=\"dropdown js-dropdown\">\n  <div class=\"dropdown-selected-value js-selected-value\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"items")),runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"selectedIndex")), env.opts.autoescape);
-	output += "</div>\n  <div class=\"dropdown-items\">\n    ";
-	frame = frame.push();
-	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "dropdown")),"items");
-	if(t_3) {var t_1;
-	if(runtime.isArray(t_3)) {
-	var t_2 = t_3.length;
-	for(t_1=0; t_1 < t_3.length; t_1++) {
-	var t_4 = t_3[t_1][0]
-	frame.set("value", t_3[t_1][0]);
-	var t_5 = t_3[t_1][1]
-	frame.set("label", t_3[t_1][1]);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n      <div class=\"dropdown-item js-item\" data-value=\"";
-	output += runtime.suppressValue(t_4, env.opts.autoescape);
-	output += "\">";
-	output += runtime.suppressValue(t_5, env.opts.autoescape);
-	output += "</div>\n    ";
-	;
-	}
-	} else {
-	t_1 = -1;
-	var t_2 = runtime.keys(t_3).length;
-	for(var t_6 in t_3) {
-	t_1++;
-	var t_7 = t_3[t_6];
-	frame.set("value", t_6);
-	frame.set("label", t_7);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n      <div class=\"dropdown-item js-item\" data-value=\"";
-	output += runtime.suppressValue(t_6, env.opts.autoescape);
-	output += "\">";
-	output += runtime.suppressValue(t_7, env.opts.autoescape);
-	output += "</div>\n    ";
-	;
-	}
-	}
-	}
-	frame = frame.pop();
-	output += "\n  </div>\n</div>";
-	if(parentTemplate) {
-	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
-	} else {
-	cb(null, output);
-	}
-	;
-	} catch (e) {
-	  cb(runtime.handleError(e, lineno, colno));
-	}
-	}
-	return {
-	root: root
-	};
-
-	})();
-	})();
-
-
-
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/dropdown/view.twig"] , dependencies)
-
-/***/ },
-
-/***/ 257:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
 /***/ 258:
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+
+/***/ 259:
 /***/ function(module, exports, __webpack_require__) {
 
-	var nunjucks = __webpack_require__(242);
+	var nunjucks = __webpack_require__(25);
 	var env;
 	if (!nunjucks.currentEnv){
 		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
@@ -6120,7 +6125,7 @@ webpackJsonp([2],{
 
 
 
-	var shim = __webpack_require__(243);
+	var shim = __webpack_require__(26);
 
 
 	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/filter-panel/view.twig"] = (function() {
@@ -6154,7 +6159,7 @@ webpackJsonp([2],{
 
 /***/ },
 
-/***/ 259:
+/***/ 260:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -7662,11 +7667,11 @@ webpackJsonp([2],{
 	/******/ ])
 	});
 	;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
 
-/***/ 260:
+/***/ 261:
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

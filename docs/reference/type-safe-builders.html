@@ -282,6 +282,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/sealed-classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Sealed Classes</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/generics.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
@@ -361,6 +369,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             >
                                 <span class="marker"></span>
                                 <span class="text">内联函数</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/coroutines.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Coroutines</span>
                             </a>
                     </div>
 
@@ -467,6 +483,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <div class="text">类型安全的构建器</div>
                             </div>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/type-aliases.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Type Aliases</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -491,6 +515,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             >
                                 <span class="marker"></span>
                                 <span class="text">语法</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/compatibility.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Compatibility</span>
                             </a>
                     </div>
 
@@ -530,6 +562,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-overview.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript Overview</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/dynamic-type.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
@@ -542,7 +582,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">JavaScript 互操作性</span>
+                                <span class="text">Calling JavaScript from Kotlin</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-to-kotlin-interop.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Calling Kotlin from JavaScript</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-modules.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript Modules</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -568,7 +624,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">生成 Kotlin 代码文档</span>
+                                <span class="text">编写 Kotlin 代码文档</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/using-gradle.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Gradle</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -585,14 +649,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             >
                                 <span class="marker"></span>
                                 <span class="text">使用 Ant</span>
-                            </a>
-                    </div>
-                    <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/using-gradle.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">使用 Gradle</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -789,11 +845,55 @@ fun body(init: Body.() -&gt; Unit) = initTag(Body(), init)
 <p>所以，在这里前缀 <code>+</code> 所做的事情是把一个字符串包装到一个 <code>TextElement</code> 实例中，并将其添加到 <code>children</code> 集合中，
 以使其成为标签树的一个适当的部分。</p>
 <p>所有这些都在上面构建器示例顶部导入的包 <code>com.example.html</code> 中定义。
-在下一节中，你可以阅读这个包的完整定义。</p>
+在最后一节中，你可以阅读这个包的完整定义。</p>
+<h2 id="scope-control-dslmarker-since-11">Scope control: @DslMarker (since 1.1)</h2>
+<p>When using DSLs, one might have come across the problem that too many functions can be called in the context. 
+We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag <code>head</code> inside another <code>head</code>:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
+    head {
+        head {} // should be forbidden
+    }
+    // ...
+}
+</code></pre>
+<p>In this example only members of the nearest implicit receiver <code>this@head</code> must be available; <code>head()</code> is a member of the outer receiver <code>this@html</code>, so it must be illegal to call it.</p>
+<p>To address this problem, in Kotlin 1.1 a special mechanism to control receiver scope was introduced.</p>
+<p>To make the compiler start controlling scopes we only have to annotate the types of all receivers used in the DSL with the same marker annotation.
+For instance, for HTML Builders we declare an annotation <code>@HTMLTagMarker</code>:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@DslMarker
+annotation class HtmlTagMarker
+</code></pre>
+<p>An annotation class is called a DSL marker if it is annotated with the <code>@DslMarker</code> annotation.</p>
+<p>In our DSL all the tag classes extend the same superclass <code>Tag</code>.
+It's enough to annotate only the superclass with <code>@HtmlTagMarker</code> and after that the Kotlin compiler will treat all the inherited classes as annotated:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@HtmlTagMarker
+abstract class Tag(val name: String) { ... }
+</code></pre>
+<p>We don't have to annotate the <code>HTML</code> or <code>Head</code> classes with <code>@HtmlTagMarker</code> because their superclass is already annotated:</p>
+<pre><code>class HTML() : Tag("html") { ... }
+class Head() : Tag("head") { ... }
+</code></pre>
+<p>After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
+    head {
+        head { } // error: a member of outer receiver
+    }
+    // ...
+}
+</code></pre>
+<p>Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
+    head {
+        this@html.head { } // possible
+    }
+    // ...
+}
+</code></pre>
 <h2 id="comexamplehtml-包的完整定义"><code>com.example.html</code> 包的完整定义</h2>
 <p>这就是 <code>com.example.html</code> 包的定义（只有上面例子中使用的元素）。
 它构建一个 HTML 树。代码中大量使用了<a href="extensions.html">扩展函数</a>和
 <a href="lambdas.html#带接收者的函数字面值">带接收者的 lambda 表达式</a>。</p>
+<p>Note that the <code>@DslMarker</code> annotation is available only since Kotlin 1.1.</p>
 <p><a name="declarations"></a></p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.html
 
@@ -807,6 +907,10 @@ class TextElement(val text: String) : Element {
     }
 }
 
+@DslMarker
+annotation class HtmlTagMarker
+
+@HtmlTagMarker
 abstract class Tag(val name: String) : Element {
     val children = arrayListOf&lt;Element&gt;()
     val attributes = hashMapOf&lt;String, String&gt;()
@@ -911,5 +1015,6 @@ fun html(init: HTML.() -&gt; Unit): HTML {
         </div>
     </div>
 
-</footer></body>
+</footer>
+</body>
 </html>

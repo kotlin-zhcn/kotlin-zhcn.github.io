@@ -1,12 +1,12 @@
-webpackJsonp([7],{
+webpackJsonp([8],{
 
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var VideoGallery = __webpack_require__(279);
-	var $ = __webpack_require__(2);
+	var VideoGallery = __webpack_require__(280);
+	var $ = __webpack_require__(7);
 
 	$(document).ready(function () {
 	  $.getJSON("/data/videos.json", function (videos) {
@@ -20,14 +20,14 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 147:
+/***/ 171:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
-	var render = __webpack_require__(148);
-	var localStorage = __webpack_require__(149);
+	var $ = __webpack_require__(7);
+	var render = __webpack_require__(172);
+	var localStorage = __webpack_require__(173);
 
 	var templates = {},
 	    helpers = {};
@@ -276,7 +276,7 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 148:
+/***/ 172:
 /***/ function(module, exports) {
 
 	'use strict';
@@ -399,16 +399,16 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 149:
+/***/ 173:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var _stringify = __webpack_require__(150);
+	var _stringify = __webpack_require__(1);
 
 	var _stringify2 = _interopRequireDefault(_stringify);
 
-	var _typeof2 = __webpack_require__(69);
+	var _typeof2 = __webpack_require__(94);
 
 	var _typeof3 = _interopRequireDefault(_typeof2);
 
@@ -486,30 +486,12 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 150:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(151), __esModule: true };
-
-/***/ },
-
-/***/ 151:
-/***/ function(module, exports, __webpack_require__) {
-
-	var core  = __webpack_require__(80)
-	  , $JSON = core.JSON || (core.JSON = {stringify: JSON.stringify});
-	module.exports = function stringify(it){ // eslint-disable-line no-unused-vars
-	  return $JSON.stringify.apply($JSON, arguments);
-	};
-
-/***/ },
-
-/***/ 264:
+/***/ 265:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
+	var $ = __webpack_require__(7);
 
 	/**
 	 * @param {HTMLElement|string} elem HTML node or node ID
@@ -760,14 +742,14 @@ webpackJsonp([7],{
 
 /***/ },
 
-/***/ 279:
+/***/ 280:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var $ = __webpack_require__(2);
-	var NavTree = __webpack_require__(147);
-	var Player = __webpack_require__(264);
+	var $ = __webpack_require__(7);
+	var NavTree = __webpack_require__(171);
+	var Player = __webpack_require__(265);
 
 	NavTree.prototype.templates.leafItem = function (item) {
 	  var hasUrl = 'url' in item,

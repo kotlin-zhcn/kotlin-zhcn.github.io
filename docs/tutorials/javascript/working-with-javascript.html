@@ -1,0 +1,565 @@
+<html>
+<head>
+<meta charset="utf-8">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5P98');</script>
+<!-- End Google Tag Manager -->
+
+
+<title>Working with JavaScript - Kotlin 编程语言</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" sizes="72x72"
+      href="/assets/images/apple-touch-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="114x114"
+      href="/assets/images/apple-touch-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="144x144"
+      href="/assets/images/apple-touch-icon-144x144.png"/>
+<link rel="stylesheet" href="/0_assets/styles.css">
+
+
+<!-- Social Media tag Starts -->
+<!-- Place this data between the <head> tags of your website -->
+<!-- Open Graph data -->
+<meta property="og:title" content="Working with JavaScript - Kotlin 编程语言"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://kotlinlang.org/docs/tutorials/javascript/working-with-javascript.html"/>
+<meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
+    <meta property="og:description" content="A look at how we can interact with the DOM as well as using JavaScript libraries">
+<meta property="og:site_name" content="Kotlin"/>
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kotlin">
+<meta name="twitter:title" content="Working with JavaScript - Kotlin 编程语言">
+    <meta name="twitter:description" content="A look at how we can interact with the DOM as well as using JavaScript libraries">
+<meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
+<!-- Social Media tag Ends -->
+    <script src="/0_assets/default.js"></script>
+    <script src="/0_assets/common.js"></script>
+    <link rel="stylesheet" href="/0_assets/common.css"/>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5P98"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="global-layout">
+
+<header class="global-header">
+
+    <div class="global-header-panel">
+        <div class="g-layout">
+            <a class="global-header-logo" href="/">Kotlin</a>
+<nav role="navigation" class="global-nav">
+
+    <div class="nav-links">
+
+            <a href="/docs/reference/"
+               class="nav-item "
+            >
+                学习
+            </a>
+
+            <a href="/community/"
+               class="nav-item "
+            >
+                社区
+            </a>
+
+            <a href="http://try.kotlinlang.org"
+               class="nav-item "
+            >
+                在线试用
+            </a>
+    </div>
+
+
+<div id="global-search" class=" global-search" title="Search">
+    <div class="search-button">
+        <div class="icon"></div>
+    </div>
+    <div class="search-box">
+        <div class="gcse-searchbox-only"
+             data-resultsUrl="/search.html"
+             data-newWindow="false"
+        ></div>
+    </div>
+</div></nav>        </div>
+    </div>
+
+    <div class="g-layout">
+    </div>
+</header>
+    <div class="g-layout global-content">
+
+    <nav role="navigation" class="docs-nav">
+            <div class="nav-item-wrap">
+                    <a href="/docs/reference/" class="nav-item">
+                    <span class="nav-item-text">
+                        参考
+                    </span>
+                    </a>
+
+            </div>
+            <div class="nav-item-wrap">
+                    <a href="/docs/tutorials/" class="nav-item is_active">
+                        <span class="nav-item-text">
+                            教程
+                        </span>
+                    </a>
+            </div>
+            <div class="nav-item-wrap">
+                    <a href="/docs/videos.html" class="nav-item">
+                    <span class="nav-item-text">
+                        视频
+                    </span>
+                    </a>
+
+            </div>
+            <div class="nav-item-wrap">
+                    <a href="/docs/resources.html" class="nav-item">
+                    <span class="nav-item-text">
+                        更多资源
+                    </span>
+                    </a>
+
+            </div>
+    </nav>
+
+    <div class="g-grid">
+        <aside class="g-3">
+            <div class="js-side-tree-nav">
+                    <nav role="navigation" class="side-tree-nav">
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="开始">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">开始</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/getting-started.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">从 IntelliJ IDEA 入门</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/getting-started-eclipse.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">从 Eclipse 入门</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/command-line.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用命令行编译器</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/build-tools.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用构建工具</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/koans.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">心印</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Java 互操作">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Java 互操作</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/mixing-java-kotlin-intellij.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">在一个项目中混用 Java 和 Kotlin</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _opened"
+                 data-id="JavaScript">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">JavaScript</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 转 JavaScript</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Getting Started with Gradle</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/getting-started-idea/getting-started-with-intellij-idea.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Getting Started with IntelliJ IDEA</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Getting Started with Maven</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Creating a Kotlin JavaScript library with the Command Line Compiler</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/javascript/working-with-modules/working-with-modules.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 与 JavaScript 模块使用</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">Working with JavaScript</div>
+                            </div>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Coroutines">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Coroutines</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/coroutines-basic-jvm.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Introduction to Kotlin Coroutines on the JVM</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Web Development">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Web Development</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/httpservlets.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">用 Http Servlets 创建 web 应用</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/spring-boot-restful.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">用  Spring Boot 创建 RESTful Web 服务</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="移动开发">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">移动开发</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/kotlin-android.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Android 开发入门</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/android-plugin.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin Android 扩展</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Tools">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Tools</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/kotlin-and-ci.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">TeamCity 配置 Kotlin</span>
+                            </a>
+                    </div>
+
+            </div>
+    </nav>
+
+            </div>
+        </aside>
+
+        <article role="main" class="page-content g-9">
+<a href="https://github.com/JetBrains/kotlin-web-site/edit/master/pages/docs/tutorials/javascript/working-with-javascript.md"
+   class="page-link-to-github"
+   target="_blank"
+   title="Edit this page on GitHub">
+        <i class="github-icon"></i>
+        <span class="text">Edit Page</span>
+</a>
+            <h1>
+                Working with JavaScript
+            </h1>
+            <table>
+                    <tr>
+                        <td>
+                            <strong>Last Updated</strong>
+                        </td>
+                        <td>
+                            27 February 2017
+                        </td>
+                    </tr>
+            </table>
+                A look at how we can interact with the DOM as well as using JavaScript libraries
+                <br/>
+                <br/>
+            
+<p>In this tutorial we'll see how to</p>
+<ul>
+<li><a href="#interacting-with-the-dom">Interact with the DOM</a></li>
+<li><a href="#using-kotlinxhtml">Use kotlinx.html to generate HTML</a></li>
+<li><a href="#using-ts2kt-to-generate-header-files-for-kotlin">Use ts2kt to interact with libraries</a></li>
+<li><a href="#using-dynamic">Use dynamic to interact with libraries</a></li>
+</ul>
+<h2 id="interacting-with-the-dom">Interacting with the DOM</h2>
+<p>The Kotlin standard library provides a series of wrappers around the JavaScript API for interacting with documents. The main component we'd usually access is the variable <code>document</code>. Given we have access to this, we can simply read and write to the corresponding properties. For instance, to set the background of the page we can do</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">document.bgColor = "FFAA12" 
+</code></pre>
+<p>The DOM also provides us a way to retrieve a specific element by ID, name, class name, tag name and so on. All returned elements are of type <code>NodeList</code>, and to access members we need to cast them to the specific type of element. The code below shows how we could access an input
+element on the page:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;body&gt;
+&lt;input type="text" name="email" id="email"/&gt;
+&lt;script type="text/javascript" src="scripts/kotlin.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="scripts/domInteraction.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+</code></pre>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val email = document.getElementById("email") as HTMLInputElement
+email.value = "hadi@jetbrains.com"
+</code></pre>
+<p>An important note is to make sure that the scripts are located before the <code>body</code> tag is closed. Placing them at the top means that the scripts would be loaded before the DOM is fully available.</p>
+<p>Much like we reference an input element, we can access other elements on the page, casting them to the appropriate types.</p>
+<h2 id="using-kotlinxhtml">Using kotlinx.html</h2>
+<p>The <a href="http://www.github.com/kotlin/kotlinx.html">kotlinx.html library</a> provides the ability to generate DOM using statically typed HTML builders.
+The library is available when targeting the JVM as well as JavaScript. To use the library we need to include the corresponding
+dependency. In the case of Gradle this would be</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">repositories {
+    mavenCentral()
+    maven {
+        url  "http://dl.bintray.com/kotlin/kotlinx.html/"
+    }
+}
+
+dependencies {
+    compile 'org.jetbrains.kotlinx:kotlinx-html-js:0.6.1'
+    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
+}
+</code></pre>
+<p>For more information about configuring Gradle to target JavaScript please see <a href="getting-started-gradle/getting-started-with-gradle.html">Getting Started with Gradle</a>.</p>
+<p>Once the dependency is included, we can access the different interfaces provided to generate DOM. The code below will add a new <code>span</code> tag with the text <code>Hello</code> inside a <code>div</code> on the
+<code>window.load</code> event.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.browser.*
+import kotlinx.html.*
+import kotlinx.html.dom.*
+
+fun printHello() {
+    window.onload = {
+        document.body!!.append.div {
+            span {
+                +"Hello"
+            }
+        }
+    }
+}
+</code></pre>
+<h2 id="using-ts2kt-to-generate-header-files-for-kotlin">Using ts2kt to generate header files for Kotlin</h2>
+<p>The standard library provides us with a series of wrappers around DOM as well as functions to work with JavaScript, using static typing. What happens however
+when we want to use a library such as jQuery? Kotlin does not have its own "header" files for all the different libraries available on the JavaScript ecosystem
+however, TypeScript does. The <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">Definitely Typed repository</a>  provides us with a very large selection of header files.</p>
+<p>Using the tool <code>ts2kt</code> (TypeScript to Kotlin) we can convert any <code>d.ts</code> files to Kotlin. To install the tool we can use <code>npm</code></p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">npm install ts2kt
+</code></pre>
+<p>To convert a file we simply provide the input file, and optionally an output directory. The command below will convert the file <code>jquery.d.ts</code> in the current folder, which we've previously
+ downloaded from the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types/jquery/jquery.d.ts">Definitely Typed repository</a> to the output folder <code>headers</code>:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">ts2kt -d headers jquery.d.ts 
+</code></pre>
+<p>Once we have the file generated, we can simply include it in our project and use it:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">jQuery("#area").hover { window.alert("Hello!") }
+</code></pre>
+<p>Note that <code>jQuery</code> needs to be included in the corresponding HTML:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+
+&lt;!-- other script files ....  --&gt;
+</code></pre>
+<h3 id="header-files-under-the-covers">Header files under the covers</h3>
+<p>The header files merely contain function declarations for functionality that is defined at runtime. For instance, we could define a <code>jQuery</code> function like so</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("$")
+public external fun jQuery(selector: String): JQuery
+</code></pre>
+<p>The above code indicates that the function is defined externally. The <code>@JsName("$")</code> annotation allows us to map the name at runtime to <code>$</code>. 
+For more details on external declarations, please refer to the <a href="/docs/reference/js-interop.html#external-modifier">JavaScript interop documentation</a>.</p>
+<p>Note that the type systems of TypeScript and Kotlin do not match exactly, so you may need to edit the generated headers in case
+you encounter difficulties with using the APIs from Kotlin.</p>
+<h2 id="using-dynamic">Using Dynamic</h2>
+<p>While the above solution works well for situations in which we have a corresponding header file (be this something we've defined ourselves or converted from a TypeScript header), often times
+we need to work with some library that does not have a header. For instance, let's say we want to use a jQuery plugin, that allows us to convert an HTML table to a nice looking navigable grid.</p>
+<p>The way in which we'd use this from JavaScript would be to call <code>dataTable()</code> on the corresponding <code>&lt;table&gt;</code> element</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;table id="data" class="display" cellspacing="0" width="100%"&gt;
+    &lt;thead&gt;
+    &lt;tr&gt;
+        &lt;th&gt;Name&lt;/th&gt;
+        &lt;th&gt;Position&lt;/th&gt;
+        &lt;th&gt;Office&lt;/th&gt;
+        &lt;th&gt;Age&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Tiger Nixon&lt;/td&gt;
+        &lt;td&gt;System Architect&lt;/td&gt;
+        &lt;td&gt;Edinburgh&lt;/td&gt;
+        &lt;td&gt;61&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Garrett Winters&lt;/td&gt;
+        &lt;td&gt;Accountant&lt;/td&gt;
+        &lt;td&gt;Tokyo&lt;/td&gt;
+        &lt;td&gt;63&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;Ashton Cox&lt;/td&gt;
+        &lt;td&gt;Junior Technical Author&lt;/td&gt;
+        &lt;td&gt;San Francisco&lt;/td&gt;
+        &lt;td&gt;66&lt;/td&gt;
+    &lt;/tr&gt;
+    
+      . . . 
+    
+    &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+<p>we would invoke the following in JavaScript</p>
+<pre><code class="code _highlighted" data-lang="text/javascript">$("#data").dataTable()
+</code></pre>
+<p>How would we do this from Kotlin given that the function <code>dataTable()</code> does not exist, and calling it would give a compiler error?</p>
+<p>In situations like this we can use the <code>dynamic</code> type, which allows us to work with dynamic types when targeting JavaScript. The following
+variable is declared as <code>dynamic</code> meaning that whatever we invoke on it will not result in a compile-time error:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val myObject: dynamic = null
+
+. . .
+
+myObject.callAnything()
+</code></pre>
+<p>The above code compiles. However, it will produce a runtime error if the object is not properly initialised before use or if <code>callAnything()</code> is not
+ defined at runtime.</p>
+<p>The standard library defines a function named <a href="/api/latest/jvm/stdlib/kotlin.js/as-dynamic.html"><code>asDynamic()</code></a> which casts a value to the dynamic type.
+Given our previous example where we used jQuery to work with DOM elements, we can now combine this with <code>asDynamic()</code> to then invoke <code>dataTable()</code> on the result:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">$("#data").asDynamic().dataTable()
+</code></pre>
+<p>It is important to understand that just like in the case of <code>callAnything()</code>, the <code>dataTable()</code> function must exist at runtime. In our case, we need to make
+sure that the corresponding script file for our plugin is included:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript" src="js/jquery.dataTables.js"&gt;&lt;/script&gt;
+
+&lt;!-- other script files ....  --&gt;
+</code></pre>
+<p>For more information about <code>dynamic</code> see the <a href="../../reference/dynamic-type.html">reference documentation</a>.</p>
+
+        </article>
+    </div>
+    </div>
+
+</div>
+
+<footer role="contentinfo" class="global-footer">
+
+    <div class="global-footer-terms">
+        <div class="g-layout">
+
+            <div class="terms-copyright">
+                &copy; 2000&ndash;2017 JetBrains. All rights reserved
+            </div>
+
+            <div class="terms-sponsor">
+            Sponsored and developed by <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains" target="_blank">JetBrains</a>
+            由<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、<a href="http://github.com/hltj" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a> <a href="https://github.com/cctanfujun/kotlin-web-site-cn#翻译进度" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+            </div>
+        </div>
+    </div>
+
+</footer>
+</body>
+</html>
