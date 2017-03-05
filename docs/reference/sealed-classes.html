@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Sealed Classes - Kotlin 编程语言</title>
+<title>密封类 - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Sealed Classes - Kotlin 编程语言"/>
+<meta property="og:title" content="密封类 - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/sealed-classes.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Sealed Classes - Kotlin 编程语言">
+<meta name="twitter:title" content="密封类 - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -284,7 +284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
                                 <div class="marker"></div>
-                                <div class="text">Sealed Classes</div>
+                                <div class="text">密封类</div>
                             </div>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -659,6 +659,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">Kotlin 与 OSGi</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/compiler-plugins.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Compiler plugins</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -714,36 +722,36 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="sealed-classes">Sealed Classes</h1>
-<p>Sealed classes are used for representing restricted class hierarchies, when a value can have one of the types from a
-limited set, but cannot have any other type. They are, in a sense, an extension of enum classes: the set of values
-for an enum type is also restricted, but each enum constant exists only as a single instance, whereas a subclass
-of a sealed class can have multiple instances which can contain state.</p>
-<p>To declare a sealed class, you put the <code>sealed</code> modifier before the name of the class. A sealed class can have
-subclasses, but all of them must be nested inside the declaration of the sealed class itself.</p>
+<h1 id="密封类">密封类</h1>
+<p>密封类用来表示受限的类继承结构：当一个值为有限集中的
+类型、而不能有任何其他类型时。在某种意义上，他们是枚举类的扩展：枚举类型的值集合
+也是受限的，但每个枚举常量只存在一个实例，而密封类
+的一个子类可以有可包含状态的多个实例。</p>
+<p>要声明一个密封类，需要在类名前面添加 <code>sealed</code> 修饰符。虽然密封类也可以
+有子类，但是所有子类声明都必须嵌套在这个密封类声明内部。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">sealed class Expr {
     class Const(val number: Double) : Expr()
     class Sum(val e1: Expr, val e2: Expr) : Expr()
     object NotANumber : Expr()
 }
 </code></pre>
-<p>Note that classes which extend subclasses of a sealed class (indirect inheritors) can be placed anywhere, not necessarily inside
-the declaration of the sealed class.</p>
-<p>The key benefit of using sealed classes comes into play when you use them in a <a href="control-flow.html#when-expression"><code>when</code> expression</a>. If it's possible
-to verify that the statement covers all cases, you don't need to add an <code>else</code> clause to the statement.</p>
+<p>值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在
+这个密封类声明内部。</p>
+<p>使用密封类的关键好处在于使用 <a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够
+验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
     is Expr.Const -&gt; expr.number
     is Expr.Sum -&gt; eval(expr.e1) + eval(expr.e2)
     Expr.NotANumber -&gt; Double.NaN
-    // the `else` clause is not required because we've covered all the cases
+    // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
 }
 </code></pre>
-<h2 id="relaxed-rules-for-sealed-classes-since-11">Relaxed Rules for Sealed Classes (since 1.1)</h2>
-<h3 id="subclasses-in-the-same-file">Subclasses in the Same File</h3>
-<p>Since 1.1 you can declare the subclasses of the <code>sealed</code> class on the top-level, with only restriction that they should be located in the same file as the parent class.</p>
-<h3 id="sealed-classes-and-data-classes">Sealed Classes and Data Classes</h3>
-<p>Data classes can extend other classes, including <code>sealed</code> classes, which makes the hierarchy more usable.</p>
-<p>With all the newly supported features, you can rewrite the <code>Expr</code> class hierarchy in the following way:</p>
+<h2 id="密封类的放宽规则自-11-起">密封类的放宽规则（自 1.1 起）</h2>
+<h3 id="同一文件中的子类">同一文件中的子类</h3>
+<p>从 1.1 开始，你可以在顶层声明 <code>sealed</code> 类的子类，唯一的限制是它们应该和父类在同一个文件中。</p>
+<h3 id="密封类与数据类">密封类与数据类</h3>
+<p>数据类可以扩展其他类，包括 <code>sealed</code> 类，这使得继承结构更有用。</p>
+<p>使用所有新支持的功能，你可以通过以下方式重写 <code>Expr</code> 类的继承结构：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">sealed class Expr
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()

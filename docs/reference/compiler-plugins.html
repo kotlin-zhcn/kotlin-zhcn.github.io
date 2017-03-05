@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>嵌套类 - Kotlin 编程语言</title>
+<title>Compiler Plugins - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,9 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="嵌套类 - Kotlin 编程语言"/>
+<meta property="og:title" content="Compiler Plugins - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://kotlinlang.org/docs/reference/nested-classes.html"/>
+<meta property="og:url" content="https://kotlinlang.org/docs/reference/compiler-plugins.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="嵌套类 - Kotlin 编程语言">
+<meta name="twitter:title" content="Compiler Plugins - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -225,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
             </div>
-            <div class="tree-item tree-branch js-item js-branch _opened"
+            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="类和对象">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -298,10 +298,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
-                                <div class="marker"></div>
-                                <div class="text">嵌套类</div>
-                            </div>
+                            <a href="/docs/reference/nested-classes.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">嵌套类</span>
+                            </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/enum-classes.html"
@@ -611,7 +613,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
             </div>
-            <div class="tree-item tree-branch js-item js-branch _closed"
+            <div class="tree-item tree-branch js-item js-branch _opened"
                  data-id="工具">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -660,12 +662,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/compiler-plugins.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">Compiler plugins</span>
-                            </a>
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">Compiler plugins</div>
+                            </div>
                     </div>
 
             </div>
@@ -714,7 +714,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/JetBrains/kotlin-web-site/edit/master/pages/docs/reference/nested-classes.md"
+<a href="https://github.com/JetBrains/kotlin-web-site/edit/master/pages/docs/reference/compiler-plugins.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -722,45 +722,146 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="嵌套类">嵌套类</h1>
-<p>类可以嵌套在其他类中</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
-    private val bar: Int = 1
-    class Nested {
-        fun foo() = 2
+<h1 id="compiler-plugins">Compiler Plugins</h1>
+<h2 id="all-open-compiler-plugin">All-open compiler plugin</h2>
+<p>Kotlin has classes and their members <code>final</code> by default, which makes it inconvenient to use frameworks and libraries such as Spring AOP that require classes to be <code>open</code>. 
+The <code>all-open</code> compiler plugin adapts Kotlin to the requirements of those frameworks and makes classes annotated with a specific annotation and their members open without the explicit <code>open</code> keyword.
+For instance, when you use Spring, you don't need all the classes to be open, but only classes annotated with specific annotations like
+<code>@Configuration</code> or <code>@Service</code>.
+The <code>all-open</code> plugin allows to specify these annotations.</p>
+<p>We provide all-open plugin support both for Gradle and Maven, as well as the IDE integration.
+For Spring you can use the <code>kotlin-spring</code> compiler plugin (<a href="compiler-plugins.html#kotlin-spring-compiler-plugin">see below</a>).</p>
+<h3 id="how-to-use-all-open-plugin">How to use all-open plugin</h3>
+<p>You add the plugin in <code>build.gradle</code> and specify the annotations that will make the class open:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
     }
 }
 
-val demo = Outer.Nested().foo() // == 2
+apply plugin: "kotlin-allopen"
+
+allOpen {
+    annotation("com.my.Annotation")
+}
 </code></pre>
-<h2 id="内部类">内部类</h2>
-<p>类可以标记为 <em class="keyword">inner</em> 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
-    private val bar: Int = 1
-    inner class Inner {
-        fun foo() = bar
+<p>If the class (or any of its superclasses) is annotated with <code>com.my.Annotation</code>, the class itself and all its members will become open.</p>
+<p>It also works with meta-annotations:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@com.my.Annotation
+annotation class MyFrameworkAnnotation
+
+@MyFrameworkAnnotation
+class MyClass // will be all-open
+</code></pre>
+<p><code>MyFrameworkAnnotation</code> is also the annotation that makes the class open, because it's annotated with <code>com.my.Annotation</code>.</p>
+<p>Here's how to use all-open with Maven:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
+    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+    &lt;version&gt;${kotlin.version}&lt;/version&gt;
+
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;!-- Or "kotlin-spring" for the Spring support --&gt;
+            &lt;plugin&gt;all-open&lt;/plugin&gt;
+        &lt;/compilerPlugins&gt;
+
+        &lt;pluginOptions&gt;
+            &lt;!-- Each annotation is placed on its own line --&gt;
+            &lt;option&gt;all-open:annotation=com.my.Annotation&lt;/option&gt;
+            &lt;option&gt;all-open:annotation=com.their.AnotherAnnotation&lt;/option&gt;
+        &lt;/pluginOptions&gt;
+    &lt;/configuration&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+            &lt;artifactId&gt;kotlin-maven-allopen&lt;/artifactId&gt;
+            &lt;version&gt;${kotlin.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre>
+<h3 id="kotlin-spring-compiler-plugin">Kotlin-spring compiler plugin</h3>
+<p>You don't need to specify Spring annotations by hand, you can use the <code>kotlin-spring</code> plugin, which automatically configures the all-open plugin according to the requirements of Spring.</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
     }
 }
 
-val demo = Outer().Inner().foo() // == 1
+apply plugin: "kotlin-spring"
 </code></pre>
-<p>参见<a href="this-expressions.html">限定的 <em class="keyword">this</em> 表达式</a>以了解内部类中的 <em class="keyword">this</em> 的消歧义用法。</p>
-<h2 id="匿名内部类">匿名内部类</h2>
-<p>使用<a href="object-declarations.html#对象表达式">对象表达式</a>创建匿名内部类实例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">window.addMouseListener(object: MouseAdapter() {
-    override fun mouseClicked(e: MouseEvent) {
-        // ...
+<p>The Maven example is similar to the one above.</p>
+<p>The plugin specifies the following annotations: 
+<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html"><code>@Component</code></a>, 
+<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html"><code>@Async</code></a>, 
+<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html"><code>@Transactional</code></a>, 
+<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html"><code>@Cacheable</code></a>.
+Thanks to meta-annotations support classes annotated with <code>@Configuration</code>, <code>@Controller</code>, <code>@RestController</code>, <code>@Service</code> or <code>@Repository</code> are automatically opened since these annotations are meta-annotated with <code>@Component</code>.</p>
+<p>Of course, you can use both <code>kotlin-allopen</code> and <code>kotlin-spring</code> in the same project.
+Note that if you use <a href="http://start.spring.io/#!language=kotlin">start.spring.io</a> the <code>kotlin-spring</code> plugin will be enabled by default.</p>
+<h2 id="no-arg-compiler-plugin">No-arg compiler plugin</h2>
+<p>The no-arg compiler plugin generates an additional zero-argument constructor for classes with a specific annotation. 
+The generated constructor is synthetic so it can’t be directly called from Java or Kotlin, but it can be called using reflection. 
+This allows the Java Persistence API (JPA) to instantiate the <code>data</code> class although it doesn't have the no-arg constructor from Kotlin or Java point of view (see the description of <code>kotlin-jpa</code> plugin <a href="compiler-plugins.html#kotlin-jpa-compiler-plugin">below</a>).</p>
+<h3 id="how-to-use-no-arg-plugin">How to use no-arg plugin</h3>
+<p>The usage is pretty similar to all-open.
+You add the plugin and specify the list of annotations that must lead to generating a no-arg constructor for the annotated classes.</p>
+<p>How to use no-arg in Gradle:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
     }
-                                                                                                            
-    override fun mouseEntered(e: MouseEvent) {
-        // ...
+}
+
+apply plugin: "kotlin-noarg"
+
+noArg {
+    annotation("com.my.Annotation")
+}
+</code></pre>
+<p>How to use no-arg in Maven:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
+    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+    &lt;version&gt;${kotlin.version}&lt;/version&gt;
+
+    &lt;configuration&gt;
+        &lt;compilerPlugins&gt;
+            &lt;!-- Or "kotlin-jpa" for JPA support --&gt;
+            &lt;plugin&gt;no-arg&lt;/plugin&gt;
+        &lt;/compilerPlugins&gt;
+
+        &lt;pluginOptions&gt;
+            &lt;option&gt;no-arg:annotation=com.my.Annotation&lt;/option&gt;
+        &lt;/pluginOptions&gt;
+    &lt;/configuration&gt;
+
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+            &lt;artifactId&gt;kotlin-maven-noarg&lt;/artifactId&gt;
+            &lt;version&gt;${kotlin.version}&lt;/version&gt;
+        &lt;/dependency&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;
+</code></pre>
+<h3 id="kotlin-jpa-compiler-plugin">Kotlin-jpa compiler plugin</h3>
+<p>The plugin specifies 
+<a href="http://docs.oracle.com/javaee/7/api/javax/persistence/Entity.html"><code>@Entity</code></a> 
+and <a href="http://docs.oracle.com/javaee/7/api/javax/persistence/Embeddable.html"><code>@Embeddable</code></a> 
+annotations as markers that no-arg constructor should be generated for a class.
+That's how you add the plugin in Gradle:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-noarg:$kotlin_version"
     }
-})
+}
+
+apply plugin: "kotlin-jpa"
 </code></pre>
-<p>如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
-你可以使用带接口类型前缀的lambda表达式创建它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val listener = ActionListener { println("clicked") }
-</code></pre>
+<p>The Maven example is similar to the one above.</p>
 
         </article>
     </div>

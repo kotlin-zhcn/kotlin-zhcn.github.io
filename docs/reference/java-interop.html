@@ -286,7 +286,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">Sealed Classes</span>
+                                <span class="text">密封类</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -657,6 +657,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             >
                                 <span class="marker"></span>
                                 <span class="text">Kotlin 与 OSGi</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/compiler-plugins.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Compiler plugins</span>
                             </a>
                     </div>
 
@@ -1083,7 +1091,7 @@ javaObj.removeIndicesVarArg(*array)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
 <h3 id="getclass">getClass()</h3>
-<p>To retrieve the Java class of an object, use the <code>java</code> extension property on a <a href="reflection.html#class-references">class reference</a>.</p>
+<p>To retrieve the Java class of an object, use the <code>java</code> extension property on a <a href="reflection.html#类引用">class reference</a>.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo::class.java
 </code></pre>
 <p>The code above uses a <a href="reflection.html#bound-class-references-since-11">bound class reference</a>, which is supported since Kotlin 1.1. You can also use the <code>javaClass</code> extension property.</p>

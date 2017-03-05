@@ -284,7 +284,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">Sealed Classes</span>
+                                <span class="text">密封类</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -659,6 +659,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">Kotlin 与 OSGi</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/compiler-plugins.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Compiler plugins</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -734,7 +742,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>数据类不能是抽象、开放、密封或者内部的；</li>
 <li>(before 1.1) Data classes may only implement interfaces.</li>
 </ul>
-<p>Since 1.1, data classes may extend other classes (see <a href="sealed-classes.html#sealed-classes-and-data-classes">Sealed classes</a> for examples).</p>
+<p>Since 1.1, data classes may extend other classes (see <a href="sealed-classes.html#密封类与数据类">Sealed classes</a> for examples).</p>
 <p>在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见<a href="classes.html#构造函数">构造函数</a>）。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String = "", val age: Int = 0)
