@@ -17908,7 +17908,7 @@ webpackJsonp([1],[
 	  (0, _createClass3.default)(WebDemoApi, null, [{
 	    key: 'getCompilerConfigs',
 	    value: function getCompilerConfigs() {
-	      return fetch(("http://kotlin-web-demo-cloud.passive.aws.intellij.net") + '/kotlinServer?type=getKotlinVersions').then(function (response) {
+	      return fetch(("https://try.kotlinlang.org") + '/kotlinServer?type=getKotlinVersions').then(function (response) {
 	        return response.json();
 	      });
 	    }
@@ -17934,7 +17934,7 @@ webpackJsonp([1],[
 	      body.set('filename', "File.kt");
 	      body.set('project', projectJson);
 
-	      return fetch(("http://kotlin-web-demo-cloud.passive.aws.intellij.net") + '/kotlinServer?type=run&runConf=java', {
+	      return fetch(("https://try.kotlinlang.org") + '/kotlinServer?type=run&runConf=java', {
 	        method: 'POST',
 	        body: body.toString(),
 	        headers: {
