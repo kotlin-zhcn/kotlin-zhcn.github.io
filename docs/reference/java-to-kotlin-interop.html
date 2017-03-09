@@ -725,7 +725,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="java-中调用-kotlin">Java 中调用 Kotlin</h1>
 <p>Java 可以轻松调用 Kotlin 代码。</p>
 <h2 id="属性">属性</h2>
-<p>属性的 getter 会转换成 <em>get</em>-方法、setter 会转换成 <em>set</em>-方法。</p>
+<p>A Kotlin property is compiled to the following Java elements:</p>
+<ul>
+<li>A getter method, with the name calculated by prepending the <code>get</code> suffix;</li>
+<li>A setter method, with the name calculated by prepending the <code>set</code> suffix (only for <code>var</code> properties);</li>
+<li>A private field, with the same name as the property name (only for properties with backing fields).</li>
+</ul>
+<p>For example, <code>var firstName: String</code> gets compiled to the following Java declarations:</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">private String firstName;
+
+public String getFirstName() {
+    return firstName;
+}
+
+public void setFirstName(String firstName) {
+    this.firstName = firstName;
+}
+</code></pre>
+<p>If the name of the property starts with <code>is</code>, a different name mapping rule is used: the name of the getter will be
+the same as the property name, and the name of the setter will be obtained by replacing <code>is</code> with <code>set</code>.
+For example, for a property <code>isOpen</code>, the getter will be called <code>isOpen()</code> and the setter will be called <code>setOpen()</code>.
+This rule applies for properties of any type, not just <code>Boolean</code>.</p>
 <h2 id="包级函数">包级函数</h2>
 <p>在 <code>org.foo.bar</code> 包内的 <code>example.kt</code> 文件中声明的所有的函数和属性，都会被放到一个
 名为 <code>org.foo.bar.ExampleKt</code> 的java类中。</p>
@@ -880,6 +900,18 @@ Obj.INSTANCE.foo(); // 也没问题
 </code></pre>
 <p><code>@JvmStatic</code>　注解也可以应用于对象或伴生对象的属性，
 使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。</p>
+<h2 id="visibility">Visibility</h2>
+<p>The Kotlin visibilities are mapped to Java in the following way:</p>
+<ul>
+<li><code>private</code> members are compiled to <code>private</code> members;</li>
+<li><code>private</code> top-level declarations are compiled to package-local declarations;</li>
+<li><code>protected</code> remains <code>protected</code> (note that Java allows accessing protected members from other classes in the same package
+and Kotlin doesn't, so Java classes will have broader access to the code);</li>
+<li><code>internal</code> declarations become <code>public</code> in Java. Members of <code>internal</code> classes go through name mangling, to make
+it harder to accidentally use them from Java and to allow overloading for members with the same signature that don't see
+each other according to Kotlin rules;</li>
+<li><code>public</code> remains <code>public</code>.</li>
+</ul>
 <h2 id="kclass">KClass</h2>
 <p>有时你需要调用有 <code>KClass</code> 类型参数的 Kotlin 方法。
 因为没有从 <code>Class</code> 到 <code>KClass</code> 的自动转换，所以你必须通过调用
@@ -1006,8 +1038,8 @@ Base unboxBase(Box&lt;? extends Base&gt; box) { ... }
 <p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如
 函数或类），从而抑制其中的所有通配符。</p>
 <h3 id="nothing-类型翻译">Nothing 类型翻译</h3>
-<p><code>Nothing</code> 是一种特殊的类型，因为它在 Java 中没有自然对应。事实上，每个 Java 的引用类型，包括
-<code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在Java世界中
+<p>The type <a href="exceptions.html#the-nothing-type"><code>Nothing</code></a> is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
+<code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
 准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun emptyList(): List&lt;Nothing&gt; = listOf()
 // 会翻译成

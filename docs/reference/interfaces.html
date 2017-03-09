@@ -782,12 +782,18 @@ class D : A, B {
         super&lt;A&gt;.foo()
         super&lt;B&gt;.foo()
     }
+
+    override fun bar() {
+        super&lt;B&gt;.bar()
+    }
 }
 </code></pre>
 <p>上例中，接口 <em>A</em> 和 <em>B</em> 都定义了方法 <em>foo()</em> 和 <em>bar()</em>。 两者都实现了 <em>foo()</em>, 但是只有 <em>B</em> 实现了 <em>bar()</em> (<em>bar()</em> 在 <em>A</em> 中没有标记为抽象，
 因为没有方法体时默认为抽象）。因为 <em>C</em> 是一个实现了 <em>A</em> 的具体类，所以必须要重写 <em>bar()</em> 并
-实现这个抽象方法。<em>D</em> 可以不用重写 <em>bar()</em>，因为它实现了 <em>A</em> 和 <em>B</em>，因而可以自动继承 <em>B</em> 中 <em>bar()</em> 的实现，
-但是两个接口都定义了方法 <em>foo()</em>，为了告诉编译器 <em>D</em> 会继承谁的方法，必须在 <em>D</em> 中重写 <em>foo()</em>。</p>
+实现这个抽象方法。</p>
+<p>However, if we derive <em>D</em> from <em>A</em> and <em>B</em>, we need to implement all the methods which we have
+inherited from multiple interfaces, and to specify how exactly <em>D</em> should implement them. This rule applies
+both to methods for which we've inherited a single implementation (<em>bar()</em>) and multiple implementations (<em>foo()</em>).</p>
 
         </article>
     </div>

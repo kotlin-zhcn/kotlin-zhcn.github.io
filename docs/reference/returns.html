@@ -723,13 +723,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="返回和跳转">返回和跳转</h1>
-<p>Kotlin 有三种结构化跳转操作符</p>
+<p>Kotlin 有三种结构化跳转表达式：</p>
 <ul>
 <li><em class="keyword">return</em>。默认从最直接包围它的函数或者<a href="lambdas.html#匿名函数">匿名函数</a>返回。</li>
 <li><em class="keyword">break</em>。终止最直接包围它的循环。</li>
 <li><em class="keyword">continue</em>。继续下一次最直接包围它的循环。</li>
 </ul>
-<h2 id="break和continue标签">Break和Continue标签</h2>
+<p>All of these expressions can be used as part of larger expressions:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = person.name ?: return
+</code></pre>
+<p>The type of these expressions is the <a href="exceptions.html#the-nothing-type">Nothing type</a>.</p>
+<h2 id="break-和-continue-标签">Break 和 Continue 标签</h2>
 <p>在 Kotlin 中任何表达式都可以用标签（<em class="keyword">label</em>）来标记。
 标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="grammar.html#labelReference">语法</a>）。
 要为一个表达式加标签，我们只要在其前加标签即可。</p>

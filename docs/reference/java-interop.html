@@ -889,10 +889,6 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 <td><code>kotlin.Deprecated!</code></td>
 </tr>
 <tr>
-<td><code>java.lang.Void</code></td>
-<td><code>kotlin.Nothing!</code></td>
-</tr>
-<tr>
 <td><code>java.lang.CharSequence</code></td>
 <td><code>kotlin.CharSequence!</code></td>
 </tr>
@@ -910,8 +906,53 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 </tr>
 </tbody>
 </table>
+<p>Java's boxed primitive types are mapped to nullable Kotlin types:</p>
+<table class="zebra">
+<thead>
+<tr>
+<th><strong>Java type</strong></th>
+<th><strong>Kotlin type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java.lang.Byte</code></td>
+<td><code>kotlin.Byte?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Short</code></td>
+<td><code>kotlin.Short?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Integer</code></td>
+<td><code>kotlin.Int?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Long</code></td>
+<td><code>kotlin.Long?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Char</code></td>
+<td><code>kotlin.Char?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Float</code></td>
+<td><code>kotlin.Float?</code></td>
+</tr>
+<tr>
+<td><code>java.lang.Double</code></td>
+<td>`kotlin.Double?</td>
+</tr>
+<tr>
+<td><code>java.lang.Boolean</code></td>
+<td><code>kotlin.Boolean?</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note that a boxed primitive type used as a type parameter is mapped to a platform type:
+for example, <code>List&lt;java.lang.Integer&gt;</code> becomes a <code>List&lt;Int!&gt;</code> in Kotlin.</p>
 <p>集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：
-（下表中的所有 Kotlin 类型都驻留在 <code>kotlin</code> 包中）</p>
+（下表中的所有 Kotlin 类型都驻留在 <code>kotlin.collections</code>包中）:</p>
 <table class="zebra">
 <thead>
 <tr>
