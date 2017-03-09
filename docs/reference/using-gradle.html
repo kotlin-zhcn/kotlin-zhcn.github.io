@@ -797,23 +797,23 @@ apply plugin: 'kotlin-android'
 <h2 id="配置依赖">配置依赖</h2>
 <p>In addition to the kotlin-gradle-plugin dependency shown above, you need to add a dependency on the Kotlin standard library:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-   ext.kotlin_version = '&lt;version to use&gt;'
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-  }
+    ext.kotlin_version = '&lt;version to use&gt;'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 
 apply plugin: "kotlin" // or apply plugin: "kotlin2js" if targeting JavaScript
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-  compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 </code></pre>
 <p>If your project uses Kotlin reflection or testing facilities, you need to add the corresponding dependencies as well:</p>
@@ -861,7 +861,11 @@ To turn off the warning, add the following block to your <code>build.gradle</cod
 }
 </code></pre>
 <h2 id="compiler-options">Compiler Options</h2>
-<p>To specify additional compilation options, use the <code>kotlinOptions</code> property of a Kotlin compilation task. Examples:</p>
+<p>To specify additional compilation options, use the <code>kotlinOptions</code> property of a Kotlin compilation task.</p>
+<p>When targeting the JVM, the tasks are called <code>compileKotlin</code> for production code and <code>compileTestKotlin</code>
+for test code. The tasks for custom source sets of are called accordingly to the <code>compile&lt;Name&gt;Kotlin</code> pattern.</p>
+<p>When targeting JavaScript, the tasks are called <code>compileKotlin2Js</code> and <code>compileTestKotlin2Js</code> respectively, and <code>compile&lt;Name&gt;Kotlin2Js</code> for custom source sets.</p>
+<p>Examples:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin {
     kotlinOptions.suppressWarnings = true
 }
@@ -873,7 +877,7 @@ compileKotlin {
 }
 </code></pre>
 <p>A complete list of options for the Gradle tasks follows:</p>
-<h3 id="attributes-common-for-kotlin-and-kotlin2js">Attributes common for 'kotlin' and 'kotlin2js'</h3>
+<h3 id="attributes-common-for-jvm-and-js">Attributes common for JVM and JS</h3>
 <table>
 <thead>
 <tr>
@@ -916,7 +920,7 @@ compileKotlin {
 </tr>
 </tbody>
 </table>
-<h3 id="attributes-specific-for-kotlin">Attributes specific for 'kotlin'</h3>
+<h3 id="attributes-specific-for-jvm">Attributes specific for JVM</h3>
 <table>
 <thead>
 <tr>
@@ -965,7 +969,7 @@ compileKotlin {
 </tr>
 </tbody>
 </table>
-<h3 id="attributes-specific-for-kotlin2js">Attributes specific for 'kotlin2js'</h3>
+<h3 id="attributes-specific-for-js">Attributes specific for JS</h3>
 <table>
 <thead>
 <tr>
