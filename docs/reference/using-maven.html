@@ -738,6 +738,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
+<p>If your project uses <a href="/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin reflection</a> or testing facilities, you need to add the corresponding dependencies as well.
+The artifact IDs are <code>kotlin-reflect</code> for the reflection library, and <code>kotlin-test</code> and <code>kotlin-test-junit</code>
+for the testing libraries.</p>
 <h2 id="仅编译-kotlin-源码">仅编译 Kotlin 源码</h2>
 <p>在 &lt;build&gt; 标签中指定所要编译的 Kotlin 源码目录：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;build&gt;
@@ -876,6 +879,198 @@ where <code>main.class</code> is defined as a property and points to the main Ko
 <p>This self-contained jar file can be passed directly to a JRE to run your application:</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 </code></pre>
+<h2 id="targeting-javascript">Targeting JavaScript</h2>
+<p>In order to compile JavaScript code, you need to use the <code>js</code> and <code>test-js</code> goals for the <code>compile</code> execution:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+    &lt;version&gt;${kotlin.version}&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;compile&lt;/id&gt;
+            &lt;phase&gt;compile&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;js&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;test-compile&lt;/id&gt;
+            &lt;phase&gt;test-compile&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;test-js&lt;/goal&gt;
+            &lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>You also need to change the standard library dependency:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+&lt;artifactId&gt;kotlin-stdlib-js&lt;/artifactId&gt;
+&lt;version&gt;${kotlin.version}&lt;/version&gt;
+</code></pre>
+<p>For unit testing support, you also need to add a dependency on the <code>kotlin-test-js</code> artifact.</p>
+<p>See the <a href="/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html">Getting Started with Kotlin and JavaScript with Maven</a>
+tutorial for more information.</p>
+<h2 id="specifying-compiler-options">Specifying compiler options</h2>
+<p>Additional options for the compiler can be specified as tags under the <code>&lt;configuration&gt;</code> element of the
+Maven plugin node:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
+    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+    &lt;version&gt;${kotlin.version}&lt;/version&gt;
+    &lt;executions&gt;...&lt;/executions&gt;
+    &lt;configuration&gt;
+        &lt;nowarn&gt;true&lt;/nowarn&gt;  &lt;!-- Disable warnings --&gt;
+    &lt;/configuration&gt;
+&lt;/plugin&gt;
+</code></pre>
+<p>Many of the options can also be configured through properties:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;project ...&gt;
+    &lt;properties&gt;
+        &lt;kotlin.compiler.languageVersion&gt;1.0&lt;/kotlin.compiler.languageVersion&gt;
+    &lt;/properties&gt;
+&lt;/project&gt;
+</code></pre>
+<p>The following attributes are supported:</p>
+<h3 id="attributes-common-for-jvm-and-js">Attributes common for JVM and JS</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Property name</th>
+<th>Description</th>
+<th>Possible values</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nowarn</td>
+<td> </td>
+<td>Generate no warnings</td>
+<td>true, false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>languageVersion</td>
+<td>kotlin.compiler.languageVersion</td>
+<td>Provide source compatibility with specified language version</td>
+<td>"1.0", "1.1"</td>
+<td>"1.1"</td>
+</tr>
+<tr>
+<td>apiVersion</td>
+<td>kotlin.compiler.apiVersion</td>
+<td>Allow to use declarations only from the specified version of bundled libraries</td>
+<td>"1.0", "1.1"</td>
+<td>"1.1"</td>
+</tr>
+<tr>
+<td>sourceDirs</td>
+<td> </td>
+<td>The directories containing the source files to compile</td>
+<td> </td>
+<td>The project source roots</td>
+</tr>
+<tr>
+<td>compilerPlugins</td>
+<td> </td>
+<td>Enabled <a href="compiler-plugins.html">compiler plugins</a></td>
+<td> </td>
+<td>[]</td>
+</tr>
+<tr>
+<td>pluginOptions</td>
+<td> </td>
+<td>Options for compiler plugins</td>
+<td> </td>
+<td>[]</td>
+</tr>
+<tr>
+<td>args</td>
+<td> </td>
+<td>Additional compiler arguments</td>
+<td> </td>
+<td>[]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="attributes-specific-for-jvm">Attributes specific for JVM</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Property name</th>
+<th>Description</th>
+<th>Possible values</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jvmTarget</td>
+<td>kotlin.compiler.jvmTarget</td>
+<td>Target version of the generated JVM bytecode</td>
+<td>"1.6", "1.8"</td>
+<td>"1.6"</td>
+</tr>
+<tr>
+<td>jdkHome</td>
+<td>kotlin.compiler.jdkHome</td>
+<td>Path to JDK home directory to include into classpath, if differs from default JAVA_HOME</td>
+<td> </td>
+<td> </td>
+</tr>
+</tbody>
+</table>
+<h3 id="attributes-specific-for-js">Attributes specific for JS</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Property name</th>
+<th>Description</th>
+<th>Possible values</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>outputFile</td>
+<td> </td>
+<td>Output file path</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
+<td>metaInfo</td>
+<td> </td>
+<td>Generate .meta.js and .kjsm files with metadata. Use to create a library</td>
+<td>true, false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>sourceMap</td>
+<td> </td>
+<td>Generate source map</td>
+<td>true, false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>moduleKind</td>
+<td> </td>
+<td>Kind of a module generated by compiler</td>
+<td>"plain", "amd", "commonjs", "umd"</td>
+<td>"plain"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="generating-documentation">Generating documentation</h2>
+<p>The standard JavaDoc generation plugin (<code>maven-javadoc-plugin</code>) does not support Kotlin code.
+To generate documentation for Kotlin projects, use <a href="https://github.com/Kotlin/dokka">Dokka</a>;
+please refer to the <a href="https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin">Dokka README</a>
+for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
+formats, including standard JavaDoc.</p>
 <h2 id="osgi">OSGi</h2>
 <p>OSGi支持查看 <a href="kotlin-osgi.html">Kotlin OSGi page</a>.</p>
 <h2 id="例子">例子</h2>
