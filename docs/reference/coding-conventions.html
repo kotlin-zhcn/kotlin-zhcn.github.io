@@ -746,6 +746,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>在非嵌套的短lambda表达式中，最好使用约定俗成的默认参数 <code>it</code> 来替代显式声明参数名
 。在嵌套的有参数的lambda表达式中，参数应该总是显式声明。</p>
+<h2 id="class-header-formatting">Class header formatting</h2>
+<p>Classes with a few arguments can be written in a single line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(id: Int, name: String)
+</code></pre>
+<p>Classes with longer headers should be formatted the way, that each primary constructor argument is in a separate line with indentation.
+Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
+should be located on the same line as the parenthesis:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
+    id: Int, 
+    name: String,
+    surname: String
+) : Human(id, name) {
+    // ...
+}
+</code></pre>
+<p>For multiple interfaces, the superclass constructor call should be located first and then each interface should be located in a different line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
+    id: Int, 
+    name: String,
+    surname: String
+) : Human(id, name),
+    KotlinMaker {
+    // ...
+}
+</code></pre>
+<p>Constructor parameters can use either the regular indent or the continuation indent (double the regular indent).</p>
 <h2 id="unit">Unit</h2>
 <p>如果函数返回 Unit 类型，该返回类型应该省略：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // 省略了 ": Unit"

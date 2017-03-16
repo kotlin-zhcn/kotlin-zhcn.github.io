@@ -740,12 +740,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    }
 }
 </code></pre>
+<p>This is not required when using Kotlin Gradle plugin 1.1.1 and above with the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle plugins DSL</a>.</p>
 <h2 id="targeting-the-jvm">Targeting the JVM</h2>
 <h2 id="应用于jvm">应用于JVM</h2>
-<p>为了在JVM中应用, Kotlin插件需要配置如下</p>
+<p>为了在JVM中应用, Kotlin插件需要配置如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: "kotlin"
 </code></pre>
-<p>Kotlin源文件和Java源文件可以在同一个文件夹中存在, 也可以在不同文件夹中. 默认采用的是不同的文件夹:</p>
+<p>Or, starting with Kotlin 1.1.1, the plugin can be applied using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle plugins DSL</a>:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
+  id "org.jetbrains.kotlin.jvm" version "&lt;version to use&gt;"
+}
+</code></pre>
+<p>The <code>version</code> should be literal in this block, and it cannot be applied from another build script.</p>
+<p>Kotlin源文件和Java源文件可以在同一个文件夹中存在, 也可以在不同文件夹中。默认采用的是不同的文件夹：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">project
     - src
         - main (root)
@@ -822,32 +829,41 @@ testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 </code></pre>
 <h2 id="annotation-processing">Annotation processing</h2>
-<p>The Kotlin plugin supports annotation processors like <em>Dagger</em> or <em>DBFlow</em>. In order for them to work with Kotlin classes, add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
+<p>The Kotlin plugin supports annotation processors like <em>Dagger</em> or <em>DBFlow</em>. In order for them to work with Kotlin classes, apply the <code>kotlin-kapt</code> plugin:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
+</code></pre>
+<p>Or, starting with Kotlin 1.1.1, you can apply it using the plugins DSL:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
+  id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
+}
+</code></pre>
+<p>Then add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
   kapt 'groupId:artifactId:version'
 }
 </code></pre>
-<p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them. If you use annotation processors for your <code>androidTest</code> or <code>test</code> sources, the respective <code>kapt</code> configurations are named <code>kaptAndroidTest</code> and <code>kaptTest</code>.</p>
-<p>Some annotation processing libraries require you to reference generated classes from within your code. For this to work, you'll need to add an additional flag to enable the <em>generation of stubs</em> to your build file:</p>
+<p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them.</p>
+<p>If you use annotation processors for your <code>androidTest</code> or <code>test</code> sources, the respective <code>kapt</code> configurations are named <code>kaptAndroidTest</code> and <code>kaptTest</code>. Note that <code>kaptAndroidTest</code> and <code>kaptTest</code> extends <code>kapt</code>, so you can just provide the <code>kapt</code> dependency and it will be available both for production sources and tests.</p>
+<p>Some annotation processors (such as <code>AutoFactory</code>) rely on precise types in declaration signatures. By default, Kapt replaces every unknown type (including types for the generated classes) to <code>NonExistentClass</code>, but you can change this behavior. Add the additional flag to the <code>build.gradle</code> file to enable error type inferring in stubs:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
-    generateStubs = true
+    correctErrorTypes = true
 }
 </code></pre>
-<p>Note, that generation of stubs slows down your build somewhat, which is why it's disabled by default. If generated classes are referenced only in a few places in your code, you can alternatively revert to using a helper class written in Java which can be <a href="java-interop.html">seamlessly called</a> from your Kotlin code.</p>
-<p>For more information on <code>kapt</code> refer to the <a href="http://blog.jetbrains.com/kotlin/2015/06/better-annotation-processing-supporting-stubs-in-kapt/">official blogpost</a>.</p>
+<p>Note that this option is experimental and it is disabled by default.</p>
 <h2 id="incremental-compilation">Incremental compilation</h2>
 <p>Kotlin supports optional incremental compilation in Gradle.
 Incremental compilation tracks changes of source files between builds so only files affected by these changes would be compiled.</p>
-<p>There are several ways to enable it:</p>
+<p>Starting with Kotlin 1.1.1, incremental compilation is enabled by default.</p>
+<p>There are several ways to override the default setting:</p>
 <ol>
 <li>
-<p>add <code>kotlin.incremental=true</code> line either to a <code>gradle.properties</code> or a <code>local.properties</code> file;</p>
+<p>add <code>kotlin.incremental=true</code> or <code>kotlin.incremental=false</code> line either to a <code>gradle.properties</code> or a <code>local.properties</code> file;</p>
 </li>
 <li>
-<p>add <code>-Pkotlin.incremental=true</code> to gradle command line parameters. Note that in this case the parameter should be added to each subsequent build (any build without this parameter invalidates incremental caches).</p>
+<p>add <code>-Pkotlin.incremental=true</code> or <code>-Pkotlin.incremental=false</code> to gradle command line parameters. Note that in this case the parameter should be added to each subsequent build, and any build with disabled incremental compilation invalidates incremental caches.</p>
 </li>
 </ol>
-<p>After incremental compilation is enabled, you should see the following warning message in your build log:</p>
+<p>When incremental compilation is enabled, you should see the following warning message in your build log:</p>
 <pre><code>Using kotlin incremental compilation
 </code></pre>
 <p>Note, that the first build won't be incremental.</p>

@@ -735,6 +735,32 @@ class Goo {}
 <p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
 所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
 <p>如果没有指明包，该文件的内容属于无名字的默认包。</p>
+<h2 id="default-imports">Default Imports</h2>
+<p>A number of packages are imported into every Kotlin file by default:</p>
+<ul>
+<li>kotlin.*</li>
+<li>kotlin.annotation.*</li>
+<li>kotlin.collections.*</li>
+<li>kotlin.comparisons.*  (since 1.1)</li>
+<li>kotlin.io.*</li>
+<li>kotlin.ranges.*</li>
+<li>kotlin.sequences.*</li>
+<li>kotlin.text.*</li>
+</ul>
+<p>Additional packages are imported depending on the target platform:</p>
+<ul>
+<li>JVM:
+    <ul>
+<li>java.lang.*</li>
+<li>kotlin.jvm.*</li>
+</ul>
+</li>
+<li>JS:
+    <ul>
+<li>kotlin.js.*</li>
+</ul>
+</li>
+</ul>
 <h2 id="导入">导入</h2>
 <p>除了默认导入之外，每个文件可以包含它自己的导入指令。
 导入语法在<a href="grammar.html#import">语法</a>中讲述。</p>

@@ -747,8 +747,8 @@ the same as the property name, and the name of the setter will be obtained by re
 For example, for a property <code>isOpen</code>, the getter will be called <code>isOpen()</code> and the setter will be called <code>setOpen()</code>.
 This rule applies for properties of any type, not just <code>Boolean</code>.</p>
 <h2 id="包级函数">包级函数</h2>
-<p>在 <code>org.foo.bar</code> 包内的 <code>example.kt</code> 文件中声明的所有的函数和属性，都会被放到一个
-名为 <code>org.foo.bar.ExampleKt</code> 的java类中。</p>
+<p>在 <code>org.foo.bar</code> 包内的 <code>example.kt</code> 文件中声明的所有的函数和属性，including extension functions,
+are compiled into static methods of a Java class named <code>org.foo.bar.ExampleKt</code>.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// example.kt
 package demo
 
@@ -872,8 +872,9 @@ int d = ExampleKt.MAX;
 int v = C.VERSION;
 </code></pre>
 <h2 id="静态方法">静态方法</h2>
-<p>如上所述，Kotlin 会为包级函数生成静态方法。
+<p>如上所述，Kotlin represents package-level functions as static methods.
 Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 <code>@JvmStatic</code> 的话。
+If you use this annotation, the compiler will generate both a static method in the enclosing class of the object and an instance method in the object itself.
 例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     companion object {
@@ -885,6 +886,8 @@ Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方�
 <p>现在，<code>foo()</code> 在 Java 中是静态的，而 <code>bar()</code> 不是：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">C.foo(); // 没问题
 C.bar(); // 错误：不是一个静态方法
+C.Companion.foo(); // instance method remains
+C.Companion.bar(); // the only way it works
 </code></pre>
 <p>对于命名对象也同样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Obj {

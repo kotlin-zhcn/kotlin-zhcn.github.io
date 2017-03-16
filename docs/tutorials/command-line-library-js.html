@@ -435,14 +435,14 @@ fun odd_factorial(n: Int): Long {
 }        
 </code></pre>
 <p>Compile with library:</p>
-<pre><code>   $ kotlinc-js -output binom.js -library-files sample-library.meta.js binom.kt
+<pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.meta.js binom.kt
 </code></pre>
 <p>Both files <code>sample-library.js</code> and <code>sample-library.meta.js</code> should be present in the latter case,
    because translated JavaScript file contains meta-information about inlining, which 
    is needed by compiler.</p>
 <p>If you have an archive <code>sample-library.jar</code>, which contains <code>sample-library.js</code> and <code>sample-library.meta.js</code>,
    you can use the following command</p>
-<pre><code>   $ kotlinc-js -output binom.js -library-files sample-library.jar binom.kt
+<pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.jar binom.kt
 </code></pre>
 
         </article>

@@ -754,11 +754,11 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 它有两个端点：<code>start</code> 和 <code>endInclusive</code> 他们都包含在区间内。
 其主要操作是 <code>contains</code>，通常以 <em class="keyword">in</em>/<em class="keyword">!in</em> 操作符形式使用。</p>
 <p>整型数列（<code>IntProgression</code>、 <code>LongProgression</code>、 <code>CharProgression</code>）表示等差数列。
-数列由 <code>first</code> 元素、<code>last</code> 元素和非零的 <code>increment</code> 定义。
-第一个元素是 <code>first</code>，后续元素是前一个元素加上 <code>increment</code>。 <code>last</code> 元素总会被迭代命中，除非该数列是空的。</p>
+数列由 <code>first</code> 元素、<code>last</code> 元素和非零的 <code>step</code> 定义。
+第一个元素是 <code>first</code>，后续元素是前一个元素加上 <code>step</code>。 <code>last</code> 元素总会被迭代命中，除非该数列是空的。</p>
 <p>数列是 <code>Iterable&lt;N&gt;</code> 的子类型，其中 <code>N</code> 分别为 <code>Int</code>、 <code>Long</code> 或者 <code>Char</code>，所以它可用于 <em class="keyword">for</em>-循环以及像 <code>map</code>、<code>filter</code> 等函数中。
 对 <code>Progression</code> 迭代相当于 Java/JavaScript 的基于索引的 <em class="keyword">for</em>-循环：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += increment) {
+<pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += step) {
   // ...
 }
 </code></pre>
@@ -766,9 +766,9 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 例如，<code>IntRange</code> 实现了 <code>ClosedRange&lt;Int&gt;</code> 并扩展自 <code>IntProgression</code>，因此为 <code>IntProgression</code> 定义的所有操作也可用于 <code>IntRange</code>。
 <code>downTo()</code> 和 <code>step()</code> 函数的结果总是一个 <code>*Progression</code>。</p>
 <p>数列由在其伴生对象中定义的 <code>fromClosedRange</code> 函数构造：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    IntProgression.fromClosedRange(start, end, increment)
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">IntProgression.fromClosedRange(start, end, step)
 </code></pre>
-<p>数列的 <code>last</code> 元素这样计算：对于正的 <code>increment</code> 找到不大于 <code>end</code> 值的最大值、或者对于负的 <code>increment</code> 找到不小于 <code>end</code> 值的最小值，使得 <code>(last - first) % increment == 0</code>。</p>
+<p>数列的 <code>last</code> 元素这样计算：对于正的 <code>step</code> 找到不大于 <code>end</code> 值的最大值、或者对于负的 <code>step</code> 找到不小于 <code>end</code> 值的最小值，使得 <code>(last - first) % increment == 0</code>。</p>
 <h2 id="一些实用函数">一些实用函数</h2>
 <h3 id="rangeto"><code>rangeTo()</code></h3>
 <p>整型类型的 <code>rangeTo()</code> 操作符只是调用 <code>*Range</code> 类的构造函数，例如：</p>
@@ -787,17 +787,17 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 <h3 id="downto"><code>downTo()</code></h3>
 <p>扩展函数 <code>downTo()</code> 是为任何整型类型对定义的，这里有两个例子：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Long.downTo(other: Int): LongProgression {
-    return LongProgression.fromClosedRange(this, other, -1.0)
+    return LongProgression.fromClosedRange(this, other.toLong(), -1L)
 }
 
 fun Byte.downTo(other: Int): IntProgression {
-    return IntProgression.fromClosedRange(this, other, -1)
+    return IntProgression.fromClosedRange(this.toInt(), other, -1)
 }
 </code></pre>
 <h3 id="reversed"><code>reversed()</code></h3>
 <p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
-    return IntProgression.fromClosedRange(last, first, -increment)
+    return IntProgression.fromClosedRange(last, first, -step)
 }
 </code></pre>
 <h3 id="step"><code>step()</code></h3>
@@ -806,18 +806,18 @@ fun Byte.downTo(other: Int): IntProgression {
 步长（step）值必须始终为正，因此该函数不会更改迭代的方向。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.step(step: Int): IntProgression {
     if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
-    return IntProgression.fromClosedRange(first, last, if (increment &gt; 0) step else -step)
+    return IntProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
 }
 
 fun CharProgression.step(step: Int): CharProgression {
     if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
-    return CharProgression.fromClosedRange(first, last, step)
+    return CharProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
 }
 </code></pre>
-<p>请注意，返回数列的 <code>last</code> 值可能与原始数列的 <code>last</code> 值不同，以便保持不变式 <code>(last - first) % increment == 0</code> 成立。这里是一个例子：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    (1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
-    (1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
-    (1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
+<p>请注意，返回数列的 <code>last</code> 值可能与原始数列的 <code>last</code> 值不同，以便保持不变式 <code>(last - first) % step == 0</code> 成立。这里是一个例子：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">(1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
+(1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
+(1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
 </code></pre>
 
         </article>

@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Type aliases (since 1.1) - Kotlin 编程语言</title>
+<title>类型别名（自 1.1 起） - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Type aliases (since 1.1) - Kotlin 编程语言"/>
+<meta property="og:title" content="类型别名（自 1.1 起） - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/type-aliases.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Type aliases (since 1.1) - Kotlin 编程语言">
+<meta name="twitter:title" content="类型别名（自 1.1 起） - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -722,21 +722,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h2 id="type-aliases">Type aliases</h2>
-<p>Type aliases provide alternative names for existing types.
-If the type name is too long you can introduce a different shorter name and use the new one instead.</p>
-<p>It's useful to shorten long generic types.
-For instance, it's often tempting to shrink collection types:</p>
+<h2 id="类型别名">类型别名</h2>
+<p>类型别名为现有类型提供替代名称。
+如果类型名称太长，你可以另外引入较短的名称，并使用新的名称替代原类型名。</p>
+<p>它有助于缩短较长的泛型类型。
+例如，通常缩减集合类型是很有吸引力的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias NodeSet = Set&lt;Network.Node&gt;
 
 typealias FileTable&lt;K&gt; = MutableMap&lt;K, MutableList&lt;File&gt;&gt;
 </code></pre>
-<p>You can provide different aliases for function types:</p>
+<p>你可以为函数类型提供另外的别名：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias MyHandler = (Int, String, Any) -&gt; Unit
 
 typealias Predicate&lt;T&gt; = (T) -&gt; Boolean
 </code></pre>
-<p>You can have new names for inner and nested classes:</p>
+<p>你可以为内部类和嵌套类创建新名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class A {
     inner class Inner
 }
@@ -747,20 +747,20 @@ class B {
 typealias AInner = A.Inner
 typealias BInner = B.Inner
 </code></pre>
-<p>Type aliases do not introduce new types. 
-They are equivalent to the corresponding underlying types.
-When you add <code>typealias Predicate&lt;T&gt;</code> and use <code>Predicate&lt;Int&gt;</code> in your code, the Kotlin compiler always expand it to <code>(Int) -&gt; Boolean</code>. 
-Thus you can pass a variable of your type whenever a general function type is required and vice versa:</p>
+<p>类型别名不会引入新类型。
+它们等效于相应的底层类型。
+当你在代码中添加 <code>typealias Predicate&lt;T&gt;</code> 并使用 <code>Predicate&lt;Int&gt;</code> 时，Kotlin 编译器总是把它扩展为 <code>(Int) -&gt; Boolean</code>。
+因此，当你需要泛型函数类型时，你可以传递该类型的变量，反之亦然：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias Predicate&lt;T&gt; = (T) -&gt; Boolean
 
 fun foo(p: Predicate&lt;Int&gt;) = p(42)
 
 fun main(args: Array&lt;String&gt;) {
     val f: (Int) -&gt; Boolean = { it &gt; 0 }
-    println(foo(f)) // prints "true"
+    println(foo(f)) // 输出 "true"
 
     val p: Predicate&lt;Int&gt; = { it &gt; 0 }
-    println(listOf(1, -2).filter(p)) // prints "[1]"
+    println(listOf(1, -2).filter(p)) // 输出 "[1]"
 }
 </code></pre>
 
