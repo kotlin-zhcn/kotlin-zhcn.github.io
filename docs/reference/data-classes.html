@@ -740,9 +740,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>主构造函数需要至少有一个参数；</li>
 <li>主构造函数的所有参数需要标记为 <code>val</code> 或 <code>var</code>；</li>
 <li>数据类不能是抽象、开放、密封或者内部的；</li>
-<li>(before 1.1) Data classes may only implement interfaces.</li>
+<li>（在1.1之前）数据类只能实现接口。</li>
 </ul>
-<p>Since 1.1, data classes may extend other classes (see <a href="sealed-classes.html#密封类与数据类">Sealed classes</a> for examples).</p>
+<p>自 1.1 起，数据类可以扩展其他类（示例请参见<a href="sealed-classes.html#密封类与数据类">密封类</a>）。</p>
 <p>在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见<a href="classes.html#构造函数">构造函数</a>）。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String = "", val age: Int = 0)

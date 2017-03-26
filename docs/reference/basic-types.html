@@ -779,15 +779,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>默认 double：<code>123.5</code>、<code>123.5e10</code></li>
 <li>Float 用 <code>f</code> 或者 <code>F</code> 标记: <code>123.5f</code></li>
 </ul>
-<h3 id="underscores-in-numeric-literals-since-11">Underscores in numeric literals (since 1.1)</h3>
-<p>You can use underscores to make number constants more readable:</p>
+<h3 id="数字字面值中的下划线自-11-起">数字字面值中的下划线（自 1.1 起）</h3>
+<p>你可以使用下划线使数字常量更易读：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val oneMillion = 1_000_000
 val creditCardNumber = 1234_5678_9012_3456L
 val socialSecurityNumber = 999_99_9999L
 val hexBytes = 0xFF_EC_DE_5E
 val bytes = 0b11010010_01101001_10010100_10010010
 </code></pre>
-<h3 id="representation">Representation</h3>
 <h3 id="表示方式">表示方式</h3>
 <p>在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 <code>Int?</code>）或泛型。
 后者情况下会把数字装箱。</p>

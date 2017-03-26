@@ -796,8 +796,8 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 <p>表达式 <code>::x</code> 求值为 <code>KProperty&lt;Int&gt;</code> 类型的属性对象，它允许我们使用
 <code>get()</code> 读取它的值，或者使用 <code>name</code> 属性来获取属性名。更多信息请参见
-<a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
-<p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
+<p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
 该类型有一个 <code>set()</code> 方法。</p>
 <p>属性引用可以用在不需要参数的函数处：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val strs = listOf("a", "bc", "def")

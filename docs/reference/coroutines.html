@@ -772,8 +772,8 @@ class Derived: Base {
 </code></pre>
 <h3 id="restrictssuspension-注解"><code>@RestrictsSuspension</code> 注解</h3>
 <p>扩展函数（和 lambda 表达式）也可以标记为 <code>suspend</code>，就像普通的一样。这允许创建 <a href="type-safe-builders.html">DSL</a> 及其他用户可扩展的 API。在某些情况下，库作者需要阻止用户添加<em>新方式</em>来挂起协程。</p>
-<p>为了实现这一点，可以使用 <a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html"><code>@RestrictsSuspension</code></a> 注解。当接收者类/接口 <code>R</code> 用它标注时，所有挂起扩展都需要委托给 <code>R</code> 的成员或其它委托给它的扩展。由于扩展不能无限相互委托（程序不会终止），这保证所有挂起都通过调用 <code>R</code> 的成员发生，库的作者就可以完全控制了。</p>
-<p>这在<em>少数</em>情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 <a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html"><code>buildSequence()</code></a> 函数实现<a href="#kotlincoroutines-中的生成器-api">下文</a>所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 <code>yield()</code> 或 <code>yieldAll()</code> 而不是任何其他函数。这就是为什么 <a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html"><code>SequenceBuilder</code></a> 用 <code>@RestrictsSuspension</code> 注解：</p>
+<p>为了实现这一点，可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html"><code>@RestrictsSuspension</code></a> 注解。当接收者类/接口 <code>R</code> 用它标注时，所有挂起扩展都需要委托给 <code>R</code> 的成员或其它委托给它的扩展。由于扩展不能无限相互委托（程序不会终止），这保证所有挂起都通过调用 <code>R</code> 的成员发生，库的作者就可以完全控制了。</p>
+<p>这在<em>少数</em>情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html"><code>buildSequence()</code></a> 函数实现<a href="#kotlincoroutines-中的生成器-api">下文</a>所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 <code>yield()</code> 或 <code>yieldAll()</code> 而不是任何其他函数。这就是为什么 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html"><code>SequenceBuilder</code></a> 用 <code>@RestrictsSuspension</code> 注解：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@RestrictsSuspension
 public abstract class SequenceBuilder&lt;in T&gt; {
     ……
@@ -804,21 +804,21 @@ public abstract class SequenceBuilder&lt;in T&gt; {
 <h3 id="底层-apikotlincoroutines">底层 API：<code>kotlin.coroutines</code></h3>
 <p>底层 API 相对较小，并且除了创建更高级的库之外，不应该使用它。 它由两个主要包组成：</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html"><code>kotlin.coroutines.experimental</code></a> 带有主要类型与下述原语
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html"><code>kotlin.coroutines.experimental</code></a> 带有主要类型与下述原语
     <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html"><code>createCoroutine()</code></a></li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html"><code>startCoroutine()</code></a></li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html"><code>suspendCoroutine()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html"><code>createCoroutine()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html"><code>startCoroutine()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html"><code>suspendCoroutine()</code></a></li>
 </ul>
 </li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html"><code>kotlin.coroutines.experimental.intrinsics</code></a> 带有甚至更底层的内在函数如 <a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html"><code>suspendCoroutineOrReturn</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html"><code>kotlin.coroutines.experimental.intrinsics</code></a> 带有甚至更底层的内在函数如 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html"><code>suspendCoroutineOrReturn</code></a></li>
 </ul>
 <p>关于这些 API 用法的更多细节可以在<a href="https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md">这里</a>找到。</p>
 <h3 id="kotlincoroutines-中的生成器-api"><code>kotlin.coroutines</code> 中的生成器 API</h3>
 <p><code>kotlin.coroutines.experimental</code> 中仅有的“应用程序级”函数是</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html"><code>buildSequence()</code></a></li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html"><code>buildIterator()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html"><code>buildSequence()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html"><code>buildIterator()</code></a></li>
 </ul>
 <p>这些包含在 <code>kotlin-stdlib</code> 中因为他们与序列相关。这些函数（我们可以仅限于这里的 <code>buildSequence()</code>）实现了 <em>生成器</em> ，即提供一种廉价构建惰性序列的方法：</p>
 <div class="sample" data-min-compiler-version="1.1">

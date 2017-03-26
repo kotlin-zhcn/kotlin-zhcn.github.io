@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Calling Kotlin from JavaScript - Kotlin 编程语言</title>
+<title>JavaScript 中调用 Kotlin - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Calling Kotlin from JavaScript - Kotlin 编程语言"/>
+<meta property="og:title" content="JavaScript 中调用 Kotlin - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/js-to-kotlin-interop.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Calling Kotlin from JavaScript - Kotlin 编程语言">
+<meta name="twitter:title" content="JavaScript 中调用 Kotlin - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -722,37 +722,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="calling-kotlin-from-javascript">Calling Kotlin from JavaScript</h1>
-<p>Kotlin compiler generates normal JavaScript classes, functions and properties you can freely use from
-JavaScript code. Nevertheless, there are some subtle things you should remember.</p>
-<h2 id="isolating-declarations-in-a-separate-javascript-object">Isolating declarations in a separate JavaScript object</h2>
-<p>To prevent spoiling the global object, Kotlin creates an object that contains all Kotlin declarations
-from the current module. So if you name your module as <code>myModule</code>, all declarations are available to JavaScript
-via <code>myModule</code> object. For example:</p>
+<h1 id="javascript-中调用-kotlin">JavaScript 中调用 Kotlin</h1>
+<p>Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中自由地使用的函数和属性
+。不过，你应该记住一些微妙的事情。</p>
+<h2 id="用独立的-javascript-隔离声明">用独立的 JavaScript 隔离声明</h2>
+<p>为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
+。所以如果你把模块命名为 <code>myModule</code>，那么所有的声明都可以
+通过 <code>myModule</code> 对象在 JavaScript 中可用。例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() = "Hello"
 </code></pre>
-<p>Can be called from JavaScript like this:</p>
+<p>可以在 JavaScript 中这样调用：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.foo());
 </code></pre>
-<p>This is not applicable when you compile your Kotlin module to JavaScript module (see <a href="js-modules.html">JavaScript Modules</a> for more information on this).
-In this case there won't be a wrapper object, instead, declarations will be exposed as a JavaScript module of a corresponding kind. For example,
-in case of CommonJS you should write:</p>
+<p>这不适用于当你将 Kotlin 模块编译为 JavaScript 模块时（关于这点的详细信息请参见 <a href="js-modules.html">JavaScript 模块</a>）。
+在这种情况下，不会有一个包装对象，而是将声明作为相应类型的 JavaScript 模块对外暴露。例如，
+对于 CommonJS 的场景，你应该写：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">alert(require('myModule').foo());
 </code></pre>
-<h2 id="package-structure">Package structure</h2>
-<p>Kotlin exposes its package structure to JavaScript, so unless you define your declarations in the root package,
-you have to use fully-qualified names in JavaScript. For example:</p>
+<h2 id="包结构">包结构</h2>
+<p>Kotlin 将其包结构暴露给 JavaScript，因此除非你在根包中定义声明，
+否则必须在 JavaScript 中使用完整限定的名称。例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package my.qualified.packagename
 
 fun foo() = "Hello"
 </code></pre>
-<p>Can be called from JavaScript like this:</p>
+<p>可以在 JavaScript 中这样调用：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.my.qualified.packagename.foo());
 </code></pre>
-<h3 id="jsname-annotation"><code>@JsName</code> annotation</h3>
-<p>In some cases (for example, to support overloads), Kotlin compiler mangles names of generated functions and attributes
-in JavaScript code. To control the generated names, you can use the <code>@JsName</code> annotation:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Module 'kjs'
+<h3 id="jsname-注解"><code>@JsName</code> 注解</h3>
+<p>在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性
+的名称。要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 模块 'kjs'
 class Person(val name: String) {
     fun hello() {
         println("Hello $name!")
@@ -764,28 +764,28 @@ class Person(val name: String) {
     }
 }
 </code></pre>
-<p>Now you can use this class from JavaScript in the following way:</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // refers to module 'kjs'
-person.hello();                          // prints "Hello Dmitry!"
-person.helloWithGreeting("Servus");      // prints "Servus Dmitry!"
+<p>现在，你可以通过以下方式在 JavaScript 中使用这个类：</p>
+<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // 引用到模块 'kjs'
+person.hello();                          // 输出“Hello Dmitry!”
+person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 </code></pre>
-<p>If we didn't specify the <code>@JsName</code> annotation, the name of the corresponding function would contain a suffix
-calculated from the function signature, for example <code>hello_61zpoe$</code>.</p>
-<p>Note that Kotlin compiler does not apply such mangling to <code>external</code> declarations, so you don't have to
-use <code>@JsName</code> on them. Another case worth noticing is inheriting non-external classes from external classes.
-In this case any overridden functions won't be mangled as well.</p>
-<p>The parameter of <code>@JsName</code> is required to be a constant string literal which is a valid identifier.
-The compiler will report an error on any attempt to pass non-identifier string to <code>@JsName</code>.
-The following example produces a compile-time error:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("new C()")   // error here
+<p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称会包含
+从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
+<p>请注意，Kotlin 编译器不会对 <code>external</code> 声明应用这种修饰，因此你不必在其上
+使用 <code>@JsName</code>。 值得注意的另一个例子是从外部类继承的非外部类。
+在这种情况下，任何被覆盖的函数也不会被修饰。</p>
+<p><code>@JsName</code> 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。
+任何尝试将非标识符字符串传递给 <code>@JsName</code> 时，编译器都会报错。
+以下示例会产生编译期错误：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("new C()")   // 此处出错
 external fun newC()
 </code></pre>
-<h2 id="representing-kotlin-types-in-javascript">Representing Kotlin types in JavaScript</h2>
+<h2 id="在-javascript-中表示-kotlin-类型">在 JavaScript 中表示 Kotlin 类型</h2>
 <ul>
-<li>Kotlin numeric types, except for <code>kotlin.Long</code> are mapped to JavaScript Number.</li>
-<li><code>kotlin.Char</code> is mapped to JavaScript Number representing character code.</li>
+<li>除了 <code>kotlin.Long</code> 的 Kotlin 数字类型映射到 JavaScript Number。</li>
+<li><code>kotlin.Char</code> 映射到 JavaScript Number 来表示字符代码。</li>
 <li>
-<p>Kotlin can't distinguish between numeric types at run time (except for <code>kotlin.Long</code>), i.e. the following code works:</p>
+<p>Kotlin 在运行时无法区分数字类型（<code>kotlin.Long</code> 除外），即以下代码能够工作：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f() {
     val x: Int = 23
     val y: Any = x
@@ -793,16 +793,16 @@ external fun newC()
 }
 </code></pre>
 </li>
-<li>Kotlin preserves overflow semantics for <code>kotlin.Int</code>, <code>kotlin.Byte</code>, <code>kotlin.Short</code>, <code>kotlin.Char</code> and <code>kotlin.Long</code>.</li>
-<li>There's no 64 bit integer number in JavaScript, so <code>kotlin.Long</code> is not mapped to any JavaScript object,
-it's emulated by a Kotlin class.</li>
-<li><code>kotlin.String</code> is mapped to JavaScript String.</li>
-<li><code>kotlin.Any</code> is mapped to JavaScript Object (i.e. <code>new Object()</code>, <code>{}</code>, etc).</li>
-<li><code>kotlin.Array</code> is mapped to JavaScript Array.</li>
-<li>Kotlin collections (i.e. <code>List</code>, <code>Set</code>, <code>Map</code>, etc) are not mapped to any specific JavaScript type.</li>
-<li><code>kotlin.Throwable</code> is mapped to JavaScript Error.</li>
-<li>Kotlin preserves lazy object initialization in JavaScript.</li>
-<li>Kotlin does not implement lazy initialization of top-level properties in JavaScript.</li>
+<li>Kotlin 保留了 <code>kotlin.Int</code>、 <code>kotlin.Byte</code>、 <code>kotlin.Short</code>、 <code>kotlin.Char</code> 和 <code>kotlin.Long</code> 的溢出语义。</li>
+<li>JavaScript 中没有 64 位整数，所以 <code>kotlin.Long</code> 没有映射到任何 JavaScript 对象，
+它是由一个 Kotlin 类模拟的。</li>
+<li><code>kotlin.String</code> 映射到 JavaScript String。</li>
+<li><code>kotlin.Any</code> 映射到 JavaScript Object（即 <code>new Object()</code>、 <code>{}</code> 等）。</li>
+<li><code>kotlin.Array</code> 映射到 JavaScript Array。</li>
+<li>Kotlin 集合（即 <code>List</code>、 <code>Set</code>、 <code>Map</code> 等）没有映射到任何特定的 JavaScript 类型。</li>
+<li><code>kotlin.Throwable</code> 映射到 JavaScript Error。</li>
+<li>Kotlin 在 JavaScript 中保留了惰性对象初始化。</li>
+<li>Kotlin 不会在 JavaScript 中实现顶层属性的惰性初始化。</li>
 </ul>
 
         </article>

@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>JavaScript Modules - Kotlin 编程语言</title>
+<title>JavaScript 模块 - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="JavaScript Modules - Kotlin 编程语言"/>
+<meta property="og:title" content="JavaScript 模块 - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/js-modules.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="JavaScript Modules - Kotlin 编程语言">
+<meta name="twitter:title" content="JavaScript 模块 - Kotlin 编程语言">
     <meta name="twitter:description"
           content="Kotlin is a statically typed programming language for the JVM, Android and the browser, 100% interoperable with Java">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
@@ -722,31 +722,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="javascript-modules">JavaScript Modules</h1>
-<p>Kotlin allows you to compile your Kotlin projects to JavaScript modules for popular module systems. Here is
-the list of available options:</p>
+<h1 id="javascript-模块">JavaScript 模块</h1>
+<p>Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是
+可用选项的列表：</p>
 <ol>
-<li>Plain. Don't compile for any module system. As usual, you can access a module by its name in the global scope.
-This option is used by default.</li>
-<li><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">Asynchronous Module Definition (AMD)</a>, which is in particular
-used by require.js library.</li>
-<li><a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS</a> convention, widely used by node.js/npm
-(<code>require</code> function and <code>module.exports</code> object)</li>
-<li>Unified Module Definitions (UMD), which is compatible with both <em>AMD</em> and <em>CommonJS</em>, and works as "plain"
-when neither <em>AMD</em> nor <em>CommonJS</em> is available at runtime.</li>
+<li>无模块（Plain）。不为任何模块系统编译。像往常一样，你可以在全局作用域中以其名称访问模块。
+默认使用此选项。</li>
+<li><a href="https://github.com/amdjs/amdjs-api/wiki/AMD">异步模块定义（AMD，Asynchronous Module Definition）</a>，它尤其为
+require.js 库所使用。</li>
+<li><a href="http://wiki.commonjs.org/wiki/Modules/1.1">CommonJS</a> 约定，广泛用于 node.js/npm
+（<code>require</code> 函数和 <code>module.exports</code> 对象）</li>
+<li>统一模块定义（UMD，Unified Module Definitions），它与 <em>AMD</em> 和 <em>CommonJS</em> 兼容，
+并且当在运行时 <em>AMD</em> 和 <em>CommonJS</em> 都不可用时，作为“plain”使用。</li>
 </ol>
-<h2 id="choosing-the-target-module-system">Choosing the Target Module System</h2>
-<p>Choosing the target module system depends on your build environment:</p>
-<h3 id="from-intellij-idea">From IntelliJ IDEA</h3>
-<p>Setup per module:
-Open File -&gt; Project Structure…, find your module in Modules and select "Kotlin" facet under it. Choose appropriate
-module system in "Module kind" field.</p>
-<p>Setup for the whole project:
-Open File -&gt; Settings, select "Build, Execution, Deployment" -&gt; "Compiler" -&gt; "Kotlin compiler". Choose appropriate
-module system in "Module kind" field.</p>
-<h3 id="from-maven">From Maven</h3>
-<p>To select module system when compiling via Maven, you should set <code>moduleKind</code> configuration property, i.e. your
-<code>pom.xml</code> should look like this:</p>
+<h2 id="选择目标模块系统">选择目标模块系统</h2>
+<p>选择目标模块系统的方式取决于你的构建环境：</p>
+<h3 id="在-intellij-idea-中">在 IntelliJ IDEA 中</h3>
+<p>设置每个模块：
+打开“File → Project Structure…”，在“Modules”中找到你的模块并选择其下的“Kotlin”facet。在
+“Module kind”字段中选择合适的模块系统。</p>
+<p>为整个项目设置：
+打开“File → Settings”，选择“Build, Execution, Deployment”→“Compiler”→“Kotlin compiler”。 在
+“Module kind”字段中选择合适的模块系统。</p>
+<h3 id="在-maven-中">在 Maven 中</h3>
+<p>要选择通过 Maven 编译时的模块系统，你应该设置 <code>moduleKind</code> 配置属性，即你的
+<code>pom.xml</code> 应该看起来像这样：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
     &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
     &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
@@ -759,33 +759,33 @@ module system in "Module kind" field.</p>
             &lt;/goals&gt;
         &lt;/execution&gt;
     &lt;/executions&gt;
-    &lt;!-- Insert these lines --&gt;
+    &lt;!-- 插入这些行 --&gt;
     &lt;configuration&gt;
         &lt;moduleKind&gt;commonjs&lt;/moduleKind&gt;
     &lt;/configuration&gt;
-    &lt;!-- end of inserted text --&gt;
+    &lt;!-- 插入文本结束 --&gt;
 &lt;/plugin&gt;
 </code></pre>
-<p>Available values are: <code>plain</code>, <code>amd</code>, <code>commonjs</code>, <code>umd</code>.</p>
-<h3 id="from-gradle">From Gradle</h3>
-<p>To select module system when compiling via Gradle, you should set <code>moduleKind</code> property, i.e.</p>
+<p>可用值包括：<code>plain</code>、 <code>amd</code>、 <code>commonjs</code>、 <code>umd</code>。</p>
+<h3 id="在-gradle-中">在 Gradle 中</h3>
+<p>要选择通过 Gradle 编译时的模块系统，你应该设置 <code>moduleKind</code> 属性，即</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js.kotlinOptions.moduleKind = "commonjs"
 </code></pre>
-<p>Available values are similar to Maven.</p>
-<h2 id="jsmodule-annotation"><code>@JsModule</code> annotation</h2>
-<p>To tell Kotlin that an <code>external</code> class, package, function or property is a JavaScript module, you can use <code>@JsModule</code>
-annotation. Consider you have the following CommonJS module called "hello":</p>
+<p>可用的值类似于 Maven。</p>
+<h2 id="jsmodule-注解"><code>@JsModule</code> 注解</h2>
+<p>要告诉 Kotlin 一个 <code>external</code> 类、 包、 函数或者属性是一个 JavaScript 模块，你可以使用 <code>@JsModule</code>
+注解。考虑你有以下 CommonJS 模块叫“hello”：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">module.exports.sayHello = function(name) { alert("Hello, " + name); }
 </code></pre>
-<p>You should declare it like this in Kotlin:</p>
+<p>你应该在 Kotlin 中这样声明：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsModule("hello")
 external fun sayHello(name: String)
 </code></pre>
-<h3 id="applying-jsmodule-to-packages">Applying <code>@JsModule</code> to packages</h3>
-<p>Some JavaScript libraries export packages (namespaces) instead of functions and classes.
-In terms of JavaScript is's an object that has members that <em>are</em> classes, functions and properties.
-Importing these packages as Kotlin objects often looks unnatural.
-The compiler allows to map imported JavaScript packages to Kotlin packages, using the following notation:</p>
+<h3 id="将-jsmodule-应用到包">将 <code>@JsModule</code> 应用到包</h3>
+<p>一些 JavaScript 库导出包（命名空间）而不是函数和类。
+从 JavaScript 角度讲 它是一个具有一些成员的对象，这些成员<em>是</em>类、函数和属性。
+将这些包作为 Kotlin 对象导入通常看起来不自然。
+编译器允许使用以下助记符将导入的 JavaScript 包映射到 Kotlin 包：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JsModule("extModule")
 package ext.jspackage.name
 
@@ -793,39 +793,39 @@ external fun foo()
 
 external class C
 </code></pre>
-<p>where the corresponding JavaScript module is declared like this:</p>
+<p>其中相应的 JavaScript 模块的声明如下：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">module.exports = {
-    foo:  { /* some code here */ },
-    C:  { /* some code here */ }
+    foo:  { /* 此处一些代码 */ },
+    C:  { /* 此处一些代码 */ }
 }
 </code></pre>
-<p>Important: files marked with <code>@file:JsModule</code> annotation can't declare non-external members.
-The example below produces compile-time error:</p>
+<p>重要提示：标有 <code>@file:JsModule</code> 注解的文件无法声明非外部成员。
+下面的示例会产生编译期错误：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JsModule("extModule")
 package ext.jspackage.name
 
 external fun foo()
 
-fun bar() = "!" + foo() + "!" // error here
+fun bar() = "!" + foo() + "!" // 此处报错
 </code></pre>
-<h3 id="importing-deeper-package-hierarchies">Importing deeper package hierarchies</h3>
-<p>In the previous example the JavaScript module exports a single package.
-However, some JavaScript libraries export multiple packages from within a module.
-This case is also supported by Kotlin, though you have to declare a new <code>.kt</code> file for each package you import.</p>
-<p>For example, let's make our example a bit more complicated:</p>
+<h3 id="导入更深的包层次结构">导入更深的包层次结构</h3>
+<p>在前文示例中，JavaScript 模块导出单个包。
+但是，一些 JavaScript 库会从模块中导出多个包。
+Kotlin 也支持这种场景，尽管你必须为每个导入的包声明一个新的 <code>.kt</code> 文件。</p>
+<p>例如，让我们的示例更复杂一些：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">module.exports = {
     mylib: {
         pkg1: {
-            foo: function() { /* some code here */ },
-            bar: function() { /* some code here */ }
+            foo: function() { /* 此处一些代码 */ },
+            bar: function() { /* 此处一些代码 */ }
         },
         pkg2: {
-            baz: function() { /* some code here */ }
+            baz: function() { /* 此处一些代码 */ }
         }
     }
 }
 </code></pre>
-<p>To import this module in Kotlin, you have to write two Kotlin source files:</p>
+<p>要在 Kotlin 中导入该模块，你必须编写两个 Kotlin 源文件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JsModule("extModule")
 @file:JsQualifier("mylib.pkg1")
 package extlib.pkg1
@@ -834,33 +834,33 @@ external fun foo()
 
 external fun bar()
 </code></pre>
-<p>and</p>
+<p>以及</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JsModule("extModule")
 @file:JsQualifier("mylib.pkg2")
 package extlib.pkg2
 
 external fun baz()
 </code></pre>
-<h3 id="jsnonmodule-annotation"><code>@JsNonModule</code> annotation</h3>
-<p>When a declaration has <code>@JsModule</code>, you can't use it from Kotlin code when you don't compile it to a JavaScript module.
-Usually, developers distribute their libraries both as JavaScript modules and downloadable <code>.js</code> files that you
-can copy to project's static resources and include via <code>&lt;script&gt;</code> element. To tell Kotlin that it's ok
-to use a <code>@JsModule</code> declaration from non-module environment, you should put <code>@JsNonModule</code> declaration. For example,
-given JavaScript code:</p>
+<h3 id="jsnonmodule-注解"><code>@JsNonModule</code> 注解</h3>
+<p>当一个声明具有 <code>@JsModule</code>、当你并不把它编译到一个 JavaScript 模块时，你不能在 Kotlin 代码中使用它。
+通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的<code> .js</code> 文件分发，你可以将这些文件复制到
+项目的静态资源，并通过 <code>&lt;script&gt;</code> 元素包含。 要告诉 Kotlin，可以
+在非模块环境中使用一个 <code>@JsModule</code> 声明，你应该放置 <code>@JsNonModule</code> 声明。例如，
+给定 JavaScript 代码：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">function topLevelSayHello(name) { alert("Hello, " + name); }
 if (module &amp;&amp; module.exports) {
     module.exports = topLevelSayHello;
 }
 </code></pre>
-<p>can be described like this:</p>
+<p>可以这样描述：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsModule("hello")
 @JsNonModule
 @JsName("topLevelSayHello")
 external fun sayHello(name: String)
 </code></pre>
-<h3 id="notes">Notes</h3>
-<p>Kotlin is distributed with <code>kotlin.js</code> standard library as a single file, which is itself compiled as an UMD module, so
-you can use it with any module system described above. Also it is available on NPM as <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> package</a></p>
+<h3 id="备注">备注</h3>
+<p>Kotlin 以 <code>kotlin.js</code> 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此
+你可以使用上述任何模块系统。也可以在 NPM 上使用 <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> 包</a></p>
 
         </article>
     </div>
