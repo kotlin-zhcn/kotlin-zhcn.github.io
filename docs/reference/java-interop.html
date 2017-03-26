@@ -906,7 +906,7 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 </tr>
 </tbody>
 </table>
-<p>Java's boxed primitive types are mapped to nullable Kotlin types:</p>
+<p>Java 的装箱原始类型映射到可空的 Kotlin 类型：</p>
 <table class="zebra">
 <thead>
 <tr>
@@ -949,8 +949,8 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 </tr>
 </tbody>
 </table>
-<p>Note that a boxed primitive type used as a type parameter is mapped to a platform type:
-for example, <code>List&lt;java.lang.Integer&gt;</code> becomes a <code>List&lt;Int!&gt;</code> in Kotlin.</p>
+<p>请注意，用作类型参数的装箱原始类型映射到平台类型：
+例如，<code>List&lt;java.lang.Integer&gt;</code> 在 Kotlin 中会成为 <code>List&lt;Int!&gt;</code>。</p>
 <p>集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：
 （下表中的所有 Kotlin 类型都驻留在 <code>kotlin.collections</code>包中）:</p>
 <table class="zebra">
@@ -1132,10 +1132,10 @@ javaObj.removeIndicesVarArg(*array)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
 <h3 id="getclass">getClass()</h3>
-<p>To retrieve the Java class of an object, use the <code>java</code> extension property on a <a href="reflection.html#类引用">class reference</a>.</p>
+<p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo::class.java
 </code></pre>
-<p>The code above uses a <a href="reflection.html#bound-class-references-since-11">bound class reference</a>, which is supported since Kotlin 1.1. You can also use the <code>javaClass</code> extension property.</p>
+<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#bound-class-references-since-11">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo.javaClass
 </code></pre>
 <h3 id="clone">clone()</h3>

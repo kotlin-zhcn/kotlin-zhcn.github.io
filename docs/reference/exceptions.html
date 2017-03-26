@@ -774,20 +774,20 @@ catch (IOException e) {
 <li><a href="http://radio-weblogs.com/0122027/stories/2003/04/01/JavasCheckedExceptionsWereAMistake.html">《Java 的受检异常是一个错误》（Java's checked exceptions were a mistake）</a>（Rod Waldhoff）</li>
 <li><a href="http://www.artima.com/intv/handcuffs.html">《受检异常的烦恼》（The Trouble with Checked Exceptions）</a>（Anders Hejlsberg）</li>
 </ul>
-<h2 id="the-nothing-type">The Nothing type</h2>
-<p><code>throw</code> is an expression in Kotlin, so you can use it, for example, as part of an Elvis expression:</p>
+<h2 id="nothing-类型">Nothing 类型</h2>
+<p>在 Kotlin 中 <code>throw</code> 是表达式，所以你可以使用它（比如）作为 Elvis 表达式的一部分：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = person.name ?: throw IllegalArgumentException("Name required")
 </code></pre>
-<p>The type of the <code>throw</code> expression is the special type <code>Nothing</code>.
-The type has no values and is used to mark code locations that can never be reached.
-In your own code, you can use <code>Nothing</code> to mark a function that never returns:</p>
+<p><code>throw</code> 表达式的类型是特殊类型 <code>Nothing</code>。
+该类型没有值，而是用于标记永远不能达到的代码位置。
+在你自己的代码中，你可以使用 <code>Nothing</code> 来标记一个永远不会返回的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun fail(message: String): Nothing {
     throw IllegalArgumentException(message)
 }
 </code></pre>
-<p>When you call this function, the compiler will know that the execution doesn't continue beyond the call:</p>
+<p>当你调用该函数时，编译器会知道执行不会超出该调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = person.name ?: fail("Name required")
-println(s)     // 's' is known to be initialized at this point
+println(s)     // 在此已知“s”已初始化
 </code></pre>
 <h2 id="java-互操作性">Java 互操作性</h2>
 <p>与 Java 互操作性相关的信息，请参见 <a href="java-interop.html">Java 互操作性章节</a>中的异常部分。</p>

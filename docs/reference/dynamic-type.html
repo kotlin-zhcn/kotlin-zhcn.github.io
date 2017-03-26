@@ -743,9 +743,9 @@ dyn.whatever(*arrayOf(1, 2, 3))
 </code></pre>
 <p>在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin中的 <code>dyn.whatever(1)</code> 变为 <code>dyn.whatever(1)</code>
 。</p>
-<p>When calling functions written in Kotlin on values of <code>dynamic</code> type, keep in mind the name mangling performed by the
-Kotlin to JavaScript compiler. You may need to use the <a href="js-to-kotlin-interop.html#jsname-annotation">@JsName annotation</a>
-to assign well-defined names to the functions that you need to call.</p>
+<p>当在 <code>dynamic</code> 类型的值上调用 Kotlin 写的函数时，请记住由
+Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 <a href="js-to-kotlin-interop.html#jsname-注解">@JsName 注解</a>
+为要调用的函数分配明确的名称。</p>
 <p>动态调用总是返回 <code>dynamic</code> 作为结果，所以我们可以自由地这样链接调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.foo().bar.baz()
 </code></pre>
@@ -754,25 +754,25 @@ to assign well-defined names to the functions that you need to call.</p>
     x -&gt; x.bar() // x 是 dynamic
 }
 </code></pre>
-<p>Expressions using values of <code>dynamic</code> type are translated to JavaScript "as is", and do not use the Kotlin operator conventions.
-The following operators are supported:</p>
+<p>使用 <code>dynamic</code> 类型值的表达式会按照原样转换为 JavaScript，并且不使用 Kotlin 运算符约定。
+支持以下运算符：</p>
 <ul>
-<li>binary: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>&gt;</code>, <code>&lt;</code> <code>&gt;=</code>, <code>&lt;=</code>, <code>==</code>, <code>!=</code>, <code>===</code>, <code>!==</code>, <code>&amp;&amp;</code>, <code>||</code></li>
-<li>unary
+<li>二元：<code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code>、 <code>&gt;</code>、 <code>&lt;</code>、 <code>&gt;=</code>、 <code>&lt;=</code>、 <code>==</code>、 <code>!=</code>、 <code>===</code>、 <code>!==</code>、 <code>&amp;&amp;</code>、 <code>||</code></li>
+<li>一元
     <ul>
-<li>prefix: <code>-</code>, <code>+</code>, <code>!</code></li>
-<li>prefix and postfix: <code>++</code>, <code>--</code></li>
+<li>前置：<code>-</code>、 <code>+</code>、 <code>!</code></li>
+<li>前置及后置：<code>++</code>、 <code>--</code></li>
 </ul>
 </li>
-<li>assignments: <code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code></li>
-<li>indexed access:
+<li>赋值：<code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code></li>
+<li>索引访问：
     <ul>
-<li>read: <code>d[a]</code>, more than one argument is an error</li>
-<li>write: <code>d[a1] = a2</code>, more than one argument in <code>[]</code> is an error</li>
+<li>读：<code>d[a]</code>，多于一个参数会出错</li>
+<li>写：<code>d[a1] = a2</code>，<code>[]</code> 中有多于一个参数会出错</li>
 </ul>
 </li>
 </ul>
-<p><code>in</code>, <code>!in</code> and <code>..</code> operations with values of type <code>dynamic</code> are forbidden.</p>
+<p><code>in</code>、 <code>!in</code> 以及 <code>..</code> 操作对于 <code>dynamic</code> 类型的值是禁用的。</p>
 <p>更多技术说明请参见<a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/dynamic-types.md">规范文档</a>。</p>
 
         </article>

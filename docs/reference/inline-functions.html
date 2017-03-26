@@ -843,22 +843,22 @@ fun main(s: Array&lt;String&gt;) {
 不具有运行时表示的类型（例如非具体化的类型参数或者类似于<code>Nothing</code>的虚构类型）
 不能用作具体化的类型参数的实参。</p>
 <p>相关底层描述，请参见<a href="https://github.com/JetBrains/kotlin/blob/master/spec-docs/reified-type-parameters.md">规范文档</a>。</p>
-<h2 id="inline-properties-since-11">Inline properties (since 1.1)</h2>
-<p>The <code>inline</code> modifier can be used on accessors of properties that don't have a backing field.
-You can annotate individual property accessors:</p>
+<h2 id="内联属性自-11-起">内联属性（自 1.1 起）</h2>
+<p><code>inline</code> 修饰符可用于没有幕后字段的属性的访问器。
+你可以标注独立的属性访问器：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val foo: Foo
     inline get() = Foo()
 
 var bar: Bar
-    get() = ...
-    inline set(v) { ... }
+    get() = ……
+    inline set(v) { …… }
 </code></pre>
-<p>You can also annotate an entire property, which marks both of its accessors as inline:</p>
+<p>你也可以标注整个属性，将它的两个访问器都标记为内联：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline var bar: Bar
-    get() = ...
-    set(v) { ... }
+    get() = ……
+    set(v) { …… }
 </code></pre>
-<p>At the call site, inline accessors are inlined as regular inline functions.</p>
+<p>在调用处，内联访问器如同内联函数一样内联。</p>
 
         </article>
     </div>

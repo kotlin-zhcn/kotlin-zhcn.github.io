@@ -1041,7 +1041,7 @@ Base unboxBase(Box&lt;? extends Base&gt; box) { ... }
 <p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如
 函数或类），从而抑制其中的所有通配符。</p>
 <h3 id="nothing-类型翻译">Nothing 类型翻译</h3>
-<p>The type <a href="exceptions.html#the-nothing-type"><code>Nothing</code></a> is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
+<p>The type <a href="exceptions.html#nothing-类型"><code>Nothing</code></a> is special, because it has no natural counterpart in Java. Indeed, every Java reference type, including
 <code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
 准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun emptyList(): List&lt;Nothing&gt; = listOf()

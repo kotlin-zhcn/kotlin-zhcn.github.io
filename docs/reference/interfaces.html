@@ -791,9 +791,9 @@ class D : A, B {
 <p>上例中，接口 <em>A</em> 和 <em>B</em> 都定义了方法 <em>foo()</em> 和 <em>bar()</em>。 两者都实现了 <em>foo()</em>, 但是只有 <em>B</em> 实现了 <em>bar()</em> (<em>bar()</em> 在 <em>A</em> 中没有标记为抽象，
 因为没有方法体时默认为抽象）。因为 <em>C</em> 是一个实现了 <em>A</em> 的具体类，所以必须要重写 <em>bar()</em> 并
 实现这个抽象方法。</p>
-<p>However, if we derive <em>D</em> from <em>A</em> and <em>B</em>, we need to implement all the methods which we have
-inherited from multiple interfaces, and to specify how exactly <em>D</em> should implement them. This rule applies
-both to methods for which we've inherited a single implementation (<em>bar()</em>) and multiple implementations (<em>foo()</em>).</p>
+<p>然而，如果我们从 <em>A</em> 和 <em>B</em> 派生 <em>D</em>，我们需要实现
+我们从多个接口继承的所有方法，并指明 <em>D</em> 应该如何实现它们。这一规则
+既适用于继承单个实现（<em>bar()</em>）的方法也适用于继承多个实现（<em>foo()</em>）的方法。</p>
 
         </article>
     </div>
