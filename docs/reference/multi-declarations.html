@@ -778,26 +778,26 @@ operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component2() = getValue()
 
 </code></pre>
 <p>因此你可以在 <em class="keyword">for</em>-循环中对映射（以及数据类实例的集合等）自由使用解构声明。</p>
-<h2 id="underscore-for-unused-variables-since-11">Underscore for unused variables (since 1.1)</h2>
-<p>If you don't need a variable in the destructuring declaration, you can place an underscore instead of its name:</p>
+<h2 id="下划线用于未使用的变量自-11-起">下划线用于未使用的变量（自 1.1 起）</h2>
+<p>如果在解构声明中你不需要某个变量，那么可以用下划线取代其名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val (_, status) = getResult()
 </code></pre>
-<h2 id="destructuring-in-lambdas-since-11">Destructuring in Lambdas (since 1.1)</h2>
-<p>You can use the destructuring declarations syntax for lambda parameters.
-If a lambda has a parameter of the <code>Pair</code> type (or <code>Map.Entry</code>, or any other type that has the appropriate <code>componentN</code> functions), you can introduce several new parameters instead of one by putting them in parentheses:</p>
+<h2 id="在-lambda-表达式中解构自-11-起">在 lambda 表达式中解构（自 1.1 起）</h2>
+<p>你可以对 lambda 表达式参数使用解构声明语法。
+如果 lambda 表达式具有 <code>Pair</code> 类型（或者 <code>Map.Entry</code> 或任何其他具有相应 <code>componentN</code> 函数的类型）的参数，那么可以通过将它们放在括号中来引入多个新参数来取代单个新参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { entry -&gt; "${entry.value}!" }
 map.mapValues { (key, value) -&gt; "$value!" }
 </code></pre>
-<p>Note the difference between declaring two parameters and declaring a destructuring pair instead of a parameter:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">{ a -&gt; ... } // one parameter
-{ a, b -&gt; ... } // two parameters
-{ (a, b) -&gt; ... } // a destructured pair
-{ (a, b), c -&gt; ... } // a destructured pair and another parameter
+<p>注意声明两个参数和声明一个解构对来取代单个参数之间的区别：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">{ a -&gt; ... } // 一个参数
+{ a, b -&gt; ... } // 两个参数
+{ (a, b) -&gt; ... } // 一个解构对
+{ (a, b), c -&gt; ... } // 一个解构对以及其他参数
 </code></pre>
-<p>If a component of the destructured parameter is unused, you can replace it with the underscore to avoid inventing its name:</p>
+<p>如果解构的参数中的一个组件未使用，那么可以将其替换为下划线，以避免编造其名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { (_, value) -&gt; "$value!" }
 </code></pre>
-<p>You can specify the type for the whole destructured parameter or for a specific component separately:</p>
+<p>你可以指定整个解构的参数的类型或者分别指定特定组件的类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { (_, value): Map.Entry&lt;Int, String&gt; -&gt; "$value!" }
 
 map.mapValues { (_, value: String) -&gt; "$value!" }

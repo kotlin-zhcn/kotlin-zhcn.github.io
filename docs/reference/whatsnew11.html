@@ -723,7 +723,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlin-11-的新特性">Kotlin 1.1 的新特性</h1>
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="目录">目录</h2>
 <ul>
 <li><a href="#协程（实验性的）">协程</a></li>
 <li><a href="#其他语言功能">其他语言功能</a></li>
@@ -739,26 +739,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin 1.1 的关键新特性是<em>协程</em>，它带来了 <code>future</code>/<code>await</code>、 <code>yield</code> 以及类似的编程模式的
 支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
 而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。</p>
-<p>协程实际上是一个轻量级的线程，可以暂停并稍后恢复。Coroutines are supported through <a href="coroutines.html#挂起函数"><em>suspending functions</em></a>: a call to such a function can potentially suspend a coroutine, and to start a new coroutine we usually use an anonymous suspending functions (i.e. suspending lambdas).</p>
-<p>Let's look at <code>async</code>/<code>await</code> which is implemented in an external library, <a href="https://github.com/kotlin/kotlinx.coroutines">kotlinx.coroutines</a>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// runs the code in the background thread pool
+<p>协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过<a href="coroutines.html#挂起函数"><em>挂起函数</em></a>支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使用匿名挂起函数（即挂起 lambda 表达式）。</p>
+<p>我们来看看在外部库 <a href="https://github.com/kotlin/kotlinx.coroutines">kotlinx.coroutines</a> 中实现的 <code>async</code>/<code>await</code>：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 在后台线程池中运行该代码
 fun asyncOverlay() = async(CommonPool) {
-    // start two async operations
+    // 启动两个异步操作
     val original = asyncLoadImage("original")
     val overlay = asyncLoadImage("overlay")
-    // and then apply overlay to both results
+    // 然后应用叠加到两个结果
     applyOverlay(original.await(), overlay.await())
 }
 
-// launches new coroutine in UI context
+// 在 UI 上下文中启动新的协程
 launch(UI) {
-    // wait for async overlay to complete
+    // 等待异步叠加完成
     val image = asyncOverlay().await()
-    // and then show it in UI
+    // 然后在 UI 中显示
     showImage(image)
 }
 </code></pre>
-<p>Here, <code>async { ... }</code> starts a coroutine and, when we use <code>await()</code>, the execution of the coroutine is suspended while the operation being awaited is executed, and is resumed (possibly on a different thread) when the operation being awaited completes.</p>
+<p>这里，<code>async { …… }</code> 启动一个协程，当我们使用 <code>await()</code> 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。</p>
 <p>标准库通过 <code>yield</code> 和 <code>yieldAll</code> 函数使用协程来支持<em>惰性生成序列</em>。
 在这样的序列中，在取回每个元素之后暂停返回序列元素的代码块，
 并在请求下一个元素时恢复。这里有一个例子：</p>
@@ -769,21 +769,21 @@ fun main(args: Array&lt;String&gt;) {
 //sampleStart
   val seq = buildSequence {
       for (i in 1..5) {
-          // yield a square of i
+          // 产生一个 i 的平方
           yield(i * i)
       }
-      // yield a range
+      // 产生一个区间
       yieldAll(26..28)
   }
   
-  // print the sequence
+  // 输出该序列
   println(seq.toList())
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>Run the code above to see the result. Feel free to edit it and run again!</p>
-<p>For more information, please refer to the <a href="/docs/reference/coroutines.html">coroutine documentation</a> and <a href="/docs/tutorials/coroutines-basic-jvm.html">tutorial</a>.</p>
+<p>运行上面的代码以查看结果。随意编辑它并再次运行！</p>
+<p>更多信息请参见<a href="coroutines.html">协程文档</a>及<a href="/docs/tutorials/coroutines-basic-jvm.html">教程</a>。</p>
 <p>请注意，协程目前还是一个<strong>实验性的功能</strong>，这意味着 Kotlin 团队不承诺
 在最终的 1.1 版本时保持该功能的向后兼容性。</p>
 <h2 id="其他语言功能">其他语言功能</h2>
@@ -798,7 +798,7 @@ typealias OscarWinners = Map&lt;String, String&gt;
 fun countLaLaLand(oscarWinners: OscarWinners) =
         oscarWinners.count { it.value.contains("La La Land") }
 
-// Note that the type names (initial and the type alias) are interchangeable:
+// 请注意，类型名称（初始名和类型别名）是可互换的：
 fun checkLaLaLandIsTheBestMovie(oscarWinners: Map&lt;String, String&gt;) =
         oscarWinners["Best picture"] == "La La Land"
 //sampleEnd
@@ -807,7 +807,7 @@ fun oscarWinners(): OscarWinners {
     return mapOf(
             "Best song" to "City of Stars (La La Land)",
             "Best actress" to "Emma Stone (La La Land)",
-            "Best picture" to "Moonlight" /* ... */)
+            "Best picture" to "Moonlight" /* …… */)
 }
 
 fun main(args: Array&lt;String&gt;) {
@@ -821,7 +821,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md">KEEP</a>。</p>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/type-aliases.md">KEEP</a>。</p>
 <h3 id="已绑定的可调用引用">已绑定的可调用引用</h3>
 <p>现在可以使用 <code>::</code> 操作符来获取指向特定对象实例的方法或属性的<a href="reflection.html#函数引用">成员引用</a>。
 以前这只能用 lambda 表达式表示。
@@ -837,7 +837,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md">KEEP</a>。</p>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md">KEEP</a>。</p>
 <h3 id="密封类和数据类">密封类和数据类</h3>
 <p>Kotlin 1.1 删除了一些对 Kotlin 1.0 中已存在的密封类和数据类的限制。
 现在你可以在同一个文件中的任何地方定义一个密封类的子类，而不只是以作为密封类嵌套类的方式。
@@ -864,7 +864,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅 the <a href="sealed-classes.html#密封类的放宽规则（自-11-起）">documentation</a> or 
+<p>更详细信息请参阅其<a href="sealed-classes.html#密封类的放宽规则（自-11-起）">文档</a>或者
 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md">密封类</a> 及
 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md">数据类</a>的 KEEP。</p>
 <h3 id="lambda-表达式中的解构">lambda 表达式中的解构</h3>
@@ -874,18 +874,18 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
     val map = mapOf(1 to "one", 2 to "two")
-    // before
+    // 之前
     println(map.mapValues { entry -&gt;
         val (key, value) = entry
         "$key -&gt; $value!"
     })
-    // now
+    // 现在
     println(map.mapValues { (key, value) -&gt; "$key -&gt; $value!" })
 //sampleEnd    
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅 the <a href="multi-declarations.html#destructuring-in-lambdas-since-11">documentation</a> 及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md">KEEP</a>。</p>
+<p>更详细信息请参阅其<a href="multi-declarations.html#在-lambda-表达式中解构（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md">KEEP</a>。</p>
 <h3 id="下划线用于未使用参数">下划线用于未使用参数</h3>
 <p>对于具有多个参数的 lambda 表达式，可以使用 <code>_</code> 字符替换不使用的参数的名称：</p>
 <div class="sample" data-min-compiler-version="1.1">
@@ -912,7 +912,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md">KEEP</a>。</p>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscore-for-unused-parameters.md">KEEP</a>。</p>
 <h3 id="数字字面值中的下划线">数字字面值中的下划线</h3>
 <p>正如在 Java 8 中一样，Kotlin 现在允许在数字字面值中使用下划线来分隔数字分组：</p>
 <div class="sample" data-min-compiler-version="1.1">
@@ -929,13 +929,13 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md">KEEP</a>。</p>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/underscores-in-numeric-literals.md">KEEP</a>。</p>
 <h3 id="对于属性的更短语法">对于属性的更短语法</h3>
 <p>对于没有自定义访问器、或者将 getter 定义为表达式主体的属性，现在可以省略属性的类型：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">//sampleStart
 data class Person(val name: String, val age: Int) {
-    val isAdult get() = age &gt;= 20 // Property type inferred to be 'Boolean'
+    val isAdult get() = age &gt;= 20 // // 属性类型推断为 “Boolean”
 }
 //sampleEnd
 
@@ -956,13 +956,13 @@ public val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
 
 fun main(args: Array&lt;String&gt;) {
     val list = listOf('a', 'b')
-    // the getter will be inlined
+    // 其 getter 会内联
     println("Last index of $list is ${list.lastIndex}")
 }
 </code></pre>
 </div>
-<p>You can also mark the entire property as <code>inline</code> - then the modifier is applied to both accessors.</p>
-<p>更多详细信息请参阅 the <a href="inline-functions.html#内联属性（自-11-起）">documentation</a> 及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md">KEEP</a>。</p>
+<p>你也可以将整个属性标记为 <code>inline</code>——这样修饰符应用于两个访问器。</p>
+<p>更详细信息请参阅其<a href="inline-functions.html#内联属性（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md">KEEP</a>。</p>
 <h3 id="局部委托属性">局部委托属性</h3>
 <p>现在可以对局部变量使用<a href="delegated-properties.html">委托属性</a>语法。
 一个可能的用途是定义一个延迟求值的局部变量：</p>
@@ -977,8 +977,8 @@ fun main(args: Array&lt;String&gt;) {
         println("Calculating the answer...")
         42
     }
-    if (needAnswer()) {                     // returns the random value
-        println("The answer is $answer.")   // answer is calculated at this point
+    if (needAnswer()) {                     // 返回随机值
+        println("The answer is $answer.")   // 此时计算出答案
     }
     else {
         println("Sometimes no answer is the answer...")
@@ -987,7 +987,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更多详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md">KEEP</a>。</p>
+<p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md">KEEP</a>。</p>
 <h3 id="委托属性绑定的拦截">委托属性绑定的拦截</h3>
 <p>对于<a href="delegated-properties.html">委托属性</a>，现在可以使用 <code>provideDelegate</code> 操作符拦截委托到属性的绑定
 。
@@ -1010,7 +1010,7 @@ class MyUI {
 </code></pre>
 <p><code>provideDelegate</code> 方法在创建 <code>MyUI</code> 实例期间将会为每个属性调用，并且可以立即执行
 必要的验证。</p>
-<p>Read the <a href="delegated-properties.html#提供委托（自-11-起）">documentation</a> for more details.</p>
+<p>更详细信息请参阅其<a href="delegated-properties.html#提供委托（自-11-起）">文档</a>。</p>
 <h3 id="泛型枚举值访问">泛型枚举值访问</h3>
 <p>现在可以用泛型的方式来枚举枚举类的值：</p>
 <div class="sample" data-min-compiler-version="1.1">
@@ -1042,7 +1042,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法
 会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解
 并将其应用于标记类的基类：</p>
-<p>更多详细信息请参阅 the <a href="type-safe-builders.html#scope-control-dslmarker-since-11">documentation</a> 及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
+<p>更详细信息请参阅其<a href="type-safe-builders.html#scope-control-dslmarker-since-11">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
 <h3 id="rem-操作符"><code>rem</code> 操作符</h3>
 <p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650">这个问题</a>。</p>
 <h2 id="标准库">标准库</h2>
@@ -1080,7 +1080,7 @@ fun Block.copy() = Block().also {
 }
 //sampleEnd
 
-// using 'apply' instead
+// 使用“apply”代替
 fun Block.copy1() = Block().apply {
     this.content = this@copy1.content
 }
@@ -1145,8 +1145,8 @@ fun main(args: Array&lt;String&gt;) {
 //sampleEnd
     println("Counting first letters: $frequencies.")
 
-    // The alternative way that uses 'groupBy' and 'mapValues' creates an intermediate map, 
-    // while 'groupingBy' way counts on the fly.
+    // 另一种方式是使用“groupBy”和“mapValues”创建一个中间的映射，
+    // 而“groupingBy”的方式会即时计数。
     val groupBy = words.groupBy { it.first() }.mapValues { (_, list) -&gt; list.size }
     println("Comparing the result with using 'groupBy': ${groupBy == frequencies}.")
 }
@@ -1232,18 +1232,18 @@ fun main(args: Array&lt;String&gt;) {
 对于实现只读集合，有 <code>AbstractCollection</code>、 <code>AbstractList</code>、 <code>AbstractSet</code> 和 <code>AbstractMap</code>，
 而对于可变集合，有 <code>AbstractMutableCollection</code>、 <code>AbstractMutableList</code>、 <code>AbstractMutableSet</code> 和 <code>AbstractMutableMap</code>。
 在 JVM 上，这些抽象可变集合从 JDK 的抽象集合继承了大部分的功能。</p>
-<h3 id="array-manipulation-functions">Array manipulation functions</h3>
-<p>The standard library now provides a set of functions for element-by-element operations on arrays: comparison
-(<code>contentEquals</code> and <code>contentDeepEquals</code>), hash code calculation (<code>contentHashCode</code> and <code>contentDeepHashCode</code>),
-and conversion to a string (<code>contentToString</code> and <code>contentDeepToString</code>). They're supported both for the JVM
-(where they act as aliases for the corresponding functions in <code>java.util.Arrays</code>) and for JS (where the implementation
-is provided in the Kotlin standard library).</p>
+<h3 id="数组处理函数">数组处理函数</h3>
+<p>标准库现在提供了一组用于逐个元素操作数组的函数：比较
+（<code>contentEquals</code> 和 <code>contentDeepEquals</code>），哈希码计算（<code>contentHashCode</code> 和 <code>contentDeepHashCode</code>），
+以及转换成一个字符串（<code>contentToString</code> 和 <code>contentDeepToString</code>）。它们都支持 JVM
+（它们作为 <code>java.util.Arrays</code> 中的相应函数的别名）和 JS（在
+Kotlin 标准库中提供实现）。</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
     val array = arrayOf("a", "b", "c")
-    println(array.toString())  // JVM implementation: type-and-hash gibberish
-    println(array.contentToString())  // nicely formatted as list
+    println(array.toString())  // JVM 实现：类型及哈希乱码
+    println(array.contentToString())  // 良好格式化为列表
 //sampleEnd
 }
 </code></pre>
@@ -1267,18 +1267,18 @@ is provided in the Kotlin standard library).</p>
 自己的同步机制来访问变量。</p>
 <h3 id="javaxscripting-支持">javax.scripting 支持</h3>
 <p>Kotlin 现在与<a href="https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html">javax.script API</a>（JSR-223）集成。
-The API allows to evaluate snippets of code at runtime:</p>
+其 API 允许在运行时求值代码段：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val engine = ScriptEngineManager().getEngineByExtension("kts")!!
 engine.eval("val x = 3")
-println(engine.eval("x + 2"))  // Prints out 5
+println(engine.eval("x + 2"))  // 输出 5
 </code></pre>
 <p>关于使用 API 的示例项目参见<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/examples/kotlin-jsr223-local-example">这里</a>
 。</p>
 <h3 id="kotlinreflectfull">kotlin.reflect.full</h3>
-<p>To <a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">prepare for Java 9 support</a>, the extension functions and properties in the <code>kotlin-reflect.jar</code> library have been moved
-to the package <code>kotlin.reflect.full</code>. The names in the old package (<code>kotlin.reflect</code>) are deprecated and will be removed in
-Kotlin 1.2. Note that the core reflection interfaces (such as <code>KClass</code>) are part of the Kotlin standard library,
-not <code>kotlin-reflect</code>, and are not affected by the move.</p>
+<p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数和属性已移动
+到 <code>kotlin.reflect.full</code> 包中。旧包（<code>kotlin.reflect</code>）中的名称已弃用，将在
+Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>）是 Kotlin 标准库
+（而不是 <code>kotlin-reflect</code>）的一部分，不受移动影响。</p>
 <h2 id="javascript-后端">JavaScript 后端</h2>
 <h3 id="统一的标准库">统一的标准库</h3>
 <p>Kotlin 标准库的大部分目前可以从代码编译成 JavaScript 来使用。

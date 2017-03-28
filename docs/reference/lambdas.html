@@ -778,12 +778,12 @@ val result = lock(lock, ::toBeSynchronized)
 <p>这些约定可以写<a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx">LINQ-风格</a>的代码:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
 </code></pre>
-<h3 id="underscore-for-unused-variables-since-11">Underscore for unused variables (since 1.1)</h3>
-<p>If the lambda parameter is unused, you can place an underscore instead of its name:</p>
+<h3 id="下划线用于未使用的变量自-11-起">下划线用于未使用的变量（自 1.1 起）</h3>
+<p>如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.forEach { _, value -&gt; println("$value!") }
 </code></pre>
-<h3 id="destructuring-in-lambdas-since-11">Destructuring in Lambdas (since 1.1)</h3>
-<p>Destructuring in lambdas is described as a part of <a href="multi-declarations.html#destructuring-in-lambdas-since-11">destructuring declarations</a>.</p>
+<h3 id="在-lambda-表达式中解构自-11-起">在 lambda 表达式中解构（自 1.1 起）</h3>
+<p>在 lambda 表达式中解构是作为<a href="multi-declarations.html#在-lambda-表达式中解构（自-11-起）">解构声明</a>的一部分描述的。</p>
 <h2 id="内联函数">内联函数</h2>
 <p>使用<a href="inline-functions.html">内联函数</a>有时能提高高阶函数的性能。</p>
 <h2 id="lambda-表达式和匿名函数">Lambda 表达式和匿名函数</h2>

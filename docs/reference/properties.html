@@ -749,7 +749,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     [&lt;getter&gt;]
     [&lt;setter&gt;]
 </code></pre>
-<p>其初始器（initializer）、getter 和 setter 都是可选的。属性类型如果可以从初始器（or from the getter return type, as shown below）中推断出来，也可以省略。</p>
+<p>其初始器（initializer）、getter 和 setter 都是可选的。属性类型如果可以从初始器
+（或者从其 getter 返回值，如下文所示）中推断出来，也可以省略。</p>
 <p>例如:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">var allByDefault: Int? // 错误：需要显式初始化器，隐含默认 getter 和 setter
 var initialized = 1 // 类型 Int、默认 getter 和 setter
@@ -770,8 +771,8 @@ val inferredType = 1 // 类型 Int 、默认 getter
     }
 </code></pre>
 <p>按照惯例，setter 参数的名称是 <code>value</code>，但是如果你喜欢你可以选择一个不同的名称。</p>
-<p>Since Kotlin 1.1, you can omit the property type if it can be inferred from the getter:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty get() = this.size == 0  // has type Boolean
+<p>自 Kotlin 1.1 起，如果可以从 getter 推断出属性类型，则可以省略它：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty get() = this.size == 0  // 具有类型 Boolean
 </code></pre>
 <p>如果你需要改变一个访问器的可见性或者对其注解，但是不需要改变默认的实现，
 你可以定义访问器而不定义其实现:</p>

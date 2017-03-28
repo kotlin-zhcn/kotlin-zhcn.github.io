@@ -729,7 +729,7 @@ Java 也将 Kotlin 类视为 Java 类。但是，JavaScript 是一种动态类�
 Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型系统的全部威力
 ，你可以为 JavaScript 库创建 Kotlin 头文件。</p>
 <h2 id="内联-javascript">内联 JavaScript</h2>
-<p>您可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html">js("…")</a> 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
+<p>你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html">js("…")</a> 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
 例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun jsTypeOf(o: Any): String {
     return js("typeof o")
@@ -793,7 +793,7 @@ JavaScript 实现实际上如何计算这些参数的默认值，是 Kotlin 所�
 <p>这意味着你可以使用一个必需参数和两个可选参数来调用 <code>myFunWithOptionalArgs</code>（它们的
 默认值由一些 JavaScript 代码算出）。</p>
 <h3 id="扩展-javascript-类">扩展 JavaScript 类</h3>
-<p>您可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 <code>external</code> 类并用
+<p>你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 <code>external</code> 类并用
 非 <code>external</code> 类扩展它。例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">external open class HTMLElement : Element() {
     /* 成员 */

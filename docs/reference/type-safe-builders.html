@@ -854,54 +854,54 @@ fun body(init: Body.() -&gt; Unit) = initTag(Body(), init)
 以使其成为标签树的一个适当的部分。</p>
 <p>所有这些都在上面构建器示例顶部导入的包 <code>com.example.html</code> 中定义。
 在最后一节中，你可以阅读这个包的完整定义。</p>
-<h2 id="scope-control-dslmarker-since-11">Scope control: @DslMarker (since 1.1)</h2>
-<p>When using DSLs, one might have come across the problem that too many functions can be called in the context. 
-We can call methods of every available implicit receiver inside a lambda and therefore get an inconsistent result, like the tag <code>head</code> inside another <code>head</code>:</p>
+<h2 id="作用域控制dslmarker自-11-起">作用域控制：@DslMarker（自 1.1 起）</h2>
+<p>使用 DSL 时，可能会遇到上下文中可以调用太多函数的问题。
+我们可以调用 lambda 表达式内部每个可用的隐式接收者的方法，因此得到一个不一致的结果，就像在另一个 <code>head</code> 内部的 <code>head</code> 标记那样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
     head {
-        head {} // should be forbidden
+        head {} // 应该禁止
     }
-    // ...
+    // ……
 }
 </code></pre>
-<p>In this example only members of the nearest implicit receiver <code>this@head</code> must be available; <code>head()</code> is a member of the outer receiver <code>this@html</code>, so it must be illegal to call it.</p>
-<p>To address this problem, in Kotlin 1.1 a special mechanism to control receiver scope was introduced.</p>
-<p>To make the compiler start controlling scopes we only have to annotate the types of all receivers used in the DSL with the same marker annotation.
-For instance, for HTML Builders we declare an annotation <code>@HTMLTagMarker</code>:</p>
+<p>在这个例子中，必须只有最近层的隐式接收者 <code>this@head</code> 的成员可用；<code>head()</code> 是外部接收者 <code>this@html</code> 的成员，所以调用它一定是非法的。</p>
+<p>为了解决这个问题，在 Kotlin 1.1 中引入了一种控制接收者作用域的特殊机制。</p>
+<p>为了使编译器开始控制标记，我们只是必须用相同的标记注解来标注在 DSL 中使用的所有接收者的类型。
+例如，对于 HTML 构建器，我们声明一个注解 <code>@HTMLTagMarker</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@DslMarker
 annotation class HtmlTagMarker
 </code></pre>
-<p>An annotation class is called a DSL marker if it is annotated with the <code>@DslMarker</code> annotation.</p>
-<p>In our DSL all the tag classes extend the same superclass <code>Tag</code>.
-It's enough to annotate only the superclass with <code>@HtmlTagMarker</code> and after that the Kotlin compiler will treat all the inherited classes as annotated:</p>
+<p>如果一个注解类使用 <code>@DslMarker</code> 注解标注，那么该注解类称为 DSL 标记。</p>
+<p>在我们的 DSL 中，所有标签类都扩展了相同的超类 <code>Tag</code>。
+只需使用 <code>@HtmlTagMarker</code> 来标注超类就足够了，之后，Kotlin 编译器会将所有继承的类视为已标注：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@HtmlTagMarker
-abstract class Tag(val name: String) { ... }
+abstract class Tag(val name: String) { …… }
 </code></pre>
-<p>We don't have to annotate the <code>HTML</code> or <code>Head</code> classes with <code>@HtmlTagMarker</code> because their superclass is already annotated:</p>
-<pre><code>class HTML() : Tag("html") { ... }
-class Head() : Tag("head") { ... }
+<p>我们不必用 <code>@HtmlTagMarker</code> 标注 <code>HTML</code> 或 <code>Head</code> 类，因为它们的超类已标注过：</p>
+<pre><code>class HTML() : Tag("html") { …… }
+class Head() : Tag("head") { …… }
 </code></pre>
-<p>After we've added this annotation, the Kotlin compiler knows which implicit receivers are part of the same DSL and allows to call members of the nearest receivers only:</p>
+<p>在添加了这个注解之后，Kotlin 编译器就知道哪些隐式接收者是同一个 DSL 的一部分，并且只允许调用最近层的接收者的成员：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
     head {
-        head { } // error: a member of outer receiver
+        head { } // 错误：外部接收者的成员
     }
-    // ...
+    // ……
 }
 </code></pre>
-<p>Note that it's still possible to call the members of the outer receiver, but to do that you have to specify this receiver explicitly:</p>
+<p>请注意，仍然可以调用外部接收者的成员，但是要做到这一点，你必须明确指定这个接收者：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
     head {
-        this@html.head { } // possible
+        this@html.head { } // 可能
     }
-    // ...
+    // ……
 }
 </code></pre>
 <h2 id="comexamplehtml-包的完整定义"><code>com.example.html</code> 包的完整定义</h2>
 <p>这就是 <code>com.example.html</code> 包的定义（只有上面例子中使用的元素）。
 它构建一个 HTML 树。代码中大量使用了<a href="extensions.html">扩展函数</a>和
 <a href="lambdas.html#带接收者的函数字面值">带接收者的 lambda 表达式</a>。</p>
-<p>Note that the <code>@DslMarker</code> annotation is available only since Kotlin 1.1.</p>
+<p>请注意，<code>@DslMarker</code> 注解在 Kotlin 1.1 起才可用。</p>
 <p><a name="declarations"></a></p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.html
 

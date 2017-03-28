@@ -778,13 +778,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 </tbody>
 </table>
-<p>The <code>inc()</code> and <code>dec()</code> functions must return a value, which will be assigned to the variable on which the
-<code>++</code> or <code>--</code> operation was used. They shouldn't mutate the object on which the <code>inc</code> or <code>dec</code> was invoked.</p>
+<p><code>inc()</code> 和 <code>dec()</code> 函数必须返回一个值，它用于赋值给使用
+<code>++</code> 或 <code>--</code> 操作的变量。它们不应该改变在其上调用 <code>inc()</code> 或 <code>dec()</code> 的对象。</p>
 <p>编译器执行以下步骤来解析<em>后缀</em>形式的操作符，例如 <code>a++</code>：</p>
 <ul>
 <li>确定 <code>a</code> 的类型，令其为 <code>T</code>。</li>
 <li>查找一个适用于类型为 <code>T</code> 的接收者的、带有 <code>operator</code> 修饰符的无参数函数 <code>inc()</code>。</li>
-<li>Checks that the return type of the function is a subtype of <code>T</code>.</li>
+<li>检查函数的返回类型是 <code>T</code> 的子类型。</li>
 </ul>
 <p>计算表达式的步骤是：</p>
 <ul>
@@ -825,7 +825,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 <tr>
 <td><code>a % b</code></td>
-<td><code>a.rem(b)</code>, <code>a.mod(b)</code> (deprecated)</td>
+<td><code>a.rem(b)</code>、 <code>a.mod(b)</code> （已弃用）</td>
 </tr>
 <tr>
 <td><code>a..b </code></td>
@@ -834,13 +834,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tbody>
 </table>
 <p>对于此表中的操作，编译器只是解析成<em>翻译为</em>列中的表达式。</p>
-<p>Note that the <code>rem</code> operator is supported since Kotlin 1.1. Kotlin 1.0 uses the <code>mod</code> operator, which is deprecated
-in Kotlin 1.1.</p>
+<p>请注意，自 Kotlin 1.1 起支持 <code>rem</code> 运算符。Kotlin 1.0 使用 <code>mod</code> 运算符，它在
+Kotlin 1.1 中被弃用。</p>
 <table>
 <thead>
 <tr>
-<th>Expression</th>
-<th>Translated to</th>
+<th>表达式</th>
+<th>翻译为</th>
 </tr>
 </thead>
 <tbody>
@@ -979,7 +979,7 @@ in Kotlin 1.1.</p>
 </table>
 <p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定</p>
 <p>这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值。
-<code>null == null</code> is always true, and <code>x == null</code> for a non-null <code>x</code> is always false and won't invoke <code>x.equals()</code>.</p>
+<code>null == null</code>  总是 true，对于非空的 <code>x</code>，<code>x == null</code> 总是 false 而不会调用 <code>x.equals()</code>。</p>
 <table>
 <thead>
 <tr>

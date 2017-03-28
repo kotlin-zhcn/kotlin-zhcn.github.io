@@ -735,19 +735,19 @@ class Goo {}
 <p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
 所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
 <p>如果没有指明包，该文件的内容属于无名字的默认包。</p>
-<h2 id="default-imports">Default Imports</h2>
-<p>A number of packages are imported into every Kotlin file by default:</p>
+<h2 id="默认导入">默认导入</h2>
+<p>有多个包会默认导入到每个 Kotlin 文件中：</p>
 <ul>
 <li>kotlin.*</li>
 <li>kotlin.annotation.*</li>
 <li>kotlin.collections.*</li>
-<li>kotlin.comparisons.*  (since 1.1)</li>
+<li>kotlin.comparisons.*  （自 1.1 起）</li>
 <li>kotlin.io.*</li>
 <li>kotlin.ranges.*</li>
 <li>kotlin.sequences.*</li>
 <li>kotlin.text.*</li>
 </ul>
-<p>Additional packages are imported depending on the target platform:</p>
+<p>根据目标平台还会导入额外的包：</p>
 <ul>
 <li>JVM:
     <ul>
