@@ -5,7 +5,7 @@ webpackJsonp([8],{
 
 	'use strict';
 
-	var VideoGallery = __webpack_require__(280);
+	var VideoGallery = __webpack_require__(286);
 	var $ = __webpack_require__(7);
 
 	$(document).ready(function () {
@@ -486,7 +486,7 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 265:
+/***/ 271:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -742,14 +742,14 @@ webpackJsonp([8],{
 
 /***/ },
 
-/***/ 280:
+/***/ 286:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var $ = __webpack_require__(7);
 	var NavTree = __webpack_require__(171);
-	var Player = __webpack_require__(265);
+	var Player = __webpack_require__(271);
 
 	NavTree.prototype.templates.leafItem = function (item) {
 	  var hasUrl = 'url' in item,

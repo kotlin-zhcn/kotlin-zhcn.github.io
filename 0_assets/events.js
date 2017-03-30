@@ -1,70 +1,113 @@
-webpackJsonp([3],{
-
-/***/ 0:
+webpackJsonp([3],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
-	var $ = __webpack_require__(7);
-	window.$ = $;
+	var _jquery = __webpack_require__(7);
 
-	var Map = __webpack_require__(233);
-	var EventsStore = __webpack_require__(242);
-	var EventsList = __webpack_require__(250);
-	var emitter = __webpack_require__(234);
-	var EVENTS = __webpack_require__(235);
-	var FilterPanel = __webpack_require__(254);
-	var Fixer = __webpack_require__(260);
+	var _jquery2 = _interopRequireDefault(_jquery);
 
-	__webpack_require__(261);
+	var _fixer = __webpack_require__(233);
+
+	var _fixer2 = _interopRequireDefault(_fixer);
+
+	var _queryString = __webpack_require__(234);
+
+	var _queryString2 = _interopRequireDefault(_queryString);
+
+	var _Map = __webpack_require__(236);
+
+	var _Map2 = _interopRequireDefault(_Map);
+
+	var _EventsStore = __webpack_require__(247);
+
+	var _EventsStore2 = _interopRequireDefault(_EventsStore);
+
+	var _EventsList = __webpack_require__(256);
+
+	var _EventsList2 = _interopRequireDefault(_EventsList);
+
+	var _emitter = __webpack_require__(237);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	var _eventsList = __webpack_require__(238);
+
+	var _eventsList2 = _interopRequireDefault(_eventsList);
+
+	var _index = __webpack_require__(260);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _timeSelectItems = __webpack_require__(265);
+
+	var _timeSelectItems2 = _interopRequireDefault(_timeSelectItems);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(267);
 
 	function refreshMapSize(node, map) {
-	  var width = Math.floor($(window).width() / 2);
-	  $(node).css('width', width);
+	  var width = Math.floor((0, _jquery2.default)(window).width() / 2);
+	  (0, _jquery2.default)(node).css('width', width);
 	  google.maps.event.trigger(map, 'resize');
 	}
 
-	$(document).ready(function () {
-	  var store;
-	  var eventsStorePromise = EventsStore.create('/data/events.json', '/data/cities.json');
+	(0, _jquery2.default)(document).ready(function () {
+	  var query = _queryString2.default.parse(window.location.search);
+	  var time = query.time;
+
+
+	  var initialFilters = {
+	    time: time in _timeSelectItems2.default ? time : 'all',
+	    lang: 'all',
+	    materials: 'all'
+	  };
+
+	  var store = void 0;
+	  var eventsStorePromise = _EventsStore2.default.create('/data/events.json', '/data/cities.json');
 
 	  eventsStorePromise.then(function (eventsStore) {
 	    store = eventsStore;
-	    return Map.create('.js-map', eventsStore);
+	    return _Map2.default.create('.js-map', eventsStore);
 	  }).then(function (map) {
-	    var list = new EventsList('.js-events-list', store);
+	    var events = store.filter(initialFilters);
+	    var list = new _EventsList2.default('.js-events-list', store, initialFilters);
 
-	    list.applyFilteredResults(store.events);
+	    _emitter2.default.emit(_eventsList2.default.EVENTS_FILTERED, initialFilters);
+	    // list.applyFilteredResults(events);
 
-	    var panel = new FilterPanel('.js-filter-panel-wrap', {
+	    var panel = new _index2.default('.js-filter-panel-wrap', {
 	      languages: store.getLanguages(),
 	      materials: store.getMaterials(),
-	      store: store
+	      store: store,
+	      initialFilters: initialFilters
 	    });
 
 	    panel.onSelect(function (filters) {
-	      emitter.emit(EVENTS.EVENTS_FILTERED, filters);
+	      _emitter2.default.emit(_eventsList2.default.EVENTS_FILTERED, filters);
 
 	      if (list.mode == 'detailed') {
-	        emitter.emit(EVENTS.EVENT_DESELECTED);
+	        _emitter2.default.emit(_eventsList2.default.EVENT_DESELECTED);
 	      }
 	    });
 
 	    var node = document.querySelector('.js-events-map-panel-wrap');
 	    refreshMapSize(node, map.instance);
-	    var mapPanel = new Fixer().addElement('.js-events-map-panel', { stretchTo: '.global-footer' });
+	    var mapPanel = new _fixer2.default().addElement('.js-events-map-panel', { stretchTo: '.global-footer' });
 	    mapPanel.on('stretched', refreshMapSize.bind(null, node, map.instance));
-	    $(window).on('resize', refreshMapSize.bind(null, node, map.instance));
-
-	    setTimeout(function () {
-	      panel.timeSelector.select(1);
-	    }, 300);
+	    (0, _jquery2.default)(window).on('resize', refreshMapSize.bind(null, node, map.instance));
 	  });
 	});
 
 /***/ },
-
-/***/ 6:
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -180,8 +223,8 @@ webpackJsonp([3],{
 	module.exports = Dropdown;
 
 /***/ },
-
-/***/ 8:
+/* 7 */,
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -319,8 +362,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 9:
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -389,8 +431,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 10:
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -401,8 +442,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 11:
+/* 11 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -417,8 +457,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 12:
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -446,8 +485,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 13:
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -458,8 +496,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 14:
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -473,8 +510,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 15:
+/* 15 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -487,8 +523,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 16:
+/* 16 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -500,8 +535,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 17:
+/* 17 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -524,8 +558,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 18:
+/* 18 */
 /***/ function(module, exports) {
 
 	// Deprecated
@@ -536,8 +569,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 19:
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -548,8 +580,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 20:
+/* 20 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -563,8 +594,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 21:
+/* 21 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -577,8 +607,7 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 22:
+/* 22 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -590,15 +619,13 @@ webpackJsonp([3],{
 
 
 /***/ },
-
-/***/ 23:
+/* 23 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-
-/***/ 24:
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var nunjucks = __webpack_require__(25);
@@ -698,8 +725,7 @@ webpackJsonp([3],{
 	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/com/dropdown/view.twig"] , dependencies)
 
 /***/ },
-
-/***/ 25:
+/* 25 */
 /***/ function(module, exports) {
 
 	/*! Browser bundle of nunjucks 2.4.2 (slim, only works with precompiled templates) */
@@ -3385,8 +3411,7 @@ webpackJsonp([3],{
 	module.exports = nunjucks;
 
 /***/ },
-
-/***/ 26:
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = function (nunjucks, env, obj, dependencies){
@@ -3437,8 +3462,163 @@ webpackJsonp([3],{
 	};
 
 /***/ },
-
-/***/ 183:
+/* 27 */,
+/* 28 */,
+/* 29 */,
+/* 30 */,
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */,
+/* 37 */,
+/* 38 */,
+/* 39 */,
+/* 40 */,
+/* 41 */,
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// most Object methods by ES6 should accept primitives
@@ -3453,23 +3633,103 @@ webpackJsonp([3],{
 	};
 
 /***/ },
+/* 184 */
+/***/ function(module, exports) {
 
-/***/ 202:
+	"use strict";
+
+	exports.__esModule = true;
+
+	exports.default = function (instance, Constructor) {
+	  if (!(instance instanceof Constructor)) {
+	    throw new TypeError("Cannot call a class as a function");
+	  }
+	};
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	exports.__esModule = true;
+
+	var _defineProperty = __webpack_require__(186);
+
+	var _defineProperty2 = _interopRequireDefault(_defineProperty);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = function () {
+	  function defineProperties(target, props) {
+	    for (var i = 0; i < props.length; i++) {
+	      var descriptor = props[i];
+	      descriptor.enumerable = descriptor.enumerable || false;
+	      descriptor.configurable = true;
+	      if ("value" in descriptor) descriptor.writable = true;
+	      (0, _defineProperty2.default)(target, descriptor.key, descriptor);
+	    }
+	  }
+
+	  return function (Constructor, protoProps, staticProps) {
+	    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+	    if (staticProps) defineProperties(Constructor, staticProps);
+	    return Constructor;
+	  };
+	}();
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = { "default": __webpack_require__(187), __esModule: true };
+
+/***/ },
+/* 187 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(188);
+	var $Object = __webpack_require__(3).Object;
+	module.exports = function defineProperty(it, key, desc){
+	  return $Object.defineProperty(it, key, desc);
+	};
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var $export = __webpack_require__(103);
+	// 19.1.2.4 / 15.2.3.6 Object.defineProperty(O, P, Attributes)
+	$export($export.S + $export.F * !__webpack_require__(112), 'Object', {defineProperty: __webpack_require__(108).f});
+
+/***/ },
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = { "default": __webpack_require__(203), __esModule: true };
 
 /***/ },
-
-/***/ 203:
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(204);
 	module.exports = __webpack_require__(3).Object.keys;
 
 /***/ },
-
-/***/ 204:
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// 19.1.2.14 Object.keys(O)
@@ -3483,2683 +3743,35 @@ webpackJsonp([3],{
 	});
 
 /***/ },
-
-/***/ 233:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var $ = __webpack_require__(7);
-	var emitter = __webpack_require__(234);
-	var EVENTS = __webpack_require__(235);
-	var Marker = __webpack_require__(236);
-	var limitMap = __webpack_require__(240);
-
-	var MAP_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF-gJllft62W5l9xfgE6DBhaa6YmIJs0';
-
-	var mapOptions = {
-	  center: {
-	    lat: 20,
-	    lng: 0
-	  },
-	  zoom: 2,
-	  disableDefaultUI: true,
-	  zoomControl: true,
-	  maxZoom: 12,
-	  minZoom: 2,
-	  styles: __webpack_require__(241)
-	};
-
-	/**
-	 * @param {HTMLElement} node
-	 * @param {EventsStore} store
-	 * @constructor
-	 */
-	function Map(node, store) {
-	  var $mapNode = $(node);
-	  var that = this;
-	  this.node = $mapNode.get(0);
-	  this.store = store;
-	  this.markers = [];
-
-	  var instance = new google.maps.Map($mapNode.get(0), mapOptions);
-	  this.instance = instance;
-
-	  // Restore state after user clicks anywhere except of event marker
-	  instance.addListener('click', function () {
-	    that.reset.bind(this);
-	    emitter.emit(EVENTS.EVENT_DESELECTED);
-	  });
-
-	  // Emit bounds change event
-	  var isFirstBoundsChangedEvent = true;
-	  instance.addListener('bounds_changed', function () {
-	    if (isFirstBoundsChangedEvent) {
-	      isFirstBoundsChangedEvent = false;
-	      return;
-	    }
-
-	    setTimeout(function () {
-	      emitter.emit(EVENTS.MAP_BOUNDS_CHANGED, instance.getBounds());
-	    }, 200);
-	  });
-
-	  // Restore state when marker deselected
-	  emitter.on(EVENTS.EVENT_DESELECTED, function () {
-	    that.reset();
-	  });
-
-	  // Filter markers when filtering event fired
-	  emitter.on(EVENTS.EVENTS_FILTERED, function (filters) {
-	    var filteredEvents = store.filter(filters);
-	    that.applyFilteredResults(filteredEvents);
-	  });
-
-	  emitter.on(EVENTS.EVENT_HIGHLIGHTED, function (event) {
-	    event.marker.highlight();
-	  });
-
-	  emitter.on(EVENTS.EVENT_UNHIGHLIGHTED, function (event) {
-	    event.marker.unhighlight();
-	  });
-
-	  // MARKERS
-	  this._createMarkers(store.events);
-	  var markers = this.markers;
-
-	  emitter.on(EVENTS.EVENT_SELECTED, function (event) {
-	    var currentMarker = event.marker;
-
-	    markers.forEach(function (marker) {
-	      if (marker === currentMarker) {
-	        marker.activate();
-	        marker.openWindow();
-	      } else {
-	        marker.deactivate();
-	        marker.closeWindow();
-	      }
-	    });
-
-	    instance.panTo(event.getBounds());
-	  });
-	}
-
-	/**
-	 * @static
-	 * @param {HTMLElement} node
-	 * @param {EventsStore} store
-	 * @returns {Deferred}
-	 */
-	Map.create = function (node, store) {
-	  return $.getScript(MAP_API_URL).then(function () {
-	    return new Map(node, store);
-	  });
-	};
-
-	/**
-	 * @type {Array<Marker>}
-	 */
-	Map.prototype.markers = null;
-
-	/**
-	 * @param {Array<Event>} events
-	 */
-	Map.prototype._createMarkers = function (events) {
-	  var map = this;
-	  var markers = [];
-
-	  events.forEach(function (event) {
-	    if (!event.city) {
-	      return;
-	    }
-	    markers.push(new Marker(event, map));
-	  });
-
-	  this.markers = markers;
-	};
-
-	Map.prototype._limitWorldBounds = function () {
-	  var map = this.instance;
-
-	  var maxBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-85, -175), new google.maps.LatLng(85, 175));
-
-	  limitMap(map, maxBounds);
-	};
-
-	Map.prototype.reset = function () {
-	  this.markers.forEach(function (marker) {
-	    marker.activate();
-	    marker.closeWindow();
-	  });
-	};
-
-	Map.prototype.applyFilteredResults = function (filteredEvents) {
-	  var map = this.instance;
-
-	  this.store.events.forEach(function (event) {
-	    filteredEvents.indexOf(event) > -1 ? event.marker.show() : event.marker.hide();
-	  });
-
-	  var eventsBounds = new google.maps.LatLngBounds(null);
-
-	  filteredEvents.forEach(function (event) {
-	    eventsBounds.extend(event.getBounds());
-	  });
-
-	  if (filteredEvents.length == 0) {
-	    return;
-	  }
-
-	  map.fitBounds(eventsBounds);
-
-	  var zoom = map.getZoom();
-	  if (zoom <= 2) {
-	    map.setCenter({ lat: 39.90971744298563, lng: -49.34941524999998 });
-	  }
-	};
-
-	module.exports = Map;
-
-/***/ },
-
-/***/ 234:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var emitter = __webpack_require__(8);
-
-	module.exports = emitter({});
-
-/***/ },
-
-/***/ 235:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	var events = {
-	  /**
-	   * @param {Object} Filters request
-	   */
-	  EVENTS_FILTERED: 'events_filtered',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_HIGHLIGHTED: 'event_highlighted',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_UNHIGHLIGHTED: 'event_unhighlighted',
-
-	  /**
-	   * @param {Event}
-	   */
-	  EVENT_SELECTED: 'event_selected',
-
-	  /**
-	   * No params
-	   */
-	  EVENT_DESELECTED: 'event_deselected',
-
-	  /**
-	   * @param {google.maps.LatLng} New map bounds
-	   */
-	  MAP_BOUNDS_CHANGED: 'map_bounds_changed'
-	};
-
-	module.exports = events;
-
-/***/ },
-
-/***/ 236:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var icon = __webpack_require__(237);
-	var inactiveIcon = __webpack_require__(238);
-	var highlightedIcon = __webpack_require__(239);
-	var EVENTS = __webpack_require__(235);
-	var emitter = __webpack_require__(234);
-
-	/**
-	 * @param {Event} event
-	 * @param {Object} map Google Map instance
-	 * @constructor
-	 */
-	function Marker(event, map) {
-	  var marker = this;
-	  this.event = event;
-	  event.marker = this;
-	  this.map = map;
-	  this.isActive = true;
-	  this.isHighlighted = false;
-
-	  // Marker instance
-	  var markerInstance = new google.maps.Marker({
-	    title: event.title,
-	    position: event.city.position,
-	    draggable: false,
-	    visible: true,
-	    icon: this.getIcon(),
-	    map: map ? map.instance : null
-	  });
-
-	  this.marker = markerInstance;
-
-	  markerInstance.addListener('click', function () {
-	    emitter.emit(EVENTS.EVENT_SELECTED, event);
-	  });
-
-	  markerInstance.addListener('mouseover', function () {
-	    marker.highlight();
-	    emitter.emit(EVENTS.EVENT_HIGHLIGHTED, event);
-	  });
-
-	  markerInstance.addListener('mouseout', function () {
-	    //marker.isActive ? marker.activate() : marker.deactivate();
-	    marker.unhighlight();
-	    emitter.emit(EVENTS.EVENT_UNHIGHLIGHTED, event);
-	  });
-
-	  // Info window
-	  var infoWindow = new google.maps.InfoWindow({
-	    content: event.title
-	  });
-
-	  infoWindow.addListener('closeclick', function () {
-	    emitter.emit(EVENTS.EVENT_DESELECTED);
-	  });
-
-	  this.infoWindow = infoWindow;
-	}
-
-	Marker.prototype.getIcon = function () {
-	  var mapZoom = this.map.instance.getZoom();
-	  var isActive = this.isActive;
-	  var isHighlighted = this.isHighlighted;
-	  var iconUrl = isActive ? icon : inactiveIcon;
-
-	  if (isHighlighted) {
-	    iconUrl = highlightedIcon;
-	  }
-
-	  return {
-	    scaledSize: {
-	      width: 15,
-	      height: 15
-	    },
-	    opacity: 1,
-	    url: iconUrl
-	  };
-	};
-
-	Marker.prototype.openWindow = function () {
-	  this.infoWindow.open(this.map.instance, this.marker);
-	};
-
-	Marker.prototype.closeWindow = function () {
-	  this.infoWindow.close();
-	};
-
-	Marker.prototype.highlight = function () {
-	  this.isHighlighted = true;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(30);
-	};
-
-	Marker.prototype.unhighlight = function () {
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(this.isActive ? 2 : 1);
-	};
-
-	Marker.prototype.activate = function () {
-	  this.isActive = true;
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(2);
-	};
-
-	Marker.prototype.deactivate = function () {
-	  this.isActive = false;
-	  this.isHighlighted = false;
-	  this.marker.setIcon(this.getIcon());
-	  this.marker.setZIndex(1);
-	};
-
-	Marker.prototype.show = function () {
-	  this.marker.setVisible(true);
-	};
-
-	Marker.prototype.hide = function () {
-	  this.marker.setVisible(false);
-	};
-
-	module.exports = Marker;
-
-/***/ },
-
-/***/ 237:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2MkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2M0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu8kvhoAAAEdSURBVHjaYvj//z8DGnYF4gVAfAeIf0LpBVBxFLXIHFMgPvMfPzgDVYei2QyIP/4nDnyEqodrPguX+vPt//+bdf//71X+/38b2///+5QhfJA4AoDUMzACCTcGBoadDCDw9xsDw3FXBoZ3xxgYGBkgAEYLWjEwWOxmYGDmggowuDIBiSgYj+FmBwPDa6DGvwwQ/A+JfgsUv9PFgARiQZpt4NyHyxAasRnwaDGyZhsWICEL535+DAwEJOcyorG/PkHWLAOy+TGcyw405w8Dpu0wzCqNrPkpSPMROFc+ElXxHzS2XCyy5iMgzcvhXJ1KBgYRK0z/grAQUFyzHFnzYuzxfBYYr6uB8bsAGM9rgPQ57PFMlRRGUdomK1cBBBgA22PnG6kCJJEAAAAASUVORK5CYII="
-
-/***/ },
-
-/***/ 238:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NkNDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZFMDlDQ0NDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2QUM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2QkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnJIETYAAAFFSURBVHjapFMxa4NAGH0aEYekGQRRbAWdMre0U8amP6KQ39U10KG/oXumkHTM1ExixOCiiEGC2vvsXbi0JRTy4HHf0/e+u/NOtW1b/OCEccb4yVjxccafn3hlcc+4bM9jyX0n4QfGrP0fMu6Hhm+8MF5R0TQN4jhGmqY4HA7QdR2macJxHKiqCu4j/53COjyx4l0E1+s1iqLoOiqKchz7/T5Go5FoQJhQ9SxUGIbIsgx1XXeNZOZ5ju12CwlTCo+FSpLkGKRRrmnc7XZyeEx7vhGqLMvuA8rLlev9fi+Hr2nmUChN044z/kV6LyGi8Fwo27bPhi3LksNzCr8J5fs+hsPhr30TB4MBPM+Tw69Kd1OAFeMtFWTcbDaIoghVVcEwDLiuiyAI0Ov1RPCDzvmiGyZOfMH4yFdwDivuW3Tqkr/qS4ABAMsPtTbiv1/WAAAAAElFTkSuQmCC"
-
-/***/ },
-
-/***/ 239:
-/***/ function(module, exports) {
-
-	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjhDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjlDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2NkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2N0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBIRlgAAAD/SURBVHjarJO9CsIwFEZv/EEHF3GTOjiKTopOrvUhBN9NcPAZ3LsI6uKoKCo6KVJQodAav5Q0NrUoqIGT5JZ7btImJc45abhkgj5YAkeOff95JDcsNcEE8DdM/DxNdqkF7A9igO3nw2N+BY9NiahOonlgBQ7AAVlQBGWQpKDNKMkbDFU6CEZKHIMzYDItGPOgqRUwE+i6KlyAoywiuIfGk9zRs/WE3FbhJiTGFdhqcjuFrqTCC+Ch7bLI/KbJhlh5p8IMcGNWD0hr8l7IlgpLkWQ3Mjc02RLyUIVVUIh5X09+7YomD+LPeQ7W4Apy8oxrr+f80w37w93+8q96CDAAS8tJ7FUFwroAAAAASUVORK5CYII="
-
-/***/ },
-
-/***/ 240:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/**
-	 * Partially taken from https://github.com/ubilabs/google-map-bounds-limit
-	 */
-
-	var ignoreNextMapMove = false;
-	var lastValidCenter = null;
-
-	/**
-	 * Limits panning on the map beyond the given latitude.
-	 * @param  {google.maps.Map} map  The google maps instance
-	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
-	 */
-	function limitMapMove(map, maxBounds) {
-	  if (ignoreNextMapMove) {
-	    ignoreNextMapMove = false;
-	    return;
-	  }
-
-	  var bounds = map.getBounds();
-
-	  if (maxBounds.contains(bounds.getNorthEast()) && maxBounds.contains(bounds.getSouthWest())) {
-	    lastValidCenter = map.getCenter();
-	    return;
-	  }
-
-	  ignoreNextMapMove = true;
-
-	  if (lastValidCenter) {
-	    map.setCenter(lastValidCenter);
-	    return;
-	  }
-
-	  lastValidCenter = recalculateMapCenter(map, maxBounds);
-	  map.setCenter(lastValidCenter);
-	}
-
-	/**
-	 * Calculate a new map-center such that the visible area of the map is
-	 * completely within given max bounds.
-	 * @param  {google.maps.Map} map  The google maps instance
-	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
-	 * @return {google.maps.LatLng}  The recalculated map center
-	 */
-	function recalculateMapCenter(map, maxBounds) {
-	  var center = map.getCenter();
-	  var bounds = map.getBounds();
-	  var offsets = getBoundsOffsets(bounds, maxBounds);
-	  var newCenter = {
-	    lat: center.lat(),
-	    lng: center.lng()
-	  };
-
-	  if (offsets.north > 0) {
-	    newCenter.lat = center.lat() - offsets.n;
-	  }
-
-	  if (offsets.east > 0) {
-	    newCenter.lng = center.lng() - offsets.e;
-	  }
-
-	  if (offsets.south > 0) {
-	    newCenter.lat = center.lat() + offsets.s;
-	  }
-
-	  if (offsets.west > 0) {
-	    newCenter.lng = center.lng() + offsets.w;
-	  }
-
-	  return new google.maps.LatLng(newCenter.lat, newCenter.lng);
-	}
-
-	/**
-	 * Calculates the boundary-offsets in every direction for the given pair of
-	 * LatLngBounds. Returned values are > 0 if inner is smaller than outer in
-	 * that direction (when all values are >= 0, inner is a true subset of outer).
-	 * @param {google.maps.LatLngBounds} inner The first bounds
-	 * @param {google.maps.LatLngBounds} outer The second bounds
-	 * @return {Object} The numeric offset per direction.
-	 */
-	function getBoundsOffsets(inner, outer) {
-	  return {
-	    north: inner.getNorthEast().lat() - outer.getNorthEast().lat(),
-	    east: inner.getNorthEast().lng() - outer.getNorthEast().lng(),
-	    south: outer.getSouthWest().lat() - inner.getSouthWest().lat(),
-	    west: outer.getSouthWest().lng() - inner.getSouthWest().lng()
-	  };
-	}
-
-	/**
-	 * Limits latitude panning to a given limit.
-	 * @param  {google.maps.Map} map  The google map object
-	 * @param  {google.maps.LatLngBounds} maxBounds  The bounds limit
-	 */
-	function limit(map, maxBounds) {
-	  map.addListener('center_changed', function () {
-	    limitMapMove(map, maxBounds);
-	  });
-	}
-
-	module.exports = limit;
-
-/***/ },
-
-/***/ 241:
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = [{
-	  featureType: 'all',
-	  'stylers': [{ 'visibility': 'on' }, { 'hue': '#0044ff' }, { 'saturation': -80 }]
-	}, {
-	  'featureType': 'road.arterial',
-	  'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }]
-	}, {
-	  'featureType': 'water',
-	  'stylers': [{ 'color': '#d1dbe1' }, { 'visibility': 'on' }]
-	}, {
-	  'featureType': 'water',
-	  'elementType': 'labels.text.fill',
-	  'stylers': [{ 'color': '#456184' }]
-	}, {
-	  'featureType': 'water',
-	  'elementType': 'labels.text.stroke',
-	  'stylers': [{ 'weight': 2 }]
-	}];
-
-/***/ },
-
-/***/ 242:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _keys = __webpack_require__(202);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var $ = __webpack_require__(7);
-	var Event = __webpack_require__(243);
-	var City = __webpack_require__(248);
-	var languages = __webpack_require__(249);
-
-	/**
-	 * @param {Object} eventsData Raw events data
-	 * @param {Object} citiesData Raw cities data
-	 * @constructor
-	 */
-	function EventsStore(eventsData, citiesData) {
-	  var store = this;
-	  this.events = [];
-	  this.cities = [];
-
-	  var citiesNames = citiesData.map(function (data) {
-	    return data.name;
-	  });
-
-	  var citiesMissedInDict = [];
-
-	  eventsData.filter(function (data) {
-	    return typeof data.location !== 'undefined';
-	  }).map(function (data) {
-	    return data.location;
-	  }).filter(function (value, index, self) {
-	    return self.indexOf(value) === index;
-	  }).forEach(function (eventCity) {
-	    if (citiesNames.indexOf(eventCity) === -1) {
-	      citiesMissedInDict.push(eventCity);
-	    }
-	  });
-
-	  if (citiesMissedInDict.length > 0) {
-	    console.warn('Cities missed in cities.yml:\n' + citiesMissedInDict.join('\n'));
-	  }
-
-	  citiesData.forEach(function (data) {
-	    store.cities.push(new City(data));
-	  });
-
-	  eventsData.forEach(function (data, i) {
-	    var eventCityExistInDict = data.location && citiesNames.indexOf(data.location) !== -1;
-
-	    if (!eventCityExistInDict) {
-	      return;
-	    }
-
-	    data.id = i.toString();
-	    store.events.push(new Event(data));
-	  });
-
-	  store.events.forEach(function (event) {
-	    var eventCity = store.cities.filter(function (city) {
-	      return city.name == event.city;
-	    })[0];
-
-	    event.city = eventCity;
-	  });
-
-	  this.sort();
-	}
-
-	/**
-	 * @static
-	 * @param {string} eventsUrl
-	 * @param {string} citiesUrl
-	 * @returns {Deferred}
-	 */
-	EventsStore.create = function (eventsUrl, citiesUrl) {
-	  var events;
-	  var cities;
-
-	  return $.getJSON(eventsUrl).then(function (result) {
-	    events = result;
-	  }).then(function () {
-	    return $.getJSON(citiesUrl);
-	  }).then(function (result) {
-	    cities = result;
-	  }).then(function () {
-	    return new EventsStore(events, cities);
-	  });
-	};
-
-	/**
-	 * @static
-	 */
-	EventsStore.filters = {
-	  time: function time(_time, event) {
-	    var isMatch = false;
-	    if (_time == 'upcoming') isMatch = event.isUpcoming();else if (_time == 'past') isMatch = !event.isUpcoming();else isMatch = true;
-
-	    return isMatch;
-	  },
-
-	  lang: function lang(_lang, event) {
-	    return event.lang == _lang;
-	  },
-
-	  materials: function materials(materialType, event) {
-	    return event.content && event.content.hasOwnProperty(materialType);
-	  },
-
-	  bounds: function bounds(_bounds, event) {
-	    return _bounds.contains(event.getBounds());
-	  }
-	};
-
-	/**
-	 * @static
-	 */
-	EventsStore.materialsDict = {
-	  examples: 'Examples',
-	  slides: 'Slides',
-	  video: 'Video',
-	  pdf: 'PDF',
-	  article: 'Article'
-	};
-
-	EventsStore.prototype.sort = function () {
-	  this.events.sort(function (a, b) {
-	    var compareA = a.endDate;
-	    var compareB = b.endDate;
-
-	    if (compareA === compareB) {
-	      return 0;
-	    }
-
-	    return compareA < compareB ? 1 : -1;
-	  });
-	};
-
-	/**
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.getUpcomingEvents = function (events) {
-	  var events = events || this.events;
-	  return events.filter(function (event) {
-	    return event.isUpcoming();
-	  }).sort(function (eventA, eventB) {
-	    var startA = eventA.startDate;
-	    var startB = eventB.startDate;
-
-	    if (startA === startB) {
-	      return 0;
-	    }
-
-	    return startA < startB ? -1 : 1;
-	  });
-	};
-
-	/**
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.getPastEvents = function (events) {
-	  var events = events || this.events;
-	  return events.filter(function (event) {
-	    return !event.isUpcoming();
-	  });
-	};
-
-	/**
-	 * @param {Object} constraints
-	 * @param {string} constraints.time
-	 * @param {string} constraints.lang
-	 * @param {string} constraints.materials
-	 * @param {google.maps.LatLng} constraints.bounds
-	 * @param {Array<Event>} [events]
-	 * @returns {Array<Event>}
-	 */
-	EventsStore.prototype.filter = function (constraints, events) {
-	  var events = events || this.events;
-	  var filtered = [];
-	  var constraintNames = (0, _keys2.default)(constraints);
-
-	  events.forEach(function (event) {
-	    var performedConstraintsCount = 0;
-
-	    constraintNames.forEach(function (name) {
-	      var constraint = constraints[name];
-	      var filter = EventsStore.filters[name];
-	      if (filter(constraint, event)) {
-	        performedConstraintsCount++;
-	      }
-	    });
-
-	    if (performedConstraintsCount == constraintNames.length) filtered.push(event);
-	  });
-
-	  return filtered;
-	};
-
-	/**
-	 * @returns {Object<string, string>}
-	 */
-	EventsStore.prototype.getLanguages = function () {
-	  var idsList = $.unique(this.events.map(function (event) {
-	    return event.lang;
-	  }));
-	  var map = {};
-
-	  idsList.forEach(function (langId) {
-	    if (langId in languages) {
-	      map[langId] = languages[langId].name;
-	    }
-	  });
-
-	  return map;
-	};
-
-	/**
-	 * @see EventsStore.materialsDict
-	 * @returns {Object<string, string>}
-	 */
-	EventsStore.prototype.getMaterials = function () {
-	  var list = [];
-
-	  this.events.forEach(function (event) {
-	    if (event.content) {
-	      list = list.concat((0, _keys2.default)(event.content));
-	    }
-	  });
-
-	  var listMap = {};
-	  list = $.unique(list);
-	  list.forEach(function (materialId) {
-	    listMap[materialId] = EventsStore.materialsDict[materialId];
-	  });
-
-	  return listMap;
-	};
-
-	module.exports = EventsStore;
-
-/***/ },
-
-/***/ 243:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(244);
-	var template = __webpack_require__(247);
-
-	var $ = __webpack_require__(7);
-
-	var DEFAULT_LANG = 'en';
-
-	/**
-	 * @param {Object} data
-	 * @constructor
-	 */
-	function Event(data) {
-	  this.id = data.id;
-	  this.title = data.title;
-	  this.url = data.url;
-	  this.subject = data.subject;
-	  this.speaker = data.speaker;
-	  this.description = data.description;
-
-	  if (!data.location) {
-	    console.warn(data.title + ' has no location');
-	  }
-
-	  this.city = data.location;
-	  this.lang = data.lang || DEFAULT_LANG;
-	  this.content = data.content;
-
-	  this.startDate = new Date(data.startDate);
-	  this.endDate = new Date(data.endDate);
-	  this.formattedDate = formatDate(this.startDate, this.endDate);
-	}
-
-	/** @type {string} */
-	Event.prototype.title = null;
-
-	/** @type {string} */
-	Event.prototype.url = null;
-
-	/** @type {string} */
-	Event.prototype.subject = null;
-
-	/** @type {string} */
-	Event.prototype.speaker = null;
-
-	/** @type {City} */
-	Event.prototype.city = null;
-
-	/** @type {Array<Date>} */
-	Event.prototype.startDate = null;
-
-	/** @type {Array<Date>} */
-	Event.prototype.endDate = null;
-
-	/** @type {string} */
-	Event.prototype.formattedDate = null;
-
-	/** @type {string} */
-	Event.prototype.lang = null;
-
-	/** @type {Object} Materials */
-	Event.prototype.content = null;
-
-	/** @type {string} */
-	Event.prototype.description = null;
-
-	/** @type {Marker} */
-	Event.prototype.marker = null;
-
-	Event.prototype.isUpcoming = function () {
-	  return this.endDate >= new Date();
-	};
-
-	Event.prototype.getBounds = function () {
-	  return this.city.getBounds();
-	};
-
-	Event.prototype.render = function (mountNode) {
-	  var rendered = template.render({ event: this, mode: 'normal' });
-
-	  if (mountNode) {
-	    var tempElement = document.createElement('div');
-	    tempElement.innerHTML = rendered;
-	    var node = tempElement.childNodes[0];
-	    this.node = node;
-	    mountNode.appendChild(node);
-	  }
-
-	  return rendered;
-	};
-
-	Event.prototype.renderDetailed = function () {
-	  return template.render({ event: this, mode: 'detailed' });
-	};
-
-	Event.prototype.highlight = function () {
-	  $(this.node).addClass('_highlighted');
-	};
-
-	Event.prototype.unhighlight = function () {
-	  $(this.node).removeClass('_highlighted');
-	};
-
-	Event.prototype.show = function () {
-	  $(this.node).show();
-	};
-
-	Event.prototype.hide = function () {
-	  $(this.node).hide();
-	};
-
-	function formatDate(startDate, endDate) {
-	  var formatted = '';
-	  var isRange = startDate == endDate;
-	  var nowYear = new Date().getFullYear();
-	  var year, month, day;
-
-	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-	  if (isRange) {
-	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
-	    year = [startDate.getFullYear(), endDate.getFullYear()];
-	    day = [startDate.getDate(), endDate.getDate()];
-
-	    if (month[0] !== month[1]) {
-	      formatted = month[0] + ' ' + day[0] + '-' + month[1] + ' ' + day[1];
-	    } else {
-	      formatted = month[0] + ' ' + day[0] + '-' + day[1];
-	    }
-
-	    if (year[0] !== nowYear || year[1] !== nowYear) {
-	      formatted += ', ' + year[1];
-	    }
-	  } else {
-	    year = startDate.getFullYear();
-	    month = months[startDate.getMonth()];
-	    day = startDate.getDate();
-
-	    formatted = month + ' ' + day;
-	    if (year !== nowYear) {
-	      formatted += ', ' + year;
-	    }
-	  }
-
-	  return formatted;
-	}
-
-	module.exports = Event;
-
-/***/ },
-
-/***/ 244:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 247:
-/***/ function(module, exports, __webpack_require__) {
-
-	var nunjucks = __webpack_require__(25);
-	var env;
-	if (!nunjucks.currentEnv){
-		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
-	} else {
-		env = nunjucks.currentEnv;
-	}
-	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
-
-
-
-
-	var shim = __webpack_require__(26);
-
-
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/event/view.twig"] = (function() {
-	function root(env, context, frame, runtime, cb) {
-	var lineno = null;
-	var colno = null;
-	var output = "";
-	try {
-	var parentTemplate = null;
-	output += "<div class=\"event _";
-	output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "mode"), env.opts.autoescape);
-	output += "\" data-id=\"";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"id"), env.opts.autoescape);
-	output += "\">\n    ";
-	if(runtime.contextOrFrameLookup(context, frame, "mode") == "detailed") {
-	output += "\n        <span class=\"event-close js-close\"></span>\n    ";
-	;
-	}
-	output += "\n\n    <div class=\"event-date\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"formattedDate"), env.opts.autoescape);
-	output += "</div>\n    <div class=\"event-title\">\n        ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url")) {
-	output += "\n            <a class=\"event-url\" href=\"";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url"), env.opts.autoescape);
-	output += "\" target=\"_blank\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
-	output += "</a>,\n        ";
-	;
-	}
-	else {
-	output += "\n            ";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
-	output += "\n        ";
-	;
-	}
-	output += "\n        ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city")) {
-	output += "\n            <span class=\"event-location\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city"), env.opts.autoescape);
-	output += "</span>\n        ";
-	;
-	}
-	output += "\n    </div>\n\n    <div class=\"event-subject\">\n        <span class=\"text\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
-	output += "</span>\n\n        <div class=\"event-info-indicators\">\n            ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
-	output += "\n                <div class=\"event-lang\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
-	output += "</div>\n            ";
-	;
-	}
-	output += "\n            ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
-	output += "\n                ";
-	frame = frame.push();
-	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
-	if(t_3) {var t_1;
-	if(runtime.isArray(t_3)) {
-	var t_2 = t_3.length;
-	for(t_1=0; t_1 < t_3.length; t_1++) {
-	var t_4 = t_3[t_1][0]
-	frame.set("type", t_3[t_1][0]);
-	var t_5 = t_3[t_1][1]
-	frame.set("href", t_3[t_1][1]);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
-	output += runtime.suppressValue(t_4, env.opts.autoescape);
-	output += "\" href=\"";
-	output += runtime.suppressValue(t_5, env.opts.autoescape);
-	output += "\" target=\"_blank\" title=\"";
-	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_4), env.opts.autoescape);
-	output += "\"></a>\n                ";
-	;
-	}
-	} else {
-	t_1 = -1;
-	var t_2 = runtime.keys(t_3).length;
-	for(var t_6 in t_3) {
-	t_1++;
-	var t_7 = t_3[t_6];
-	frame.set("type", t_6);
-	frame.set("href", t_7);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
-	output += runtime.suppressValue(t_6, env.opts.autoescape);
-	output += "\" href=\"";
-	output += runtime.suppressValue(t_7, env.opts.autoescape);
-	output += "\" target=\"_blank\" title=\"";
-	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_6), env.opts.autoescape);
-	output += "\"></a>\n                ";
-	;
-	}
-	}
-	}
-	frame = frame.pop();
-	output += "\n            ";
-	;
-	}
-	output += "\n        </div>\n    </div>\n\n    <div class=\"event-speaker\">\n        ";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"speaker"), env.opts.autoescape);
-	output += "\n    </div>\n\n    ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")) {
-	output += "\n        <div class=\"event-description\">\n            ";
-	output += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")), env.opts.autoescape);
-	output += "\n        </div>\n    ";
-	;
-	}
-	output += "\n</div>";
-	if(parentTemplate) {
-	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
-	} else {
-	cb(null, output);
-	}
-	;
-	} catch (e) {
-	  cb(runtime.handleError(e, lineno, colno));
-	}
-	}
-	return {
-	root: root
-	};
-
-	})();
-	})();
-
-
-
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/event/view.twig"] , dependencies)
-
-/***/ },
-
-/***/ 248:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	/**
-	 *
-	 * @param {Object} data
-	 * @param {string} data.name
-	 * @param {Object} data.position
-	 * @param {Number} data.position.lat
-	 * @param {Number} data.position.lng
-	 * @constructor
-	 */
-	function City(data) {
-	  this.name = data.name;
-	  this.position = data.geo;
-	  this.bounds = null;
-	}
-
-	City.prototype.toString = function () {
-	  return this.name;
-	};
-
-	City.prototype.getBounds = function () {
-	  var position = this.position;
-
-	  if (!this.bounds) this.bounds = new google.maps.LatLng(position.lat, position.lng);
-
-	  return this.bounds;
-	};
-
-	module.exports = City;
-
-/***/ },
-
-/***/ 249:
-/***/ function(module, exports) {
-
-	"use strict";
-
-	var isoLangs = {
-	  "ab": {
-	    "name": "Abkhaz",
-	    "nativeName": "аҧсуа"
-	  },
-	  "aa": {
-	    "name": "Afar",
-	    "nativeName": "Afaraf"
-	  },
-	  "af": {
-	    "name": "Afrikaans",
-	    "nativeName": "Afrikaans"
-	  },
-	  "ak": {
-	    "name": "Akan",
-	    "nativeName": "Akan"
-	  },
-	  "sq": {
-	    "name": "Albanian",
-	    "nativeName": "Shqip"
-	  },
-	  "am": {
-	    "name": "Amharic",
-	    "nativeName": "አማርኛ"
-	  },
-	  "ar": {
-	    "name": "Arabic",
-	    "nativeName": "العربية"
-	  },
-	  "an": {
-	    "name": "Aragonese",
-	    "nativeName": "Aragonés"
-	  },
-	  "hy": {
-	    "name": "Armenian",
-	    "nativeName": "Հայերեն"
-	  },
-	  "as": {
-	    "name": "Assamese",
-	    "nativeName": "অসমীয়া"
-	  },
-	  "av": {
-	    "name": "Avaric",
-	    "nativeName": "авар мацӀ, магӀарул мацӀ"
-	  },
-	  "ae": {
-	    "name": "Avestan",
-	    "nativeName": "avesta"
-	  },
-	  "ay": {
-	    "name": "Aymara",
-	    "nativeName": "aymar aru"
-	  },
-	  "az": {
-	    "name": "Azerbaijani",
-	    "nativeName": "azərbaycan dili"
-	  },
-	  "bm": {
-	    "name": "Bambara",
-	    "nativeName": "bamanankan"
-	  },
-	  "ba": {
-	    "name": "Bashkir",
-	    "nativeName": "башҡорт теле"
-	  },
-	  "eu": {
-	    "name": "Basque",
-	    "nativeName": "euskara, euskera"
-	  },
-	  "be": {
-	    "name": "Belarusian",
-	    "nativeName": "Беларуская"
-	  },
-	  "bn": {
-	    "name": "Bengali",
-	    "nativeName": "বাংলা"
-	  },
-	  "bh": {
-	    "name": "Bihari",
-	    "nativeName": "भोजपुरी"
-	  },
-	  "bi": {
-	    "name": "Bislama",
-	    "nativeName": "Bislama"
-	  },
-	  "bs": {
-	    "name": "Bosnian",
-	    "nativeName": "bosanski jezik"
-	  },
-	  "br": {
-	    "name": "Breton",
-	    "nativeName": "brezhoneg"
-	  },
-	  "bg": {
-	    "name": "Bulgarian",
-	    "nativeName": "български език"
-	  },
-	  "my": {
-	    "name": "Burmese",
-	    "nativeName": "ဗမာစာ"
-	  },
-	  "ca": {
-	    "name": "Catalan; Valencian",
-	    "nativeName": "Català"
-	  },
-	  "ch": {
-	    "name": "Chamorro",
-	    "nativeName": "Chamoru"
-	  },
-	  "ce": {
-	    "name": "Chechen",
-	    "nativeName": "нохчийн мотт"
-	  },
-	  "ny": {
-	    "name": "Chichewa; Chewa; Nyanja",
-	    "nativeName": "chiCheŵa, chinyanja"
-	  },
-	  "zh": {
-	    "name": "Chinese",
-	    "nativeName": "中文 (Zhōngwén), 汉语, 漢語"
-	  },
-	  "cv": {
-	    "name": "Chuvash",
-	    "nativeName": "чӑваш чӗлхи"
-	  },
-	  "kw": {
-	    "name": "Cornish",
-	    "nativeName": "Kernewek"
-	  },
-	  "co": {
-	    "name": "Corsican",
-	    "nativeName": "corsu, lingua corsa"
-	  },
-	  "cr": {
-	    "name": "Cree",
-	    "nativeName": "ᓀᐦᐃᔭᐍᐏᐣ"
-	  },
-	  "hr": {
-	    "name": "Croatian",
-	    "nativeName": "hrvatski"
-	  },
-	  "cs": {
-	    "name": "Czech",
-	    "nativeName": "česky, čeština"
-	  },
-	  "da": {
-	    "name": "Danish",
-	    "nativeName": "dansk"
-	  },
-	  "dv": {
-	    "name": "Divehi; Dhivehi; Maldivian;",
-	    "nativeName": "ދިވެހި"
-	  },
-	  "nl": {
-	    "name": "Dutch",
-	    "nativeName": "Nederlands, Vlaams"
-	  },
-	  "en": {
-	    "name": "English",
-	    "nativeName": "English"
-	  },
-	  "eo": {
-	    "name": "Esperanto",
-	    "nativeName": "Esperanto"
-	  },
-	  "et": {
-	    "name": "Estonian",
-	    "nativeName": "eesti, eesti keel"
-	  },
-	  "ee": {
-	    "name": "Ewe",
-	    "nativeName": "Eʋegbe"
-	  },
-	  "fo": {
-	    "name": "Faroese",
-	    "nativeName": "føroyskt"
-	  },
-	  "fj": {
-	    "name": "Fijian",
-	    "nativeName": "vosa Vakaviti"
-	  },
-	  "fi": {
-	    "name": "Finnish",
-	    "nativeName": "suomi, suomen kieli"
-	  },
-	  "fr": {
-	    "name": "French",
-	    "nativeName": "français, langue française"
-	  },
-	  "ff": {
-	    "name": "Fula; Fulah; Pulaar; Pular",
-	    "nativeName": "Fulfulde, Pulaar, Pular"
-	  },
-	  "gl": {
-	    "name": "Galician",
-	    "nativeName": "Galego"
-	  },
-	  "ka": {
-	    "name": "Georgian",
-	    "nativeName": "ქართული"
-	  },
-	  "de": {
-	    "name": "German",
-	    "nativeName": "Deutsch"
-	  },
-	  "el": {
-	    "name": "Greek, Modern",
-	    "nativeName": "Ελληνικά"
-	  },
-	  "gn": {
-	    "name": "Guaraní",
-	    "nativeName": "Avañeẽ"
-	  },
-	  "gu": {
-	    "name": "Gujarati",
-	    "nativeName": "ગુજરાતી"
-	  },
-	  "ht": {
-	    "name": "Haitian; Haitian Creole",
-	    "nativeName": "Kreyòl ayisyen"
-	  },
-	  "ha": {
-	    "name": "Hausa",
-	    "nativeName": "Hausa, هَوُسَ"
-	  },
-	  "he": {
-	    "name": "Hebrew (modern)",
-	    "nativeName": "עברית"
-	  },
-	  "hz": {
-	    "name": "Herero",
-	    "nativeName": "Otjiherero"
-	  },
-	  "hi": {
-	    "name": "Hindi",
-	    "nativeName": "हिन्दी, हिंदी"
-	  },
-	  "ho": {
-	    "name": "Hiri Motu",
-	    "nativeName": "Hiri Motu"
-	  },
-	  "hu": {
-	    "name": "Hungarian",
-	    "nativeName": "Magyar"
-	  },
-	  "ia": {
-	    "name": "Interlingua",
-	    "nativeName": "Interlingua"
-	  },
-	  "id": {
-	    "name": "Indonesian",
-	    "nativeName": "Bahasa Indonesia"
-	  },
-	  "ie": {
-	    "name": "Interlingue",
-	    "nativeName": "Originally called Occidental; then Interlingue after WWII"
-	  },
-	  "ga": {
-	    "name": "Irish",
-	    "nativeName": "Gaeilge"
-	  },
-	  "ig": {
-	    "name": "Igbo",
-	    "nativeName": "Asụsụ Igbo"
-	  },
-	  "ik": {
-	    "name": "Inupiaq",
-	    "nativeName": "Iñupiaq, Iñupiatun"
-	  },
-	  "io": {
-	    "name": "Ido",
-	    "nativeName": "Ido"
-	  },
-	  "is": {
-	    "name": "Icelandic",
-	    "nativeName": "Íslenska"
-	  },
-	  "it": {
-	    "name": "Italian",
-	    "nativeName": "Italiano"
-	  },
-	  "iu": {
-	    "name": "Inuktitut",
-	    "nativeName": "ᐃᓄᒃᑎᑐᑦ"
-	  },
-	  "ja": {
-	    "name": "Japanese",
-	    "nativeName": "日本語 (にほんご／にっぽんご)"
-	  },
-	  "jv": {
-	    "name": "Javanese",
-	    "nativeName": "basa Jawa"
-	  },
-	  "kl": {
-	    "name": "Kalaallisut, Greenlandic",
-	    "nativeName": "kalaallisut, kalaallit oqaasii"
-	  },
-	  "kn": {
-	    "name": "Kannada",
-	    "nativeName": "ಕನ್ನಡ"
-	  },
-	  "kr": {
-	    "name": "Kanuri",
-	    "nativeName": "Kanuri"
-	  },
-	  "ks": {
-	    "name": "Kashmiri",
-	    "nativeName": "कश्मीरी, كشميري‎"
-	  },
-	  "kk": {
-	    "name": "Kazakh",
-	    "nativeName": "Қазақ тілі"
-	  },
-	  "km": {
-	    "name": "Khmer",
-	    "nativeName": "ភាសាខ្មែរ"
-	  },
-	  "ki": {
-	    "name": "Kikuyu, Gikuyu",
-	    "nativeName": "Gĩkũyũ"
-	  },
-	  "rw": {
-	    "name": "Kinyarwanda",
-	    "nativeName": "Ikinyarwanda"
-	  },
-	  "ky": {
-	    "name": "Kirghiz, Kyrgyz",
-	    "nativeName": "кыргыз тили"
-	  },
-	  "kv": {
-	    "name": "Komi",
-	    "nativeName": "коми кыв"
-	  },
-	  "kg": {
-	    "name": "Kongo",
-	    "nativeName": "KiKongo"
-	  },
-	  "ko": {
-	    "name": "Korean",
-	    "nativeName": "한국어 (韓國語), 조선말 (朝鮮語)"
-	  },
-	  "ku": {
-	    "name": "Kurdish",
-	    "nativeName": "Kurdî, كوردی‎"
-	  },
-	  "kj": {
-	    "name": "Kwanyama, Kuanyama",
-	    "nativeName": "Kuanyama"
-	  },
-	  "la": {
-	    "name": "Latin",
-	    "nativeName": "latine, lingua latina"
-	  },
-	  "lb": {
-	    "name": "Luxembourgish, Letzeburgesch",
-	    "nativeName": "Lëtzebuergesch"
-	  },
-	  "lg": {
-	    "name": "Luganda",
-	    "nativeName": "Luganda"
-	  },
-	  "li": {
-	    "name": "Limburgish, Limburgan, Limburger",
-	    "nativeName": "Limburgs"
-	  },
-	  "ln": {
-	    "name": "Lingala",
-	    "nativeName": "Lingála"
-	  },
-	  "lo": {
-	    "name": "Lao",
-	    "nativeName": "ພາສາລາວ"
-	  },
-	  "lt": {
-	    "name": "Lithuanian",
-	    "nativeName": "lietuvių kalba"
-	  },
-	  "lu": {
-	    "name": "Luba-Katanga",
-	    "nativeName": ""
-	  },
-	  "lv": {
-	    "name": "Latvian",
-	    "nativeName": "latviešu valoda"
-	  },
-	  "gv": {
-	    "name": "Manx",
-	    "nativeName": "Gaelg, Gailck"
-	  },
-	  "mk": {
-	    "name": "Macedonian",
-	    "nativeName": "македонски јазик"
-	  },
-	  "mg": {
-	    "name": "Malagasy",
-	    "nativeName": "Malagasy fiteny"
-	  },
-	  "ms": {
-	    "name": "Malay",
-	    "nativeName": "bahasa Melayu, بهاس ملايو‎"
-	  },
-	  "ml": {
-	    "name": "Malayalam",
-	    "nativeName": "മലയാളം"
-	  },
-	  "mt": {
-	    "name": "Maltese",
-	    "nativeName": "Malti"
-	  },
-	  "mi": {
-	    "name": "Māori",
-	    "nativeName": "te reo Māori"
-	  },
-	  "mr": {
-	    "name": "Marathi (Marāṭhī)",
-	    "nativeName": "मराठी"
-	  },
-	  "mh": {
-	    "name": "Marshallese",
-	    "nativeName": "Kajin M̧ajeļ"
-	  },
-	  "mn": {
-	    "name": "Mongolian",
-	    "nativeName": "монгол"
-	  },
-	  "na": {
-	    "name": "Nauru",
-	    "nativeName": "Ekakairũ Naoero"
-	  },
-	  "nv": {
-	    "name": "Navajo, Navaho",
-	    "nativeName": "Diné bizaad, Dinékʼehǰí"
-	  },
-	  "nb": {
-	    "name": "Norwegian Bokmål",
-	    "nativeName": "Norsk bokmål"
-	  },
-	  "nd": {
-	    "name": "North Ndebele",
-	    "nativeName": "isiNdebele"
-	  },
-	  "ne": {
-	    "name": "Nepali",
-	    "nativeName": "नेपाली"
-	  },
-	  "ng": {
-	    "name": "Ndonga",
-	    "nativeName": "Owambo"
-	  },
-	  "nn": {
-	    "name": "Norwegian Nynorsk",
-	    "nativeName": "Norsk nynorsk"
-	  },
-	  "no": {
-	    "name": "Norwegian",
-	    "nativeName": "Norsk"
-	  },
-	  "ii": {
-	    "name": "Nuosu",
-	    "nativeName": "ꆈꌠ꒿ Nuosuhxop"
-	  },
-	  "nr": {
-	    "name": "South Ndebele",
-	    "nativeName": "isiNdebele"
-	  },
-	  "oc": {
-	    "name": "Occitan",
-	    "nativeName": "Occitan"
-	  },
-	  "oj": {
-	    "name": "Ojibwe, Ojibwa",
-	    "nativeName": "ᐊᓂᔑᓈᐯᒧᐎᓐ"
-	  },
-	  "cu": {
-	    "name": "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
-	    "nativeName": "ѩзыкъ словѣньскъ"
-	  },
-	  "om": {
-	    "name": "Oromo",
-	    "nativeName": "Afaan Oromoo"
-	  },
-	  "or": {
-	    "name": "Oriya",
-	    "nativeName": "ଓଡ଼ିଆ"
-	  },
-	  "os": {
-	    "name": "Ossetian, Ossetic",
-	    "nativeName": "ирон æвзаг"
-	  },
-	  "pa": {
-	    "name": "Panjabi, Punjabi",
-	    "nativeName": "ਪੰਜਾਬੀ, پنجابی‎"
-	  },
-	  "pi": {
-	    "name": "Pāli",
-	    "nativeName": "पाऴि"
-	  },
-	  "fa": {
-	    "name": "Persian",
-	    "nativeName": "فارسی"
-	  },
-	  "pl": {
-	    "name": "Polish",
-	    "nativeName": "polski"
-	  },
-	  "ps": {
-	    "name": "Pashto, Pushto",
-	    "nativeName": "پښتو"
-	  },
-	  "pt": {
-	    "name": "Portuguese",
-	    "nativeName": "Português"
-	  },
-	  "qu": {
-	    "name": "Quechua",
-	    "nativeName": "Runa Simi, Kichwa"
-	  },
-	  "rm": {
-	    "name": "Romansh",
-	    "nativeName": "rumantsch grischun"
-	  },
-	  "rn": {
-	    "name": "Kirundi",
-	    "nativeName": "kiRundi"
-	  },
-	  "ro": {
-	    "name": "Romanian, Moldavian, Moldovan",
-	    "nativeName": "română"
-	  },
-	  "ru": {
-	    "name": "Russian",
-	    "nativeName": "русский язык"
-	  },
-	  "sa": {
-	    "name": "Sanskrit (Saṁskṛta)",
-	    "nativeName": "संस्कृतम्"
-	  },
-	  "sc": {
-	    "name": "Sardinian",
-	    "nativeName": "sardu"
-	  },
-	  "sd": {
-	    "name": "Sindhi",
-	    "nativeName": "सिन्धी, سنڌي، سندھی‎"
-	  },
-	  "se": {
-	    "name": "Northern Sami",
-	    "nativeName": "Davvisámegiella"
-	  },
-	  "sm": {
-	    "name": "Samoan",
-	    "nativeName": "gagana faa Samoa"
-	  },
-	  "sg": {
-	    "name": "Sango",
-	    "nativeName": "yângâ tî sängö"
-	  },
-	  "sr": {
-	    "name": "Serbian",
-	    "nativeName": "српски језик"
-	  },
-	  "gd": {
-	    "name": "Scottish Gaelic; Gaelic",
-	    "nativeName": "Gàidhlig"
-	  },
-	  "sn": {
-	    "name": "Shona",
-	    "nativeName": "chiShona"
-	  },
-	  "si": {
-	    "name": "Sinhala, Sinhalese",
-	    "nativeName": "සිංහල"
-	  },
-	  "sk": {
-	    "name": "Slovak",
-	    "nativeName": "slovenčina"
-	  },
-	  "sl": {
-	    "name": "Slovene",
-	    "nativeName": "slovenščina"
-	  },
-	  "so": {
-	    "name": "Somali",
-	    "nativeName": "Soomaaliga, af Soomaali"
-	  },
-	  "st": {
-	    "name": "Southern Sotho",
-	    "nativeName": "Sesotho"
-	  },
-	  "es": {
-	    "name": "Spanish",
-	    "nativeName": "español, castellano"
-	  },
-	  "su": {
-	    "name": "Sundanese",
-	    "nativeName": "Basa Sunda"
-	  },
-	  "sw": {
-	    "name": "Swahili",
-	    "nativeName": "Kiswahili"
-	  },
-	  "ss": {
-	    "name": "Swati",
-	    "nativeName": "SiSwati"
-	  },
-	  "sv": {
-	    "name": "Swedish",
-	    "nativeName": "svenska"
-	  },
-	  "ta": {
-	    "name": "Tamil",
-	    "nativeName": "தமிழ்"
-	  },
-	  "te": {
-	    "name": "Telugu",
-	    "nativeName": "తెలుగు"
-	  },
-	  "tg": {
-	    "name": "Tajik",
-	    "nativeName": "тоҷикӣ, toğikī, تاجیکی‎"
-	  },
-	  "th": {
-	    "name": "Thai",
-	    "nativeName": "ไทย"
-	  },
-	  "ti": {
-	    "name": "Tigrinya",
-	    "nativeName": "ትግርኛ"
-	  },
-	  "bo": {
-	    "name": "Tibetan Standard, Tibetan, Central",
-	    "nativeName": "བོད་ཡིག"
-	  },
-	  "tk": {
-	    "name": "Turkmen",
-	    "nativeName": "Türkmen, Түркмен"
-	  },
-	  "tl": {
-	    "name": "Tagalog",
-	    "nativeName": "Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔"
-	  },
-	  "tn": {
-	    "name": "Tswana",
-	    "nativeName": "Setswana"
-	  },
-	  "to": {
-	    "name": "Tonga (Tonga Islands)",
-	    "nativeName": "faka Tonga"
-	  },
-	  "tr": {
-	    "name": "Turkish",
-	    "nativeName": "Türkçe"
-	  },
-	  "ts": {
-	    "name": "Tsonga",
-	    "nativeName": "Xitsonga"
-	  },
-	  "tt": {
-	    "name": "Tatar",
-	    "nativeName": "татарча, tatarça, تاتارچا‎"
-	  },
-	  "tw": {
-	    "name": "Twi",
-	    "nativeName": "Twi"
-	  },
-	  "ty": {
-	    "name": "Tahitian",
-	    "nativeName": "Reo Tahiti"
-	  },
-	  "ug": {
-	    "name": "Uighur, Uyghur",
-	    "nativeName": "Uyƣurqə, ئۇيغۇرچە‎"
-	  },
-	  "uk": {
-	    "name": "Ukrainian",
-	    "nativeName": "українська"
-	  },
-	  "ur": {
-	    "name": "Urdu",
-	    "nativeName": "اردو"
-	  },
-	  "uz": {
-	    "name": "Uzbek",
-	    "nativeName": "zbek, Ўзбек, أۇزبېك‎"
-	  },
-	  "ve": {
-	    "name": "Venda",
-	    "nativeName": "Tshivenḓa"
-	  },
-	  "vi": {
-	    "name": "Vietnamese",
-	    "nativeName": "Tiếng Việt"
-	  },
-	  "vo": {
-	    "name": "Volapük",
-	    "nativeName": "Volapük"
-	  },
-	  "wa": {
-	    "name": "Walloon",
-	    "nativeName": "Walon"
-	  },
-	  "cy": {
-	    "name": "Welsh",
-	    "nativeName": "Cymraeg"
-	  },
-	  "wo": {
-	    "name": "Wolof",
-	    "nativeName": "Wollof"
-	  },
-	  "fy": {
-	    "name": "Western Frisian",
-	    "nativeName": "Frysk"
-	  },
-	  "xh": {
-	    "name": "Xhosa",
-	    "nativeName": "isiXhosa"
-	  },
-	  "yi": {
-	    "name": "Yiddish",
-	    "nativeName": "ייִדיש"
-	  },
-	  "yo": {
-	    "name": "Yoruba",
-	    "nativeName": "Yorùbá"
-	  },
-	  "za": {
-	    "name": "Zhuang, Chuang",
-	    "nativeName": "Saɯ cueŋƅ, Saw cuengh"
-	  }
-	};
-
-	module.exports = isoLangs;
-
-/***/ },
-
-/***/ 250:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	__webpack_require__(251);
-	var $ = __webpack_require__(7);
-	var template = __webpack_require__(252);
-	var emitter = __webpack_require__(234);
-	var EVENTS = __webpack_require__(235);
-	var checkElementIsInViewport = __webpack_require__(253);
-
-	/**
-	 * @param {HTMLElement|string} node
-	 * @param {EventsStore} store
-	 * @constructor
-	 */
-	function EventsList(node, store) {
-	  var that = this;
-	  this.store = store;
-	  this.currentFilters = {};
-	  this.$node = $(node);
-	  this.mode = 'list';
-
-	  emitter.on(EVENTS.EVENTS_FILTERED, function (filters) {
-	    var filteredEvents = store.filter(filters);
-	    that.currentFilters = filters;
-	    that.applyFilteredResults(filteredEvents);
-	  });
-
-	  emitter.on(EVENTS.EVENT_SELECTED, function (selectedEvent) {
-	    that.showEventDetails(selectedEvent);
-	    that.mode = 'detailed';
-	  });
-
-	  emitter.on(EVENTS.EVENT_DESELECTED, function () {
-	    that.hideEventDetails();
-	    that.mode = 'list';
-	  });
-
-	  emitter.on(EVENTS.EVENT_HIGHLIGHTED, function (event) {
-	    event.highlight();
-	  });
-
-	  emitter.on(EVENTS.EVENT_UNHIGHLIGHTED, function (event) {
-	    event.unhighlight();
-	  });
-
-	  // Filter events when map zoomed
-	  emitter.on(EVENTS.MAP_BOUNDS_CHANGED, function (bounds) {
-	    return;
-	    var request = $.extend({}, that.currentFilters, { bounds: bounds });
-	    that.currentFilters = request;
-	    var filteredEvents = store.filter(request);
-	    that.applyFilteredResults(filteredEvents);
-	  });
-
-	  this.render();
-	}
-
-	EventsList.prototype.render = function () {
-	  var $content = $(template.render());
-	  this.$content = $content;
-
-	  var upcomingEvents = this.store.getUpcomingEvents();
-	  var pastEvents = this.store.getPastEvents();
-
-	  var $upcoming = $content.find('.js-upcoming-events');
-	  var $past = $content.find('.js-past-events');
-	  this.$upcomingGroup = $content.find('.js-upcoming-events-group');
-	  this.$pastGroup = $content.find('.js-past-events-group');
-
-	  upcomingEvents.forEach(function (event) {
-	    event.render($upcoming.get(0));
-	  });
-
-	  pastEvents.forEach(function (event) {
-	    event.render($past.get(0));
-	  });
-
-	  this.store.events.forEach(function (event) {
-	    var $node = $(event.node);
-	    $node.on('click', function () {
-	      emitter.emit(EVENTS.EVENT_DESELECTED);
-	      emitter.emit(EVENTS.EVENT_SELECTED, event);
-	    });
-
-	    $node.on('mouseenter', function (e) {
-	      e.stopPropagation();
-	      emitter.emit(EVENTS.EVENT_HIGHLIGHTED, event);
-	    });
-
-	    $node.on('mouseleave', function (e) {
-	      e.stopPropagation();
-	      emitter.emit(EVENTS.EVENT_UNHIGHLIGHTED, event);
-	    });
-	  });
-
-	  this.$node.append($content);
-	};
-
-	/**
-	 * @param {Array<Event>} filteredEvents
-	 */
-	EventsList.prototype.applyFilteredResults = function (filteredEvents) {
-	  var store = this.store;
-	  var upcomingEventsInResults = store.getUpcomingEvents(filteredEvents);
-	  var pastEventsInResults = store.getPastEvents(filteredEvents);
-
-	  store.events.forEach(function (event) {
-	    filteredEvents.indexOf(event) > -1 ? event.show() : event.hide();
-	  });
-
-	  upcomingEventsInResults.length > 0 ? this.$upcomingGroup.show() : this.$upcomingGroup.hide();
-
-	  pastEventsInResults.length > 0 ? this.$pastGroup.show() : this.$pastGroup.hide();
-	};
-
-	/**
-	 * @param {Event} event
-	 */
-	EventsList.prototype.showEventDetails = function (event) {
-	  var $node = $(event.node);
-	  var inViewport = checkElementIsInViewport(event.node);
-	  this.currentEvent = event;
-
-	  $node.addClass('_detailed').removeClass('_normal');
-
-	  if (!inViewport) {
-	    $('html,body').animate({ scrollTop: $node.offset().top });
-	  }
-	};
-
-	EventsList.prototype.hideEventDetails = function () {
-	  if (!this.currentEvent) {
-	    return;
-	  }
-
-	  var event = this.currentEvent;
-	  $(event.node).addClass('_normal').removeClass('_detailed');
-
-	  this.currentEvent = null;
-	};
-
-	module.exports = EventsList;
-
-/***/ },
-
-/***/ 251:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 252:
-/***/ function(module, exports, __webpack_require__) {
-
-	var nunjucks = __webpack_require__(25);
-	var env;
-	if (!nunjucks.currentEnv){
-		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
-	} else {
-		env = nunjucks.currentEnv;
-	}
-	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
-
-
-
-
-	var shim = __webpack_require__(26);
-
-
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/events-list/view.twig"] = (function() {
-	function root(env, context, frame, runtime, cb) {
-	var lineno = null;
-	var colno = null;
-	var output = "";
-	try {
-	var parentTemplate = null;
-	output += "<div class=\"events-list\">\n\n  <div class=\"filter-panel-wrap js-filter-panel-wrap\"></div>\n\n  <div class=\"event-overview js-event-details\">\n\n  </div>\n\n  <div class=\"list js-list\">\n    <div class=\"list-group js-upcoming-events-group\">\n      <div class=\"list-group-title\">Upcoming Events</div>\n      <div class=\"list-group-content js-upcoming-events\">\n\n      </div>\n    </div>\n\n    <div class=\"list-group js-past-events-group\">\n      <div class=\"list-group-title\">Past Events</div>\n      <div class=\"list-group-content js-past-events\">\n\n      </div>\n    </div>\n  </div>\n\n</div>";
-	if(parentTemplate) {
-	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
-	} else {
-	cb(null, output);
-	}
-	;
-	} catch (e) {
-	  cb(runtime.handleError(e, lineno, colno));
-	}
-	}
-	return {
-	root: root
-	};
-
-	})();
-	})();
-
-
-
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/events-list/view.twig"] , dependencies)
-
-/***/ },
-
-/***/ 253:
-/***/ function(module, exports) {
-
-	/* WEBPACK VAR INJECTION */(function(global) {module.exports = inViewport;
-
-	var instances = [];
-	var supportsMutationObserver = typeof global.MutationObserver === 'function';
-
-	function inViewport(elt, params, cb) {
-	  var opts = {
-	    container: global.document.body,
-	    offset: 0
-	  };
-
-	  if (params === undefined || typeof params === 'function') {
-	    cb = params;
-	    params = {};
-	  }
-
-	  var container = opts.container = params.container || opts.container;
-	  var offset = opts.offset = params.offset || opts.offset;
-
-	  for (var i = 0; i < instances.length; i++) {
-	    if (instances[i].container === container) {
-	      return instances[i].isInViewport(elt, offset, cb);
-	    }
-	  }
-
-	  return instances[
-	    instances.push(createInViewport(container)) - 1
-	  ].isInViewport(elt, offset, cb);
-	}
-
-	function addEvent(el, type, fn) {
-	  if (el.attachEvent) {
-	    el.attachEvent('on' + type, fn);
-	  } else {
-	    el.addEventListener(type, fn, false);
-	  }
-	}
-
-	function debounce(func, wait, immediate) {
-	  var timeout;
-	  return function () {
-	    var context = this, args = arguments;
-	    var callNow = immediate && !timeout;
-	    clearTimeout(timeout);
-	    timeout = setTimeout(later, wait);
-	    if (callNow) func.apply(context, args);
-
-	    function later() {
-	      timeout = null;
-	      if (!immediate) func.apply(context, args);
-	    }
-	  };
-	}
-
-	// https://github.com/jquery/sizzle/blob/3136f48b90e3edc84cbaaa6f6f7734ef03775a07/sizzle.js#L708
-	var contains = function() {
-	  if (!global.document) {
-	    return true;
-	  }
-	  return global.document.documentElement.compareDocumentPosition ?
-	    function (a, b) {
-	      return !!(a.compareDocumentPosition(b) & 16);
-	    } :
-	    global.document.documentElement.contains ?
-	      function (a, b) {
-	        return a !== b && ( a.contains ? a.contains(b) : false );
-	      } :
-	      function (a, b) {
-	        while (b = b.parentNode) {
-	          if (b === a) {
-	            return true;
-	          }
-	        }
-	        return false;
-	      };
-	}
-
-	function createInViewport(container) {
-	  var watches = createWatches();
-
-	  var scrollContainer = container === global.document.body ? global : container;
-	  var debouncedCheck = debounce(watches.checkAll(watchInViewport), 15);
-
-	  addEvent(scrollContainer, 'scroll', debouncedCheck);
-
-	  if (scrollContainer === global) {
-	    addEvent(global, 'resize', debouncedCheck);
-	  }
-
-	  if (supportsMutationObserver) {
-	    observeDOM(watches, container, debouncedCheck);
-	  }
-
-	  // failsafe check, every 200ms we check for visible images
-	  // usecase: a hidden parent containing eleements
-	  // when the parent becomes visible, we have no event that the children
-	  // became visible
-	  setInterval(debouncedCheck, 150);
-
-	  function isInViewport(elt, offset, cb) {
-	    if (!cb) {
-	      return isVisible(elt, offset);
-	    }
-
-	    var remote = createRemote(elt, offset, cb);
-	    remote.watch();
-	    return remote;
-	  }
-
-	  function createRemote(elt, offset, cb) {
-	    function watch() {
-	      watches.add(elt, offset, cb);
-	    }
-
-	    function dispose() {
-	      watches.remove(elt);
-	    }
-
-	    return {
-	      watch: watch,
-	      dispose: dispose
-	    };
-	  }
-
-	  function watchInViewport(elt, offset, cb) {
-	    if (isVisible(elt, offset)) {
-	      watches.remove(elt);
-	      cb(elt);
-	    }
-	  }
-
-	  function isVisible(elt, offset) {
-	    if (!contains(global.document.documentElement, elt) || !contains(global.document.documentElement, container)) {
-	      return false;
-	    }
-
-	    // Check if the element is visible
-	    // https://github.com/jquery/jquery/blob/740e190223d19a114d5373758127285d14d6b71e/src/css/hiddenVisibleSelectors.js
-	    if (!elt.offsetWidth || !elt.offsetHeight) {
-	      return false;
-	    }
-
-	    var eltRect = elt.getBoundingClientRect();
-	    var viewport = {};
-
-	    if (container === global.document.body) {
-	      viewport = {
-	        top: -offset,
-	        left: -offset,
-	        right: global.document.documentElement.clientWidth + offset,
-	        bottom: global.document.documentElement.clientHeight + offset
-	      };
-	    } else {
-	      var containerRect = container.getBoundingClientRect();
-	      viewport = {
-	        top: containerRect.top - offset,
-	        left: containerRect.left - offset,
-	        right: containerRect.right + offset,
-	        bottom: containerRect.bottom + offset
-	      };
-	    }
-
-	    // The element must overlap with the visible part of the viewport
-	    var visible =
-	      (
-	        eltRect.right >= viewport.left &&
-	        eltRect.left <= viewport.right &&
-	        eltRect.bottom >= viewport.top &&
-	        eltRect.top <= viewport.bottom
-	      );
-
-	    return visible;
-	  }
-
-	  return {
-	    container: container,
-	    isInViewport: isInViewport
-	  };
-	}
-
-	function createWatches() {
-	  var watches = [];
-
-	  function add(elt, offset, cb) {
-	    if (!isWatched(elt)) {
-	      watches.push([elt, offset, cb]);
-	    }
-	  }
-
-	  function remove(elt) {
-	    var pos = indexOf(elt);
-	    if (pos !== -1) {
-	      watches.splice(pos, 1);
-	    }
-	  }
-
-	  function indexOf(elt) {
-	    for (var i = watches.length - 1; i >= 0; i--) {
-	      if (watches[i][0] === elt) {
-	        return i;
-	      }
-	    }
-	    return -1;
-	  }
-
-	  function isWatched(elt) {
-	    return indexOf(elt) !== -1;
-	  }
-
-	  function checkAll(cb) {
-	    return function () {
-	      for (var i = watches.length - 1; i >= 0; i--) {
-	        cb.apply(this, watches[i]);
-	      }
-	    };
-	  }
-
-	  return {
-	    add: add,
-	    remove: remove,
-	    isWatched: isWatched,
-	    checkAll: checkAll
-	  };
-	}
-
-	function observeDOM(watches, container, cb) {
-	  var observer = new MutationObserver(watch);
-	  var filter = Array.prototype.filter;
-	  var concat = Array.prototype.concat;
-
-	  observer.observe(container, {
-	    childList: true,
-	    subtree: true,
-	    // changes like style/width/height/display will be catched
-	    attributes: true
-	  });
-
-	  function watch(mutations) {
-	    // some new DOM nodes where previously watched
-	    // we should check their positions
-	    if (mutations.some(knownNodes) === true) {
-	      setTimeout(cb, 0);
-	    }
-	  }
-
-	  function knownNodes(mutation) {
-	    var nodes = concat.call([],
-	      Array.prototype.slice.call(mutation.addedNodes),
-	      mutation.target
-	    );
-	    return filter.call(nodes, watches.isWatched).length > 0;
-	  }
-	}
-
-	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
-
-/***/ },
-
-/***/ 254:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _keys = __webpack_require__(202);
-
-	var _keys2 = _interopRequireDefault(_keys);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var $ = __webpack_require__(7);
-	var Switcher = __webpack_require__(255);
-	var Dropdown = __webpack_require__(6);
-	var pageEmitter = __webpack_require__(234);
-	var PAGE_EVENTS = __webpack_require__(235);
-	var Emitter = __webpack_require__(8);
-
-	__webpack_require__(258);
-	var template = __webpack_require__(259);
-
-	var EVENTS = {
-	  SELECT: 'select'
-	};
-
-	/**
-	 * @param {HTMLElement|string} node
-	 * @param {Object} config
-	 * @param {Object} config.languages
-	 * @param {Object} config.materials
-	 * @param {Object} config.filters
-	 * @param {EventsStore} config.store
-	 * @constructor
-	 */
-	function FilterPanel(node, config) {
-	  var that = this;
-	  this.$node = $(node);
-	  this.$panel = this.render();
-	  this._emitter = Emitter({});
-
-	  var $timeSelector = this.$panel.find('.js-time-selector');
-	  var $languageSelectorNode = this.$panel.find('.js-language-selector');
-	  var $materialSelectorNode = this.$panel.find('.js-material-selector');
-
-	  // Initial filters
-	  // TODO: values from hash
-	  var currentFilters = {
-	    time: 'all',
-	    lang: 'all',
-	    materials: 'all'
-	  };
-
-	  function handleSelect(type, value) {
-	    var eventData = {};
-	    eventData[type] = value;
-	    $.extend(currentFilters, eventData);
-
-	    (0, _keys2.default)(currentFilters).forEach(function (name) {
-	      if (currentFilters[name] === 'all') delete currentFilters[name];
-	    });
-
-	    //pageEmitter.emit(PAGE_EVENTS.EVENTS_FILTERED, currentFilters);
-	    that._emitter.emit(EVENTS.SELECT, currentFilters);
-	  }
-
-	  this.timeSelector = new Switcher($timeSelector, {
-	    items: { all: 'All', upcoming: 'Upcoming', past: 'Past' },
-	    // selectedIndex: 1,
-	    onSelect: function onSelect(time) {
-	      handleSelect('time', time);
-	    }
-	  });
-
-	  this.languageSelector = new Dropdown($languageSelectorNode, {
-	    items: $.extend({ all: 'All' }, config.languages),
-	    onSelect: function onSelect(lang) {
-	      handleSelect('lang', lang);
-	    }
-	  });
-
-	  this.materialsSelector = new Dropdown($materialSelectorNode, {
-	    items: $.extend({ all: 'All' }, config.materials),
-	    onSelect: function onSelect(materials) {
-	      handleSelect('materials', materials);
-	    }
-	  });
-	}
-
-	FilterPanel.prototype.onSelect = function (callback) {
-	  this._emitter.on(EVENTS.SELECT, callback);
-	};
-
-	FilterPanel.prototype.render = function () {
-	  var rendered = template.render();
-	  var $rendered = $(rendered);
-	  this.$node.append($rendered);
-	  return $rendered;
-	};
-
-	module.exports = FilterPanel;
-
-/***/ },
-
-/***/ 255:
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var $ = __webpack_require__(7);
-	var Emitter = __webpack_require__(8);
-
-	__webpack_require__(256);
-	var template = __webpack_require__(257);
-
-	var CLASSES = {
-	  ITEM_SELECTED: '_selected'
-	};
-
-	var EVENTS = {
-	  SELECT: 'select'
-	};
-
-	/**
-	 * @param {HTMLElement|string} node
-	 * @param {Object} config
-	 * @param {Object<string, string>} config.items Values.
-	 * @param {number} [config.selectedIndex=0]
-	 * @param {Function} [config.onSelect]
-	 * @constructor
-	 */
-	function Switcher(node, config) {
-	  var that = this;
-	  var $node = $(node);
-
-	  this.config = config;
-	  this.items = config.items;
-	  this.$node = $node;
-	  this.$switcher = this.render();
-	  this._emitter = Emitter({});
-
-	  var $items = this.$switcher.find('.js-item');
-
-	  $items.each(function (i, elem) {
-	    $(elem).on('click', that.select.bind(that, i));
-	  });
-
-	  config.onSelect && this.onSelect(config.onSelect);
-
-	  this.select(config.selectedIndex || 0, false);
-	}
-
-	Switcher.prototype.onSelect = function (callback) {
-	  this._emitter.on(EVENTS.SELECT, callback);
-	};
-
-	Switcher.prototype.render = function () {
-	  var rendered = template.render({ switcher: this });
-	  var $rendered = $(rendered);
-	  this.$node.append($rendered);
-
-	  return $rendered;
-	};
-
-	Switcher.prototype.select = function (index, emit) {
-	  if (this.selectedIndex == index) {
-	    return;
-	  }
-	  this.selectedIndex = index;
-
-	  var emit = typeof emit == 'boolean' ? emit : true;
-	  var $switcher = this.$switcher;
-	  var $items = $switcher.find('.js-item');
-	  var $selectedItem = $($items.get(index));
-	  var selectedValue = $selectedItem.attr('data-value');
-
-	  $items.each(function (i, elem) {
-	    var $item = $(elem);
-
-	    if (i === index) $item.addClass(CLASSES.ITEM_SELECTED);else $item.removeClass(CLASSES.ITEM_SELECTED);
-	  });
-
-	  emit && this._emitter.emit('select', selectedValue);
-	};
-
-	module.exports = Switcher;
-
-/***/ },
-
-/***/ 256:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 257:
-/***/ function(module, exports, __webpack_require__) {
-
-	var nunjucks = __webpack_require__(25);
-	var env;
-	if (!nunjucks.currentEnv){
-		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
-	} else {
-		env = nunjucks.currentEnv;
-	}
-	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
-
-
-
-
-	var shim = __webpack_require__(26);
-
-
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/switcher/view.twig"] = (function() {
-	function root(env, context, frame, runtime, cb) {
-	var lineno = null;
-	var colno = null;
-	var output = "";
-	try {
-	var parentTemplate = null;
-	output += "<div class=\"switcher\">\n  ";
-	frame = frame.push();
-	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "switcher")),"items");
-	if(t_3) {var t_1;
-	if(runtime.isArray(t_3)) {
-	var t_2 = t_3.length;
-	for(t_1=0; t_1 < t_3.length; t_1++) {
-	var t_4 = t_3[t_1][0]
-	frame.set("value", t_3[t_1][0]);
-	var t_5 = t_3[t_1][1]
-	frame.set("label", t_3[t_1][1]);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n    <div class=\"switcher-item js-item\" data-value=\"";
-	output += runtime.suppressValue(t_4, env.opts.autoescape);
-	output += "\">";
-	output += runtime.suppressValue(t_5, env.opts.autoescape);
-	output += "</div>\n  ";
-	;
-	}
-	} else {
-	t_1 = -1;
-	var t_2 = runtime.keys(t_3).length;
-	for(var t_6 in t_3) {
-	t_1++;
-	var t_7 = t_3[t_6];
-	frame.set("value", t_6);
-	frame.set("label", t_7);
-	frame.set("loop.index", t_1 + 1);
-	frame.set("loop.index0", t_1);
-	frame.set("loop.revindex", t_2 - t_1);
-	frame.set("loop.revindex0", t_2 - t_1 - 1);
-	frame.set("loop.first", t_1 === 0);
-	frame.set("loop.last", t_1 === t_2 - 1);
-	frame.set("loop.length", t_2);
-	output += "\n    <div class=\"switcher-item js-item\" data-value=\"";
-	output += runtime.suppressValue(t_6, env.opts.autoescape);
-	output += "\">";
-	output += runtime.suppressValue(t_7, env.opts.autoescape);
-	output += "</div>\n  ";
-	;
-	}
-	}
-	}
-	frame = frame.pop();
-	output += "\n</div>";
-	if(parentTemplate) {
-	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
-	} else {
-	cb(null, output);
-	}
-	;
-	} catch (e) {
-	  cb(runtime.handleError(e, lineno, colno));
-	}
-	}
-	return {
-	root: root
-	};
-
-	})();
-	})();
-
-
-
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/switcher/view.twig"] , dependencies)
-
-/***/ },
-
-/***/ 258:
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-
-/***/ 259:
-/***/ function(module, exports, __webpack_require__) {
-
-	var nunjucks = __webpack_require__(25);
-	var env;
-	if (!nunjucks.currentEnv){
-		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
-	} else {
-		env = nunjucks.currentEnv;
-	}
-	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
-
-
-
-
-	var shim = __webpack_require__(26);
-
-
-	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/filter-panel/view.twig"] = (function() {
-	function root(env, context, frame, runtime, cb) {
-	var lineno = null;
-	var colno = null;
-	var output = "";
-	try {
-	var parentTemplate = null;
-	output += "<div class=\"filter-panel\">\n  <div class=\"filter-panel-time-selector js-time-selector\"></div>\n\n  <div class=\"filter-panel-language-selector\">\n    <div class=\"label\">Language:</div><div class=\"selector js-language-selector\"></div>\n  </div>\n\n  <div class=\"filter-panel-material-selector\">\n    <div class=\"label\">Materials:</div><div class=\"selector js-material-selector\"></div>\n  </div>\n</div>";
-	if(parentTemplate) {
-	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
-	} else {
-	cb(null, output);
-	}
-	;
-	} catch (e) {
-	  cb(runtime.handleError(e, lineno, colno));
-	}
-	}
-	return {
-	root: root
-	};
-
-	})();
-	})();
-
-
-
-	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/filter-panel/view.twig"] , dependencies)
-
-/***/ },
-
-/***/ 260:
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function($) {(function webpackUniversalModuleDefinition(root, factory) {
@@ -7670,12 +5282,3119 @@ webpackJsonp([3],{
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ },
+/* 234 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 261:
+	'use strict';
+	var strictUriEncode = __webpack_require__(235);
+
+	exports.extract = function (str) {
+		return str.split('?')[1] || '';
+	};
+
+	exports.parse = function (str) {
+		if (typeof str !== 'string') {
+			return {};
+		}
+
+		str = str.trim().replace(/^(\?|#|&)/, '');
+
+		if (!str) {
+			return {};
+		}
+
+		return str.split('&').reduce(function (ret, param) {
+			var parts = param.replace(/\+/g, ' ').split('=');
+			// Firefox (pre 40) decodes `%3D` to `=`
+			// https://github.com/sindresorhus/query-string/pull/37
+			var key = parts.shift();
+			var val = parts.length > 0 ? parts.join('=') : undefined;
+
+			key = decodeURIComponent(key);
+
+			// missing `=` should be `null`:
+			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
+			val = val === undefined ? null : decodeURIComponent(val);
+
+			if (!ret.hasOwnProperty(key)) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
+
+			return ret;
+		}, {});
+	};
+
+	exports.stringify = function (obj) {
+		return obj ? Object.keys(obj).sort().map(function (key) {
+			var val = obj[key];
+
+			if (val === undefined) {
+				return '';
+			}
+
+			if (val === null) {
+				return key;
+			}
+
+			if (Array.isArray(val)) {
+				return val.sort().map(function (val2) {
+					return strictUriEncode(key) + '=' + strictUriEncode(val2);
+				}).join('&');
+			}
+
+			return strictUriEncode(key) + '=' + strictUriEncode(val);
+		}).filter(function (x) {
+			return x.length > 0;
+		}).join('&') : '';
+	};
+
+
+/***/ },
+/* 235 */
+/***/ function(module, exports) {
+
+	'use strict';
+	module.exports = function (str) {
+		return encodeURIComponent(str).replace(/[!'()*]/g, function (c) {
+			return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+		});
+	};
+
+
+/***/ },
+/* 236 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _emitter = __webpack_require__(237);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	var _eventsList = __webpack_require__(238);
+
+	var _eventsList2 = _interopRequireDefault(_eventsList);
+
+	var _Marker = __webpack_require__(239);
+
+	var _Marker2 = _interopRequireDefault(_Marker);
+
+	var _limitMapBounds = __webpack_require__(245);
+
+	var _limitMapBounds2 = _interopRequireDefault(_limitMapBounds);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var MAP_API_URL = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAMF-gJllft62W5l9xfgE6DBhaa6YmIJs0';
+
+	var mapOptions = {
+	  center: {
+	    lat: 20,
+	    lng: 0
+	  },
+	  zoom: 2,
+	  disableDefaultUI: true,
+	  zoomControl: true,
+	  maxZoom: 12,
+	  minZoom: 2,
+	  styles: __webpack_require__(246)
+	};
+
+	var Map = function () {
+	  /**
+	   * @param {HTMLElement} node
+	   * @param {EventsStore} store
+	   * @param {Object} initialFilters
+	   */
+	  function Map(node, store) {
+	    var _this = this;
+
+	    var initialFilters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	    (0, _classCallCheck3.default)(this, Map);
+
+	    var $mapNode = (0, _jquery2.default)(node);
+	    var that = this;
+	    this.node = $mapNode.get(0);
+	    this.store = store;
+	    this.markers = [];
+	    this.initialFilters = initialFilters;
+
+	    var instance = new google.maps.Map($mapNode.get(0), mapOptions);
+	    this.instance = instance;
+
+	    // Restore state after user clicks anywhere except of event marker
+	    instance.addListener('click', function () {
+	      _this.reset();
+	      _emitter2.default.emit(_eventsList2.default.EVENT_DESELECTED);
+	    });
+
+	    // Emit bounds change event
+	    var isFirstBoundsChangedEvent = true;
+	    instance.addListener('bounds_changed', function () {
+	      if (isFirstBoundsChangedEvent) {
+	        isFirstBoundsChangedEvent = false;
+	        return;
+	      }
+
+	      setTimeout(function () {
+	        _emitter2.default.emit(_eventsList2.default.MAP_BOUNDS_CHANGED, instance.getBounds());
+	      }, 200);
+	    });
+
+	    // Restore state when marker deselected
+	    _emitter2.default.on(_eventsList2.default.EVENT_DESELECTED, function () {
+	      _this.reset();
+	    });
+
+	    // Filter markers when filtering event fired
+	    _emitter2.default.on(_eventsList2.default.EVENTS_FILTERED, function (filters) {
+	      var filteredEvents = store.filter(filters);
+	      _this.applyFilteredResults(filteredEvents);
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_HIGHLIGHTED, function (event) {
+	      event.marker.highlight();
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_UNHIGHLIGHTED, function (event) {
+	      event.marker.unhighlight();
+	    });
+
+	    // MARKERS
+	    this._createMarkers(store.events);
+	    var markers = this.markers;
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_SELECTED, function (event) {
+	      var currentMarker = event.marker;
+
+	      markers.forEach(function (marker) {
+	        if (marker === currentMarker) {
+	          marker.activate();
+	          marker.openWindow();
+	        } else {
+	          marker.deactivate();
+	          marker.closeWindow();
+	        }
+	      });
+
+	      instance.panTo(event.getBounds());
+	    });
+
+	    if (this.initialFilters) {
+	      var filtered = this.store.filter(this.initialFilters);
+	      this.applyFilteredResults(filtered);
+	    }
+	  }
+
+	  /**
+	   * @static
+	   * @param {HTMLElement} node
+	   * @param {EventsStore} store
+	   * @param {Object} initialFilters
+	   * @returns {Deferred}
+	   */
+
+
+	  (0, _createClass3.default)(Map, [{
+	    key: "_createMarkers",
+
+
+	    /**
+	     * @param {Array<Event>} events
+	     */
+	    value: function _createMarkers(events) {
+	      var map = this;
+	      var markers = [];
+
+	      events.forEach(function (event) {
+	        if (!event.city) {
+	          return;
+	        }
+	        markers.push(new _Marker2.default(event, map));
+	      });
+
+	      this.markers = markers;
+	    }
+	  }, {
+	    key: "_limitWorldBounds",
+	    value: function _limitWorldBounds() {
+	      var map = this.instance;
+
+	      var maxBounds = new google.maps.LatLngBounds(new google.maps.LatLng(-85, -175), new google.maps.LatLng(85, 175));
+
+	      (0, _limitMapBounds2.default)(map, maxBounds);
+	    }
+	  }, {
+	    key: "reset",
+	    value: function reset() {
+	      this.markers.forEach(function (marker) {
+	        marker.activate();
+	        marker.closeWindow();
+	      });
+	    }
+	  }, {
+	    key: "applyFilteredResults",
+	    value: function applyFilteredResults(filteredEvents) {
+	      var map = this.instance;
+
+	      this.store.events.forEach(function (event) {
+	        filteredEvents.indexOf(event) > -1 ? event.marker.show() : event.marker.hide();
+	      });
+
+	      var eventsBounds = new google.maps.LatLngBounds(null);
+
+	      filteredEvents.forEach(function (event) {
+	        return eventsBounds.extend(event.getBounds());
+	      });
+
+	      if (filteredEvents.length == 0) {
+	        return;
+	      }
+
+	      map.fitBounds(eventsBounds);
+
+	      var zoom = map.getZoom();
+	      if (zoom <= 2) {
+	        map.setCenter({ lat: 39.90971744298563, lng: -49.34941524999998 });
+	      }
+	    }
+	  }], [{
+	    key: "create",
+	    value: function create(node, store) {
+	      var initialFilters = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+	      return _jquery2.default.getScript(MAP_API_URL).then(function () {
+	        return new Map(node, store, initialFilters);
+	      });
+	    }
+	  }]);
+	  return Map;
+	}();
+
+	exports.default = Map;
+	module.exports = exports["default"];
+
+/***/ },
+/* 237 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var emitter = __webpack_require__(8);
+
+	module.exports = emitter({});
+
+/***/ },
+/* 238 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var events = {
+	  /**
+	   * @param {Object} Filters request
+	   */
+	  EVENTS_FILTERED: 'events_filtered',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_HIGHLIGHTED: 'event_highlighted',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_UNHIGHLIGHTED: 'event_unhighlighted',
+
+	  /**
+	   * @param {Event}
+	   */
+	  EVENT_SELECTED: 'event_selected',
+
+	  /**
+	   * No params
+	   */
+	  EVENT_DESELECTED: 'event_deselected',
+
+	  /**
+	   * @param {google.maps.LatLng} New map bounds
+	   */
+	  MAP_BOUNDS_CHANGED: 'map_bounds_changed'
+	};
+
+	exports.default = events;
+	module.exports = exports['default'];
+
+/***/ },
+/* 239 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _eventsList = __webpack_require__(238);
+
+	var _eventsList2 = _interopRequireDefault(_eventsList);
+
+	var _emitter = __webpack_require__(237);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	var _marker = __webpack_require__(240);
+
+	var _marker2 = _interopRequireDefault(_marker);
+
+	var _markerInactive = __webpack_require__(241);
+
+	var _markerInactive2 = _interopRequireDefault(_markerInactive);
+
+	var _markerHighlighted = __webpack_require__(242);
+
+	var _markerHighlighted2 = _interopRequireDefault(_markerHighlighted);
+
+	var _markerTagged = __webpack_require__(243);
+
+	var _markerTagged2 = _interopRequireDefault(_markerTagged);
+
+	var _markerTaggedHighlighted = __webpack_require__(244);
+
+	var _markerTaggedHighlighted2 = _interopRequireDefault(_markerTaggedHighlighted);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Marker = function () {
+	  /**
+	   * @param {Event} event
+	   * @param {Object} map Google Map instance
+	   */
+	  function Marker(event, map) {
+	    (0, _classCallCheck3.default)(this, Marker);
+
+	    var marker = event.marker = this;
+	    this.event = event;
+	    this.map = map;
+	    this.isActive = true;
+	    this.isHighlighted = false;
+
+	    var markerInstance = new google.maps.Marker({
+	      title: event.title,
+	      position: event.city.position,
+	      draggable: false,
+	      visible: true,
+	      icon: this.getIcon(),
+	      map: map ? map.instance : null
+	    });
+
+	    this.marker = markerInstance;
+
+	    markerInstance.addListener('click', function () {
+	      _emitter2.default.emit(_eventsList2.default.EVENT_SELECTED, event);
+	    });
+
+	    markerInstance.addListener('mouseover', function () {
+	      marker.highlight();
+	      _emitter2.default.emit(_eventsList2.default.EVENT_HIGHLIGHTED, event);
+	    });
+
+	    markerInstance.addListener('mouseout', function () {
+	      marker.unhighlight();
+	      _emitter2.default.emit(_eventsList2.default.EVENT_UNHIGHLIGHTED, event);
+	    });
+
+	    // Info window
+	    var infoWindow = new google.maps.InfoWindow({
+	      content: event.title
+	    });
+
+	    infoWindow.addListener('closeclick', function () {
+	      _emitter2.default.emit(_eventsList2.default.EVENT_DESELECTED);
+	    });
+
+	    this.infoWindow = infoWindow;
+	  }
+
+	  (0, _createClass3.default)(Marker, [{
+	    key: "getIcon",
+	    value: function getIcon() {
+	      var isActive = this.isActive,
+	          isHighlighted = this.isHighlighted;
+
+	      var mapZoom = this.map.instance.getZoom();
+	      var hasTags = this.event.tags.length > 0;
+	      var iconUrl = isActive ? hasTags ? _markerTagged2.default : _marker2.default : _markerInactive2.default;
+
+	      if (isHighlighted) {
+	        iconUrl = hasTags ? _markerTaggedHighlighted2.default : _markerHighlighted2.default;
+	      }
+
+	      return {
+	        scaledSize: {
+	          width: 15,
+	          height: 15
+	        },
+	        opacity: 1,
+	        url: iconUrl
+	      };
+	    }
+	  }, {
+	    key: "openWindow",
+	    value: function openWindow() {
+	      this.infoWindow.open(this.map.instance, this.marker);
+	    }
+	  }, {
+	    key: "closeWindow",
+	    value: function closeWindow() {
+	      this.infoWindow.close();
+	    }
+	  }, {
+	    key: "highlight",
+	    value: function highlight() {
+	      var marker = this.marker;
+
+	      this.isHighlighted = true;
+	      marker.setIcon(this.getIcon());
+	      marker.setZIndex(30);
+	    }
+	  }, {
+	    key: "unhighlight",
+	    value: function unhighlight() {
+	      var marker = this.marker;
+
+	      this.isHighlighted = false;
+	      marker.setIcon(this.getIcon());
+	      marker.setZIndex(this.isActive ? 2 : 1);
+	    }
+	  }, {
+	    key: "activate",
+	    value: function activate() {
+	      var marker = this.marker;
+
+	      this.isActive = true;
+	      this.isHighlighted = false;
+	      marker.setIcon(this.getIcon());
+	      marker.setZIndex(2);
+	    }
+	  }, {
+	    key: "deactivate",
+	    value: function deactivate() {
+	      var marker = this.marker;
+
+	      this.isActive = false;
+	      this.isHighlighted = false;
+	      marker.setIcon(this.getIcon());
+	      marker.setZIndex(1);
+	    }
+	  }, {
+	    key: "show",
+	    value: function show() {
+	      this.marker.setVisible(true);
+	    }
+	  }, {
+	    key: "hide",
+	    value: function hide() {
+	      this.marker.setVisible(false);
+	    }
+	  }]);
+	  return Marker;
+	}();
+
+	exports.default = Marker;
+	module.exports = exports["default"];
+
+/***/ },
+/* 240 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2MkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2M0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pu8kvhoAAAEdSURBVHjaYvj//z8DGnYF4gVAfAeIf0LpBVBxFLXIHFMgPvMfPzgDVYei2QyIP/4nDnyEqodrPguX+vPt//+bdf//71X+/38b2///+5QhfJA4AoDUMzACCTcGBoadDCDw9xsDw3FXBoZ3xxgYGBkgAEYLWjEwWOxmYGDmggowuDIBiSgYj+FmBwPDa6DGvwwQ/A+JfgsUv9PFgARiQZpt4NyHyxAasRnwaDGyZhsWICEL535+DAwEJOcyorG/PkHWLAOy+TGcyw405w8Dpu0wzCqNrPkpSPMROFc+ElXxHzS2XCyy5iMgzcvhXJ1KBgYRK0z/grAQUFyzHFnzYuzxfBYYr6uB8bsAGM9rgPQ57PFMlRRGUdomK1cBBBgA22PnG6kCJJEAAAAASUVORK5CYII="
+
+/***/ },
+/* 241 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NkNDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REZFMDlDQ0NDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2QUM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2QkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PnJIETYAAAFFSURBVHjapFMxa4NAGH0aEYekGQRRbAWdMre0U8amP6KQ39U10KG/oXumkHTM1ExixOCiiEGC2vvsXbi0JRTy4HHf0/e+u/NOtW1b/OCEccb4yVjxccafn3hlcc+4bM9jyX0n4QfGrP0fMu6Hhm+8MF5R0TQN4jhGmqY4HA7QdR2macJxHKiqCu4j/53COjyx4l0E1+s1iqLoOiqKchz7/T5Go5FoQJhQ9SxUGIbIsgx1XXeNZOZ5ju12CwlTCo+FSpLkGKRRrmnc7XZyeEx7vhGqLMvuA8rLlev9fi+Hr2nmUChN044z/kV6LyGi8Fwo27bPhi3LksNzCr8J5fs+hsPhr30TB4MBPM+Tw69Kd1OAFeMtFWTcbDaIoghVVcEwDLiuiyAI0Ov1RPCDzvmiGyZOfMH4yFdwDivuW3Tqkr/qS4ABAMsPtTbiv1/WAAAAAElFTkSuQmCC"
+
+/***/ },
+/* 242 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAPCAYAAAA71pVKAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyhpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjhDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjlDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpENERDMjU2NkM4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpENERDMjU2N0M4NjYxMUU2QjFCMkVBRDcwNEZDNUY0NSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqBIRlgAAAD/SURBVHjarJO9CsIwFEZv/EEHF3GTOjiKTopOrvUhBN9NcPAZ3LsI6uKoKCo6KVJQodAav5Q0NrUoqIGT5JZ7btImJc45abhkgj5YAkeOff95JDcsNcEE8DdM/DxNdqkF7A9igO3nw2N+BY9NiahOonlgBQ7AAVlQBGWQpKDNKMkbDFU6CEZKHIMzYDItGPOgqRUwE+i6KlyAoywiuIfGk9zRs/WE3FbhJiTGFdhqcjuFrqTCC+Ch7bLI/KbJhlh5p8IMcGNWD0hr8l7IlgpLkWQ3Mjc02RLyUIVVUIh5X09+7YomD+LPeQ7W4Apy8oxrr+f80w37w93+8q96CDAAS8tJ7FUFwroAAAAASUVORK5CYII="
+
+/***/ },
+/* 243 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,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Z2VSZWFkeXHJZTwAAAMoaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzEzOCA3OS4xNTk4MjQsIDIwMTYvMDkvMTQtMDE6MDk6MDEgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOkI0QkMyMDUxRjk0MjExRTZCODBEQUYxRDY1QUNFRTVBIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI0QkMyMDUwRjk0MjExRTZCODBEQUYxRDY1QUNFRTVBIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE3IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4dz8HdAAABPUlEQVR42qyTTUvDQBCGn6almIuoKIJoQQXx1IO2PUg91h8h+N8KHvwNnjxYBKF60IMVqohiseBXqoc2aYyzcZd0WxBRB57MvmHfYTK7IYoihqgIVaEp9HSu6vfW3kFRFOrR91HX+yxzSfCin4Wn95OKK8CJsKYWYQjXl9C6hW4XXBfmcrC4Auk0Jk6FdWXeksV+bOzD0QG8PEEqZTM5DaVNq0DFkce2UY1zaLcg8L/oBwmPD3B1wWDsKHPZqGYD/F5i9jWxlgI3TctczshjwajXZxngBziObleyo7PSndAyzyvznbCsVDYLb96oyRQbcy3zvWq7ZpSaaNxmT7c8lHNLlrmmzHtGFTZgZjb55mCg0JRMO1+wzLsj56wme3wokz+D9w6MT8BqHooy1kzGPuc/3bB/udu/+qs+BRgAu3Or4z4WplwAAAAASUVORK5CYII="
+
+/***/ },
+/* 244 */
+/***/ function(module, exports) {
+
+	module.exports = "data:image/png;base64,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Z2VSZWFkeXHJZTwAAAMoaVRYdFhNTDpjb20uYWRvYmUueG1wAAAAAAA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjYtYzEzOCA3OS4xNTk4MjQsIDIwMTYvMDkvMTQtMDE6MDk6MDEgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcE1NPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvbW0vIiB4bWxuczpzdFJlZj0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL3NUeXBlL1Jlc291cmNlUmVmIyIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjhGOTQxNzMwRkE3RjExRTZCODBEQUYxRDY1QUNFRTVBIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOkI0QkMyMDU0Rjk0MjExRTZCODBEQUYxRDY1QUNFRTVBIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDQyAyMDE3IChNYWNpbnRvc2gpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RDREQzI1NjRDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6RDREQzI1NjVDODY2MTFFNkIxQjJFQUQ3MDRGQzVGNDUiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4fGT4PAAABcElEQVR42qRTMS9EQRD+dt+6uESOQqJBQXKVKBwKOd2dWk38AL/ofoCIklYUClcRCgokKkI0iIvEee/tW9++7N5bRC5hkm9ndne+2dnZWWGMQSh76Dap1ok6MUHcEW1iexWDB6Gv8GSSFqhaRA2/yymxySAnPTKJi7Rt1Ar6S4doMsCxcgutHlED0bVCdBtBdAVQNtCTGmk15UbuUfEZil3zvkJjP1/mvjgsQTxJCPJCmNEMyXLsA1hpSg5rfqYvFJIHiYQ+FmlSIHuUkJcqTH9DuarmEl9FMB+AlO5Ep6W3b3iVmdS715V7jly6zwIi+0qWYRAtUCpOHlfuHafztEsG2av4SXJasXgB+V66BshloKoR2/sydavjbxpTOrxz25J3/KyylCIay3oFS4JAYLXL82lI3vJNYjtnzq4YVvblSOHtPILuCAyMGAzNagzXU4ii2Gdsktq/OsymDWtQNVzvok9vN5x/8TH+8qs+BRgAjmuZogyCsPYAAAAASUVORK5CYII="
+
+/***/ },
+/* 245 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = limit;
+	/**
+	 * Partially taken from https://github.com/ubilabs/google-map-bounds-limit
+	 */
+
+	var ignoreNextMapMove = false;
+	var lastValidCenter = null;
+
+	/**
+	 * Limits panning on the map beyond the given latitude.
+	 * @param  {google.maps.Map} map  The google maps instance
+	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
+	 */
+	function limitMapMove(map, maxBounds) {
+	  if (ignoreNextMapMove) {
+	    ignoreNextMapMove = false;
+	    return;
+	  }
+
+	  var bounds = map.getBounds();
+
+	  if (maxBounds.contains(bounds.getNorthEast()) && maxBounds.contains(bounds.getSouthWest())) {
+	    lastValidCenter = map.getCenter();
+	    return;
+	  }
+
+	  ignoreNextMapMove = true;
+
+	  if (lastValidCenter) {
+	    map.setCenter(lastValidCenter);
+	    return;
+	  }
+
+	  lastValidCenter = recalculateMapCenter(map, maxBounds);
+	  map.setCenter(lastValidCenter);
+	}
+
+	/**
+	 * Calculate a new map-center such that the visible area of the map is
+	 * completely within given max bounds.
+	 * @param  {google.maps.Map} map  The google maps instance
+	 * @param  {google.maps.LatLngBounds} maxBounds The maximum visible bounds
+	 * @return {google.maps.LatLng}  The recalculated map center
+	 */
+	function recalculateMapCenter(map, maxBounds) {
+	  var center = map.getCenter();
+	  var bounds = map.getBounds();
+	  var offsets = getBoundsOffsets(bounds, maxBounds);
+	  var newCenter = {
+	    lat: center.lat(),
+	    lng: center.lng()
+	  };
+
+	  if (offsets.north > 0) {
+	    newCenter.lat = center.lat() - offsets.n;
+	  }
+
+	  if (offsets.east > 0) {
+	    newCenter.lng = center.lng() - offsets.e;
+	  }
+
+	  if (offsets.south > 0) {
+	    newCenter.lat = center.lat() + offsets.s;
+	  }
+
+	  if (offsets.west > 0) {
+	    newCenter.lng = center.lng() + offsets.w;
+	  }
+
+	  return new google.maps.LatLng(newCenter.lat, newCenter.lng);
+	}
+
+	/**
+	 * Calculates the boundary-offsets in every direction for the given pair of
+	 * LatLngBounds. Returned values are > 0 if inner is smaller than outer in
+	 * that direction (when all values are >= 0, inner is a true subset of outer).
+	 * @param {google.maps.LatLngBounds} inner The first bounds
+	 * @param {google.maps.LatLngBounds} outer The second bounds
+	 * @return {Object} The numeric offset per direction.
+	 */
+	function getBoundsOffsets(inner, outer) {
+	  return {
+	    north: inner.getNorthEast().lat() - outer.getNorthEast().lat(),
+	    east: inner.getNorthEast().lng() - outer.getNorthEast().lng(),
+	    south: outer.getSouthWest().lat() - inner.getSouthWest().lat(),
+	    west: outer.getSouthWest().lng() - inner.getSouthWest().lng()
+	  };
+	}
+
+	/**
+	 * Limits latitude panning to a given limit.
+	 * @param  {google.maps.Map} map  The google map object
+	 * @param  {google.maps.LatLngBounds} maxBounds  The bounds limit
+	 */
+	function limit(map, maxBounds) {
+	  map.addListener('center_changed', function () {
+	    return limitMapMove(map, maxBounds);
+	  });
+	}
+	module.exports = exports['default'];
+
+/***/ },
+/* 246 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = [{
+	  featureType: 'all',
+	  'stylers': [{ 'visibility': 'on' }, { 'hue': '#0044ff' }, { 'saturation': -80 }]
+	}, {
+	  'featureType': 'road.arterial',
+	  'stylers': [{ 'visibility': 'on' }, { 'color': '#ffffff' }]
+	}, {
+	  'featureType': 'water',
+	  'stylers': [{ 'color': '#d1dbe1' }, { 'visibility': 'on' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.fill',
+	  'stylers': [{ 'color': '#456184' }]
+	}, {
+	  'featureType': 'water',
+	  'elementType': 'labels.text.stroke',
+	  'stylers': [{ 'weight': 2 }]
+	}];
+
+/***/ },
+/* 247 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _keys = __webpack_require__(202);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _Event = __webpack_require__(248);
+
+	var _Event2 = _interopRequireDefault(_Event);
+
+	var _City = __webpack_require__(254);
+
+	var _City2 = _interopRequireDefault(_City);
+
+	var _lang2 = __webpack_require__(255);
+
+	var _lang3 = _interopRequireDefault(_lang2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var EventsStore = function () {
+
+	  /**
+	   * @param {Object} eventsData Raw events data
+	   * @param {Object} citiesData Raw cities data
+	   */
+	  function EventsStore(eventsData, citiesData) {
+	    (0, _classCallCheck3.default)(this, EventsStore);
+
+	    var store = this;
+	    this.events = [];
+	    this.cities = [];
+
+	    var citiesNames = citiesData.map(function (data) {
+	      return data.name;
+	    });
+	    var citiesMissedInDict = [];
+
+	    eventsData.filter(function (data) {
+	      return typeof data.location !== 'undefined';
+	    }).map(function (data) {
+	      return data.location;
+	    }).filter(function (value, index, self) {
+	      return self.indexOf(value) === index;
+	    }).forEach(function (eventCity) {
+	      if (citiesNames.indexOf(eventCity) === -1) {
+	        citiesMissedInDict.push(eventCity);
+	      }
+	    });
+
+	    if (citiesMissedInDict.length > 0) {
+	      console.warn('Cities missed in cities.yml:\n' + citiesMissedInDict.join('\n'));
+	    }
+
+	    citiesData.forEach(function (data) {
+	      return store.cities.push(new _City2.default(data));
+	    });
+
+	    eventsData.forEach(function (data, i) {
+	      var eventCityExistInDict = data.location && citiesNames.indexOf(data.location) !== -1;
+
+	      if (!eventCityExistInDict) {
+	        return;
+	      }
+
+	      data.id = i.toString();
+	      store.events.push(new _Event2.default(data));
+	    });
+
+	    store.events.forEach(function (event) {
+	      event.city = store.cities.filter(function (city) {
+	        return city.name === event.city;
+	      })[0];
+	    });
+
+	    this.sort();
+	  }
+
+	  /**
+	   * @param {string} eventsUrl
+	   * @param {string} citiesUrl
+	   * @returns {Deferred}
+	   */
+
+
+	  (0, _createClass3.default)(EventsStore, [{
+	    key: "sort",
+	    value: function sort() {
+	      this.events.sort(function (a, b) {
+	        var compareA = a.endDate;
+	        var compareB = b.endDate;
+
+	        if (compareA === compareB) {
+	          return 0;
+	        }
+
+	        return compareA < compareB ? 1 : -1;
+	      });
+	    }
+
+	    /**
+	     * @param {Array<Event>} [events]
+	     * @returns {Array<Event>}
+	     */
+
+	  }, {
+	    key: "getUpcomingEvents",
+	    value: function getUpcomingEvents(events) {
+	      return (events || this.events).filter(function (event) {
+	        return event.isUpcoming();
+	      }).sort(function (eventA, eventB) {
+	        var startA = eventA.startDate;
+	        var startB = eventB.startDate;
+
+	        if (startA === startB) {
+	          return 0;
+	        }
+
+	        return startA < startB ? -1 : 1;
+	      });
+	    }
+
+	    /**
+	     * @param {Array<Event>} [events]
+	     * @returns {Array<Event>}
+	     */
+
+	  }, {
+	    key: "getPastEvents",
+	    value: function getPastEvents(events) {
+	      return (events || this.events).filter(function (event) {
+	        return !event.isUpcoming();
+	      });
+	    }
+
+	    /**
+	     * @param {Object} constraints
+	     * @param {string} constraints.time
+	     * @param {string} constraints.lang
+	     * @param {string} constraints.materials
+	     * @param {google.maps.LatLng} constraints.bounds
+	     * @param {Array<Event>} [evts]
+	     * @returns {Array<Event>}
+	     */
+
+	  }, {
+	    key: "filter",
+	    value: function filter(constraints, evts) {
+	      var events = evts || this.events;
+	      var filtered = [];
+	      var constraintNames = (0, _keys2.default)(constraints);
+
+	      events.forEach(function (event) {
+	        var performedConstraintsCount = 0;
+
+	        constraintNames.forEach(function (name) {
+	          var constraint = constraints[name];
+	          var filter = EventsStore.FILTERS[name];
+	          if (filter(constraint, event)) {
+	            performedConstraintsCount++;
+	          }
+	        });
+
+	        if (performedConstraintsCount === constraintNames.length) {
+	          filtered.push(event);
+	        }
+	      });
+
+	      return filtered;
+	    }
+
+	    /**
+	     * @returns {Object<string, string>}
+	     */
+
+	  }, {
+	    key: "getLanguages",
+	    value: function getLanguages() {
+	      var idsList = _jquery2.default.unique(this.events.map(function (event) {
+	        return event.lang;
+	      }));
+	      var map = {};
+
+	      idsList.forEach(function (langId) {
+	        if (langId in _lang3.default) {
+	          map[langId] = _lang3.default[langId].name;
+	        }
+	      });
+
+	      return map;
+	    }
+
+	    /**
+	     * @see EventsStore.materialsDict
+	     * @returns {Object<string, string>}
+	     */
+
+	  }, {
+	    key: "getMaterials",
+	    value: function getMaterials() {
+	      var list = [];
+
+	      this.events.forEach(function (event) {
+	        if (event.content) {
+	          list = list.concat((0, _keys2.default)(event.content));
+	        }
+	      });
+
+	      var listMap = {};
+	      list = _jquery2.default.unique(list);
+	      list.forEach(function (materialId) {
+	        return listMap[materialId] = EventsStore.MATERIAL_TYPE[materialId];
+	      });
+
+	      return listMap;
+	    }
+	  }], [{
+	    key: "create",
+	    value: function create(eventsUrl, citiesUrl) {
+	      var events = void 0;
+	      var cities = void 0;
+
+	      return _jquery2.default.getJSON(eventsUrl).then(function (result) {
+	        return events = result;
+	      }).then(function () {
+	        return _jquery2.default.getJSON(citiesUrl);
+	      }).then(function (result) {
+	        return cities = result;
+	      }).then(function () {
+	        return new EventsStore(events, cities);
+	      });
+	    }
+	  }]);
+	  return EventsStore;
+	}();
+
+	EventsStore.FILTERS = {
+	  time: function time(_time, event) {
+	    var matched = false;
+	    var hasTag = event.hasTag('kotlin1.1');
+
+	    switch (_time) {
+	      case 'upcoming':
+	        matched = !hasTag && event.isUpcoming();
+	        break;
+
+	      case 'past':
+	        matched = !hasTag && !event.isUpcoming();
+	        break;
+
+	      case 'all':
+	        matched = !hasTag && true;
+	        break;
+
+	      // TODO refactor this
+	      case 'kotlin':
+	        matched = event.hasTag('kotlin1.1');
+	        break;
+
+	      case null:
+	      default:
+	        matched = false;
+	        break;
+	    }
+
+	    return matched;
+	  },
+
+	  lang: function lang(_lang, event) {
+	    return _lang === 'all' || event.lang === _lang;
+	  },
+
+	  materials: function materials(materialType, event) {
+	    return materialType === 'all' || event.content && event.content.hasOwnProperty(materialType);
+	  },
+
+	  bounds: function bounds(_bounds, event) {
+	    return _bounds.contains(event.getBounds());
+	  }
+	};
+	EventsStore.MATERIAL_TYPE = {
+	  examples: 'Examples',
+	  slides: 'Slides',
+	  video: 'Video',
+	  pdf: 'PDF',
+	  article: 'Article'
+	};
+	exports.default = EventsStore;
+	module.exports = exports["default"];
+
+/***/ },
+/* 248 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _view = __webpack_require__(249);
+
+	var _view2 = _interopRequireDefault(_view);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _date = __webpack_require__(250);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(251);
+
+	var DEFAULT_LANG = 'en';
+
+	var Event = function () {
+	  /**
+	   * @param {Object} data
+	   */
+	  function Event(data) {
+	    (0, _classCallCheck3.default)(this, Event);
+
+	    this.id = data.id;
+	    this.title = data.title;
+	    this.url = data.url;
+	    this.subject = data.subject;
+	    this.speaker = data.speaker;
+	    this.description = data.description;
+	    this.tags = data.tags ? data.tags.split(',').map(function (t) {
+	      return t.trim();
+	    }) : [];
+
+	    if (!data.location) {
+	      console.warn(data.title + ' has no location');
+	    }
+
+	    this.city = data.location;
+	    this.lang = data.lang || DEFAULT_LANG;
+	    this.content = data.content;
+
+	    this.startDate = new Date(data.startDate);
+	    this.endDate = new Date(data.endDate);
+	    this.formattedDate = (0, _date.formatDate)(this.startDate, this.endDate);
+	  }
+
+	  (0, _createClass3.default)(Event, [{
+	    key: 'isUpcoming',
+	    value: function isUpcoming() {
+	      return this.endDate >= new Date();
+	    }
+	  }, {
+	    key: 'getBounds',
+	    value: function getBounds() {
+	      return this.city.getBounds();
+	    }
+	  }, {
+	    key: 'hasTag',
+	    value: function hasTag(tag) {
+	      return this.tags.indexOf(tag) > -1;
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render(mountNode) {
+	      var rendered = _view2.default.render({ event: this, mode: 'normal' });
+
+	      if (mountNode) {
+	        var tempElement = document.createElement('div');
+	        tempElement.innerHTML = rendered;
+	        var node = tempElement.childNodes[0];
+	        this.node = node;
+	        mountNode.appendChild(node);
+	      }
+
+	      return rendered;
+	    }
+	  }, {
+	    key: 'renderDetailed',
+	    value: function renderDetailed() {
+	      return _view2.default.render({ event: this, mode: 'detailed' });
+	    }
+	  }, {
+	    key: 'highlight',
+	    value: function highlight() {
+	      (0, _jquery2.default)(this.node).addClass('_highlighted');
+	    }
+	  }, {
+	    key: 'unhighlight',
+	    value: function unhighlight() {
+	      (0, _jquery2.default)(this.node).removeClass('_highlighted');
+	    }
+	  }, {
+	    key: 'show',
+	    value: function show() {
+	      (0, _jquery2.default)(this.node).show();
+	    }
+	  }, {
+	    key: 'hide',
+	    value: function hide() {
+	      (0, _jquery2.default)(this.node).hide();
+	    }
+	  }]);
+	  return Event;
+	}();
+
+	exports.default = Event;
+	module.exports = exports['default'];
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var nunjucks = __webpack_require__(25);
+	var env;
+	if (!nunjucks.currentEnv){
+		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
+	} else {
+		env = nunjucks.currentEnv;
+	}
+	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
+
+
+
+
+	var shim = __webpack_require__(26);
+
+
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/event/view.twig"] = (function() {
+	function root(env, context, frame, runtime, cb) {
+	var lineno = null;
+	var colno = null;
+	var output = "";
+	try {
+	var parentTemplate = null;
+	output += "<div class=\"event _";
+	output += runtime.suppressValue(runtime.contextOrFrameLookup(context, frame, "mode"), env.opts.autoescape);
+	output += " ";
+	if(runtime.memberLookup((runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"tags")),"length") > 0) {
+	output += "_tagged";
+	;
+	}
+	output += "\" data-id=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"id"), env.opts.autoescape);
+	output += "\">\n    ";
+	if(runtime.contextOrFrameLookup(context, frame, "mode") == "detailed") {
+	output += "\n        <span class=\"event-close js-close\"></span>\n    ";
+	;
+	}
+	output += "\n\n    <div class=\"event-date\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"formattedDate"), env.opts.autoescape);
+	output += "</div>\n    <div class=\"event-title\">\n        ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url")) {
+	output += "\n            <a class=\"event-url\" href=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"url"), env.opts.autoescape);
+	output += "\" target=\"_blank\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
+	output += "</a>,\n        ";
+	;
+	}
+	else {
+	output += "\n            ";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
+	output += "\n        ";
+	;
+	}
+	output += "\n        ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city")) {
+	output += "\n            <span class=\"event-location\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"city"), env.opts.autoescape);
+	output += "</span>\n        ";
+	;
+	}
+	output += "\n    </div>\n\n    <div class=\"event-subject\">\n        <span class=\"text\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
+	output += "</span>\n\n        <div class=\"event-info-indicators\">\n            ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
+	output += "\n                <div class=\"event-lang\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
+	output += "</div>\n            ";
+	;
+	}
+	output += "\n            ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
+	output += "\n                ";
+	frame = frame.push();
+	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
+	if(t_3) {var t_1;
+	if(runtime.isArray(t_3)) {
+	var t_2 = t_3.length;
+	for(t_1=0; t_1 < t_3.length; t_1++) {
+	var t_4 = t_3[t_1][0]
+	frame.set("type", t_3[t_1][0]);
+	var t_5 = t_3[t_1][1]
+	frame.set("href", t_3[t_1][1]);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n                    <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_4, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_5, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_4), env.opts.autoescape);
+	output += "\"></a>\n                ";
+	;
+	}
+	} else {
+	t_1 = -1;
+	var t_2 = runtime.keys(t_3).length;
+	for(var t_6 in t_3) {
+	t_1++;
+	var t_7 = t_3[t_6];
+	frame.set("type", t_6);
+	frame.set("href", t_7);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n                    <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_6, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_7, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_6), env.opts.autoescape);
+	output += "\"></a>\n                ";
+	;
+	}
+	}
+	}
+	frame = frame.pop();
+	output += "\n            ";
+	;
+	}
+	output += "\n        </div>\n    </div>\n\n    <div class=\"event-speaker\">\n        ";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"speaker"), env.opts.autoescape);
+	output += "\n    </div>\n\n    ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")) {
+	output += "\n        <div class=\"event-description\">\n            ";
+	output += runtime.suppressValue(env.getFilter("safe").call(context, runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")), env.opts.autoescape);
+	output += "\n        </div>\n    ";
+	;
+	}
+	output += "\n</div>";
+	if(parentTemplate) {
+	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+	} else {
+	cb(null, output);
+	}
+	;
+	} catch (e) {
+	  cb(runtime.handleError(e, lineno, colno));
+	}
+	}
+	return {
+	root: root
+	};
+
+	})();
+	})();
+
+
+
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/event/view.twig"] , dependencies)
+
+/***/ },
+/* 250 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.formatDate = formatDate;
+	function formatDate(startDate, endDate) {
+	  var formatted = '';
+	  var year = void 0,
+	      month = void 0,
+	      day = void 0;
+	  var isRange = startDate == endDate;
+	  var nowYear = new Date().getFullYear();
+
+	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+	  if (isRange) {
+	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
+	    year = [startDate.getFullYear(), endDate.getFullYear()];
+	    day = [startDate.getDate(), endDate.getDate()];
+
+	    if (month[0] !== month[1]) {
+	      formatted = month[0] + ' ' + day[0] + '-' + month[1] + ' ' + day[1];
+	    } else {
+	      formatted = month[0] + ' ' + day[0] + '-' + day[1];
+	    }
+
+	    if (year[0] !== nowYear || year[1] !== nowYear) {
+	      formatted += ', ' + year[1];
+	    }
+	  } else {
+	    year = startDate.getFullYear();
+	    month = months[startDate.getMonth()];
+	    day = startDate.getDate();
+
+	    formatted = month + ' ' + day;
+	    if (year !== nowYear) {
+	      formatted += ', ' + year;
+	    }
+	  }
+
+	  return formatted;
+	}
+
+/***/ },
+/* 251 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 252 */,
+/* 253 */,
+/* 254 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var City = function () {
+	  /**
+	   * @param {Object} data
+	   * @param {string} data.name
+	   * @param {Object} data.position
+	   * @param {Number} data.position.lat
+	   * @param {Number} data.position.lng
+	   */
+	  function City(data) {
+	    (0, _classCallCheck3.default)(this, City);
+
+	    this.name = data.name;
+	    this.position = data.geo;
+	    this.bounds = null;
+	  }
+
+	  (0, _createClass3.default)(City, [{
+	    key: "toString",
+	    value: function toString() {
+	      return this.name;
+	    }
+	  }, {
+	    key: "getBounds",
+	    value: function getBounds() {
+	      var position = this.position;
+
+	      if (!this.bounds) this.bounds = new google.maps.LatLng(position.lat, position.lng);
+
+	      return this.bounds;
+	    }
+	  }]);
+	  return City;
+	}();
+
+	exports.default = City;
+	module.exports = exports["default"];
+
+/***/ },
+/* 255 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  "ab": {
+	    "name": "Abkhaz",
+	    "nativeName": "аҧсуа"
+	  },
+	  "aa": {
+	    "name": "Afar",
+	    "nativeName": "Afaraf"
+	  },
+	  "af": {
+	    "name": "Afrikaans",
+	    "nativeName": "Afrikaans"
+	  },
+	  "ak": {
+	    "name": "Akan",
+	    "nativeName": "Akan"
+	  },
+	  "sq": {
+	    "name": "Albanian",
+	    "nativeName": "Shqip"
+	  },
+	  "am": {
+	    "name": "Amharic",
+	    "nativeName": "አማርኛ"
+	  },
+	  "ar": {
+	    "name": "Arabic",
+	    "nativeName": "العربية"
+	  },
+	  "an": {
+	    "name": "Aragonese",
+	    "nativeName": "Aragonés"
+	  },
+	  "hy": {
+	    "name": "Armenian",
+	    "nativeName": "Հայերեն"
+	  },
+	  "as": {
+	    "name": "Assamese",
+	    "nativeName": "অসমীয়া"
+	  },
+	  "av": {
+	    "name": "Avaric",
+	    "nativeName": "авар мацӀ, магӀарул мацӀ"
+	  },
+	  "ae": {
+	    "name": "Avestan",
+	    "nativeName": "avesta"
+	  },
+	  "ay": {
+	    "name": "Aymara",
+	    "nativeName": "aymar aru"
+	  },
+	  "az": {
+	    "name": "Azerbaijani",
+	    "nativeName": "azərbaycan dili"
+	  },
+	  "bm": {
+	    "name": "Bambara",
+	    "nativeName": "bamanankan"
+	  },
+	  "ba": {
+	    "name": "Bashkir",
+	    "nativeName": "башҡорт теле"
+	  },
+	  "eu": {
+	    "name": "Basque",
+	    "nativeName": "euskara, euskera"
+	  },
+	  "be": {
+	    "name": "Belarusian",
+	    "nativeName": "Беларуская"
+	  },
+	  "bn": {
+	    "name": "Bengali",
+	    "nativeName": "বাংলা"
+	  },
+	  "bh": {
+	    "name": "Bihari",
+	    "nativeName": "भोजपुरी"
+	  },
+	  "bi": {
+	    "name": "Bislama",
+	    "nativeName": "Bislama"
+	  },
+	  "bs": {
+	    "name": "Bosnian",
+	    "nativeName": "bosanski jezik"
+	  },
+	  "br": {
+	    "name": "Breton",
+	    "nativeName": "brezhoneg"
+	  },
+	  "bg": {
+	    "name": "Bulgarian",
+	    "nativeName": "български език"
+	  },
+	  "my": {
+	    "name": "Burmese",
+	    "nativeName": "ဗမာစာ"
+	  },
+	  "ca": {
+	    "name": "Catalan; Valencian",
+	    "nativeName": "Català"
+	  },
+	  "ch": {
+	    "name": "Chamorro",
+	    "nativeName": "Chamoru"
+	  },
+	  "ce": {
+	    "name": "Chechen",
+	    "nativeName": "нохчийн мотт"
+	  },
+	  "ny": {
+	    "name": "Chichewa; Chewa; Nyanja",
+	    "nativeName": "chiCheŵa, chinyanja"
+	  },
+	  "zh": {
+	    "name": "Chinese",
+	    "nativeName": "中文 (Zhōngwén), 汉语, 漢語"
+	  },
+	  "cv": {
+	    "name": "Chuvash",
+	    "nativeName": "чӑваш чӗлхи"
+	  },
+	  "kw": {
+	    "name": "Cornish",
+	    "nativeName": "Kernewek"
+	  },
+	  "co": {
+	    "name": "Corsican",
+	    "nativeName": "corsu, lingua corsa"
+	  },
+	  "cr": {
+	    "name": "Cree",
+	    "nativeName": "ᓀᐦᐃᔭᐍᐏᐣ"
+	  },
+	  "hr": {
+	    "name": "Croatian",
+	    "nativeName": "hrvatski"
+	  },
+	  "cs": {
+	    "name": "Czech",
+	    "nativeName": "česky, čeština"
+	  },
+	  "da": {
+	    "name": "Danish",
+	    "nativeName": "dansk"
+	  },
+	  "dv": {
+	    "name": "Divehi; Dhivehi; Maldivian;",
+	    "nativeName": "ދިވެހި"
+	  },
+	  "nl": {
+	    "name": "Dutch",
+	    "nativeName": "Nederlands, Vlaams"
+	  },
+	  "en": {
+	    "name": "English",
+	    "nativeName": "English"
+	  },
+	  "eo": {
+	    "name": "Esperanto",
+	    "nativeName": "Esperanto"
+	  },
+	  "et": {
+	    "name": "Estonian",
+	    "nativeName": "eesti, eesti keel"
+	  },
+	  "ee": {
+	    "name": "Ewe",
+	    "nativeName": "Eʋegbe"
+	  },
+	  "fo": {
+	    "name": "Faroese",
+	    "nativeName": "føroyskt"
+	  },
+	  "fj": {
+	    "name": "Fijian",
+	    "nativeName": "vosa Vakaviti"
+	  },
+	  "fi": {
+	    "name": "Finnish",
+	    "nativeName": "suomi, suomen kieli"
+	  },
+	  "fr": {
+	    "name": "French",
+	    "nativeName": "français, langue française"
+	  },
+	  "ff": {
+	    "name": "Fula; Fulah; Pulaar; Pular",
+	    "nativeName": "Fulfulde, Pulaar, Pular"
+	  },
+	  "gl": {
+	    "name": "Galician",
+	    "nativeName": "Galego"
+	  },
+	  "ka": {
+	    "name": "Georgian",
+	    "nativeName": "ქართული"
+	  },
+	  "de": {
+	    "name": "German",
+	    "nativeName": "Deutsch"
+	  },
+	  "el": {
+	    "name": "Greek, Modern",
+	    "nativeName": "Ελληνικά"
+	  },
+	  "gn": {
+	    "name": "Guaraní",
+	    "nativeName": "Avañeẽ"
+	  },
+	  "gu": {
+	    "name": "Gujarati",
+	    "nativeName": "ગુજરાતી"
+	  },
+	  "ht": {
+	    "name": "Haitian; Haitian Creole",
+	    "nativeName": "Kreyòl ayisyen"
+	  },
+	  "ha": {
+	    "name": "Hausa",
+	    "nativeName": "Hausa, هَوُسَ"
+	  },
+	  "he": {
+	    "name": "Hebrew (modern)",
+	    "nativeName": "עברית"
+	  },
+	  "hz": {
+	    "name": "Herero",
+	    "nativeName": "Otjiherero"
+	  },
+	  "hi": {
+	    "name": "Hindi",
+	    "nativeName": "हिन्दी, हिंदी"
+	  },
+	  "ho": {
+	    "name": "Hiri Motu",
+	    "nativeName": "Hiri Motu"
+	  },
+	  "hu": {
+	    "name": "Hungarian",
+	    "nativeName": "Magyar"
+	  },
+	  "ia": {
+	    "name": "Interlingua",
+	    "nativeName": "Interlingua"
+	  },
+	  "id": {
+	    "name": "Indonesian",
+	    "nativeName": "Bahasa Indonesia"
+	  },
+	  "ie": {
+	    "name": "Interlingue",
+	    "nativeName": "Originally called Occidental; then Interlingue after WWII"
+	  },
+	  "ga": {
+	    "name": "Irish",
+	    "nativeName": "Gaeilge"
+	  },
+	  "ig": {
+	    "name": "Igbo",
+	    "nativeName": "Asụsụ Igbo"
+	  },
+	  "ik": {
+	    "name": "Inupiaq",
+	    "nativeName": "Iñupiaq, Iñupiatun"
+	  },
+	  "io": {
+	    "name": "Ido",
+	    "nativeName": "Ido"
+	  },
+	  "is": {
+	    "name": "Icelandic",
+	    "nativeName": "Íslenska"
+	  },
+	  "it": {
+	    "name": "Italian",
+	    "nativeName": "Italiano"
+	  },
+	  "iu": {
+	    "name": "Inuktitut",
+	    "nativeName": "ᐃᓄᒃᑎᑐᑦ"
+	  },
+	  "ja": {
+	    "name": "Japanese",
+	    "nativeName": "日本語 (にほんご／にっぽんご)"
+	  },
+	  "jv": {
+	    "name": "Javanese",
+	    "nativeName": "basa Jawa"
+	  },
+	  "kl": {
+	    "name": "Kalaallisut, Greenlandic",
+	    "nativeName": "kalaallisut, kalaallit oqaasii"
+	  },
+	  "kn": {
+	    "name": "Kannada",
+	    "nativeName": "ಕನ್ನಡ"
+	  },
+	  "kr": {
+	    "name": "Kanuri",
+	    "nativeName": "Kanuri"
+	  },
+	  "ks": {
+	    "name": "Kashmiri",
+	    "nativeName": "कश्मीरी, كشميري‎"
+	  },
+	  "kk": {
+	    "name": "Kazakh",
+	    "nativeName": "Қазақ тілі"
+	  },
+	  "km": {
+	    "name": "Khmer",
+	    "nativeName": "ភាសាខ្មែរ"
+	  },
+	  "ki": {
+	    "name": "Kikuyu, Gikuyu",
+	    "nativeName": "Gĩkũyũ"
+	  },
+	  "rw": {
+	    "name": "Kinyarwanda",
+	    "nativeName": "Ikinyarwanda"
+	  },
+	  "ky": {
+	    "name": "Kirghiz, Kyrgyz",
+	    "nativeName": "кыргыз тили"
+	  },
+	  "kv": {
+	    "name": "Komi",
+	    "nativeName": "коми кыв"
+	  },
+	  "kg": {
+	    "name": "Kongo",
+	    "nativeName": "KiKongo"
+	  },
+	  "ko": {
+	    "name": "Korean",
+	    "nativeName": "한국어 (韓國語), 조선말 (朝鮮語)"
+	  },
+	  "ku": {
+	    "name": "Kurdish",
+	    "nativeName": "Kurdî, كوردی‎"
+	  },
+	  "kj": {
+	    "name": "Kwanyama, Kuanyama",
+	    "nativeName": "Kuanyama"
+	  },
+	  "la": {
+	    "name": "Latin",
+	    "nativeName": "latine, lingua latina"
+	  },
+	  "lb": {
+	    "name": "Luxembourgish, Letzeburgesch",
+	    "nativeName": "Lëtzebuergesch"
+	  },
+	  "lg": {
+	    "name": "Luganda",
+	    "nativeName": "Luganda"
+	  },
+	  "li": {
+	    "name": "Limburgish, Limburgan, Limburger",
+	    "nativeName": "Limburgs"
+	  },
+	  "ln": {
+	    "name": "Lingala",
+	    "nativeName": "Lingála"
+	  },
+	  "lo": {
+	    "name": "Lao",
+	    "nativeName": "ພາສາລາວ"
+	  },
+	  "lt": {
+	    "name": "Lithuanian",
+	    "nativeName": "lietuvių kalba"
+	  },
+	  "lu": {
+	    "name": "Luba-Katanga",
+	    "nativeName": ""
+	  },
+	  "lv": {
+	    "name": "Latvian",
+	    "nativeName": "latviešu valoda"
+	  },
+	  "gv": {
+	    "name": "Manx",
+	    "nativeName": "Gaelg, Gailck"
+	  },
+	  "mk": {
+	    "name": "Macedonian",
+	    "nativeName": "македонски јазик"
+	  },
+	  "mg": {
+	    "name": "Malagasy",
+	    "nativeName": "Malagasy fiteny"
+	  },
+	  "ms": {
+	    "name": "Malay",
+	    "nativeName": "bahasa Melayu, بهاس ملايو‎"
+	  },
+	  "ml": {
+	    "name": "Malayalam",
+	    "nativeName": "മലയാളം"
+	  },
+	  "mt": {
+	    "name": "Maltese",
+	    "nativeName": "Malti"
+	  },
+	  "mi": {
+	    "name": "Māori",
+	    "nativeName": "te reo Māori"
+	  },
+	  "mr": {
+	    "name": "Marathi (Marāṭhī)",
+	    "nativeName": "मराठी"
+	  },
+	  "mh": {
+	    "name": "Marshallese",
+	    "nativeName": "Kajin M̧ajeļ"
+	  },
+	  "mn": {
+	    "name": "Mongolian",
+	    "nativeName": "монгол"
+	  },
+	  "na": {
+	    "name": "Nauru",
+	    "nativeName": "Ekakairũ Naoero"
+	  },
+	  "nv": {
+	    "name": "Navajo, Navaho",
+	    "nativeName": "Diné bizaad, Dinékʼehǰí"
+	  },
+	  "nb": {
+	    "name": "Norwegian Bokmål",
+	    "nativeName": "Norsk bokmål"
+	  },
+	  "nd": {
+	    "name": "North Ndebele",
+	    "nativeName": "isiNdebele"
+	  },
+	  "ne": {
+	    "name": "Nepali",
+	    "nativeName": "नेपाली"
+	  },
+	  "ng": {
+	    "name": "Ndonga",
+	    "nativeName": "Owambo"
+	  },
+	  "nn": {
+	    "name": "Norwegian Nynorsk",
+	    "nativeName": "Norsk nynorsk"
+	  },
+	  "no": {
+	    "name": "Norwegian",
+	    "nativeName": "Norsk"
+	  },
+	  "ii": {
+	    "name": "Nuosu",
+	    "nativeName": "ꆈꌠ꒿ Nuosuhxop"
+	  },
+	  "nr": {
+	    "name": "South Ndebele",
+	    "nativeName": "isiNdebele"
+	  },
+	  "oc": {
+	    "name": "Occitan",
+	    "nativeName": "Occitan"
+	  },
+	  "oj": {
+	    "name": "Ojibwe, Ojibwa",
+	    "nativeName": "ᐊᓂᔑᓈᐯᒧᐎᓐ"
+	  },
+	  "cu": {
+	    "name": "Old Church Slavonic, Church Slavic, Church Slavonic, Old Bulgarian, Old Slavonic",
+	    "nativeName": "ѩзыкъ словѣньскъ"
+	  },
+	  "om": {
+	    "name": "Oromo",
+	    "nativeName": "Afaan Oromoo"
+	  },
+	  "or": {
+	    "name": "Oriya",
+	    "nativeName": "ଓଡ଼ିଆ"
+	  },
+	  "os": {
+	    "name": "Ossetian, Ossetic",
+	    "nativeName": "ирон æвзаг"
+	  },
+	  "pa": {
+	    "name": "Panjabi, Punjabi",
+	    "nativeName": "ਪੰਜਾਬੀ, پنجابی‎"
+	  },
+	  "pi": {
+	    "name": "Pāli",
+	    "nativeName": "पाऴि"
+	  },
+	  "fa": {
+	    "name": "Persian",
+	    "nativeName": "فارسی"
+	  },
+	  "pl": {
+	    "name": "Polish",
+	    "nativeName": "polski"
+	  },
+	  "ps": {
+	    "name": "Pashto, Pushto",
+	    "nativeName": "پښتو"
+	  },
+	  "pt": {
+	    "name": "Portuguese",
+	    "nativeName": "Português"
+	  },
+	  "qu": {
+	    "name": "Quechua",
+	    "nativeName": "Runa Simi, Kichwa"
+	  },
+	  "rm": {
+	    "name": "Romansh",
+	    "nativeName": "rumantsch grischun"
+	  },
+	  "rn": {
+	    "name": "Kirundi",
+	    "nativeName": "kiRundi"
+	  },
+	  "ro": {
+	    "name": "Romanian, Moldavian, Moldovan",
+	    "nativeName": "română"
+	  },
+	  "ru": {
+	    "name": "Russian",
+	    "nativeName": "русский язык"
+	  },
+	  "sa": {
+	    "name": "Sanskrit (Saṁskṛta)",
+	    "nativeName": "संस्कृतम्"
+	  },
+	  "sc": {
+	    "name": "Sardinian",
+	    "nativeName": "sardu"
+	  },
+	  "sd": {
+	    "name": "Sindhi",
+	    "nativeName": "सिन्धी, سنڌي، سندھی‎"
+	  },
+	  "se": {
+	    "name": "Northern Sami",
+	    "nativeName": "Davvisámegiella"
+	  },
+	  "sm": {
+	    "name": "Samoan",
+	    "nativeName": "gagana faa Samoa"
+	  },
+	  "sg": {
+	    "name": "Sango",
+	    "nativeName": "yângâ tî sängö"
+	  },
+	  "sr": {
+	    "name": "Serbian",
+	    "nativeName": "српски језик"
+	  },
+	  "gd": {
+	    "name": "Scottish Gaelic; Gaelic",
+	    "nativeName": "Gàidhlig"
+	  },
+	  "sn": {
+	    "name": "Shona",
+	    "nativeName": "chiShona"
+	  },
+	  "si": {
+	    "name": "Sinhala, Sinhalese",
+	    "nativeName": "සිංහල"
+	  },
+	  "sk": {
+	    "name": "Slovak",
+	    "nativeName": "slovenčina"
+	  },
+	  "sl": {
+	    "name": "Slovene",
+	    "nativeName": "slovenščina"
+	  },
+	  "so": {
+	    "name": "Somali",
+	    "nativeName": "Soomaaliga, af Soomaali"
+	  },
+	  "st": {
+	    "name": "Southern Sotho",
+	    "nativeName": "Sesotho"
+	  },
+	  "es": {
+	    "name": "Spanish",
+	    "nativeName": "español, castellano"
+	  },
+	  "su": {
+	    "name": "Sundanese",
+	    "nativeName": "Basa Sunda"
+	  },
+	  "sw": {
+	    "name": "Swahili",
+	    "nativeName": "Kiswahili"
+	  },
+	  "ss": {
+	    "name": "Swati",
+	    "nativeName": "SiSwati"
+	  },
+	  "sv": {
+	    "name": "Swedish",
+	    "nativeName": "svenska"
+	  },
+	  "ta": {
+	    "name": "Tamil",
+	    "nativeName": "தமிழ்"
+	  },
+	  "te": {
+	    "name": "Telugu",
+	    "nativeName": "తెలుగు"
+	  },
+	  "tg": {
+	    "name": "Tajik",
+	    "nativeName": "тоҷикӣ, toğikī, تاجیکی‎"
+	  },
+	  "th": {
+	    "name": "Thai",
+	    "nativeName": "ไทย"
+	  },
+	  "ti": {
+	    "name": "Tigrinya",
+	    "nativeName": "ትግርኛ"
+	  },
+	  "bo": {
+	    "name": "Tibetan Standard, Tibetan, Central",
+	    "nativeName": "བོད་ཡིག"
+	  },
+	  "tk": {
+	    "name": "Turkmen",
+	    "nativeName": "Türkmen, Түркмен"
+	  },
+	  "tl": {
+	    "name": "Tagalog",
+	    "nativeName": "Wikang Tagalog, ᜏᜒᜃᜅ᜔ ᜆᜄᜎᜓᜄ᜔"
+	  },
+	  "tn": {
+	    "name": "Tswana",
+	    "nativeName": "Setswana"
+	  },
+	  "to": {
+	    "name": "Tonga (Tonga Islands)",
+	    "nativeName": "faka Tonga"
+	  },
+	  "tr": {
+	    "name": "Turkish",
+	    "nativeName": "Türkçe"
+	  },
+	  "ts": {
+	    "name": "Tsonga",
+	    "nativeName": "Xitsonga"
+	  },
+	  "tt": {
+	    "name": "Tatar",
+	    "nativeName": "татарча, tatarça, تاتارچا‎"
+	  },
+	  "tw": {
+	    "name": "Twi",
+	    "nativeName": "Twi"
+	  },
+	  "ty": {
+	    "name": "Tahitian",
+	    "nativeName": "Reo Tahiti"
+	  },
+	  "ug": {
+	    "name": "Uighur, Uyghur",
+	    "nativeName": "Uyƣurqə, ئۇيغۇرچە‎"
+	  },
+	  "uk": {
+	    "name": "Ukrainian",
+	    "nativeName": "українська"
+	  },
+	  "ur": {
+	    "name": "Urdu",
+	    "nativeName": "اردو"
+	  },
+	  "uz": {
+	    "name": "Uzbek",
+	    "nativeName": "zbek, Ўзбек, أۇزبېك‎"
+	  },
+	  "ve": {
+	    "name": "Venda",
+	    "nativeName": "Tshivenḓa"
+	  },
+	  "vi": {
+	    "name": "Vietnamese",
+	    "nativeName": "Tiếng Việt"
+	  },
+	  "vo": {
+	    "name": "Volapük",
+	    "nativeName": "Volapük"
+	  },
+	  "wa": {
+	    "name": "Walloon",
+	    "nativeName": "Walon"
+	  },
+	  "cy": {
+	    "name": "Welsh",
+	    "nativeName": "Cymraeg"
+	  },
+	  "wo": {
+	    "name": "Wolof",
+	    "nativeName": "Wollof"
+	  },
+	  "fy": {
+	    "name": "Western Frisian",
+	    "nativeName": "Frysk"
+	  },
+	  "xh": {
+	    "name": "Xhosa",
+	    "nativeName": "isiXhosa"
+	  },
+	  "yi": {
+	    "name": "Yiddish",
+	    "nativeName": "ייִדיש"
+	  },
+	  "yo": {
+	    "name": "Yoruba",
+	    "nativeName": "Yorùbá"
+	  },
+	  "za": {
+	    "name": "Zhuang, Chuang",
+	    "nativeName": "Saɯ cueŋƅ, Saw cuengh"
+	  }
+	};
+	module.exports = exports["default"];
+
+/***/ },
+/* 256 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _inViewport = __webpack_require__(257);
+
+	var _inViewport2 = _interopRequireDefault(_inViewport);
+
+	var _emitter = __webpack_require__(237);
+
+	var _emitter2 = _interopRequireDefault(_emitter);
+
+	var _eventsList = __webpack_require__(238);
+
+	var _eventsList2 = _interopRequireDefault(_eventsList);
+
+	var _view = __webpack_require__(258);
+
+	var _view2 = _interopRequireDefault(_view);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(259);
+
+	var EventsList = function () {
+	  /**
+	   * @param {HTMLElement|string} node
+	   * @param {EventsStore} store
+	   * @param {Object} initialFilters
+	   */
+	  function EventsList(node, store) {
+	    var _this = this;
+
+	    (0, _classCallCheck3.default)(this, EventsList);
+
+	    this.store = store;
+	    this.currentFilters = {};
+	    this.$node = (0, _jquery2.default)(node);
+	    this.mode = 'list';
+
+	    _emitter2.default.on(_eventsList2.default.EVENTS_FILTERED, function (filters) {
+	      var filteredEvents = store.filter(filters);
+	      _this.currentFilters = filters;
+	      _this.applyFilteredResults(filteredEvents);
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_SELECTED, function (selectedEvent) {
+	      _this.showEventDetails(selectedEvent);
+	      _this.mode = 'detailed';
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_DESELECTED, function () {
+	      _this.hideEventDetails();
+	      _this.mode = 'list';
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_HIGHLIGHTED, function (event) {
+	      event.highlight();
+	    });
+
+	    _emitter2.default.on(_eventsList2.default.EVENT_UNHIGHLIGHTED, function (event) {
+	      event.unhighlight();
+	    });
+
+	    // Filter events when map zoomed
+	    _emitter2.default.on(_eventsList2.default.MAP_BOUNDS_CHANGED, function (bounds) {
+	      return;
+	      var request = _jquery2.default.extend({}, _this.currentFilters, { bounds: bounds });
+	      _this.currentFilters = request;
+	      var filteredEvents = store.filter(request);
+	      _this.applyFilteredResults(filteredEvents);
+	    });
+
+	    this.render();
+	  }
+
+	  (0, _createClass3.default)(EventsList, [{
+	    key: "render",
+	    value: function render() {
+	      var $content = (0, _jquery2.default)(_view2.default.render());
+	      this.$content = $content;
+
+	      var upcomingEvents = this.store.getUpcomingEvents();
+	      var pastEvents = this.store.getPastEvents();
+
+	      var $upcoming = $content.find('.js-upcoming-events');
+	      var $past = $content.find('.js-past-events');
+	      this.$upcomingGroup = $content.find('.js-upcoming-events-group');
+	      this.$pastGroup = $content.find('.js-past-events-group');
+
+	      upcomingEvents.forEach(function (event) {
+	        return event.render($upcoming.get(0));
+	      });
+	      pastEvents.forEach(function (event) {
+	        return event.render($past.get(0));
+	      });
+
+	      this.store.events.forEach(function (event) {
+	        var $node = (0, _jquery2.default)(event.node);
+
+	        $node.on('click', function () {
+	          _emitter2.default.emit(_eventsList2.default.EVENT_DESELECTED);
+	          _emitter2.default.emit(_eventsList2.default.EVENT_SELECTED, event);
+	        });
+
+	        $node.on('mouseenter', function (e) {
+	          e.stopPropagation();
+	          _emitter2.default.emit(_eventsList2.default.EVENT_HIGHLIGHTED, event);
+	        });
+
+	        $node.on('mouseleave', function (e) {
+	          e.stopPropagation();
+	          _emitter2.default.emit(_eventsList2.default.EVENT_UNHIGHLIGHTED, event);
+	        });
+	      });
+
+	      this.$node.append($content);
+	    }
+
+	    /**
+	     * @param {Array<Event>} filteredEvents
+	     */
+
+	  }, {
+	    key: "applyFilteredResults",
+	    value: function applyFilteredResults(filteredEvents) {
+	      var store = this.store;
+	      var upcomingEventsInResults = store.getUpcomingEvents(filteredEvents);
+	      var pastEventsInResults = store.getPastEvents(filteredEvents);
+
+	      store.events.forEach(function (event) {
+	        filteredEvents.indexOf(event) > -1 ? event.show() : event.hide();
+	      });
+
+	      upcomingEventsInResults.length > 0 ? this.$upcomingGroup.show() : this.$upcomingGroup.hide();
+
+	      pastEventsInResults.length > 0 ? this.$pastGroup.show() : this.$pastGroup.hide();
+	    }
+
+	    /**
+	     * @param {Event} event
+	     */
+
+	  }, {
+	    key: "showEventDetails",
+	    value: function showEventDetails(event) {
+	      var $node = (0, _jquery2.default)(event.node);
+	      var inViewport = (0, _inViewport2.default)(event.node);
+	      this.currentEvent = event;
+
+	      $node.addClass('_detailed').removeClass('_normal');
+
+	      if (!inViewport) {
+	        (0, _jquery2.default)('html,body').animate({ scrollTop: $node.offset().top });
+	      }
+	    }
+	  }, {
+	    key: "hideEventDetails",
+	    value: function hideEventDetails() {
+	      if (!this.currentEvent) {
+	        return;
+	      }
+
+	      var event = this.currentEvent;
+	      (0, _jquery2.default)(event.node).addClass('_normal').removeClass('_detailed');
+
+	      this.currentEvent = null;
+	    }
+	  }]);
+	  return EventsList;
+	}();
+
+	exports.default = EventsList;
+	module.exports = exports["default"];
+
+/***/ },
+/* 257 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {module.exports = inViewport;
+
+	var instances = [];
+	var supportsMutationObserver = typeof global.MutationObserver === 'function';
+
+	function inViewport(elt, params, cb) {
+	  var opts = {
+	    container: global.document.body,
+	    offset: 0
+	  };
+
+	  if (params === undefined || typeof params === 'function') {
+	    cb = params;
+	    params = {};
+	  }
+
+	  var container = opts.container = params.container || opts.container;
+	  var offset = opts.offset = params.offset || opts.offset;
+
+	  for (var i = 0; i < instances.length; i++) {
+	    if (instances[i].container === container) {
+	      return instances[i].isInViewport(elt, offset, cb);
+	    }
+	  }
+
+	  return instances[
+	    instances.push(createInViewport(container)) - 1
+	  ].isInViewport(elt, offset, cb);
+	}
+
+	function addEvent(el, type, fn) {
+	  if (el.attachEvent) {
+	    el.attachEvent('on' + type, fn);
+	  } else {
+	    el.addEventListener(type, fn, false);
+	  }
+	}
+
+	function debounce(func, wait, immediate) {
+	  var timeout;
+	  return function () {
+	    var context = this, args = arguments;
+	    var callNow = immediate && !timeout;
+	    clearTimeout(timeout);
+	    timeout = setTimeout(later, wait);
+	    if (callNow) func.apply(context, args);
+
+	    function later() {
+	      timeout = null;
+	      if (!immediate) func.apply(context, args);
+	    }
+	  };
+	}
+
+	// https://github.com/jquery/sizzle/blob/3136f48b90e3edc84cbaaa6f6f7734ef03775a07/sizzle.js#L708
+	var contains = function() {
+	  if (!global.document) {
+	    return true;
+	  }
+	  return global.document.documentElement.compareDocumentPosition ?
+	    function (a, b) {
+	      return !!(a.compareDocumentPosition(b) & 16);
+	    } :
+	    global.document.documentElement.contains ?
+	      function (a, b) {
+	        return a !== b && ( a.contains ? a.contains(b) : false );
+	      } :
+	      function (a, b) {
+	        while (b = b.parentNode) {
+	          if (b === a) {
+	            return true;
+	          }
+	        }
+	        return false;
+	      };
+	}
+
+	function createInViewport(container) {
+	  var watches = createWatches();
+
+	  var scrollContainer = container === global.document.body ? global : container;
+	  var debouncedCheck = debounce(watches.checkAll(watchInViewport), 15);
+
+	  addEvent(scrollContainer, 'scroll', debouncedCheck);
+
+	  if (scrollContainer === global) {
+	    addEvent(global, 'resize', debouncedCheck);
+	  }
+
+	  if (supportsMutationObserver) {
+	    observeDOM(watches, container, debouncedCheck);
+	  }
+
+	  // failsafe check, every 200ms we check for visible images
+	  // usecase: a hidden parent containing eleements
+	  // when the parent becomes visible, we have no event that the children
+	  // became visible
+	  setInterval(debouncedCheck, 150);
+
+	  function isInViewport(elt, offset, cb) {
+	    if (!cb) {
+	      return isVisible(elt, offset);
+	    }
+
+	    var remote = createRemote(elt, offset, cb);
+	    remote.watch();
+	    return remote;
+	  }
+
+	  function createRemote(elt, offset, cb) {
+	    function watch() {
+	      watches.add(elt, offset, cb);
+	    }
+
+	    function dispose() {
+	      watches.remove(elt);
+	    }
+
+	    return {
+	      watch: watch,
+	      dispose: dispose
+	    };
+	  }
+
+	  function watchInViewport(elt, offset, cb) {
+	    if (isVisible(elt, offset)) {
+	      watches.remove(elt);
+	      cb(elt);
+	    }
+	  }
+
+	  function isVisible(elt, offset) {
+	    if (!contains(global.document.documentElement, elt) || !contains(global.document.documentElement, container)) {
+	      return false;
+	    }
+
+	    // Check if the element is visible
+	    // https://github.com/jquery/jquery/blob/740e190223d19a114d5373758127285d14d6b71e/src/css/hiddenVisibleSelectors.js
+	    if (!elt.offsetWidth || !elt.offsetHeight) {
+	      return false;
+	    }
+
+	    var eltRect = elt.getBoundingClientRect();
+	    var viewport = {};
+
+	    if (container === global.document.body) {
+	      viewport = {
+	        top: -offset,
+	        left: -offset,
+	        right: global.document.documentElement.clientWidth + offset,
+	        bottom: global.document.documentElement.clientHeight + offset
+	      };
+	    } else {
+	      var containerRect = container.getBoundingClientRect();
+	      viewport = {
+	        top: containerRect.top - offset,
+	        left: containerRect.left - offset,
+	        right: containerRect.right + offset,
+	        bottom: containerRect.bottom + offset
+	      };
+	    }
+
+	    // The element must overlap with the visible part of the viewport
+	    var visible =
+	      (
+	        eltRect.right >= viewport.left &&
+	        eltRect.left <= viewport.right &&
+	        eltRect.bottom >= viewport.top &&
+	        eltRect.top <= viewport.bottom
+	      );
+
+	    return visible;
+	  }
+
+	  return {
+	    container: container,
+	    isInViewport: isInViewport
+	  };
+	}
+
+	function createWatches() {
+	  var watches = [];
+
+	  function add(elt, offset, cb) {
+	    if (!isWatched(elt)) {
+	      watches.push([elt, offset, cb]);
+	    }
+	  }
+
+	  function remove(elt) {
+	    var pos = indexOf(elt);
+	    if (pos !== -1) {
+	      watches.splice(pos, 1);
+	    }
+	  }
+
+	  function indexOf(elt) {
+	    for (var i = watches.length - 1; i >= 0; i--) {
+	      if (watches[i][0] === elt) {
+	        return i;
+	      }
+	    }
+	    return -1;
+	  }
+
+	  function isWatched(elt) {
+	    return indexOf(elt) !== -1;
+	  }
+
+	  function checkAll(cb) {
+	    return function () {
+	      for (var i = watches.length - 1; i >= 0; i--) {
+	        cb.apply(this, watches[i]);
+	      }
+	    };
+	  }
+
+	  return {
+	    add: add,
+	    remove: remove,
+	    isWatched: isWatched,
+	    checkAll: checkAll
+	  };
+	}
+
+	function observeDOM(watches, container, cb) {
+	  var observer = new MutationObserver(watch);
+	  var filter = Array.prototype.filter;
+	  var concat = Array.prototype.concat;
+
+	  observer.observe(container, {
+	    childList: true,
+	    subtree: true,
+	    // changes like style/width/height/display will be catched
+	    attributes: true
+	  });
+
+	  function watch(mutations) {
+	    // some new DOM nodes where previously watched
+	    // we should check their positions
+	    if (mutations.some(knownNodes) === true) {
+	      setTimeout(cb, 0);
+	    }
+	  }
+
+	  function knownNodes(mutation) {
+	    var nodes = concat.call([],
+	      Array.prototype.slice.call(mutation.addedNodes),
+	      mutation.target
+	    );
+	    return filter.call(nodes, watches.isWatched).length > 0;
+	  }
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 258 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var nunjucks = __webpack_require__(25);
+	var env;
+	if (!nunjucks.currentEnv){
+		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
+	} else {
+		env = nunjucks.currentEnv;
+	}
+	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
+
+
+
+
+	var shim = __webpack_require__(26);
+
+
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/events-list/view.twig"] = (function() {
+	function root(env, context, frame, runtime, cb) {
+	var lineno = null;
+	var colno = null;
+	var output = "";
+	try {
+	var parentTemplate = null;
+	output += "<div class=\"events-list\">\n\n  <div class=\"filter-panel-wrap js-filter-panel-wrap\"></div>\n\n  <div class=\"event-overview js-event-details\">\n\n  </div>\n\n  <div class=\"list js-list\">\n    <div class=\"list-group js-upcoming-events-group\">\n      <div class=\"list-group-title\">Upcoming Events</div>\n      <div class=\"list-group-content js-upcoming-events\">\n\n      </div>\n    </div>\n\n    <div class=\"list-group js-past-events-group\">\n      <div class=\"list-group-title\">Past Events</div>\n      <div class=\"list-group-content js-past-events\">\n\n      </div>\n    </div>\n  </div>\n\n</div>";
+	if(parentTemplate) {
+	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+	} else {
+	cb(null, output);
+	}
+	;
+	} catch (e) {
+	  cb(runtime.handleError(e, lineno, colno));
+	}
+	}
+	return {
+	root: root
+	};
+
+	})();
+	})();
+
+
+
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/events-list/view.twig"] , dependencies)
+
+/***/ },
+/* 259 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 260 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _keys = __webpack_require__(202);
+
+	var _keys2 = _interopRequireDefault(_keys);
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _eventEmitter = __webpack_require__(8);
+
+	var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
+
+	var _switcher = __webpack_require__(261);
+
+	var _switcher2 = _interopRequireDefault(_switcher);
+
+	var _index = __webpack_require__(6);
+
+	var _index2 = _interopRequireDefault(_index);
+
+	var _view = __webpack_require__(264);
+
+	var _view2 = _interopRequireDefault(_view);
+
+	var _timeSelectItems = __webpack_require__(265);
+
+	var _timeSelectItems2 = _interopRequireDefault(_timeSelectItems);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(266);
+
+	var EVENTS = {
+	  SELECT: 'select'
+	};
+
+	var FilterPanel = function () {
+	  /**
+	   * @param {HTMLElement|string} node
+	   * @param {Object} config
+	   * @param {Object} config.languages
+	   * @param {Object} config.materials
+	   * @param {Object} config.initialFilters
+	   * @param {EventsStore} config.store
+	   */
+	  function FilterPanel(node, config) {
+	    var _this = this;
+
+	    (0, _classCallCheck3.default)(this, FilterPanel);
+
+	    this.$node = (0, _jquery2.default)(node);
+	    this.$panel = this.render();
+	    this._emitter = (0, _eventEmitter2.default)({});
+
+	    var $timeSelector = this.$panel.find('.js-time-selector');
+	    var $languageSelectorNode = this.$panel.find('.js-language-selector');
+	    var $materialSelectorNode = this.$panel.find('.js-material-selector');
+
+	    // Initial filters
+	    // TODO: values from hash
+	    var initialFilters = config.initialFilters;
+
+	    var timeSelectSelectedIndex = (0, _keys2.default)(_timeSelectItems2.default).indexOf(initialFilters.time);
+
+	    var handleSelect = function handleSelect(type, value) {
+	      var eventData = {};
+	      eventData[type] = value;
+	      _jquery2.default.extend(initialFilters, eventData);
+	      _this._emitter.emit(EVENTS.SELECT, initialFilters);
+	    };
+
+	    this.timeSelector = new _switcher2.default($timeSelector, {
+	      items: _timeSelectItems2.default,
+	      selectedIndex: timeSelectSelectedIndex,
+	      onSelect: function onSelect(time) {
+	        handleSelect('time', time);
+	        history.replaceState(null, null, "?time=" + time);
+	      }
+	    });
+
+	    // setTimeout(() => this.timeSelector.select(1), 300);
+
+	    this.languageSelector = new _index2.default($languageSelectorNode, {
+	      items: _jquery2.default.extend({ all: 'All' }, config.languages),
+	      onSelect: function onSelect(lang) {
+	        return handleSelect('lang', lang);
+	      }
+	    });
+
+	    this.materialsSelector = new _index2.default($materialSelectorNode, {
+	      items: _jquery2.default.extend({ all: 'All' }, config.materials),
+	      onSelect: function onSelect(materials) {
+	        return handleSelect('materials', materials);
+	      }
+	    });
+	  }
+
+	  (0, _createClass3.default)(FilterPanel, [{
+	    key: "onSelect",
+	    value: function onSelect(callback) {
+	      this._emitter.on(EVENTS.SELECT, callback);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var rendered = _view2.default.render();
+	      var $rendered = (0, _jquery2.default)(rendered);
+	      this.$node.append($rendered);
+	      return $rendered;
+	    }
+	  }]);
+	  return FilterPanel;
+	}();
+
+	exports.default = FilterPanel;
+	module.exports = exports["default"];
+
+/***/ },
+/* 261 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _classCallCheck2 = __webpack_require__(184);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(185);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _jquery = __webpack_require__(7);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _eventEmitter = __webpack_require__(8);
+
+	var _eventEmitter2 = _interopRequireDefault(_eventEmitter);
+
+	var _view = __webpack_require__(262);
+
+	var _view2 = _interopRequireDefault(_view);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	__webpack_require__(263);
+
+	var CLASSES = {
+	  ITEM_SELECTED: '_selected'
+	};
+
+	var EVENTS = {
+	  SELECT: 'select'
+	};
+
+	var Switcher = function () {
+	  /**
+	   * @param {HTMLElement|string} node
+	   * @param {Object} config
+	   * @param {Object<string, string>} config.items Values.
+	   * @param {number} [config.selectedIndex=0]
+	   * @param {Function} [config.onSelect]
+	   */
+	  function Switcher(node, config) {
+	    (0, _classCallCheck3.default)(this, Switcher);
+
+	    var that = this;
+	    var $node = (0, _jquery2.default)(node);
+
+	    this.config = config;
+	    this.items = config.items;
+	    this.$node = $node;
+	    this.$switcher = this.render();
+	    this._emitter = (0, _eventEmitter2.default)({});
+
+	    var $items = this.$switcher.find('.js-item');
+
+	    $items.each(function (i, elem) {
+	      (0, _jquery2.default)(elem).on('click', that.select.bind(that, i));
+	    });
+
+	    config.onSelect && this.onSelect(config.onSelect);
+
+	    this.select(config.selectedIndex || 0, false);
+	  }
+
+	  (0, _createClass3.default)(Switcher, [{
+	    key: "onSelect",
+	    value: function onSelect(callback) {
+	      this._emitter.on(EVENTS.SELECT, callback);
+	    }
+	  }, {
+	    key: "render",
+	    value: function render() {
+	      var rendered = _view2.default.render({ switcher: this });
+	      var $rendered = (0, _jquery2.default)(rendered);
+	      this.$node.append($rendered);
+
+	      return $rendered;
+	    }
+	  }, {
+	    key: "select",
+	    value: function select(index, emit) {
+	      if (this.selectedIndex == index) {
+	        return;
+	      }
+	      this.selectedIndex = index;
+
+	      var shouldEmit = typeof emit == 'boolean' ? emit : true;
+	      var $switcher = this.$switcher;
+	      var $items = $switcher.find('.js-item');
+	      var $selectedItem = (0, _jquery2.default)($items.get(index));
+	      var selectedValue = $selectedItem.attr('data-value');
+
+	      $items.each(function (i, elem) {
+	        var $item = (0, _jquery2.default)(elem);
+
+	        if (i === index) {
+	          $item.addClass(CLASSES.ITEM_SELECTED);
+	        } else {
+	          $item.removeClass(CLASSES.ITEM_SELECTED);
+	        }
+	      });
+
+	      shouldEmit && this._emitter.emit('select', selectedValue);
+	    }
+	  }]);
+	  return Switcher;
+	}();
+
+	exports.default = Switcher;
+	module.exports = exports["default"];
+
+/***/ },
+/* 262 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var nunjucks = __webpack_require__(25);
+	var env;
+	if (!nunjucks.currentEnv){
+		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
+	} else {
+		env = nunjucks.currentEnv;
+	}
+	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
+
+
+
+
+	var shim = __webpack_require__(26);
+
+
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/switcher/view.twig"] = (function() {
+	function root(env, context, frame, runtime, cb) {
+	var lineno = null;
+	var colno = null;
+	var output = "";
+	try {
+	var parentTemplate = null;
+	output += "<div class=\"switcher\">\n  ";
+	frame = frame.push();
+	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "switcher")),"items");
+	if(t_3) {var t_1;
+	if(runtime.isArray(t_3)) {
+	var t_2 = t_3.length;
+	for(t_1=0; t_1 < t_3.length; t_1++) {
+	var t_4 = t_3[t_1][0]
+	frame.set("value", t_3[t_1][0]);
+	var t_5 = t_3[t_1][1]
+	frame.set("label", t_3[t_1][1]);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n    <div class=\"switcher-item js-item\" data-value=\"";
+	output += runtime.suppressValue(t_4, env.opts.autoescape);
+	output += "\">";
+	output += runtime.suppressValue(t_5, env.opts.autoescape);
+	output += "</div>\n  ";
+	;
+	}
+	} else {
+	t_1 = -1;
+	var t_2 = runtime.keys(t_3).length;
+	for(var t_6 in t_3) {
+	t_1++;
+	var t_7 = t_3[t_6];
+	frame.set("value", t_6);
+	frame.set("label", t_7);
+	frame.set("loop.index", t_1 + 1);
+	frame.set("loop.index0", t_1);
+	frame.set("loop.revindex", t_2 - t_1);
+	frame.set("loop.revindex0", t_2 - t_1 - 1);
+	frame.set("loop.first", t_1 === 0);
+	frame.set("loop.last", t_1 === t_2 - 1);
+	frame.set("loop.length", t_2);
+	output += "\n    <div class=\"switcher-item js-item\" data-value=\"";
+	output += runtime.suppressValue(t_6, env.opts.autoescape);
+	output += "\">";
+	output += runtime.suppressValue(t_7, env.opts.autoescape);
+	output += "</div>\n  ";
+	;
+	}
+	}
+	}
+	frame = frame.pop();
+	output += "\n</div>";
+	if(parentTemplate) {
+	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+	} else {
+	cb(null, output);
+	}
+	;
+	} catch (e) {
+	  cb(runtime.handleError(e, lineno, colno));
+	}
+	}
+	return {
+	root: root
+	};
+
+	})();
+	})();
+
+
+
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/switcher/view.twig"] , dependencies)
+
+/***/ },
+/* 263 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var nunjucks = __webpack_require__(25);
+	var env;
+	if (!nunjucks.currentEnv){
+		env = nunjucks.currentEnv = new nunjucks.Environment([], { autoescape: true });
+	} else {
+		env = nunjucks.currentEnv;
+	}
+	var dependencies = nunjucks.webpackDependencies || (nunjucks.webpackDependencies = {});
+
+
+
+
+	var shim = __webpack_require__(26);
+
+
+	(function() {(nunjucks.nunjucksPrecompiled = nunjucks.nunjucksPrecompiled || {})["static/js/page/events/filter-panel/view.twig"] = (function() {
+	function root(env, context, frame, runtime, cb) {
+	var lineno = null;
+	var colno = null;
+	var output = "";
+	try {
+	var parentTemplate = null;
+	output += "<div class=\"filter-panel\">\n  <div class=\"filter-panel-time-selector js-time-selector\"></div>\n\n  <div class=\"filter-panel-language-selector\">\n    <div class=\"label\">Language:</div><div class=\"selector js-language-selector\"></div>\n  </div>\n\n  <div class=\"filter-panel-material-selector\">\n    <div class=\"label\">Materials:</div><div class=\"selector js-material-selector\"></div>\n  </div>\n</div>";
+	if(parentTemplate) {
+	parentTemplate.rootRenderFunc(env, context, frame, runtime, cb);
+	} else {
+	cb(null, output);
+	}
+	;
+	} catch (e) {
+	  cb(runtime.handleError(e, lineno, colno));
+	}
+	}
+	return {
+	root: root
+	};
+
+	})();
+	})();
+
+
+
+	module.exports = shim(nunjucks, env, nunjucks.nunjucksPrecompiled["static/js/page/events/filter-panel/view.twig"] , dependencies)
+
+/***/ },
+/* 265 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = {
+	  all: 'All',
+	  upcoming: 'Upcoming',
+	  past: 'Past',
+	  kotlin: 'Kotlin 1.1 Event'
+	};
+	module.exports = exports['default'];
+
+/***/ },
+/* 266 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 267 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ }
-
-});
+]);

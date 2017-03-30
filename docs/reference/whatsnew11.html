@@ -760,7 +760,7 @@ launch(UI) {
 </code></pre>
 <p>这里，<code>async { …… }</code> 启动一个协程，当我们使用 <code>await()</code> 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。</p>
 <p>标准库通过 <code>yield</code> 和 <code>yieldAll</code> 函数使用协程来支持<em>惰性生成序列</em>。
-在这样的序列中，在取回每个元素之后暂停返回序列元素的代码块，
+在这样的序列中，在取回每个元素之后挂起返回序列元素的代码块，
 并在请求下一个元素时恢复。这里有一个例子：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
@@ -886,7 +886,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>更详细信息请参阅其<a href="multi-declarations.html#在-lambda-表达式中解构（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md">KEEP</a>。</p>
-<h3 id="下划线用于未使用参数">下划线用于未使用参数</h3>
+<h3 id="下划线用于未使用的参数">下划线用于未使用的参数</h3>
 <p>对于具有多个参数的 lambda 表达式，可以使用 <code>_</code> 字符替换不使用的参数的名称：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -935,7 +935,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">//sampleStart
 data class Person(val name: String, val age: Int) {
-    val isAdult get() = age &gt;= 20 // // 属性类型推断为 “Boolean”
+    val isAdult get() = age &gt;= 20 // 属性类型推断为 “Boolean”
 }
 //sampleEnd
 
@@ -989,7 +989,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/local-delegated-properties.md">KEEP</a>。</p>
 <h3 id="委托属性绑定的拦截">委托属性绑定的拦截</h3>
-<p>对于<a href="delegated-properties.html">委托属性</a>，现在可以使用 <code>provideDelegate</code> 操作符拦截委托到属性的绑定
+<p>对于<a href="delegated-properties.html">委托属性</a>，现在可以使用 <code>provideDelegate</code> 操作符拦截委托到属性之间的绑定
 。
 例如，如果我们想要在绑定之前检查属性名称，我们可以这样写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class ResourceLoader&lt;T&gt;(id: ResourceID&lt;T&gt;) {
@@ -1012,7 +1012,7 @@ class MyUI {
 必要的验证。</p>
 <p>更详细信息请参阅其<a href="delegated-properties.html#提供委托（自-11-起）">文档</a>。</p>
 <h3 id="泛型枚举值访问">泛型枚举值访问</h3>
-<p>现在可以用泛型的方式来枚举枚举类的值：</p>
+<p>现在可以用泛型的方式来对枚举类的值进行枚举：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">//sampleStart
 enum class RGB { RED, GREEN, BLUE }
@@ -1041,7 +1041,7 @@ fun main(args: Array&lt;String&gt;) {
 在 <code>&lt;td&gt;</code> 中放置一个 <code>&lt;tr&gt;</code> 标签。</p>
 <p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法
 会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解
-并将其应用于标记类的基类：</p>
+并将其应用于标记类的基类。</p>
 <p>更详细信息请参阅其<a href="type-safe-builders.html#scope-control-dslmarker-since-11">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
 <h3 id="rem-操作符"><code>rem</code> 操作符</h3>
 <p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650">这个问题</a>。</p>
@@ -1106,7 +1106,7 @@ fun main(args: Array&lt;String&gt;) {
 
 //sampleStart
     val index = input.indexOf(keyword).takeIf { it &gt;= 0 } ?: error("keyword not found")
-    // 对输入字符串中的关键字索引做些事情，假定它找到
+    // 对输入字符串中的关键字索引做些事情，鉴于它已找到
 //sampleEnd
     
     println("'$keyword' was found in '$input'")
@@ -1255,7 +1255,7 @@ Kotlin 标准库中提供实现）。</p>
 的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。</p>
 <h3 id="java-8-标准库支持">Java 8 标准库支持</h3>
 <p>现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。
-如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 和 <code>kotlin-stdlib-jre8</code> maven artifacts，而不是标准的 <code>kotlin-stdlib</code>。
+如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 和 <code>kotlin-stdlib-jre8</code> maven 构件，而不是标准的 <code>kotlin-stdlib</code>。
 这些构件是在 <code>kotlin-stdlib</code> 之上的微小扩展，它们将它作为传递依赖项带到项目中。</p>
 <h3 id="字节码中的参数名">字节码中的参数名</h3>
 <p>Kotlin 现在支持在字节码中存储参数名。这可以使用命令行选项 <code>-java-parameters</code> 启用。</p>
@@ -1289,9 +1289,9 @@ Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>�
 <p>JavaScript 后端现在生成更加可静态检查的代码，这对 JS 代码处理工具（如
 minifiers、 optimisers、 linters 等）更加友好。</p>
 <h3 id="external-修饰符"><code>external</code> 修饰符</h3>
-<p>如果你需要以类型安全的方式从 Kotlin 访问 JavaScript 实现的类，
+<p>如果你需要以类型安全的方式在 Kotlin 中访问 JavaScript 实现的类，
 你可以使用 <code>external</code> 修饰符写一个 Kotlin 声明。（在 Kotlin 1.0 中，使用了 <code>@native</code> 注解。）
-与 JVM 目标平台不同，JS 平台允许对类和属性使用外部修饰符。
+与 JVM 目标平台不同，JS 平台允许对类和属性使用 external 修饰符。
 例如，可以按以下方式声明 DOM <code>Node</code> 类：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">external class Node {
     val firstChild: Node
@@ -1305,9 +1305,9 @@ minifiers、 optimisers、 linters 等）更加友好。</p>
 </code></pre>
 <h3 id="改进的导入处理">改进的导入处理</h3>
 <p>现在可以更精确地描述应该从 JavaScript 模块导入的声明。
-如果在外部声明上添加 <code>@JsModule("&lt;module-name&gt;")</code> 注解，它会在编译期间正确导入
+如果在外部声明上添加 <code>@JsModule("＜模块名＞")</code> 注解，它会在编译期间正确导入
 到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会
-通过 <code>require(...)</code> 函数导入。
+通过 <code>require(……)</code> 函数导入。
 此外，如果要将声明作为模块或全局 JavaScript 对象导入，
 可以使用 <code>@JsNonModule</code> 注解。</p>
 <p>例如，以下是将 JQuery 导入 Kotlin 模块的方法：</p>

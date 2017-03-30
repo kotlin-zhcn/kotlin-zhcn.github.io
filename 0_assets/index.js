@@ -6,8 +6,8 @@ webpackJsonp([5],{
 	'use strict';
 
 	var $ = __webpack_require__(7);
-	var Carousel = __webpack_require__(263);
-	var Player = __webpack_require__(265);
+	var Carousel = __webpack_require__(269);
+	var Player = __webpack_require__(271);
 
 	var initTabs = function initTabs() {
 	  var $tabs = $('.js-tab');
@@ -151,13 +151,13 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 263:
+/***/ 269:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var $ = __webpack_require__(7);
-	__webpack_require__(264);
+	__webpack_require__(270);
 
 	function Carousel(config) {
 	  var that = this,
@@ -196,7 +196,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 264:
+/***/ 270:
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(jQuery) {/*! jCarousel - v0.3.4 - 2015-09-23
@@ -1673,7 +1673,7 @@ webpackJsonp([5],{
 
 /***/ },
 
-/***/ 265:
+/***/ 271:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
