@@ -760,14 +760,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>事实上，声明属性以及从主构造函数初始化属性，Kotlin 有简洁的语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(val firstName: String, val lastName: String, var age: Int) {
-    // ...
+    // ……
 }
 </code></pre>
 <p>与普通属性一样，主构造函数中声明的属性可以是
 可变的（<em class="keyword">var</em>）或只读的（<em class="keyword">val</em>）。</p>
 <p>如果构造函数有注解或可见性修饰符，这个 <em class="keyword">constructor</em> 关键字是必需的，并且
 这些修饰符在它前面：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Customer public @Inject constructor(name: String) { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Customer public @Inject constructor(name: String) { …… }
 </code></pre>
 <p>更多详情，参见<a href="visibility-modifiers.html#构造函数">可见性修饰符</a></p>
 <h4 id="次构造函数">次构造函数</h4>
@@ -865,11 +865,11 @@ class Derived() : Base() {
 <h3 id="覆盖属性">覆盖属性</h3>
 <p>属性覆盖与方法覆盖类似；在超类中声明然后在派生类中重新声明的属性必须以 <em class="keyword">override</em> 开头，并且它们必须具有兼容的类型。每个声明的属性可以由具有初始化器的属性或者具有 getter 方法的属性覆盖。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Foo {
-    open val x: Int get { ... }
+    open val x: Int get { …… }
 }
 
 class Bar1 : Foo() {
-    override val x: Int = ...
+    override val x: Int = ……
 }
 </code></pre>
 <p>你也可以用一个 <code>var</code> 属性覆盖一个 <code>val</code> 属性，但反之则不行。这是允许的，因为一个 <code>val</code> 属性本质上声明了一个 getter 方法，而将其覆盖为 <code>var</code> 只是在子类中额外声明一个 setter 方法。</p>
@@ -894,7 +894,7 @@ class Bar2 : Foo {
 }
 
 interface B {
-    fun f() { print("B") } // 接口成员默认就是 'open' 的
+    fun f() { print("B") } // 接口成员默认就是“open”的
     fun b() { print("b") }
 }
 

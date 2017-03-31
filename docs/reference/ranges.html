@@ -759,7 +759,7 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 <p>数列是 <code>Iterable&lt;N&gt;</code> 的子类型，其中 <code>N</code> 分别为 <code>Int</code>、 <code>Long</code> 或者 <code>Char</code>，所以它可用于 <em class="keyword">for</em>-循环以及像 <code>map</code>、<code>filter</code> 等函数中。
 对 <code>Progression</code> 迭代相当于 Java/JavaScript 的基于索引的 <em class="keyword">for</em>-循环：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += step) {
-  // ...
+  // ……
 }
 </code></pre>
 <p>对于整型类型，<code>..</code> 操作符创建一个同时实现 <code>ClosedRange&lt;T&gt;</code> 和 <code>*Progression</code> 的对象。

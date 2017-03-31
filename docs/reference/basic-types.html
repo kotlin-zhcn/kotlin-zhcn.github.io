@@ -792,17 +792,17 @@ val bytes = 0b11010010_01101001_10010100_10010010
 后者情况下会把数字装箱。</p>
 <p>注意数字装箱不会保留同一性:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 10000
-print(a === a) // 输出 'true'
+print(a === a) // 输出“true”
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA === anotherBoxedA) // !!!输出 'false'!!!
+print(boxedA === anotherBoxedA) // ！！！输出“false”！！！
 </code></pre>
 <p>另一方面，它保留了相等性:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 10000
-print(a == a) // 输出 'true'
+print(a == a) // 输出“true”
 val boxedA: Int? = a
 val anotherBoxedA: Int? = a
-print(boxedA == anotherBoxedA) // 输出 'true'
+print(boxedA == anotherBoxedA) // 输出“true”
 </code></pre>
 <h3 id="显式转换">显式转换</h3>
 <p>由于不同的表示方式，较小类型并不是较大类型的子类型。
@@ -854,7 +854,7 @@ val i: Int = b // 错误
 <p>字符用 <code>Char</code> 类型表示。它们不能直接当作数字</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun check(c: Char) {
     if (c == 1) { // 错误：类型不兼容
-        // ...
+        // ……
     }
 }
 </code></pre>
@@ -887,7 +887,7 @@ val i: Int = b // 错误
     operator fun set(index: Int, value: T): Unit
 
     operator fun iterator(): Iterator&lt;T&gt;
-    // ...
+    // ……
 }
 </code></pre>
 <p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。

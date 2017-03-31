@@ -1135,14 +1135,14 @@ javaObj.removeIndicesVarArg(*array)
 <p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo::class.java
 </code></pre>
-<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#bound-class-references-since-11">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性。</p>
+<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#绑定的类引用（自-11-起）">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo.javaClass
 </code></pre>
 <h3 id="clone">clone()</h3>
 <p>要覆盖 <code>clone()</code>，需要继承 <code>kotlin.Cloneable</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">
 class Example : Cloneable {
-    override fun clone(): Any { ... }
+    override fun clone(): Any { …… }
 }
 </code></pre>
 <p>不要忘记 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 的第 11 条: <em>谨慎地改写clone</em>。</p>

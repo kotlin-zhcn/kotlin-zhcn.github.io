@@ -758,25 +758,25 @@ infix fun Int.shl(x: Int): Int {
 <h3 id="参数">参数</h3>
 <p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun powerOf(number: Int, exponent: Int) {
-...
+……
 }
 </code></pre>
 <h3 id="默认参数">默认参数</h3>
 <p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少
 重载数量。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size()) {
-...
+……
 }
 </code></pre>
 <p>默认值通过类型后面的 <strong>=</strong> 及给出的值来定义。</p>
 <p>覆盖方法总是使用与基类型方法相同的默认参数值。
 当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class A {
-    open fun foo(i: Int = 10) { ... }
+    open fun foo(i: Int = 10) { …… }
 }
 
 class B : A() {
-    override fun foo(i: Int) { ... }  // 不能有默认值
+    override fun foo(i: Int) { …… }  // 不能有默认值
 }
 </code></pre>
 <h3 id="命名参数">命名参数</h3>
@@ -787,7 +787,7 @@ class B : A() {
              upperCaseFirstLetter: Boolean = true,
              divideByCamelHumps: Boolean = false,
              wordSeparator: Char = ' ') {
-...
+……
 }
 </code></pre>
 <p>我们可以使用默认参数来调用它</p>
@@ -897,7 +897,7 @@ val list = asList(-1, 0, *a, 4)
 <h2 id="泛型函数">泛型函数</h2>
 <p>函数可以有泛型参数，通过在函数名前使用尖括号指定。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
-    // ...
+    // ……
 }
 </code></pre>
 <p>关于泛型函数的更多信息参见<a href="generics.html">泛型</a></p>

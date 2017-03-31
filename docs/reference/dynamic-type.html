@@ -738,7 +738,7 @@ JavaScript生态系统）进行互操作。为了方便这些使用场景，语�
 </ul>
 <p><code>dynamic</code> 最特别的特性是，我们可以对 <code>dynamic</code> 变量调用<strong>任何</strong>属性或以任意参数调用<strong>任何</strong>函数
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.whatever(1, "foo", dyn) // 'whatever' 在任何地方都没有定义
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.whatever(1, "foo", dyn) // “whatever”在任何地方都没有定义
 dyn.whatever(*arrayOf(1, 2, 3))
 </code></pre>
 <p>在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin中的 <code>dyn.whatever(1)</code> 变为 <code>dyn.whatever(1)</code>

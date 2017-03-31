@@ -743,7 +743,7 @@ finally {
 <p>这个不是我们从一开始就想要的吗？</p>
 <p>为了让编译器这么做，我们需要使用 <code>inline</code> 修饰符标记 <code>lock()</code> 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun lock&lt;T&gt;(lock: Lock, body: () -&gt; T): T {
-    // ...
+    // ……
 }
 </code></pre>
 <p><code>inline</code> 修饰符影响函数本身和传给它的 lambda 表达式：所有这些都将内联
@@ -754,7 +754,7 @@ finally {
 <p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 <code>noinline</code> 修饰符标记
 一些函数参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun foo(inlined: () -&gt; Unit, noinline notInlined: () -&gt; Unit) {
-    // ...
+    // ……
 }
 </code></pre>
 <p>可以内联的 lambda 表达式只能在内联函数内部调用或者作为可内联的参数传递，
@@ -796,7 +796,7 @@ finally {
     val f = object: Runnable {
         override fun run() = body()
     }
-    // ...
+    // ……
 }
 </code></pre>
 <blockquote>

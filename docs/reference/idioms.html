@@ -737,7 +737,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>所有属性的 <code>component1()</code>、 <code>component2()</code>……等等（参见<a href="data-classes.html">数据类</a>）</li>
 </ul>
 <h3 id="函数的默认参数">函数的默认参数</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(a: Int = 0, b: String = "") { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(a: Int = 0, b: String = "") { …… }
 </code></pre>
 <h3 id="过滤-list">过滤 list</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val positives = list.filter { x -&gt; x &gt; 0 }
@@ -750,9 +750,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h3 id="类型判断">类型判断</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
-    is Foo -&gt; ...
-    is Bar -&gt; ...
-    else   -&gt; ...
+    is Foo //-&gt; ……
+    is Bar //-&gt; ……
+    else   //-&gt; ……
 }
 </code></pre>
 <h3 id="遍历-mappair型list">遍历 map/pair型list</h3>
@@ -762,11 +762,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p><code>k</code>、<code>v</code> 可以改成任意名字。</p>
 <h3 id="使用区间">使用区间</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { ... }  // 闭区间：包含 100
-for (i in 1 until 100) { ... } // 半开区间：不包含 100
-for (x in 2..10 step 2) { ... }
-for (x in 10 downTo 1) { ... }
-if (x in 1..10) { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { …… }  // 闭区间：包含 100
+for (i in 1 until 100) { …… } // 半开区间：不包含 100
+for (x in 2..10 step 2) { …… }
+for (x in 10 downTo 1) { …… }
+if (x in 1..10) { …… }
 </code></pre>
 <h3 id="只读-list">只读 list</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = listOf("a", "b", "c")
@@ -784,7 +784,7 @@ map["key"] = value
 }
 </code></pre>
 <h3 id="扩展函数">扩展函数</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun String.spaceToCamelCase() { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun String.spaceToCamelCase() { …… }
 
 "Convert this to camelcase".spaceToCamelCase()
 </code></pre>
@@ -804,14 +804,14 @@ println(files?.size)
 println(files?.size ?: "empty")
 </code></pre>
 <h3 id="if-null-执行一个语句">if null 执行一个语句</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ...
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
 val email = data["email"] ?: throw IllegalStateException("Email is missing!")
 </code></pre>
 <h3 id="if-not-null-执行代码">if not null 执行代码</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ...
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
 
 data?.let {
-    ... // 代码会执行到此处, 假如data不为null
+    …… // 代码会执行到此处, 假如data不为null
 }
 </code></pre>
 <h3 id="返回when表达式">返回when表达式</h3>
@@ -824,7 +824,7 @@ data?.let {
     }
 }
 </code></pre>
-<h3 id="trycatch-表达式">'try/catch' 表达式</h3>
+<h3 id="trycatch表达式">“try/catch”表达式</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun test() {
     val result = try {
         count()
@@ -835,7 +835,7 @@ data?.let {
     // 使用 result
 }
 </code></pre>
-<h3 id="if-表达式">'if' 表达式</h3>
+<h3 id="if表达式">“if”表达式</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(param: Int) {
     val result = if (param == 1) {
         "one"
@@ -893,16 +893,16 @@ stream.buffered().reader().use { reader -&gt;
 </code></pre>
 <h3 id="对于需要泛型信息的泛型函数的适宜形式">对于需要泛型信息的泛型函数的适宜形式</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">//  public final class Gson {
-//     ...
+//     ……
 //     public &lt;T&gt; T fromJson(JsonElement json, Class&lt;T&gt; classOfT) throws JsonSyntaxException {
-//     ...
+//     ……
 
 inline fun &lt;reified T: Any&gt; Gson.fromJson(json): T = this.fromJson(json, T::class.java)
 </code></pre>
 <h3 id="使用可空布尔">使用可空布尔</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Boolean? = ...
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Boolean? = ……
 if (b == true) {
-    ...
+    ……
 } else {
     // `b` 是 false 或者 null
 }

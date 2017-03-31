@@ -729,7 +729,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>声明一个扩展函数，我们需要用一个 <em>接收者类型</em> 也就是被扩展的类型来作为他的前缀。
 下面代码为 <code>MutableList&lt;Int&gt;</code> 添加一个<code>swap</code> 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' 对应该列表
+    val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
@@ -737,11 +737,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>这个 <em class="keyword">this</em> 关键字在扩展函数内部对应到接收者对象（传过来的在点符号前的对象）
 现在，我们对任意 <code>MutableList&lt;Int&gt;</code> 调用该函数了：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // 'swap()' 内部的 'this' 得到 'l' 的值
+l.swap(0, 2) // “swap()”内部的“this”得到“l”的值
 </code></pre>
 <p>当然，这个函数对任何 <code>MutableList&lt;T&gt;</code> 起作用，我们可以泛化它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
-    val tmp = this[index1] // 'this' 对应该列表
+    val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
@@ -818,7 +818,7 @@ fun C.foo(i: Int) { println("extension") }
 }
 
 fun MyClass.Companion.foo() {
-    // ...
+    // ……
 }
 </code></pre>
 <p>就像伴生对象的其他普通成员，只需用类名作为限定符去调用他们</p>
@@ -828,7 +828,7 @@ fun MyClass.Companion.foo() {
 <p>大多数时候我们在顶层定义扩展，即直接在包里：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package foo.bar
 
-fun Baz.goo() { ... } 
+fun Baz.goo() { …… } 
 </code></pre>
 <p>要使用所定义包之外的一个扩展，我们需要在调用方导入它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.usage
@@ -848,11 +848,11 @@ fun usage(baz: Baz) {
 其中的对象成员可以无需通过限定符访问。扩展声明所在的类的实例称为
 <em>分发接收者</em>，扩展方法调用所在的接收者类型的实例称为 <em>扩展接收者</em> 。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class D {
-    fun bar() { ... }
+    fun bar() { …… }
 }
 
 class C {
-    fun baz() { ... }
+    fun baz() { …… }
 
     fun D.foo() {
         bar()   // 调用 D.bar

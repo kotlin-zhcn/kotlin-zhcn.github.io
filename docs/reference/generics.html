@@ -750,7 +750,7 @@ String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换�
 <p>因此，Java 禁止这样的事情以保证运行时的安全。但这样会有一些影响。例如，考虑 <code>Collection</code> 接口中的 <code>addAll()</code>
 方法。该方法的签名应该是什么？直觉上，我们会这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
-interface Collection&lt;E&gt; ... {
+interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;E&gt; items);
 }
 </code></pre>
@@ -764,7 +764,7 @@ void copyAll(Collection&lt;Object&gt; to, Collection&lt;String&gt; from) {
 <p>（在 Java 中，我们艰难地学到了这个教训，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>，第25条：<em>列表优先于数组</em>）</p>
 <p>这就是为什么 <code>addAll()</code> 的实际签名是以下这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
-interface Collection&lt;E&gt; ... {
+interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;? extends E&gt; items);
 }
 </code></pre>
@@ -795,7 +795,7 @@ interface Source&lt;T&gt; {
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 void demo(Source&lt;String&gt; strs) {
   Source&lt;Object&gt; objects = strs; // ！！！在 Java 中不允许
-  // ...
+  // ……
 }
 </code></pre>
 <p>为了修正这一点，我们必须声明对象的类型为 <code>Source&lt;? extends Object&gt;</code>，这是毫无意义的，因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。</p>
@@ -836,8 +836,8 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <p>声明一个类型参数 T 为 <em>out</em> 非常方便，并且在使用处运用子类型也没有问题。是的，当问题中的类<strong>能够</strong>仅限于返回 <code>T</code> 时，但是如果它<strong>不能</strong>呢？
 一个很好的例子是 Array：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Array&lt;T&gt;(val size: Int) {
-    fun get(index: Int): T { /* ... */ }
-    fun set(index: Int, value: T) { /* ... */ }
+    fun get(index: Int): T { ///* …… */ }
+    fun set(index: Int, value: T) { ///* …… */ }
 }
 </code></pre>
 <p>该类在 <code>T</code> 上既不能是协变的也不能是逆变的。这造成了一些不灵活性。考虑下述函数：</p>
@@ -857,7 +857,7 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 并且如果我们实际上传递一个 <code>Int</code> 的数组，一段时间后将会抛出一个 <code>ClassCastException</code> 异常。</p>
 <p>那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong>写</strong>到 <code>from</code>，我们可以：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) {
- // ...
+ // ……
 }
 </code></pre>
 <p>这里发生的事情称为<strong>类型投影</strong>：我们说<code>from</code>不仅仅是一个数组，而是一个受限制的（<strong>投影的</strong>）数组：我们只可以调用返回类型为类型参数 
@@ -865,7 +865,7 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 但使用更简单些的方式。</p>
 <p>你也可以使用 <strong>in</strong> 投影一个类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun fill(dest: Array&lt;in String&gt;, value: String) {
-    // ...
+    // ……
 }
 </code></pre>
 <p><code>Array&lt;in String&gt;</code> 对应于 Java 的 <code>Array&lt;? super String&gt;</code>，也就是说，你可以传递一个 <code>CharSequence</code> 数组或一个 <code>Object</code> 数组给 <code>fill()</code> 函数。</p>
@@ -889,11 +889,11 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 <h2 id="泛型函数">泛型函数</h2>
 <p>不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称之前：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
-    // ...
+    // ……
 }
 
 fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
-    // ...
+    // ……
 }
 </code></pre>
 <p>要调用泛型函数，在调用处函数名<strong>之后</strong>指定类型参数即可：</p>
@@ -904,7 +904,7 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
 <h3 id="上界">上界</h3>
 <p>最常见的约束类型是与 Java 的 <em>extends</em> 关键字对应的 <strong>上界</strong>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T : Comparable&lt;T&gt;&gt; sort(list: List&lt;T&gt;) {
-    // ...
+    // ……
 }
 </code></pre>
 <p>冒号之后指定的类型是<strong>上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如</p>

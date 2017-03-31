@@ -730,7 +730,7 @@ fun baz() {}
 
 class Goo {}
 
-// ...
+// ……
 </code></pre>
 <p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
 所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
@@ -768,11 +768,11 @@ class Goo {}
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.Bar // 现在 Bar 可以不用限定符访问
 </code></pre>
 <p>也可以导入一个作用域下的所有内容（包、类、对象等）:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.* // 'foo' 中的一切都可访问
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.* // “foo”中的一切都可访问
 </code></pre>
 <p>如果出现名字冲突，可以使用 <em class="keyword">as</em> 关键字在本地重命名冲突项来消歧义：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.Bar // Bar 可访问
-import bar.Bar as bBar // bBar 代表 'bar.Bar'
+import bar.Bar as bBar // bBar 代表“bar.Bar”
 </code></pre>
 <p>关键字 <code>import</code> 并不仅限于导入类；也可用它来导入其他声明：</p>
 <ul>

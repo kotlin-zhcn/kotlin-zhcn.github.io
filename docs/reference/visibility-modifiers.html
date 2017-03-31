@@ -781,7 +781,7 @@ class Subclass : Outer() {
     // b、c、d 可见
     // Nested 和 e 可见
 
-    override val b = 5   // 'b' 为 protected
+    override val b = 5   // “b”为 protected
 }
 
 class Unrelated(o: Outer) {
@@ -793,7 +793,7 @@ class Unrelated(o: Outer) {
 <h3 id="构造函数">构造函数</h3>
 <p>要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个
 显式 <em class="keyword">constructor</em> 关键字）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C private constructor(a: Int) { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C private constructor(a: Int) { …… }
 </code></pre>
 <p>这里的构造函数是私有的。默认情况下，所有构造函数都是 <code>public</code>，这实际上
 等于类可见的地方它就可见（即 一个 <code>internal</code> 类的构造函数只能

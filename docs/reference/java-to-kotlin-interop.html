@@ -947,7 +947,7 @@ fun getX() = 10
 签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
 @JvmOverloads 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ...
+    ……
 }
 </code></pre>
 <p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和
@@ -980,7 +980,7 @@ try {
   demo.Example.foo();
 }
 catch (IOException e) { // 错误：foo() 未在 throws 列表中声明 IOException
-  // ...
+  // ……
 }
 </code></pre>
 <p>因为 <code>foo()</code> 没有声明 <code>IOException</code>，我们从 Java 编译器得到了一个报错消息。
@@ -1006,13 +1006,13 @@ fun boxDerived(value: Derived): Box&lt;Derived&gt; = Box(value)
 fun unboxBase(box: Box&lt;Base&gt;): Base = box.value
 </code></pre>
 <p>一种看似理所当然地将这俩函数转换成 Java 代码的方式可能会是：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">Box&lt;Derived&gt; boxDerived(Derived value) { ... }
-Base unboxBase(Box&lt;Base&gt; box) { ... }
+<pre><code class="code _highlighted" data-lang="text/x-java">Box&lt;Derived&gt; boxDerived(Derived value) { …… }
+Base unboxBase(Box&lt;Base&gt; box) { …… }
 </code></pre>
 <p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code>，但是在 Java 中是行不通的，因为在 Java 中
 类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不型变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
 要使其在 Java 中工作，我们按以下这样定义 <code>unboxBase</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { ... }  
+<pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { …… }  
 </code></pre>
 <p>这里我们使用 Java 的<em>通配符类型</em>（<code>? extends Base</code>）来
 通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。</p>
@@ -1021,22 +1021,22 @@ Base unboxBase(Box&lt;Base&gt; box) { ... }
 我们不生成通配符，因为否则 Java 客户端将必须处理它们（并且它违反常用
 Java 编码风格）。因此，我们的示例中的对应函数实际上翻译如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// 作为返回类型——没有通配符
-Box&lt;Derived&gt; boxDerived(Derived value) { ... }
+Box&lt;Derived&gt; boxDerived(Derived value) { …… }
  
 // 作为参数——有通配符
-Base unboxBase(Box&lt;? extends Base&gt; box) { ... }
+Base unboxBase(Box&lt;? extends Base&gt; box) { …… }
 </code></pre>
 <p>注意：当参数类型是 final 时，生成通配符通常没有意义，所以无论在什么地方 <code>Box&lt;String&gt;</code> 
 始终转换为 <code>Box&lt;String&gt;</code>。</p>
 <p>如果我们在默认不生成通配符的地方需要通配符，我们可以使用 <code>@JvmWildcard</code> 注解：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun boxDerived(value: Derived): Box&lt;@JvmWildcard Derived&gt; = Box(value)
 // 将被转换成
-// Box&lt;? extends Derived&gt; boxDerived(Derived value) { ... }
+// Box&lt;? extends Derived&gt; boxDerived(Derived value) { …… }
 </code></pre>
 <p>另一方面，如果我们根本不需要默认的通配符转换，我们可以使用<code>@JvmSuppressWildcards</code></p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun unboxBase(box: Box&lt;@JvmSuppressWildcards Base&gt;): Base = box.value
 // 会翻译成
-// Base unboxBase(Box&lt;Base&gt; box) { ... }
+// Base unboxBase(Box&lt;Base&gt; box) { …… }
 </code></pre>
 <p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如
 函数或类），从而抑制其中的所有通配符。</p>
@@ -1046,7 +1046,7 @@ Base unboxBase(Box&lt;? extends Base&gt; box) { ... }
 准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun emptyList(): List&lt;Nothing&gt; = listOf()
 // 会翻译成
-// List emptyList() { ... }
+// List emptyList() { …… }
 </code></pre>
 
         </article>

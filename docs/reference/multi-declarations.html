@@ -741,21 +741,21 @@ val age = person.component2()
 当然，可以有 <code>component3()</code> 和 <code>component4()</code> 等等。</p>
 <p>请注意，<code>componentN()</code> 函数需要用 <code>operator</code> 关键字标记，以允许在解构声明中使用它们。</p>
 <p>解构声明也可以用在 <em class="keyword">for</em>-循环中：当你写</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((a, b) in collection) { ... }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((a, b) in collection) { …… }
 </code></pre>
 <p>变量 <code>a</code> 和 <code>b</code> 的值取自对集合中的元素上调用 <code>component1()</code> 和 <code>component2()</code> 的返回值。</p>
 <h2 id="例从函数中返回两个变量">例：从函数中返回两个变量</h2>
 <p>让我们假设我们需要从一个函数返回两个东西。例如，一个结果对象和一个某种状态。
 在 Kotlin 中一个简洁的实现方式是声明一个<a href="data-classes.html"><em>数据类</em></a>并返回其实例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Result(val result: Int, val status: Status)
-fun function(...): Result {
+fun function(……): Result {
     // 各种计算
 
     return Result(result, status)
 }
 
 // 现在，使用该函数：
-val (result, status) = function(...)
+val (result, status) = function(……)
 </code></pre>
 <p>因为数据类自动声明 <code>componentN()</code> 函数，所以这里可以用解构声明。</p>
 <p><strong>注意</strong>：我们也可以使用标准类 <code>Pair</code> 并且让 <code>function()</code> 返回 <code>Pair&lt;Int, Status&gt;</code>，
@@ -789,10 +789,10 @@ operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component2() = getValue()
 map.mapValues { (key, value) -&gt; "$value!" }
 </code></pre>
 <p>注意声明两个参数和声明一个解构对来取代单个参数之间的区别：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">{ a -&gt; ... } // 一个参数
-{ a, b -&gt; ... } // 两个参数
-{ (a, b) -&gt; ... } // 一个解构对
-{ (a, b), c -&gt; ... } // 一个解构对以及其他参数
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">{ a //-&gt; …… } // 一个参数
+{ a, b //-&gt; …… } // 两个参数
+{ (a, b) //-&gt; …… } // 一个解构对
+{ (a, b), c //-&gt; …… } // 一个解构对以及其他参数
 </code></pre>
 <p>如果解构的参数中的一个组件未使用，那么可以将其替换为下划线，以避免编造其名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { (_, value) -&gt; "$value!" }

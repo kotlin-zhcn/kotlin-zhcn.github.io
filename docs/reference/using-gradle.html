@@ -785,7 +785,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Android的 Gradle模型和传统的Gradle有些不同, 因此如果我们想要通过Kotlin来创建一个Android应用, 应该使用
 <em>kotlin-android</em> 插件来代替 <em>kotlin</em>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ...
+    ……
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -793,7 +793,7 @@ apply plugin: 'kotlin-android'
 <h3 id="android-studio">Android Studio</h3>
 <p>如果你使用的是Android Studio, 下面的一些属性需要添加到文件中:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">android {
-  ...
+  ……
 
   sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
