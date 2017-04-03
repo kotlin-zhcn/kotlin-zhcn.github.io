@@ -6112,6 +6112,10 @@ webpackJsonp([3],[
 	        var compareA = a.endDate;
 	        var compareB = b.endDate;
 
+	        if (b.pinned) {
+	          return -1;
+	        }
+
 	        if (compareA === compareB) {
 	          return 0;
 	        }
@@ -6128,11 +6132,15 @@ webpackJsonp([3],[
 	  }, {
 	    key: "getUpcomingEvents",
 	    value: function getUpcomingEvents(events) {
-	      return (events || this.events).filter(function (event) {
+	      var filtered = (events || this.events).filter(function (event) {
 	        return event.isUpcoming();
 	      }).sort(function (eventA, eventB) {
 	        var startA = eventA.startDate;
 	        var startB = eventB.startDate;
+
+	        if (eventA.pinned) {
+	          return -1;
+	        }
 
 	        if (startA === startB) {
 	          return 0;
@@ -6140,6 +6148,8 @@ webpackJsonp([3],[
 
 	        return startA < startB ? -1 : 1;
 	      });
+
+	      return filtered;
 	    }
 
 	    /**
@@ -6263,15 +6273,15 @@ webpackJsonp([3],[
 
 	    switch (_time) {
 	      case 'upcoming':
-	        matched = !hasTag && event.isUpcoming();
+	        matched = (!hasTag || event.pinned) && event.isUpcoming();
 	        break;
 
 	      case 'past':
-	        matched = !hasTag && !event.isUpcoming();
+	        matched = (!hasTag || event.pinned) && !event.isUpcoming();
 	        break;
 
 	      case 'all':
-	        matched = !hasTag && true;
+	        matched = !hasTag || event.pinned;
 	        break;
 
 	      // TODO refactor this
@@ -6368,9 +6378,11 @@ webpackJsonp([3],[
 	    this.city = data.location;
 	    this.lang = data.lang || DEFAULT_LANG;
 	    this.content = data.content;
+	    this.image = data.image;
+	    this.pinned = !!(data.pinned && data.pinned === 'true');
 
-	    this.startDate = new Date(data.startDate);
-	    this.endDate = new Date(data.endDate);
+	    this.startDate = new Date(data.startDate + ' 0:0:0');
+	    this.endDate = new Date(data.endDate + ' 0:0:0');
 	    this.formattedDate = (0, _date.formatDate)(this.startDate, this.endDate);
 	  }
 
@@ -6476,6 +6488,15 @@ webpackJsonp([3],[
 	output += "\n        <span class=\"event-close js-close\"></span>\n    ";
 	;
 	}
+	output += "\n\n    ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"image")) {
+	output += "\n        <div class=\"event-image\">\n            <img src=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"image"), env.opts.autoescape);
+	output += "\" alt=\"";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"title"), env.opts.autoescape);
+	output += "\">\n        </div>\n    ";
+	;
+	}
 	output += "\n\n    <div class=\"event-date\">";
 	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"formattedDate"), env.opts.autoescape);
 	output += "</div>\n    <div class=\"event-title\">\n        ";
@@ -6500,18 +6521,18 @@ webpackJsonp([3],[
 	output += "</span>\n        ";
 	;
 	}
-	output += "\n    </div>\n\n    <div class=\"event-subject\">\n        <span class=\"text\">";
-	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
-	output += "</span>\n\n        <div class=\"event-info-indicators\">\n            ";
+	output += "\n\n        ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject") == runtime.contextOrFrameLookup(context, frame, "undefined")) {
+	output += "\n            <div class=\"event-info-indicators\">\n                ";
 	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
-	output += "\n                <div class=\"event-lang\">";
+	output += "\n                    <div class=\"event-lang\">";
 	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
-	output += "</div>\n            ";
+	output += "</div>\n                ";
 	;
 	}
-	output += "\n            ";
-	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
 	output += "\n                ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
+	output += "\n                    ";
 	frame = frame.push();
 	var t_3 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
 	if(t_3) {var t_1;
@@ -6529,13 +6550,13 @@ webpackJsonp([3],[
 	frame.set("loop.first", t_1 === 0);
 	frame.set("loop.last", t_1 === t_2 - 1);
 	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
+	output += "\n                        <a class=\"event-content-item _";
 	output += runtime.suppressValue(t_4, env.opts.autoescape);
 	output += "\" href=\"";
 	output += runtime.suppressValue(t_5, env.opts.autoescape);
 	output += "\" target=\"_blank\" title=\"";
 	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_4), env.opts.autoescape);
-	output += "\"></a>\n                ";
+	output += "\"></a>\n                    ";
 	;
 	}
 	} else {
@@ -6553,22 +6574,98 @@ webpackJsonp([3],[
 	frame.set("loop.first", t_1 === 0);
 	frame.set("loop.last", t_1 === t_2 - 1);
 	frame.set("loop.length", t_2);
-	output += "\n                    <a class=\"event-content-item _";
+	output += "\n                        <a class=\"event-content-item _";
 	output += runtime.suppressValue(t_6, env.opts.autoescape);
 	output += "\" href=\"";
 	output += runtime.suppressValue(t_7, env.opts.autoescape);
 	output += "\" target=\"_blank\" title=\"";
 	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_6), env.opts.autoescape);
-	output += "\"></a>\n                ";
+	output += "\"></a>\n                    ";
 	;
 	}
 	}
 	}
 	frame = frame.pop();
-	output += "\n            ";
+	output += "\n                ";
 	;
 	}
-	output += "\n        </div>\n    </div>\n\n    <div class=\"event-speaker\">\n        ";
+	output += "\n            </div>\n        ";
+	;
+	}
+	output += "\n    </div>\n\n    ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject")) {
+	output += "\n        <div class=\"event-subject\">\n            <span class=\"text\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"subject"), env.opts.autoescape);
+	output += "</span>\n\n            <div class=\"event-info-indicators\">\n                ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang")) {
+	output += "\n                    <div class=\"event-lang\">";
+	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"lang"), env.opts.autoescape);
+	output += "</div>\n                ";
+	;
+	}
+	output += "\n                ";
+	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content")) {
+	output += "\n                    ";
+	frame = frame.push();
+	var t_10 = runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"content");
+	if(t_10) {var t_8;
+	if(runtime.isArray(t_10)) {
+	var t_9 = t_10.length;
+	for(t_8=0; t_8 < t_10.length; t_8++) {
+	var t_11 = t_10[t_8][0]
+	frame.set("type", t_10[t_8][0]);
+	var t_12 = t_10[t_8][1]
+	frame.set("href", t_10[t_8][1]);
+	frame.set("loop.index", t_8 + 1);
+	frame.set("loop.index0", t_8);
+	frame.set("loop.revindex", t_9 - t_8);
+	frame.set("loop.revindex0", t_9 - t_8 - 1);
+	frame.set("loop.first", t_8 === 0);
+	frame.set("loop.last", t_8 === t_9 - 1);
+	frame.set("loop.length", t_9);
+	output += "\n                        <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_11, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_12, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_11), env.opts.autoescape);
+	output += "\"></a>\n                    ";
+	;
+	}
+	} else {
+	t_8 = -1;
+	var t_9 = runtime.keys(t_10).length;
+	for(var t_13 in t_10) {
+	t_8++;
+	var t_14 = t_10[t_13];
+	frame.set("type", t_13);
+	frame.set("href", t_14);
+	frame.set("loop.index", t_8 + 1);
+	frame.set("loop.index0", t_8);
+	frame.set("loop.revindex", t_9 - t_8);
+	frame.set("loop.revindex0", t_9 - t_8 - 1);
+	frame.set("loop.first", t_8 === 0);
+	frame.set("loop.last", t_8 === t_9 - 1);
+	frame.set("loop.length", t_9);
+	output += "\n                        <a class=\"event-content-item _";
+	output += runtime.suppressValue(t_13, env.opts.autoescape);
+	output += "\" href=\"";
+	output += runtime.suppressValue(t_14, env.opts.autoescape);
+	output += "\" target=\"_blank\" title=\"";
+	output += runtime.suppressValue(env.getFilter("capitalize").call(context, t_13), env.opts.autoescape);
+	output += "\"></a>\n                    ";
+	;
+	}
+	}
+	}
+	frame = frame.pop();
+	output += "\n                ";
+	;
+	}
+	output += "\n            </div>\n        </div>\n    ";
+	;
+	}
+	output += "\n\n    <div class=\"event-speaker\">\n        ";
 	output += runtime.suppressValue(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"speaker"), env.opts.autoescape);
 	output += "\n    </div>\n\n    ";
 	if(runtime.memberLookup((runtime.contextOrFrameLookup(context, frame, "event")),"description")) {
@@ -6614,12 +6711,14 @@ webpackJsonp([3],[
 	  var year = void 0,
 	      month = void 0,
 	      day = void 0;
-	  var isRange = startDate == endDate;
+	  var isRange = startDate.getTime() !== endDate.getTime();
 	  var nowYear = new Date().getFullYear();
 
 	  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 	  if (isRange) {
+	    console.log(startDate, endDate);
+
 	    month = [months[startDate.getMonth()], months[endDate.getMonth()]];
 	    year = [startDate.getFullYear(), endDate.getFullYear()];
 	    day = [startDate.getDate(), endDate.getDate()];

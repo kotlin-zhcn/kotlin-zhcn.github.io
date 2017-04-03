@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Using Ant - Kotlin 编程语言</title>
+<title>使用 Ant - Kotlin 编程语言</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Using Ant - Kotlin 编程语言"/>
+<meta property="og:title" content="使用 Ant - Kotlin 编程语言"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/reference/using-ant.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Using Ant - Kotlin 编程语言">
+<meta name="twitter:title" content="使用 Ant - Kotlin 编程语言">
     <meta name="twitter:description" content="This tutorial walks you through different scenarios when using Ant for building applications that contain Kotlin code">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
@@ -720,17 +720,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="using-ant">Using Ant</h1>
-<h2 id="getting-the-ant-tasks">Getting the Ant Tasks</h2>
-<p>Kotlin provides three tasks for Ant:</p>
+<h1 id="使用-ant">使用 Ant</h1>
+<h2 id="获取-ant-任务">获取 Ant 任务</h2>
+<p>Kotlin 为 Ant 提供了三个任务：</p>
 <ul>
-<li>kotlinc: Kotlin compiler targeting the JVM</li>
-<li>kotlin2js: Kotlin compiler targeting JavaScript</li>
-<li>withKotlin: Task to compile Kotlin files when using the standard <em>javac</em> Ant task</li>
+<li>kotlinc: 针对 JVM 的 Kotlin 编译器</li>
+<li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器</li>
+<li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务</li>
 </ul>
-<p>These tasks are defined in the <em>kotlin-ant.jar</em> library which is located in the <em>lib</em> folder for the <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.1.1">Kotlin Compiler</a></p>
-<h2 id="targeting-jvm-with-kotlin-only-source">Targeting JVM with Kotlin-only source</h2>
-<p>When the project consists of exclusively Kotlin source code, the easiest way to compile the project is to use the <em>kotlinc</em> task</p>
+<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.1.1">Kotlin 编译器</a>的 <em>lib</em> 文件夹中</p>
+<h2 id="针对-jvm-只用-kotlin-源代码">针对 JVM 只用 Kotlin 源代码</h2>
+<p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -739,9 +739,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<p>where ${kotlin.lib} points to the folder where the Kotlin standalone compiler was unzipped.</p>
-<h2 id="targeting-jvm-with-kotlin-only-source-and-multiple-roots">Targeting JVM with Kotlin-only source and multiple roots</h2>
-<p>If a project consists of multiple source roots, use <em>src</em> as elements to define paths</p>
+<p>其中 ${kotlin.lib} 指向解压缩 Kotlin 独立编译器所在文件夹。</p>
+<h2 id="针对-jvm-只用-kotlin-源代码且多根">针对 JVM 只用 Kotlin 源代码且多根</h2>
+<p>如果项目由多个源代码根组成，那么使用 <em>src</em> 作为元素来定义路径</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -753,9 +753,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<h2 id="targeting-jvm-with-kotlin-and-java-source">Targeting JVM with Kotlin and Java source</h2>
-<p>If a project consists of both Kotlin and Java source code, while it is possible to use <em>kotlinc</em>, to avoid repetition of task parameters, it is
-recommended to use <em>withKotlin</em> task</p>
+<h2 id="针对-jvm-使用-kotlin-和-java-源代码">针对 JVM 使用 Kotlin 和 Java 源代码</h2>
+<p>如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 <em>kotlinc</em> 来避免任务参数的重复，但是
+建议使用 <em>withKotlin</em> 任务</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -771,14 +771,14 @@ recommended to use <em>withKotlin</em> task</p>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<p>To specify additional command line arguments for <code>&lt;withKotlin&gt;</code>, you can use a nested <code>&lt;compilerArg&gt;</code> parameter.
-The full list of arguments that can be used is shown when you run <code>kotlinc -help</code>.
-You can also specify the name of the module being compiled as the <code>moduleName</code> attribute:</p>
+<p>要为 <code>&lt;withKotlin&gt;</code> 指定额外的命令行参数，可以使用嵌套的 <code>&lt;compilerArg&gt;</code> 参数。
+当运行 <code>kotlinc -help</code> 时，会显示可以使用的参数的完整列表。
+还可以将正在编译的模块的名称指定为 <code>moduleName</code> 属性：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;withKotlin moduleName="myModule"&gt;
     &lt;compilerarg value="-no-stdlib"/&gt;
 &lt;/withKotlin&gt;
 </code></pre>
-<h2 id="targeting-javascript-with-single-source-folder">Targeting JavaScript with single source folder</h2>
+<h2 id="针对-javascript-用单个源文件夹">针对 JavaScript 用单个源文件夹</h2>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -787,7 +787,7 @@ You can also specify the name of the module being compiled as the <code>moduleNa
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<h2 id="targeting-javascript-with-prefix-postfix-and-sourcemap-options">Targeting JavaScript with Prefix, PostFix and sourcemap options</h2>
+<h2 id="针对-javascript-用-prefix-postfix-以及-sourcemap-选项">针对 JavaScript 用 Prefix、 PostFix 以及 sourcemap 选项</h2>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;taskdef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -796,146 +796,146 @@ You can also specify the name of the module being compiled as the <code>moduleNa
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<h2 id="targeting-javascript-with-single-source-folder-and-metainfo-option">Targeting JavaScript with single source folder and metaInfo option</h2>
-<p>The <code>metaInfo</code> option is useful, if you want to distribute the result of translation as a Kotlin/JavaScript library.
-If <code>metaInfo</code> was set to <code>true</code>, then during compilation additional JS file with
-binary metadata will be created. This file should be distributed together with the
-result of translation.</p>
+<h2 id="针对-javascript-用单个源文件夹以及-metainfo-选项">针对 JavaScript 用单个源文件夹以及 metaInfo 选项</h2>
+<p>如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 <code>metaInfo</code> 选项会很有用。
+如果 <code>metaInfo</code> 设置为 <code>true</code>，则在编译期间将创建具有
+二进制元数据的额外的 JS 文件。该文件应该与翻译
+结果一起分发。</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
-        &lt;!-- out.meta.js will be created, which contains binary metadata --&gt;
+        &lt;!-- 会创建 out.meta.js，其中包含二进制元数据 --&gt;
         &lt;kotlin2js src="root1" output="out.js" metaInfo="true"/&gt;
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<h2 id="references">References</h2>
-<p>Complete list of elements and attributes are listed below</p>
-<h3 id="attributes-common-for-kotlinc-and-kotlin2js">Attributes common for kotlinc and kotlin2js</h3>
+<h2 id="参考">参考</h2>
+<p>元素和属性的完整列表如下</p>
+<h3 id="kotlinc-和-kotlin2js-的公共属性">kotlinc 和 kotlin2js 的公共属性</h3>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Default Value</th>
+<th>名称</th>
+<th>描述</th>
+<th>必需</th>
+<th>默认值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>src</code></td>
-<td>Kotlin source file or directory to compile</td>
-<td>Yes</td>
+<td>要编译的 Kotlin 源文件或目录</td>
+<td>是</td>
 <td> </td>
 </tr>
 <tr>
 <td><code>nowarn</code></td>
-<td>Suppresses all compilation warnings</td>
-<td>No</td>
+<td>禁止所有编译警告</td>
+<td>否</td>
 <td>false</td>
 </tr>
 <tr>
 <td><code>noStdlib</code></td>
-<td>Does not include the Kotlin standard library into the classpath</td>
-<td>No</td>
+<td>不要将 Kotlin 标准库包含进 classpath</td>
+<td>否</td>
 <td>false</td>
 </tr>
 <tr>
 <td><code>failOnError</code></td>
-<td>Fails the build if errors are detected during the compilation</td>
-<td>No</td>
+<td>在编译期间检测到错误时，会导致构建失败</td>
+<td>否</td>
 <td>true</td>
 </tr>
 </tbody>
 </table>
-<h3 id="kotlinc-attributes">kotlinc Attributes</h3>
+<h3 id="kotlinc-属性">kotlinc 属性</h3>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Description</th>
-<th>Required</th>
-<th>Default Value</th>
+<th>名称</th>
+<th>描述</th>
+<th>必需</th>
+<th>默认值</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>output</code></td>
-<td>Destination directory or .jar file name</td>
-<td>Yes</td>
+<td>目标目录或 .jar 文件名</td>
+<td>是</td>
 <td> </td>
 </tr>
 <tr>
 <td><code>classpath</code></td>
-<td>Compilation class path</td>
-<td>No</td>
+<td>编译类路径</td>
+<td>否</td>
 <td> </td>
 </tr>
 <tr>
 <td><code>classpathref</code></td>
-<td>Compilation class path reference</td>
-<td>No</td>
+<td>编译类路径引用</td>
+<td>否</td>
 <td> </td>
 </tr>
 <tr>
 <td><code>includeRuntime</code></td>
-<td>If <code>output</code> is a .jar file, whether Kotlin runtime library is included in the jar</td>
-<td>No</td>
+<td>Kotlin 运行时库是否包含在 jar 中，如果 <code>output</code> 是 .jar 文件的话</td>
+<td>否</td>
 <td>true</td>
 </tr>
 <tr>
 <td><code>moduleName</code></td>
-<td>Name of the module being compiled</td>
-<td>No</td>
-<td>The name of the target (if specified) or the project</td>
+<td>编译的模块的名称</td>
+<td>否</td>
+<td>目标（如果指定的话）或项目的名称</td>
 </tr>
 </tbody>
 </table>
-<h3 id="kotlin2js-attributes">kotlin2js Attributes</h3>
+<h3 id="kotlin2js-属性">kotlin2js 属性</h3>
 <table>
 <thead>
 <tr>
-<th>Name</th>
-<th>Description</th>
-<th>Required</th>
+<th>名称</th>
+<th>描述</th>
+<th>必需</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>output</code></td>
-<td>Destination file</td>
-<td>Yes</td>
+<td>目标文件</td>
+<td>是</td>
 </tr>
 <tr>
 <td><code>libraries</code></td>
-<td>Paths to Kotlin libraries</td>
-<td>No</td>
+<td>Kotlin 库的路径</td>
+<td>否</td>
 </tr>
 <tr>
 <td><code>outputPrefix</code></td>
-<td>Prefix to use for generated JavaScript files</td>
-<td>No</td>
+<td>生成的 JavaScript 文件所用前缀</td>
+<td>否</td>
 </tr>
 <tr>
 <td><code>outputSuffix</code></td>
-<td>Suffix to use for generated JavaScript files</td>
-<td>No</td>
+<td>生成的 JavaScript 文件所用后缀</td>
+<td>否</td>
 </tr>
 <tr>
 <td><code>sourcemap</code></td>
-<td>Whether sourcemap file should be generated</td>
-<td>No</td>
+<td>是否要生成 sourcemap 文件</td>
+<td>否</td>
 </tr>
 <tr>
 <td><code>metaInfo</code></td>
-<td>Whether metadata file with binary descriptors should be generated</td>
-<td>No</td>
+<td>是否要生成具有二进制描述符的元数据文件</td>
+<td>否</td>
 </tr>
 <tr>
 <td><code>main</code></td>
-<td>Should compiler generated code call the main function</td>
-<td>No</td>
+<td>编译器是否生成调用 main 函数的代码</td>
+<td>否</td>
 </tr>
 </tbody>
 </table>
