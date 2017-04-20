@@ -99,7 +99,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ></div>
     </div>
 </div></nav>        </div>
-        <a class="conference-banner" href="https://kotlinconf.com">
+        <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=superearlybird">
             <div class="conference-banner__img"></div>
         </a>
     </div>
@@ -399,8 +399,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <p>In this tutorial we'll see how to</p>
 <ul>
-<li><a href="#Creatinganapplicationtargetingjavascript">Create an application targeting JavaScript with Gradle</a></li>
-<li><a href="#configuringcompileroptions">Configure compiler options</a></li>
+<li>Create an application targeting JavaScript with Gradle</li>
+<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
 </ul>
 <p>In order to use Gradle to target JavaScript, we need to use the <code>kotlin2js</code> plugin as opposed to the <code>kotlin</code> plugin.</p>
 <p>Our <code>build.gradle</code> file should look like the following</p>
@@ -430,7 +430,7 @@ dependencies {
 </code></pre>
 <p>where <code>${kotlinVersion}</code> is the version of Kotlin we want to use, for example <code>1.1.0</code>. It's important to note that
 if we're using an EAP build, we need to have the corresponding repository referenced in the <code>buildscript</code> section (usually EAP builds are located on <a href="https://bintray.com/kotlin">Bintray</a>)</p>
-<p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuringcompileroptions">the compiler options</a>.</p>
+<p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuring-compiler-options">the compiler options</a>.</p>
 <p>In order to use this, we also need to include the Kotlin standard library in our application, i.e. <code>kotlin.js</code>, which was included as a dependency. By default,
 Gradle does not expand the JAR as part of the build process, so we would need to add an additional step in our build to do so.</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">build.doLast {
@@ -450,7 +450,7 @@ Gradle does not expand the JAR as part of the build process, so we would need to
 </code></pre>
 <p>For more information on the output generated please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
 <h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.md">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
+<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
 <p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
     kotlinOptions.outputFile = "${projectDir}/web/output.js"
@@ -465,7 +465,7 @@ Gradle does not expand the JAR as part of the build process, so we would need to
 <li>commonjs</li>
 <li>umd</li>
 </ul>
-<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.md">Working with Modules</a></p>
+<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.html">Working with Modules</a></p>
 <p>We can also see how we can define whether we want the compiler to generate sourcemaps for us by indicating this via the <code>sourceMap</code> option.</p>
 
         </article>

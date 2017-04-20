@@ -101,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ></div>
     </div>
 </div></nav>        </div>
-        <a class="conference-banner" href="https://kotlinconf.com">
+        <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=superearlybird">
             <div class="conference-banner__img"></div>
         </a>
     </div>
@@ -790,7 +790,7 @@ fun result(args: Array&lt;String&gt;) =
 首先，我们需要定义我们想要构建的模型，在本例中我们需要建模 HTML 标签。
 用一些类就可以轻易完成。
 例如，<code>HTML</code> 是一个描述 <code>&lt;html&gt;</code> 标签的类，也就是说它定义了像 <code>&lt;head&gt;</code> 和 <code>&lt;body&gt;</code> 这样的子标签。
-（参见<a href="#declarations">下文</a>它的声明。）</p>
+（参见<a href="#comexamplehtml-包的完整定义">下文</a>它的声明。）</p>
 <p>现在，让我们回想下为什么我们可以在代码中这样写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
  // ……
@@ -958,12 +958,11 @@ abstract class Tag(val name: String) : Element {
 
     private fun renderAttributes(): String {
         val builder = StringBuilder()
-        for (a in attributes.keys) {
-            builder.append(" $a=\"${attributes[a]}\"")
+        for ((attr, value) in attributes) {
+            builder.append(" $attr=\"$value\"")
         }
         return builder.toString()
     }
-
 
     override fun toString(): String {
         val builder = StringBuilder()
@@ -978,17 +977,17 @@ abstract class TagWithText(name: String) : Tag(name) {
     }
 }
 
-class HTML() : TagWithText("html") {
+class HTML : TagWithText("html") {
     fun head(init: Head.() -&gt; Unit) = initTag(Head(), init)
 
     fun body(init: Body.() -&gt; Unit) = initTag(Body(), init)
 }
 
-class Head() : TagWithText("head") {
+class Head : TagWithText("head") {
     fun title(init: Title.() -&gt; Unit) = initTag(Title(), init)
 }
 
-class Title() : TagWithText("title")
+class Title : TagWithText("title")
 
 abstract class BodyTag(name: String) : TagWithText(name) {
     fun b(init: B.() -&gt; Unit) = initTag(B(), init)
@@ -1000,13 +999,13 @@ abstract class BodyTag(name: String) : TagWithText(name) {
     }
 }
 
-class Body() : BodyTag("body")
-class B() : BodyTag("b")
-class P() : BodyTag("p")
-class H1() : BodyTag("h1")
+class Body : BodyTag("body")
+class B : BodyTag("b")
+class P : BodyTag("p")
+class H1 : BodyTag("h1")
 
-class A() : BodyTag("a") {
-    public var href: String
+class A : BodyTag("a") {
+    var href: String
         get() = attributes["href"]!!
         set(value) {
             attributes["href"] = value

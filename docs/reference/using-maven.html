@@ -99,7 +99,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ></div>
     </div>
 </div></nav>        </div>
-        <a class="conference-banner" href="https://kotlinconf.com">
+        <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=superearlybird">
             <div class="conference-banner__img"></div>
         </a>
     </div>
@@ -757,7 +757,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
-<p>If your project uses <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin reflection</a> or testing facilities, you need to add the corresponding dependencies as well.
+<p>If you're targeting JDK 7 or JDK 8, you can use extended versions of the Kotlin standard library which contain
+additional extension functions for APIs added in new JDK versions. Instead of <code>kotlin-stdlib</code>, use <code>kotlin-stdlib-jre7</code>
+or <code>kotlin-stdlib-jre8</code>, depending on your JDK version.</p>
+<p>If your project uses <a href="/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin reflection</a> or testing facilities, you need to add the corresponding dependencies as well.
 The artifact IDs are <code>kotlin-reflect</code> for the reflection library, and <code>kotlin-test</code> and <code>kotlin-test-junit</code>
 for the testing libraries.</p>
 <h2 id="仅编译-kotlin-源码">仅编译 Kotlin 源码</h2>

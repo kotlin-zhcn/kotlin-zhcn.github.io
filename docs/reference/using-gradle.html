@@ -101,7 +101,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         ></div>
     </div>
 </div></nav>        </div>
-        <a class="conference-banner" href="https://kotlinconf.com">
+        <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=superearlybird">
             <div class="conference-banner__img"></div>
         </a>
     </div>
@@ -743,20 +743,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="使用-gradle">使用 Gradle</h1>
 <p>In order to build Kotlin with Gradle you should <a href="#插件和版本">set up the <em>kotlin-gradle</em> plugin</a>, <a href="#targeting-the-jvm">apply it</a> to your project and <a href="#配置依赖">add <em>kotlin-stdlib</em> dependencies</a>. Those actions may also be performed automatically in IntelliJ IDEA by invoking the Tools | Kotlin | Configure Kotlin in Project action.</p>
-<p>You can also enable <a href="#incremental-compilation">incremental compilation</a> to make your builds faster.</p>
 <h2 id="插件和版本">插件和版本</h2>
 <p>使用 <em>kotlin-gradle-plugin</em> 编译Kotlin的源代码和模块.</p>
 <p>要用的 Kotlin 版本通常是通过 <em>kotlin.version</em>属性来定义:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-   ext.kotlin_version = '&lt;version to use&gt;'
+    ext.kotlin_version = '&lt;version to use&gt;'
 
-   repositories {
-     mavenCentral()
-   }
+    repositories {
+        mavenCentral()
+    }
 
-   dependencies {
-     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-   }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 </code></pre>
 <p>This is not required when using Kotlin Gradle plugin 1.1.1 and above with the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle plugins DSL</a>.</p>
@@ -767,7 +766,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>Or, starting with Kotlin 1.1.1, the plugin can be applied using the <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle plugins DSL</a>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.jvm" version "&lt;version to use&gt;"
+    id "org.jetbrains.kotlin.jvm" version "&lt;version to use&gt;"
 }
 </code></pre>
 <p>The <code>version</code> should be literal in this block, and it cannot be applied from another build script.</p>
@@ -794,8 +793,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     main.kotlin.srcDirs += 'src/main/myKotlin'
 }
 </code></pre>
-<p>如果你想创建一个可重用的库, 使用 <code>kotlinOptions.metaInfo</code> 来生成额外的二进制形式的JS文件.
-这个文件应该和编译结果一起分发.</p>
+<p>In addition to the output JavaScript file, the plugin by default creates an additional JS file with binary descriptors.
+This file is required if you're building a re-usable library that other Kotlin modules can depend on, and should be distributed together with the result of translation.
+The generation is controlled by the  <code>kotlinOptions.metaInfo</code> option:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
 	kotlinOptions.metaInfo = true
 }
@@ -842,7 +842,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 </code></pre>
-<p>If your project uses <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin reflection</a> or testing facilities, you need to add the corresponding dependencies as well:</p>
+<p>If you're targeting JDK 7 or JDK 8, you can use extended versions of the Kotlin standard library which contain
+additional extension functions for APIs added in new JDK versions. Instead of <code>kotlin-stdlib</code>, use one of the
+following dependencies:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+</code></pre>
+<p>If your project uses <a href="/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin reflection</a> or testing facilities, you need to add the corresponding dependencies as well:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
@@ -853,12 +859,12 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
 </code></pre>
 <p>Or, starting with Kotlin 1.1.1, you can apply it using the plugins DSL:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
+    id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
 }
 </code></pre>
 <p>Then add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
-  kapt 'groupId:artifactId:version'
+    kapt 'groupId:artifactId:version'
 }
 </code></pre>
 <p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them.</p>
@@ -1062,7 +1068,7 @@ compileKotlin {
 <h2 id="osgi">OSGi</h2>
 <p>OSGi 支持查看 <a href="kotlin-osgi.html">Kotlin OSGi page</a>.</p>
 <h2 id="例子">例子</h2>
-<p><a href="https://github.com/jetbrains/kotlin">Kotlin Repository</a> 包含的例子:</p>
+<p>The following examples show different possibilities of configuring the Gradle plugin:</p>
 <ul>
 <li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/hello-world">Kotlin</a></li>
 <li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world">Mixed Java and Kotlin</a></li>
