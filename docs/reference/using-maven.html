@@ -855,6 +855,41 @@ In maven terms that means kotlin-maven-plugin should be run before maven-compile
     &lt;/plugins&gt;
 &lt;/build&gt;
 </code></pre>
+<h2 id="incremental-compilation">Incremental compilation</h2>
+<p>To make your builds faster, you can enable incremental compilation for Maven (supported since Kotlin 1.1.2).
+In order to do that, define the <code>kotlin.compiler.incremental</code> property:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;properties&gt;
+    &lt;kotlin.compiler.incremental&gt;true&lt;/kotlin.compiler.incremental&gt;
+&lt;/properties&gt;
+</code></pre>
+<p>Alternatively, run your build with the <code>-Dkotlin.compiler.incremental=true</code> option.</p>
+<h2 id="annotation-processing">Annotation processing</h2>
+<p>The Kotlin plugin supports annotation processors like <em>Dagger</em>. In order for them to work with Kotlin classes, configure the
+execution of <code>kapt</code>, the Kotlin annotation processing tool (supported since Kotlin 1.1.2).
+Specifically, you need to add an execution of the <code>kapt</code> goal before <code>compile</code>:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
+    &lt;id&gt;kapt&lt;/id&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;kapt&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;configuration&gt;
+        &lt;sourceDirs&gt;
+            &lt;sourceDir&gt;src/main/kotlin&lt;/sourceDir&gt;
+            &lt;sourceDir&gt;src/main/java&lt;/sourceDir&gt;
+        &lt;/sourceDirs&gt;
+        &lt;annotationProcessorPaths&gt;
+            &lt;!-- Specify your annotation processors here. --&gt;
+            &lt;annotationProcessorPath&gt;
+                &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
+                &lt;artifactId&gt;dagger-compiler&lt;/artifactId&gt;
+                &lt;version&gt;2.9&lt;/version&gt;
+            &lt;/annotationProcessorPath&gt;
+        &lt;/annotationProcessorPaths&gt;
+    &lt;/configuration&gt;
+&lt;/execution&gt;
+</code></pre>
+<p>You can find a complete sample project showing the use of Kotlin, Maven and Dagger in the
+<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin examples repository</a>.</p>
 <h2 id="jar-file">Jar file</h2>
 <p>To create a small Jar file containing just the code from your module, include the following under <code>build-&gt;plugins</code> in your Maven pom.xml file,
 where <code>main.class</code> is defined as a property and points to the main Kotlin or Java class.</p>

@@ -744,8 +744,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="使用-gradle">使用 Gradle</h1>
 <p>为了用 Gradle 构建 Kotlin，你应该<a href="#插件和版本">设置好 <em>kotlin-gradle</em> 插件</a>，<a href="#针对-jvm">将其应用</a>到你的项目中，并且<a href="#配置依赖">添加 <em>kotlin-stdlib</em> 依赖</a>。这些操作也可以在 IntelliJ IDEA 中通过调用 Project action 中的 Tools | Kotlin | Configure Kotlin 自动执行。</p>
 <h2 id="插件和版本">插件和版本</h2>
-<p>使用 <em>kotlin-gradle-plugin</em> 编译 Kotlin 源代码和模块.</p>
-<p>要使用的 Kotlin 版本通常定义为 <em>kotlin_version</em> 属性：</p>
+<p>使用 <code>kotlin-gradle-plugin</code> 编译 Kotlin 源代码和模块.</p>
+<p>要使用的 Kotlin 版本通常定义为 <code>kotlin_version</code> 属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
     ext.kotlin_version = '＜要使用的版本＞'
 
@@ -820,38 +820,30 @@ apply plugin: 'kotlin-android'
 </code></pre>
 <p>这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 <code>src/main/java</code>。</p>
 <h2 id="配置依赖">配置依赖</h2>
-<p>除了上面显示的 kotlin-gradle-plugin 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '＜要使用的版本＞'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: "kotlin" // 或应用插件：“kotlin2js”如果针对 JavaScript 的话
-
-repositories {
+<p>除了上面显示的 <code>kotlin-gradle-plugin</code> 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    compile "org.jetbrains.kotlin:kotlin-stdlib"
 }
 </code></pre>
+<p>如果针对 JavaScript，请使用 <code>compile "org.jetbrains.kotlin:kotlin-stdlib-js"</code> 替代之。</p>
 <p>如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含
 为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 <code>kotlin-stdlib</code>
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
 </code></pre>
 <p>如果你的项目中使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a>或者测试设施，你也需要添加相应的依赖：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
-testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
-testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
+<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-reflect"
+testCompile "org.jetbrains.kotlin:kotlin-test"
+testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 </code></pre>
+<p>从 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用
+从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
+（如 <code>compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"</code>）手动提供其版本。</p>
 <h2 id="注解处理">注解处理</h2>
 <p>Kotlin 插件支持注解处理器，如 <em>Dagger</em> 或 <em>DBFlow</em> 。为了让它们与 Kotlin 类一起工作，需要应用 <code>kotlin-kapt</code> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
