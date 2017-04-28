@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Getting started with Android and Kotlin - Kotlin 编程语言</title>
+<title>Getting started with Android and Kotlin - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Getting started with Android and Kotlin - Kotlin 编程语言"/>
+<meta property="og:title" content="Getting started with Android and Kotlin - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://kotlinlang.org/docs/tutorials/kotlin-android.html"/>
 <meta property="og:image" content="https://kotlinlang.org/assets/images/open-graph/kotlin_250x250.png"/>
@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Getting started with Android and Kotlin - Kotlin 编程语言">
+<meta name="twitter:title" content="Getting started with Android and Kotlin - Kotlin 语言中文站">
     <meta name="twitter:description" content="This tutorial walks us through creating a simple Kotlin application for Android using Android Studio.">
 <meta name="twitter:image:src" content="https://kotlinlang.org/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
@@ -384,22 +384,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 Getting started with Android and Kotlin
             </h1>
             <table>
-                    <tr>
-                        <td>
-                            <strong>Author</strong>
-                        </td>
-                        <td>
-                            Philip Torchinsky, Svetlana Isakova
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <strong>Last Updated</strong>
-                        </td>
-                        <td>
-                            25 July 2015
-                        </td>
-                    </tr>
             </table>
                 This tutorial walks us through creating a simple Kotlin application for Android using Android Studio.
                 <br/>
@@ -408,14 +392,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="installing-the-kotlin-plugin">Installing the Kotlin plugin</h3>
 <p>First, if using Android Studio, you'll need to install the Kotlin plugin.
 Go to <em>File | Settings | Plugins | Install JetBrains plugin…</em> and then search for and install <em>Kotlin</em>.
+If you are looking at the "Welcome to Android Studio" screen, choose <em>Configure | Plugins | Install JetBrains plugin…</em>
 You'll need to restart the IDE after this completes.</p>
 <h3 id="creating-a-project">Creating a project</h3>
-<p>It’s extremely easy to start using Kotlin for Android development! In this tutorial we’ll follow the warming up process with Android Studio.
+<p>It’s extremely easy to start using Kotlin for Android development. 
+In this tutorial we’ll follow the warming up process with Android Studio.
 If using Intellij IDEA with Android, the process is almost the same.</p>
-<p>First let's create a new project. We choose <strong>Start a new Android Studio project</strong> or <strong>File | New project</strong>.
-The following dialogs walk us through the process of new project creation. 
-We need to name the project and choose which Android SDK version we have installed. Most options can be left with their default values, so we can press 'Enter' several
-times.</p>
+<p>First let's create a new project. Choose <strong>Start a new Android Studio project</strong> or <strong>File | New project</strong>.
+The following dialogs walk you through the process of new project creation. 
+You need to name the project and choose which Android SDK version you have installed. Most options can be left with their default values, so you can press 'Enter' several times.</p>
 <p>Name the project:
 <img alt="Dialog 1" src="/assets/images/tutorials/kotlin-android/0-create-new-project.png"/></p>
 <p>Choose the Android version:</p>
@@ -424,37 +409,33 @@ times.</p>
 <p><img alt="Dialog 3" src="/assets/images/tutorials/kotlin-android/2-create-new-project.png"/></p>
 <p>Name the activity:</p>
 <p><img alt="Dialog 4" src="/assets/images/tutorials/kotlin-android/3-create-new-project.png"/></p>
-<p>We've created a new project with one Java activity that was generated for us.</p>
+<p>You've created a new project with one Java activity that was generated for you.</p>
 <p>But now we'd like to add some code in Kotlin. The easiest way to start using Kotlin is to convert automatically Java activity into Kotlin one.
 Please note that anytime instead of looking through documentation for a new way to express an old pattern, 
 you can write it in Java, then copy-paste Java code into Kotlin file, and Intellij (or Android Studio) will suggest to convert it.</p>
 <h4 id="converting-java-code-to-kotlin">Converting Java code to Kotlin</h4>
-<p>Open MainActivity.java file. Then invoke action <strong>Convert Java File to Kotlin File</strong>. You can do it by several ways.
+<p>Open <code>MainActivity.java</code> file. Then invoke action <strong>Convert Java File to Kotlin File</strong>. You can do it by several ways.
 The easiest one is to invoke <a href="https://www.jetbrains.com/idea/help/navigating-to-action.html">Find Action</a> and start typing an action name (like in a screencast below). 
-Alternatively we can call this option via the <em>Code | Convert Java File to Kotlin File</em>  menu entry or by using the corresponding shortcut (we can find it at the menu entry).</p>
+Alternatively you can call this option via the <em>Code | Convert Java File to Kotlin File</em>  menu entry or by using the corresponding shortcut (you can find it at the menu entry).</p>
 <p><img alt="Convert" src="/assets/images/tutorials/kotlin-android/convert-java-to-kotlin.png"/></p>
-<p>After the conversion we should have an activity written in Kotlin.</p>
+<p>After the conversion you should have an activity written in Kotlin.</p>
 <p><img alt="Koltin-Activity" src="/assets/images/tutorials/kotlin-android/converted-code.png"/></p>
 <h4 id="configuring-kotlin-in-the-project">Configuring Kotlin in the project</h4>
-<p>When adding a new Kotlin file, IntelliJ IDEA (and Android Studio) automatically prompts us as to whether we'd like to configure the Kotlin runtime for the project. However, currently, converting existing Java
-file does not prompt this action. Therefore we have to invoke it manually (via <a href="https://www.jetbrains.com/idea/help/navigating-to-action.html">Find Action</a>):</p>
-<p><img alt="Config-Kotlin" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project.png"/></p>
-<p>We are then prompted for the version of Kotlin. Choose the latest available from the list of installed versions.</p>
+<p>If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.</p>
+<p><img alt="Config-Kotlin" src="/assets/images/tutorials/kotlin-android/kotlin-not-configured.png"/></p>
+<p>You are then prompted for the version of Kotlin. Choose the latest available from the list of installed versions.</p>
 <p><img alt="Config-Kotlin-Details" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project-details.png"/></p>
-<p>After we configure Kotlin, build.gradle file for the application should be updated. 
-Now we can see that <em>apply plugin: 'kotlin-android'</em> and the dependencies were added.</p>
+<p>After you configure Kotlin, build.gradle file for the application should be updated. 
+Now you can see that <em>apply plugin: 'kotlin-android'</em> and the dependencies were added.</p>
 <p><em>(For more details how to set up gradle for your project, please check <a href="/docs/reference/using-gradle.html">Using Gradle</a>)</em></p>
-<p>The last thing to do is to sync the project. We can press 'Sync Now' in a prompt or invoke an action <strong>Sync Project with Gradle Files</strong>.</p>
 <p><img alt="Sync-Project-With-Gradle" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle.png"/></p>
-<h3 id="making-user-interface-changes">Making user interface changes</h3>
-<p>Now that the project has been set up, we can work with the layout using IntelliJ IDEA's visual designer.
-There is nothing different in terms of layout when working with Kotlin, thus this is similar to regular Android Java development.
-While using layout designer in IntelliJ IDEA, note there are two tabs in the designer: <strong>Text</strong> and <strong>Design</strong>. The latter shows how the layout looks, while the former allows fine tuning with XML editing.</p>
-<p><img alt="Layout Editor" src="/assets/images/tutorials/kotlin-android/layout-editor.png"/></p>
+<p>The last thing to do is to sync the project. You can press 'Sync Now' in a prompt or invoke an action <strong>Sync Project with Gradle Files</strong>.</p>
+<p><img alt="Sync-Project-With-Gradle-2" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle-2.png"/></p>
 <h3 id="building-and-publishing-the-kotlin-application-for-android">Building and publishing the Kotlin application for Android</h3>
-<p>Kotlin has a rather small runtime file size: the library is approximately 858KB (as of 1.1.1). This means Kotlin adds just a little to .apk file size.</p>
-<p>We are now ready to build the application in debug mode (<strong>&lt;Shift+F9&gt;</strong>), run it on an emulator or device (<strong>&lt;Shift+F10&gt;</strong>), or build signed release of the application to upload it to Google Play or another application store.</p>
-<p>We can make a release of the application and sign it similarly to what we do for an Android application written in Java.</p>
+<p>You are now ready to build the application and run it on an emulator or device.
+This works in exactly the same way as in Java.
+You can make a release of the application and sign it similarly to what you do for an Android application written in Java.</p>
+<p>Kotlin has a rather small runtime file size: the library is approximately 859KB (as of 1.1.2). This means Kotlin adds just a little to .apk file size.</p>
 <p>Kotlin compiler produces byte-code, thus there really is no difference in terms of look and feel of Kotlin applications versus those written in Java.</p>
 <h3 id="whats-next">What's next?</h3>
 <p>Read about <a href="android-plugin.html">Kotlin Android Extensions plugin</a>. If you want to learn different Kotlin features, try <a href="koans.html">Kotlin Koans</a>.</p>
