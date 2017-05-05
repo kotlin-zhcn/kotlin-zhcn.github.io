@@ -707,7 +707,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">与 Scala 比较</span>
+                                <span class="text">与 Scala 比较【官方已删除】</span>
                             </a>
                     </div>
 
@@ -826,26 +826,26 @@ finally {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; TreeNode.findParentOfType(clazz: Class&lt;T&gt;): T? {
     var p = parent
     while (p != null &amp;&amp; !clazz.isInstance(p)) {
-        p = p?.parent
+        p = p.parent
     }
     @Suppress("UNCHECKED_CAST")
-    return p as T
+    return p as T?
 }
 </code></pre>
 <p>在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。
 这都没有问题，但是调用处不是很优雅：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">myTree.findParentOfType(MyTreeNodeType::class.java)
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">treeNode.findParentOfType(MyTreeNode::class.java)
 </code></pre>
 <p>我们真正想要的只是传一个类型给该函数，即像这样调用它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">myTree.findParentOfType&lt;MyTreeNodeType&gt;()
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">treeNode.findParentOfType&lt;MyTreeNode&gt;()
 </code></pre>
 <p>为能够这么做，内联函数支持<em>具体化的类型参数</em>，于是我们可以这样写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; TreeNode.findParentOfType(): T? {
     var p = parent
     while (p != null &amp;&amp; p !is T) {
-        p = p?.parent
+        p = p.parent
     }
-    return p as T
+    return p as T?
 }
 </code></pre>
 <p>我们使用 <code>reified</code> 修饰符来限定类型参数，现在可以在函数内部访问它了，

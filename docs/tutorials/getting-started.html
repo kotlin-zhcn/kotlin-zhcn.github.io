@@ -196,6 +196,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="Android">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">Android</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/kotlin-android.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Android 开发入门</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/tutorials/android-plugin.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin Android 扩展</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="Java 互操作">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -324,32 +350,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
-                 data-id="移动开发">
-
-                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
-                    <div class="marker"></div>
-                    <div class="text">移动开发</div>
-                </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/tutorials/kotlin-android.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">Android 开发入门</span>
-                            </a>
-                    </div>
-                    <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/tutorials/android-plugin.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">Kotlin Android 扩展</span>
-                            </a>
-                    </div>
-
-            </div>
-            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="工具">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -389,7 +389,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>Last Updated</strong>
                         </td>
                         <td>
-                            2 November 2015
+                            4 May 2017
                         </td>
                     </tr>
             </table>
@@ -398,23 +398,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <h3 id="setting-up-the-environment">Setting up the environment</h3>
-<p>In this tutorial we're going to use IntelliJ IDEA. You can download the free <a href="http://www.jetbrains.com/idea/download/index.html">Open Source Community Edition</a> from <a href="http://www.jetbrains.com">JetBrains</a>.
+<p>In this tutorial we're going to use IntelliJ IDEA.
 For instructions on how to compile and execute Kotlin applications using the command line compiler, see <a href="command-line.html">Working with the Command Line Compiler</a>.</p>
 <p>If you are new to the JVM and Java, check out the <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM Minimal Survival Guide</a>. If you are new to IntelliJ IDEA, check out the <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">The IntelliJ IDEA Minimal Survival Guide</a>.</p>
 <ol>
 <li>
-<p><strong>Kotlin is shipped with IntelliJ IDEA 15</strong> (<a href="http://www.jetbrains.com/idea/download/index.html">download</a>).</p>
-<p>To use Kotlin with the <a href="https://confluence.jetbrains.com/display/IntelliJIDEA/Previous+IntelliJ+IDEA+Releases">previous versions</a> or Android Studio, we need to manually install the latest Kotlin Plugin.
-Under <strong>Preferences (OSX) or Settings (Windows/Linux) &gt; Plugins &gt; Browse Repositories</strong> type <strong>Kotlin</strong> to find the Kotlin plugin. Click <strong>Install</strong> and follow the instructions.</p>
-<p><img alt="Kotlin Plugin" src="/assets/images/tutorials/getting-started/install_kotlin_plugin.png"/></p>
+<p><strong>Install a recent version of IntelliJ IDEA</strong>. Kotlin is bundled with IntelliJ IDEA
+starting from version 15. You can download the free <a href="http://www.jetbrains.com/idea/download/index.html">Community Edition</a> from <a href="http://www.jetbrains.com">JetBrains</a>.</p>
 </li>
 <li>
 <p>Create a New Project. We select Java Module and select the SDK. Kotlin works with JDK 1.6+. Also, select the <em>Kotlin (Java)</em> checkbox.</p>
 <p><img alt="Kotlin New Project" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
-</li>
-<li>
-<p>Then we click the <em>Create</em> button to specify the Kotlin runtime. We can either copy it to our project folder or use the bundle from the plugin.</p>
-<p><img alt="Kotlin Select Technologies" src="/assets/images/tutorials/getting-started/kotlin_java.png"/></p>
 </li>
 <li>
 <p>Give our project a name on the next step.</p>
