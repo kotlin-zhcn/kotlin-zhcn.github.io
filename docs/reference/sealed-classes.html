@@ -747,30 +747,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 也是受限的，但每个枚举常量只存在一个实例，而密封类
 的一个子类可以有可包含状态的多个实例。</p>
 <p>要声明一个密封类，需要在类名前面添加 <code>sealed</code> 修饰符。虽然密封类也可以
-有子类，但是所有子类声明都必须嵌套在这个密封类声明内部。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">sealed class Expr {
-    class Const(val number: Double) : Expr()
-    class Sum(val e1: Expr, val e2: Expr) : Expr()
-    object NotANumber : Expr()
-}
-</code></pre>
-<p>值得注意的是一个密封类的子类的继承者（间接继承）可以在任何地方声明，不一定要在
-这个密封类声明内部。</p>
-<p>使用密封类的关键好处在于使用 <a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够
-验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
-    is Expr.Const -&gt; expr.number
-    is Expr.Sum -&gt; eval(expr.e1) + eval(expr.e2)
-    Expr.NotANumber -&gt; Double.NaN
-    // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
-}
-</code></pre>
-<h2 id="密封类的放宽规则自-11-起">密封类的放宽规则（自 1.1 起）</h2>
-<h3 id="同一文件中的子类">同一文件中的子类</h3>
-<p>从 1.1 开始，你可以在顶层声明 <code>sealed</code> 类的子类，唯一的限制是它们应该和父类在同一个文件中。</p>
-<h3 id="密封类与数据类">密封类与数据类</h3>
-<p>数据类可以扩展其他类，包括 <code>sealed</code> 类，这使得继承结构更有用。</p>
-<p>使用所有新支持的功能，你可以通过以下方式重写 <code>Expr</code> 类的继承结构：</p>
+有子类，但是所有子类都必须在与密封类自身相同的文件中声明。（在 Kotlin 1.1 之前，
+该规则更加严格：子类必须嵌套在密封类声明的内部）。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">sealed class Expr
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()
@@ -780,6 +758,19 @@ fun eval(expr: Expr): Double = when (expr) {
     is Const -&gt; expr.number
     is Sum -&gt; eval(expr.e1) + eval(expr.e2)
     NotANumber -&gt; Double.NaN
+}
+</code></pre>
+<p>（上文示例使用了 Kotlin 1.1 的一个额外的新功能：数据类扩展包括密封类在内的其他类的可能性。
+）</p>
+<p>请注意，扩展密封类子类的类（间接继承者）可以放在任何位置，而无需在
+同一个文件中。</p>
+<p>使用密封类的关键好处在于使用 <a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够
+验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
+    is Expr.Const -&gt; expr.number
+    is Expr.Sum -&gt; eval(expr.e1) + eval(expr.e2)
+    Expr.NotANumber -&gt; Double.NaN
+    // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
 }
 </code></pre>
 

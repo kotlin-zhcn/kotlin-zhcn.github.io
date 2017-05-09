@@ -852,7 +852,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <p><strong><a href="https://zh.wikipedia.org/wiki/%E5%AD%98%E5%9C%A8%E4%B8%BB%E4%B9%89">存在性（The Existential）</a> 转换：消费者 in, 生产者 out!</strong> :-)</p>
 <h2 id="类型投影">类型投影</h2>
 <h3 id="使用处型变类型投影">使用处型变：类型投影</h3>
-<p>声明一个类型参数 T 为 <em>out</em> 非常方便，并且在使用处运用子类型也没有问题。是的，当问题中的类<strong>能够</strong>仅限于返回 <code>T</code> 时，但是如果它<strong>不能</strong>呢？
+<p>将类型参数 T 声明为 <em>out</em> 非常方便，并且能避免使用处子类型化的麻烦，但是有些类实际上<strong>不能</strong>限制为只返回 <code>T</code>！
 一个很好的例子是 Array：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Array&lt;T&gt;(val size: Int) {
     fun get(index: Int): T { ///* …… */ }
