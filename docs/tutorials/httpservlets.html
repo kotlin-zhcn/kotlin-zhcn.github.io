@@ -386,18 +386,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <table>
                     <tr>
                         <td>
-                            <strong>Last Updated</strong>
-                        </td>
-                        <td>
-                            1 November 2015
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             <strong>Source</strong>
                         </td>
                         <td>
-                            <a href="/tutorials/servlet-web-applications">On GitHub</a>
+                            <a href="https://github.com/JetBrains/kotlin-examples/tree/master/tutorials/servlet-web-applications">On GitHub</a>
                         </td>
                     </tr>
             </table>
@@ -423,14 +415,15 @@ The main dependency required for using HTTP servlets is the JavaEE API:</p>
 <p>一旦我们在构建脚本中定义了正确的依赖，现在就可以创建一个控制器</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@WebServlet(name = "Hello", value = "/hello")
 class HomeController : HttpServlet() {
-        override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
-                res.writer.write("Hello, World!")
-        }
+    override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
+        res.writer.write("Hello, World!")
+    }
 }
 </code></pre>
 <h3 id="运行程序">运行程序</h3>
 <p>使用IntelliJ IDEA，我们可以很容易地运行和调试应用程序，在任何可能的应用程序服务器定义 如Tomcat，Glassfish或WildFly。 在这种情况下我们要使用Tomcat
-<a href="http://www.jetbrains.com/idea/webhelp/defining-application-servers-in-intellij-idea.html">曾被定义为一个应用程序服务器在IntelliJ IDEA</a></p>
+<a href="http://www.jetbrains.com/idea/webhelp/defining-application-servers-in-intellij-idea.html">曾被定义为一个应用程序服务器在IntelliJ IDEA</a>。
+Note that application server support is only available in IntelliJ IDEA Ultimate.</p>
 <p>为了运行，我们需要相应的 WAR(s) 部署。我们可以使用 <em>war</em> 生成这些任务，可以很容易地通过在IntelliJ IDEA的Gradle工具执行。</p>
 <p><img alt="Gradle Tasks" src="/assets/images/tutorials/httpservlets/gradle-tasks.png"/></p>
 <p>或者使用命令行构建：</p>

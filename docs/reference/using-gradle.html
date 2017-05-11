@@ -151,6 +151,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="js-side-tree-nav">
                     <nav role="navigation" class="side-tree-nav">
             <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="概述">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">概述</div>
+                </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/server-overview.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 用于服务器端</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/android-overview.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 用于 Android</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/js-overview.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 用于 JavaScript</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/whatsnew11.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">1.1 的新特性</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="开始">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -180,14 +222,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             >
                                 <span class="marker"></span>
                                 <span class="text">编码习惯</span>
-                            </a>
-                    </div>
-                    <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/whatsnew11.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">1.1 的新特性</span>
                             </a>
                     </div>
 
@@ -572,14 +606,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="text">JavaScript</div>
                 </div>
 
-                    <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/js-overview.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">JavaScript 概述</span>
-                            </a>
-                    </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/dynamic-type.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
@@ -1056,6 +1082,11 @@ compileKotlin {
 </tr>
 </tbody>
 </table>
+<h2 id="generating-documentation">Generating documentation</h2>
+<p>To generate documentation for Kotlin projects, use <a href="https://github.com/Kotlin/dokka">Dokka</a>;
+please refer to the <a href="https://github.com/Kotlin/dokka/blob/master/README.md#using-the-gradle-plugin">Dokka README</a>
+for configuration instructions. Dokka supports mixed-language projects and can generate output in multiple
+formats, including standard JavaDoc.</p>
 <h2 id="osgi">OSGi</h2>
 <p>关于 OSGi 支持请参见 <a href="kotlin-osgi.html">Kotlin OSGi 页</a>。</p>
 <h2 id="示例">示例</h2>

@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>JavaScript 中调用 Kotlin - Kotlin 语言中文站</title>
+<title>Kotlin 用于 Server Side - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,9 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="JavaScript 中调用 Kotlin - Kotlin 语言中文站"/>
+<meta property="og:title" content="Kotlin 用于 Server Side - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/js-to-kotlin-interop.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/server-overview.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="JavaScript 中调用 Kotlin - Kotlin 语言中文站">
+<meta name="twitter:title" content="Kotlin 用于 Server Side - Kotlin 语言中文站">
     <meta name="twitter:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
@@ -150,7 +150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <aside class="g-3">
             <div class="js-side-tree-nav">
                     <nav role="navigation" class="side-tree-nav">
-            <div class="tree-item tree-branch js-item js-branch _closed"
+            <div class="tree-item tree-branch js-item js-branch _opened"
                  data-id="概述">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -159,12 +159,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/server-overview.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">Kotlin 用于服务器端</span>
-                            </a>
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">Kotlin 用于服务器端</div>
+                            </div>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/android-overview.html"
@@ -598,7 +596,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
             </div>
-            <div class="tree-item tree-branch js-item js-branch _opened"
+            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="JavaScript">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -623,10 +621,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
-                                <div class="marker"></div>
-                                <div class="text">JavaScript 中调用 Kotlin</div>
-                            </div>
+                            <a href="/docs/reference/js-to-kotlin-interop.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript 中调用 Kotlin</span>
+                            </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/js-modules.html"
@@ -759,7 +759,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/js-to-kotlin-interop.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/server-overview.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -767,87 +767,66 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="javascript-中调用-kotlin">JavaScript 中调用 Kotlin</h1>
-<p>Kotlin 编译器生成正常的 JavaScript 类，可以在 JavaScript 代码中自由地使用的函数和属性
-。不过，你应该记住一些微妙的事情。</p>
-<h2 id="用独立的-javascript-隔离声明">用独立的 JavaScript 隔离声明</h2>
-<p>为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
-。所以如果你把模块命名为 <code>myModule</code>，那么所有的声明都可以
-通过 <code>myModule</code> 对象在 JavaScript 中可用。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() = "Hello"
-</code></pre>
-<p>可以在 JavaScript 中这样调用：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.foo());
-</code></pre>
-<p>这不适用于当你将 Kotlin 模块编译为 JavaScript 模块时（关于这点的详细信息请参见 <a href="js-modules.html">JavaScript 模块</a>）。
-在这种情况下，不会有一个包装对象，而是将声明作为相应类型的 JavaScript 模块对外暴露。例如，
-对于 CommonJS 的场景，你应该写：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(require('myModule').foo());
-</code></pre>
-<h2 id="包结构">包结构</h2>
-<p>Kotlin 将其包结构暴露给 JavaScript，因此除非你在根包中定义声明，
-否则必须在 JavaScript 中使用完整限定的名称。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package my.qualified.packagename
-
-fun foo() = "Hello"
-</code></pre>
-<p>可以在 JavaScript 中这样调用：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.my.qualified.packagename.foo());
-</code></pre>
-<h3 id="jsname-注解"><code>@JsName</code> 注解</h3>
-<p>在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性
-的名称。要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 模块“kjs”
-class Person(val name: String) {
-    fun hello() {
-        println("Hello $name!")
-    }
-
-    @JsName("helloWithGreeting")
-    fun hello(greeting: String) {
-        println("$greeting $name!")
-    }
-}
-</code></pre>
-<p>现在，你可以通过以下方式在 JavaScript 中使用这个类：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // 引用到模块“kjs”
-person.hello();                          // 输出“Hello Dmitry!”
-person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
-</code></pre>
-<p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称会包含
-从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
-<p>请注意，Kotlin 编译器不会对 <code>external</code> 声明应用这种修饰，因此你不必在其上
-使用 <code>@JsName</code>。 值得注意的另一个例子是从外部类继承的非外部类。
-在这种情况下，任何被覆盖的函数也不会被修饰。</p>
-<p><code>@JsName</code> 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。
-任何尝试将非标识符字符串传递给 <code>@JsName</code> 时，编译器都会报错。
-以下示例会产生编译期错误：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("new C()")   // 此处出错
-external fun newC()
-</code></pre>
-<h2 id="在-javascript-中表示-kotlin-类型">在 JavaScript 中表示 Kotlin 类型</h2>
+<h1 id="using-kotlin-for-server-side-development">Using Kotlin for Server-side Development</h1>
+<p>Kotlin is a great fit for developing server-side applications, allowing to write concise and expressive code while
+maintaining full compatibility with existing Java-based technology stacks and a smooth learning curve:</p>
 <ul>
-<li>除了 <code>kotlin.Long</code> 的 Kotlin 数字类型映射到 JavaScript Number。</li>
-<li><code>kotlin.Char</code> 映射到 JavaScript Number 来表示字符代码。</li>
+<li><strong>Expressiveness</strong>: Kotlin's innovative language features, such as its support for <a href="/docs/reference/type-safe-builders.html">type-safe builders</a>
+and <a href="/docs/reference/delegated-properties.html">delegated properties</a>, help build powerful and easy-to-use abstractions.</li>
+<li><strong>Scalability</strong>: Kotlin's support for <a href="/docs/reference/coroutines.html">coroutines</a> helps build server-side applications
+that scale to massive numbers of clients with modest hardware requirements.</li>
+<li><strong>Interoperability</strong>: Kotlin is fully compatible with all Java-based frameworks, which lets you stay on your
+familiar technology stack while reaping the benefits of a more modern language.</li>
+<li><strong>Migration</strong>: Kotlin supports gradual, step by step migration of large codebases from Java to Kotlin. You can start
+writing new code in Kotlin while keeping older parts of your system in Java.</li>
+<li><strong>Tooling</strong>: In addition to great IDE support in general, Kotlin offers framework-specific tooling (for example,
+for Spring) in the plugin for IntelliJ IDEA Ultimate.</li>
+<li><strong>Learning Curve</strong>: For a Java developer, getting started with Kotlin is very easy. The automated Java to Kotlin converter included in the Kotlin plugin
+helps with the first steps. <a href="/docs/tutorials/koans.html">Kotlin Koans</a> offer a guide though the key features of the language with a series of interactive exercises.</li>
+</ul>
+<h2 id="frameworks-for-server-side-development-with-kotlin">Frameworks for Server-side Development with Kotlin</h2>
+<ul>
 <li>
-<p>Kotlin 在运行时无法区分数字类型（<code>kotlin.Long</code> 除外），即以下代码能够工作：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f() {
-    val x: Int = 23
-    val y: Any = x
-    println(y as Float)
-}
-</code></pre>
+<p><a href="https://spring.io">Spring</a> makes use of Kotlin's language features to offer <a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0">more concise APIs</a>,
+starting with version 5.0. The <a href="https://start.spring.io/#!language=kotlin">online project generator</a> allows to quickly generate a new project in Kotlin.</p>
 </li>
-<li>Kotlin 保留了 <code>kotlin.Int</code>、 <code>kotlin.Byte</code>、 <code>kotlin.Short</code>、 <code>kotlin.Char</code> 和 <code>kotlin.Long</code> 的溢出语义。</li>
-<li>JavaScript 中没有 64 位整数，所以 <code>kotlin.Long</code> 没有映射到任何 JavaScript 对象，
-它是由一个 Kotlin 类模拟的。</li>
-<li><code>kotlin.String</code> 映射到 JavaScript String。</li>
-<li><code>kotlin.Any</code> 映射到 JavaScript Object（即 <code>new Object()</code>、 <code>{}</code> 等）。</li>
-<li><code>kotlin.Array</code> 映射到 JavaScript Array。</li>
-<li>Kotlin 集合（即 <code>List</code>、 <code>Set</code>、 <code>Map</code> 等）没有映射到任何特定的 JavaScript 类型。</li>
-<li><code>kotlin.Throwable</code> 映射到 JavaScript Error。</li>
-<li>Kotlin 在 JavaScript 中保留了惰性对象初始化。</li>
-<li>Kotlin 不会在 JavaScript 中实现顶层属性的惰性初始化。</li>
+<li>
+<p><a href="http://vertx.io">Vert.x</a>, a framework for building reactive Web applications on the JVM, offers <a href="https://github.com/vert-x3/vertx-lang-kotlin">dedicated support</a>
+for Kotlin, including <a href="http://vertx.io/docs/vertx-core/kotlin/">full documentation</a>.</p>
+</li>
+<li>
+<p><a href="https://github.com/kotlin/ktor">Ktor</a> is a Kotlin-native Web framework built by JetBrains, making use of coroutines
+for high scalability and offering an easy-to-use and idiomatic API.</p>
+</li>
+<li>
+<p><a href="https://github.com/kotlin/kotlinx.html">kotlinx.html</a> is a DSL that can be used to build HTML in a Web application.
+It serves as an alternative to traditional templating systems such as JSP and FreeMarker.</p>
+</li>
+<li>
+<p>The available options for persistence include direct JDBC access, JPA, as well as using NoSQL databases through their Java drivers.
+For JPA, the <a href="/docs/reference/compiler-plugins.html#kotlin-jpa-compiler-plugin">kotlin-jpa compiler plugin</a> adapts
+Kotlin-compiled classes to the requirements of the framework.</p>
+</li>
+</ul>
+<h2 id="deploying-kotlin-server-side-applications">Deploying Kotlin Server-side Applications</h2>
+<p>Kotlin applications can be deployed into any host that supports Java Web applications, including Amazon Web Services,
+Google Cloud Platform and more.</p>
+<p><a href="https://jkutner.github.io/2017/04/10/kotlin-heroku-ktor.html">This blog post</a> offers a guide for deploying a Kotlin
+application on <a href="https://www.heroku.com">Heroku</a>.</p>
+<p>AWS Labs provides a <a href="https://github.com/awslabs/serverless-photo-recognition">sample project</a> showing the use of Kotlin
+for writing <a href="https://aws.amazon.com/lambda/">AWS Lambda</a> functions.</p>
+<h2 id="users-of-kotlin-on-the-server-side">Users of Kotlin on the Server Side</h2>
+<p><a href="https://www.corda.net/2017/01/10/kotlin/">Corda</a> is an open-source distributed ledger platform, supported by major
+banks, and built entirely in Kotlin.</p>
+<p><a href="https://account.jetbrains.com/">JetBrains Account</a>, the system responsible for the entire license sales and validation
+process at JetBrains, is written in 100% Kotlin and has been running in production since 2015 with no major issues.</p>
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>The <a href="/docs/tutorials/httpservlets.html">Creating Web Applications with Http Servlets</a> and
+<a href="/docs/tutorials/spring-boot-restful.html">Creating a RESTful Web Service with Spring Boot</a> tutorials
+show you how you can build and run very small Web applications in Kotlin.</li>
+<li>For a more in-depth introduction to the language, check out the <a href="/docs/reference/index.html">reference documentation</a> on this site and
+<a href="/docs/tutorials/koans.html">Kotlin Koans</a>.</li>
 </ul>
 
         </article>

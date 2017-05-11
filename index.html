@@ -178,7 +178,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                     <div class="feature-icon _互操作性"></div>
                                 </div>
                                 <h3 class="feature-title">互操作性</h3>
-                                <p class="feature-description">通过 100% Java 互操作性，利用 JVM 既有框架和库。</p>
+                                <p class="feature-description">通过完整的互操作性，充分利用 JVM、Android 和浏览器的现有库。</p>
                                 <span class="feature-example-link">参见示例</span>
                             </li>
                             <li class="kotlin-feature _工具化 js-popup-open-button"
@@ -202,20 +202,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                  id="kotlin-feature_简洁">
                 <div class="popup-content">
                     <h3 id="简洁">简洁</h3>
-
 <p>使用一行代码创建一个包含 getters、 setters、 <code>equals()</code>、 <code>hashCode()</code>、 <code>toString()</code> 以及 <code>copy()</code> 的 POJO：</p>
-
-<pre><code class="language-kotlin">data class Customer(val name: String, val email: String, val company: String)
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Customer(val name: String, val email: String, val company: String)
 </code></pre>
-
 <p>或者使用 lambda 表达式来过滤列表：</p>
-
-<pre><code class="language-kotlin">val positiveNumbers = list.filter {it &gt; 0}
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val positiveNumbers = list.filter { it &gt; 0 }
 </code></pre>
-
 <p>想要单例？创建一个 object 就可以了：</p>
-
-<pre><code class="language-kotlin">object ThisIsASingleton {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">object ThisIsASingleton {
     val companyName: String = "JetBrains"
 }
 </code></pre>
@@ -230,25 +224,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                  id="kotlin-feature_安全">
                 <div class="popup-content">
                     <h3 id="安全">安全</h3>
-
 <p>彻底告别那些烦人的 NullPointerException，毕竟<a href="http://www.infoq.com/presentations/Null-References-The-Billion-Dollar-Mistake-Tony-Hoare">价值万亿</a>。</p>
-
-<pre><code class="language-kotlin">var output : String
-output = null
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">var output: String
+output = null   // 编译错误
 </code></pre>
-
-<p>当然，Kotlin 会保护你避免操作可控类型，
-包括来自 Java 的</p>
-
-<pre><code class="language-kotlin">println(output.length())
+<p>Kotlin 可以保护你避免对可空类型的误操作</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data: String? = null    // 可控类型
+println(data.length())      // 编译错误
 </code></pre>
-
 <p>并且如果你检查类型是正确的，编译器会为你做自动类型转换</p>
-
-<pre><code class="language-kotlin">fun calculateTotal(obj: Any) {
-    if (obj is Invoice) {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun calculateTotal(obj: Any) {
+    if (obj is Invoice)
         obj.calculateTotal()
-    }
 }
 </code></pre>
 
@@ -316,10 +303,8 @@ output = null
                 <div class="popup-content">
                     
 <h3 id="互操作性">互操作性</h3>
-
 <p>随意创建和使用 Java 代码</p>
-
-<pre><code class="language-kotlin">import io.netty.channel.ChannelInboundMessageHandlerAdapter
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import io.netty.channel.ChannelInboundMessageHandlerAdapter
 import io.netty.channel.ChannelHandlerContext
 
 public class NettyHandler: ChannelInboundMessageHandlerAdapter&lt;Any&gt;() {
@@ -328,12 +313,9 @@ public class NettyHandler: ChannelInboundMessageHandlerAdapter&lt;Any&gt;() {
     }
 }
 </code></pre>
-
 <p>或者使用任何 JVM 上已有的库，因为百分百兼容，包括 SAM 支持。</p>
-
 <p>无论是 JVM 还是 JavaScript 目标平台，都可用 Kotlin 写代码然后部署到你想要的地方</p>
-
-<pre><code class="language-kotlin">import js.dom.html.*
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import js.dom.html.*
 
 fun onLoad() {
     window.document.body.innerHTML += "&lt;br/&gt;Hello, Kotlin!"
@@ -350,12 +332,9 @@ fun onLoad() {
                  id="kotlin-feature_工具化">
                 <div class="popup-content">
                     <h3 id="工具化">工具化</h3>
-
 <p>一门语言需要工具化，而在 JetBrains，这正是我们做得最好的地方！</p>
-
-<p class="image-block"><img src="/assets/images/index/features/tooling/tooling1.png" alt="Tooling" /></p>
-
-<p class="image-block"><img src="/assets/images/index/features/tooling/tooling2.png" alt="Tooling" /></p>
+<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling1.png"/></p>
+<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling2.png"/></p>
 
                 </div>
 
