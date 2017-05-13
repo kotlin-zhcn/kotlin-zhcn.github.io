@@ -128,9 +128,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
             <div class="nav-item-wrap">
-                    <a href="/docs/videos.html" class="nav-item">
+                    <a href="/docs/books.html" class="nav-item">
                     <span class="nav-item-text">
-                        视频
+                        书籍
                     </span>
                     </a>
 
@@ -813,9 +813,9 @@ interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;? extends E&gt; items);
 }
 </code></pre>
-<p><strong>通配符类型参数</strong> <code>? extends T</code> 表示此方法接受 <code>T</code> 的 <em>一些子类型</em>对象的集合，而不是 <code>T</code> 本身。
-这意味着我们可以安全地从其中（该集合中的元素是 T 的子类的实例）<strong>读取</strong> <code>T</code>，但<strong>不能写入</strong>，
-因为我们不知道什么对象符合那个未知的 <code>T</code> 的子类型。
+<p><strong>通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> 的 <em>一些子类型</em>对象的集合，而不是 <code>E</code> 本身。
+这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）<strong>读取</strong> <code>E</code>，但<strong>不能写入</strong>，
+因为我们不知道什么对象符合那个未知的 <code>E</code> 的子类型。
 反过来，该限制可以让<code>Collection&lt;String&gt;</code>表示为<code>Collection&lt;? extends Object&gt;</code>的子类型。
 简而言之，带 <strong>extends</strong> 限定（<strong>上界</strong>）的通配符类型使得类型是<strong>协变的（covariant）</strong>。</p>
 <p>理解为什么这个技巧能够工作的关键相当简单：如果只能从集合中获取项目，那么使用 <code>String</code> 的集合，
