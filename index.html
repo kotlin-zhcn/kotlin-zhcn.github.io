@@ -307,10 +307,11 @@ println(name.length())      // 编译错误
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import io.reactivex.Flowable
 import io.reactivex.schedulers.Schedulers
 
-Flowable.fromCallable {
-    Thread.sleep(1000) //  模仿高昂的计算
-    "Done"
-}
+Flowable
+    .fromCallable {
+        Thread.sleep(1000) //  模仿高开销的计算
+        "Done"
+    }
     .subscribeOn(Schedulers.io())
     .observeOn(Schedulers.single())
     .subscribe(::println, Throwable::printStackTrace)
@@ -334,8 +335,8 @@ fun onLoad() {
                 <div class="popup-content">
                     <h3 id="工具化">工具化</h3>
 <p>一门语言需要工具化，而在 JetBrains，这正是我们做得最好的地方！</p>
-<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling1.png"/></p>
-<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling2.png"/></p>
+<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling1.png" srcset="/assets/images/index/features/tooling/tooling1%402x.png 2x"/></p>
+<p class="image-block"><img alt="Tooling" src="/assets/images/index/features/tooling/tooling2.png" srcset="/assets/images/index/features/tooling/tooling2%402x.png 2x"/></p>
 
                 </div>
 
