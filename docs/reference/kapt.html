@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Using kapt - Kotlin 语言中文站</title>
+<title>使用 kapt - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Using kapt - Kotlin 语言中文站"/>
+<meta property="og:title" content="使用 kapt - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/reference/kapt.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Using kapt - Kotlin 语言中文站">
+<meta name="twitter:title" content="使用 kapt - Kotlin 语言中文站">
     <meta name="twitter:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
@@ -775,32 +775,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="using-kotlin-annotation-processing-tool">Using Kotlin annotation processing tool</h1>
-<p>The Kotlin plugin supports annotation processors like <em>Dagger</em> or <em>DBFlow</em>. 
-In order for them to work with Kotlin classes, apply the <code>kotlin-kapt</code> plugin.</p>
-<h2 id="gradle-configuration">Gradle configuration</h2>
+<h1 id="使用-kotlin-注解处理工具">使用 Kotlin 注解处理工具</h1>
+<blockquote>
+<p>译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。</p>
+</blockquote>
+<p>Kotlin 插件支持注解处理器，如 <em>Dagger</em> 或 <em>DBFlow</em> 。
+为了让它们与 Kotlin 类一起工作，需要应用 <code>kotlin-kapt</code> 插件：</p>
+<h2 id="gradle-配置">Gradle 配置</h2>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
 </code></pre>
-<p>Or, starting with Kotlin 1.1.1, you can apply it using the plugins DSL:</p>
+<p>或者，从 Kotlin 1.1.1 起，你可以使用插件 DSL 应用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
     id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
 }
 </code></pre>
-<p>Then add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
+<p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
     kapt 'groupId:artifactId:version'
 }
 </code></pre>
-<p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them.</p>
-<p>If you use annotation processors for your <code>androidTest</code> or <code>test</code> sources, the respective <code>kapt</code> configurations are named <code>kaptAndroidTest</code> and <code>kaptTest</code>. Note that <code>kaptAndroidTest</code> and <code>kaptTest</code> extends <code>kapt</code>, so you can just provide the <code>kapt</code> dependency and it will be available both for production sources and tests.</p>
-<p>Some annotation processors (such as <code>AutoFactory</code>) rely on precise types in declaration signatures. By default, Kapt replaces every unknown type (including types for the generated classes) to <code>NonExistentClass</code>, but you can change this behavior. Add the additional flag to the <code>build.gradle</code> file to enable error type inferring in stubs:</p>
+<p>如果你以前使用 <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> 插件，请将其从 <code>build.gradle</code> 文件中删除，并用 <code>kapt</code> 取代 <code>apt</code> 配置的用法。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
+<p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
+<p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
     correctErrorTypes = true
 }
 </code></pre>
-<p>Note that this option is experimental and it is disabled by default.</p>
-<h2 id="maven-configuration-since-kotlin-112">Maven configuration (since Kotlin 1.1.2)</h2>
-<p>Add an execution of the <code>kapt</code> goal from kotlin-maven-plugin before <code>compile</code>:</p>
+<p>请注意，这个选项是实验性的，且默认是禁用的。</p>
+<h2 id="maven-配置自-kotlin-112-起">Maven 配置（自 Kotlin 1.1.2 起）</h2>
+<p>在 <code>compile</code> 之前在 kotlin-maven-plugin 中添加 <code>kapt</code> 目标的执行：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
     &lt;id&gt;kapt&lt;/id&gt;
     &lt;goals&gt;
@@ -812,7 +815,7 @@ In order for them to work with Kotlin classes, apply the <code>kotlin-kapt</code
             &lt;sourceDir&gt;src/main/java&lt;/sourceDir&gt;
         &lt;/sourceDirs&gt;
         &lt;annotationProcessorPaths&gt;
-            &lt;!-- Specify your annotation processors here. --&gt;
+            &lt;!-- 在此处指定你的注解处理器。 --&gt;
             &lt;annotationProcessorPath&gt;
                 &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
                 &lt;artifactId&gt;dagger-compiler&lt;/artifactId&gt;
@@ -822,9 +825,9 @@ In order for them to work with Kotlin classes, apply the <code>kotlin-kapt</code
     &lt;/configuration&gt;
 &lt;/execution&gt;
 </code></pre>
-<p>You can find a complete sample project showing the use of Kotlin, Maven and Dagger in the
-<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin examples repository</a>.</p>
-<p>Please note that kapt is still not supported for IntelliJ IDEA’s own build system. Launch the build from the “Maven Projects” toolbar whenever you want to re-run the annotation processing.</p>
+<p>你可以在
+<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin 示例版本库</a> 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。</p>
+<p>请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。</p>
 
         </article>
     </div>
