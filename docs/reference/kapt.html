@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Kotlin 用于 JavaScript - Kotlin 语言中文站</title>
+<title>Using kapt - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,9 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Kotlin 用于 JavaScript - Kotlin 语言中文站"/>
+<meta property="og:title" content="Using kapt - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/js-overview.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/kapt.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
@@ -38,7 +38,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Kotlin 用于 JavaScript - Kotlin 语言中文站">
+<meta name="twitter:title" content="Using kapt - Kotlin 语言中文站">
     <meta name="twitter:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
@@ -150,7 +150,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <aside class="g-3">
             <div class="js-side-tree-nav">
                     <nav role="navigation" class="side-tree-nav">
-            <div class="tree-item tree-branch js-item js-branch _opened"
+            <div class="tree-item tree-branch js-item js-branch _closed"
                  data-id="概述">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -175,10 +175,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
-                                <div class="marker"></div>
-                                <div class="text">Kotlin 用于 JavaScript</div>
-                            </div>
+                            <a href="/docs/reference/js-overview.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Kotlin 用于 JavaScript</span>
+                            </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/whatsnew11.html"
@@ -646,7 +648,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
             </div>
-            <div class="tree-item tree-branch js-item js-branch _closed"
+            <div class="tree-item tree-branch js-item js-branch _opened"
                  data-id="工具">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -663,12 +665,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/reference/kapt.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">使用 Kapt</span>
-                            </a>
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">使用 Kapt</div>
+                            </div>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/using-gradle.html"
@@ -767,7 +767,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/js-overview.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/kapt.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -775,46 +775,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="kotlin-javascript-概述">Kotlin JavaScript 概述</h1>
-<p>Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有
-最终目标为 ECMAScript 2015 的计划。</p>
-<p>当你选择 JavaScript 目标时，作为项目一部分的任何 Kotlin 代码以及 Kotlin 附带的标准库都会转换为 JavaScript。
-但是，这不包括使用的 JDK 和任何 JVM 或 Java 框架或库。任何不是 Kotlin 的文件会在编译期间忽略掉。</p>
-<p>Kotlin 编译器努力遵循以下目标：</p>
-<ul>
-<li>提供最佳大小的输出</li>
-<li>提供可读的 JavaScript 输出</li>
-<li>提供与现有模块系统的互操作性</li>
-<li>在标准库中提供相同的功能，无论是 JavaScript 还是 JVM 目标（尽最大可能程度）。</li>
-</ul>
-<h2 id="如何使用">如何使用</h2>
-<p>你可能希望在以下情景中将 Kotlin 编译为 JavaScript：</p>
-<ul>
-<li>
-<p>创建面向客户端 JavaScript 的 Kotlin 代码</p>
-<ul>
-<li>
-<p><strong>与 DOM 元素交互</strong>。Kotlin 提供了一系列静态类型的接口来与文档对象模型（Document Object Model）交互，允许创建和更新 DOM 元素。</p>
-</li>
-<li>
-<p><strong>与图形如 WebGL 交互</strong>。你可以使用 Kotlin 在网页上用 WebGL 创建图形元素。</p>
-</li>
-</ul>
-</li>
-<li>
-<p>创建面向服务器端 JavaScript 的 Kotlin 代码</p>
-<ul>
-<li><strong>使用服务器端技术</strong>。你可以使用 Kotlin 与服务器端 JavaScript（如 node.js）进行交互</li>
-</ul>
-</li>
-</ul>
-<p>Kotlin 可以与现有的第三方库和框架（如 JQuery 或 ReactJS）一起使用。要使用强类型
-API 访问第三方框架，可以使用 <a href="https://github.com/kotlin/ts2kt">ts2kt</a> 工具将 TypeScript 定义从 <a href="http://definitelytyped.org/">Definitely Typed</a>
-类型定义仓库转换为 Kotlin。或者，你可以使用
-<a href="dynamic-type.html">动态类型</a>访问任何框架，而无需强类型。</p>
-<p>Kotlin 还兼容 CommonJS、AMD 和 UMD，直截了当<a href="/docs/tutorials/javascript/working-with-modules/working-with-modules.html">与不同的模块系统交互</a>。</p>
-<h2 id="kotlin-转-javascript-入门">Kotlin 转 JavaScript 入门</h2>
-<p>要了解如何开始使用 JavaScript 平台的 Kotlin，请参考其<a href="/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html">教程</a>。</p>
+<h1 id="using-kotlin-annotation-processing-tool">Using Kotlin annotation processing tool</h1>
+<p>The Kotlin plugin supports annotation processors like <em>Dagger</em> or <em>DBFlow</em>. 
+In order for them to work with Kotlin classes, apply the <code>kotlin-kapt</code> plugin.</p>
+<h2 id="gradle-configuration">Gradle configuration</h2>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
+</code></pre>
+<p>Or, starting with Kotlin 1.1.1, you can apply it using the plugins DSL:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
+    id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
+}
+</code></pre>
+<p>Then add the respective dependencies using the <code>kapt</code> configuration in your <code>dependencies</code> block:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
+    kapt 'groupId:artifactId:version'
+}
+</code></pre>
+<p>If you previously used the <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> plugin, remove it from your <code>build.gradle</code> file and replace usages of the <code>apt</code> configuration with <code>kapt</code>. If your project contains Java classes, <code>kapt</code> will also take care of them.</p>
+<p>If you use annotation processors for your <code>androidTest</code> or <code>test</code> sources, the respective <code>kapt</code> configurations are named <code>kaptAndroidTest</code> and <code>kaptTest</code>. Note that <code>kaptAndroidTest</code> and <code>kaptTest</code> extends <code>kapt</code>, so you can just provide the <code>kapt</code> dependency and it will be available both for production sources and tests.</p>
+<p>Some annotation processors (such as <code>AutoFactory</code>) rely on precise types in declaration signatures. By default, Kapt replaces every unknown type (including types for the generated classes) to <code>NonExistentClass</code>, but you can change this behavior. Add the additional flag to the <code>build.gradle</code> file to enable error type inferring in stubs:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
+    correctErrorTypes = true
+}
+</code></pre>
+<p>Note that this option is experimental and it is disabled by default.</p>
+<h2 id="maven-configuration-since-kotlin-112">Maven configuration (since Kotlin 1.1.2)</h2>
+<p>Add an execution of the <code>kapt</code> goal from kotlin-maven-plugin before <code>compile</code>:</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
+    &lt;id&gt;kapt&lt;/id&gt;
+    &lt;goals&gt;
+        &lt;goal&gt;kapt&lt;/goal&gt;
+    &lt;/goals&gt;
+    &lt;configuration&gt;
+        &lt;sourceDirs&gt;
+            &lt;sourceDir&gt;src/main/kotlin&lt;/sourceDir&gt;
+            &lt;sourceDir&gt;src/main/java&lt;/sourceDir&gt;
+        &lt;/sourceDirs&gt;
+        &lt;annotationProcessorPaths&gt;
+            &lt;!-- Specify your annotation processors here. --&gt;
+            &lt;annotationProcessorPath&gt;
+                &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
+                &lt;artifactId&gt;dagger-compiler&lt;/artifactId&gt;
+                &lt;version&gt;2.9&lt;/version&gt;
+            &lt;/annotationProcessorPath&gt;
+        &lt;/annotationProcessorPaths&gt;
+    &lt;/configuration&gt;
+&lt;/execution&gt;
+</code></pre>
+<p>You can find a complete sample project showing the use of Kotlin, Maven and Dagger in the
+<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin examples repository</a>.</p>
+<p>Please note that kapt is still not supported for IntelliJ IDEA’s own build system. Launch the build from the “Maven Projects” toolbar whenever you want to re-run the annotation processing.</p>
 
         </article>
     </div>

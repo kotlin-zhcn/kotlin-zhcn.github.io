@@ -43,7 +43,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <meta name="twitter:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends --></head>
+<!-- Social Media tag Ends -->
+    <link rel="stylesheet" href="/0_assets/index.css">
+</head>
 <body class="page_index">
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5P98"
@@ -119,83 +121,94 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="g-layout">
             <div class="kotlin-info">
                 <div class="kotlin-info-description">
-                    针对 JVM、Android 和浏览器<br>
-                    的静态编程语言
+                    用于现代多平台应用的<br>
+                    静态编程语言
                 </div>
                 <div class="kotlin-info-description-extra">
-                    与 Java™ 100% 可互操作
+                    与 Java™ 和 Android™ 100% 可互操作
                 </div>
                 <a href="http://try.kotlinlang.org" class="get-kotlin-button">
                     试用 Kotlin
                 </a>
-            <span class="release-banner" style="color:yellow;">
-                Kotlin 官方参考文档翻译完毕！
+            <span class="release-banner">
+                Kotlin 现在是 Android 官方开发语言了！
                 <a class="release-banner__link"
-                   href="https://hltj.me/intro/2017/05/15/kotlin-reference-translated.html">
+                   href="https://blog.jetbrains.com/kotlin/2017/05/kotlin-on-android-now-official/">
                     阅读更多</a>
             </span>
             </div>
     </div>
 </header>
+    <section class="kotlin-overview-section _works-on">
+        <h2 class="section-header">Build Applications For</h2>
+        <div class="works-on-list">                    <a href="/docs/reference/server-overview.html" class="works-on-item">
+                        <div class="works-on-icon _jvm"></div>
+                        <div class="works-on-text">
+                            JVM<br/>&nbsp;
+                        </div>
+                    </a>
+                    <a href="/docs/reference/android-overview.html" class="works-on-item">
+                        <div class="works-on-icon _android"></div>
+                        <div class="works-on-text">
+                            Android<br/>&nbsp;
+                        </div>
+                    </a>
+                    <a href="/docs/reference/js-overview.html" class="works-on-item">
+                        <div class="works-on-icon _browser"></div>
+                        <div class="works-on-text">
+                            Browser<br/>&nbsp;
+                        </div>
+                    </a>
+                    <div class="works-on-item">
+                        <div class="works-on-icon _native"></div>
+                        <div class="works-on-text">
+                            Native<br/>(soon)
+                        </div>
+                    </div>
+        </div>
+    </section>
+
     <section class="kotlin-overview-section _features">
         <h2 class="section-header">为什么选择 Kotlin？</h2>
         <div class="section-content">
-
-            <div class="kotlin-features-carousel-wrap" id="features-carousel-wrap">
-
-                <div class="kotlin-features-carousel js-carousel">
-                    <ul class="kotlin-features-list js-carousel-list">
-                            <li class="kotlin-feature _简洁 js-popup-open-button"
-                                data-popup-id="kotlin-feature_简洁">
-                                <div class="feature-image">
-                                    <div class="feature-icon _简洁"></div>
-                                </div>
-                                <h3 class="feature-title">简洁</h3>
-                                <p class="feature-description">大大减少你需要写的样板代码的数量。</p>
-                                <span class="feature-example-link">参见示例</span>
-                            </li>
-                            <li class="kotlin-feature _安全 js-popup-open-button"
-                                data-popup-id="kotlin-feature_安全">
-                                <div class="feature-image">
-                                    <div class="feature-icon _安全"></div>
-                                </div>
-                                <h3 class="feature-title">安全</h3>
-                                <p class="feature-description">避免空指针异常等整个类的错误。</p>
-                                <span class="feature-example-link">参见示例</span>
-                            </li>
-                            <li class="kotlin-feature _通用 js-popup-open-button"
-                                data-popup-id="kotlin-feature_通用">
-                                <div class="feature-image">
-                                    <div class="feature-icon _通用"></div>
-                                </div>
-                                <h3 class="feature-title">通用</h3>
-                                <p class="feature-description">构建服务器端程序、Android 应用程序或者在浏览器中运行的前端程序。</p>
-                                <span class="feature-example-link">参见示例</span>
-                            </li>
-                            <li class="kotlin-feature _互操作性 js-popup-open-button"
-                                data-popup-id="kotlin-feature_互操作性">
-                                <div class="feature-image">
-                                    <div class="feature-icon _互操作性"></div>
-                                </div>
-                                <h3 class="feature-title">互操作性</h3>
-                                <p class="feature-description">通过完整的互操作性，充分利用 JVM、Android 和浏览器的现有库。</p>
-                                <span class="feature-example-link">参见示例</span>
-                            </li>
-                            <li class="kotlin-feature _工具化 js-popup-open-button"
-                                data-popup-id="kotlin-feature_工具化">
-                                <div class="feature-image">
-                                    <div class="feature-icon _工具化"></div>
-                                </div>
-                                <h3 class="feature-title">工具化</h3>
-                                <p class="feature-description">命令行编译器还是一流的 IDE 支持，随意选。</p>
-                                <span class="feature-example-link">参见示例</span>
-                            </li>
-                    </ul>
-                </div>
-
-                <div class="kotlin-features-carousel-nav _prev js-carousel-nav-prev is_disabled"></div>
-                <div class="kotlin-features-carousel-nav _next js-carousel-nav-next"></div>
-            </div>
+            <ul class="kotlin-features-list">
+                    <li class="kotlin-feature _简洁 js-popup-open-button"
+                        data-popup-id="kotlin-feature_简洁">
+                        <div class="feature-image">
+                            <div class="feature-icon _简洁"></div>
+                        </div>
+                        <h3 class="feature-title">简洁</h3>
+                        <p class="feature-description">大大减少样板代码的数量。</p>
+                        <span class="feature-example-link">See example</span>
+                    </li>
+                    <li class="kotlin-feature _安全 js-popup-open-button"
+                        data-popup-id="kotlin-feature_安全">
+                        <div class="feature-image">
+                            <div class="feature-icon _安全"></div>
+                        </div>
+                        <h3 class="feature-title">安全</h3>
+                        <p class="feature-description">避免空指针异常等整个类的错误。</p>
+                        <span class="feature-example-link">See example</span>
+                    </li>
+                    <li class="kotlin-feature _互操作性 js-popup-open-button"
+                        data-popup-id="kotlin-feature_互操作性">
+                        <div class="feature-image">
+                            <div class="feature-icon _互操作性"></div>
+                        </div>
+                        <h3 class="feature-title">互操作性</h3>
+                        <p class="feature-description">充分利用 JVM、Android 和浏览器的现有库。</p>
+                        <span class="feature-example-link">See example</span>
+                    </li>
+                    <li class="kotlin-feature _工具友好 js-popup-open-button"
+                        data-popup-id="kotlin-feature_工具友好">
+                        <div class="feature-image">
+                            <div class="feature-icon _工具友好"></div>
+                        </div>
+                        <h3 class="feature-title">工具友好</h3>
+                        <p class="feature-description">可用任何 Java IDE 或者使用命令行构建。</p>
+                        <span class="feature-example-link">See example</span>
+                    </li>
+            </ul>
         </div>
 
             <div class="overview-popup overview-popup_简洁 _hidden js-popup"
@@ -245,59 +258,6 @@ println(name.length())      // 编译错误
                      data-popup-id="kotlin-feature_安全"></div>
             </div>
             <div class="overview-popup-overlay"></div>
-            <div class="overview-popup overview-popup_通用 _hidden js-popup"
-                 id="kotlin-feature_通用">
-                <div class="popup-content">
-                    <h3>通用性</h3>
-
-<p>多用途的语言可用于构建各式各样的程序</p>
-
-<div class="logos-list">
-    <p class="logos-list-item">
-        <span class="logo _android" title="Android"></span>
-        <span class="description">
-            Android开发。<br>
-            不影响性能。<br>
-            超小的运行时。
-        </span>
-    </p>
-
-    <p class="logos-list-item">
-        <span class="logo _tomcat" title="Tomcat"></span>
-        <span class="description">
-            服务器端程序。<br>
-            不用担心所用技术，100% 兼容 JVM 框架。
-        </span>
-    </p>
-
-    <p class="logos-list-item">
-        <span class="logo _js" title="JavaScript"></span>
-        <span class="description">
-            JavaScript。用 Kotlin 写的代码可以生成运行于 Node.js 或者浏览器中的 JavaScript
-        </span>
-    </p>
-
-    <p class="logos-list-item">
-        <span class="logo _javaee" title="JavaEE"></span>
-        <span class="description">
-            企业开发。使用 Kotlin 进行任何类型的企业级 Java EE 开发。
-        </span>
-    </p>
-
-    <p class="logos-list-item">
-        <span class="logo _html5" title="HTML5"></span>
-        <span class="description">
-            Web。无论是强类型的 HTML 与 CSS 构建器还是纯web开发。
-        </span>
-    </p>
-</div>
-
-                </div>
-
-                <div class="popup-close-button js-popup-close-button"
-                     data-popup-id="kotlin-feature_通用"></div>
-            </div>
-            <div class="overview-popup-overlay"></div>
             <div class="overview-popup overview-popup_互操作性 _hidden js-popup"
                  id="kotlin-feature_互操作性">
                 <div class="popup-content">
@@ -330,8 +290,8 @@ fun onLoad() {
                      data-popup-id="kotlin-feature_互操作性"></div>
             </div>
             <div class="overview-popup-overlay"></div>
-            <div class="overview-popup overview-popup_工具化 _hidden js-popup"
-                 id="kotlin-feature_工具化">
+            <div class="overview-popup overview-popup_工具友好 _hidden js-popup"
+                 id="kotlin-feature_工具友好">
                 <div class="popup-content">
                     <h3 id="工具化">工具化</h3>
 <p>一门语言需要工具化，而在 JetBrains，这正是我们做得最好的地方！</p>
@@ -341,7 +301,7 @@ fun onLoad() {
                 </div>
 
                 <div class="popup-close-button js-popup-close-button"
-                     data-popup-id="kotlin-feature_工具化"></div>
+                     data-popup-id="kotlin-feature_工具友好"></div>
             </div>
             <div class="overview-popup-overlay"></div>
 
@@ -615,54 +575,68 @@ createHTML().table {</div>
 
     </div>
 </section>
-    <section class="kotlin-overview-section _video-overview">
-        <div class="section-content">
-            <div class="video-player-wrap js-video-player-wrap">
-
-                <a href="http://www.youtube.com/watch?v=viiDaLpPfN4" class="video-thumb-link js-video-thumb-link">
-                <span class="video-description">
-                    <span class="title">See Kotlin in action</span>
-                    <span class="description"></span>
-                </span>
-
-                    <span class="video-player-play-button js-play-video-button"></span>
-                    <span class="video-thumb-cover"></span>
-
-                    <img src="/assets/images/index/how-to-use-kotlin-video-thumb.jpg"
-                         class="video-thumb"
-                         alt="Getting Started with Kotlin in 2 minutes"
-                         height="506"
-                    >
-                </a>
-
-                <div class="js-video-player">
-
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="kotlin-overview-section _get-kotlin" id="get-kotlin">
         <h2 class="section-header">试用 Kotlin</h2>
 
-        <p class="kotlin-version">1.1.2-2</p>
+        <div class="try-image"></div>
+        <a href="//try.kotlinlang.org" class="try-button">在线试用</a>
+        <div class="section-description">
+            浏览 Kotlin 代码示例<br/>
+            并直接在浏览器中解决问题
+        </div>
 
         <div class="section-content">
             <div class="get-kotlin-options-list">
-                <div class="option-item _try-online">
-                    <div class="option-image _try-online"></div>
-                    <div class="option-title-pre-text">在浏览器中</div>
-                    <h3 class="option-title">在线试用</h3>
+                <div class="option-item _intellij-idea">
+                    <div class="option-image">
+                        <div class="jetbrains-logo _logo-intellij-idea _size-2"></div>
+                    </div>
+                    <div class="option-title-pre-text">使用</div>
+                    <h3 class="option-title">IntelliJ IDEA</h3>
 
                     <p class="option-description">
-                        在浏览器中直接浏览 Kotlin 代码示例并解决问题。
+                        IntelliJ IDEA 社区版或 IntelliJ IDEA Ultimate 中已自带
+                    </p>
+
+                    <div class="option-link-wrap">
+                        <a href="/docs/tutorials/getting-started.html"
+                           class="option-link">
+                            使用说明
+                        </a>
+                    </div>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-image _android-studio"></div>
+                    <div class="option-title-pre-text">使用</div>
+                    <h3 class="option-title">Android Studio</h3>
+
+                    <p class="option-description">
+                        Android Studio 3.0 已自带，有插件可用于早期版本
                     </p>
 
 
                     <div class="option-link-wrap">
-                        <a href="http://try.kotlinlang.org"
+                        <a href="/docs/tutorials/kotlin-android.html"
                            class="option-link">
-                            在线试用
+                            使用说明
+                        </a>
+                    </div>
+                </div>
+
+                <div class="option-item">
+                    <div class="option-image _eclipse"></div>
+                    <div class="option-title-pre-text">使用</div>
+                    <h3 class="option-title">Eclipse</h3>
+
+                    <p class="option-description">
+                        从 Eclipse Marketplace 安装插件
+                    </p>
+
+                    <div class="option-link-wrap">
+                        <a href="/docs/tutorials/getting-started-eclipse.html"
+                           class="option-link">
+                            使用说明
                         </a>
                     </div>
                 </div>
@@ -673,7 +647,7 @@ createHTML().table {</div>
                     <h3 class="option-title">编译器</h3>
 
                     <p class="option-description">
-                        从命令行或者试用构建工具如 Ant、Gradle 和 Maven 编译你的代码。
+                        使用任何编辑器，并在命令行构建
                     </p>
 
                     <div class="option-link-wrap">
@@ -681,912 +655,49 @@ createHTML().table {</div>
                            class="option-link">下载编译器</a>
                     </div>
                 </div>
-
-                <div class="option-item _intellij-idea">
-                    <div class="option-image">
-                        <div class="jetbrains-logo _logo-intellij-idea _size-2"></div>
-                    </div>
-                    <div class="option-title-pre-text">使用</div>
-                    <h3 class="option-title">IntelliJ IDEA</h3>
-
-                    <p class="option-description">
-                        在免费社区版、IntelliJ IDEA Ultimate 或者 Android Studio 中 Kotlin 都可使用。
-                    </p>
-
-                    <div class="option-link-wrap">
-                        <a href="/docs/tutorials/getting-started.html"
-                           class="option-link">
-                            安装插件
-                        </a>
-                    </div>
-
-                </div>
-
-                <div class="option-item _source-code">
-                    <div class="option-image _source-code"></div>
-                    <div class="option-title-pre-text">使用</div>
-                    <h3 class="option-title">Eclipse</h3>
-
-                    <p class="option-description">
-                        获取 Eclipse Luna 的 Kotlin 插件的预览版本。
-                    </p>
-
-                    <div class="option-link-wrap">
-                        <a href="/docs/tutorials/getting-started-eclipse.html"
-                           class="option-link">
-                            安装插件
-                        </a>
-                    </div>
-                </div>
             </div>
-
-
-            <div class="overview-popup _hidden js-popup"
-                 id="setting-up-idea-option-popup">
-                <div class="popup-content">
-                    <h3>Setting Up IntelliJ IDEA</h3>
-
-                    <h4>Milestone Versions</h4>
-                    <p>
-                        A stable milestone version of Kotlin can be obtained from JetBrains <a href="#">Plugin
-                        Repository</a>.
-                        <br>
-                        In IDEA navigate to: Settings -> Plugins -> Browse Repositories
-                        <br>
-                        Select the Kotlin plugin and then Download and Install.
-                    </p>
-
-                    <h4>Using the Kotlin Nightly Builds</h4>
-                    <p>In IDEA navigate to: Preferences -> Plugins -> Browse Repositories. Enter:</p>
-                    <ul>
-                        <li>
-                            for IntelliJ IDEA 13 EAP:<br>
-                            <small>
-                                http://teamcity.jetbrains.com/guestAuth/repository/download/bt345/.lastSuccessful/updatePlugins.xml
-                            </small>
-                        </li>
-                        <li>
-                            for IntelliJ IDEA 12.1.5: <br>
-                            <small>
-                                http://teamcity.jetbrains.com/guestAuth/repository/download/bt345/.lastSuccessful/updatePlugins.xml?branch=idea12
-                            </small>
-                        </li>
-                        <li>
-                            for IntelliJ IDEA 12.1.4 and below: download manually, see instructions below.
-                        </li>
-                    </ul>
-
-                    <p>Then you should be able to select the Kotlin plugin and Download and Install. The repository
-                        above contains nightly builds published automatically.</p>
-                </div>
-
-                <div class="popup-close-button js-popup-close-button"
-                     data-popup-id="setting-up-idea-option-popup"></div>
-            </div>
+            <p class="kotlin-version">最新版本： 1.1.2-2</p>
         </div>
     </section>
 
     <section class="kotlin-overview-section _testimonials">
-        <div class="section-header">谁在使用 Kotlin</div>
-        <div class="section-content">
+        <h2 class="section-header">Kotlin 用途集锦</h2>
 
-            <div class="g-layout2 testimonials-carousel-wrap" id="testimonials-carousel-wrap">
-                <div class="testimonials-carousel js-carousel">
-                    <ul class="testimonials-list js-carousel-list">
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">IntelliJ IDEA plugins, YouTrack vNext, CRM apps, new products etc.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.jetbrains.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            JetBrains
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin for the Front-End Web</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://hive.geosystems.aero/?locale=en"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Industrial Geodetic Systems
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlin in backend, data processing and service development</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://prezi.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Prezi.com
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin in data processing pipeline, ElasticSearch plugins, and IDE plugins</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://linkedin.com/company/bremeld"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Bremeld Corp SA
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Medication Control - Android Application</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=ru.evilbloodydemon.pills"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Igor Fomin
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Data schema compiler for TL language implemented in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://github.com/ex3ndr/telegram-tl"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Telegram
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Facebook Game with over 10K users daily. Written in Java and all new code in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.facebook.com/wrestler.unstoppable"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Wrestler.Unstoppable
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android Application used internally</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        Plastoria
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android Application. Using Kotlin since M2</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://duofm.bitbucket.org"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Uncopt LLC
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin to build a new Vertical Product with team of five</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://gmc.net"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            GMC
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">True Fool. A Durak card game for Android written in Kotlin and libGDX</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=truefool.android"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            JackOfHearts
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Expressen&#39;s Android application.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=se.expressen.launcher"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Expressen
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android news application with 96.6% code written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=se.omni"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Schibsted Tech Polska (Omni)
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Most new non-UI code written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=com.levelmoney.mobile"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Level Money
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Fuzzy app/contact search and new UI written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=name.pilgr.appdialer"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            AppDialer
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android app for searching bus trips with 99% of code written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=de.raumobil.android.busliniensuche"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Busradar (Busliniensuche)
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Reedy – Intelligent speed reading application for Android written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=azagroup.reedy"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            AzaGroup
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Everything that isn&#39;t JavaScript front-end is Kotlin.  Combined with Vert.x, Apache Spark, ElasticSearch</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.collokia.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Collokia
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin in mobile applicatons and backend</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://edibleday.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Edible Day
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">About 25% of LOLSUMO Android app currently in Kotlin (w/ Dagger2, RxKotlin) ; all new code and tests in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://dojomadness.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Dojo Madness
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android app for helping first responders written in Kotlin</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://bryx911.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Bryx 911
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Cloud-based enterprise and professional photography acquisition and workflow. Using Kotlin for server-side code and a desktop Download application.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.dfstudio.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            DF Studio
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin in the 3DR Tower Android app, the best open source drone flight control app.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://3drobotics.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            3D Robotics
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Built an Android app in the social selling space for Fortune 500 companies.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://trap.it"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Trapit
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android app for Wizbii, a professional social network for students and young graduates.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=com.wizbii.android"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Wizbii
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlin allows us to focus on building a robust and beautiful Android voice communication app</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://rogertalk.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Roger
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlin is gaining more and more lines of code in our Android SDK and internal libraries, shared between Android and Java8 backend.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.catapush.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Catapush
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">We have found that Kotlin dramatically speeds up development time on Uprizer&#39;s diverse projects</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://uprizer.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Uprizer Labs
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">SeFix, a lagfix for Root users (100% migrated to Kotlin).</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=com.zdvdev.sef"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            ZDV
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Android apps related to robotics, 3D printing, IoT and much more.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.bq.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            BQ
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using data science to improve agriculture. Most new Android code written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://farmlogs.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            FarmLogs
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Millions of fashion people is using StyleShare for Android. Most new code written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.stylesha.re/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            StyleShare
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Software House from Warsaw. All new Android apps written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.elpassion.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            EL Passion
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin in some new apps such as dayu(dayu.com),  Using Kotlin in some new internal apps in Innovation Product Department.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.meizu.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Meizu
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">We provides dating apps in Japan. Using Kotlin in new Android apps.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://diverse-inc.co.jp/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Diverse, inc.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Collaborative tools maker. Use Kotlin in Android App for task management.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://nulab-inc.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Nulab Inc.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Backend microservices based on Spring Boot.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://allegro.tech"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Allegro Group.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin to write cleaner ViewModels with Rx in our Android app</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://tinyowl.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            TinyOwl Technology Pvt. Ltd.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">NBC News, TODAY and Nightly News Android apps using Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/developer?id=NBC+News+Digital+LLC"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            NBC News Digital, LLC
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlift transpiler lets us write business logic in Kotlin for Android and iOS.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://moshbit.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Moshbit GmbH
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">With Android app based on Kotlin, we make all back-office tasks more efficient.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.freee.co.jp/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            freee K.K.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Empowers your enterprise to finish projects on time. All Android apps are written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://taskworld.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Taskworld
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Global IT service provider. We use Kotlin in several customer and internal automation projects.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://luxoft.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Luxoft
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">A marketplace to sell, buy and swap second-hand clothes. Using Kotlin for the Android app.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.vinted.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Vinted
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">The largest app to request taxis in Brazil! Rewriting our Android apps in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.99taxis.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            99
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Increasing productivity by using Kotlin for our Android app.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://connehito.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Connehito Inc.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlin is a primary language for Android projects</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/dev?id=6750101820856332864"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Avito
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">The largest site in Poland, which helps everyone find and choose a doctor and arrange a visit to him online</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/details?id=pl.znanylekarz"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            ZnanyLekarz
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Hudl is a leading video software company revolutionizing the way coaches and athletes prepare for and stay ahead of the competition. Our app uses Kotlin extensively across multiple layers.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.hudl.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Hudl
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Using Kotlin to drive two of our customer&#39;s apps</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://infotech.group/?lang=en"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Infotech Group
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Crafting and maintaing apps for our clients in Kotlin and Java.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://byoutline.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Outline Sp z o.o.
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Clue uses science and data to provide insights into female health. All new Android code is written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://helloclue.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Clue
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Recharge lets you book by-the-minute stays at hotels. Android app is 100% Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://recharge.co/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Recharge
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Hootsuite is a platform for managing social media. All new Android code is written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://hootsuite.com"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Hootsuite
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Kotlin is a primary language for BandLab&#39;s Android application and Gradle plugins</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://play.google.com/store/apps/dev?id=8375301961782396369"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            BandLab
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Modernizing Moving and Storage. Android app is 100% Kotlin and introducing Kotlin into our Java backend stack.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="https://www.mytrove.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Trove
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">Offers app with millions of users and 40% of code written in Kotlin (and increasing)</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://www.tiendeo.com/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            Tiendeo
-                                        </a>
-                                </div>
-                            </li>
-                            <li class="testimonials-list-item">
-                                <blockquote class="testimonial-quote">
-                                    <div class="text">The content ranking system for blockchain communities. Android SDK and apps written in Kotlin.</div>
-                                </blockquote>
-
-                                <div class="testimonial-company">
-                                        <a href="http://userfeeds.io/"
-                                           class="testimonial-company-link"
-                                           target="_blank"
-                                           rel="nofollow">
-                                            userfeeds.io
-                                        </a>
-                                </div>
-                            </li>
-                    </ul>
-                </div>
-
-                <div class="testimonials-carousel-nav _prev js-carousel-nav-prev is_disabled"></div>
-                <div class="testimonials-carousel-nav _next js-carousel-nav-next"></div>
+        <div class="testimonials-layout">
+            <div class="testimonials">
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Pinterest</h3>
+                        <div class="testimonial-text">Pinterest has successfully <a href="https://www.youtube.com/watch?v=mDpnc45WwlI">introduced Kotlin</a> into their application, used by 150M people every month.</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Gradle</h3>
+                        <div class="testimonial-text">Gradle is <a href="https://blog.gradle.org/kotlin-meets-gradle">introducing Kotlin</a> as a language for writing build scripts.</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Evernote</h3>
+                        <div class="testimonial-text">Evernote recently <a href="https://blog.evernote.com/tech/2017/01/26/android-state-library/">integrated Kotlin</a> into their Android client</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Uber</h3>
+                        <div class="testimonial-text">Uber team <a href="https://www.reddit.com/r/androiddev/comments/5sihp0/2017_whos_using_kotlin/ddfmkf7/">uses Kotlin</a> for building internal tools</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Corda</h3>
+                        <div class="testimonial-text">is an open-source distributed ledger platform, supported by major banks, and <a href="https://www.corda.net/2017/01/10/kotlin/">built entirely in Kotlin</a>.</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Coursera</h3>
+                        <div class="testimonial-text">Coursera Android app is <a href="https://building.coursera.org/blog/2016/03/16/becoming-bilingual-coursera/">partially written</a> in Kotlin</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Pivotal</h3>
+                        <div class="testimonial-text">Spring makes <a href="https://spring.io/blog/2017/01/04/introducing-kotlin-support-in-spring-framework-5-0">use of Kotlin's language features</a> to offer more concise APIs</div>
+                    </div>
+                    <div class="testimonial">
+                        <h3 class="testimonial-header">Atlassian</h3>
+                        <div class="testimonial-text">All new code in the <a href="https://twitter.com/danlew42/status/809065097339564032">Trello Android</a> app is in Kotlin.</div>
+                    </div>
             </div>
-
         </div>
     </section>
 

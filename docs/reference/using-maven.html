@@ -663,6 +663,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/kapt.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Kapt</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/using-gradle.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
@@ -890,32 +898,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>或者，使用 <code>-Dkotlin.compiler.incremental=true</code> 选项运行构建。</p>
 <h2 id="注解处理">注解处理</h2>
-<p>Kotlin插件支持像 <em>Dagger</em> 这样的注解处理器。为了让它们能够使用 Kotlin 类，需要配置 Kotlin 注解处理工具
-（Kotlin annotation processing tool） <code>kapt</code> 的执行（从 Kotlin 1.1.2 起支持）。
-具体来说，你需要在 <code>compile</code> 之前添加 <code>kapt</code> 目标的执行：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
-    &lt;id&gt;kapt&lt;/id&gt;
-    &lt;goals&gt;
-        &lt;goal&gt;kapt&lt;/goal&gt;
-    &lt;/goals&gt;
-    &lt;configuration&gt;
-        &lt;sourceDirs&gt;
-            &lt;sourceDir&gt;src/main/kotlin&lt;/sourceDir&gt;
-            &lt;sourceDir&gt;src/main/java&lt;/sourceDir&gt;
-        &lt;/sourceDirs&gt;
-        &lt;annotationProcessorPaths&gt;
-            &lt;!-- 在此处指定你的注解处理器。 --&gt;
-            &lt;annotationProcessorPath&gt;
-                &lt;groupId&gt;com.google.dagger&lt;/groupId&gt;
-                &lt;artifactId&gt;dagger-compiler&lt;/artifactId&gt;
-                &lt;version&gt;2.9&lt;/version&gt;
-            &lt;/annotationProcessorPath&gt;
-        &lt;/annotationProcessorPaths&gt;
-    &lt;/configuration&gt;
-&lt;/execution&gt;
-</code></pre>
-<p>你可以在
-<a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin 示例版本库</a> 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。</p>
+<p>See the description of <a href="kapt.html">Kotlin annotation processing tool</a> (<code>kapt</code>).</p>
 <h2 id="jar-文件">Jar 文件</h2>
 <p>要创建一个仅包含模块代码的小型 Jar 文件，请在 Maven pom.xml 文件中的 <code>build-&gt;plugins</code> 下面包含以下内容，
 其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类。</p>

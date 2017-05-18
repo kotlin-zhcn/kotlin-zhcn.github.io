@@ -665,6 +665,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/kapt.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">使用 Kapt</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
                             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
                                 <div class="marker"></div>
                                 <div class="text">使用 Gradle</div>
@@ -871,27 +879,7 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
 （如 <code>compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"</code>）手动提供其版本。</p>
 <h2 id="注解处理">注解处理</h2>
-<p>Kotlin 插件支持注解处理器，如 <em>Dagger</em> 或 <em>DBFlow</em> 。为了让它们与 Kotlin 类一起工作，需要应用 <code>kotlin-kapt</code> 插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
-</code></pre>
-<p>或者，从 Kotlin 1.1.1 起，你可以使用插件 DSL 应用它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-    id "org.jetbrains.kotlin.kapt" version "＜要使用的版本＞"
-}
-</code></pre>
-<p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
-    kapt 'groupId:artifactId:版本'
-}
-</code></pre>
-<p>如果你以前使用 <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> 插件，请将其从 <code>build.gradle</code> 文件中删除，并用 <code>kapt</code> 取代 <code>apt</code> 配置的用法。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
-<p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
-<p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
-    correctErrorTypes = true
-}
-</code></pre>
-<p>请注意，这个选项是实验性的，且默认是禁用的。</p>
+<p>See the description of <a href="kapt.html">Kotlin annotation processing tool</a> (<code>kapt</code>).</p>
 <h2 id="增量编译">增量编译</h2>
 <p>Kotlin 支持 Gradle 中可选的增量编译。
 增量编译跟踪构建之间源文件的改动，因此只有受这些改动影响的文件才会被编译。</p>
