@@ -1034,7 +1034,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>我们发布早期访问预览（Early Access Preview，EAP）构建版到特殊渠道，该社区的早期采用者可以试用它们并提供反馈。这样的构建不提供任何兼容性保证（尽管我们尽最大努力保持它们与发行版以及彼此之间的合理的兼容性）。这类构建版的质量预期也远低于发行版。Beta 测试版本也属于这一类别。</p>
 <p><strong>重要注意事项</strong>：通过 EAP 为 1.X（例如 1.1.0-eap-X）编译的所有二进制文件<strong>会被编译器发行版版本拒绝</strong>。我们不希望预发布版本编译的任何代码在稳定版本发布后保留。这不涉及补丁版本的 EAP（例如 1.1.3-eap-X），这些 EAP 产生具有稳定 ABI 的构建。</p>
 <h2 id="兼容性模式">兼容性模式</h2>
-<p>当一个大团队迁移到一个新版本时，当一些开发人员已经更新、而其他人没有时，可能会在某个时候出现“不一致的状态”。为了防止前者编写和提交别人可能无法编译的代码，我们提供了以下命令行开关（在 IDE 以及 <a href="using-gradle.html#编译器选项">Gradle</a>/<a href="using-maven.html#specifying-compiler-options">Maven</a> 中也可用）：</p>
+<p>当一个大团队迁移到一个新版本时，当一些开发人员已经更新、而其他人没有时，可能会在某个时候出现“不一致的状态”。为了防止前者编写和提交别人可能无法编译的代码，我们提供了以下命令行开关（在 IDE 以及 <a href="using-gradle.html#编译器选项">Gradle</a>/<a href="using-maven.html#指定编译器选项">Maven</a> 中也可用）：</p>
 <ul>
 <li><code>-language-version X.Y</code>——Kotlin 语言版本 X.Y 的兼容性模式，对其后出现的所有语言功能报告错误</li>
 <li><code>-api-version X.Y</code>——Kotlin API 版本 X.Y 的兼容性模式，对使用来自 Kotlin 标准库（包括编译器生成的代码）的新版 API 的所有代码报告错误。</li>
