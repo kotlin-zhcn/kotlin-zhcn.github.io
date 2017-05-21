@@ -398,7 +398,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <h3 id="installing-the-kotlin-plugin">Installing the Kotlin plugin</h3>
-<p>The Kotlin plugin is bundled with Android Studio starting from version 3.0. If you use an earlier version, you'll need to install the Kotlin plugin.
+<p>The Kotlin plugin is bundled with Android Studio starting from <a href="https://developer.android.com/studio/preview/index.html">version 3.0</a>. If you use an earlier version, you'll need to install the Kotlin plugin.
 Go to <em>File | Settings | Plugins | Install JetBrains plugin…</em> and then search for and install <em>Kotlin</em>.
 If you are looking at the "Welcome to Android Studio" screen, choose <em>Configure | Plugins | Install JetBrains plugin…</em>
 You'll need to restart the IDE after this completes.</p>
@@ -433,13 +433,14 @@ Alternatively you can call this option via the <em>Code | Convert Java File to K
 <p>After the conversion you should have an activity written in Kotlin.</p>
 <p><img alt="Koltin-Activity" src="/assets/images/tutorials/kotlin-android/converted-code.png"/></p>
 <h4 id="configuring-kotlin-in-the-project">Configuring Kotlin in the project</h4>
-<p>If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.</p>
+<p>If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.
+Alternatively, you can invoke the configuration by selecting Tools | Kotlin | Configure Kotlin in Project from the main menu.</p>
 <p><img alt="Config-Kotlin" src="/assets/images/tutorials/kotlin-android/kotlin-not-configured.png"/></p>
 <p>You are then prompted for the version of Kotlin. Choose the latest available from the list of installed versions.</p>
 <p><img alt="Config-Kotlin-Details" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project-details.png"/></p>
 <p>After you configure Kotlin, build.gradle file for the application should be updated. 
-Now you can see that <em>apply plugin: 'kotlin-android'</em> and the dependencies were added.</p>
-<p><em>(For more details how to set up gradle for your project, please check <a href="/docs/reference/using-gradle.html">Using Gradle</a>)</em></p>
+Now you can see that <em>apply plugin: 'kotlin-android'</em> and the <code>kotlin-stdlib</code> dependency were added.</p>
+<p><em>(For more details how to set up gradle for your project, please check <a href="/docs/reference/using-gradle.html#targeting-android">Using Gradle</a>)</em></p>
 <p><img alt="Sync-Project-With-Gradle" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle.png"/></p>
 <p>The last thing to do is to sync the project. You can press 'Sync Now' in a prompt or invoke an action <strong>Sync Project with Gradle Files</strong>.</p>
 <p><img alt="Sync-Project-With-Gradle-2" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle-2.png"/></p>
@@ -450,8 +451,11 @@ You can make a release of the application and sign it similarly to what you do f
 <p>Kotlin has a rather small runtime file size: the library is approximately 859KB (as of 1.1.2-2). This means Kotlin adds just a little to .apk file size.</p>
 <p>Kotlin compiler produces byte-code, thus there really is no difference in terms of look and feel of Kotlin applications versus those written in Java.</p>
 <h3 id="whats-next">What's next?</h3>
-<p>Read about <a href="android-plugin.html">Kotlin Android Extensions plugin</a> and <a href="android-frameworks.html">Android Frameworks Using Annotation Processing</a>. 
-If you want to learn different Kotlin features, try <a href="koans.html">Kotlin Koans</a>.</p>
+<ul>
+<li>Read about <a href="android-plugin.html">Kotlin Android Extensions plugin</a> and <a href="android-frameworks.html">Android Frameworks Using Annotation Processing</a>.</li>
+<li>If you want to learn different Kotlin features, try <a href="koans.html">Kotlin Koans</a>.</li>
+<li>Check out Google's <a href="https://developer.android.com/samples/index.html?language=kotlin">sample projects written in Kotlin</a></li>
+</ul>
 
         </article>
     </div>

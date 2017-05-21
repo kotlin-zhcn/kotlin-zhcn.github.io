@@ -847,7 +847,7 @@ val max = if (a &gt; b) a else b
 <p>另一种可能性是检测一个值是（<em class="keyword">is</em>）或者不是（<em class="keyword">!is</em>）一个特定类型的值。注意：
 由于<a href="typecasts.html#智能转换">智能转换</a>，你可以访问该类型的方法和属性而无需
 任何额外的检测。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val hasPrefix = when(x) {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun hasPrefix(x: Any) = when(x) {
     is String -&gt; x.startsWith("prefix")
     else -&gt; false
 }

@@ -837,11 +837,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要
 用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+    ext.kotlin_version = '＜要使用的版本＞'
+
     ……
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 </code></pre>
+<p>不要忘记配置<a href="#配置依赖">标准库依赖关系</a>。</p>
 <h3 id="android-studio">Android Studio</h3>
 <p>如果使用 Android Studio，那么需要在 android 下添加以下内容：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">android {
