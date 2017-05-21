@@ -786,12 +786,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>或者，从 Kotlin 1.1.1 起，你可以使用插件 DSL 应用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-    id "org.jetbrains.kotlin.kapt" version "&lt;version to use&gt;"
+    id "org.jetbrains.kotlin.kapt" version "＜要使用的版本＞"
 }
 </code></pre>
 <p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
-    kapt 'groupId:artifactId:version'
+    kapt 'groupId:artifactId:版本'
 }
 </code></pre>
 <p>如果你以前使用 <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> 插件，请将其从 <code>build.gradle</code> 文件中删除，并用 <code>kapt</code> 取代 <code>apt</code> 配置的用法。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
