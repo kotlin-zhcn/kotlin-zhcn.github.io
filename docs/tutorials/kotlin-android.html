@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Getting started with Android and Kotlin - Kotlin 语言中文站</title>
+<title>Android 与 Kotlin 入门 - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Getting started with Android and Kotlin - Kotlin 语言中文站"/>
+<meta property="og:title" content="Android 与 Kotlin 入门 - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/kotlin-android.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
@@ -37,7 +37,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Getting started with Android and Kotlin - Kotlin 语言中文站">
+<meta name="twitter:title" content="Android 与 Kotlin 入门 - Kotlin 语言中文站">
     <meta name="twitter:description" content="This tutorial walks us through creating a simple Kotlin application for Android using Android Studio.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
@@ -389,7 +389,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Getting started with Android and Kotlin
+                Android 与 Kotlin 入门
             </h1>
             <table>
             </table>
@@ -397,64 +397,71 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<h3 id="installing-the-kotlin-plugin">Installing the Kotlin plugin</h3>
-<p>The Kotlin plugin is bundled with Android Studio starting from <a href="https://developer.android.com/studio/preview/index.html">version 3.0</a>. If you use an earlier version, you'll need to install the Kotlin plugin.
-Go to <em>File | Settings | Plugins | Install JetBrains plugin…</em> and then search for and install <em>Kotlin</em>.
-If you are looking at the "Welcome to Android Studio" screen, choose <em>Configure | Plugins | Install JetBrains plugin…</em>
-You'll need to restart the IDE after this completes.</p>
-<h3 id="creating-a-project">Creating a project</h3>
-<p>It’s extremely easy to start using Kotlin for Android development. 
-In this tutorial we’ll follow the warming up process with Android Studio.
-If using Intellij IDEA with Android, the process is almost the same.</p>
-<p>First let's create a new project. Choose <strong>Start a new Android Studio project</strong> or <strong>File | New project</strong>.
-The following dialogs walk you through the process of new project creation. 
-You need to name the project and choose which Android SDK version you have installed. Most options can be left with their default values, so you can press 'Enter' several times.</p>
-<p>Name the project:
+<h3 id="安装-kotlin-插件">安装 Kotlin 插件</h3>
+<p>Android Studio 从 3.0（preview）版本开始将内置安装 Kotlin 插件。如果你正在使用的是早期版本，
+需要通过 <em>File | Settings | Plugins | Install JetBrains plugin…</em> 搜索并安装 <em>Kotlin</em> 插件。
+在 Android Studio 欢迎界面中，可以通过 <em>Configure | Plugins | Install JetBrains plugin…</em> 。
+安装完成后需要重新启动 Android Studio。</p>
+<h3 id="创建新工程">创建新工程</h3>
+<p>使用 Kotlin 来进行 Android 的开发是极其之容易的。
+在本章教程中，我们直接根据 Android Studio 的引导进行操作。
+若你当前使用的 IDE 是 Intellij IDEA，所有操作几乎一致。</p>
+<p>首先，创建新的工程。选择 <strong>Start a new Android Studio project</strong> 或者 <strong>File | New project</strong>。
+根据弹出的对话框提示进行操作。
+为新工程命名，选择已安装的 Android SDK 版本。实际上大多数选项均有默认值 ，只需要按几次“回车”键即可。</p>
+<p>命名工程:
 <img alt="Dialog 1" src="/assets/images/tutorials/kotlin-android/0-create-new-project.png"/></p>
-<p>Android Studio 3.0 offers an option to enable Kotlin support on this screen. You can check this option and skip the
-"Configuring Kotlin in the project" step below.</p>
-<p>Choose the Android version:</p>
+<p>Android Studio 3.0 在当前对话框中提供启用 Kotlin 支持的选项，勾选后可以跳过
+“配置 Kotlin 工程（Configuring Kotlin in the project）”的步骤。</p>
+<p>选择 Android 版本:</p>
 <p><img alt="Dialog 2" src="/assets/images/tutorials/kotlin-android/1-create-new-project.png"/></p>
-<p>Choose creating an activity that will be generated for you:</p>
+<p>选择需要创建的 Activity 样式:</p>
 <p><img alt="Dialog 3" src="/assets/images/tutorials/kotlin-android/2-create-new-project.png"/></p>
-<p>Name the activity:</p>
+<p>命名该 Activity:</p>
 <p><img alt="Dialog 4" src="/assets/images/tutorials/kotlin-android/3-create-new-project.png"/></p>
-<p>In Android Studio 3.0, you can choose to create the activity in Kotlin right away, so you can skip the "Converting
-Java code to Kotlin" step. Earlier versions will create an activity in Java, and you can use the automated converter tool
-to convert it.</p>
-<p>In general, the easiest way to start using Kotlin is to convert automatically Java activity into Kotlin one.
-Please note that anytime instead of looking through documentation for a new way to express an old pattern, 
-you can write it in Java, then copy-paste Java code into Kotlin file, and IntelliJ IDEA (or Android Studio) will suggest to convert it.</p>
-<h4 id="converting-java-code-to-kotlin">Converting Java code to Kotlin</h4>
-<p>Open <code>MainActivity.java</code> file. Then invoke action <strong>Convert Java File to Kotlin File</strong>. You can do it by several ways.
-The easiest one is to invoke <a href="https://www.jetbrains.com/idea/help/navigating-to-action.html">Find Action</a> and start typing an action name (like in a screencast below). 
-Alternatively you can call this option via the <em>Code | Convert Java File to Kotlin File</em>  menu entry or by using the corresponding shortcut (you can find it at the menu entry).</p>
+<p>在 Android Studio 3.0 中，可以选择使用 Kotlin 创建 activity，因此也不需要“将Java 代码转换为 Kotlin（Converting
+Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具
+进行转换。</p>
+<p>一般而言，着手使用 Kotlin 的最便捷方式，无疑是将 Java 代码自动转换为 Kotlin。
+值得一提的是，与其为了使用新的方式表达旧的模式而去查阅文档，
+不如直接使用 Java 编写代码，再复制粘贴到 Kotlin 文件中，IntelliJ IDEA（或Android Studio）会提示需要转换代码。</p>
+<h4 id="将-java-代码转换为-kotlin">将 Java 代码转换为 Kotlin</h4>
+<p>打开 <code>MainActivity.java</code> 文件，使用 <strong>Convert Java File to Kotlin File</strong> 命令。使用该命令的方式有如下几种，
+强烈推荐 <a href="https://www.jetbrains.com/idea/help/navigating-to-action.html">Find Action</a>，输入相应的命令名称（见下方截图）即可。
+同样也可以通过菜单栏依次调出 <em>Code | Convert Java File to Kotlin File</em> 或使用快捷键（菜单栏入口可见）完成操作。</p>
 <p><img alt="Convert" src="/assets/images/tutorials/kotlin-android/convert-java-to-kotlin.png"/></p>
-<p>After the conversion you should have an activity written in Kotlin.</p>
+<p>转换完成后即可看到使用 Kotlin 编写的 activity。</p>
 <p><img alt="Koltin-Activity" src="/assets/images/tutorials/kotlin-android/converted-code.png"/></p>
-<h4 id="configuring-kotlin-in-the-project">Configuring Kotlin in the project</h4>
-<p>If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.
-Alternatively, you can invoke the configuration by selecting Tools | Kotlin | Configure Kotlin in Project from the main menu.</p>
+<h4 id="工程中配置-kotlin">工程中配置 Kotlin</h4>
+<table>
+<tbody>
+<tr>
+<td>在开始编辑此文件时，Android Studio 会提示当前工程还未配置 Kotlin，根据提示完成操作即可；或者可以在菜单栏中选择 Tools</td>
+<td>Kotlin</td>
+<td>Configure Kotlin 。</td>
+</tr>
+</tbody>
+</table>
 <p><img alt="Config-Kotlin" src="/assets/images/tutorials/kotlin-android/kotlin-not-configured.png"/></p>
-<p>You are then prompted for the version of Kotlin. Choose the latest available from the list of installed versions.</p>
+<p>选择配置时有如下对话框，选择已安装的最新版本即可。</p>
 <p><img alt="Config-Kotlin-Details" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project-details.png"/></p>
-<p>After you configure Kotlin, build.gradle file for the application should be updated. 
-Now you can see that <em>apply plugin: 'kotlin-android'</em> and the <code>kotlin-stdlib</code> dependency were added.</p>
-<p><em>(For more details how to set up gradle for your project, please check <a href="/docs/reference/using-gradle.html#targeting-android">Using Gradle</a>)</em></p>
+<p>Kotlin 配置完成后，应用程序的 build.gradle 文件会更新。
+你能看到新增了 <em>apply plugin: 'kotlin-android'</em> 及其依赖。</p>
+<p><em>（有关使用 gradle 设置的详情，请查阅 <a href="/docs/reference/using-gradle.html">Gradle使用手册</a>）</em></p>
 <p><img alt="Sync-Project-With-Gradle" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle.png"/></p>
-<p>The last thing to do is to sync the project. You can press 'Sync Now' in a prompt or invoke an action <strong>Sync Project with Gradle Files</strong>.</p>
+<p>同步工程，在提示框中点击“立即同步（Sync Now）”或者使用 <strong>Sync Project with Gradle Files</strong>命令。</p>
 <p><img alt="Sync-Project-With-Gradle-2" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle-2.png"/></p>
-<h3 id="building-and-publishing-the-kotlin-application-for-android">Building and publishing the Kotlin application for Android</h3>
-<p>You are now ready to build the application and run it on an emulator or device.
-This works in exactly the same way as in Java.
-You can make a release of the application and sign it similarly to what you do for an Android application written in Java.</p>
-<p>Kotlin has a rather small runtime file size: the library is approximately 859KB (as of 1.1.2-2). This means Kotlin adds just a little to .apk file size.</p>
-<p>Kotlin compiler produces byte-code, thus there really is no difference in terms of look and feel of Kotlin applications versus those written in Java.</p>
-<h3 id="whats-next">What's next?</h3>
+<h3 id="构建和发布用于-android-的-kotlin-应用程序">构建和发布用于 Android 的 Kotlin 应用程序</h3>
+<p>最后构建应用程序，在虚拟机或连接的设备上运行。
+所有这些工作与 Java 并无区别。
+你可以发布应用程序，并以类似于使用 Java 编写的 Android 应用程序的方式进行签名。</p>
+<p>Kotlin有着极小的运行时文件体积：整个库的大小约 859KB（1.1.2-2 版本）。这意味着 Kotlin 对 apk 文件大小影响微乎其微。</p>
+<p>就对比 Kotlin 与 Jav a所编写的程序而言，Kotlin 编译器所生成的字节码看上去几乎毫无差异。</p>
+<h3 id="后续">后续？</h3>
 <ul>
-<li>Read about <a href="android-plugin.html">Kotlin Android Extensions plugin</a> and <a href="android-frameworks.html">Android Frameworks Using Annotation Processing</a>.</li>
-<li>If you want to learn different Kotlin features, try <a href="koans.html">Kotlin Koans</a>.</li>
-<li>Check out Google's <a href="https://developer.android.com/samples/index.html?language=kotlin">sample projects written in Kotlin</a></li>
+<li>更多内容请查阅 <a href="android-plugin.html">Kotlin Android 扩展插件</a> 以及 <a href="android-frameworks.html">Android 框架使用注解处理</a>。</li>
+<li>想尝试 Kotlin的不同特性？试试 <a href="koans.html">Kotlin Koans</a>。</li>
+<li>【译者补充】查看 <a href="https://developer.android.com/samples/index.html?language=kotlin">Google 的 Kotlin 示例工程</a>。</li>
 </ul>
 
         </article>
