@@ -31,14 +31,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/android-frameworks.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial describes the usage of popular Android frameworks and libraries that use annotation processing with Kotlin.">
+    <meta property="og:description" content="This tutorial describes how to use in Kotlin popular Android frameworks and libraries that rely on annotation processing.">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="Android Frameworks Using Annotation Processing - Kotlin 语言中文站">
-    <meta name="twitter:description" content="This tutorial describes the usage of popular Android frameworks and libraries that use annotation processing with Kotlin.">
+    <meta name="twitter:description" content="This tutorial describes how to use in Kotlin popular Android frameworks and libraries that rely on annotation processing.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
     <script src="/0_assets/default.js"></script>
@@ -393,12 +393,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </h1>
             <table>
             </table>
-                This tutorial describes the usage of popular Android frameworks and libraries that use annotation processing with Kotlin.
+                This tutorial describes how to use in Kotlin popular Android frameworks and libraries that rely on annotation processing.
                 <br/>
                 <br/>
             
 <p>The Android world has many popular frameworks simplifying development.
-You can use the same frameworks if you develop in Kotlin, often as easily as you'd use them in Java. 
+You can use the same frameworks if you develop in Kotlin, often as easily as you'd do that in Java. 
 This tutorial provides examples and highlights the differences in settings.</p>
 <p>We'll look at <a href="android-frameworks.html#dagger">Dagger</a>, <a href="android-frameworks.html#butterknife">Butterknife</a>, <a href="android-frameworks.html#data-binding">Data Binding</a>, <a href="android-frameworks.html#auto-parcel">Auto-parcel</a> and <a href="android-frameworks.html#dbflow">DBFlow</a> (other frameworks can be set up similarly).
 All these frameworks work through annotation processing: you annotate the code to have the boiler-plate code generated for you.
@@ -408,11 +408,11 @@ Note that all these frameworks generate source code in Java, not Kotlin.</p>
 <h3 id="dagger">Dagger</h3>
 <p><a href="https://google.github.io/dagger//">Dagger</a> is a dependency injection framework.
 If you're not familiar with it yet, you can read its <a href="https://google.github.io/dagger//users-guide.html">user's guide</a>.
-We've converted <a href="https://github.com/google/dagger/tree/master/examples/simple">The coffee example</a> 
+We've converted <a href="https://github.com/google/dagger/tree/master/examples/simple">the coffee example</a> 
 described in this guide into Kotlin, and you can find the result <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger">here</a>. 
 The Kotlin code looks pretty much the same; you can browse the whole example in one <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/src/main/kotlin/Coffee.kt">file</a>.</p>
 <p>As in Java, you use <code>@Inject</code> to annotate the constructor used by Dagger to create instances of a class.
-Kotlin has concise syntax for declaring a property and a constructor parameter at the same time.
+Kotlin has a short syntax for declaring a property and a constructor parameter at the same time.
 To annotate the constructor, use the <code>constructor</code> keyword explicitly and put the <code>@Inject</code> annotation before it:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Thermosiphon 
 @Inject constructor(
@@ -421,8 +421,8 @@ To annotate the constructor, use the <code>constructor</code> keyword explicitly
     // ...
 }    
 </code></pre>
-<p><code>@Module</code> annotates classes defining how to provide different objects.
-When you pass an annotation argument as a vararg argument, you have to explicitly wrap it into <code>arrayOf</code>, like in <code>@Module(includes = arrayOf(PumpModule::class))</code> below:</p>
+<p>Annotating methods looks absolutely the same. 
+In the example below <code>@Binds</code> determines that a <code>Thermosiphon</code> object is used whenever a <code>Pump</code> is required, <code>@Provides</code> specifies the way to build a <code>Heater</code>, and <code>@Singleton</code> says that the same <code>Heater</code> should be used all over the place:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Module
 abstract class PumpModule {
     @Binds
@@ -435,8 +435,8 @@ class DripCoffeeModule {
     fun provideHeater(): Heater = ElectricHeater()
 }
 </code></pre>
-<p>Annotating methods looks absolutely the same. 
-In the example above <code>@Binds</code> determines that a <code>Thermosiphon</code> object is used whenever a <code>Pump</code> is required, <code>@Provides</code> specifies the way to build a <code>Heater</code>, and <code>@Singleton</code> says that the same <code>Heater</code> should be used all over the place.</p>
+<p><code>@Module</code>-annotated classes define how to provide different objects.
+Note that when you pass an annotation argument as a vararg argument, you have to explicitly wrap it into <code>arrayOf</code>, like in <code>@Module(includes = arrayOf(PumpModule::class))</code> above.</p>
 <p>To have a dependency-injected implementation generated for the type, annotate it with <code>@Component</code>.
 The generated class will have the name of this type prepended with Dagger, like <code>DaggerCoffeeShop</code> below:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Singleton
@@ -468,7 +468,7 @@ dependencies {
 }
 </code></pre>
 <p>That's all!
-Note that <code>kapt</code> takes care of your Java files as well, so you don't need to keep the <code>apt</code> dependency.</p>
+Note that <code>kapt</code> takes care of your Java files as well, so you don't need to keep the <code>annotationProcessor</code> dependency.</p>
 <p>The full build script for the sample project can be found <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-dagger/build.gradle">here</a>.
 You can also look at the converted code for <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dagger">the Android sample</a>.</p>
 <h3 id="butterknife">ButterKnife</h3>
@@ -497,7 +497,7 @@ You annotate the property:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@BindView(R2.id.title)
 lateinit var title: TextView
 </code></pre>
-<p>The <code>@BindView</code> annotation can be applied to the fields only, but the Kotlin compiler understands that and annotates the corresponding field under the hood when you apply the annotation to the whole property.</p>
+<p>The <code>@BindView</code> annotation is defined to be applied to the fields only, but the Kotlin compiler understands that and annotates the corresponding field under the hood when you apply the annotation to the whole property.</p>
 <p>Note how <a href="/docs/reference/properties.html#late-initialized-properties">the lateinit modifier</a> allows to declare a non-null type initialized after the object is created (after the constructor call).
 Without <code>lateinit</code> you'd have to declare a <a href="/docs/reference/null-safety.html">nullable type</a> and add additional nullability checks.</p>
 <p>You can also configure methods as listeners, using ButterKnife annotations:</p>
@@ -507,11 +507,12 @@ internal fun sayHello() {
 }
 </code></pre>
 <p>This code specifies an action to be performed on the "hello" button click.
-Note that with the <a href="https://github.com/Kotlin/anko">Anko</a> library and <a href="https://kotlinlang.org/docs/tutorials/android-plugin.html">Kotlin Android Extensions</a>, the same Kotlin code looks rather concise and can be written directly:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">hello.onClick {
+Note that with lambdas this code looks rather concise written directly in Kotlin:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">hello.setOnClickListener {
     toast("Hello, views!")
 }
 </code></pre>
+<p>The <code>toast</code> function is defined in the <a href="https://github.com/Kotlin/anko">Anko</a> library.</p>
 <h3 id="data-binding">Data Binding</h3>
 <p>The <a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding Library</a> allows you to bind your application data to the layouts in a concise way.</p>
 <p>You enable the library using the same configuration as in Java:</p>
@@ -522,7 +523,7 @@ Note that with the <a href="https://github.com/Kotlin/anko">Anko</a> library and
     }
 }
 </code></pre>
-<p>To make it work with Kotlin classes just add the <code>kapt</code> dependency:</p>
+<p>To make it work with Kotlin classes add the <code>kapt</code> dependency:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
 dependencies {
     kapt "com.android.databinding:compiler:$android_plugin_version"
@@ -573,9 +574,7 @@ Similarly, instead of calling a setter directly, you may use an assignment:</p>
 </code></pre>
 <p>This example uses the utility function <code>startActivity</code> creating an intent with no data and starting a new activity, which comes from the <a href="https://github.com/Kotlin/anko">Anko</a> library.
 To pass some data, you can say <code>startActivity&lt;OtherActivity&gt;("KEY" to "VALUE")</code>.</p>
-<p>Kotlin supports lambdas.
-That means that you can bind actions directly in the Kotlin code in a convenient way.
-Instead of declaring lambdas in xml like in the following example, you can do the same in the code:</p>
+<p>Note that instead of declaring lambdas in xml like in the following example, you can can bind actions directly in the code:</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;Button 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
@@ -590,16 +589,17 @@ Consider using this plugin as an alternative which allows you to keep binding lo
 <h3 id="dbflow">DBFlow</h3>
 <p><a href="https://github.com/Raizlabs/DBFlow">DBFlow</a> is a SQLite library that simplifies interaction with databases.
 It heavily relies on annotation processing.</p>
-<p>To use it with a project you configure annotation processing dependency using <code>kapt</code>:</p>
+<p>To use it with Kotlin configure annotation processing dependency using <code>kapt</code>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">apply plugin: 'kotlin-kapt'
 
-kapt "com.github.raizlabs.dbflow:dbflow-processor:$dbflow_version"
-compile "com.github.raizlabs.dbflow:dbflow-core:$dbflow_version"
-compile "com.github.raizlabs.dbflow:dbflow:$dbflow_version"
-compile "com.github.raizlabs.dbflow:dbflow-kotlinextensions:$dbflow_version"
+dependencies {
+    kapt "com.github.raizlabs.dbflow:dbflow-processor:$dbflow_version"
+    compile "com.github.raizlabs.dbflow:dbflow-core:$dbflow_version"
+    compile "com.github.raizlabs.dbflow:dbflow:$dbflow_version"
+}
 </code></pre>
-<p><a href="https://agrosner.gitbooks.io/dbflow/content/including-in-project.html">Here</a> is a detailed guide how to add DBFlow to your project.</p>
-<p>If your application already uses DBFlow, you can safely add Kotlin to your project. 
+<p><a href="https://agrosner.gitbooks.io/dbflow/content/including-in-project.html">Here</a> is a detailed guide how to configure DBFlow.</p>
+<p>If your application already uses DBFlow, you can safely introduce Kotlin into your project. 
 You can gradually convert existing code to Kotlin (ensuring that everything compiles along the way).
 The converted code doesn't differ much from Java. 
 For instance, declaring a table looks similar to Java with the small difference that default values for properties must be specified explicitly:</p>
@@ -614,36 +614,19 @@ class User: BaseModel() {
     var name: String? = null
 }
 </code></pre>
-<p>Besides being able to convert existing functionality to Kotlin, you can also enjoy the Kotlin specific module.
-DBFlow defines a bunch of extensions to make its usage in Kotlin more idiomatic.
-Let's highlight some of the supported features.</p>
-<p>You can declare tables as data classes:</p>
+<p>Besides converting existing functionality to Kotlin, you can also enjoy the Kotlin specific support.
+For instance, you can declare tables as <a href="/docs/reference/data-classes.html">data classes</a>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Table(database = KotlinDatabase::class)
 data class User(@PrimaryKey var id: Long = 0, @Column var name: String? = null)
 </code></pre>
-<p>Queries might be expressed via C#-like LINQ syntax.
-Thus the Java code below can be either converted directly or rewritten into the following style:</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">/* java */
-List&lt;Result&gt; = SQLite.select()
-    .from(Result.class)
-    .where(Result_Table.column.eq(6))
-    .and(Result_Table.column2.in("5", "6", "9")).queryList()
+<p>DBFlow defines a bunch of extensions to make its usage in Kotlin more idiomatic, which you can include in your dependencies:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">dependencies {
+    compile "com.github.raizlabs.dbflow:dbflow-kotlinextensions:$dbflow_version"
+}
 </code></pre>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/* kotlin */                   
-val results = (select
-      from Result::class
-      where (column eq 6)
-      and (column2 `in`("5", "6", "9"))
-      groupBy column).list
-</code></pre>
-<p>Having lambdas allows to write much simpler code for asynchronous computations:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var items = (select from TestModel::class).list
-
-// delete all these items.
-items.processInTransactionAsync { it, databaseWrapper -&gt; it.delete(databaseWrapper) }
-</code></pre>
-<p>More details can be found <a href="https://agrosner.gitbooks.io/dbflow/content/KotlinSupport.html">here</a>.
-You can also browse the converted <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dbflow">sample application</a>.</p>
+<p>That gives you a way to express queries via C#-like LINQ syntax, use lambdas to write much simpler code for asynchronous computations, and more.
+Read all the details <a href="https://agrosner.gitbooks.io/dbflow/content/KotlinSupport.html">here</a>.</p>
+<p>You can browse the converted <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dbflow">sample application</a>.</p>
 <h3 id="auto-parcel">Auto-Parcel</h3>
 <p><a href="https://github.com/frankiesardo/auto-parcel">Auto-Parcel</a> allows to generate <code>Parcelable</code> values for classes annotated with <code>@AutoValue</code>.</p>
 <p>When you specify the dependency you again use <code>kapt</code> as annotation processor to take care of Kotlin files:</p>
@@ -655,7 +638,7 @@ dependencies {
 }
 </code></pre>
 <p>The converted <a href="https://github.com/frankiesardo/auto-parcel/tree/master/sample">sample</a> can be found <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-auto-parcel">here</a>.</p>
-<p>You can safely annotate Kotlin classes with <code>@AutoValue</code>.
+<p>You can annotate Kotlin classes with <code>@AutoValue</code>.
 Let's look at the converted <a href="https://github.com/frankiesardo/auto-parcel/blob/master/sample/src/main/java/model2/Address.java"><code>Address</code></a> class for which the <code>Parcelable</code> implementation will be generated:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@AutoValue
 abstract class Address : Parcelable {
