@@ -539,11 +539,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
-                 data-id="参考">
+                 data-id="核心库">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
                     <div class="marker"></div>
-                    <div class="text">参考</div>
+                    <div class="text">核心库</div>
                 </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -551,9 +551,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">API 参考</span>
+                                <span class="text">标准库</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="https://kotlinlang.org/api/latest/kotlin.test/index.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">kotlin.test</span>
+                            </a>
+                    </div>
+
+            </div>
+            <div class="tree-item tree-branch js-item js-branch _closed"
+                 data-id="参考">
+
+                <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
+                    <div class="marker"></div>
+                    <div class="text">参考</div>
+                </div>
+
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/grammar.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
@@ -917,8 +935,9 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 <p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
 <p>当针对 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于
 测试代码称为 <code>compileTestKotlin</code>。对于自定义源文件集（source set）这些任务称呼取决于 <code>compile＜Name＞Kotlin</code> 模式。</p>
+<p>Android 项目中的任务名称包含<a href="https://developer.android.com/studio/build/build-variants.html">构建变体</a> 名称，并遵循 <code>compile&lt;BuildVariant&gt;Kotlin</code> 的模式，例如 <code>compileDebugKotlin</code>、 <code>compileReleaseUnitTestKotlin</code>。</p>
 <p>当针对 JavaScript 时，这些任务分别称为 <code>compileKotlin2Js</code> 与 <code>compileTestKotlin2Js</code>，以及对于自定义源文件集称为 <code>compile＜Name＞Kotlin2Js</code>。</p>
-<p>示例：</p>
+<p>要配置单个任务，请使用其名称。示例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin {
     kotlinOptions.suppressWarnings = true
 }
@@ -926,6 +945,13 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 compileKotlin {
     kotlinOptions {
         suppressWarnings = true
+    }
+}
+</code></pre>
+<p>也可以在项目中配置所有 Kotlin 编译任务：</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        // ……
     }
 }
 </code></pre>
