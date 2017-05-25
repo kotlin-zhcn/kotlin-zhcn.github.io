@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Getting Started with IntelliJ IDEA - Kotlin 语言中文站</title>
+<title>以 IntelliJ IDEA 入门 - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,18 +27,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Getting Started with IntelliJ IDEA - Kotlin 语言中文站"/>
+<meta property="og:title" content="以 IntelliJ IDEA 入门 - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/getting-started.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial walks you through creating a simple Hello World application using IntelliJ IDEA.">
+    <meta property="og:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Getting Started with IntelliJ IDEA - Kotlin 语言中文站">
-    <meta name="twitter:description" content="This tutorial walks you through creating a simple Hello World application using IntelliJ IDEA.">
+<meta name="twitter:title" content="以 IntelliJ IDEA 入门 - Kotlin 语言中文站">
+    <meta name="twitter:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
     <script src="/0_assets/default.js"></script>
@@ -389,65 +389,65 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Getting Started with IntelliJ IDEA
+                以 IntelliJ IDEA 入门
             </h1>
             <table>
                     <tr>
                         <td>
-                            <strong>Last Updated</strong>
+                            <strong>最近更新</strong>
                         </td>
                         <td>
-                            4 May 2017
+                            2017-05-04
                         </td>
                     </tr>
             </table>
-                This tutorial walks you through creating a simple Hello World application using IntelliJ IDEA.
+                本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。
                 <br/>
                 <br/>
             
-<h3 id="setting-up-the-environment">Setting up the environment</h3>
-<p>In this tutorial we're going to use IntelliJ IDEA.
-For instructions on how to compile and execute Kotlin applications using the command line compiler, see <a href="command-line.html">Working with the Command Line Compiler</a>.</p>
-<p>If you are new to the JVM and Java, check out the <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM Minimal Survival Guide</a>. If you are new to IntelliJ IDEA, check out the <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">The IntelliJ IDEA Minimal Survival Guide</a>.</p>
+<h3 id="环境搭建">环境搭建</h3>
+<p>在本教程中，我们会使用 IntelliJ IDEA。
+关于如何使用命令行编译器编译和执行 Kotlin 应用程序的说明，请参见<a href="command-line.html">使用命令行编译器</a>。</p>
+<p>如果你是 JVM 及 Java 的新手，请查看 <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM Minimal Survival Guide</a>。如果你是 IntelliJ IDEA 的新手，请查看 <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">The IntelliJ IDEA Minimal Survival Guide</a>。</p>
 <ol>
 <li>
-<p><strong>Install a recent version of IntelliJ IDEA</strong>. Kotlin is bundled with IntelliJ IDEA
-starting from version 15. You can download the free <a href="http://www.jetbrains.com/idea/download/index.html">Community Edition</a> from <a href="http://www.jetbrains.com">JetBrains</a>.</p>
+<p><strong>安装最新版本的 IntelliJ IDEA</strong>。从版本 15 开始，Kotlin 就已内置于 IntelliJ IDEA 了。
+你可以从 <a href="http://www.jetbrains.com">JetBrains</a> 下载免费的<a href="http://www.jetbrains.com/idea/download/index.html">社区版</a>。</p>
 </li>
 <li>
-<p>Create a New Project. We select Java Module and select the SDK. Kotlin works with JDK 1.6+. Also, select the <em>Kotlin (Java)</em> checkbox.</p>
-<p><img alt="Kotlin New Project" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
+<p>创建一个新项目。我们选择 Java Module 并选择 SDK。 Kotlin 与 JDK 1.6+ 一起使用。 另外，选择 <em>Kotlin (Java)</em> 复选框。</p>
+<p><img alt="新建 Kotlin 项目" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
 </li>
 <li>
-<p>Give our project a name on the next step.</p>
-<p><img alt="Kotlin Project Name" src="/assets/images/tutorials/getting-started/project_name.png"/></p>
+<p>下一步给我们的项目起个名字。</p>
+<p><img alt="Kotlin 项目名" src="/assets/images/tutorials/getting-started/project_name.png"/></p>
 </li>
 <li>
-<p>We should now have the new project created with the following folder structure:</p>
-<p><img alt="Kotlin Folder Structure" src="/assets/images/tutorials/getting-started/folders.png"/></p>
+<p>我们现在应该已经创建了新项目并且有如下文件夹解构：</p>
+<p><img alt="Kotlin 文件夹解构" src="/assets/images/tutorials/getting-started/folders.png"/></p>
 </li>
 <li>
-<p>Let's create a new Kotlin file under the source folder. It can be named anything. In our case, we will call it <em>app</em>.</p>
-<p><img alt="Kotlin New File" src="/assets/images/tutorials/getting-started/new_file.png"/></p>
+<p>让我们在源代码文件夹下创建一个新的 Kotlin 文件。它可以任意命名。在本例中，我们称之为 <em>app</em>。</p>
+<p><img alt="新建 Kotlin 文件" src="/assets/images/tutorials/getting-started/new_file.png"/></p>
 </li>
 <li>
-<p>Once we have the file created, we need to type the main routine, which is the entry point to a Kotlin application. IntelliJ IDEA offers us a template to do this quickly. Just type <em>main</em> and press tab.</p>
-<p><img alt="Kotlin Main Fun" src="/assets/images/tutorials/getting-started/main.png"/></p>
+<p>我们创建完文件后，我们需要键入主程序，这是 Kotlin 应用程序的入口点。IntelliJ IDEA 为我们提供了一个快速完成此操作的模板。只需键入 <em>main</em> 然后按 Tab 即可。</p>
+<p><img alt="Kotlin Main 函数" src="/assets/images/tutorials/getting-started/main.png"/></p>
 </li>
 <li>
-<p>Let's now add a line of code to print out 'Hello, World!'.</p>
-<p><img alt="Kotlin New File" src="/assets/images/tutorials/getting-started/hello_world.png"/></p>
+<p>现在我们添加一行代码来打印出“Hello, World!”吧。</p>
+<p><img alt="Kotlin 添加代码" src="/assets/images/tutorials/getting-started/hello_world.png"/></p>
 </li>
 <li>
-<p>Now we can run the application. The easiest way is to click on the Kotlin icon in the gutter and select <em>Run 'AppKt'</em>.</p>
-<p><img alt="Kotlin Folder Structure" src="/assets/images/tutorials/getting-started/run_default.png"/></p>
+<p>现在我们可以运行应用程序了。最简单的方法是点击左边框中的 Kotlin 图标，然后选择 <em>Run 'AppKt'</em>。</p>
+<p><img alt="Kotlin 运行程序" src="/assets/images/tutorials/getting-started/run_default.png"/></p>
 </li>
 <li>
-<p>If everything went well, we should now see the result in the <strong>Run</strong> tool window.</p>
-<p><img alt="Kotlin Folder Structure" src="/assets/images/tutorials/getting-started/run_window.png"/></p>
+<p>如果一切顺利，我们现在会在工具窗口 <strong>Run</strong> 中看到结果。</p>
+<p><img alt="Kotlin 运行窗口" src="/assets/images/tutorials/getting-started/run_window.png"/></p>
 </li>
 </ol>
-<p>Congratulations! We now have our first application running.</p>
+<p>恭喜！ 我们现在让我们的第一个应用程序运行起来了。</p>
 
         </article>
     </div>
