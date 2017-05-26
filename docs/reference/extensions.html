@@ -904,9 +904,9 @@ fun Baz.goo() { …… }
 <p>要使用所定义包之外的一个扩展，我们需要在调用方导入它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.usage
 
-import foo.bar.goo // 以名字 "goo" 导入所有扩展
+import foo.bar.goo // 导入所有名为“goo”扩展
                    // 或者
-import foo.bar.*   // 从 "foo.bar" 导入一切
+import foo.bar.*   // 从“foo.bar”导入一切
 
 fun usage(baz: Baz) {
     baz.goo()
