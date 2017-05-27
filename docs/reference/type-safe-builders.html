@@ -894,11 +894,11 @@ fun body(init: Body.() -&gt; Unit) : Body {
 }
 </code></pre>
 <p>实际上这两个函数做同样的事情，所以我们可以有一个泛型版本，<code>initTag</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    protected fun &lt;T : Element&gt; initTag(tag: T, init: T.() -&gt; Unit): T {
-        tag.init()
-        children.add(tag)
-        return tag
-    }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">protected fun &lt;T : Element&gt; initTag(tag: T, init: T.() -&gt; Unit): T {
+    tag.init()
+    children.add(tag)
+    return tag
+}
 </code></pre>
 <p>所以，现在我们的函数很简单：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun head(init: Head.() -&gt; Unit) = initTag(Head(), init)

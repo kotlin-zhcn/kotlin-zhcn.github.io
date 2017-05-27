@@ -841,7 +841,7 @@ println(e.p)
 <h2 id="标准委托">标准委托</h2>
 <p>Kotlin 标准库为几种有用的委托提供了工厂方法。</p>
 <h3 id="延迟属性-lazy">延迟属性 Lazy</h3>
-<p><code>lazy()</code> 是接受一个 lambda 并返回一个 <code>Lazy &lt;T&gt;</code> 实例的函数，返回的实例可以作为实现延迟属性的委托：
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html"><code>lazy()</code></a> 是接受一个 lambda 并返回一个 <code>Lazy &lt;T&gt;</code> 实例的函数，返回的实例可以作为实现延迟属性的委托：
 第一次调用 <code>get()</code> 会执行已传递给 <code>lazy()</code> 的 lamda 表达式并记录结果，
 后续调用 <code>get()</code> 只是返回记录的结果。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val lazyValue: String by lazy {
@@ -865,7 +865,7 @@ Hello
 而如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
 它不会有任何线程安全的保证和相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
-<p><code>Delegates.observable()</code> 接受两个参数：初始值和修改时处理程序（handler）。
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值和修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个
 参数：被赋值的属性、旧值和新值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.properties.Delegates
@@ -887,7 +887,7 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code>&lt;no name&gt; -&gt; first
 first -&gt; second
 </code></pre>
-<p>如果你想能够截获一个赋值并“否决”它，就使用 <code>vetoable()</code> 取代 <code>observable()</code>。
+<p>如果你想能够截获一个赋值并“否决”它，就使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> 取代 <code>observable()</code>。
 在属性被赋新值生效<em>之前</em>会调用传递给 <code>vetoable</code> 的处理程序。</p>
 <h2 id="把属性储存在映射中">把属性储存在映射中</h2>
 <p>一个常见的用例是在一个映射（map）里存储属性的值。
