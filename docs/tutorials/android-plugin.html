@@ -11,7 +11,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- End Google Tag Manager -->
 
 
-<title>Kotlin Android Extensions - Kotlin 语言中文站</title>
+<title>Kotlin Android 扩展 - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,18 +27,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="Kotlin Android Extensions - Kotlin 语言中文站"/>
+<meta property="og:title" content="Kotlin Android 扩展 - Kotlin 语言中文站"/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/android-plugin.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.">
+    <meta property="og:description" content="本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="Kotlin Android Extensions - Kotlin 语言中文站">
-    <meta name="twitter:description" content="This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.">
+<meta name="twitter:title" content="Kotlin Android 扩展 - Kotlin 语言中文站">
+    <meta name="twitter:description" content="本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
     <script src="/0_assets/default.js"></script>
@@ -389,7 +389,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Kotlin Android Extensions
+                Kotlin Android 扩展
             </h1>
             <table>
                     <tr>
@@ -401,17 +401,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                This tutorial describes how to use Kotlin Android Extensions to improve support for Android development.
+                本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll walk through the steps required to use the Kotlin Android Extensions plugin, enhancing the development experience with Android.</p>
-<h3 id="background">Background</h3>
-<p>Every Android developer knows well the <code>findViewById()</code> function. It is, without a doubt, a source of potential bugs and nasty code which is hard to read and support.
-While there are several libraries available that provide solutions to this problem, being libraries dependent on runtime, they require annotating fields for each <code>View</code>.</p>
-<p>The Kotlin Android Extensions plugin allows us to obtain the same experience we have with some of these libraries, without having to add any extra code or shipping any additional runtime.</p>
-<p>In essence, this would allow for the following code:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Using R.layout.activity_main from the main source set
+<p>在本章教程中，我们将逐步介绍如何使用 Kotlin 安卓扩展插件提升安卓的开发体验。</p>
+<h3 id="背景">背景</h3>
+<p>相信每一位安卓开发人员对 <code>findViewById()</code> 这个方法再熟悉不过了，毫无疑问，潜在的 bug 和脏乱的代码令后续开发无从下手的。
+尽管存在一系列的开源库能够为这个问题带来解决方案，然而对于运行时依赖的库，需要为每一个 <code>View</code> 注解变量字段。</p>
+<p>现在 Kotlin 安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码，也不影响任何运行时体验。</p>
+<p>因此，我们可以写出如下代码：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 使用来自主代码集的 R.layout.activity_main
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MyActivity : Activity() {
@@ -419,26 +419,26 @@ class MyActivity : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         textView.setText("Hello, world!")
-        // Instead of findView(R.id.textView) as TextView
+        // 而不是 findView(R.id.textView) as TextView
     }
 }
 </code></pre>
-<p><code>textView</code> is an extension property for <code>Activity</code>, and it has the same type as declared in <code>activity_main.xml</code>.</p>
-<h3 id="using-kotlin-android-extensions">Using Kotlin Android Extensions</h3>
-<h4 id="configuring-the-dependency">Configuring the dependency</h4>
+<p><code>textView</code> 是对 <code>Activity</code> 的一项扩展属性，与在 <code>activity_main.xml</code> 中的声明具有同样类型。</p>
+<h3 id="使用-kotlin-安卓扩展">使用 Kotlin 安卓扩展</h3>
+<h4 id="依赖配置">依赖配置</h4>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
-<p>Android Extensions is a part of the Kotlin IDEA plugin. You do not need to install additional plugins.</p>
-<p>All you need is to enable the Android Extensions Gradle plugin in your project-local <code>build.gradle</code> file:</p>
+<p>安卓扩展是 Kotlin IDEA 插件的组成之一，因此不需要再单独安装额外插件。</p>
+<p>开发者仅需要在项目的 <code>build.gradle</code> 文件中启用 Gradle 安卓扩展插件即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-android-extensions'
 </code></pre>
-<h4 id="importing-synthetic-properties">Importing synthetic properties</h4>
-<p>It is convenient to import all widget properties for a specific layout in one go:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.synthetic.main.&lt;layout&gt;.*
+<h4 id="导入合成属性">导入合成属性</h4>
+<p>仅需要一行即可非常方便导入指定布局文件中所有控件属性：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.synthetic.main.＜布局＞.*
 </code></pre>
-<p>Thus if the layout filename is <code>activity_main.xml</code>, we'd import <code>kotlinx.android.synthetic.main.activity_main.*</code>.</p>
-<p>If we want to call the synthetic properties on <code>View</code> (useful in adapter classes), we should also import <code>kotlinx.android.synthetic.main.activity_main.view.*</code>.</p>
-<p>Once we do that, we can then invoke the corresponding extensions, which are properties named after the views in the XML file. 
-For example, for this view:</p>
+<p>假设当前布局文件是 <code>activity_main.xml</code>，我们只需要引入 <code>kotlinx.android.synthetic.main.activity_main.*</code>。</p>
+<p>若需要调用 <code>View</code> 的合成属性(在适配器类中非常有用)，同时还应该导入 <code>kotlinx.android.synthetic.main.activity_main.view.*</code>。</p>
+<p>导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，
+比如下例:</p>
 <pre><code class="code _highlighted" data-lang="application/xml">    &lt;TextView
             android:id="@+id/hello"
             android:layout_width="fill_parent"
@@ -446,11 +446,11 @@ For example, for this view:</p>
             android:text="Hello World, MyActivity"
             /&gt;
 </code></pre>
-<p>There will be a property named <code>hello</code>:</p>
+<p>将有一个名为 <code>hello</code> 的属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">activity.hello.setText("Hi!")
 </code></pre>
-<h3 id="android-flavors">Android Flavors</h3>
-<p>Android Extensions plugin supports Android flavors. Suppose you have a flavor named <code>free</code> in your <code>build.gradle</code> file:</p>
+<h3 id="安卓多渠道">安卓多渠道</h3>
+<p>安卓扩展插件现已支持安卓多渠道。假设当前在 <code>build.gradle</code> 文件中指定一个名为 <code>free</code> 的渠道：</p>
 <pre><code>android {
     productFlavors {
         free {
@@ -459,30 +459,30 @@ For example, for this view:</p>
     }
 }
 </code></pre>
-<p>So you can import all synthetic properties for the <code>free/res/layout/activity_free.xml</code> layout by adding this import:</p>
+<p>所以现在只需要添加一行导入语句即可从 <code>free/res/layout/activity_free.xml</code> 布局中导入所有的合成属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.synthetic.free.activity_free.*
 </code></pre>
-<h3 id="under-the-hood">Under the hood</h3>
-<p>Kotlin Android Extensions is a plugin for the Kotlin compiler, and it does two things:</p>
+<h3 id="背后原理">背后原理</h3>
+<p>Kotlin 安卓扩展作为 Kotlin 编译器的插件，主要有两大作用：</p>
 <ol>
-<li>Adds a hidden caching function and a field inside each Kotlin <code>Activity</code>. The method is pretty small so it doesn't increase the size of APK much.</li>
-<li>Replaces each synthetic property call with a function call.</li>
+<li>在每一个 Kotlin<code>Activity</code> 中添加一个隐藏缓存函数以及一个变量。该方法非常简洁，因此不会直接对APK体积有明显增加。</li>
+<li>使用函数调用替换每一个合成属性。</li>
 </ol>
-<p>How this works is that when invoking a synthetic property, where the receiver is a Kotlin Activity/Fragment class that is in module sources, the caching function is invoked.
-For instance, given</p>
+<p>其工作原理是，当调用合成属性，在模块资源中 Kotlin Activity/Fragment 类作为接收器时，缓存函数将被调用。
+例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyActivity: Activity()
 fun MyActivity.a() { 
         this.textView.setText(“”) 
 }
 </code></pre>
-<p>a hidden caching function is generated inside MyActivity, so we can use the caching mechanism.</p>
-<p>However in the following case:</p>
+<p>在 MyActivity 中生成一个隐藏缓存函数，因此我们可以使用缓存机制。</p>
+<p>然而在下面的例子中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Activity.b() { 
         this.textView.setText(“”)     
 }
 </code></pre>
-<p>We wouldn't know if this function would be invoked on only Activities from our sources or on plain Java Activities also. As such, we don’t use caching there, even
-if MyActivity instance from the previous example is the receiver.</p>
+<p>我们并不知道这个函数会被我们自己的来源或者普通的 Java Activity 调用，因此，
+即便在前一个示例中的 MyActivity 是接收器，也不会使用缓存。</p>
 
         </article>
     </div>
