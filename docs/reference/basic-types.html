@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">编码习惯</span>
+                                <span class="text">编码规范</span>
                             </a>
                     </div>
 
@@ -885,7 +885,7 @@ print(boxedA == anotherBoxedA) // 输出“true”
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 假想的代码，实际上并不能编译：
 val a: Int? = 1 // 一个装箱的 Int (java.lang.Integer)
 val b: Long? = a // 隐式转换产生一个装箱的 Long (java.lang.Long)
-print(a == b) // 惊！这将打印 "false" 鉴于 Long 的 equals() 检测其他部分也是 Long
+print(a == b) // 惊！这将输出“false”鉴于 Long 的 equals() 检测其他部分也是 Long
 </code></pre>
 <p>所以同一性还有相等性都会在所有地方悄无声息地失去。</p>
 <p>因此较小的类型<strong>不能</strong>隐式转换为较大的类型。

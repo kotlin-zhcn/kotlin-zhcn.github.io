@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">编码习惯</span>
+                                <span class="text">编码规范</span>
                             </a>
                     </div>
 
@@ -809,12 +809,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 data class Const(val number: Double) : Expr()
 data class Sum(val e1: Expr, val e2: Expr) : Expr()
 object NotANumber : Expr()
-
-fun eval(expr: Expr): Double = when (expr) {
-    is Const -&gt; expr.number
-    is Sum -&gt; eval(expr.e1) + eval(expr.e2)
-    NotANumber -&gt; Double.NaN
-}
 </code></pre>
 <p>（上文示例使用了 Kotlin 1.1 的一个额外的新功能：数据类扩展包括密封类在内的其他类的可能性。
 ）</p>
@@ -823,9 +817,9 @@ fun eval(expr: Expr): Double = when (expr) {
 <p>使用密封类的关键好处在于使用 <a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够
 验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
-    is Expr.Const -&gt; expr.number
-    is Expr.Sum -&gt; eval(expr.e1) + eval(expr.e2)
-    Expr.NotANumber -&gt; Double.NaN
+    is Const -&gt; expr.number
+    is Sum -&gt; eval(expr.e1) + eval(expr.e2)
+    NotANumber -&gt; Double.NaN
     // 不再需要 `else` 子句，因为我们已经覆盖了所有的情况
 }
 </code></pre>

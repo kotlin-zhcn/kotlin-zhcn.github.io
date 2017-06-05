@@ -221,7 +221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">编码习惯</span>
+                                <span class="text">编码规范</span>
                             </a>
                     </div>
 
@@ -924,7 +924,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 </code></pre>
 <p>这个函数应该将项目从一个数组复制到另一个数组。让我们尝试在实践中应用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)
-val any = Array&lt;Any&gt;(3)
+val any = Array&lt;Any&gt;(3) { "" } 
 copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 </code></pre>
 <p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是
