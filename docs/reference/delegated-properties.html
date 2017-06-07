@@ -863,15 +863,15 @@ fun main(args: Array&lt;String&gt;) {
 Hello
 Hello
 </code></pre>
-<p>默认情况下，对于 lazy 属性的求值是<strong>同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程
-会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程
-可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
+<p>默认情况下，对于 lazy 属性的求值是<strong>同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程<!--
+-->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
+-->可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
 而如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
 它不会有任何线程安全的保证和相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值和修改时处理程序（handler）。
-每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个
-参数：被赋值的属性、旧值和新值：</p>
+每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个<!--
+-->参数：被赋值的属性、旧值和新值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.properties.Delegates
 
 class User {
@@ -978,8 +978,8 @@ class C {
 <p>请注意，直接在代码中引用<a href="reflection.html#绑定的函数与属性引用（自-11-起）">绑定的可调用引用</a>的语法 <code>this::prop</code> 自 Kotlin 1.1 起才可用。</p>
 <h3 id="提供委托自-11-起">提供委托（自 1.1 起）</h3>
 <p>通过定义 <code>provideDelegate</code> 操作符，可以扩展创建属性实现所委托对象的逻辑。
-如果 <code>by</code> 右侧所使用的对象将 <code>provideDelegate</code> 定义为成员或扩展函数，那么会调用该函数来
-创建属性委托实例。</p>
+如果 <code>by</code> 右侧所使用的对象将 <code>provideDelegate</code> 定义为成员或扩展函数，那么会调用该函数来<!--
+-->创建属性委托实例。</p>
 <p><code>provideDelegate</code> 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检查属性一致性。</p>
 <p>例如，如果要在绑定之前检查属性名称，可以这样写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class ResourceLoader&lt;T&gt;(id: ResourceID&lt;T&gt;) {
@@ -1024,8 +1024,8 @@ fun &lt;T&gt; MyUI.bindResource(
 }
 </code></pre>
 <p>在生成的代码中，会调用 <code>provideDelegate</code> 方法来初始化辅助的 <code>prop$delegate</code> 属性。
-比较对于属性声明 <code>val prop: Type by MyDelegate()</code> 生成的代码与
-<a href="delegated-properties.html#翻译规则">上面</a>（当 <code>provideDelegate</code> 方法不存在时）生成的代码：</p>
+比较对于属性声明 <code>val prop: Type by MyDelegate()</code> 生成的代码与<!--
+--><a href="delegated-properties.html#翻译规则">上面</a>（当 <code>provideDelegate</code> 方法不存在时）生成的代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     var prop: Type by MyDelegate()
 }

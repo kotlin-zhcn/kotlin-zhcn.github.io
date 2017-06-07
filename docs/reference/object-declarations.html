@@ -834,10 +834,10 @@ val ab: A = object : A(1), B {
     print(adHoc.x + adHoc.y)
 }
 </code></pre>
-<p>请注意，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的
-返回类型或者用作公有属性的类型，那么该函数或属性的实际类型
-会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 <code>Any</code>。在匿名对象
-中添加的成员将无法访问。</p>
+<p>请注意，匿名对象可以用作只在本地和私有作用域中声明的类型。如果你使用匿名对象作为公有函数的<!--
+-->返回类型或者用作公有属性的类型，那么该函数或属性的实际类型<!--
+-->会是匿名对象声明的超类型，如果你没有声明任何超类型，就会是 <code>Any</code>。在匿名对象<!--
+-->中添加的成员将无法访问。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     // 私有函数，所以其返回类型是匿名对象类型
     private fun foo() = object {
@@ -920,8 +920,8 @@ val ab: A = object : A(1), B {
 
 val x = MyClass.Companion
 </code></pre>
-<p>请注意，即使伴生对象的成员看起来像其他语言的静态成员，在运行时他们
-仍然是真实对象的实例成员，而且，例如还可以实现接口：</p>
+<p>请注意，即使伴生对象的成员看起来像其他语言的静态成员，在运行时他们<!--
+-->仍然是真实对象的实例成员，而且，例如还可以实现接口：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Factory&lt;T&gt; {
     fun create(): T
 }
@@ -933,8 +933,8 @@ class MyClass {
     }
 }
 </code></pre>
-<p>当然，在 JVM 平台，如果使用 <code>@JvmStatic</code> 注解，你可以将伴生对象的成员生成为真正的
-静态方法和字段。更详细信息请参见<a href="java-to-kotlin-interop.html#静态字段">Java 互操作性</a>一节
+<p>当然，在 JVM 平台，如果使用 <code>@JvmStatic</code> 注解，你可以将伴生对象的成员生成为真正的<!--
+-->静态方法和字段。更详细信息请参见<a href="java-to-kotlin-interop.html#静态字段">Java 互操作性</a>一节
 。</p>
 <h3 id="对象表达式和对象声明之间的语义差异">对象表达式和对象声明之间的语义差异</h3>
 <p>对象表达式和对象声明之间有一个重要的语义差别：</p>

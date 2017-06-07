@@ -798,8 +798,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="javascript-模块">JavaScript 模块</h1>
-<p>Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是
-可用选项的列表：</p>
+<p>Kotlin 允许你将 Kotlin 项目编译为热门模块系统的 JavaScript 模块。以下是<!--
+-->可用选项的列表：</p>
 <ol>
 <li>无模块（Plain）。不为任何模块系统编译。像往常一样，你可以在全局作用域中以其名称访问模块。
 默认使用此选项。</li>
@@ -918,9 +918,9 @@ external fun baz()
 </code></pre>
 <h3 id="jsnonmodule-注解"><code>@JsNonModule</code> 注解</h3>
 <p>当一个声明具有 <code>@JsModule</code>、当你并不把它编译到一个 JavaScript 模块时，你不能在 Kotlin 代码中使用它。
-通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的<code> .js</code> 文件分发，你可以将这些文件复制到
-项目的静态资源，并通过 <code>&lt;script&gt;</code> 元素包含。 要告诉 Kotlin，可以
-在非模块环境中使用一个 <code>@JsModule</code> 声明，你应该放置 <code>@JsNonModule</code> 声明。例如，
+通常，开发人员将他们的库既作为 JavaScript 模块也作为可下载的<code> .js</code> 文件分发，你可以将这些文件复制到<!--
+-->项目的静态资源，并通过 <code>&lt;script&gt;</code> 元素包含。 要告诉 Kotlin，可以<!--
+-->在非模块环境中使用一个 <code>@JsModule</code> 声明，你应该放置 <code>@JsNonModule</code> 声明。例如，
 给定 JavaScript 代码：</p>
 <pre><code class="code _highlighted" data-lang="text/javascript">function topLevelSayHello(name) { alert("Hello, " + name); }
 if (module &amp;&amp; module.exports) {
@@ -934,8 +934,8 @@ if (module &amp;&amp; module.exports) {
 external fun sayHello(name: String)
 </code></pre>
 <h3 id="备注">备注</h3>
-<p>Kotlin 以 <code>kotlin.js</code> 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此
-你可以使用上述任何模块系统。也可以在 NPM 上使用 <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> 包</a></p>
+<p>Kotlin 以 <code>kotlin.js</code> 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此<!--
+-->你可以使用上述任何模块系统。也可以在 NPM 上使用 <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> 包</a></p>
 
         </article>
     </div>

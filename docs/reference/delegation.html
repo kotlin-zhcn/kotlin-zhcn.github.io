@@ -819,6 +819,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 <p><code>Derived</code> 的超类型列表中的 <em class="keyword">by</em>-子句表示 <code>b</code> 将会在 <code>Derived</code> 中内部存储。
 并且编译器将生成转发给 <code>b</code> 的所有 <code>Base</code> 的方法。</p>
+<p>请注意，覆盖会以你所期望的方式工作：编译器会使用你的 <code>override</code> 实现取代委托对象中的实现。如果我们为 <code>Derived</code> 添加 <code>override fun print() { print("abc") }</code>，该程序会输出“abc”而不是“10”。</p>
 
         </article>
     </div>

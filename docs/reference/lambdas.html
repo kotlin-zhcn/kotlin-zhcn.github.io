@@ -898,8 +898,8 @@ val result = lock(lock, ::toBeSynchronized)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum: (Int, Int) -&gt; Int = { x, y -&gt; x + y }
 </code></pre>
 <p>一个 lambda 表达式只有一个参数是很常见的。
-如果 Kotlin 可以自己计算出签名，它允许我们不声明唯一的参数，并且将隐含地
-为我们声明其名称为 <code>it</code>：</p>
+如果 Kotlin 可以自己计算出签名，它允许我们不声明唯一的参数，并且将隐含地<!--
+-->为我们声明其名称为 <code>it</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter { it &gt; 0 } // 这个字面值是“(it: Int) -&gt; Boolean”类型的
 </code></pre>
 <p>我们可以使用<a href="returns.html#标签处返回">限定的返回</a>语法从 lambda 显式返回一个值。否则，将隐式返回最后一个表达式的值。因此，以下两个片段是等价的：</p>
@@ -913,33 +913,33 @@ ints.filter {
     return@filter shouldFilter
 }
 </code></pre>
-<p>请注意，如果一个函数接受另一个函数作为最后一个参数，lambda 表达式参数可以在
-圆括号参数列表之外传递。
+<p>请注意，如果一个函数接受另一个函数作为最后一个参数，lambda 表达式参数可以在<!--
+-->圆括号参数列表之外传递。
 参见 <a href="grammar.html#callSuffix">callSuffix</a> 的语法。</p>
 <h3 id="匿名函数">匿名函数</h3>
-<p>上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的
-能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果
-确实需要显式指定，可以使用另一种语法： <em>匿名函数</em> 。</p>
+<p>上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的<!--
+-->能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果<!--
+-->确实需要显式指定，可以使用另一种语法： <em>匿名函数</em> 。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int = x + y
 </code></pre>
-<p>匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体
-可以是表达式（如上所示）或代码块：</p>
+<p>匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体<!--
+-->可以是表达式（如上所示）或代码块：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int {
     return x + y
 }
 </code></pre>
-<p>参数和返回类型的指定方式与常规函数相同，除了
-能够从上下文推断出的参数类型可以省略：</p>
+<p>参数和返回类型的指定方式与常规函数相同，除了<!--
+-->能够从上下文推断出的参数类型可以省略：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter(fun(item) = item &gt; 0)
 </code></pre>
-<p>匿名函数的返回类型推断机制与正常函数一样：对于具有表达式函数体的匿名函数将自动
-推断返回类型，而具有代码块函数体的返回类型必须显式
-指定（或者已假定为 <code>Unit</code>）。</p>
-<p>请注意，匿名函数参数总是在括号内传递。 允许将函数
-留在圆括号外的简写语法仅适用于 lambda 表达式。</p>
-<p>Lambda表达式和匿名函数之间的另一个区别是
-<a href="inline-functions.html#非局部返回">非局部返回</a>的行为。一个不带标签的 <em class="keyword">return</em> 语句
-总是在用 <em class="keyword">fun</em> 关键字声明的函数中返回。这意味着 lambda 表达式中的 <em class="keyword">return</em>
+<p>匿名函数的返回类型推断机制与正常函数一样：对于具有表达式函数体的匿名函数将自动<!--
+-->推断返回类型，而具有代码块函数体的返回类型必须显式<!--
+-->指定（或者已假定为 <code>Unit</code>）。</p>
+<p>请注意，匿名函数参数总是在括号内传递。 允许将函数<!--
+-->留在圆括号外的简写语法仅适用于 lambda 表达式。</p>
+<p>Lambda表达式和匿名函数之间的另一个区别是<!--
+--><a href="inline-functions.html#非局部返回">非局部返回</a>的行为。一个不带标签的 <em class="keyword">return</em> 语句<!--
+-->总是在用 <em class="keyword">fun</em> 关键字声明的函数中返回。这意味着 lambda 表达式中的 <em class="keyword">return</em>
 将从包含它的函数返回，而匿名函数中的 <em class="keyword">return</em>
 将从匿名函数自身返回。</p>
 <h3 id="闭包">闭包</h3>
@@ -962,7 +962,7 @@ print(sum)
 <p>该函数字面值可以这样调用，就像它是接收者对象上的一个方法一样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">1.sum(2)
 </code></pre>
-<p>匿名函数语法允许你直接指定函数字面值的接收者类型
+<p>匿名函数语法允许你直接指定函数字面值的接收者类型。
 如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = fun Int.(other: Int): Int = this + other
 </code></pre>

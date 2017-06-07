@@ -799,17 +799,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="编写-kotlin-代码文档">编写 Kotlin 代码文档</h1>
 <p>用来编写 Kotlin 代码文档的语言（相当于 Java 的 JavaDoc）称为 <strong>KDoc</strong>。本质上 KDoc
-是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的
-内联标记（inline markup）结合在一起。</p>
+是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的<!--
+-->内联标记（inline markup）结合在一起。</p>
 <h2 id="生成文档">生成文档</h2>
 <p>Kotlin 的文档生成工具称为 <a href="https://github.com/Kotlin/dokka">Dokka</a>。其使用说明请参见
 <a href="https://github.com/Kotlin/dokka/blob/master/README.md">Dokka README</a>。</p>
 <p>Dokka 有 Gradle、Maven 和 Ant 的插件，因此你可以将文档生成集成到你的构建过程中。</p>
 <h2 id="kdoc-语法">KDoc 语法</h2>
-<p>像 JavaDoc 一样，KDoc 注释也以 <code>/**</code> 开头、以 <code>*/</code> 结尾。注释的每一行可以以
-星号开头，该星号不会当作注释内容的一部分。</p>
-<p>按惯例来说，文档文本的第一段（到第一行空白行结束）是该元素的
-总体描述，接下来的注释是详细描述。</p>
+<p>像 JavaDoc 一样，KDoc 注释也以 <code>/**</code> 开头、以 <code>*/</code> 结尾。注释的每一行可以以<!--
+-->星号开头，该星号不会当作注释内容的一部分。</p>
+<p>按惯例来说，文档文本的第一段（到第一行空白行结束）是该元素的<!--
+-->总体描述，接下来的注释是详细描述。</p>
 <p>每个块标签都以一个新行开始且以 <code>@</code> 字符开头。</p>
 <p>以下是使用 KDoc 编写类文档的一个示例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
@@ -833,8 +833,8 @@ class Group&lt;T&gt;(val name: String) {
 <p>KDoc 目前支持以下块标签（block tags）：</p>
 <h4 id="param-名称"><code>@param &lt;名称&gt;</code></h4>
 <p>用于函数的值参数或者类、属性或函数的类型参数。
-为了更好地将参数名称与描述分开，如果你愿意，可以将参数的名称括在
-方括号中。因此，以下两种语法是等效的：</p>
+为了更好地将参数名称与描述分开，如果你愿意，可以将参数的名称括在<!--
+-->方括号中。因此，以下两种语法是等效的：</p>
 <pre><code>@param name 描述。
 @param[name] 描述。
 </code></pre>
@@ -845,12 +845,12 @@ class Group&lt;T&gt;(val name: String) {
 <h4 id="receiver"><code>@receiver</code></h4>
 <p>用于扩展函数的接收者。</p>
 <h4 id="property-名称"><code>@property &lt;名称&gt;</code></h4>
-<p>用于类中具有指定名称的属性。这个标签可用于在
-主构造函数中声明的属性，当然直接在属性定义的前面放置 doc 注释会很
-别扭。</p>
+<p>用于类中具有指定名称的属性。这个标签可用于在<!--
+-->主构造函数中声明的属性，当然直接在属性定义的前面放置 doc 注释会很<!--
+-->别扭。</p>
 <h4 id="throws-类-exception-类"><code>@throws &lt;类&gt;</code>, <code>@exception &lt;类&gt;</code></h4>
-<p>用于方法可能抛出的异常。因为 Kotlin 没有受检异常，所以
-也没有期望所有可能的异常都写文档，但是当它会为类的用户提供有用的信息时，
+<p>用于方法可能抛出的异常。因为 Kotlin 没有受检异常，所以<!--
+-->也没有期望所有可能的异常都写文档，但是当它会为类的用户提供有用的信息时，
 仍然可以使用这个标签。</p>
 <h4 id="sample-标识符"><code>@sample &lt;标识符&gt;</code></h4>
 <p>将具有指定限定的名称的函数的主体嵌入到当前元素的文档中，
@@ -862,14 +862,14 @@ class Group&lt;T&gt;(val name: String) {
 <h4 id="since"><code>@since</code></h4>
 <p>指定要编写文档的元素引入时的软件版本。</p>
 <h4 id="suppress"><code>@suppress</code></h4>
-<p>从生成的文档中排除元素。可用于不是模块的官方 API 的一部分
-但还是必须在对外可见的元素。</p>
+<p>从生成的文档中排除元素。可用于不是模块的官方 API 的一部分<!--
+-->但还是必须在对外可见的元素。</p>
 <blockquote class="note">
 <p>KDoc 不支持 <code>@deprecated</code> 这个标签。作为替代，请使用 <code>@Deprecated</code> 注解。</p>
 </blockquote>
 <h2 id="内联标记">内联标记</h2>
-<p>对于内联标记，KDoc 使用常规 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 语法，扩展
-了支持用于链接到代码中其他元素的简写语法。</p>
+<p>对于内联标记，KDoc 使用常规 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 语法，扩展<!--
+-->了支持用于链接到代码中其他元素的简写语法。</p>
 <h3 id="链接到元素">链接到元素</h3>
 <p>要链接到另一个元素（类、方法、属性或参数），只需将其名称放在方括号中：</p>
 <pre><code>为此目的，请使用方法 [foo]。
@@ -877,20 +877,20 @@ class Group&lt;T&gt;(val name: String) {
 <p>如果要为链接指定自定义标签（label），请使用 Markdown 引用样式语法：</p>
 <pre><code>为此目的，请使用[这个方法][foo]。
 </code></pre>
-<p>你还可以在链接中使用限定的名称。请注意，与 JavaDoc 不同，限定的名称总是使用点字符
-来分隔组件，即使在方法名称之前：</p>
+<p>你还可以在链接中使用限定的名称。请注意，与 JavaDoc 不同，限定的名称总是使用点字符<!--
+-->来分隔组件，即使在方法名称之前：</p>
 <pre><code>使用 [kotlin.reflect.KClass.properties] 来枚举类的属性。
 </code></pre>
 <p>链接中的名称与正写文档的元素内使用该名称使用相同的规则解析。
 特别是，这意味着如果你已将名称导入当前文件，那么当你在 KDoc 注释中使用它时，
 不需要再对其进行完整限定。</p>
-<p>请注意 KDoc 没有用于解析链接中的重载成员的任何语法。 因为 Kotlin 文档生成
-工具将一个函数的所有重载的文档放在同一页面上，标识一个特定的重载函数
-并不是链接生效所必需的。</p>
+<p>请注意 KDoc 没有用于解析链接中的重载成员的任何语法。 因为 Kotlin 文档生成<!--
+-->工具将一个函数的所有重载的文档放在同一页面上，标识一个特定的重载函数<!--
+-->并不是链接生效所必需的。</p>
 <h2 id="模块和包文档">模块和包文档</h2>
 <p>作为一个整体的模块、以及该模块中的包的文档，由单独的 Markdown 文件提供，
-并且使用 <code>-include</code> 命令行参数或 Ant、Maven 和 Gradle 中的相应插件
-将该文件的路径传递给 Dokka。</p>
+并且使用 <code>-include</code> 命令行参数或 Ant、Maven 和 Gradle 中的相应插件<!--
+-->将该文件的路径传递给 Dokka。</p>
 <p>在该文件内部，作为一个整体的模块和分开的软件包的文档由相应的一级标题引入
 。标题的文本对于模块必须是“Module <code>&lt;模块名&gt;</code>”，对于包必须是“Package <code>&lt;限定的包名&gt;</code>”。</p>
 <p>以下是该文件的一个示例内容：</p>

@@ -798,13 +798,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="javascript-反射">JavaScript 反射</h1>
-<p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分
-是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。
+<p>目前，JavaScript 不支持完整的 Kotlin 反射 API。唯一支持的该 API 部分<!--
+-->是 <code>::class</code> 语法，它允许你引用一个实例的类或者与给定类型相对应的类。
 一个 <code>::class</code> 表达式的值是一个只能支持 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/simple-name.html">simpleName</a> 和
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html">isInstance</a> 成员
-的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/">KClass</a> 实现。</p>
-<p>除此之外，你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html">KClass.js</a> 访问
-与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html">JsClass</a> 类对应的实例。
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/is-instance.html">isInstance</a> 成员<!--
+-->的精简版 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/">KClass</a> 实现。</p>
+<p>除此之外，你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html">KClass.js</a> 访问<!--
+-->与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/-js-class/index.html">JsClass</a> 类对应的实例。
 该 <code>JsClass</code> 实例本身就是对构造函数的引用。
 这可以用于与期望构造函数的引用的 JS 函数进行互操作。</p>
 <p>示例：</p>

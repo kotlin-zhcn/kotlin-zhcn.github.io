@@ -821,26 +821,26 @@ finally {
     // ……
 }
 </code></pre>
-<p><code>inline</code> 修饰符影响函数本身和传给它的 lambda 表达式：所有这些都将内联
-到调用处。</p>
-<p>内联可能导致生成的代码增加，但是如果我们使用得当（不内联大函数），它将在
-性能上有所提升，尤其是在循环中的“超多态（megamorphic）”调用处。</p>
+<p><code>inline</code> 修饰符影响函数本身和传给它的 lambda 表达式：所有这些都将内联<!--
+-->到调用处。</p>
+<p>内联可能导致生成的代码增加，但是如果我们使用得当（不内联大函数），它将在<!--
+-->性能上有所提升，尤其是在循环中的“超多态（megamorphic）”调用处。</p>
 <h2 id="禁用内联">禁用内联</h2>
-<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 <code>noinline</code> 修饰符标记
-一些函数参数：</p>
+<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 <code>noinline</code> 修饰符标记<!--
+-->一些函数参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun foo(inlined: () -&gt; Unit, noinline notInlined: () -&gt; Unit) {
     // ……
 }
 </code></pre>
 <p>可以内联的 lambda 表达式只能在内联函数内部调用或者作为可内联的参数传递，
 但是 <code>noinline</code> 的可以以任何我们喜欢的方式操作：存储在字段中、传送它等等。</p>
-<p>需要注意的是，如果一个内联函数没有可内联的函数参数并且没有
-<a href="#具体化的类型参数">具体化的类型参数</a>，编译器会产生一个警告，因为内联这样的函数
-很可能并无益处（如果你确认需要内联，则可以关掉该警告）。</p>
+<p>需要注意的是，如果一个内联函数没有可内联的函数参数并且没有<!--
+--><a href="#具体化的类型参数">具体化的类型参数</a>，编译器会产生一个警告，因为内联这样的函数<!--
+-->很可能并无益处（如果你确认需要内联，则可以关掉该警告）。</p>
 <h2 id="非局部返回">非局部返回</h2>
 <p>在 Kotlin 中，我们可以只使用一个正常的、非限定的 <code>return</code> 来退出一个命名或匿名函数。
-这意味着要退出一个 lambda 表达式，我们必须使用一个<a href="returns.html#标签处返回">标签</a>，并且
-在 lambda 表达式内部禁止使用裸 <code>return</code>，因为 lambda 表达式不能使包含它的函数返回：</p>
+这意味着要退出一个 lambda 表达式，我们必须使用一个<a href="returns.html#标签处返回">标签</a>，并且<!--
+-->在 lambda 表达式内部禁止使用裸 <code>return</code>，因为 lambda 表达式不能使包含它的函数返回：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     ordinaryFunction {
         return // 错误：不能使 `foo` 在此处返回
@@ -854,8 +854,8 @@ finally {
     }
 }
 </code></pre>
-<p>这种返回（位于 lambda 表达式中，但退出包含它的函数）称为<em>非局部</em>返回。 我们习惯了
-在循环中用这种结构，其内联函数通常包含：</p>
+<p>这种返回（位于 lambda 表达式中，但退出包含它的函数）称为<em>非局部</em>返回。 我们习惯了<!--
+-->在循环中用这种结构，其内联函数通常包含：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun hasZeros(ints: List&lt;Int&gt;): Boolean {
     ints.forEach {
         if (it == 0) return true // 从 hasZeros 返回
@@ -863,10 +863,10 @@ finally {
     return false
 }
 </code></pre>
-<p>请注意，一些内联函数可能调用传给它们的不是直接来自函数体、而是来自另一个执行
-上下文的 lambda 表达式参数，例如来自局部对象或嵌套函数。在这种情况下，该 lambda 表达式中
-也不允许非局部控制流。为了标识这种情况，该 lambda 表达式参数需要
-用 <code>crossinline</code> 修饰符标记:</p>
+<p>请注意，一些内联函数可能调用传给它们的不是直接来自函数体、而是来自另一个执行<!--
+-->上下文的 lambda 表达式参数，例如来自局部对象或嵌套函数。在这种情况下，该 lambda 表达式中<!--
+-->也不允许非局部控制流。为了标识这种情况，该 lambda 表达式参数需要<!--
+-->用 <code>crossinline</code> 修饰符标记:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun f(crossinline body: () -&gt; Unit) {
     val f = object: Runnable {
         override fun run() = body()

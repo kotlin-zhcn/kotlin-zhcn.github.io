@@ -802,8 +802,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 。不过，你应该记住一些微妙的事情。</p>
 <h2 id="用独立的-javascript-隔离声明">用独立的 JavaScript 隔离声明</h2>
 <p>为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
-。所以如果你把模块命名为 <code>myModule</code>，那么所有的声明都可以
-通过 <code>myModule</code> 对象在 JavaScript 中可用。例如：</p>
+。所以如果你把模块命名为 <code>myModule</code>，那么所有的声明都可以<!--
+-->通过 <code>myModule</code> 对象在 JavaScript 中可用。例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() = "Hello"
 </code></pre>
 <p>可以在 JavaScript 中这样调用：</p>
@@ -825,8 +825,8 @@ fun foo() = "Hello"
 <pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.my.qualified.packagename.foo());
 </code></pre>
 <h3 id="jsname-注解"><code>@JsName</code> 注解</h3>
-<p>在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性
-的名称。要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
+<p>在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性<!--
+-->的名称。要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 模块“kjs”
 class Person(val name: String) {
     fun hello() {
@@ -844,10 +844,10 @@ class Person(val name: String) {
 person.hello();                          // 输出“Hello Dmitry!”
 person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 </code></pre>
-<p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称会包含
-从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
-<p>请注意，Kotlin 编译器不会对 <code>external</code> 声明应用这种修饰，因此你不必在其上
-使用 <code>@JsName</code>。 值得注意的另一个例子是从外部类继承的非外部类。
+<p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称会包含<!--
+-->从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
+<p>请注意，Kotlin 编译器不会对 <code>external</code> 声明应用这种修饰，因此你不必在其上<!--
+-->使用 <code>@JsName</code>。 值得注意的另一个例子是从外部类继承的非外部类。
 在这种情况下，任何被覆盖的函数也不会被修饰。</p>
 <p><code>@JsName</code> 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。
 任何尝试将非标识符字符串传递给 <code>@JsName</code> 时，编译器都会报错。

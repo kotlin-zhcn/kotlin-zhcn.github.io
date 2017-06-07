@@ -837,8 +837,8 @@ infix fun Int.shl(x: Int): Int {
 }
 </code></pre>
 <h3 id="默认参数">默认参数</h3>
-<p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少
-重载数量。</p>
+<p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少<!--
+-->重载数量。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size()) {
 ……
 }
@@ -882,11 +882,11 @@ class B : A() {
 <p>并且如果我们不需要所有的参数</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, wordSeparator = '_')
 </code></pre>
-<p>请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不
-总是保留函数参数的名称。</p>
+<p>请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
+-->总是保留函数参数的名称。</p>
 <h3 id="返回-unit-的函数">返回 Unit 的函数</h3>
-<p>如果一个函数不返回任何有用的值，它的返回类型是 <code>Unit</code>。<code>Unit</code> 是一种只有一个值——<code>Unit</code> 的类型。这个
-值不需要显式返回</p>
+<p>如果一个函数不返回任何有用的值，它的返回类型是 <code>Unit</code>。<code>Unit</code> 是一种只有一个值——<code>Unit</code> 的类型。这个<!--
+-->值不需要显式返回</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun printHello(name: String?): Unit {
     if (name != null)
         println("Hello ${name}")
@@ -909,8 +909,8 @@ class B : A() {
 </code></pre>
 <h3 id="显式返回类型">显式返回类型</h3>
 <p>具有块代码体的函数必须始终显式指定返回类型，除非他们旨在返回 <code>Unit</code>，<a href="#返回-unit-的函数">在这种情况下它是可选的</a>。
-Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回
-类型对于读者（有时甚至对于编译器）是不明显的。</p>
+Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回<!--
+-->类型对于读者（有时甚至对于编译器）是不明显的。</p>
 <h3 id="可变数量的参数varargs">可变数量的参数（Varargs）</h3>
 <p>函数的参数（通常是最后一个）可以用 <code>vararg</code> 修饰符标记：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; asList(vararg ts: T): List&lt;T&gt; {
@@ -924,17 +924,17 @@ Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函�
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = asList(1, 2, 3)
 </code></pre>
 <p>在函数内部，类型 <code>T</code> 的 <code>vararg</code> 参数的可见方式是作为 <code>T</code> 数组，即上例中的 <code>ts</code> 变量具有类型 <code>Array &lt;out T&gt;</code>。</p>
-<p>只有一个参数可以标注为 <code>vararg</code>。如果 <code>vararg</code> 参数不是列表中的最后一个参数， 可以使用
-命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部
-传一个 lambda。</p>
-<p>当我们调用 <code>vararg</code>-函数时，我们可以一个接一个地传参，例如 <code>asList(1, 2, 3)</code>，或者，如果我们已经有一个数组
-并希望将其内容传给该函数，我们使用<strong>伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
+<p>只有一个参数可以标注为 <code>vararg</code>。如果 <code>vararg</code> 参数不是列表中的最后一个参数， 可以使用<!--
+-->命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部<!--
+-->传一个 lambda。</p>
+<p>当我们调用 <code>vararg</code>-函数时，我们可以一个接一个地传参，例如 <code>asList(1, 2, 3)</code>，或者，如果我们已经有一个数组<!--
+-->并希望将其内容传给该函数，我们使用<strong>伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
 </code></pre>
 <h2 id="函数作用域">函数作用域</h2>
-<p>在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外
-除了顶层函数，Kotlin 中函数也可以声明在局部作用域、作为成员函数以及扩展函数。</p>
+<p>在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外<!--
+-->除了顶层函数，Kotlin 中函数也可以声明在局部作用域、作为成员函数以及扩展函数。</p>
 <h3 id="局部函数">局部函数</h3>
 <p>Kotlin 支持局部函数，即一个函数在另一个函数内部</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun dfs(graph: Graph) {

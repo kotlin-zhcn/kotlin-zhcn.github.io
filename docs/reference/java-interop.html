@@ -798,8 +798,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="在-kotlin-中调用-java-代码">在 Kotlin 中调用 Java 代码</h1>
-<p>Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以
-很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。</p>
+<p>Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以<!--
+-->很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。</p>
 <p>几乎所有 Java 代码都可以使用而没有任何问题</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.*
 
@@ -816,8 +816,8 @@ fun demo(source: List&lt;Int&gt;) {
 }
 </code></pre>
 <h2 id="getter-和-setter">Getter 和 Setter</h2>
-<p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和
-以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。 例如：</p>
+<p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和<!--
+-->以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。 例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.Calendar
 
 fun calendarDemo() {
@@ -834,8 +834,8 @@ fun calendarDemo() {
 因为该值本身是预先知道的（是 <code>Unit</code>）。</p>
 <h2 id="将-kotlin-中是关键字的-java-标识符进行转义">将 Kotlin 中是关键字的 Java 标识符进行转义</h2>
 <p>一些 Kotlin 关键字在 Java 中是有效标识符：<em class="keyword">in</em>、 <em class="keyword">object</em>、 <em class="keyword">is</em> 等等。
-如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它
-来调用该方法</p>
+如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它<!--
+-->来调用该方法</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">foo.`is`(bar)
 </code></pre>
 <h2 id="空安全和平台类型">空安全和平台类型</h2>
@@ -858,14 +858,14 @@ val item = list[0] // 推断为平台类型（普通 Java 对象）
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val nullable: String? = item // 允许，没有问题
 val notNull: String = item // 允许，运行时可能失败
 </code></pre>
-<p>如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存
-空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。
-总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这
-不可能完全消除）。</p>
+<p>如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存<!--
+-->空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。
+总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这<!--
+-->不可能完全消除）。</p>
 <h3 id="平台类型表示法">平台类型表示法</h3>
 <p>如上所述，平台类型不能在程序中显式表述，因此在语言中没有相应语法。
-然而，编译器和 IDE 有时需要（在错误信息中、参数信息中等）显示他们，所以我们用
-一个助记符来表示他们：</p>
+然而，编译器和 IDE 有时需要（在错误信息中、参数信息中等）显示他们，所以我们用<!--
+-->一个助记符来表示他们：</p>
 <ul>
 <li><code>T!</code> 表示“<code>T</code> 或者 <code>T?</code>”，</li>
 <li><code>(Mutable)Collection&lt;T&gt;!</code> 表示“可以可变或不可变、可空或不可空的 <code>T</code> 的 Java 集合”，</li>
@@ -1184,8 +1184,8 @@ javaObj.removeIndicesVarArg(*array)
 </code></pre>
 <p>目前无法传递 <em class="keyword">null</em> 给一个声明为可变参数的方法。</p>
 <h2 id="操作符">操作符</h2>
-<p>由于 Java 无法标记用于运算符语法的方法，Kotlin 允许
-具有正确名称和签名的任何 Java 方法作为运算符重载和其他约定（<code>invoke()</code> 等）使用。
+<p>由于 Java 无法标记用于运算符语法的方法，Kotlin 允许<!--
+-->具有正确名称和签名的任何 Java 方法作为运算符重载和其他约定（<code>invoke()</code> 等）使用。
 不允许使用中缀调用语法调用 Java 方法。</p>
 <h2 id="受检异常">受检异常</h2>
 <p>在 Kotlin 中，所有异常都是非受检的，这意味着编译器不会强迫你捕获其中的任何一个。
@@ -1244,9 +1244,9 @@ class Example : Cloneable {
 <code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。</p>
 <p>其他支持的情况包括为一个 Kotlin 属性获取一个 Java 的 getter/setter 方法或者幕后字段、为一个 Java 字段获取一个 <code>KProperty</code>、为一个 <code>KFunction</code> 获取一个 Java 方法或者构造函数，反之亦然。</p>
 <h2 id="sam-转换">SAM 转换</h2>
-<p>就像 Java 8 一样，Kotlin 支持 SAM 转换。这意味着 Kotlin 函数字面值可以被自动的转换成
-只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型
-能够与这个 Kotlin 函数的参数类型相匹配。</p>
+<p>就像 Java 8 一样，Kotlin 支持 SAM 转换。这意味着 Kotlin 函数字面值可以被自动的转换成<!--
+-->只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型<!--
+-->能够与这个 Kotlin 函数的参数类型相匹配。</p>
 <p>你可以这样创建 SAM 接口的实例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val runnable = Runnable { println("This runs in a runnable") }
 </code></pre>
@@ -1255,15 +1255,15 @@ class Example : Cloneable {
 // Java 签名：void execute(Runnable command)
 executor.execute { println("This runs in a thread pool") }
 </code></pre>
-<p>如果 Java 类有多个接受函数式接口的方法，那么可以通过使用
-将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需
-由编译器生成。</p>
+<p>如果 Java 类有多个接受函数式接口的方法，那么可以通过使用<!--
+-->将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需<!--
+-->由编译器生成。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">executor.execute(Runnable { println("This runs in a thread pool") })
 </code></pre>
-<p>请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个
-抽象方法。</p>
-<p>还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换
-为 Kotlin 接口的实现，因此不受支持。</p>
+<p>请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个<!--
+-->抽象方法。</p>
+<p>还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换<!--
+-->为 Kotlin 接口的实现，因此不受支持。</p>
 <h2 id="在-kotlin-中使用-jni">在 Kotlin 中使用 JNI</h2>
 <p>要声明一个在本地（C 或 C++）代码中实现的函数，你需要使用 <code>external</code> 修饰符来标记它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">external fun foo(x: Int): Double

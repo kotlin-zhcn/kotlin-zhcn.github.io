@@ -842,8 +842,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>当针对 JavaScript 时，须应用不同的插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: "kotlin2js"
 </code></pre>
-<p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与
-针对 JVM 一样，如果不使用默认约定，我们需要使用 <em>sourceSets</em> 来指定源代码文件夹。</p>
+<p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
+-->针对 JVM 一样，如果不使用默认约定，我们需要使用 <em>sourceSets</em> 来指定源代码文件夹。</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">sourceSets {
     main.kotlin.srcDirs += 'src/main/myKotlin'
 }
@@ -856,8 +856,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 <h2 id="针对-android">针对 Android</h2>
-<p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要
-用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
+<p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
+-->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
     ext.kotlin_version = '＜要使用的版本＞'
 
@@ -893,8 +893,8 @@ dependencies {
 }
 </code></pre>
 <p>如果针对 JavaScript，请使用 <code>compile "org.jetbrains.kotlin:kotlin-stdlib-js"</code> 替代之。</p>
-<p>如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含
-为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 <code>kotlin-stdlib</code>
+<p>如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含<!--
+-->为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 <code>kotlin-stdlib</code>
 ：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
 compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
@@ -904,8 +904,8 @@ compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
 testCompile "org.jetbrains.kotlin:kotlin-test"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 </code></pre>
-<p>从 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用
-从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
+<p>从 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用<!--
+-->从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
 （如 <code>compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"</code>）手动提供其版本。</p>
 <h2 id="注解处理">注解处理</h2>
 <p>请参见 <a href="kapt.html">Kotlin 注解处理工具</a>（<code>kapt</code>）的描述。</p>
@@ -937,8 +937,8 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 </code></pre>
 <h2 id="编译器选项">编译器选项</h2>
 <p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
-<p>当针对 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于
-测试代码称为 <code>compileTestKotlin</code>。对于自定义源文件集（source set）这些任务称呼取决于 <code>compile＜Name＞Kotlin</code> 模式。</p>
+<p>当针对 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于<!--
+-->测试代码称为 <code>compileTestKotlin</code>。对于自定义源文件集（source set）这些任务称呼取决于 <code>compile＜Name＞Kotlin</code> 模式。</p>
 <p>Android 项目中的任务名称包含<a href="https://developer.android.com/studio/build/build-variants.html">构建变体</a> 名称，并遵循 <code>compile&lt;BuildVariant&gt;Kotlin</code> 的模式，例如 <code>compileDebugKotlin</code>、 <code>compileReleaseUnitTestKotlin</code>。</p>
 <p>当针对 JavaScript 时，这些任务分别称为 <code>compileKotlin2Js</code> 与 <code>compileTestKotlin2Js</code>，以及对于自定义源文件集称为 <code>compile＜Name＞Kotlin2Js</code>。</p>
 <p>要配置单个任务，请使用其名称。示例：</p>

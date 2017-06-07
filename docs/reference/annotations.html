@@ -855,8 +855,8 @@ annotation class Fancy
 <li>其他注解；</li>
 <li>上面已列类型的数组。</li>
 </ul>
-<p>注解参数不能有可空类型，因为 JVM 不支持将 <code>null</code> 作为
-注解属性的值存储。</p>
+<p>注解参数不能有可空类型，因为 JVM 不支持将 <code>null</code> 作为<!--
+-->注解属性的值存储。</p>
 <p>如果注解用作另一个注解的参数，则其名称不以 @ 字符为前缀：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">annotation class ReplaceWith(val expression: String)
 
@@ -867,8 +867,8 @@ annotation class Deprecated(
 @Deprecated("This function is deprecated, use === instead", ReplaceWith("this === other"))
 </code></pre>
 <p>如果需要将一个类指定为注解的参数，请使用 Kotlin 类
-（<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>）。Kotlin 编译器会
-自动将其转换为 Java 类，以便 Java 代码能够正常看到该注解和参数
+（<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a>）。Kotlin 编译器会<!--
+-->自动将其转换为 Java 类，以便 Java 代码能够正常看到该注解和参数
 。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">
 import kotlin.reflect.KClass
@@ -886,21 +886,21 @@ annotation class Ann(val arg1: KClass&lt;*&gt;, val arg2: KClass&lt;out Any?&gt;
 val f = @Suspendable { Fiber.sleep(10) }
 </code></pre>
 <h2 id="注解使用处目标">注解使用处目标</h2>
-<p>当对属性或主构造函数参数进行标注时，从相应的 Kotlin 元素
-生成的 Java 元素会有多个，因此在生成的 Java 字节码中该注解有多个可能位置
+<p>当对属性或主构造函数参数进行标注时，从相应的 Kotlin 元素<!--
+-->生成的 Java 元素会有多个，因此在生成的 Java 字节码中该注解有多个可能位置
 。如果要指定精确地指定应该如何生成该注解，请使用以下语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example(@field:Ann val foo,    // 标注 Java 字段
               @get:Ann val bar,      // 标注 Java getter
               @param:Ann val quux)   // 标注 Java 构造函数参数
 </code></pre>
-<p>可以使用相同的语法来标注整个文件。 要做到这一点，把带有目标 <code>file</code> 的注解放在
-文件的顶层、package 指令之前或者在所有导入之前（如果文件在默认包中的话）：</p>
+<p>可以使用相同的语法来标注整个文件。 要做到这一点，把带有目标 <code>file</code> 的注解放在<!--
+-->文件的顶层、package 指令之前或者在所有导入之前（如果文件在默认包中的话）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@file:JvmName("Foo")
 
 package org.jetbrains.demo
 </code></pre>
-<p>如果你对同一目标有多个注解，那么可以这样来避免目标重复——在目标后面添加方括号
-并将所有注解放在方括号内：</p>
+<p>如果你对同一目标有多个注解，那么可以这样来避免目标重复——在目标后面添加方括号<!--
+-->并将所有注解放在方括号内：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example {
      @set:[Inject VisibleForTesting]
      var collaborator: Collaborator
@@ -945,8 +945,8 @@ class Tests {
     }
 }
 </code></pre>
-<p>因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用
-语法来传递参数。相反，你需要使用命名参数语法。</p>
+<p>因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用<!--
+-->语法来传递参数。相反，你需要使用命名参数语法。</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface Ann {
     int intValue();

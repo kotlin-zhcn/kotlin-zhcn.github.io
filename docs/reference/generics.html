@@ -814,8 +814,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。</p>
 <p>首先，让我们思考为什么 Java 需要那些神秘的通配符。在 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 解释了该问题——第28条：<em>利用有限制通配符来提升 API 的灵活性</em>。
 首先，Java 中的泛型是<strong>不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
-为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没
-比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
+为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没<!--
+-->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 List&lt;String&gt; strs = new ArrayList&lt;String&gt;();
 List&lt;Object&gt; objs = strs; // ！！！即将来临的问题的原因就在这里。Java 禁止这样！
@@ -852,12 +852,12 @@ interface Collection&lt;E&gt; …… {
 并且从其中读取 <code>Object</code> 也没问题 。反过来，如果只能向集合中 <em>放入</em> 项目，就可以用
 <code>Object</code> 集合并向其中放入 <code>String</code>：在 Java 中有 <code>List&lt;? super String&gt;</code> 是 <code>List&lt;Object&gt;</code> 的一个<strong>超类</strong>。</p>
 <p>后者称为<strong>逆变性（contravariance）</strong>，并且对于 <code>List &lt;? super String&gt;</code> 你只能调用接受 String 作为参数的方法
-（例如，你可以调用 <code>add(String)</code> 或者 <code>set(int, String)</code>），当然
-如果调用函数返回 <code>List&lt;T&gt;</code> 中的 <code>T</code>，你得到的并非一个 <code>String</code> 而是一个 <code>Object</code>。</p>
+（例如，你可以调用 <code>add(String)</code> 或者 <code>set(int, String)</code>），当然<!--
+-->如果调用函数返回 <code>List&lt;T&gt;</code> 中的 <code>T</code>，你得到的并非一个 <code>String</code> 而是一个 <code>Object</code>。</p>
 <p>Joshua Bloch 称那些你只能从中<strong>读取</strong>的对象为<strong>生产者</strong>，并称那些你只能<strong>写入</strong>的对象为<strong>消费者</strong>。他建议：“<em>为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型</em>”，并提出了以下助记符：</p>
 <p><em>PECS 代表生产者-Extens，消费者-Super（Producer-Extends, Consumer-Super）。</em></p>
-<p><em>注意</em>：如果你使用一个生产者对象，如 <code>List&lt;? extends Foo&gt;</code>，在该对象上不允许调用 <code>add()</code> 或 <code>set()</code>。但这并不意味着
-该对象是<strong>不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
+<p><em>注意</em>：如果你使用一个生产者对象，如 <code>List&lt;? extends Foo&gt;</code>，在该对象上不允许调用 <code>add()</code> 或 <code>set()</code>。但这并不意味着<!--
+-->该对象是<strong>不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong>类型安全</strong>。不可变性完全是另一回事。</p>
 <h3 id="声明处型变">声明处型变</h3>
 <p>假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
@@ -891,8 +891,8 @@ fun demo(strs: Source&lt;String&gt;) {
 你可以认为 <code>C</code> 是 <code>T</code> 的<strong>生产者</strong>，而不是 <code>T</code> 的<strong>消费者</strong>。</p>
 <p><strong>out</strong>修饰符称为<strong>型变注解</strong>，并且由于它在类型参数声明处提供，所以我们讲<strong>声明处型变</strong>。
 这与 Java 的<strong>使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
-<p>另外除了 <strong>out</strong>，Kotlin 又补充了一个型变注释：<strong>in</strong>。它使得一个类型参数<strong>逆变</strong>：只可以被消费而不可以
-被生产。逆变类的一个很好的例子是 <code>Comparable</code>：</p>
+<p>另外除了 <strong>out</strong>，Kotlin 又补充了一个型变注释：<strong>in</strong>。它使得一个类型参数<strong>逆变</strong>：只可以被消费而不可以<!--
+-->被生产。逆变类的一个很好的例子是 <code>Comparable</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Comparable&lt;in T&gt; {
     abstract fun compareTo(other: T): Int
 }
@@ -927,8 +927,8 @@ fun demo(x: Comparable&lt;Number&gt;) {
 val any = Array&lt;Any&gt;(3) { "" } 
 copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 </code></pre>
-<p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是
-另一个的子类型。为什么？ 再次重复，因为 copy <strong>可能</strong>做坏事，也就是说，例如它可能尝试<strong>写</strong>一个 String 到 <code>from</code>，
+<p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--
+-->另一个的子类型。为什么？ 再次重复，因为 copy <strong>可能</strong>做坏事，也就是说，例如它可能尝试<strong>写</strong>一个 String 到 <code>from</code>，
 并且如果我们实际上传递一个 <code>Int</code> 的数组，一段时间后将会抛出一个 <code>ClassCastException</code> 异常。</p>
 <p>那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong>写</strong>到 <code>from</code>，我们可以：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) {

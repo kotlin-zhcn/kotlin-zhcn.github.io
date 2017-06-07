@@ -799,17 +799,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="反射">反射</h1>
 <p>反射是这样的一组语言和库功能，它允许在运行时自省你的程序的结构。
-Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉
-一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。</p>
+Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉<!--
+-->一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。</p>
 <blockquote class="note">
 <p>在 Java 平台上，使用反射功能所需的运行时组件作为单独的
-JAR 文件（<code>kotlin-reflect.jar</code>）分发。这样做是为了减少不使用反射功能的应用程序所需的
-运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
+JAR 文件（<code>kotlin-reflect.jar</code>）分发。这样做是为了减少不使用反射功能的应用程序所需的<!--
+-->运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
 classpath 中。</p>
 </blockquote>
 <h2 id="类引用">类引用</h2>
-<p>最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对
-静态已知的 Kotlin 类的引用，可以使用 <em>类字面值</em> 语法：</p>
+<p>最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对<!--
+-->静态已知的 Kotlin 类的引用，可以使用 <em>类字面值</em> 语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val c = MyClass::class
 </code></pre>
 <p>该引用是 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a> 类型的值。</p>
@@ -870,8 +870,8 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 <p>表达式 <code>::x</code> 求值为 <code>KProperty&lt;Int&gt;</code> 类型的属性对象，它允许我们使用
-<code>get()</code> 读取它的值，或者使用 <code>name</code> 属性来获取属性名。更多信息请参见
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
+<code>get()</code> 读取它的值，或者使用 <code>name</code> 属性来获取属性名。更多信息请参见<!--
+--><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
 <p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
 该类型有一个 <code>set()</code> 方法。</p>
 <p>属性引用可以用在不需要参数的函数处：</p>
@@ -911,8 +911,8 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun getKClass(o: Any): KClass&lt;Any&gt; = o.javaClass.kotlin
 </code></pre>
 <h2 id="构造函数引用">构造函数引用</h2>
-<p>构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何
-地方：它与该构造函数接受相同参数并且返回相应类型的对象。
+<p>构造函数可以像方法和属性那样引用。他们可以用于期待这样的函数类型对象的任何<!--
+-->地方：它与该构造函数接受相同参数并且返回相应类型的对象。
 通过使用 <code>::</code> 操作符并添加类名来引用构造函数。考虑下面的函数，
 它期待一个无参并返回 <code>Foo</code> 类型的函数参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Foo

@@ -817,8 +817,8 @@ public void setFirstName(String firstName) {
     this.firstName = firstName;
 }
 </code></pre>
-<p>如果属性的名称以 <code>is</code> 开头，则使用不同的名称映射规则：getter 的名称
-与属性名称相同，并且 setter 的名称是通过将 <code>is</code> 替换为 <code>set</code> 获得。
+<p>如果属性的名称以 <code>is</code> 开头，则使用不同的名称映射规则：getter 的名称<!--
+-->与属性名称相同，并且 setter 的名称是通过将 <code>is</code> 替换为 <code>set</code> 获得。
 例如，对于属性 <code>isOpen</code>，其 getter 会称做 <code>isOpen()</code>，而其 setter 会称做 <code>setOpen()</code>。
 这一规则适用于任何类型的属性，并不仅限于 <code>Boolean</code>。</p>
 <h2 id="包级函数">包级函数</h2>
@@ -853,8 +853,8 @@ new demo.Foo();
 demo.DemoUtils.bar();
 </code></pre>
 <p>如果多个文件中生成了相同的 Java 类名（包名相同并且类名相同或者有相同的
-<code>@JvmName</code> 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观
-类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。
+<code>@JvmName</code> 注解）通常是错误的。然而，编译器能够生成一个单一的 Java 外观<!--
+-->类，它具有指定的名称且包含来自所有文件中具有该名称的所有声明。
 要启用生成这样的外观，请在所有相关文件中使用 @JvmMultifileClass 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// oldutils.kt
 @file:JvmName("Utils")
@@ -896,8 +896,8 @@ class JavaClient {
 <p><a href="properties.html#惰性初始化属性">延迟初始化的</a>属性（在Java中）也会暴露为字段。
 该字段的可见性与 <code>lateinit</code> 属性的 setter 相同。</p>
 <h2 id="静态字段">静态字段</h2>
-<p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中
-具有静态幕后字段。</p>
+<p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中<!--
+-->具有静态幕后字段。</p>
 <p>通常这些字段是私有的，但可以通过以下方式之一暴露出来：</p>
 <ul>
 <li><code>@JvmField</code> 注解；</li>
@@ -916,8 +916,8 @@ class JavaClient {
 Key.COMPARATOR.compare(key1, key2);
 // Key 类中的 public static final 字段
 </code></pre>
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化的</a>属性
-具有与属性 setter 相同可见性的静态幕后字段。</p>
+<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化的</a>属性<!--
+-->具有与属性 setter 相同可见性的静态幕后字段。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Singleton {
     lateinit var provider: Provider
 }
@@ -985,9 +985,9 @@ Obj.INSTANCE.foo(); // 也没问题
 <li><code>private</code> 的顶层声明编译成包级局部声明；</li>
 <li><code>protected</code> 保持 <code>protected</code>（注意 Java 允许访问同一个包中其他类的受保护成员，
 而 Kotlin 不能，所以 Java 类会访问更广泛的代码）；</li>
-<li><code>internal</code> 声明会成为 Java 中的 <code>public</code>。<code>internal</code> 类的成员会通过名字修饰，使其
-更难以在 Java 中意外使用到，并且根据 Kotlin 规则使其允许重载相同签名的成员
-而互不可见；</li>
+<li><code>internal</code> 声明会成为 Java 中的 <code>public</code>。<code>internal</code> 类的成员会通过名字修饰，使其<!--
+-->更难以在 Java 中意外使用到，并且根据 Kotlin 规则使其允许重载相同签名的成员<!--
+-->而互不可见；</li>
 <li><code>public</code> 保持 <code>public</code>。</li>
 </ul>
 <h2 id="kclass">KClass</h2>
@@ -1018,26 +1018,26 @@ fun List&lt;Int&gt;.filterValid(): List&lt;Int&gt;
 fun getX() = 10
 </code></pre>
 <h2 id="生成重载">生成重载</h2>
-<p>通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数
-签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
+<p>通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数<!--
+-->签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
 @JvmOverloads 注解。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
     ……
 }
 </code></pre>
-<p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和
-它右边的所有参数都移除掉。在上例中，会生成以下方法
+<p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和<!--
+-->它右边的所有参数都移除掉。在上例中，会生成以下方法
 ：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 void f(String a, int b, String c) { }
 void f(String a, int b) { }
 void f(String a) { }
 </code></pre>
-<p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括
-在接口中定义的方法。</p>
-<p>请注意，如<a href="classes.html#次构造函数">次构造函数</a>中所述，如果一个类的所有构造函数参数都有默认
-值，那么会为其生成一个公有的无参构造函数。这就算
-没有 @JvmOverloads 注解也有效。</p>
+<p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
+-->在接口中定义的方法。</p>
+<p>请注意，如<a href="classes.html#次构造函数">次构造函数</a>中所述，如果一个类的所有构造函数参数都有默认<!--
+-->值，那么会为其生成一个公有的无参构造函数。这就算<!--
+-->没有 @JvmOverloads 注解也有效。</p>
 <h2 id="受检异常">受检异常</h2>
 <p>如上所述，Kotlin 没有受检异常。
 所以，通常 Kotlin 函数的 Java 签名不会声明抛出异常。
@@ -1070,8 +1070,8 @@ fun foo() {
 这就是为什么 Kotlin 给所有期望非空参数的公有函数生成运行时检测。
 这样我们就能在 Java 代码里立即得到 <code>NullPointerException</code>。</p>
 <h2 id="型变的泛型">型变的泛型</h2>
-<p>当 Kotlin 的类使用了<a href="generics.html#声明处型变">声明处型变</a>，有两种选择
-可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：</p>
+<p>当 Kotlin 的类使用了<a href="generics.html#声明处型变">声明处型变</a>，有两种选择<!--
+-->可以从 Java 代码中看到它们的用法。让我们假设我们有以下类和两个使用它的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Box&lt;out T&gt;(val value: T)
 
 interface Base
@@ -1084,13 +1084,13 @@ fun unboxBase(box: Box&lt;Base&gt;): Base = box.value
 <pre><code class="code _highlighted" data-lang="text/x-java">Box&lt;Derived&gt; boxDerived(Derived value) { …… }
 Base unboxBase(Box&lt;Base&gt; box) { …… }
 </code></pre>
-<p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code>，但是在 Java 中是行不通的，因为在 Java 中
-类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不型变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
+<p>问题是，在 Kotlin 中我们可以这样写 <code>unboxBase(boxDerived("s"))</code>，但是在 Java 中是行不通的，因为在 Java 中<!--
+-->类 <code>Box</code> 在其泛型参数 <code>T</code> 上是<em>不型变的</em>，于是 <code>Box&lt;Derived&gt;</code> 并不是 <code>Box&lt;Base&gt;</code> 的子类。
 要使其在 Java 中工作，我们按以下这样定义 <code>unboxBase</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Base unboxBase(Box&lt;? extends Base&gt; box) { …… }  
 </code></pre>
-<p>这里我们使用 Java 的<em>通配符类型</em>（<code>? extends Base</code>）来
-通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。</p>
+<p>这里我们使用 Java 的<em>通配符类型</em>（<code>? extends Base</code>）来<!--
+-->通过使用处型变来模拟声明处型变，因为在 Java 中只能这样。</p>
 <p>当它<em>作为参数</em>出现时，为了让 Kotlin 的 API 在 Java 中工作，对于协变定义的 <code>Box</code> 我们生成 <code>Box&lt;Super&gt;</code> 作为 <code>Box&lt;? extends Super&gt;</code>
 （或者对于逆变定义的 <code>Foo</code> 生成 <code>Foo&lt;? super Bar&gt;</code>）。当它是一个返回值时，
 我们不生成通配符，因为否则 Java 客户端将必须处理它们（并且它违反常用
@@ -1113,12 +1113,12 @@ Base unboxBase(Box&lt;? extends Base&gt; box) { …… }
 // 会翻译成
 // Base unboxBase(Box&lt;Base&gt; box) { …… }
 </code></pre>
-<p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如
-函数或类），从而抑制其中的所有通配符。</p>
+<p>注意：<code>@JvmSuppressWildcards</code> 不仅可用于单个类型参数，还可用于整个声明（如<!--
+-->函数或类），从而抑制其中的所有通配符。</p>
 <h3 id="nothing-类型翻译">Nothing 类型翻译</h3>
 <p>类型 <a href="exceptions.html#nothing-类型"><code>Nothing</code></a> 是特殊的，因为它在 Java 中没有自然的对应。确实，每个 Java 引用类型，包括
-<code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中
-准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
+<code>java.lang.Void</code> 都可以接受 <code>null</code> 值，但是 Nothing 不行。因此，这种类型不能在 Java 世界中<!--
+-->准确表示。这就是为什么在使用 <code>Nothing</code> 参数的地方 Kotlin 生成一个原始类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun emptyList(): List&lt;Nothing&gt; = listOf()
 // 会翻译成
 // List emptyList() { …… }

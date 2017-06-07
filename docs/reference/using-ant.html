@@ -829,8 +829,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 &lt;/project&gt;
 </code></pre>
 <h2 id="针对-jvm-使用-kotlin-和-java-源代码">针对 JVM 使用 Kotlin 和 Java 源代码</h2>
-<p>如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 <em>kotlinc</em> 来避免任务参数的重复，但是
-建议使用 <em>withKotlin</em> 任务</p>
+<p>如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 <em>kotlinc</em> 来避免任务参数的重复，但是<!--
+-->建议使用 <em>withKotlin</em> 任务</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -873,9 +873,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h2 id="针对-javascript-用单个源文件夹以及-metainfo-选项">针对 JavaScript 用单个源文件夹以及 metaInfo 选项</h2>
 <p>如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 <code>metaInfo</code> 选项会很有用。
-如果 <code>metaInfo</code> 设置为 <code>true</code>，则在编译期间将创建具有
-二进制元数据的额外的 JS 文件。该文件应该与翻译
-结果一起分发。</p>
+如果 <code>metaInfo</code> 设置为 <code>true</code>，则在编译期间将创建具有<!--
+-->二进制元数据的额外的 JS 文件。该文件应该与翻译<!--
+-->结果一起分发。</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 

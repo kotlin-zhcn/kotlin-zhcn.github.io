@@ -807,8 +807,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>如果 <em class="keyword">this</em> 没有限定符，它指的是最内层的包含它的作用域。要引用其他作用域中的 <em class="keyword">this</em>，请使用 <em>标签限定符</em>：</p>
 <h2 id="限定的-this">限定的 <em class="keyword">this</em></h2>
 <p>要访问来自外部作用域的<em class="keyword">this</em>（一个<a href="classes.html">类</a> 或者<a href="extensions.html">扩展函数</a>，
-或者带标签的<a href="lambdas.html#带接收者的函数字面值">带接收者的函数字面值</a>）我们使用<code>this@label</code>，其中 <code>@label</code> 是一个
-代指 <em class="keyword">this</em> 来源的标签：</p>
+或者带标签的<a href="lambdas.html#带接收者的函数字面值">带接收者的函数字面值</a>）我们使用<code>this@label</code>，其中 <code>@label</code> 是一个<!--
+-->代指 <em class="keyword">this</em> 来源的标签：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class A { // 隐式标签 @A
     inner class B { // 隐式标签 @B
         fun Int.foo() { // 隐式标签 @foo

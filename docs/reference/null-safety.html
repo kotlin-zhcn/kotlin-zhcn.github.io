@@ -838,8 +838,8 @@ b = null // ok
 }
 </code></pre>
 <p>请注意，这只适用于 <code>b</code> 是不可变的情况（即在检查和使用之间没有修改过的局部变量
-，或者不可覆盖并且有幕后字段的 <em class="keyword">val</em> 成员），因为否则可能会发生
-在检查之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
+，或者不可覆盖并且有幕后字段的 <em class="keyword">val</em> 成员），因为否则可能会发生<!--
+-->在检查之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
 <h2 id="安全的调用">安全的调用</h2>
 <p>你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">b?.length

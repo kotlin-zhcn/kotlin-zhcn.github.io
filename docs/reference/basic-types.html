@@ -967,8 +967,8 @@ val i: Int = b // 错误
 </code></pre>
 <p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。
 或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小、元素都为空的数组。</p>
-<p>另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回
-给定索引的每个元素初始值：</p>
+<p>另一个选项是用接受数组大小和一个函数参数的工厂函数，用作参数的函数能够返回<!--
+-->给定索引的每个元素初始值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 创建一个 Array&lt;String&gt; 初始化为 ["0", "1", "4", "9", "16"]
 val asc = Array(5, { i -&gt; (i * i).toString() })
 </code></pre>
@@ -977,8 +977,8 @@ val asc = Array(5, { i -&gt; (i * i).toString() })
 赋值给 <code>Array&lt;Any&gt;</code>，以防止可能的运行时失败（但是你可以使用 <code>Array&lt;out Any&gt;</code>,
 参见<a href="generics.html#类型投影">类型投影</a>）。</p>
 <p>Kotlin 也有无装箱开销的专门的类来表示原生类型数组: <code>ByteArray</code>、
-<code>ShortArray</code>、<code>IntArray</code> 等等。这些类和 <code>Array</code> 并没有继承关系，但是
-它们有同样的方法属性集。它们也都有相应的工厂方法:</p>
+<code>ShortArray</code>、<code>IntArray</code> 等等。这些类和 <code>Array</code> 并没有继承关系，但是<!--
+-->它们有同样的方法属性集。它们也都有相应的工厂方法:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 </code></pre>

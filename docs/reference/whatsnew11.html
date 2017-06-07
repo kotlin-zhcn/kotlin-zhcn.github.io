@@ -811,8 +811,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 并且有许多新的工具用于与前端开发环境集成。更详细改动列表，请参见<a href="#javascript-后端">下文</a>
 。</p>
 <h2 id="协程实验性的">协程（实验性的）</h2>
-<p>Kotlin 1.1 的关键新特性是<em>协程</em>，它带来了 <code>future</code>/<code>await</code>、 <code>yield</code> 以及类似的编程模式的
-支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
+<p>Kotlin 1.1 的关键新特性是<em>协程</em>，它带来了 <code>future</code>/<code>await</code>、 <code>yield</code> 以及类似的编程模式的<!--
+-->支持。Kotlin 的设计中的关键特性是协程执行的实现是语言库的一部分，
 而不是语言的一部分，所以你不必绑定任何特定的编程范式或并发库。</p>
 <p>协程实际上是一个轻量级的线程，可以挂起并稍后恢复。协程通过<a href="coroutines.html#挂起函数"><em>挂起函数</em></a>支持：对这样的函数的调用可能会挂起协程，并启动一个新的协程，我们通常使用匿名挂起函数（即挂起 lambda 表达式）。</p>
 <p>我们来看看在外部库 <a href="https://github.com/kotlin/kotlinx.coroutines">kotlinx.coroutines</a> 中实现的 <code>async</code>/<code>await</code>：</p>
@@ -859,8 +859,8 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>运行上面的代码以查看结果。随意编辑它并再次运行！</p>
 <p>更多信息请参见<a href="coroutines.html">协程文档</a>及<a href="/docs/tutorials/coroutines-basic-jvm.html">教程</a>。</p>
-<p>请注意，协程目前还是一个<strong>实验性的功能</strong>，这意味着 Kotlin 团队不承诺
-在最终的 1.1 版本时保持该功能的向后兼容性。</p>
+<p>请注意，协程目前还是一个<strong>实验性的功能</strong>，这意味着 Kotlin 团队不承诺<!--
+-->在最终的 1.1 版本时保持该功能的向后兼容性。</p>
 <h2 id="其他语言功能">其他语言功能</h2>
 <h3 id="类型别名">类型别名</h3>
 <p>类型别名允许你为现有类型定义备用名称。
@@ -939,9 +939,9 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更详细信息请参阅其<a href="sealed-classes.html">文档</a>或者
-<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md">密封类</a> 及
-<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md">数据类</a>的 KEEP。</p>
+<p>更详细信息请参阅其<a href="sealed-classes.html">文档</a>或者<!--
+--><a href="https://github.com/Kotlin/KEEP/blob/master/proposals/sealed-class-inheritance.md">密封类</a>及<!--
+--><a href="https://github.com/Kotlin/KEEP/blob/master/proposals/data-class-inheritance.md">数据类</a>的 KEEP。</p>
 <h3 id="lambda-表达式中的解构">lambda 表达式中的解构</h3>
 <p>现在可以使用<a href="multi-declarations.html">解构声明</a>语法来解开传递给 lambda 表达式的参数。
 这里有一个例子：</p>
@@ -1083,8 +1083,8 @@ class MyUI {
     val text by bindResource(ResourceID.text_id)
 }
 </code></pre>
-<p><code>provideDelegate</code> 方法在创建 <code>MyUI</code> 实例期间将会为每个属性调用，并且可以立即执行
-必要的验证。</p>
+<p><code>provideDelegate</code> 方法在创建 <code>MyUI</code> 实例期间将会为每个属性调用，并且可以立即执行<!--
+-->必要的验证。</p>
 <p>更详细信息请参阅其<a href="delegated-properties.html#提供委托（自-11-起）">文档</a>。</p>
 <h3 id="泛型枚举值访问">泛型枚举值访问</h3>
 <p>现在可以用泛型的方式来对枚举类的值进行枚举：</p>
@@ -1112,11 +1112,11 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 <p>在 Kotlin 1.0 中，传递给 <code>td</code> 的 lambda 表达式中的代码可以访问三个隐式接收者：传递给 <code>table</code>、<code>tr</code>
-和 <code>td</code> 的。 这允许你调用在上下文中没有意义的方法——例如在 <code>td</code> 里面调用 <code>tr</code>，从而
-在 <code>&lt;td&gt;</code> 中放置一个 <code>&lt;tr&gt;</code> 标签。</p>
-<p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法
-会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解
-并将其应用于标记类的基类。</p>
+和 <code>td</code> 的。 这允许你调用在上下文中没有意义的方法——例如在 <code>td</code> 里面调用 <code>tr</code>，从而<!--
+-->在 <code>&lt;td&gt;</code> 中放置一个 <code>&lt;tr&gt;</code> 标签。</p>
+<p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法<!--
+-->会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解<!--
+-->并将其应用于标记类的基类。</p>
 <p>更详细信息请参阅其<a href="type-safe-builders.html#作用域控制：dslmarker（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
 <h3 id="rem-操作符"><code>rem</code> 操作符</h3>
 <p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650">这个问题</a>。</p>
@@ -1129,10 +1129,10 @@ fun main(args: Array&lt;String&gt;) {
 <p>还有整数转换函数，如 <code>Int.toString()</code>、 <code>String.toInt()</code>、 <code>String.toIntOrNull()</code>，
 每个都有一个带有 <code>radix</code> 参数的重载，它允许指定转换的基数（2 到 36）。</p>
 <h3 id="oneach">onEach()</h3>
-<p><code>onEach</code> 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中
-的集合/序列的每个元素执行一些操作，可能带有副作用。
-对于迭代其行为像 <code>forEach</code> 但是也进一步返回可迭代实例。 对于序列它返回一个
-包装序列，它在元素迭代时延迟应用给定的动作。</p>
+<p><code>onEach</code> 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中<!--
+-->的集合/序列的每个元素执行一些操作，可能带有副作用。
+对于迭代其行为像 <code>forEach</code> 但是也进一步返回可迭代实例。 对于序列它返回一个<!--
+-->包装序列，它在元素迭代时延迟应用给定的动作。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">inputDir.walk()
         .filter { it.isFile &amp;&amp; it.name.endsWith(".txt") }
         .onEach { println("Moving $it to $outputDir") }
@@ -1168,8 +1168,8 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检查接收者是否满足该谓词，并
-在满足时返回该接收者否则不满足时返回 <code>null</code>。
+<p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检查接收者是否满足该谓词，并<!--
+-->在满足时返回该接收者否则不满足时返回 <code>null</code>。
 结合 elvis-操作符和及早返回，它允许编写如下结构：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
 // 对现有的 outDirFile 做些事情
@@ -1210,8 +1210,8 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <h3 id="groupingby">groupingBy()</h3>
-<p>此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于
-计算文本中字符的频率：</p>
+<p>此 API 可以用于按照键对集合进行分组，并同时折叠每个组。 例如，它可以用于<!--
+-->计算文本中字符的频率：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     val words = "one two three four five six seven eight nine ten".split(' ')
@@ -1265,8 +1265,8 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <h3 id="类似数组的列表实例化函数">类似数组的列表实例化函数</h3>
-<p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 和 <code>MutableList</code> 实例的函数，并通过
-调用 lambda 表达式来初始化每个元素：</p>
+<p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 和 <code>MutableList</code> 实例的函数，并通过<!--
+-->调用 lambda 表达式来初始化每个元素：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
@@ -1325,9 +1325,9 @@ Kotlin 标准库中提供实现）。</p>
 </div>
 <h2 id="jvm-后端">JVM 后端</h2>
 <h3 id="java-8-字节码支持">Java 8 字节码支持</h3>
-<p>Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 <code>-jvm-target 1.8</code>或者Ant/Maven/Gradle 中
-的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法
-的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。</p>
+<p>Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 <code>-jvm-target 1.8</code> 或者 Ant/Maven/Gradle 中<!--
+-->的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法<!--
+-->的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。</p>
 <h3 id="java-8-标准库支持">Java 8 标准库支持</h3>
 <p>现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。
 如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 和 <code>kotlin-stdlib-jre8</code> maven 构件，而不是标准的 <code>kotlin-stdlib</code>。
@@ -1338,8 +1338,8 @@ Kotlin 标准库中提供实现）。</p>
 <p>编译器现在将 <code>const val</code> 属性的值内联到使用它们的位置。</p>
 <h3 id="可变闭包变量">可变闭包变量</h3>
 <p>用于在 lambda 表达式中捕获可变闭包变量的装箱类不再具有 volatile 字段。
-此更改提高了性能，但在一些罕见的使用情况下可能导致新的竞争条件。如果受此影响，你需要提供
-自己的同步机制来访问变量。</p>
+此更改提高了性能，但在一些罕见的使用情况下可能导致新的竞争条件。如果受此影响，你需要提供<!--
+-->自己的同步机制来访问变量。</p>
 <h3 id="javaxscripting-支持">javax.scripting 支持</h3>
 <p>Kotlin 现在与<a href="https://docs.oracle.com/javase/8/docs/api/javax/script/package-summary.html">javax.script API</a>（JSR-223）集成。
 其 API 允许在运行时求值代码段：</p>
@@ -1350,16 +1350,16 @@ println(engine.eval("x + 2"))  // 输出 5
 <p>关于使用 API 的示例项目参见<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/examples/kotlin-jsr223-local-example">这里</a>
 。</p>
 <h3 id="kotlinreflectfull">kotlin.reflect.full</h3>
-<p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数和属性已移动
-到 <code>kotlin.reflect.full</code> 包中。旧包（<code>kotlin.reflect</code>）中的名称已弃用，将在
+<p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数和属性已移动<!--
+-->到 <code>kotlin.reflect.full</code> 包中。旧包（<code>kotlin.reflect</code>）中的名称已弃用，将在
 Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>）是 Kotlin 标准库
 （而不是 <code>kotlin-reflect</code>）的一部分，不受移动影响。</p>
 <h2 id="javascript-后端">JavaScript 后端</h2>
 <h3 id="统一的标准库">统一的标准库</h3>
 <p>Kotlin 标准库的大部分目前可以从代码编译成 JavaScript 来使用。
-特别是，关键类如集合（<code>ArrayList</code>、 <code>HashMap</code> 等）、异常（<code>IllegalArgumentException</code> 等）以及其他
-几个关键类（<code>StringBuilder</code>、 <code>Comparator</code>）现在都定义在 <code>kotlin</code> 包下。在 JVM 平台上，一些名称是相应 JDK 类的
-类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。</p>
+特别是，关键类如集合（<code>ArrayList</code>、 <code>HashMap</code> 等）、异常（<code>IllegalArgumentException</code> 等）以及其他<!--
+-->几个关键类（<code>StringBuilder</code>、 <code>Comparator</code>）现在都定义在 <code>kotlin</code> 包下。在 JVM 平台上，一些名称是相应 JDK 类的<!--
+-->类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。</p>
 <h3 id="更好的代码生成">更好的代码生成</h3>
 <p>JavaScript 后端现在生成更加可静态检查的代码，这对 JS 代码处理工具（如
 minifiers、 optimisers、 linters 等）更加友好。</p>
@@ -1380,9 +1380,9 @@ minifiers、 optimisers、 linters 等）更加友好。</p>
 </code></pre>
 <h3 id="改进的导入处理">改进的导入处理</h3>
 <p>现在可以更精确地描述应该从 JavaScript 模块导入的声明。
-如果在外部声明上添加 <code>@JsModule("＜模块名＞")</code> 注解，它会在编译期间正确导入
-到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会
-通过 <code>require(……)</code> 函数导入。
+如果在外部声明上添加 <code>@JsModule("＜模块名＞")</code> 注解，它会在编译期间正确导入<!--
+-->到模块系统（CommonJS或AMD）。例如，使用 CommonJS，该声明会<!--
+-->通过 <code>require(……)</code> 函数导入。
 此外，如果要将声明作为模块或全局 JavaScript 对象导入，
 可以使用 <code>@JsNonModule</code> 注解。</p>
 <p>例如，以下是将 JQuery 导入 Kotlin 模块的方法：</p>

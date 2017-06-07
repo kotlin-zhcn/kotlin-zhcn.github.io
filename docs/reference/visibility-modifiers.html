@@ -812,8 +812,8 @@ fun baz() {}
 class Bar {}
 </code></pre>
 <ul>
-<li>如果你不指定任何可见性修饰符，默认为 <code>public</code>，这意味着你的声明
-将随处可见；</li>
+<li>如果你不指定任何可见性修饰符，默认为 <code>public</code>，这意味着你的声明<!--
+-->将随处可见；</li>
 <li>如果你声明为 <code>private</code>，它只会在声明它的文件内可见；</li>
 <li>如果你声明为 <code>internal</code>，它会在相同<a href="#模块">模块</a>内随处可见；</li>
 <li><code>protected</code> 不适用于顶层声明。</li>
@@ -866,13 +866,13 @@ class Unrelated(o: Outer) {
 }
 </code></pre>
 <h3 id="构造函数">构造函数</h3>
-<p>要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个
-显式 <em class="keyword">constructor</em> 关键字）：</p>
+<p>要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个<!--
+-->显式 <em class="keyword">constructor</em> 关键字）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C private constructor(a: Int) { …… }
 </code></pre>
-<p>这里的构造函数是私有的。默认情况下，所有构造函数都是 <code>public</code>，这实际上
-等于类可见的地方它就可见（即 一个 <code>internal</code> 类的构造函数只能
-在相同模块内可见).</p>
+<p>这里的构造函数是私有的。默认情况下，所有构造函数都是 <code>public</code>，这实际上<!--
+-->等于类可见的地方它就可见（即 一个 <code>internal</code> 类的构造函数只能<!--
+-->在相同模块内可见).</p>
 <h3 id="局部声明">局部声明</h3>
 <p>局部变量、函数和类不能有可见性修饰符。</p>
 <h2 id="模块">模块</h2>
