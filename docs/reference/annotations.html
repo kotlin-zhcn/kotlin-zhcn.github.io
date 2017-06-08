@@ -804,16 +804,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>注解的附加属性可以通过用元注解标注注解类来指定：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html"><code>@Target</code></a> 指定可以用
-该注解标注的元素的可能的类型（类、函数、属性、表达式等）；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html"><code>@Retention</code></a> 指定该注解是否
-存储在编译后的 class 文件中，以及它在运行时能否通过反射可见
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-target/index.html"><code>@Target</code></a> 指定可以用<!--
+-->该注解标注的元素的可能的类型（类、函数、属性、表达式等）；</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-retention/index.html"><code>@Retention</code></a> 指定该注解是否<!--
+-->存储在编译后的 class 文件中，以及它在运行时能否通过反射可见
 （默认都是 true）；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html"><code>@Repeatable</code></a> 允许
-在单个元素上多次使用相同的该注解；</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html"><code>@MustBeDocumented</code></a> 指定
- 该注解是公有 API 的一部分，并且应该包含在
- 生成的 API 文档中显示的类或方法的签名中。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-repeatable/index.html"><code>@Repeatable</code></a> 允许<!--
+-->在单个元素上多次使用相同的该注解；</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-must-be-documented/index.html"><code>@MustBeDocumented</code></a> 指定<!--
+-->该注解是公有 API 的一部分，并且应该包含在<!--
+-->生成的 API 文档中显示的类或方法的签名中。</li>
 </ul>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION,
         AnnotationTarget.VALUE_PARAMETER, AnnotationTarget.EXPRESSION)

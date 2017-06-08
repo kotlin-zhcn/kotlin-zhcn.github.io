@@ -893,7 +893,7 @@ class JavaClient {
     }
 }
 </code></pre>
-<p><a href="properties.html#惰性初始化属性">延迟初始化的</a>属性（在Java中）也会暴露为字段。
+<p><a href="properties.html#延迟初始化属性">延迟初始化的</a>属性（在Java中）也会暴露为字段。
 该字段的可见性与 <code>lateinit</code> 属性的 setter 相同。</p>
 <h2 id="静态字段">静态字段</h2>
 <p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中<!--
@@ -916,7 +916,7 @@ class JavaClient {
 Key.COMPARATOR.compare(key1, key2);
 // Key 类中的 public static final 字段
 </code></pre>
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#惰性初始化属性">延迟初始化的</a>属性<!--
+<p>在命名对象或者伴生对象中的一个<a href="properties.html#延迟初始化属性">延迟初始化的</a>属性<!--
 -->具有与属性 setter 相同可见性的静态幕后字段。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object Singleton {
     lateinit var provider: Provider
