@@ -889,7 +889,12 @@ data?.let {
     …… // 代码会执行到此处, 假如data不为null
 }
 </code></pre>
-<h3 id="返回when表达式">返回when表达式</h3>
+<h3 id="映射可空值如果非空的话">映射可空值（如果非空的话）</h3>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
+
+val mapped = data?.let { transformData(it) } ?: defaultValueIfDataIsNull
+</code></pre>
+<h3 id="返回-when-表达式">返回 when 表达式</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int {
     return when (color) {
         "Red" -&gt; 0
