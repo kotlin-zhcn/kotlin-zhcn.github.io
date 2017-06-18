@@ -850,7 +850,7 @@ Kotlin code.</p>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#preamble">preamble</a>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#topLevelObject">topLevelObject</a><span class="grammar-symbol">*</span><br>
+                                                       href="#toplevelObject">toplevelObject</a><span class="grammar-symbol">*</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -952,7 +952,7 @@ Kotlin code.</p>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="topLevelObject">topLevelObject</div>
+                                        <div class="grammar-declaration-name" id="toplevelObject">toplevelObject</div>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
@@ -968,25 +968,6 @@ Kotlin code.</p>
                                                        href="#function">function</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#property">property</a><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeAlias">typeAlias</a><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
-                        </div>
-                        <div class="grammar-item">
-                                    <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="typeAlias">typeAlias</div>
-
-                                            <div class="grammar-declaration-usedby">
-                                                (used by
-                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#topLevelObject">topLevelObject</a>)
-                                            </div>
-                                    </div>
-                                        <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#modifiers">modifiers</a>&nbsp;<span class="grammar-string">"typealias"</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#SimpleName">SimpleName</a>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeParameters">typeParameters</a><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">"="</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#type">type</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
             </div>
@@ -1003,7 +984,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#topLevelObject">topLevelObject</a>)
+                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#toplevelObject">toplevelObject</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -1106,7 +1087,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeAlias">typeAlias</a>,                                                     <a href="#class">class</a>,                                                     <a href="#property">property</a>,                                                     <a href="#function">function</a>)
+                                                    <a href="#class">class</a>,                                                     <a href="#property">property</a>,                                                     <a href="#function">function</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -1228,7 +1209,7 @@ Kotlin code.</p>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#modifiers">modifiers</a>&nbsp;<span class="grammar-string">"companion"</span>&nbsp;<span class="grammar-string">"object"</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#SimpleName">SimpleName</a><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">":"</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#SimpleName">SimpleName</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">":"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#delegationSpecifier">delegationSpecifier</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#classBody">classBody</a><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
@@ -1244,7 +1225,7 @@ Kotlin code.</p>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"("</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#functionParameter">functionParameter</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">")"</span><br>
+                                                       href="#functionParameter">functionParameter</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">")"</span>&nbsp;<br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -1261,6 +1242,21 @@ Kotlin code.</p>
                                                        href="#modifiers">modifiers</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"val"</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"var"</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#parameter">parameter</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"="</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#expression">expression</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
+&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
+                        </div>
+                        <div class="grammar-item">
+                                    <div class="grammar-declaration">
+                                        <div class="grammar-declaration-name" id="initializer">initializer</div>
+
+                                            <div class="grammar-declaration-usedby">
+                                                (used by
+                                                    <a href="#enumEntry">enumEntry</a>)
+                                            </div>
+                                    </div>
+                                        <div class="grammar-description">
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#annotations">annotations</a>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#constructorInvocation">constructorInvocation</a>&nbsp;<br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -1283,16 +1279,16 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#topLevelObject">topLevelObject</a>)
+                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#toplevelObject">toplevelObject</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#modifiers">modifiers</a>&nbsp;<span class="grammar-string">"fun"</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="grammar-identifier-name"
+                                                       href="#modifiers">modifiers</a>&nbsp;<span class="grammar-string">"fun"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#typeParameters">typeParameters</a><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
+                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#annotations">annotations</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="grammar-identifier-name"
                                                        href="#SimpleName">SimpleName</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="grammar-identifier-name"
@@ -1356,16 +1352,16 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#topLevelObject">topLevelObject</a>)
+                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#toplevelObject">toplevelObject</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#modifiers">modifiers</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"val"</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"var"</span><span class="grammar-symbol">)</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeParameters">typeParameters</a><span class="grammar-symbol">?</span><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
+                                                       href="#typeParameters">typeParameters</a><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
+                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#annotations">annotations</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
                                                        href="#multipleVariableDeclarations">multipleVariableDeclarations</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#variableDeclarationEntry">variableDeclarationEntry</a><span class="grammar-symbol">)</span><br>
@@ -1445,7 +1441,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#topLevelObject">topLevelObject</a>)
+                                                    <a href="#memberDeclaration">memberDeclaration</a>,                                                     <a href="#declaration">declaration</a>,                                                     <a href="#toplevelObject">toplevelObject</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -1453,7 +1449,7 @@ Kotlin code.</p>
                                                        href="#SimpleName">SimpleName</a>&nbsp;<a class="grammar-identifier-name"
                                                        href="#primaryConstructor">primaryConstructor</a><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">":"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#delegationSpecifier">delegationSpecifier</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#classBody">classBody</a><span class="grammar-symbol">?</span><br>
+                                                       href="#classBody">classBody</a><span class="grammar-symbol">?</span>&nbsp;<br>
                                         </div>
                         </div>
                         <div class="grammar-item">
@@ -1507,28 +1503,19 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#class">class</a>)
+                                                    <a href="#enumClassBody">enumClassBody</a>,                                                     <a href="#class">class</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"{"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#enumEntries">enumEntries</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">";"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#members">members</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">"}"</span><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
-                        </div>
-                        <div class="grammar-item">
-                                    <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="enumEntries">enumEntries</div>
-
-                                            <div class="grammar-declaration-usedby">
-                                                (used by
-                                                    <a href="#enumClassBody">enumClassBody</a>)
-                                            </div>
-                                    </div>
-                                        <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#enumEntry">enumEntry</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span>&nbsp;<span class="grammar-string">","</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">";"</span><span class="grammar-symbol">?</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
+&nbsp;&nbsp;<span class="grammar-other">;</span><a class="grammar-identifier-name"
+                                                       href="#enumEntries">enumEntries</a>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
+                                                       href="#used">used</a>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#by">by</a>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#enumClassBody">enumClassBody</a><span class="grammar-symbol">)</span>&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
+                                                       href="#enumEntry">enumEntry</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span>&nbsp;<span class="grammar-string">","</span><span class="grammar-symbol">?</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
@@ -1536,14 +1523,15 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#enumEntries">enumEntries</a>)
+                                                    <a href="#enumClassBody">enumClassBody</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#modifiers">modifiers</a>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#SimpleName">SimpleName</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"("</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#arguments">arguments</a>&nbsp;<span class="grammar-string">")"</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#SimpleName">SimpleName</a>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-symbol">(</span><span class="grammar-string">":"</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#initializer">initializer</a><span class="grammar-symbol">)</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"("</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#arguments">arguments</a>&nbsp;<span class="grammar-string">")"</span><span class="grammar-symbol">)</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#classBody">classBody</a><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
@@ -1561,27 +1549,27 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#namedInfix">namedInfix</a>,                                                     <a href="#simpleUserType">simpleUserType</a>,                                                     <a href="#getter">getter</a>,                                                     <a href="#atomicExpression">atomicExpression</a>,                                                     <a href="#whenCondition">whenCondition</a>,                                                     <a href="#property">property</a>,                                                     <a href="#typeArguments">typeArguments</a>,                                                     <a href="#function">function</a>,                                                     <a href="#typeAlias">typeAlias</a>,                                                     <a href="#parameter">parameter</a>,                                                     <a href="#functionType">functionType</a>,                                                     <a href="#variableDeclarationEntry">variableDeclarationEntry</a>,                                                     <a href="#lambdaParameter">lambdaParameter</a>,                                                     <a href="#typeConstraint">typeConstraint</a>)
+                                                    <a href="#isRHS">isRHS</a>,                                                     <a href="#simpleUserType">simpleUserType</a>,                                                     <a href="#parameter">parameter</a>,                                                     <a href="#functionType">functionType</a>,                                                     <a href="#atomicExpression">atomicExpression</a>,                                                     <a href="#getter">getter</a>,                                                     <a href="#variableDeclarationEntry">variableDeclarationEntry</a>,                                                     <a href="#lambdaParameter">lambdaParameter</a>,                                                     <a href="#property">property</a>,                                                     <a href="#typeArguments">typeArguments</a>,                                                     <a href="#typeConstraint">typeConstraint</a>,                                                     <a href="#function">function</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeModifiers">typeModifiers</a>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeReference">typeReference</a><br>
+                                                       href="#annotations">annotations</a>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#typeDescriptor">typeDescriptor</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="typeReference">typeReference</div>
+                                        <div class="grammar-declaration-name" id="typeDescriptor">typeDescriptor</div>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeReference">typeReference</a>,                                                     <a href="#nullableType">nullableType</a>,                                                     <a href="#type">type</a>)
+                                                    <a href="#nullableType">nullableType</a>,                                                     <a href="#typeDescriptor">typeDescriptor</a>,                                                     <a href="#type">type</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"("</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeReference">typeReference</a>&nbsp;<span class="grammar-string">")"</span><br>
+                                                       href="#typeDescriptor">typeDescriptor</a>&nbsp;<span class="grammar-string">")"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#functionType">functionType</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
@@ -1597,13 +1585,13 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeReference">typeReference</a>)
+                                                    <a href="#typeDescriptor">typeDescriptor</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeReference">typeReference</a>&nbsp;<span class="grammar-string">"?"</span><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
+                                                       href="#typeDescriptor">typeDescriptor</a>&nbsp;<span class="grammar-string">"?"</span><br>
+                                        </div>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
@@ -1611,7 +1599,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#catchBlock">catchBlock</a>,                                                     <a href="#callableReference">callableReference</a>,                                                     <a href="#typeReference">typeReference</a>,                                                     <a href="#delegationSpecifier">delegationSpecifier</a>,                                                     <a href="#constructorInvocation">constructorInvocation</a>,                                                     <a href="#explicitDelegation">explicitDelegation</a>)
+                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#catchBlock">catchBlock</a>,                                                     <a href="#callableReference">callableReference</a>,                                                     <a href="#typeDescriptor">typeDescriptor</a>,                                                     <a href="#delegationSpecifier">delegationSpecifier</a>,                                                     <a href="#constructorInvocation">constructorInvocation</a>,                                                     <a href="#explicitDelegation">explicitDelegation</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -1655,13 +1643,15 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeReference">typeReference</a>)
+                                                    <a href="#typeDescriptor">typeDescriptor</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">"("</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#parameter">parameter</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">")"</span>&nbsp;<span class="grammar-string">"-&gt;"</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#type">type</a>&nbsp;<span class="grammar-string">"."</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">"("</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
+                                                       href="#parameter">parameter</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#modifiers">modifiers</a>&nbsp;&nbsp;<a class="grammar-identifier-name"
+                                                       href="#type">type</a><span class="grammar-symbol">)</span><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span>&nbsp;<span class="grammar-string">")"</span>&nbsp;<span class="grammar-string">"-&gt;"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#type">type</a><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
@@ -2008,7 +1998,7 @@ Kotlin code.</p>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#elvisExpression">elvisExpression</a>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
                                                        href="#isOperation">isOperation</a>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#type">type</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
+                                                       href="#isRHS">isRHS</a><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -2188,9 +2178,9 @@ Kotlin code.</p>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#loop">loop</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#collectionLiteral">collectionLiteral</a><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#SimpleName">SimpleName</a><br>
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#FieldName">FieldName</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -2298,6 +2288,20 @@ Kotlin code.</p>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
+                                        <div class="grammar-declaration-name" id="isRHS">isRHS</div>
+
+                                            <div class="grammar-declaration-usedby">
+                                                (used by
+                                                    <a href="#namedInfix">namedInfix</a>,                                                     <a href="#whenCondition">whenCondition</a>)
+                                            </div>
+                                    </div>
+                                        <div class="grammar-description">
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#type">type</a><br>
+&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
+                        </div>
+                        <div class="grammar-item">
+                                    <div class="grammar-declaration">
                                         <div class="grammar-declaration-name" id="declaration">declaration</div>
 
                                             <div class="grammar-declaration-usedby">
@@ -2312,8 +2316,6 @@ Kotlin code.</p>
                                                        href="#property">property</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#class">class</a><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#typeAlias">typeAlias</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#object">object</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
@@ -2466,9 +2468,9 @@ Kotlin code.</p>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"-"</span>&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"+"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"++"</span>&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"--"</span><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"!"</span><br>
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"!"</span>&nbsp;&nbsp;<br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#annotations">annotations</a><br>
+                                                       href="#annotations">annotations</a>&nbsp;<br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#labelDefinition">labelDefinition</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
@@ -2648,7 +2650,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#delegationSpecifier">delegationSpecifier</a>)
+                                                    <a href="#delegationSpecifier">delegationSpecifier</a>,                                                     <a href="#initializer">initializer</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2683,27 +2685,13 @@ Kotlin code.</p>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"object"</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">":"</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#delegationSpecifier">delegationSpecifier</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">)</span><span class="grammar-symbol">?</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#classBody">classBody</a><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
-                        </div>
-                        <div class="grammar-item">
-                                    <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="collectionLiteral">collectionLiteral</div>
-
-                                            <div class="grammar-declaration-usedby">
-                                                (used by
-                                                    <a href="#atomicExpression">atomicExpression</a>)
-                                            </div>
-                                    </div>
-                                        <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"["</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#element">element</a><span class="grammar-symbol">{</span><span class="grammar-string">","</span><span class="grammar-symbol">}</span><span class="grammar-symbol">?</span>&nbsp;<span class="grammar-string">"]"</span><br>
+                                                       href="#classBody">classBody</a>&nbsp;<br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
             </div>
             <div class="grammar-items-set" data-file-name="when.grm">
                         <div class="grammar-comment">
-                            <h4 id="when-expression">When-expression</h4>
+                            <h4 id="pattern-matching">Pattern matching</h4>
 
 <p>See <a href="control-flow.html#when-expression">When-expression</a></p>
 
@@ -2759,7 +2747,7 @@ Kotlin code.</p>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"in"</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"!in"</span><span class="grammar-symbol">)</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#expression">expression</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><span class="grammar-string">"is"</span>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"!is"</span><span class="grammar-symbol">)</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#type">type</a><br>
+                                                       href="#isRHS">isRHS</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
             </div>
@@ -2774,28 +2762,12 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#getter">getter</a>,                                                     <a href="#packageHeader">packageHeader</a>,                                                     <a href="#class">class</a>,                                                     <a href="#property">property</a>,                                                     <a href="#function">function</a>,                                                     <a href="#typeAlias">typeAlias</a>,                                                     <a href="#secondaryConstructor">secondaryConstructor</a>,                                                     <a href="#enumEntry">enumEntry</a>,                                                     <a href="#setter">setter</a>,                                                     <a href="#companionObject">companionObject</a>,                                                     <a href="#primaryConstructor">primaryConstructor</a>,                                                     <a href="#functionParameter">functionParameter</a>)
+                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#functionType">functionType</a>,                                                     <a href="#secondaryConstructor">secondaryConstructor</a>,                                                     <a href="#getter">getter</a>,                                                     <a href="#enumEntry">enumEntry</a>,                                                     <a href="#setter">setter</a>,                                                     <a href="#class">class</a>,                                                     <a href="#packageHeader">packageHeader</a>,                                                     <a href="#property">property</a>,                                                     <a href="#companionObject">companionObject</a>,                                                     <a href="#functionParameter">functionParameter</a>,                                                     <a href="#primaryConstructor">primaryConstructor</a>,                                                     <a href="#function">function</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#modifier">modifier</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#annotations">annotations</a><span class="grammar-symbol">)</span><span class="grammar-symbol">*</span><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
-                        </div>
-                        <div class="grammar-item">
-                                    <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="typeModifiers">typeModifiers</div>
-
-                                            <div class="grammar-declaration-usedby">
-                                                (used by
-                                                    <a href="#type">type</a>)
-                                            </div>
-                                    </div>
-                                        <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#suspendModifier">suspendModifier</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#annotations">annotations</a><span class="grammar-symbol">)</span><span class="grammar-symbol">*</span><br>
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#modifier">modifier</a><span class="grammar-symbol">*</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -2805,6 +2777,20 @@ Kotlin code.</p>
                                             <div class="grammar-declaration-usedby">
                                                 (used by
                                                     <a href="#modifiers">modifiers</a>)
+                                            </div>
+                                    </div>
+                                        <div class="grammar-description">
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#modifierKeyword">modifierKeyword</a><br>
+&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
+                        </div>
+                        <div class="grammar-item">
+                                    <div class="grammar-declaration">
+                                        <div class="grammar-declaration-name" id="modifierKeyword">modifierKeyword</div>
+
+                                            <div class="grammar-declaration-usedby">
+                                                (used by
+                                                    <a href="#modifier">modifier</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2824,6 +2810,8 @@ Kotlin code.</p>
                                                        href="#functionModifier">functionModifier</a><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
                                                        href="#propertyModifier">propertyModifier</a><br>
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#annotations">annotations</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -2832,7 +2820,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2851,7 +2839,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2868,7 +2856,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2884,7 +2872,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>,                                                     <a href="#optionalProjection">optionalProjection</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>,                                                     <a href="#optionalProjection">optionalProjection</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2898,7 +2886,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2913,7 +2901,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2926,7 +2914,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -2935,8 +2923,6 @@ Kotlin code.</p>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"infix"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"inline"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"external"</span><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#suspendModifier">suspendModifier</a><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -2945,28 +2931,15 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#modifier">modifier</a>)
+                                                    <a href="#modifierKeyword">modifierKeyword</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"const"</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
-                        <div class="grammar-item">
-                                    <div class="grammar-declaration">
-                                        <div class="grammar-declaration-name" id="suspendModifier">suspendModifier</div>
-
-                                            <div class="grammar-declaration-usedby">
-                                                (used by
-                                                    <a href="#typeModifiers">typeModifiers</a>,                                                     <a href="#functionModifier">functionModifier</a>)
-                                            </div>
-                                    </div>
-                                        <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"suspend"</span><br>
-&nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
-                        </div>
             </div>
-            <div class="grammar-items-set" data-file-name="annotations.grm">
+            <div class="grammar-items-set" data-file-name="attributes.grm">
                         <div class="grammar-comment">
                             <h2 id="annotations">Annotations</h2>
 
@@ -2977,7 +2950,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#catchBlock">catchBlock</a>,                                                     <a href="#prefixUnaryOperation">prefixUnaryOperation</a>,                                                     <a href="#blockLevelExpression">blockLevelExpression</a>,                                                     <a href="#for">for</a>,                                                     <a href="#typeModifiers">typeModifiers</a>,                                                     <a href="#class">class</a>,                                                     <a href="#modifiers">modifiers</a>,                                                     <a href="#typeConstraint">typeConstraint</a>)
+                                                    <a href="#catchBlock">catchBlock</a>,                                                     <a href="#prefixUnaryOperation">prefixUnaryOperation</a>,                                                     <a href="#blockLevelExpression">blockLevelExpression</a>,                                                     <a href="#for">for</a>,                                                     <a href="#modifierKeyword">modifierKeyword</a>,                                                     <a href="#class">class</a>,                                                     <a href="#property">property</a>,                                                     <a href="#type">type</a>,                                                     <a href="#typeConstraint">typeConstraint</a>,                                                     <a href="#function">function</a>,                                                     <a href="#initializer">initializer</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -3026,15 +2999,13 @@ Kotlin code.</p>
                                             </div>
                                     </div>
                                         <div class="grammar-description">
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"field"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"file"</span><br>
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"field"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"property"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"get"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"set"</span><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"receiver"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"param"</span><br>
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"setparam"</span><br>
-&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"delegate"</span><br>
 &nbsp;&nbsp;<span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
@@ -3083,8 +3054,7 @@ Kotlin code.</p>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#Digit">Digit</a>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#Digit">Digit</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"_"</span><span class="grammar-symbol">)</span><span class="grammar-symbol">*</span><br>
+                                                       href="#Digit">Digit</a><span class="grammar-symbol">+</span><span class="grammar-symbol">?</span><br>
                                         </div>
                         </div>
                         <div class="grammar-item">
@@ -3124,8 +3094,7 @@ Kotlin code.</p>
                                     </div>
                                         <div class="grammar-description">
 &nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"0x"</span>&nbsp;<a class="grammar-identifier-name"
-                                                       href="#HexDigit">HexDigit</a>&nbsp;<span class="grammar-symbol">(</span><a class="grammar-identifier-name"
-                                                       href="#HexDigit">HexDigit</a>&nbsp;<span class="grammar-symbol">|</span>&nbsp;<span class="grammar-string">"_"</span><span class="grammar-symbol">)</span><span class="grammar-symbol">*</span><span class="grammar-other">;</span>                                        </div>
+                                                       href="#HexDigit">HexDigit</a><span class="grammar-symbol">+</span><span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
@@ -3205,7 +3174,7 @@ Kotlin code.</p>
 
                                             <div class="grammar-declaration-usedby">
                                                 (used by
-                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#catchBlock">catchBlock</a>,                                                     <a href="#simpleUserType">simpleUserType</a>,                                                     <a href="#atomicExpression">atomicExpression</a>,                                                     <a href="#LabelName">LabelName</a>,                                                     <a href="#packageHeader">packageHeader</a>,                                                     <a href="#class">class</a>,                                                     <a href="#object">object</a>,                                                     <a href="#infixFunctionCall">infixFunctionCall</a>,                                                     <a href="#function">function</a>,                                                     <a href="#typeAlias">typeAlias</a>,                                                     <a href="#parameter">parameter</a>,                                                     <a href="#callableReference">callableReference</a>,                                                     <a href="#variableDeclarationEntry">variableDeclarationEntry</a>,                                                     <a href="#stringTemplateElement">stringTemplateElement</a>,                                                     <a href="#enumEntry">enumEntry</a>,                                                     <a href="#setter">setter</a>,                                                     <a href="#import">import</a>,                                                     <a href="#companionObject">companionObject</a>,                                                     <a href="#valueArguments">valueArguments</a>,                                                     <a href="#unescapedAnnotation">unescapedAnnotation</a>,                                                     <a href="#typeConstraint">typeConstraint</a>)
+                                                    <a href="#typeParameter">typeParameter</a>,                                                     <a href="#catchBlock">catchBlock</a>,                                                     <a href="#simpleUserType">simpleUserType</a>,                                                     <a href="#atomicExpression">atomicExpression</a>,                                                     <a href="#LabelName">LabelName</a>,                                                     <a href="#packageHeader">packageHeader</a>,                                                     <a href="#class">class</a>,                                                     <a href="#object">object</a>,                                                     <a href="#infixFunctionCall">infixFunctionCall</a>,                                                     <a href="#function">function</a>,                                                     <a href="#parameter">parameter</a>,                                                     <a href="#callableReference">callableReference</a>,                                                     <a href="#FieldName">FieldName</a>,                                                     <a href="#variableDeclarationEntry">variableDeclarationEntry</a>,                                                     <a href="#stringTemplateElement">stringTemplateElement</a>,                                                     <a href="#setter">setter</a>,                                                     <a href="#enumEntry">enumEntry</a>,                                                     <a href="#import">import</a>,                                                     <a href="#companionObject">companionObject</a>,                                                     <a href="#valueArguments">valueArguments</a>,                                                     <a href="#unescapedAnnotation">unescapedAnnotation</a>,                                                     <a href="#typeConstraint">typeConstraint</a>)
                                             </div>
                                     </div>
                                         <div class="grammar-description">
@@ -3216,6 +3185,19 @@ Kotlin code.</p>
                         <div class="grammar-comment">
                             <p>See <a href="java-interop.html">Java interoperability</a></p>
 
+                        </div>
+                        <div class="grammar-item">
+                                    <div class="grammar-declaration">
+                                        <div class="grammar-declaration-name" id="FieldName">FieldName</div>
+
+                                            <div class="grammar-declaration-usedby">
+                                                (used by
+                                                    <a href="#atomicExpression">atomicExpression</a>)
+                                            </div>
+                                    </div>
+                                        <div class="grammar-description">
+&nbsp;&nbsp;<span class="grammar-symbol">:</span>&nbsp;<span class="grammar-string">"$"</span>&nbsp;<a class="grammar-identifier-name"
+                                                       href="#SimpleName">SimpleName</a><span class="grammar-other">;</span>                                        </div>
                         </div>
                         <div class="grammar-item">
                                     <div class="grammar-declaration">
@@ -3249,7 +3231,7 @@ Kotlin code.</p>
         <div class="g-layout">
 
             <div class="terms-copyright">
-                &copy; 2000&ndash;2017 JetBrains. All rights reserved
+                Licensed under the <a href="https://github.com/JetBrains/kotlin-web-site/blob/master/LICENSE">Apache 2 license</a>
             </div>
 
             <div class="terms-sponsor">
