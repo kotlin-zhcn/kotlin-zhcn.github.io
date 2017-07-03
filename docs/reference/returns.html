@@ -831,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     ints.forEach {
-        if (it == 0) return
+        if (it == 0) return  // nonlocal return from inside lambda directly to the caller of foo()
         print(it)
     }
 }
@@ -859,7 +859,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 匿名函数内部的 <em class="keyword">return</em> 语句将从该匿名函数自身返回</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     ints.forEach(fun(value: Int) {
-        if (value == 0) return
+        if (value == 0) return  // local return to the caller of the anonymous fun, i.e. the forEach loop
         print(value)
     })
 }
