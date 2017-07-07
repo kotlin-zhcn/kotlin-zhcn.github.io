@@ -913,6 +913,11 @@ apply plugin: "kotlin-noarg"
     annotation("com.my.Annotation")
 }
 </code></pre>
+<p>如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 <code>invokeInitializers</code> 选项。由于在未来会解决的 <a href="https://youtrack.jetbrains.com/issue/KT-18667"><code>KT-18667</code></a> 及 <a href="https://youtrack.jetbrains.com/issue/KT-18668"><code>KT-18668</code></a>，自 Kotlin 1.1.3-2 起，它被默认禁用。</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">noArg {
+    invokeInitializers = true
+}
+</code></pre>
 <p>在 Maven 中使用无参插件方法：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
     &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
@@ -927,6 +932,8 @@ apply plugin: "kotlin-noarg"
 
         &lt;pluginOptions&gt;
             &lt;option&gt;no-arg:annotation=com.my.Annotation&lt;/option&gt;
+            &lt;!-- 在合成的构造函数中调用实例初始化器 --&gt;
+            &lt;!-- &lt;option&gt;no-arg:invokeInitializers=true&lt;/option&gt; --&gt;
         &lt;/pluginOptions&gt;
     &lt;/configuration&gt;
 
