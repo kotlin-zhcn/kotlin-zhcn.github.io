@@ -983,7 +983,7 @@ stream.buffered().reader().use { reader -&gt;
 //     public &lt;T&gt; T fromJson(JsonElement json, Class&lt;T&gt; classOfT) throws JsonSyntaxException {
 //     ……
 
-inline fun &lt;reified T: Any&gt; Gson.fromJson(json): T = this.fromJson(json, T::class.java)
+inline fun &lt;reified T: Any&gt; Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 </code></pre>
 <h3 id="使用可空布尔">使用可空布尔</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Boolean? = ……
