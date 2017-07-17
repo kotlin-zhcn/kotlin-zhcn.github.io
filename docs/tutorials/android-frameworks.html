@@ -610,7 +610,7 @@ dependencies {
 转换后的代码与 Java 并无明显差异。
 例如，对表的声明和在 Java 中仅有小小的区别，属性声明时必须显示的指定默认值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Table(name="users", database = AppDatabase::class)
-class User: BaseModel() {
+class User : BaseModel() {
 
     @PrimaryKey(autoincrement = true)
     @Column(name = "id")

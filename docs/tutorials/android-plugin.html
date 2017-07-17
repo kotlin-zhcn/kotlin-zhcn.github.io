@@ -446,11 +446,11 @@ class MyActivity : Activity() {
 <p>导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，
 比如下例:</p>
 <pre><code class="code _highlighted" data-lang="application/xml">    &lt;TextView
-            android:id="@+id/hello"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="Hello World, MyActivity"
-            /&gt;
+        android:id="@+id/hello"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World, MyActivity"
+        /&gt;
 </code></pre>
 <p>将有一个名为 <code>hello</code> 的属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">activity.hello.setText("Hi!")
@@ -476,15 +476,15 @@ class MyActivity : Activity() {
 </ol>
 <p>其工作原理是，当调用合成属性，在模块资源中 Kotlin Activity/Fragment 类作为接收器时，缓存函数将被调用。
 例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyActivity: Activity()
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyActivity : Activity()
 fun MyActivity.a() { 
-        this.textView.setText(“”) 
+    this.textView.setText(“”)
 }
 </code></pre>
 <p>在 MyActivity 中生成一个隐藏缓存函数，因此我们可以使用缓存机制。</p>
 <p>然而在下面的例子中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Activity.b() { 
-        this.textView.setText(“”)     
+    this.textView.setText(“”)
 }
 </code></pre>
 <p>我们并不知道这个函数会被我们自己的来源或者普通的 Java Activity 调用，因此，

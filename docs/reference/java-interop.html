@@ -816,20 +816,26 @@ fun demo(source: List&lt;Int&gt;) {
         list.add(item)
     }
     // 操作符约定同样有效：
-    for (i in 0..source.size() - 1) {
+    for (i in 0..source.size - 1) {
         list[i] = source[i] // 调用 get 和 set
     }
 }
 </code></pre>
 <h2 id="getter-和-setter">Getter 和 Setter</h2>
 <p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和<!--
--->以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。 例如：</p>
+-->以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。
+<code>Boolean</code> 访问器方法（其中 getter 的名称以 <code>is</code> 开头而 setter 的名称以 <code>set</code> 开头）<!--
+-->会表示为与 getter 方法具有相同名称的属性。
+例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.Calendar
 
 fun calendarDemo() {
     val calendar = Calendar.getInstance()
     if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // 调用 getFirstDayOfWeek()
-        calendar.firstDayOfWeek = Calendar.MONDAY       // 调用 setFirstDayOfWeek()
+        calendar.firstDayOfWeek = Calendar.MONDAY      // 调用ll setFirstDayOfWeek()
+    }
+    if (!calendar.isLenient) {                         // 调用 isLenient() 
+        calendar.isLenient = true                      // 调用 setLenient()
     }
 }
 </code></pre>
@@ -851,7 +857,7 @@ Java 声明的类型在 Kotlin 中会被特别对待并称为<em>平台类型</e
 <p>考虑以下示例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = ArrayList&lt;String&gt;() // 非空（构造函数结果）
 list.add("Item")
-val size = list.size() // 非空（原生 int）
+val size = list.size // 非空（原生 int）
 val item = list[0] // 推断为平台类型（普通 Java 对象）
 </code></pre>
 <p>当我们调用平台类型变量的方法时，Kotlin 不会在编译时报告可空性错误，
