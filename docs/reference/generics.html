@@ -849,7 +849,7 @@ interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;? extends E&gt; items);
 }
 </code></pre>
-<p><strong>通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> 的 <em>一些子类型</em>对象的集合，而不是 <code>E</code> 本身。
+<p><strong>通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> <em>或者 <code>E</code> 的 一些子类型</em>对象的集合，而不只是 <code>E</code> 自身。
 这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）<strong>读取</strong> <code>E</code>，但<strong>不能写入</strong>，
 因为我们不知道什么对象符合那个未知的 <code>E</code> 的子类型。
 反过来，该限制可以让<code>Collection&lt;String&gt;</code>表示为<code>Collection&lt;? extends Object&gt;</code>的子类型。
