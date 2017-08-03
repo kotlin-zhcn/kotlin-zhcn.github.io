@@ -64,13 +64,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="nav-links">
 
-            <a href="http://www.kotliner.cn/"
+            <a href="https://blog.kotliner.cn/"
                class="nav-item "
             >
                 博客
             </a>
 
-            <a href="http://discuss.kotliner.cn/"
+            <a href="https://kotliner.cn/"
                class="nav-item "
             >
                 论坛
@@ -821,7 +821,7 @@ object NotANumber : Expr()
 <p>请注意，扩展密封类子类的类（间接继承者）可以放在任何位置，而无需在<!--
 -->同一个文件中。</p>
 <p>使用密封类的关键好处在于使用 <a href="control-flow.html#when-表达式"><code>when</code> 表达式</a> 的时候，如果能够<!--
--->验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。</p>
+-->验证语句覆盖了所有情况，就不需要为该语句再添加一个 <code>else</code> 子句了。当然，这只有当你用 <code>when</code> 作为表达式（使用结果）而不是作为语句时才有用。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun eval(expr: Expr): Double = when(expr) {
     is Const -&gt; expr.number
     is Sum -&gt; eval(expr.e1) + eval(expr.e2)
