@@ -10,8 +10,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 })(window,document,'script','dataLayer','GTM-5P98');</script>
 <!-- End Google Tag Manager -->
 
-
-<title>控制流 - Kotlin 语言中文站</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
 <link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
@@ -27,7 +25,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
-<meta property="og:title" content="控制流 - Kotlin 语言中文站"/>
+<meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/reference/control-flow.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
@@ -38,11 +36,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
-<meta name="twitter:title" content="控制流 - Kotlin 语言中文站">
+<meta name="twitter:title" content="">
     <meta name="twitter:description"
           content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
+
+    <title>控制流：if、when、for、while - Kotlin Programming Language</title>
+
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
     <link rel="stylesheet" href="/0_assets/common.css"/>
@@ -95,18 +96,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
-
-<div id="global-search" class=" global-search" title="Search">
     <div class="search-button">
         <div class="icon"></div>
     </div>
-    <div class="search-box">
-        <div class="gcse-searchbox-only"
-             data-resultsUrl="/search.html"
-             data-newWindow="false"
-        ></div>
-    </div>
-</div></nav>        </div>
+</nav>        </div>
         <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=superearlybird">
             <div class="conference-banner__img"></div>
         </a>
@@ -253,7 +246,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
                                 <span class="marker"></span>
-                                <span class="text">包</span>
+                                <span class="text">包与导入</span>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -803,7 +796,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="控制流">控制流</h1>
+<h1 id="控制流ifwhenforwhile">控制流：if、when、for、while</h1>
 <h2 id="if表达式">If表达式</h2>
 <p>在 Kotlin 中，<em class="keyword">if</em>是一个表达式，即它会返回一个值。
 因此就不需要三元运算符（条件 ? 然后 : 否则），因为普通的 <em class="keyword">if</em> 就能胜任这个角色。</p>
@@ -890,7 +883,8 @@ val max = if (a &gt; b) a else b
 </code></pre>
 <p>参见 <a href="grammar.html#when"><em class="keyword">when</em> 语法</a>。</p>
 <h2 id="for-循环">For 循环</h2>
-<p><em class="keyword">for</em> 循环可以对任何提供迭代器（iterator）的对象进行遍历，语法如下:</p>
+<p><em class="keyword">for</em> 循环可以对任何提供迭代器（iterator）的对象进行遍历，这相当<!--
+-->于像 C# 这样的语言中的 <code>foreach</code> 循环。语法如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (item in collection) print(item)
 </code></pre>
 <p>循环体可以是一个代码块。</p>
@@ -958,5 +952,18 @@ do {
     </div>
 
 </footer>
-</body>
+<div class="search-popup _hidden" tabindex="1000">
+    <div class="search-popup__content">
+        <div class="search-popup__controls">
+            <div class="search-popup__input"></div>
+            <div class="search-popup__close">
+                <div class="search-popup__close-icon-wrapper">
+                    <div class="search-popup__close-icon"></div>
+                </div>
+                <div class="search-popup__close-text">esc</div>
+            </div>
+        </div>
+        <div class="search-popup__results"></div>
+    </div>
+</div></body>
 </html>
