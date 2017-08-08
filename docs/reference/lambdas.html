@@ -570,6 +570,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/keyword-reference.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">Keywords and Operators</span>
+                            </a>
+                    </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
                             <a href="/docs/reference/grammar.html"
                                class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
                             >
@@ -885,6 +893,10 @@ val result = lock(lock, ::toBeSynchronized)
 <p>在上面第 4 行代码中，<code>less</code> 作为一个函数使用：通过传入两个 <code>T</code> 类型的参数来调用。</p>
 <p>如上所写的是就函数类型，或者可以有命名参数，如果你想文档化每个参数的含义的话。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val compare: (x: T, y: T) -&gt; Int = ……
+</code></pre>
+<p>如要声明一个函数类型的可空变量，请将整个函数类型括在括号中并在<!--
+-->其后加上问号：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">var sum: ((Int, Int) -&gt; Int)? = null
 </code></pre>
 <h3 id="lambda-表达式语法">Lambda 表达式语法</h3>
 <p>Lambda 表达式的完整语法形式，即函数类型的字面值如下：</p>
