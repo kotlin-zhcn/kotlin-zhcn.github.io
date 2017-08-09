@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Keywords and Operators - Kotlin 语言中文站</title>
+    <title>关键字与操作符 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -574,7 +574,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="tree-item tree-leaf js-item js-leaf">
                             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
                                 <div class="marker"></div>
-                                <div class="text">Keywords and Operators</div>
+                                <div class="text">关键字与操作符</div>
                             </div>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
@@ -804,206 +804,206 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="keywords-and-operators">Keywords and Operators</h1>
-<h2 id="hard-keywords">Hard Keywords</h2>
-<p>The following tokens are always interpreted as keywords and cannot be used as identifiers:</p>
+<h1 id="关键字与操作符">关键字与操作符</h1>
+<h2 id="硬关键字">硬关键字</h2>
+<p>以下符号会始终解释为关键字，不能用作标识符：</p>
 <ul>
 <li><code>as</code>
 <ul>
-<li>is used for <a href="/docs/reference/typecasts.html#unsafe-cast-operator">type casts</a></li>
-<li>specifies an <a href="/docs/reference/packages.html#imports">alias for an import</a></li>
+<li>用于<a href="typecasts.html#“不安全的”转换操作符">类型转换</a></li>
+<li>为<a href="packages.html#导入">导入指定一个别名</a></li>
 </ul>
 </li>
-<li><code>as?</code> is used for <a href="/docs/reference/typecasts.html#safe-nullable-cast-operator">safe type casts</a></li>
-<li><code>break</code> <a href="http://kotlinlang.org/docs/reference/returns.html">terminates the execution of a loop</a></li>
-<li><code>class</code> declares a <a href="/docs/reference/classes.html">class</a></li>
-<li><code>continue</code> <a href="/docs/reference/returns.html">proceeds to the next step of the nearest enclosing loop</a></li>
-<li><code>do</code> begins a <a href="/docs/reference/control-flow.html#while-loops">do/while loop</a> (loop with postcondition)</li>
-<li><code>else</code> defines the false branch of an <a href="/docs/reference/control-flow.html#if-expression">if expression</a></li>
-<li><code>false</code> specifies the false value of the <a href="/docs/reference/basic-types.html#booleans">Boolean type</a></li>
-<li><code>for</code> begins a <a href="/docs/reference/control-flow.html#for-loops">for loop</a></li>
-<li><code>fun</code> declares a <a href="/docs/reference/functions.html">function</a></li>
-<li><code>if</code> begins an <a href="/docs/reference/control-flow.html#if-expression">if expression</a></li>
+<li><code>as?</code> 用于<a href="typecasts.html#“安全的”（可空）转换操作符">安全类型转换</a></li>
+<li><code>break</code> <a href="returns.html">终止循环的执行</a></li>
+<li><code>class</code> 声明一个<a href="classes.html">类</a></li>
+<li><code>continue</code> <a href="returns.html">继续最近层循环的下一步</a></li>
+<li><code>do</code> 开始一个 <a href="control-flow.html#while-循环">do/while 循环</a>（后置条件的循环）</li>
+<li><code>else</code> 定义一个 <a href="control-flow.html#if-表达式">if 表达式</a>条件为 false 时执行的分支</li>
+<li><code>false</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“假”值</li>
+<li><code>for</code> 开始一个 <a href="control-flow.html#for-循环">for 循环</a></li>
+<li><code>fun</code> 声明一个<a href="functions.html">函数</a></li>
+<li><code>if</code> 开始一个 <a href="control-flow.html#if-表达式">if 表达式</a></li>
 <li><code>in</code>
 <ul>
-<li>specifies the object being iterated in a <a href="/docs/reference/control-flow.html#for-loops">for loop</a></li>
-<li>is used as an operator to check that a value belongs to <a href="/docs/reference/ranges.html">a range</a>, 
-a collection or another entity that <a href="/docs/reference/operator-overloading.html#in">defines the 'contains' method</a></li>
-<li>is used in <a href="/docs/reference/control-flow.html#when-expression">when expressions</a> for the same purpose</li>
-<li>marks a type parameter as <a href="/docs/reference/generics.html#declaration-site-variance">contravariant</a></li>
+<li>指定在 <a href="control-flow.html#for-循环">for 循环</a>中迭代的对象</li>
+<li>用作中缀操作符以检查一个值属于<a href="ranges.html">一个区间</a>、
+一个集合或者其他<a href="operator-overloading.html#“in”操作符">定义 'contains' 方法</a>的实体</li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
+<li>将一个类型参数标记为<a href="generics.html#声明处型变">逆变</a></li>
 </ul>
 </li>
 <li><code>!in</code>
 <ul>
-<li>is used as an operator to check that a value does NOT belong to <a href="/docs/reference/ranges.html">a range</a>, 
-a collection or another entity that <a href="/docs/reference/operator-overloading.html#in">defines the 'contains' method</a></li>
-<li>is used in <a href="/docs/reference/control-flow.html#when-expression">when expressions</a> for the same purpose</li>
+<li>用作中缀操作符以检查一个值<strong>不</strong>属于<a href="ranges.html">一个区间</a>、
+一个集合或者其他<a href="/docs/reference/operator-overloading.html#in">定义 'contains' 方法</a>的实体</li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
 </ul>
 </li>
-<li><code>interface</code> declares an <a href="/docs/reference/interfaces.html">interface</a></li>
+<li><code>interface</code> 声明一个<a href="interfaces.html">接口</a></li>
 <li><code>is</code>
 <ul>
-<li>checks that <a href="/docs/reference/typecasts.html#is-and-is-operators">a value has a certain type</a></li>
-<li>is used in <a href="/docs/reference/control-flow.html#when-expression">when expressions</a> for the same purpose</li>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值具有指定类型</a></li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
 </ul>
 </li>
 <li><code>!is</code>
 <ul>
-<li>checks that <a href="/docs/reference/typecasts.html#is-and-is-operators">a value does NOT have a certain type</a></li>
-<li>is used in <a href="/docs/reference/control-flow.html#when-expression">when expressions</a> for the same purpose</li>
+<li>检查<a href="typecasts.html#is-与-is-操作符">一个值<strong>不</strong>具有指定类型</a></li>
+<li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
 </ul>
 </li>
-<li><code>null</code> is a constant representing an object reference that doesn't point to any object</li>
-<li><code>object</code> declares <a href="/docs/reference/object-declarations.html">a class an its instance at the same time</a></li>
-<li><code>package</code> specifies the <a href="/docs/reference/packages.html">package for the current file</a></li>
-<li><code>return</code> <a href="/docs/reference/returns.html">returns from the nearest enclosing function or anonymous function</a></li>
+<li><code>null</code> 是表示不指向任何对象的对象引用的常量</li>
+<li><code>object</code> 同时声明<a href="object-declarations.html">一个类及其实例</a></li>
+<li><code>package</code> 指定<a href="packages.html">当前文件的包</a></li>
+<li><code>return</code> <a href="returns.html">从最近层的函数或匿名函数返回</a></li>
 <li><code>super</code>
 <ul>
-<li><a href="/docs/reference/classes.html#calling-the-superclass-implementation">calls the superclass implementation of a method or property</a></li>
-<li><a href="/docs/reference/classes.html#inheritance">calls the superclass constructor from a secondary constructor</a></li>
+<li><a href="classes.html#调用超类实现">引用一个方法或属性的超类实现</a></li>
+<li><a href="classes.html#继承">在次构造函数中调用超类构造函数</a></li>
 </ul>
 </li>
 <li><code>this</code>
 <ul>
-<li>refers to <a href="/docs/reference/this-expressions.html">the current receiver</a></li>
-<li><a href="http://kotlinlang.org/docs/reference/classes.html#constructors">calls another constructor of the same class from a secondary constructor</a></li>
+<li>引用<a href="this-expressions.html">当前接收者</a></li>
+<li><a href="classes.html#构造函数">在次构造函数中调用同一个类的另一个构造函数</a></li>
 </ul>
 </li>
-<li><code>throw</code> <a href="/docs/reference/exceptions.html">throws an exception</a></li>
-<li><code>true</code> specifies the true value of the <a href="/docs/reference/basic-types.html#booleans">Boolean type</a></li>
-<li><code>try</code> <a href="/docs/reference/exceptions.html">begins an exception handling block</a></li>
-<li><code>typealias</code> declares a <a href="/docs/reference/type-aliases.html">type alias</a></li>
-<li><code>val</code> declares a read-only <a href="/docs/reference/properties.html">property</a> or <a href="/docs/reference/basic-syntax.html#defining-local-variables">local variable</a></li>
-<li><code>var</code> declares a mutable <a href="/docs/reference/properties.html">property</a> or <a href="/docs/reference/basic-syntax.html#defining-local-variables">local variable</a></li>
-<li><code>when</code> begins a <a href="/docs/reference/control-flow.html#when-expression">when expression</a> (executes one of the given branches)</li>
-<li><code>while</code> begins a <a href="/docs/reference/control-flow.html#while-loops">while loop</a> (loop with precondition)</li>
+<li><code>throw</code> <a href="exceptions.html">抛出一个异常</a></li>
+<li><code>true</code> 指定<a href="basic-types.html#布尔">布尔类型</a>的“真”值</li>
+<li><code>try</code> <a href="exceptions.html">开始一个异常处理块</a></li>
+<li><code>typealias</code> 声明一个<a href="type-aliases.html">类型别名</a></li>
+<li><code>val</code> 声明一个只读<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义局部变量">局部变量</a></li>
+<li><code>var</code> 声明一个可变<a href="properties.html">属性</a>或<a href="basic-syntax.html#定义局部变量">局部变量</a></li>
+<li><code>when</code> 开始一个 <a href="control-flow.html#when-表达式">when 表达式</a>（执行其中一个给定分支）</li>
+<li><code>while</code> 开始一个 <a href="control-flow.html#while-循环">while 循环</a>（前置条件的循环）</li>
 </ul>
-<h2 id="soft-keywords">Soft Keywords</h2>
-<p>The following tokens act as keywords in the context when they are applicable and can be used
-as identifiers in other contexts:</p>
+<h2 id="软关键字">软关键字</h2>
+<p>以下符号在适用的上下文中充当关键字，而在<!--
+-->其他上下文中可用作标识符：</p>
 <ul>
 <li><code>by</code>
 <ul>
-<li><a href="/docs/reference/delegation.html">delegates the implementation of an interface to another object</a></li>
-<li><a href="/docs/reference/delegated-properties.html">delegates the implementation of accessors for a property to another object</a></li>
+<li><a href="delegation.html">将接口的实现委托给另一个对象</a></li>
+<li><a href="delegated-properties.html">将属性访问器的实现委托给另一个对象</a></li>
 </ul>
 </li>
-<li><code>catch</code> begins a block that <a href="/docs/reference/exceptions.html">handles a specific exception type</a></li>
-<li><code>constructor</code> declares a <a href="/docs/reference/classes.html#constructors">primary or secondary constructor</a></li>
-<li><code>delegate</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>dynamic</code> references a <a href="/docs/reference/dynamic-type.html">dynamic type</a> in Kotlin/JS code</li>
-<li><code>field</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>file</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>finally</code> begins a block that <a href="/docs/reference/exceptions.html">cleans up after an exception</a></li>
+<li><code>catch</code> 开始一个<a href="exceptions.html">处理指定异常类型</a>的块</li>
+<li><code>constructor</code> 声明一个<a href="classes.html#构造函数">主构造函数或次构造函数</a></li>
+<li><code>delegate</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>dynamic</code> 引用一个 Kotlin/JS 代码中的<a href="dynamic-type.html">动态类型</a></li>
+<li><code>field</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>file</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>finally</code> 开始一个<a href="exceptions.html">当 try 块退出时总会执行的块</a></li>
 <li><code>get</code>
 <ul>
-<li>declares the <a href="/docs/reference/properties.html#getters-and-setters">getter of a property</a></li>
-<li>is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
+<li>声明<a href="properties.html#getters-与-setters">属性的 getter</a></li>
+<li>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
 </ul>
 </li>
-<li><code>import</code> <a href="/docs/reference/packages.html">imports a declaration from another package into the current file</a></li>
-<li><code>init</code> begins an <a href="/docs/reference/classes.html#constructors">initializer block</a></li>
-<li><code>param</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>property</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>receiver</code>is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
+<li><code>import</code> <a href="packages.html">将另一个包中的声明导入当前文件</a></li>
+<li><code>init</code> 开始一个<a href="classes.html#构造函数">初始化块</a></li>
+<li><code>param</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>property</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>receiver</code>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
 <li><code>set</code>
 <ul>
-<li>declares the <a href="/docs/reference/properties.html#getters-and-setters">setter of a property</a></li>
-<li>is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
+<li>声明<a href="properties.html#getters-与-setters">属性的 setter</a></li>
+<li>用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
 </ul>
 </li>
-<li><code>setparam</code> is used as an <a href="/docs/reference/annotations.html#annotation-use-site-targets">annotation use-site target</a></li>
-<li><code>where</code> specifies <a href="/docs/reference/generics.html#upper-bounds">constraints for a generic type parameter</a></li>
+<li><code>setparam</code> 用作<a href="annotations.html#注解使用处目标">注解使用处目标</a></li>
+<li><code>where</code> 指定<a href="generics.html#上界">泛型类型参数的约束</a></li>
 </ul>
-<h2 id="modifier-keywords">Modifier Keywords</h2>
-<p>The following tokens act as keywords in modifier lists of declarations and can be used as identifiers
-in other contexts:</p>
+<h2 id="修饰符关键字">修饰符关键字</h2>
+<p>以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
+-->的标识符：</p>
 <ul>
-<li><code>abstract</code> marks a class or member as <a href="/docs/reference/classes.html#abstract-classes">abstract</a></li>
-<li><code>annotation</code> declares an <a href="/docs/reference/annotations.html">annotation class</a></li>
-<li><code>companion</code> declares a <a href="/docs/reference/object-declarations.html#companion-objects">companion object</a></li>
-<li><code>const</code> marks a property as a <a href="/docs/reference/properties.html#compile-time-constants">compile-time constant</a></li>
-<li><code>crossinline</code> forbids <a href="/docs/reference/inline-functions.html#non-local-returns">non-local returns in a lambda passed to an inline function</a></li>
-<li><code>data</code> instructs the compiler to <a href="/docs/reference/data-classes.html">generate canonical members for a class</a></li>
-<li><code>enum</code> declares an <a href="/docs/reference/enum-classes.html">enumeration</a></li>
-<li><code>external</code> marks a declaration as implemented in native code (<a href="/docs/reference/java-interop.html#using-jni-with-kotlin">JNI</a> or <a href="/docs/reference/js-interop.html#external-modifier">JavaScript</a>)</li>
-<li><code>final</code> forbids <a href="/docs/reference/classes.html#overriding-methods">overriding a member</a></li>
-<li><code>infix</code> allows calling a function in <a href="/docs/reference/functions.html#infix-notation">infix notation</a></li>
-<li><code>inline</code> tells the compiler to <a href="/docs/reference/inline-functions.html">inline the function and the lambdas passed to it at the call site</a></li>
-<li><code>inner</code> allows referring to the outer class from a <a href="/docs/reference/nested-classes.html">nested class</a></li>
-<li><code>internal</code> marks a declaration as <a href="/docs/reference/visibility-modifiers.html">visible in the current module</a></li>
-<li><code>lateinit</code> allows initializing a <a href="/docs/reference/properties.html#late-initialized-properties">non-null property outside of a constructor</a></li>
-<li><code>noinline</code> forbids <a href="/docs/reference/inline-functions.html#noinline">inlining of a lambda passed to an inline function</a></li>
-<li><code>open</code> allows <a href="/docs/reference/classes.html#inheritance">subclassing a class or overriding a member</a></li>
-<li><code>operator</code> marks a function as <a href="/docs/reference/operator-overloading.html">overloading an operator or implementing a convention</a></li>
-<li><code>out</code> marks a type parameter as <a href="/docs/reference/generics.html#declaration-site-variance">covariant</a></li>
-<li><code>override</code> marks a member as an <a href="/docs/reference/classes.html#overriding-methods">override of a superclass member</a></li>
-<li><code>private</code> marks a declaration as <a href="/docs/reference/visibility-modifiers.html">visible in the current class or file</a></li>
-<li><code>protected</code> marks a declaration as <a href="/docs/reference/visibility-modifiers.html">visible in the current class and its subclasses</a></li>
-<li><code>public</code> marks a declaration as <a href="/docs/reference/visibility-modifiers.html">visible anywhere</a></li>
-<li><code>reified</code> marks a type parameter of an inline function as <a href="/docs/reference/inline-functions.html#reified-type-parameters">accessible at runtime</a></li>
-<li><code>sealed</code> declares a <a href="/docs/reference/sealed-classes.html">sealed class</a> (a class with restricted subclassing)</li>
-<li><code>suspend</code> marks a function or lambda as suspending (usable as a <a href="/docs/reference/coroutines.html">coroutine</a>)</li>
-<li><code>tailrec</code> marks a function as <a href="/docs/reference/functions.html#tail-recursive-functions">tail-recursive</a> (allowing the compiler to replace recursion with iteration)</li>
-<li><code>vararg</code> allows <a href="/docs/reference/functions.html#variable-number-of-arguments-varargs">passing a variable number of arguments for a parameter</a></li>
+<li><code>abstract</code> 将一个类或成员标记为<a href="classes.html#抽象类">抽象</a></li>
+<li><code>annotation</code> 声明一个<a href="annotations.html">注解类</a></li>
+<li><code>companion</code> 声明一个<a href="object-declarations.html#伴生对象">伴生对象</a></li>
+<li><code>const</code> 将属性标记为<a href="properties.html#编译期常量">编译期常量</a></li>
+<li><code>crossinline</code> 禁止<a href="inline-functions.html#非局部返回">传递给内联函数的 lambda 中的非局部返回</a></li>
+<li><code>data</code> 指示编译器<a href="data-classes.html">为类生成典型成员</a></li>
+<li><code>enum</code> 声明一个<a href="enum-classes.html">枚举</a></li>
+<li><code>external</code> 将一个声明标记为不是在 Kotlin 中实现（通过 <a href="java-interop.html#在-kotlin-中使用-jni">JNI</a> 访问或者在 <a href="js-interop.html#external-修饰符">JavaScript</a> 中实现）</li>
+<li><code>final</code> 禁止<a href="classes.html#覆盖方法">成员覆盖</a></li>
+<li><code>infix</code> 允许以<a href="functions.html#中缀表示法">中缀表示法</a>调用函数</li>
+<li><code>inline</code> 告诉编译器<a href="inline-functions.html">在调用处内联传给它的函数和 lambda 表达式</a></li>
+<li><code>inner</code> 允许在<a href="nested-classes.html">嵌套类</a>中引用外部类实例</li>
+<li><code>internal</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前模块中可见</a></li>
+<li><code>lateinit</code> 允许<a href="properties.html#延迟初始化属性">在构造函数之外初始化非空属性</a></li>
+<li><code>noinline</code> 关闭<a href="inline-functions.html#禁用内联">传给内联函数的 lambda 表达式的内联</a></li>
+<li><code>open</code> 允许<a href="classes.html#继承">一个类子类化或覆盖成员</a></li>
+<li><code>operator</code> 将一个函数标记为<a href="operator-overloading.html">重载一个操作符或者实现一个约定</a></li>
+<li><code>out</code> 将类型参数标记为<a href="generics.html#声明处型变">协变</a></li>
+<li><code>override</code> 将一个成员标记为<a href="classes.html#覆盖方法">超类成员的覆盖</a></li>
+<li><code>private</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前类或文件中可见</a></li>
+<li><code>protected</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前类及其子类中可见</a></li>
+<li><code>public</code> 将一个声明标记为<a href="visibility-modifiers.html">在任何地方可见</a></li>
+<li><code>reified</code> 将内联函数的类型参数标记为<a href="inline-functions.html#具体化的类型参数">在运行时可访问</a></li>
+<li><code>sealed</code> 声明一个<a href="sealed-classes.html">密封类</a>（限制子类化的类）</li>
+<li><code>suspend</code> 将一个函数或 lambda 表达式标记为挂起式（可用做<a href="coroutines.html">协程</a>）</li>
+<li><code>tailrec</code> 将一个函数标记为<a href="functions.html#尾递归函数">尾递归</a>（允许编译器将递归替换为迭代）</li>
+<li><code>vararg</code> 允许<a href="functions.html#可变数量的参数（varargs）">一个参数传入可变数量的参数</a></li>
 </ul>
-<h2 id="special-identifiers">Special Identifiers</h2>
-<p>The following identifiers are defined by the compiler in specific contexts and can be used as regular
-identifiers in other contexts:</p>
+<h2 id="特殊标识符">特殊标识符</h2>
+<p>以下标识符由编译器在指定上下文中定义，并且可以用作其他上下文中的常规<!--
+-->标识符：</p>
 <ul>
-<li><code>field</code> is used inside a property accessor to refer to the <a href="/docs/reference/properties.html#backing-fields">backing field of the property</a></li>
-<li><code>it</code> is used inside a lambda to <a href="/docs/reference/lambdas.html#it-implicit-name-of-a-single-parameter">refer to its parameter implicitly</a></li>
+<li><code>field</code> 用在属性访问器内部来引用该<a href="properties.html#幕后字段">属性的幕后字段</a></li>
+<li><code>it</code> 用在 lambda 表达式内部来<a href="lambdas.html#it：单个参数的隐式名称">隐式引用其参数</a></li>
 </ul>
-<h2 id="operators-and-special-symbols">Operators and Special Symbols</h2>
-<p>Kotlin supports the following operators and special symbols:</p>
+<h2 id="操作符和特殊符号">操作符和特殊符号</h2>
+<p>Kotlin 支持以下操作符和特殊符号：</p>
 <ul>
-<li><code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> - mathematical operators
+<li><code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> —— 数学操作符
     <ul>
-<li><code>*</code> is also used to <a href="/docs/reference/functions.html#variable-number-of-arguments-varargs">pass an array to a vararg parameter</a></li>
+<li><code>*</code> 也用于<a href="functions.html#可变数量的参数（varargs）">将数组传递给 vararg 参数</a></li>
 </ul>
 </li>
 <li><code>=</code>
 <ul>
-<li>assignment operator</li>
-<li>is used to specify <a href="/docs/reference/functions.html#default-arguments">default values for parameters</a></li>
+<li>赋值操作符</li>
+<li>也用于指定<a href="functions.html#默认参数">参数的默认值</a></li>
 </ul>
 </li>
-<li><code>+=</code>, <code>-=</code>, <code>*=</code>, <code>/=</code>, <code>%=</code> - <a href="/docs/reference/operator-overloading.html#assignments">augmented assignment operators</a></li>
-<li><code>++</code>, <code>--</code> - <a href="/docs/reference/operator-overloading.html#increments-and-decrements">increment and decrement operators</a></li>
-<li><code>&amp;&amp;</code>, <code>||</code>, <code>!</code> - logical 'and', 'or', 'not' operators (for bitwise operations, use corresponding <a href="/docs/reference/basic-types.html#operations">infix functions</a>)</li>
-<li><code>==</code>, <code>!=</code> - <a href="/docs/reference/operator-overloading.html#equals">equality operators</a> (translated to calls of <code>equals()</code> for non-primitive types)</li>
-<li><code>===</code>, <code>!==</code> - <a href="/docs/reference/equality.html#referential-equality">referential equality operators</a></li>
-<li><code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code> - <a href="/docs/reference/operator-overloading.html#comparison">comparison operators</a> (translated to calls of <code>compareTo()</code> for non-primitive types)</li>
-<li><code>[</code>, <code>]</code> - <a href="/docs/reference/operator-overloading.html#indexed">indexed access operator</a> (translated to calls of <code>get</code> and <code>set</code>)</li>
-<li><code>!!</code> <a href="/docs/reference/null-safety.html#the--operator">asserts that an expression is non-null</a></li>
-<li><code>?.</code> performs a <a href="/docs/reference/null-safety.html#safe-calls">safe call</a> (calls a method or accesses a property if the receiver is non-null)</li>
-<li><code>?:</code> takes the right-hand value if the left-hand value is null (the <a href="http://kotlinlang.org/docs/reference/null-safety.html#elvis-operator">elvis operator</a>)</li>
-<li><code>::</code> creates a <a href="/docs/reference/null-safety.html#nullable-types-and-non-null-types">member reference</a> or a <a href="/docs/reference/reflection.html#class-references">class reference</a></li>
-<li><code>..</code> creates a <a href="/docs/reference/ranges.html">range</a></li>
-<li><code>:</code> separates a name from a type in declarations</li>
-<li><code>?</code> marks a type as <a href="/docs/reference/null-safety.html#nullable-types-and-non-null-types">nullable</a></li>
+<li><code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code> —— <a href="operator-overloading.html#广义赋值">广义赋值操作符</a></li>
+<li><code>++</code>、 <code>--</code> —— <a href="operator-overloading.html#递增与递减">递增与递减操作符</a></li>
+<li><code>&amp;&amp;</code>、 <code>||</code>、 <code>!</code> —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的<a href="basic-types.html#运算">中缀函数</a>）</li>
+<li><code>==</code>、 <code>!=</code> —— <a href="operator-overloading.html#相等与不等操作符">相等操作符</a>（对于非原生类型会翻译为调用 <code>equals()</code>）</li>
+<li><code>===</code>、 <code>!==</code> —— <a href="equality.html#引用相等">引用相等操作符</a></li>
+<li><code>&lt;</code>、 <code>&gt;</code>、 <code>&lt;=</code>、 <code>&gt;=</code> —— <a href="operator-overloading.html#比较操作符">比较操作符</a>（对于非原生类型会翻译为调用 <code>compareTo()</code>）</li>
+<li><code>[</code>、 <code>]</code> —— <a href="operator-overloading.html#索引访问操作符">索引访问操作符</a>（会翻译为调用 <code>get</code> 与 <code>set</code>）</li>
+<li><code>!!</code> <a href="null-safety.html#-操作符">断言一个表达式非空</a></li>
+<li><code>?.</code> 执行<a href="null-safety.html#安全的调用">安全调用</a>（如果接收者非空，就调用一个方法或访问一个属性）</li>
+<li><code>?:</code> 如果左侧的值为空，就取右侧的值（<a href="null-safety.html#elvis-操作符">elvis 操作符</a>）</li>
+<li><code>::</code> 创建一个<a href="null-safety.html#可空类型与非空类型">成员引用</a>或者一个<a href="reflection.html#类引用">类引用</a></li>
+<li><code>..</code> 创建一个<a href="ranges.html">区间</a></li>
+<li><code>:</code> 分隔声明中的名称与类型</li>
+<li><code>?</code> 将类型标记为<a href="null-safety.html#可空类型与非空类型">可空</a></li>
 <li><code>-&gt;</code>
 <ul>
-<li>separates the parameters and body of a <a href="/docs/reference/lambdas.html#lambda-expression-syntax">lambda expression</a></li>
-<li>separates the parameters and return type declaration in a <a href="/docs/reference/lambdas.html#function-types">function type</a></li>
-<li>separates the condition and body of a <a href="http://kotlinlang.org/docs/reference/control-flow.html#when-expression">when expression</a> branch</li>
+<li>分隔 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>的参数与主体</li>
+<li>分隔在<a href="lambdas.html#函数类型">函数类型</a>中的参数类型与返回类型声明</li>
+<li>分隔 <a href="control-flow.html#when-表达式">when 表达式</a>分支的条件与代码体</li>
 </ul>
 </li>
 <li><code>@</code>
 <ul>
-<li>introduces an <a href="/docs/reference/annotations.html#usage">annotation</a></li>
-<li>introduces or references a <a href="/docs/reference/returns.html#break-and-continue-labels">loop label</a></li>
-<li>introduces or references a <a href="/docs/reference/returns.html#return-at-labels">lambda label</a></li>
-<li>references a <a href="/docs/reference/this-expressions.html#qualified">'this' expression from an outer scope</a></li>
-<li>references an <a href="/docs/reference/classes.html#calling-the-superclass-implementation">outer superclass</a></li>
+<li>引入一个<a href="annotations.html#用法">注解</a></li>
+<li>引入或引用一个<a href="returns.html#break-与-continue-标签">循环标签</a></li>
+<li>引入或引用一个 <a href="returns.html#标签处返回">lambda 表达式标签</a></li>
+<li>引用一个来自外部作用域的 <a href="this-expressions.html#限定的-this">“this”表达式</a></li>
+<li>引用一个<a href="classes.html#调用超类实现">外部超类</a></li>
 </ul>
 </li>
-<li><code>;</code> separates multiple statements on the same line</li>
-<li><code>$</code> references a variable or expression in a <a href="/docs/reference/basic-types.html#string-templates">string template</a></li>
+<li><code>;</code> 分隔位于同一行的多个语句</li>
+<li><code>$</code> 在<a href="basic-types.html#字符串模板">字符串模版</a>中引用变量或者表达式</li>
 <li><code>_</code>
 <ul>
-<li>substitutes an unused parameter in a <a href="/docs/reference/lambdas.html#underscore-for-unused-variables-since-11">lambda expression</a></li>
-<li>substitutes an unused parameter in a <a href="http://kotlinlang.org/docs/reference/multi-declarations.html#underscore-for-unused-variables-since-11">destructuring declaration</a></li>
+<li>在 <a href="lambdas.html#下划线用于未使用的变量（自-11-起）">lambda 表达式</a>中代替未使用的参数</li>
+<li>在<a href="multi-declarations.html#下划线用于未使用的变量（自-11-起）">解构声明</a>中代替未使用的参数</li>
 </ul>
 </li>
 </ul>
