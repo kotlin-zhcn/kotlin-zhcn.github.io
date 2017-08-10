@@ -871,6 +871,13 @@ catch (IOException e) {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
 </code></pre>
+<p>可能会遇到这个类型的另一种情况是类型推断。这个类型的可空变体
+<code>Nothing?</code> 有一个可能的值是 <code>null</code>。如果用 <code>null</code> 来初始化<!--
+-->一个要推断类型的值，而又没有其他信息可用于确定更<!--
+-->具体的类型时，编译器会推断出 <code>Nothing?</code> 类型：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val x = null           // “x”具有类型 `Nothing?`
+val l = listOf(null)   // “l”具有类型 `List&lt;Nothing?&gt;
+</code></pre>
 <h2 id="java-互操作性">Java 互操作性</h2>
 <p>与 Java 互操作性相关的信息，请参见 <a href="java-interop.html">Java 互操作性章节</a>中的异常部分。</p>
 
