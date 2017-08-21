@@ -955,7 +955,7 @@ class Derived() : Base() {
 <h3 id="覆盖属性">覆盖属性</h3>
 <p>属性覆盖与方法覆盖类似；在超类中声明然后在派生类中重新声明的属性必须以 <em class="keyword">override</em> 开头，并且它们必须具有兼容的类型。每个声明的属性可以由具有初始化器的属性或者具有 getter 方法的属性覆盖。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Foo {
-    open val x: Int get { …… }
+    open val x: Int get() { …… }
 }
 
 class Bar1 : Foo() {
