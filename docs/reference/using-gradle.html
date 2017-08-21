@@ -671,6 +671,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">JavaScript 反射</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/javascript-dce.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript DCE</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1107,10 +1115,28 @@ compileKotlin {
 <td>false</td>
 </tr>
 <tr>
+<td><code>sourceMapEmbedSources</code></td>
+<td>将源代码嵌入到源代码映射中</td>
+<td>"never"、 "always"、 "inlining"</td>
+<td>"inlining"</td>
+</tr>
+<tr>
+<td><code>sourceMapPrefix</code></td>
+<td>源代码映射中路径的前缀</td>
+<td> </td>
+<td> </td>
+</tr>
+<tr>
 <td><code>target</code></td>
 <td>生成指定 ECMA 版本的 JS 文件</td>
 <td>"v5"</td>
 <td>"v5"</td>
+</tr>
+<tr>
+<td><code>typedArrays</code></td>
+<td>将原生数组转换为 JS 带类型数组</td>
+<td> </td>
+<td>false</td>
 </tr>
 </tbody>
 </table>

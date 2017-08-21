@@ -27,20 +27,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/command-line-library-js.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/debugging-javascript/debugging-javascript.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial walks us through creating a Kotlin/JavaScript library using the command line compiler.">
+    <meta property="og:description"
+          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial walks us through creating a Kotlin/JavaScript library using the command line compiler.">
+    <meta name="twitter:description"
+          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Creating Kotlin/JavaScript library with the Command Line Compiler - Kotlin 语言中文站</title>
+    <title>Debugging Kotlin in browser - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -248,7 +250,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
 
             </div>
-            <div class="tree-item tree-branch js-item js-branch _closed"
+            <div class="tree-item tree-branch js-item js-branch _opened"
                  data-id="JavaScript">
 
                 <div class="tree-item-title tree-branch-title js-item-title js-branch-title">
@@ -313,12 +315,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             </a>
                     </div>
                     <div class="tree-item tree-leaf js-item js-leaf">
-                            <a href="/docs/tutorials/javascript/debugging-javascript/debugging-javascript.html"
-                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
-                            >
-                                <span class="marker"></span>
-                                <span class="text">在浏览器中调试 Kotlin</span>
-                            </a>
+                            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active">
+                                <div class="marker"></div>
+                                <div class="text">在浏览器中调试 Kotlin</div>
+                            </div>
                     </div>
 
             </div>
@@ -390,7 +390,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/command-line-library-js.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/javascript/debugging-javascript/debugging-javascript.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -398,76 +398,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Creating Kotlin/JavaScript library with the Command Line Compiler
+                Debugging Kotlin in browser
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>最近更新</strong>
+                        </td>
+                        <td>
+                            2017-07-31
+                        </td>
+                    </tr>
             </table>
-                This tutorial walks us through creating a Kotlin/JavaScript library using the command line compiler.
-                <br/>
-                <br/>
             
-<h3 id="creating-a-kotlinjavascript-library">Creating a Kotlin/JavaScript library</h3>
-<p>We will create a simple Kotlin/JavaScript library.</p>
-<ol>
-<li>
-<p>Using our favorite editor, we create a new file called <em>library.kt</em>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package org.sample
-   
-fun factorial(n: Int): Long = if (n == 0) 1 else n * factorial(n - 1)
-   
-inline fun IntRange.forOdd(f: (Int) -&gt; Unit) {
-    this.forEach { if (it % 2 == 1) f(it) }
-}
+<p>This tutorial shows how to debug a Kotlin/JS project build by Gradle.
+If you are using Maven or IDEA, the recipes would be similar.</p>
+<p>Before reading this tutorial, please, look through
+<a href="http://kotlinlang.org/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html">Kotlin and JavaScript for Gradle tutorial</a>.</p>
+<h2 id="generating-source-map">Generating source map</h2>
+<p>To debug Kotlin sources in the browser, you should tell the compiler to generate source map file.
+Add following lines to the Gradle configuration:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
+    kotlinOptions.sourceMap = true
+    kotlinOptions.sourceMapEmbedSources = "always"
+
+    // remaining configuration options
+} 
 </code></pre>
-</li>
-<li>
-<p>Compile the library using the JS compiler</p>
-<pre><code>$ kotlinc-js -output sample-library.js -meta-info library.kt
-</code></pre>
-<p>The <code>-meta-info</code> option indicates that an additional JS file with binary
-meta-information about compiled kotlin code will be created.</p>
-<p>If you want to see all available options run</p>
-<pre><code>$ kotlinc-js -help
-</code></pre>
-<p>After compilation we have two new files:</p>
-<pre><code>sample-library.js
-sample-library.meta.js
-</code></pre>
-</li>
-<li>
-<p>You can simply distribute two JS files, <code>sample-library.js</code> and <code>sample-library.meta.js</code>.
-The former file contains translated JavaScript code, the latter file
-contains some meta-information about Kotlin code, which is needed by compiler.</p>
-<p>Alternatively, you can append the content of <code>sample-library.meta.js</code> to the end
-of <code>sample-library.js</code> and distribute only the resulting file.</p>
-<p>Also you can create an archive, which can be distributed as a library:</p>
-<pre><code>$ jar cf sample-library.jar *.js
-</code></pre>
-</li>
-</ol>
-<h3 id="using-a-kotlinjavascript-library">Using a Kotlin/JavaScript library.</h3>
-<p>Create binom.kt:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import org.sample.factorial
-    
-fun binom(m: Int, n: Int): Long =
-        if (m &lt; n) factorial(n) / factorial(m) / factorial(n-m) else 1
-        
-fun odd_factorial(n: Int): Long {
-        var result: Long = 1L
-        (1..n).forOdd { result = result * it }
-        return result
-}        
-</code></pre>
-<p>Compile with library:</p>
-<pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.meta.js binom.kt
-</code></pre>
-<p>Both files <code>sample-library.js</code> and <code>sample-library.meta.js</code> should be present in the latter case,
-   because translated JavaScript file contains meta-information about inlining, which 
-   is needed by compiler.</p>
-<p>If you have an archive <code>sample-library.jar</code>, which contains <code>sample-library.js</code> and <code>sample-library.meta.js</code>,
-   you can use the following command</p>
-<pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.jar binom.kt
-</code></pre>
+<p>Now, if you rebuild the project, you should see both <code>.js</code> and <code>.js.map</code> files generated.</p>
+<h2 id="debugging-in-chrome-devtools">Debugging in Chrome DevTools</h2>
+<p>To debug Kotlin in Google Chrome, you should use DevTools.
+Please, read the <a href="https://developer.chrome.com/devtools">official documentation</a> to learn
+how to open and use DevTools.</p>
+<p>Now, if you open DevTools, you should see both JavaScript and Kotlin files in Sources tab,
+as shown in the picture below.</p>
+<p><img alt="Debugging in Chrome DevTools" src="/assets/images/tutorials/javascript/debugging-javascript/chrome-devtools.png"/></p>
+<p>Note that you can open folders in the Source tab and see sources of libraries you are using in your project,
+including Kotlin standard library (<code>kotlin.js</code>).
+This, however, requires that libraries are compiled with source maps enabled,
+as well as sources embedded into source maps.
+So the good practice is: if you share a library for Kotlin/JS, please, include source map into distribution.</p>
 
         </article>
     </div>

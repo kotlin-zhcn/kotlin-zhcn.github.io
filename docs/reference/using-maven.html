@@ -669,6 +669,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">JavaScript 反射</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/javascript-dce.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript DCE</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _opened"
@@ -807,7 +815,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><em>kotlin-maven-plugin</em> 用于编译 Kotlin 源代码与模块，目前只支持 Marven V3。</p>
 <p>通过 <em>kotlin.version</em> 属性定义要使用的 Kotlin 版本：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;properties&gt;
-    &lt;kotlin.version&gt;1.1.3-2&lt;/kotlin.version&gt;
+    &lt;kotlin.version&gt;1.1.4&lt;/kotlin.version&gt;
 &lt;/properties&gt;
 </code></pre>
 <h2 id="依赖">依赖</h2>
@@ -1043,21 +1051,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td>nowarn</td>
 <td> </td>
 <td>不生成警告</td>
-<td>true, false</td>
+<td>true、 false</td>
 <td>false</td>
 </tr>
 <tr>
 <td>languageVersion</td>
 <td>kotlin.compiler.languageVersion</td>
 <td>提供与指定语言版本源代码兼容性</td>
-<td>"1.0", "1.1"</td>
+<td>"1.0"、 "1.1"</td>
 <td>"1.1"</td>
 </tr>
 <tr>
 <td>apiVersion</td>
 <td>kotlin.compiler.apiVersion</td>
 <td>只允许使用来自捆绑库的指定版本中的声明</td>
-<td>"1.0", "1.1"</td>
+<td>"1.0"、 "1.1"</td>
 <td>"1.1"</td>
 </tr>
 <tr>
@@ -1106,7 +1114,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td>jvmTarget</td>
 <td>kotlin.compiler.jvmTarget</td>
 <td>生成的 JVM 字节码的目标版本</td>
-<td>"1.6", "1.8"</td>
+<td>"1.6"、 "1.8"</td>
 <td>"1.6"</td>
 </tr>
 <tr>
@@ -1141,21 +1149,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <td>metaInfo</td>
 <td> </td>
 <td>使用元数据生成 .meta.js 与 .kjsm 文件。用于创建库</td>
-<td>true, false</td>
+<td>true、 false</td>
 <td>true</td>
 </tr>
 <tr>
 <td>sourceMap</td>
 <td> </td>
 <td>生成源代码映射（source map）</td>
-<td>true, false</td>
+<td>true、 false</td>
 <td>false</td>
+</tr>
+<tr>
+<td>sourceMapEmbedSources</td>
+<td> </td>
+<td>将源代码嵌入到源代码映射中</td>
+<td>"never"、 "always"、 "inlining"</td>
+<td>"inlining"</td>
+</tr>
+<tr>
+<td>sourceMapPrefix</td>
+<td> </td>
+<td>源代码映射中路径的前缀</td>
+<td> </td>
+<td> </td>
 </tr>
 <tr>
 <td>moduleKind</td>
 <td> </td>
 <td>编译器生成的模块类型</td>
-<td>"plain", "amd", "commonjs", "umd"</td>
+<td>"plain"、 "amd"、 "commonjs"、 "umd"</td>
 <td>"plain"</td>
 </tr>
 </tbody>

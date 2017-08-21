@@ -669,6 +669,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">JavaScript 反射</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/javascript-dce.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript DCE</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -823,8 +831,7 @@ fun demo(source: List&lt;Int&gt;) {
 }
 </code></pre>
 <h2 id="getter-和-setter">Getter 和 Setter</h2>
-<p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和<!--
--->以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。
+<p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。
 <code>Boolean</code> 访问器方法（其中 getter 的名称以 <code>is</code> 开头而 setter 的名称以 <code>set</code> 开头）<!--
 -->会表示为与 getter 方法具有相同名称的属性。
 例如：</p>
@@ -835,7 +842,7 @@ fun calendarDemo() {
     if (calendar.firstDayOfWeek == Calendar.SUNDAY) {  // 调用 getFirstDayOfWeek()
         calendar.firstDayOfWeek = Calendar.MONDAY      // 调用ll setFirstDayOfWeek()
     }
-    if (!calendar.isLenient) {                         // 调用 isLenient() 
+    if (!calendar.isLenient) {                         // 调用 isLenient()
         calendar.isLenient = true                      // 调用 setLenient()
     }
 }
@@ -1185,13 +1192,13 @@ for (x in array) { // 不会创建迭代器
 <p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引。</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">public class JavaArrayExample {
 
-    public void removeIndices(int... indices) {
+    public void removeIndicesVarArg(int... indices) {
         // 在此编码……
     }
 }
 </code></pre>
 <p>在这种情况下，你需要使用展开运算符 <code>*</code> 来传递 <code>IntArray</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val javaObj = JavaArray()
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
 </code></pre>

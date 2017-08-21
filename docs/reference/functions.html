@@ -669,6 +669,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <span class="text">JavaScript 反射</span>
                             </a>
                     </div>
+                    <div class="tree-item tree-leaf js-item js-leaf">
+                            <a href="/docs/reference/javascript-dce.html"
+                               class="tree-item-title tree-leaf-title js-item-title js-leaf-title"
+                            >
+                                <span class="marker"></span>
+                                <span class="text">JavaScript DCE</span>
+                            </a>
+                    </div>
 
             </div>
             <div class="tree-item tree-branch js-item js-branch _closed"
@@ -862,6 +870,17 @@ class B : A() {
     override fun foo(i: Int) { …… }  // 不能有默认值
 }
 </code></pre>
+<p>如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用<a href="#命名参数">命名参数</a>调用该函数来使用：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(bar: Int = 0, baz: Int) { /* …… */ }
+
+foo(baz = 1) // 使用默认值 bar = 0
+</code></pre>
+<p>不过如果最后一个 <a href="lambdas.html#lambda-表达式">lambda 表达式</a>参数从括号外传给函数函数调用，那么允许默认参数不传值：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /* …… */ }
+
+foo(1) { println("hello") } // 使用默认值 baz = 1 
+foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
+</code></pre>
 <h3 id="命名参数">命名参数</h3>
 <p>可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。</p>
 <p>给定以下函数</p>
@@ -889,6 +908,13 @@ class B : A() {
 </code></pre>
 <p>并且如果我们不需要所有的参数</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, wordSeparator = '_')
+</code></pre>
+<p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
+<p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数（varargs）">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(vararg strings: String) { /* …… */ }
+
+foo(strings = *arrayOf("a", "b", "c"))
+foo(strings = "a") // 对于单个值不需要星号
 </code></pre>
 <p>请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
 -->总是保留函数参数的名称。</p>
