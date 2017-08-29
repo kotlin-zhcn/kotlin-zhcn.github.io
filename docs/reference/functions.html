@@ -826,26 +826,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>调用成员函数使用点表示法</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
 </code></pre>
-<h3 id="中缀表示法">中缀表示法</h3>
-<p>函数还可以用中缀表示法调用，当</p>
-<ul>
-<li>他们是成员函数或<a href="extensions.html">扩展函数</a></li>
-<li>他们只有一个参数</li>
-<li>他们用 <code>infix</code> 关键字标注</li>
-</ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 给 Int 定义扩展
-infix fun Int.shl(x: Int): Int {
-……
-}
-
-// 用中缀表示法调用扩展函数
-
-1 shl 2
-
-// 等同于这样
-
-1.shl(2)
-</code></pre>
 <h3 id="参数">参数</h3>
 <p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun powerOf(number: Int, exponent: Int) {
@@ -965,6 +945,26 @@ Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函�
 -->并希望将其内容传给该函数，我们使用<strong>伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
+</code></pre>
+<h3 id="中缀表示法">中缀表示法</h3>
+<p>函数还可以用中缀表示法调用，当</p>
+<ul>
+<li>他们是成员函数或<a href="extensions.html">扩展函数</a></li>
+<li>他们只有一个参数</li>
+<li>他们用 <code>infix</code> 关键字标注</li>
+</ul>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 给 Int 定义扩展
+infix fun Int.shl(x: Int): Int {
+……
+}
+
+// 用中缀表示法调用扩展函数
+
+1 shl 2
+
+// 等同于这样
+
+1.shl(2)
 </code></pre>
 <h2 id="函数作用域">函数作用域</h2>
 <p>在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外<!--

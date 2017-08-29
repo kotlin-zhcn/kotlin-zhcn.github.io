@@ -866,7 +866,7 @@ val result = lock(lock, ::toBeSynchronized)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.map { it * 2 }
 </code></pre>
 <p>这些约定可以写<a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx">LINQ-风格</a>的代码:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortBy { it }.map { it.toUpperCase() }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 </code></pre>
 <h3 id="下划线用于未使用的变量自-11-起">下划线用于未使用的变量（自 1.1 起）</h3>
 <p>如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：</p>
