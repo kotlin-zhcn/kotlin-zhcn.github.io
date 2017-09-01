@@ -1033,26 +1033,32 @@ fun List&lt;Int&gt;.filterValid(): List&lt;Int&gt;
 fun getX() = 10
 </code></pre>
 <h2 id="生成重载">生成重载</h2>
-<p>通常，如果你写一个有默认参数值的 Kotlin 方法，在 Java 中只会有一个所有参数都存在的完整参数<!--
+<p>通常，如果你写一个有默认参数值的 Kotlin 函数，在 Java 中只会有一个所有参数都存在的完整参数<!--
 -->签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用
-@JvmOverloads 注解。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
-    ……
+<code>@JvmOverloads</code> 注解。</p>
+<p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
+-->在接口中定义的方法。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Foo @JvmOverloads constructor(x: Int, y: Double = 0.0) {
+    @JvmOverloads fun f(a: String, b: Int = 0, c: String = "abc") {
+        ……
+    }
 }
 </code></pre>
 <p>对于每一个有默认值的参数，都会生成一个额外的重载，这个重载会把这个参数和<!--
--->它右边的所有参数都移除掉。在上例中，会生成以下方法
+-->它右边的所有参数都移除掉。在上例中，会生成以下代码
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<pre><code class="code _highlighted" data-lang="text/x-java">// 构造函数：
+Foo(int x, double y)
+Foo(int x)
+
+// 方法
 void f(String a, int b, String c) { }
 void f(String a, int b) { }
 void f(String a) { }
 </code></pre>
-<p>该注解也适用于构造函数、静态方法等。它不能用于抽象方法，包括<!--
--->在接口中定义的方法。</p>
 <p>请注意，如<a href="classes.html#次构造函数">次构造函数</a>中所述，如果一个类的所有构造函数参数都有默认<!--
 -->值，那么会为其生成一个公有的无参构造函数。这就算<!--
--->没有 @JvmOverloads 注解也有效。</p>
+-->没有 <code>@JvmOverloads</code> 注解也有效。</p>
 <h2 id="受检异常">受检异常</h2>
 <p>如上所述，Kotlin 没有受检异常。
 所以，通常 Kotlin 函数的 Java 签名不会声明抛出异常。

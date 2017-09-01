@@ -1002,15 +1002,15 @@ C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
 <p>在Java中，我们将类命名为“*Utils”：<code>FileUtils</code>、<code>StringUtils</code> 等，著名的 <code>java.util.Collections</code> 也属于同一种命名方式。
 关于这些 Utils-类的不愉快的部分是代码写成这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
-Collections.swap(list, Collections.binarySearch(list, Collections.max(otherList)), Collections.max(list))
+Collections.swap(list, Collections.binarySearch(list, Collections.max(otherList)), Collections.max(list));
 </code></pre>
 <p>这些类名总是碍手碍脚的，我们可以通过静态导入达到这样效果：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
-swap(list, binarySearch(list, max(otherList)), max(list))
+swap(list, binarySearch(list, max(otherList)), max(list));
 </code></pre>
 <p>这会变得好一点，但是我们并没有从 IDE 强大的自动补全功能中得到帮助。如果能这样就更好了：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
-list.swap(list.binarySearch(otherList.max()), list.max())
+list.swap(list.binarySearch(otherList.max()), list.max());
 </code></pre>
 <p>但是我们不希望在 <code>List</code> 类内实现这些所有可能的方法，对吧？这时候扩展将会帮助我们。</p>
 
