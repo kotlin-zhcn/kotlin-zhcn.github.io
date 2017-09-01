@@ -818,11 +818,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><code>as</code>
 <ul>
-<li>用于<a href="typecasts.html#“不安全的”转换操作符">类型转换</a></li>
+<li>用于<a href="typecasts.html#不安全的转换操作符">类型转换</a></li>
 <li>为<a href="packages.html#导入">导入指定一个别名</a></li>
 </ul>
 </li>
-<li><code>as?</code> 用于<a href="typecasts.html#“安全的”（可空）转换操作符">安全类型转换</a></li>
+<li><code>as?</code> 用于<a href="typecasts.html#安全的可空转换操作符">安全类型转换</a></li>
 <li><code>break</code> <a href="returns.html">终止循环的执行</a></li>
 <li><code>class</code> 声明一个<a href="classes.html">类</a></li>
 <li><code>continue</code> <a href="returns.html">继续最近层循环的下一步</a></li>
@@ -836,7 +836,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>指定在 <a href="control-flow.html#for-循环">for 循环</a>中迭代的对象</li>
 <li>用作中缀操作符以检查一个值属于<a href="ranges.html">一个区间</a>、
-一个集合或者其他<a href="operator-overloading.html#“in”操作符">定义“contains”方法</a>的实体</li>
+一个集合或者其他<a href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
 <li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
 <li>将一个类型参数标记为<a href="generics.html#声明处型变">逆变</a></li>
 </ul>
@@ -844,7 +844,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><code>!in</code>
 <ul>
 <li>用作中缀操作符以检查一个值<strong>不</strong>属于<a href="ranges.html">一个区间</a>、
-一个集合或者其他<a href="/docs/reference/operator-overloading.html#in">定义“contains”方法</a>的实体</li>
+一个集合或者其他<a href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
 <li>在 <a href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
 </ul>
 </li>
@@ -953,21 +953,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><code>sealed</code> 声明一个<a href="sealed-classes.html">密封类</a>（限制子类化的类）</li>
 <li><code>suspend</code> 将一个函数或 lambda 表达式标记为挂起式（可用做<a href="coroutines.html">协程</a>）</li>
 <li><code>tailrec</code> 将一个函数标记为<a href="functions.html#尾递归函数">尾递归</a>（允许编译器将递归替换为迭代）</li>
-<li><code>vararg</code> 允许<a href="functions.html#可变数量的参数（varargs）">一个参数传入可变数量的参数</a></li>
+<li><code>vararg</code> 允许<a href="functions.html#可变数量的参数varargs">一个参数传入可变数量的参数</a></li>
 </ul>
 <h2 id="特殊标识符">特殊标识符</h2>
 <p>以下标识符由编译器在指定上下文中定义，并且可以用作其他上下文中的常规<!--
 -->标识符：</p>
 <ul>
 <li><code>field</code> 用在属性访问器内部来引用该<a href="properties.html#幕后字段">属性的幕后字段</a></li>
-<li><code>it</code> 用在 lambda 表达式内部来<a href="lambdas.html#it：单个参数的隐式名称">隐式引用其参数</a></li>
+<li><code>it</code> 用在 lambda 表达式内部来<a href="lambdas.html#it单个参数的隐式名称">隐式引用其参数</a></li>
 </ul>
 <h2 id="操作符和特殊符号">操作符和特殊符号</h2>
 <p>Kotlin 支持以下操作符和特殊符号：</p>
 <ul>
 <li><code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> —— 数学操作符
     <ul>
-<li><code>*</code> 也用于<a href="functions.html#可变数量的参数（varargs）">将数组传递给 vararg 参数</a></li>
+<li><code>*</code> 也用于<a href="functions.html#可变数量的参数varargs">将数组传递给 vararg 参数</a></li>
 </ul>
 </li>
 <li><code>=</code>
@@ -976,13 +976,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>也用于指定<a href="functions.html#默认参数">参数的默认值</a></li>
 </ul>
 </li>
-<li><code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code> —— <a href="operator-overloading.html#广义赋值">广义赋值操作符</a></li>
+<li><code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code> —— <a href="operator-overloading.html#assignments">广义赋值操作符</a></li>
 <li><code>++</code>、 <code>--</code> —— <a href="operator-overloading.html#递增与递减">递增与递减操作符</a></li>
 <li><code>&amp;&amp;</code>、 <code>||</code>、 <code>!</code> —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的<a href="basic-types.html#运算">中缀函数</a>）</li>
-<li><code>==</code>、 <code>!=</code> —— <a href="operator-overloading.html#相等与不等操作符">相等操作符</a>（对于非原生类型会翻译为调用 <code>equals()</code>）</li>
+<li><code>==</code>、 <code>!=</code> —— <a href="operator-overloading.html#equals">相等操作符</a>（对于非原生类型会翻译为调用 <code>equals()</code>）</li>
 <li><code>===</code>、 <code>!==</code> —— <a href="equality.html#引用相等">引用相等操作符</a></li>
-<li><code>&lt;</code>、 <code>&gt;</code>、 <code>&lt;=</code>、 <code>&gt;=</code> —— <a href="operator-overloading.html#比较操作符">比较操作符</a>（对于非原生类型会翻译为调用 <code>compareTo()</code>）</li>
-<li><code>[</code>、 <code>]</code> —— <a href="operator-overloading.html#索引访问操作符">索引访问操作符</a>（会翻译为调用 <code>get</code> 与 <code>set</code>）</li>
+<li><code>&lt;</code>、 <code>&gt;</code>、 <code>&lt;=</code>、 <code>&gt;=</code> —— <a href="operator-overloading.html#comparison">比较操作符</a>（对于非原生类型会翻译为调用 <code>compareTo()</code>）</li>
+<li><code>[</code>、 <code>]</code> —— <a href="operator-overloading.html#indexed">索引访问操作符</a>（会翻译为调用 <code>get</code> 与 <code>set</code>）</li>
 <li><code>!!</code> <a href="null-safety.html#-操作符">断言一个表达式非空</a></li>
 <li><code>?.</code> 执行<a href="null-safety.html#安全的调用">安全调用</a>（如果接收者非空，就调用一个方法或访问一个属性）</li>
 <li><code>?:</code> 如果左侧的值为空，就取右侧的值（<a href="null-safety.html#elvis-操作符">elvis 操作符</a>）</li>
@@ -1010,8 +1010,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><code>$</code> 在<a href="basic-types.html#字符串模板">字符串模版</a>中引用变量或者表达式</li>
 <li><code>_</code>
 <ul>
-<li>在 <a href="lambdas.html#下划线用于未使用的变量（自-11-起）">lambda 表达式</a>中代替未使用的参数</li>
-<li>在<a href="multi-declarations.html#下划线用于未使用的变量（自-11-起）">解构声明</a>中代替未使用的参数</li>
+<li>在 <a href="lambdas.html#下划线用于未使用的变量自-11-起">lambda 表达式</a>中代替未使用的参数</li>
+<li>在<a href="multi-declarations.html#下划线用于未使用的变量自-11-起">解构声明</a>中代替未使用的参数</li>
 </ul>
 </li>
 </ul>

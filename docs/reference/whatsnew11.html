@@ -815,7 +815,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="kotlin-11-的新特性">Kotlin 1.1 的新特性</h1>
 <h2 id="目录">目录</h2>
 <ul>
-<li><a href="#协程（实验性的）">协程</a></li>
+<li><a href="#协程实验性的">协程</a></li>
 <li><a href="#其他语言功能">其他语言功能</a></li>
 <li><a href="#标准库">标准库</a></li>
 <li><a href="#jvm-后端">JVM 后端</a></li>
@@ -975,7 +975,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>更详细信息请参阅其<a href="multi-declarations.html#在-lambda-表达式中解构（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md">KEEP</a>。</p>
+<p>更详细信息请参阅其<a href="multi-declarations.html#在-lambda-表达式中解构自-11-起">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/destructuring-in-parameters.md">KEEP</a>。</p>
 <h3 id="下划线用于未使用的参数">下划线用于未使用的参数</h3>
 <p>对于具有多个参数的 lambda 表达式，可以使用 <code>_</code> 字符替换不使用的参数的名称：</p>
 <div class="sample" data-min-compiler-version="1.1">
@@ -1052,7 +1052,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>你也可以将整个属性标记为 <code>inline</code>——这样修饰符应用于两个访问器。</p>
-<p>更详细信息请参阅其<a href="inline-functions.html#内联属性（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md">KEEP</a>。</p>
+<p>更详细信息请参阅其<a href="inline-functions.html#内联属性自-11-起">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-properties.md">KEEP</a>。</p>
 <h3 id="局部委托属性">局部委托属性</h3>
 <p>现在可以对局部变量使用<a href="delegated-properties.html">委托属性</a>语法。
 一个可能的用途是定义一个延迟求值的局部变量：</p>
@@ -1100,7 +1100,7 @@ class MyUI {
 </code></pre>
 <p><code>provideDelegate</code> 方法在创建 <code>MyUI</code> 实例期间将会为每个属性调用，并且可以立即执行<!--
 -->必要的验证。</p>
-<p>更详细信息请参阅其<a href="delegated-properties.html#提供委托（自-11-起）">文档</a>。</p>
+<p>更详细信息请参阅其<a href="delegated-properties.html#提供委托自-11-起">文档</a>。</p>
 <h3 id="泛型枚举值访问">泛型枚举值访问</h3>
 <p>现在可以用泛型的方式来对枚举类的值进行枚举：</p>
 <div class="sample" data-min-compiler-version="1.1">
@@ -1132,7 +1132,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法<!--
 -->会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解<!--
 -->并将其应用于标记类的基类。</p>
-<p>更详细信息请参阅其<a href="type-safe-builders.html#作用域控制：dslmarker（自-11-起）">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
+<p>更详细信息请参阅其<a href="type-safe-builders.html#作用域控制dslmarker自-11-起">文档</a>及其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scope-control-for-implicit-receivers.md">KEEP</a>。</p>
 <h3 id="rem-操作符"><code>rem</code> 操作符</h3>
 <p><code>mod</code> 操作符现已弃用，而使用 <code>rem</code> 取代。动机参见<a href="https://youtrack.jetbrains.com/issue/KT-14650">这个问题</a>。</p>
 <h2 id="标准库">标准库</h2>

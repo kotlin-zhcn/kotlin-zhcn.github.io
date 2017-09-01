@@ -855,7 +855,7 @@ class B : A() {
 
 foo(baz = 1) // 使用默认值 bar = 0
 </code></pre>
-<p>不过如果最后一个 <a href="lambdas.html#lambda-表达式">lambda 表达式</a>参数从括号外传给函数函数调用，那么允许默认参数不传值：</p>
+<p>不过如果最后一个 <a href="lambdas.html#lambda-表达式与匿名函数">lambda 表达式</a>参数从括号外传给函数函数调用，那么允许默认参数不传值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /* …… */ }
 
 foo(1) { println("hello") } // 使用默认值 baz = 1 
@@ -890,7 +890,7 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, wordSeparator = '_')
 </code></pre>
 <p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
-<p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数（varargs）">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
+<p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(vararg strings: String) { /* …… */ }
 
 foo(strings = *arrayOf("a", "b", "c"))

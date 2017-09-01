@@ -669,7 +669,7 @@ abstract class Address : Parcelable {
 }
 </code></pre>
 <p>由于 Kotlin 中没有 <code>static</code> 方法，因此相应的方法会在 <a href="/docs/reference/object-declarations.html#伴生对象"><code>companion object</code></a>中生成。
-如果仍然需要从 Java 中调用这些方法，需要添加<a href="/docs/reference/java-to-kotlin-interop.html#访问静态成员"><code>@JvmStatic</code></a>注解。</p>
+如果仍然需要从 Java 中调用这些方法，需要添加<a href="/docs/reference/java-to-kotlin-interop.html#静态方法"><code>@JvmStatic</code></a>注解。</p>
 <p>如果调用 Java 的类或方法恰好在 Kotlin 中是保留字，可以使用反引号(`)作为<a href="/docs/reference/java-interop.html#将-kotlin-中是关键字的-java-标识符进行转义">转义字符</a>，比如调用上例中生成类的`<code>$AutoValue_Address</code>`。</p>
 <p>以上所有经过转换的代码与原生 Java 代码非常相似。</p>
 

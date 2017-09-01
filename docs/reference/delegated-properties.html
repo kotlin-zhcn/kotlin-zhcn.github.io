@@ -856,7 +856,7 @@ println(e.p)
 </code></pre>
 <p>委托对象的要求规范可以在<a href="delegated-properties.html#属性委托要求">下文</a>找到。</p>
 <p>请注意，自 Kotlin 1.1 起你可以在函数或代码块中声明一个委托属性，因此它不一定是类的成员。
-你可以在下文找到<a href="delegated-properties.html#局部委托属性（自-11-起）">其示例</a>。</p>
+你可以在下文找到<a href="delegated-properties.html#局部委托属性自-11-起">其示例</a>。</p>
 <h2 id="标准委托">标准委托</h2>
 <p>Kotlin 标准库为几种有用的委托提供了工厂方法。</p>
 <h3 id="延迟属性-lazy">延迟属性 Lazy</h3>
@@ -990,7 +990,7 @@ class C {
 }
 </code></pre>
 <p>Kotlin 编译器在参数中提供了关于 <code>prop</code> 的所有必要信息：第一个参数 <code>this</code> 引用到外部类 <code>C</code> 的实例而 <code>this::prop</code> 是 <code>KProperty</code> 类型的反射对象，该对象描述 <code>prop</code> 自身。</p>
-<p>请注意，直接在代码中引用<a href="reflection.html#绑定的函数与属性引用（自-11-起）">绑定的可调用引用</a>的语法 <code>this::prop</code> 自 Kotlin 1.1 起才可用。</p>
+<p>请注意，直接在代码中引用<a href="reflection.html#绑定的函数与属性引用自-11-起">绑定的可调用引用</a>的语法 <code>this::prop</code> 自 Kotlin 1.1 起才可用。</p>
 <h3 id="提供委托自-11-起">提供委托（自 1.1 起）</h3>
 <p>通过定义 <code>provideDelegate</code> 操作符，可以扩展创建属性实现所委托对象的逻辑。
 如果 <code>by</code> 右侧所使用的对象将 <code>provideDelegate</code> 定义为成员或扩展函数，那么会调用该函数来<!--

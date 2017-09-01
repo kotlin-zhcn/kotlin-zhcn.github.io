@@ -834,10 +834,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 val result = lock(lock, ::toBeSynchronized)
 </code></pre>
-<p>通常会更方便的另一种方式是传一个 <a href="#lambda-表达式和匿名函数">lambda 表达式</a>：</p>
+<p>通常会更方便的另一种方式是传一个 <a href="#lambda-表达式与匿名函数">lambda 表达式</a>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val result = lock(lock, { sharedResource.operation() })
 </code></pre>
-<p>Lambda 表达式在<a href="#lambda-表达式和匿名函数">下文会有更详细的</a>描述，但为了继续这一段，让我们看一个简短的概述：</p>
+<p>Lambda 表达式在<a href="#lambda-表达式与匿名函数">下文会有更详细的</a>描述，但为了继续这一段，让我们看一个简短的概述：</p>
 <ul>
 <li>lambda 表达式总是被大括号括着，</li>
 <li>其参数（如果有的话）在 <code>-&gt;</code> 之前声明（参数类型可以省略），</li>
@@ -873,10 +873,10 @@ val result = lock(lock, ::toBeSynchronized)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">map.forEach { _, value -&gt; println("$value!") }
 </code></pre>
 <h3 id="在-lambda-表达式中解构自-11-起">在 lambda 表达式中解构（自 1.1 起）</h3>
-<p>在 lambda 表达式中解构是作为<a href="multi-declarations.html#在-lambda-表达式中解构（自-11-起）">解构声明</a>的一部分描述的。</p>
+<p>在 lambda 表达式中解构是作为<a href="multi-declarations.html#在-lambda-表达式中解构自-11-起">解构声明</a>的一部分描述的。</p>
 <h2 id="内联函数">内联函数</h2>
 <p>使用<a href="inline-functions.html">内联函数</a>有时能提高高阶函数的性能。</p>
-<h2 id="lambda-表达式和匿名函数">Lambda 表达式和匿名函数</h2>
+<h2 id="lambda-表达式与匿名函数">Lambda 表达式与匿名函数</h2>
 <p>一个 lambda 表达式或匿名函数是一个“函数字面值”，即一个未声明的函数，
 但立即做为表达式传递。考虑下面的例子：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">max(strings, { a, b -&gt; a.length &lt; b.length })
@@ -956,7 +956,7 @@ ints.filter {
 -->指定（或者已假定为 <code>Unit</code>）。</p>
 <p>请注意，匿名函数参数总是在括号内传递。 允许将函数<!--
 -->留在圆括号外的简写语法仅适用于 lambda 表达式。</p>
-<p>Lambda表达式和匿名函数之间的另一个区别是<!--
+<p>Lambda表达式与匿名函数之间的另一个区别是<!--
 --><a href="inline-functions.html#非局部返回">非局部返回</a>的行为。一个不带标签的 <em class="keyword">return</em> 语句<!--
 -->总是在用 <em class="keyword">fun</em> 关键字声明的函数中返回。这意味着 lambda 表达式中的 <em class="keyword">return</em>
 将从包含它的函数返回，而匿名函数中的 <em class="keyword">return</em>
