@@ -874,7 +874,7 @@ assert(strings.size == 3)
 </code></pre>
 <p>Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如
 <code>listOf()</code>、 <code>mutableListOf()</code>、 <code>setOf()</code>、 <code>mutableSetOf()</code>。
-在非性能关键代码中创建 map 可以用一个简单的<a href="idioms.html#只读-map">惯用法</a>来完成：<code>mapOf(a to b, c to d)</code></p>
+在非性能关键代码中创建 map 可以用一个简单的<a href="idioms.html#只读-map">惯用法</a>来完成：<code>mapOf(a to b, c to d)</code>。</p>
 <p>注意上面的 <code>readOnlyView</code> 变量（译者注：与对应可变集合变量 <code>numbers</code>）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val items = listOf(1, 2, 3)
 </code></pre>

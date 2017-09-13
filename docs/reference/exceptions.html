@@ -861,10 +861,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="异常类">异常类</h2>
 <p>Kotlin 中所有异常类都是 <code>Throwable</code> 类的子孙类。
 每个异常都有消息、堆栈回溯信息和可选的原因。</p>
-<p>使用 <em class="keyword">throw</em>-表达式来抛出异常。</p>
+<p>使用 <em class="keyword">throw</em>-表达式来抛出异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">throw MyException("Hi There!")
 </code></pre>
-<p>使用 <em class="keyword">try</em>-表达式来捕获异常。</p>
+<p>使用 <em class="keyword">try</em>-表达式来捕获异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">try {
     // 一些代码
 }
@@ -878,7 +878,7 @@ finally {
 <p>可以有零到多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。
 但是 <em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块至少应该存在一个。</p>
 <h3 id="try-是一个表达式">Try 是一个表达式</h3>
-<p><em class="keyword">try</em> 是一个表达式，即它可以有一个返回值。</p>
+<p><em class="keyword">try</em> 是一个表达式，即它可以有一个返回值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int? = try { parseInt(input) } catch (e: NumberFormatException) { null }
 </code></pre>
 <p><em class="keyword">try</em>-表达式的返回值是 <em class="keyword">try</em> 块中的<!--
@@ -886,7 +886,7 @@ finally {
 <em class="keyword">finally</em> 块中的内容不会影响表达式的结果。</p>
 <h2 id="受检的异常">受检的异常</h2>
 <p>Kotlin 没有受检的异常。这其中有很多原因，但我们会提供一个简单的例子。</p>
-<p>以下是 JDK 中 <code>StringBuilder</code> 类实现的一个示例接口</p>
+<p>以下是 JDK 中 <code>StringBuilder</code> 类实现的一个示例接口：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">Appendable append(CharSequence csq) throws IOException;
 </code></pre>
 <p>这个签名是什么意思？ 它是说，每次我追加一个字符串到一些东西（一个 <code>StringBuilder</code>、某种日志、一个控制台等）上时<!--

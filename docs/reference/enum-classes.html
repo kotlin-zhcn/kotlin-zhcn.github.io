@@ -858,14 +858,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="枚举类">枚举类</h1>
-<p>枚举类的最基本的用法是实现类型安全的枚举</p>
+<p>枚举类的最基本的用法是实现类型安全的枚举：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">enum class Direction {
     NORTH, SOUTH, WEST, EAST
 }
 </code></pre>
 <p>每个枚举常量都是一个对象。枚举常量用逗号分隔。</p>
 <h2 id="初始化">初始化</h2>
-<p>因为每一个枚举都是枚举类的实例，所以他们可以是初始化过的。</p>
+<p>因为每一个枚举都是枚举类的实例，所以他们可以是这样初始化过的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">enum class Color(val rgb: Int) {
         RED(0xFF0000),
         GREEN(0x00FF00),
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 <h2 id="匿名类">匿名类</h2>
-<p>枚举常量也可以声明自己的匿名类</p>
+<p>枚举常量也可以声明自己的匿名类：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">enum class ProtocolState {
     WAITING {
         override fun signal() = TALKING

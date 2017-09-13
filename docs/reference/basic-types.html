@@ -1004,7 +1004,7 @@ val i: Int = b // 错误
 <ul>
 <li>认为 <code>NaN</code> 与其自身相等</li>
 <li>认为 <code>NaN</code> 比包括正无穷大（<code>POSITIVE_INFINITY</code>）在内的任何其他元素都大</li>
-<li>认为 <code>-0.0</code> 小于 <code>0.0</code>（译注：这条编译执行可印证，但在 REPL 中不应验，其他两条在 REPL 中也可印证）</li>
+<li>认为 <code>-0.0</code> 小于 <code>0.0</code>（译注：通过 as 方式可在 REPL 中验证，而通过声明变量的方式只能编译运行验证）</li>
 </ul>
 <h2 id="字符">字符</h2>
 <p>字符用 <code>Char</code> 类型表示。它们不能直接当作数字</p>

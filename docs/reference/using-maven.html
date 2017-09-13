@@ -864,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 &lt;/properties&gt;
 </code></pre>
 <h2 id="依赖">依赖</h2>
-<p>Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配置以下依赖关系</p>
+<p>Kotlin 有一个广泛的标准库可用于应用程序。在 pom 文件中配置以下依赖关系：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;dependencies&gt;
     &lt;dependency&gt;
         &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
@@ -911,7 +911,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h2 id="同时编译-kotlin-与-java-源代码">同时编译 Kotlin 与 Java 源代码</h2>
 <p>要编译混合代码应用程序，必须在 Java 编译器之前调用 Kotlin 编译器。
-按照 maven 的方式，这意味着应该使用以下方法在 maven-compiler-plugin 之前运行 kotlin-maven-plugin，确保 pom.xml 文件中的 kotlin 插件位于 maven-compiler-plugin 上面。</p>
+按照 maven 的方式，这意味着应该使用以下方法在 maven-compiler-plugin 之前运行 kotlin-maven-plugin，确保 pom.xml 文件中的 kotlin 插件位于 maven-compiler-plugin 上面：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;build&gt;
     &lt;plugins&gt;
         &lt;plugin&gt;
@@ -983,7 +983,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>请参见 <a href="kapt.html">Kotlin 注解处理工具</a>（<code>kapt</code>）的描述。</p>
 <h2 id="jar-文件">Jar 文件</h2>
 <p>要创建一个仅包含模块代码的小型 Jar 文件，请在 Maven pom.xml 文件中的 <code>build-&gt;plugins</code> 下面包含以下内容，
-其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类。</p>
+其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-jar-plugin&lt;/artifactId&gt;
@@ -1000,7 +1000,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h2 id="独立的-jar-文件">独立的 Jar 文件</h2>
 <p>要创建一个独立的（self-contained）Jar 文件，包含模块中的代码及其依赖项，请在 Maven pom.xml 文件中的 <code>build-&gt;plugins</code> 下面包含以下内容<!--
--->其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类。</p>
+-->其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
     &lt;artifactId&gt;maven-assembly-plugin&lt;/artifactId&gt;

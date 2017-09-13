@@ -869,13 +869,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="multi-declarations.html"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性，</li>
 <li><code>copy()</code> 函数（见下文）。</li>
 </ul>
-<p>如果这些函数中的任何一个在类体中显式定义或继承自其基类型，则不会生成该函数。</p>
 <p>为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：</p>
 <ul>
 <li>主构造函数需要至少有一个参数；</li>
 <li>主构造函数的所有参数需要标记为 <code>val</code> 或 <code>var</code>；</li>
 <li>数据类不能是抽象、开放、密封或者内部的；</li>
 <li>（在1.1之前）数据类只能实现接口。</li>
+</ul>
+<p>此外，成员生成遵循关于成员继承的这些规则：</p>
+<ul>
+<li>如果在数据类体中有显式实现 <code>equals()</code>、 <code>hashCode()</code> 或者 <code>toString()</code>，或者这些函数在父类中有 
+<em class="keyword">final</em> 实现，那么不会生成这些函数，而会使用现有<!--
+-->函数；</li>
+<li>如果超类型具有 <em class="keyword">open</em> 的 <code>componentN()</code> 函数并且返回兼容的类型，
+那么会为数据类生成相应的函数，并覆盖超类的实现。如果超类型的这些函数<!--
+-->由于签名不兼容或者是 final 而导致无法覆盖，那么会报错；</li>
+<li>不允许为 <code>componentN()</code> 以及 <code>copy()</code> 函数提供显式实现。</li>
 </ul>
 <p>自 1.1 起，数据类可以扩展其他类（示例请参见<a href="sealed-classes.html">密封类</a>）。</p>
 <p>在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。

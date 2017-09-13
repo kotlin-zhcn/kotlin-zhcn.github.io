@@ -872,7 +872,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         &lt;/dependency&gt;
     &lt;/dependencies&gt;
 </code></pre>
-<p>从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）</p>
+<p>从外部库中排除标准库（注意“星排除”只在 Maven 3 中有效）：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">        &lt;dependency&gt;
             &lt;groupId&gt;some.group.id&lt;/groupId&gt;
             &lt;artifactId&gt;some.library&lt;/artifactId&gt;
@@ -890,7 +890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>将 <code>kotlin-osgi-bundle</code> 引入到 gradle 项目中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 </code></pre>
-<p>要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法</p>
+<p>要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
  compile (
    [group: 'some.group.id', name: 'some.library', version: 'someversion'],

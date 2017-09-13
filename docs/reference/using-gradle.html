@@ -892,7 +892,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             - kotlin
             - java
 </code></pre>
-<p>如果不使用默认约定，那么应该更新相应的 <em>sourceSets</em> 属性</p>
+<p>如果不使用默认约定，那么应该更新相应的 <em>sourceSets</em> 属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">sourceSets {
     main.kotlin.srcDirs += 'src/main/myKotlin'
     main.java.srcDirs += 'src/main/myJava'
@@ -903,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: "kotlin2js"
 </code></pre>
 <p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
--->针对 JVM 一样，如果不使用默认约定，我们需要使用 <em>sourceSets</em> 来指定源代码文件夹。</p>
+-->针对 JVM 一样，如果不使用默认约定，我们需要使用 <em>sourceSets</em> 来指定源代码文件夹：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">sourceSets {
     main.kotlin.srcDirs += 'src/main/myKotlin'
 }
