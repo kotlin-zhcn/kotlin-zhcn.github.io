@@ -859,10 +859,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="委托属性">委托属性</h1>
 <p>有一些常见的属性类型，虽然我们可以在每次需要的时候手动实现它们，
-但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括</p>
+但是如果能够为大家把他们只实现一次并放入一个库会更好。例如包括：</p>
 <ul>
-<li>延迟属性（lazy properties）: 其值只在首次访问时计算，</li>
-<li>可观察属性（observable properties）: 监听器会收到有关此属性变更的通知，</li>
+<li>延迟属性（lazy properties）: 其值只在首次访问时计算；</li>
+<li>可观察属性（observable properties）: 监听器会收到有关此属性变更的通知；</li>
 <li>把多个属性储存在一个映射（map）中，而不是每个存在单独的字段中。</li>
 </ul>
 <p>为了涵盖这些（以及其他）情况，Kotlin 支持 <em>委托属性</em>:</p>
@@ -995,14 +995,14 @@ println(user.age)  // Prints 25
 <p>这里我们总结了委托对象的要求。</p>
 <p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个名为 <code>getValue</code> 的函数，该函数接受以下参数：</p>
 <ul>
-<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型，</li>
-<li><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型，</li>
+<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型；</li>
+<li><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型。</li>
 </ul>
 <p>这个函数必须返回与属性相同的类型（或其子类型）。</p>
 <p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须<em>额外</em>提供一个名为 <code>setValue</code> 的函数，该函数接受以下参数：</p>
 <ul>
-<li><code>thisRef</code> —— 同 <code>getValue()</code>，</li>
-<li><code>property</code> —— 同 <code>getValue()</code>，</li>
+<li><code>thisRef</code> —— 同 <code>getValue()</code>；</li>
+<li><code>property</code> —— 同 <code>getValue()</code>；</li>
 <li>new value —— 必须和属性同类型或者是它的超类型。</li>
 </ul>
 <p><code>getValue()</code> 或/和 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
@@ -1063,7 +1063,7 @@ class MyUI {
 </code></pre>
 <p><code>provideDelegate</code> 的参数与 <code>getValue</code> 相同：</p>
 <ul>
-<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型，</li>
+<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型；</li>
 <li><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型。</li>
 </ul>
 <p>在创建 <code>MyUI</code> 实例期间，为每个属性调用 <code>provideDelegate</code> 方法，并立即执行必要的验证。</p>

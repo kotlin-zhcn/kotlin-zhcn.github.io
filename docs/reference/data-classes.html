@@ -858,15 +858,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="数据类">数据类</h1>
-<p>我们经常创建一些只保存数据的类。在这些类中，一些标准函数往往是从<!--
+<p>我们经常创建一些只保存数据的类。
+在这些类中，一些标准函数往往是从<!--
 -->数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String, val age: Int)
 </code></pre>
 <p>编译器自动从主构造函数中声明的所有属性导出以下成员：</p>
 <ul>
-<li><code>equals()</code>/<code>hashCode()</code> 对，</li>
-<li><code>toString()</code> 格式是 <code>"User(name=John, age=42)"</code>，</li>
-<li><a href="multi-declarations.html"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性，</li>
+<li><code>equals()</code>/<code>hashCode()</code> 对；</li>
+<li><code>toString()</code> 格式是 <code>"User(name=John, age=42)"</code>；</li>
+<li><a href="multi-declarations.html"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性；</li>
 <li><code>copy()</code> 函数（见下文）。</li>
 </ul>
 <p>为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：</p>
@@ -896,7 +897,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <code>copy()</code> 函数就是为此而生成。对于上文的 <code>User</code> 类，其实现会类似下面这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
 </code></pre>
-<p>这让我们可以写</p>
+<p>这让我们可以写：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 </code></pre>

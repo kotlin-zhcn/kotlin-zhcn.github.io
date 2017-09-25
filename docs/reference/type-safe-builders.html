@@ -970,7 +970,7 @@ fun body(init: Body.() -&gt; Unit) : Body {
 fun body(init: Body.() -&gt; Unit) = initTag(Body(), init)
 </code></pre>
 <p>并且我们可以使用它们来构建 <code>&lt;head&gt;</code> 和 <code>&lt;body&gt;</code> 标签。</p>
-<p>这里要讨论的另一件事是如何向标签体中添加文本。在上例中我们这样写到</p>
+<p>这里要讨论的另一件事是如何向标签体中添加文本。在上例中我们这样写到：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">html {
     head {
         title {+"XML encoding with Kotlin"}

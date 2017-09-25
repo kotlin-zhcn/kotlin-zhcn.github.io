@@ -939,6 +939,14 @@ external fun newC()
 <li>Kotlin 在 JavaScript 中保留了惰性对象初始化。</li>
 <li>Kotlin 不会在 JavaScript 中实现顶层属性的惰性初始化。</li>
 </ul>
+<p>自 1.1.50 版起，原生数组转换到 JavaScript 时采用 TypedArray：</p>
+<ul>
+<li><code>kotlin.ByteArray</code>、 <code>-.ShortArray</code>、 <code>-.IntArray</code>、 <code>-.FloatArray</code> 以及 <code>-.DoubleArray</code> 会相应地映射为
+ JavaScript 中的 Int8Array、 Int16Array、 Int32Array、 Float32Array 以及 Float64Array。</li>
+<li><code>kotlin.BooleanArray</code> 会映射为 JavaScript 中具有 <code>$type$ == "BooleanArray"</code> 属性的 Int8Array</li>
+<li><code>kotlin.CharArray</code> 会映射为 JavaScript 中具有 <code>$type$ == "CharArray"</code> 属性的 UInt16Array</li>
+<li><code>kotlin.LongArray</code> 会映射为 JavaScript 中具有 <code>$type$ == "LongArray"</code> 属性的 <code>kotlin.Long</code> 的数组。</li>
+</ul>
 
         </article>
     </div>

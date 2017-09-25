@@ -864,10 +864,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 这等同于 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>
 <p>Kotlin 的类型系统旨在从我们的代码中消除 <code>NullPointerException</code>。NPE 的唯一可能的原因可能是</p>
 <ul>
-<li>显式调用 <code>throw NullPointerException()</code></li>
-<li>使用了下文描述的 <code>!!</code> 操作符</li>
-<li>外部 Java 代码导致的</li>
-<li>对于初始化，有一些数据不一致（如一个未初始化的 <code>this</code> 用于构造函数的某个地方）</li>
+<li>显式调用 <code>throw NullPointerException()</code>；</li>
+<li>使用了下文描述的 <code>!!</code> 操作符；</li>
+<li>外部 Java 代码导致的；</li>
+<li>对于初始化，有一些数据不一致（如一个未初始化的 <code>this</code> 用于构造函数的某个地方）。</li>
 </ul>
 <p>在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 <em class="keyword">null</em>：</p>
@@ -945,7 +945,7 @@ for (item in listWithNulls) {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val aInt: Int? = a as? Int
 </code></pre>
 <h2 id="可空类型的集合">可空类型的集合</h2>
-<p>如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 <code>filterNotNull</code> 来实现。</p>
+<p>如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 <code>filterNotNull</code> 来实现：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val nullableList: List&lt;Int?&gt; = listOf(1, 2, null, 4)
 val intList: List&lt;Int&gt; = nullableList.filterNotNull()
 </code></pre>

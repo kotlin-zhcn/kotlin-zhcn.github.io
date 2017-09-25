@@ -889,10 +889,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </table>
 <p>这个表是说，当编译器处理例如表达式 <code>+a</code> 时，它执行以下步骤：</p>
 <ul>
-<li>确定 <code>a</code> 的类型，令其为 <code>T</code>。</li>
-<li>为接收者 <code>T</code> 查找一个带有 <code>operator</code> 修饰符的无参函数 <code>unaryPlus（）</code>，即成员函数或扩展函数。</li>
-<li>如果函数不存在或不明确，则导致编译错误。</li>
-<li>如果函数存在且其返回类型为 <code>R</code>，那就表达式 <code>+a</code> 具有类型 <code>R</code>。</li>
+<li>确定 <code>a</code> 的类型，令其为 <code>T</code>；</li>
+<li>为接收者 <code>T</code> 查找一个带有 <code>operator</code> 修饰符的无参函数 <code>unaryPlus（）</code>，即成员函数或扩展函数；</li>
+<li>如果函数不存在或不明确，则导致编译错误；</li>
+<li>如果函数存在且其返回类型为 <code>R</code>，那就表达式 <code>+a</code> 具有类型 <code>R</code>；</li>
 </ul>
 <p><em>注意</em> 这些操作以及所有其他操作都针对<a href="basic-types.html">基本类型</a>做了优化，不会为它们引入函数调用的开销。</p>
 <p>以下是如何重载一元减运算符的示例：</p>
@@ -926,20 +926,20 @@ println(-point)  // 输出“(-10, -20)”
 <code>++</code> 或 <code>--</code> 操作的变量。它们不应该改变在其上调用 <code>inc()</code> 或 <code>dec()</code> 的对象。</p>
 <p>编译器执行以下步骤来解析<em>后缀</em>形式的操作符，例如 <code>a++</code>：</p>
 <ul>
-<li>确定 <code>a</code> 的类型，令其为 <code>T</code>。</li>
-<li>查找一个适用于类型为 <code>T</code> 的接收者的、带有 <code>operator</code> 修饰符的无参数函数 <code>inc()</code>。</li>
+<li>确定 <code>a</code> 的类型，令其为 <code>T</code>；</li>
+<li>查找一个适用于类型为 <code>T</code> 的接收者的、带有 <code>operator</code> 修饰符的无参数函数 <code>inc()</code>；</li>
 <li>检查函数的返回类型是 <code>T</code> 的子类型。</li>
 </ul>
 <p>计算表达式的步骤是：</p>
 <ul>
-<li>把 <code>a</code> 的初始值存储到临时存储 <code>a0</code> 中，</li>
-<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>，</li>
+<li>把 <code>a</code> 的初始值存储到临时存储 <code>a0</code> 中；</li>
+<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>；</li>
 <li>把 <code>a0</code> 作为表达式的结果返回。</li>
 </ul>
 <p>对于 <code>a--</code>，步骤是完全类似的。</p>
 <p>对于<em>前缀</em>形式 <code>++a</code> 和 <code>--a</code> 以相同方式解析，其步骤是：</p>
 <ul>
-<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>，</li>
+<li>把 <code>a.inc()</code> 结果赋值给 <code>a</code>；</li>
 <li>把 <code>a</code> 的新值作为表达式结果返回。</li>
 </ul>
 <h2 id="二元操作">二元操作</h2>
@@ -982,7 +982,7 @@ println(-point)  // 输出“(-10, -20)”
 <p>请注意，自 Kotlin 1.1 起支持 <code>rem</code> 运算符。Kotlin 1.0 使用 <code>mod</code> 运算符，它在
 Kotlin 1.1 中被弃用。</p>
 <h4 id="示例">示例</h4>
-<p>下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 <code>+</code> 运算符来增加计数。</p>
+<p>下面是一个从给定值起始的 Counter 类的示例，它可以使用重载的 <code>+</code> 运算符来增加计数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Counter(val dayIndex: Int) {
     operator fun plus(increment: Int): Counter {
         return Counter(dayIndex + increment)
@@ -1108,9 +1108,9 @@ Kotlin 1.1 中被弃用。</p>
 <ul>
 <li>如果右列的函数可用
     <ul>
-<li>如果相应的二元函数（即 <code>plusAssign()</code> 对应于 <code>plus()</code>）也可用，那么报告错误（模糊）。</li>
-<li>确保其返回类型是 <code>Unit</code>，否则报告错误。</li>
-<li>生成 <code>a.plusAssign(b)</code> 的代码</li>
+<li>如果相应的二元函数（即 <code>plusAssign()</code> 对应于 <code>plus()</code>）也可用，那么报告错误（模糊），</li>
+<li>确保其返回类型是 <code>Unit</code>，否则报告错误，</li>
+<li>生成 <code>a.plusAssign(b)</code> 的代码；</li>
 </ul>
 </li>
 <li>否则试着生成 <code>a = a + b</code> 的代码（这里包含类型检查：<code>a + b</code> 的类型必须是 <code>a</code> 的子类型）。</li>
@@ -1135,7 +1135,7 @@ Kotlin 1.1 中被弃用。</p>
 </tr>
 </tbody>
 </table>
-<p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定</p>
+<p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定。</p>
 <p>这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值。
 <code>null == null</code>  总是 true，对于非空的 <code>x</code>，<code>x == null</code> 总是 false 而不会调用 <code>x.equals()</code>。</p>
 <h3 id="comparison">比较操作符</h3>

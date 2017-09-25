@@ -861,8 +861,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="全开放编译器插件">全开放编译器插件</h2>
 <p>Kotlin 有类及其默认为 <code>final</code> 的成员，这使得像 Spring AOP 这样需要类为 <code>open</code> 的框架和库用起来很不方便。
 这个 <code>all-open</code> 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 <code>open</code> 关键字打开。
-例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如
-<code>@Configuration</code> 或 <code>@Service</code>。
+例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 <code>@Configuration</code> 或 <code>@Service</code>。
 <code>all-open</code> 插件允许指定这些注解。</p>
 <p>我们为全开放插件提供 Gradle 和 Maven 以及 IDE 集成的支持。
 对于 Spring，你可以使用 <code>kotlin-spring</code> 编译器插件（<a href="compiler-plugins.html#kotlin-spring-编译器插件">见下文</a>）。</p>
@@ -878,7 +877,7 @@ apply plugin: "kotlin-allopen"
 </code></pre>
 <p>或者，如果你使用 Gradle 插件 DSL，将其添加到 <code>plugins</code> 块：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.allopen" version "1.1.4-3"
+  id "org.jetbrains.kotlin.plugin.allopen" version "1.1.50"
 }
 </code></pre>
 <p>然后指定会打开该类的注解：</p>
@@ -924,7 +923,7 @@ class MyClass // 将会全开放
 &lt;/plugin&gt;
 </code></pre>
 <h3 id="kotlin-spring-编译器插件">Kotlin-spring 编译器插件</h3>
-<p>你无需手动指定 Spring 注解，你可以使用 <code>kotlin-spring</code> 插件，它根据 Spring 的要求自动配置全开放插件。</p>
+<p>你无需手动指定 Spring 注解，你可以使用 <code>kotlin-spring</code> 插件，它根据 Spring 的要求自动配置全开放插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
@@ -935,16 +934,12 @@ apply plugin: "kotlin-spring"
 </code></pre>
 <p>或者使用 Gradle 插件 DSL：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.spring" version "1.1.4-3"
+  id "org.jetbrains.kotlin.plugin.spring" version "1.1.50"
 }
 </code></pre>
 <p>其 Maven 示例与上面的类似。</p>
 <p>该插件指定了以下注解：
-<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html"><code>@Component</code></a>、 
-<a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html"><code>@Async</code></a>、 
-<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html"><code>@Transactional</code></a>、 
-<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html"><code>@Cacheable</code></a>。
-由于元注解的支持，标注有 <code>@Configuration</code>、 <code>@Controller</code>、 <code>@RestController</code>、 <code>@Service</code> 或者 <code>@Repository</code> 的类会自动打开，因为这些注解标注有元注解 <code>@Component</code>。</p>
+<a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/stereotype/Component.html"><code>@Component</code></a>、 <a href="http://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/scheduling/annotation/Async.html"><code>@Async</code></a>、 <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/transaction/annotation/Transactional.html"><code>@Transactional</code></a>、 <a href="http://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/cache/annotation/Cacheable.html"><code>@Cacheable</code></a>。 由于元注解的支持，标注有 <code>@Configuration</code>、 <code>@Controller</code>、 <code>@RestController</code>、 <code>@Service</code> 或者 <code>@Repository</code> 的类会自动打开，因为这些注解标注有元注解 <code>@Component</code>。</p>
 <p>当然，你可以在同一个项目中同时使用 <code>kotlin-allopen</code> 和 <code>kotlin-spring</code>。
 请注意，如果你使用 <a href="http://start.spring.io/#!language=kotlin">start.spring.io</a>，<code>kotlin-spring</code> 插件将默认启用。</p>
 <h2 id="无参编译器插件">无参编译器插件</h2>
@@ -965,7 +960,7 @@ apply plugin: "kotlin-noarg"
 </code></pre>
 <p>或者使用 Gradle 插件 DSL：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.noarg" version "1.1.4-3"
+  id "org.jetbrains.kotlin.plugin.noarg" version "1.1.50"
 }
 </code></pre>
 <p>然后指定注解类型：</p>
@@ -973,7 +968,7 @@ apply plugin: "kotlin-noarg"
     annotation("com.my.Annotation")
 }
 </code></pre>
-<p>如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 <code>invokeInitializers</code> 选项。由于在未来会解决的 <a href="https://youtrack.jetbrains.com/issue/KT-18667"><code>KT-18667</code></a> 及 <a href="https://youtrack.jetbrains.com/issue/KT-18668"><code>KT-18668</code></a>，自 Kotlin 1.1.3-2 起，它被默认禁用。</p>
+<p>如果你希望该插件在合成的构造函数中运行其初始化逻辑，请启用 <code>invokeInitializers</code> 选项。由于在未来会解决的 <a href="https://youtrack.jetbrains.com/issue/KT-18667"><code>KT-18667</code></a> 及 <a href="https://youtrack.jetbrains.com/issue/KT-18668"><code>KT-18668</code></a>，自 Kotlin 1.1.3-2 起，它被默认禁用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">noArg {
     invokeInitializers = true
 }
@@ -1022,7 +1017,7 @@ apply plugin: "kotlin-jpa"
 </code></pre>
 <p>或者使用 Gradle 插件 DSL：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.jpa" version "1.1.4-3"
+  id "org.jetbrains.kotlin.plugin.jpa" version "1.1.50"
 }
 </code></pre>
 <p>其 Maven 示例与上面的类似。</p>

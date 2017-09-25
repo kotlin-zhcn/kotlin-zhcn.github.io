@@ -860,7 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="在-kotlin-中调用-java-代码">在 Kotlin 中调用 Java 代码</h1>
 <p>Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以<!--
 -->很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。</p>
-<p>几乎所有 Java 代码都可以使用而没有任何问题</p>
+<p>几乎所有 Java 代码都可以使用而没有任何问题：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.*
 
 fun demo(source: List&lt;Int&gt;) {
@@ -900,7 +900,7 @@ fun calendarDemo() {
 <h2 id="将-kotlin-中是关键字的-java-标识符进行转义">将 Kotlin 中是关键字的 Java 标识符进行转义</h2>
 <p>一些 Kotlin 关键字在 Java 中是有效标识符：<em class="keyword">in</em>、 <em class="keyword">object</em>、 <em class="keyword">is</em> 等等。
 如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它<!--
--->来调用该方法</p>
+-->来调用该方法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">foo.`is`(bar)
 </code></pre>
 <h2 id="空安全和平台类型">空安全和平台类型</h2>
@@ -1175,15 +1175,15 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 <h2 id="kotlin-中的-java-泛型">Kotlin 中的 Java 泛型</h2>
 <p>Kotlin 的泛型与 Java 有点不同（参见<a href="generics.html">泛型</a>）。当将 Java 类型导入 Kotlin 时，我们会执行一些转换：</p>
 <ul>
-<li>Java 的通配符转换成类型投影
+<li>Java 的通配符转换成类型投影，
     <ul>
-<li><code>Foo&lt;? extends Bar&gt;</code> 转换成 <code>Foo&lt;out Bar!&gt;!</code></li>
-<li><code>Foo&lt;? super Bar&gt;</code> 转换成 <code>Foo&lt;in Bar!&gt;!</code></li>
+<li><code>Foo&lt;? extends Bar&gt;</code> 转换成 <code>Foo&lt;out Bar!&gt;!</code>，</li>
+<li><code>Foo&lt;? super Bar&gt;</code> 转换成 <code>Foo&lt;in Bar!&gt;!</code>；</li>
 </ul>
 </li>
-<li>Java的原始类型转换成星投影
+<li>Java的原始类型转换成星投影，
     <ul>
-<li><code>List</code> 转换成 <code>List&lt;*&gt;!</code>，即 <code>List&lt;out Any?&gt;!</code></li>
+<li><code>List</code> 转换成 <code>List&lt;*&gt;!</code>，即 <code>List&lt;out Any?&gt;!</code>。</li>
 </ul>
 </li>
 </ul>
@@ -1223,18 +1223,18 @@ for (x in array) { // 不会创建迭代器
     print(x)
 }
 </code></pre>
-<p>即使当我们使用索引定位时，也不会引入任何开销</p>
+<p>即使当我们使用索引定位时，也不会引入任何开销：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in array.indices) {// 不会创建迭代器
     array[i] += 2
 }
 </code></pre>
-<p>最后，<em class="keyword">in</em>-检测也没有额外开销</p>
+<p>最后，<em class="keyword">in</em>-检测也没有额外开销：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in array.indices) { // 同 (i &gt;= 0 &amp;&amp; i &lt; array.size)
     print(array[i])
 }
 </code></pre>
 <h2 id="java-可变参数">Java 可变参数</h2>
-<p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引。</p>
+<p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">public class JavaArrayExample {
 
     public void removeIndicesVarArg(int... indices) {
@@ -1272,10 +1272,10 @@ javaObj.removeIndicesVarArg(*array)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
 <h3 id="getclass">getClass()</h3>
-<p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性。</p>
+<p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo::class.java
 </code></pre>
-<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#绑定的类引用自-11-起">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性。</p>
+<p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#绑定的类引用自-11-起">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo.javaClass
 </code></pre>
 <h3 id="clone">clone()</h3>
@@ -1322,7 +1322,7 @@ executor.execute { println("This runs in a thread pool") }
 </code></pre>
 <p>如果 Java 类有多个接受函数式接口的方法，那么可以通过使用<!--
 -->将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需<!--
--->由编译器生成。</p>
+-->由编译器生成：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">executor.execute(Runnable { println("This runs in a thread pool") })
 </code></pre>
 <p>请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个<!--

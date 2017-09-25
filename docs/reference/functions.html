@@ -859,27 +859,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="函数">函数</h1>
 <h2 id="函数声明">函数声明</h2>
-<p>Kotlin 中的函数使用 <em class="keyword">fun</em> 关键字声明</p>
+<p>Kotlin 中的函数使用 <em class="keyword">fun</em> 关键字声明：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int): Int {
     return 2*x
 }
 </code></pre>
 <h2 id="函数用法">函数用法</h2>
-<p>调用函数使用传统的方法</p>
+<p>调用函数使用传统的方法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val result = double(2)
 </code></pre>
-<p>调用成员函数使用点表示法</p>
+<p>调用成员函数使用点表示法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
 </code></pre>
 <h3 id="参数">参数</h3>
-<p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型。</p>
+<p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun powerOf(number: Int, exponent: Int) {
 ……
 }
 </code></pre>
 <h3 id="默认参数">默认参数</h3>
 <p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少<!--
--->重载数量。</p>
+-->重载数量：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) {
 ……
 }
@@ -908,7 +908,7 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 </code></pre>
 <h3 id="命名参数">命名参数</h3>
 <p>可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。</p>
-<p>给定以下函数</p>
+<p>给定以下函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun reformat(str: String,
              normalizeCase: Boolean = true,
              upperCaseFirstLetter: Boolean = true,
@@ -917,13 +917,13 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 ……
 }
 </code></pre>
-<p>我们可以使用默认参数来调用它</p>
+<p>我们可以使用默认参数来调用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str)
 </code></pre>
-<p>然而，当使用非默认参数调用它时，该调用看起来就像</p>
+<p>然而，当使用非默认参数调用它时，该调用看起来就像：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, true, true, false, '_')
 </code></pre>
-<p>使用命名参数我们可以使代码更具有可读性</p>
+<p>使用命名参数我们可以使代码更具有可读性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str,
     normalizeCase = true,
     upperCaseFirstLetter = true,
@@ -931,7 +931,7 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
     wordSeparator = '_'
 )
 </code></pre>
-<p>并且如果我们不需要所有的参数</p>
+<p>并且如果我们不需要所有的参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, wordSeparator = '_')
 </code></pre>
 <p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
@@ -945,7 +945,7 @@ foo(strings = "a") // 对于单个值不需要星号
 -->总是保留函数参数的名称。</p>
 <h3 id="返回-unit-的函数">返回 Unit 的函数</h3>
 <p>如果一个函数不返回任何有用的值，它的返回类型是 <code>Unit</code>。<code>Unit</code> 是一种只有一个值——<code>Unit</code> 的类型。这个<!--
--->值不需要显式返回</p>
+-->值不需要显式返回：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun printHello(name: String?): Unit {
     if (name != null)
         println("Hello ${name}")
@@ -954,16 +954,16 @@ foo(strings = "a") // 对于单个值不需要星号
     // `return Unit` 或者 `return` 是可选的
 }
 </code></pre>
-<p><code>Unit</code> 返回类型声明也是可选的。上面的代码等同于</p>
+<p><code>Unit</code> 返回类型声明也是可选的。上面的代码等同于：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun printHello(name: String?) {
     ……
 }
 </code></pre>
 <h3 id="单表达式函数">单表达式函数</h3>
-<p>当函数返回单个表达式时，可以省略花括号并且在 <strong>=</strong> 符号之后指定代码体即可</p>
+<p>当函数返回单个表达式时，可以省略花括号并且在 <strong>=</strong> 符号之后指定代码体即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int): Int = x * 2
 </code></pre>
-<p>当返回值类型可由编译器推断时，显式声明返回类型是<a href="#显式返回类型">可选</a>的</p>
+<p>当返回值类型可由编译器推断时，显式声明返回类型是<a href="#显式返回类型">可选</a>的：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int) = x * 2
 </code></pre>
 <h3 id="显式返回类型">显式返回类型</h3>
@@ -994,9 +994,9 @@ val list = asList(-1, 0, *a, 4)
 <h3 id="中缀表示法">中缀表示法</h3>
 <p>函数还可以用中缀表示法调用，当</p>
 <ul>
-<li>他们是成员函数或<a href="extensions.html">扩展函数</a></li>
-<li>他们只有一个参数</li>
-<li>他们用 <code>infix</code> 关键字标注</li>
+<li>他们是成员函数或<a href="extensions.html">扩展函数</a>；</li>
+<li>他们只有一个参数；</li>
+<li>他们用 <code>infix</code> 关键字标注。</li>
 </ul>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 给 Int 定义扩展
 infix fun Int.shl(x: Int): Int {
@@ -1015,7 +1015,7 @@ infix fun Int.shl(x: Int): Int {
 <p>在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外<!--
 -->除了顶层函数，Kotlin 中函数也可以声明在局部作用域、作为成员函数以及扩展函数。</p>
 <h3 id="局部函数">局部函数</h3>
-<p>Kotlin 支持局部函数，即一个函数在另一个函数内部</p>
+<p>Kotlin 支持局部函数，即一个函数在另一个函数内部：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun dfs(graph: Graph) {
     fun dfs(current: Vertex, visited: Set&lt;Vertex&gt;) {
         if (!visited.add(current)) return
@@ -1026,7 +1026,7 @@ infix fun Int.shl(x: Int): Int {
     dfs(graph.vertices[0], HashSet())
 }
 </code></pre>
-<p>局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，<em>visited</em> 可以是局部变量。</p>
+<p>局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，<em>visited</em> 可以是局部变量：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun dfs(graph: Graph) {
     val visited = HashSet&lt;Vertex&gt;()
     fun dfs(current: Vertex) {
@@ -1039,32 +1039,32 @@ infix fun Int.shl(x: Int): Int {
 }
 </code></pre>
 <h3 id="成员函数">成员函数</h3>
-<p>成员函数是在类或对象内部定义的函数</p>
+<p>成员函数是在类或对象内部定义的函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Sample() {
     fun foo() { print("Foo") }
 }
 </code></pre>
-<p>成员函数以点表示法调用</p>
+<p>成员函数以点表示法调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
 </code></pre>
-<p>关于类和覆盖成员的更多信息参见<a href="classes.html">类</a>和<a href="classes.html#继承">继承</a></p>
+<p>关于类和覆盖成员的更多信息参见<a href="classes.html">类</a>和<a href="classes.html#继承">继承</a>。</p>
 <h2 id="泛型函数">泛型函数</h2>
-<p>函数可以有泛型参数，通过在函数名前使用尖括号指定。</p>
+<p>函数可以有泛型参数，通过在函数名前使用尖括号指定：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
     // ……
 }
 </code></pre>
-<p>关于泛型函数的更多信息参见<a href="generics.html">泛型</a></p>
+<p>关于泛型函数的更多信息参见<a href="generics.html">泛型</a>。</p>
 <h2 id="内联函数">内联函数</h2>
-<p>内联函数在<a href="inline-functions.html">这里</a>讲述</p>
+<p>内联函数在<a href="inline-functions.html">这里</a>讲述。</p>
 <h2 id="扩展函数">扩展函数</h2>
-<p>扩展函数在<a href="extensions.html">其自有章节</a>讲述</p>
+<p>扩展函数在<a href="extensions.html">其自有章节</a>讲述。</p>
 <h2 id="高阶函数和-lambda-表达式">高阶函数和 Lambda 表达式</h2>
-<p>高阶函数和 Lambda 表达式在<a href="lambdas.html">其自有章节</a>讲述</p>
+<p>高阶函数和 Lambda 表达式在<a href="lambdas.html">其自有章节</a>讲述。</p>
 <h2 id="尾递归函数">尾递归函数</h2>
 <p>Kotlin 支持一种称为<a href="https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8">尾递归</a>的函数式编程风格。
 这允许一些通常用循环写的算法改用递归函数来写，而无堆栈溢出的风险。
-当一个函数用 <code>tailrec</code> 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本。</p>
+当一个函数用 <code>tailrec</code> 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 </code></pre>

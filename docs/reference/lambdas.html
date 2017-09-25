@@ -884,8 +884,8 @@ val result = lock(lock, ::toBeSynchronized)
 </code></pre>
 <p>Lambda 表达式在<a href="#lambda-表达式与匿名函数">下文会有更详细的</a>描述，但为了继续这一段，让我们看一个简短的概述：</p>
 <ul>
-<li>lambda 表达式总是被大括号括着，</li>
-<li>其参数（如果有的话）在 <code>-&gt;</code> 之前声明（参数类型可以省略），</li>
+<li>lambda 表达式总是被大括号括着；</li>
+<li>其参数（如果有的话）在 <code>-&gt;</code> 之前声明（参数类型可以省略）；</li>
 <li>函数体（如果存在的话）在 <code>-&gt;</code> 后面。</li>
 </ul>
 <p>在 Kotlin 中有一个约定，如果函数的最后一个参数是一个函数，并且你传递一个 lambda 表达式作为相应的参数，你可以在圆括号之外指定它：</p>
@@ -927,7 +927,7 @@ val result = lock(lock, ::toBeSynchronized)
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">max(strings, { a, b -&gt; a.length &lt; b.length })
 </code></pre>
 <p>函数 <code>max</code> 是一个高阶函数，换句话说它接受一个函数作为第二个参数。
-其第二个参数是一个表达式，它本身是一个函数，即函数字面值。写成函数的话，它相当于</p>
+其第二个参数是一个表达式，它本身是一个函数，即函数字面值。写成函数的话，它相当于：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun compare(a: String, b: String): Boolean = a.length &lt; b.length
 </code></pre>
 <h3 id="函数类型">函数类型</h3>

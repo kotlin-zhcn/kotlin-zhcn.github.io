@@ -859,21 +859,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="区间">区间</h1>
 <p>区间表达式由具有操作符形式 <code>..</code> 的 <code>rangeTo</code> 函数辅以 <em class="keyword">in</em> 和 <em class="keyword">!in</em> 形成。
-区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例</p>
+区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in 1..10) { // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10
     println(i)
 }
 </code></pre>
 <p>整型区间（<code>IntRange</code>、 <code>LongRange</code>、 <code>CharRange</code>）有一个额外的特性：它们可以迭代。
-编译器负责将其转换为类似 Java 的基于索引的 <em class="keyword">for</em>-循环而无额外开销。</p>
+编译器负责将其转换为类似 Java 的基于索引的 <em class="keyword">for</em>-循环而无额外开销：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4) print(i) // 输出“1234”
 
 for (i in 4..1) print(i) // 什么都不输出
 </code></pre>
-<p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数</p>
+<p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 4 downTo 1) print(i) // 输出“4321”
 </code></pre>
-<p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此</p>
+<p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4 step 2) print(i) // 输出“13”
 
 for (i in 4 downTo 1 step 2) print(i) // 输出“42”
@@ -930,7 +930,7 @@ fun Byte.downTo(other: Int): IntProgression {
 }
 </code></pre>
 <h3 id="reversed"><code>reversed()</code></h3>
-<p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列。</p>
+<p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
     return IntProgression.fromClosedRange(last, first, -step)
 }
@@ -938,7 +938,7 @@ fun Byte.downTo(other: Int): IntProgression {
 <h3 id="step"><code>step()</code></h3>
 <p>扩展函数 <code>step()</code> 是为每个 <code>*Progression</code> 类定义的，
 所有这些函数都返回带有修改了 <code>step</code> 值（函数参数）的数列。
-步长（step）值必须始终为正，因此该函数不会更改迭代的方向。</p>
+步长（step）值必须始终为正，因此该函数不会更改迭代的方向：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.step(step: Int): IntProgression {
     if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
     return IntProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)

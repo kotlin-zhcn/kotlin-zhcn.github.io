@@ -873,7 +873,7 @@ else {
 </code></pre>
 <h2 id="智能转换">智能转换</h2>
 <p>在许多情况下，不需要在 Kotlin 中使用显式转换操作符，因为编译器跟踪<!--
--->不可变值的 <code>is</code>-检查，并在需要时自动插入（安全的）转换：</p>
+-->不可变值的 <code>is</code>-检查以及<a href="#不安全的转换操作符">显式转换</a>，并在需要时自动插入（安全的）转换：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun demo(x: Any) {
     if (x is String) {
         print(x.length) // x 自动转换为字符串

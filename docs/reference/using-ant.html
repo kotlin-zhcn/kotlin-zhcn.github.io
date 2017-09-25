@@ -859,13 +859,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="获取-ant-任务">获取 Ant 任务</h2>
 <p>Kotlin 为 Ant 提供了三个任务：</p>
 <ul>
-<li>kotlinc: 针对 JVM 的 Kotlin 编译器</li>
-<li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器</li>
-<li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务</li>
+<li>kotlinc: 针对 JVM 的 Kotlin 编译器；</li>
+<li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器；</li>
+<li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务。</li>
 </ul>
-<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.1.4-3">Kotlin 编译器</a>的 <em>lib</em> 文件夹中</p>
+<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.1.50">Kotlin 编译器</a>的 <em>lib</em> 文件夹中</p>
 <h2 id="针对-jvm-只用-kotlin-源代码">针对 JVM 只用 Kotlin 源代码</h2>
-<p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务</p>
+<p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -876,7 +876,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>其中 ${kotlin.lib} 指向解压缩 Kotlin 独立编译器所在文件夹。</p>
 <h2 id="针对-jvm-只用-kotlin-源代码且多根">针对 JVM 只用 Kotlin 源代码且多根</h2>
-<p>如果项目由多个源代码根组成，那么使用 <em>src</em> 作为元素来定义路径</p>
+<p>如果项目由多个源代码根组成，那么使用 <em>src</em> 作为元素来定义路径：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -890,7 +890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h2 id="针对-jvm-使用-kotlin-和-java-源代码">针对 JVM 使用 Kotlin 和 Java 源代码</h2>
 <p>如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 <em>kotlinc</em> 来避免任务参数的重复，但是<!--
--->建议使用 <em>withKotlin</em> 任务</p>
+-->建议使用 <em>withKotlin</em> 任务：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -935,7 +935,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 <code>metaInfo</code> 选项会很有用。
 如果 <code>metaInfo</code> 设置为 <code>true</code>，则在编译期间将创建具有<!--
 -->二进制元数据的额外的 JS 文件。该文件应该与翻译<!--
--->结果一起分发。</p>
+-->结果一起分发：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
@@ -946,7 +946,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 &lt;/project&gt;
 </code></pre>
 <h2 id="参考">参考</h2>
-<p>元素和属性的完整列表如下</p>
+<p>元素和属性的完整列表如下：</p>
 <h3 id="kotlinc-和-kotlin2js-的公共属性">kotlinc 和 kotlin2js 的公共属性</h3>
 <table>
 <thead>

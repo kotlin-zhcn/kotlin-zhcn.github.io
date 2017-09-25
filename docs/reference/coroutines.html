@@ -932,21 +932,21 @@ public abstract class SequenceBuilder&lt;in T&gt; {
 <h2 id="标准-api">标准 API</h2>
 <p>协程有三个主要组成部分：</p>
 <ul>
-<li>语言支持（即如上所述的挂起功能），</li>
-<li>Kotlin 标准库中的底层核心 API，</li>
+<li>语言支持（即如上所述的挂起功能）；</li>
+<li>Kotlin 标准库中的底层核心 API；</li>
 <li>可以直接在用户代码中使用的高级 API。</li>
 </ul>
 <h3 id="底层-apikotlincoroutines">底层 API：<code>kotlin.coroutines</code></h3>
 <p>底层 API 相对较小，并且除了创建更高级的库之外，不应该使用它。 它由两个主要包组成：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html"><code>kotlin.coroutines.experimental</code></a> 带有主要类型与下述原语
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/index.html"><code>kotlin.coroutines.experimental</code></a> 带有主要类型与下述原语：
     <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html"><code>createCoroutine()</code></a></li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html"><code>startCoroutine()</code></a></li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html"><code>suspendCoroutine()</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/create-coroutine.html"><code>createCoroutine()</code></a>，</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/start-coroutine.html"><code>startCoroutine()</code></a>，</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/suspend-coroutine.html"><code>suspendCoroutine()</code></a>；</li>
 </ul>
 </li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html"><code>kotlin.coroutines.experimental.intrinsics</code></a> 带有甚至更底层的内在函数如 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html"><code>suspendCoroutineOrReturn</code></a></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/index.html"><code>kotlin.coroutines.experimental.intrinsics</code></a> 带有甚至更底层的内在函数如 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental.intrinsics/suspend-coroutine-or-return.html"><code>suspendCoroutineOrReturn</code></a>。</li>
 </ul>
 <p>关于这些 API 用法的更多细节可以在<a href="https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md">这里</a>找到。</p>
 <h3 id="kotlincoroutines-中的生成器-api"><code>kotlin.coroutines</code> 中的生成器 API</h3>
@@ -1045,16 +1045,16 @@ fun main(args: Array&lt;String&gt;) {
 <p>只有与协程相关的核心 API 可以从 Kotlin 标准库获得。这主要包括所有基于协程的库可能使用的核心原语和接口。</p>
 <p>大多数基于协程的应用程序级API都作为单独的库发布：<a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>。这个库覆盖了</p>
 <ul>
-<li>使用 <code>kotlinx-coroutines-core</code> 的平台无关异步编程
+<li>使用 <code>kotlinx-coroutines-core</code> 的平台无关异步编程：
     <ul>
-<li>此模块包括支持 <code>select</code> 和其他便利原语的类似 Go 的管道</li>
-<li>这个库的综合指南<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">在这里</a>。</li>
+<li>此模块包括支持 <code>select</code> 和其他便利原语的类似 Go 的管道，</li>
+<li>这个库的综合指南<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md">在这里</a>；</li>
 </ul>
 </li>
-<li>基于 JDK 8 中的 <code>CompletableFuture</code> 的 API：<code>kotlinx-coroutines-jdk8</code></li>
-<li>基于 JDK 7 及更高版本 API 的非阻塞 IO（NIO）：<code>kotlinx-coroutines-nio</code></li>
-<li>支持 Swing (<code>kotlinx-coroutines-swing</code>) 和 JavaFx (<code>kotlinx-coroutines-javafx</code>)</li>
-<li>支持 RxJava：<code>kotlinx-coroutines-rx</code></li>
+<li>基于 JDK 8 中的 <code>CompletableFuture</code> 的 API：<code>kotlinx-coroutines-jdk8</code>；</li>
+<li>基于 JDK 7 及更高版本 API 的非阻塞 IO（NIO）：<code>kotlinx-coroutines-nio</code>；</li>
+<li>支持 Swing (<code>kotlinx-coroutines-swing</code>) 和 JavaFx (<code>kotlinx-coroutines-javafx</code>)；</li>
+<li>支持 RxJava：<code>kotlinx-coroutines-rx</code>。</li>
 </ul>
 <p>这些库既作为使通用任务易用的便利的 API，也作为如何构建基于协程的库的端到端示例。</p>
 

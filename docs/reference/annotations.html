@@ -968,15 +968,15 @@ package org.jetbrains.demo
 </code></pre>
 <p>支持的使用处目标的完整列表为：</p>
 <ul>
-<li><code>file</code></li>
-<li><code>property</code>（具有此目标的注解对 Java 不可见）</li>
-<li><code>field</code></li>
-<li><code>get</code>（属性 getter）</li>
-<li><code>set</code>（属性 setter）</li>
-<li><code>receiver</code>（扩展函数或属性的接收者参数）</li>
-<li><code>param</code>（构造函数参数）</li>
-<li><code>setparam</code>（属性 setter 参数）</li>
-<li><code>delegate</code>（为委托属性存储其委托实例的字段）</li>
+<li><code>file</code>；</li>
+<li><code>property</code>（具有此目标的注解对 Java 不可见）；</li>
+<li><code>field</code>；</li>
+<li><code>get</code>（属性 getter）；</li>
+<li><code>set</code>（属性 setter）；</li>
+<li><code>receiver</code>（扩展函数或属性的接收者参数）；</li>
+<li><code>param</code>（构造函数参数）；</li>
+<li><code>setparam</code>（属性 setter 参数）；</li>
+<li><code>delegate</code>（为委托属性存储其委托实例的字段）。</li>
 </ul>
 <p>要标注扩展函数的接收者参数，请使用以下语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun @receiver:Fancy String.myExtension() { }
@@ -984,9 +984,9 @@ package org.jetbrains.demo
 <p>如果不指定使用处目标，则根据正在使用的注解的 <code>@Target</code> 注解来选择目标
 。如果有多个适用的目标，则使用以下列表中的第一个适用目标：</p>
 <ul>
-<li><code>param</code></li>
-<li><code>property</code></li>
-<li><code>field</code></li>
+<li><code>param</code>;</li>
+<li><code>property</code>;</li>
+<li><code>field</code>.</li>
 </ul>
 <h2 id="java-注解">Java 注解</h2>
 <p>Java 注解与 Kotlin 100% 兼容：</p>
@@ -1006,7 +1006,7 @@ class Tests {
 }
 </code></pre>
 <p>因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用<!--
--->语法来传递参数。相反，你需要使用命名参数语法。</p>
+-->语法来传递参数。相反，你需要使用命名参数语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface Ann {
     int intValue();
@@ -1016,7 +1016,7 @@ public @interface Ann {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin
 @Ann(intValue = 1, stringValue = "abc") class C
 </code></pre>
-<p>就像在 Java 中一样，一个特殊的情况是 <code>value</code> 参数；它的值无需显式名称指定。</p>
+<p>就像在 Java 中一样，一个特殊的情况是 <code>value</code> 参数；它的值无需显式名称指定：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface AnnWithValue {
     String value();
@@ -1043,7 +1043,7 @@ public @interface AnnWithArrayMethod {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin
 @AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
 </code></pre>
-<p>注解实例的值会作为属性暴露给 Kotlin 代码。</p>
+<p>注解实例的值会作为属性暴露给 Kotlin 代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface Ann {
     int value();

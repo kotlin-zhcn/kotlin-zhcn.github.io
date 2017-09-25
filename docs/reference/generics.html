@@ -1042,7 +1042,7 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
     // ……
 }
 </code></pre>
-<p>冒号之后指定的类型是<strong>上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如</p>
+<p>冒号之后指定的类型是<strong>上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">sort(listOf(1, 2, 3)) // OK。Int 是 Comparable&lt;Int&gt; 的子类型
 sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt; 不是 Comparable&lt;HashMap&lt;Int, String&gt;&gt; 的子类型
 </code></pre>
