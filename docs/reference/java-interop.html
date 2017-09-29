@@ -949,6 +949,96 @@ Kotlin 类型。编译器支持多种可空性注解，包括：</p>
 <li>Lombok（<code>lombok.NonNull</code>）。</li>
 </ul>
 <p>你可以在 <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt">Kotlin 编译器源代码</a>中找到完整的列表。</p>
+<h4 id="jsr-305-support">JSR-305 Support</h4>
+<p>The <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a> annotation defined 
+in <a href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> is supported for denoting nullability of Java types.</p>
+<p>If the <code>@Nonnull(when = ...)</code> value is <code>When.ALWAYS</code>, the annotated type is treated as non-null; <code>When.MAYBE</code> and 
+<code>When.NEVER</code> denote a nullable type; and <code>When.UNKNOWN</code> forces the type to be <a href="#null-safety-and-platform-types">platform one</a>.</p>
+<p>A library can be compiled against the JSR-305 annotations, but there's no need to make the annotations artifact (e.g. <code>jsr305.jar</code>)
+a compile dependency for the library consumers. The Kotlin compiler can read the JSR-305 annotations from a library without the annotations 
+present on the classpath.</p>
+<p>Since Kotlin 1.1.50, 
+<a href="https://github.com/Kotlin/KEEP/blob/41091f1cc7045142181d8c89645059f4a15cc91a/proposals/jsr-305-custom-nullability-qualifiers.md">custom nullability qualifiers (KEEP-79)</a> 
+are also supported (see below).</p>
+<h5 id="type-qualifier-nicknames-since-1150">Type qualifier nicknames (since 1.1.50)</h5>
+<p>If an annotation type is annotated with both
+<a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html"><code>@TypeQualifierNickname</code></a> 
+and JSR-305 <code>@Nonnull</code> (or its another nickname, such as <code>@CheckForNull</code>), then the annotation type is itself used for 
+retrieving precise nullability and has the same meaning as that nullability annotation:</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">@TypeQualifierNickname
+@Nonnull(when = When.ALWAYS)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyNonnull {
+}
+
+@TypeQualifierNickname
+@CheckForNull // a nickname to another type qualifier nickname
+@Retention(RetentionPolicy.RUNTIME)
+public @interface MyNullable {
+}
+
+interface A {
+    @MyNullable String foo(@MyNonnull String x); // seen as `fun foo(x: String): String?`
+    String bar(List&lt;@MyNonnull String&gt; x);       // seen as `fun bar(x: List&lt;String&gt;!): String!`
+}
+</code></pre>
+<h5 id="type-qualifier-defaults-since-1150">Type qualifier defaults (since 1.1.50)</h5>
+<p><a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html"><code>@TypeQualifierDefault</code></a> 
+allows introducing annotations that, when being applied, define the default nullability within the scope of the annotated 
+element.</p>
+<p>Such annotation type should itself be annotated with both <code>@Nonnull</code> (or its nickname) and <code>@TypeQualifierDefault(...)</code> 
+with one or more <code>ElementType</code> values:</p>
+<ul>
+<li><code>ElementType.METHOD</code> for return types of methods;</li>
+<li><code>ElementType.PARAMETER</code> for value parameters;</li>
+<li><code>ElementType.FIELD</code> for fields.</li>
+</ul>
+<p>The default nullability is used when a type itself is not annotated by a nullability annotation, and the default is
+determined by the innermost enclosing element annotated with a type qualifier default annotation with the 
+<code>ElementType</code> matching the type usage.</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">@Nonnull
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+public @interface NonNullApi {
+}
+
+@Nonnull(when = When.MAYBE)
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+public @interface NullableApi {
+}
+
+@NullableApi
+interface A {
+    String foo(String x); // fun foo(x: String?): String?
+ 
+    @NotNullApi // overriding default from the interface
+    String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
+    
+    // The type of `x` parameter remains platform because there's explicit UNKNOWN-marked
+    // nullability annotation:
+    String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
+}
+</code></pre>
+<p>Package-level default nullability is also supported:</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">// FILE: test/package-info.java
+@NonNullApi // declaring all types in package 'test' as non-nullable by default
+package test;
+</code></pre>
+<h5 id="compiler-configuration">Compiler configuration</h5>
+<p>The JSR-305 checks can be configured by adding the <code>-Xjsr305</code> compiler flag with one of the values:</p>
+<ul>
+<li>
+<p><code>-Xjsr305=strict</code> makes JSR-305 annotation work as any plain nullability annotation, i.e. reporting error for 
+the inappropriate usages of the annotated types;</p>
+</li>
+<li>
+<p><code>-Xjsr305=warn</code> makes the inappropriate usages produce compilation warnings instead of errors;</p>
+</li>
+<li>
+<p><code>-Xjsr305=ignore</code> makes the compiler ignore the JSR-305 nullability annotations completely.</p>
+</li>
+</ul>
+<p>For kotlin versions 1.1.50+/1.2, the default behavior is the same to <code>-Xjsr305=warn</code>. The
+<code>strict</code> value should be considered experimental (more checks may be added to it in the future).</p>
 <h2 id="已映射类型">已映射类型</h2>
 <p>Kotlin 特殊处理一部分 Java 类型。这样的类型不是“按原样”从 Java 加载，而是 <em>映射</em> 到相应的 Kotlin 类型。
 映射只发生在编译期间，运行时表示保持不变。

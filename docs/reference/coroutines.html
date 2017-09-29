@@ -1004,7 +1004,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>运行上面的代码看，是不是我们输出前三个元素的数字与生成循环的 <code>STEP</code> 有交叉。这意味着计算确实是惰性的。要输出 <code>1</code>，我们只执行到第一个 <code>yield(i)</code>，并且过程中会输出 <code>START</code>。然后，输出 <code>2</code>，我们需要继续下一个 <code>yield(i)</code>，并会输出 <code>STEP</code>。<code>3</code> 也一样。永远不会输出再下一个 <code>STEP</code>（以及<code>END</code>），因为我们再也没有请求序列的后续元素。</p>
+<p>运行上述代码会输出前三个元素。这些数字与生成循环中的 <code>STEP</code> 相交叉。这意味着计算确实是惰性的。要输出 <code>1</code>，我们只执行到第一个 <code>yield(i)</code>，并且过程中会输出 <code>START</code>。然后，输出 <code>2</code>，我们需要继续下一个 <code>yield(i)</code>，并会输出 <code>STEP</code>。<code>3</code> 也一样。永远不会输出再下一个 <code>STEP</code>（以及<code>END</code>），因为我们再也没有请求序列的后续元素。</p>
 <p>为了一次产生值的集合（或序列），可以使用 <code>yieldAll()</code> 函数：</p>
 <div class="sample" data-min-compiler-version="1.1">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
