@@ -555,6 +555,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/multiplatform.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台项目（预览版）</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -939,20 +948,20 @@ println(files?.size)
 println(files?.size ?: "empty")
 </code></pre>
 <h3 id="if-null-执行一个语句">if null 执行一个语句</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
-val email = data["email"] ?: throw IllegalStateException("Email is missing!")
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val values = ……
+val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 </code></pre>
 <h3 id="if-not-null-执行代码">if not null 执行代码</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val value = ……
 
-data?.let {
+value?.let {
     …… // 代码会执行到此处, 假如data不为null
 }
 </code></pre>
 <h3 id="映射可空值如果非空的话">映射可空值（如果非空的话）</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val data = ……
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val value = ……
 
-val mapped = data?.let { transformData(it) } ?: defaultValueIfDataIsNull
+val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
 </code></pre>
 <h3 id="返回-when-表达式">返回 when 表达式</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int {
