@@ -1039,6 +1039,16 @@ print(sum)
 如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = fun Int.(other: Int): Int = this + other
 </code></pre>
+<p>带有接收者的函数类型的字面值可以在赋值或者传参中用于期待具有<!--
+-->多出<em>第一个</em>参数为接收者类型的普通函数的地方，反之亦然。例如，类型 <code>String.(Int) -&gt; Boolean</code> 与 <code>(String, Int) -&gt; Boolean</code> 兼容：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val represents: String.(Int) -&gt; Boolean = { other -&gt; toIntOrNull() == other }
+println("123".represents(123)) // true
+
+fun testOperation(op: (String, Int) -&gt; Boolean, a: String, b: Int, c: Boolean) =
+    assert(op(a, b) == c)
+
+testOperation(represents, "100", 100, true) // OK
+</code></pre>
 <p>当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class HTML {
     fun body() { …… }
