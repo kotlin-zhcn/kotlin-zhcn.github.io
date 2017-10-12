@@ -892,6 +892,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ……
 }
 </code></pre>
+<blockquote>
+<p><strong>注意：</strong>目前挂起函数类型不能用作超类型，并且目前不支持匿名挂起函数。</p>
+</blockquote>
 <p>继续该类比，<code>await()</code> 可以是一个挂起函数（因此也可以在一个 <code>async {}</code> 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">async {
     ……
