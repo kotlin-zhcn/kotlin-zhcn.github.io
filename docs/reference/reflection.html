@@ -29,16 +29,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/reference/reflection.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
@@ -930,12 +928,11 @@ println(strings.filter(oddLength)) // 输出 "[a, abc]"
 </code></pre>
 <h2 id="属性引用">属性引用</h2>
 <p>要把属性作为 Kotlin中 的一等对象来访问，我们也可以使用 <code>::</code> 运算符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var x = 1
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val x = 1
 
 fun main(args: Array&lt;String&gt;) {
     println(::x.get()) // 输出 "1"
-    ::x.set(2)
-    println(x)         // 输出 "2"
+    println(::x.name)  // 输出 "x"
 }
 </code></pre>
 <p>表达式 <code>::x</code> 求值为 <code>KProperty&lt;Int&gt;</code> 类型的属性对象，它允许我们使用
@@ -943,6 +940,13 @@ fun main(args: Array&lt;String&gt;) {
 --><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-property/index.html">关于 <code>KProperty</code> 类的文档</a>。</p>
 <p>对于可变属性，例如 <code>var y = 1</code>，<code>::y</code> 返回 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-mutable-property/index.html"><code>KMutableProperty&lt;Int&gt;</code></a> 类型的一个值，
 该类型有一个 <code>set()</code> 方法。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">var y = 1
+
+fun main(args: Array&lt;String&gt;) {
+    ::y.set(2)
+    println(y) // 输出 "2"
+}
+</code></pre>
 <p>属性引用可以用在不需要参数的函数处：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val strs = listOf("a", "bc", "def")
 println(strs.map(String::length)) // 输出 [1, 2, 3]

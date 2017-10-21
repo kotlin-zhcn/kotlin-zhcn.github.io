@@ -29,16 +29,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/reference/basic-syntax.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
@@ -930,7 +928,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>参见<a href="functions.html">函数</a>。</p>
-<h2 id="定义局部变量">定义局部变量</h2>
+<h2 id="定义变量">定义变量</h2>
 <p>一次赋值（只读）的局部变量:</p>
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -952,6 +950,25 @@ fun main(args: Array&lt;String&gt;) {
     x += 1
 //sampleEnd
     println("x = $x")
+}
+</code></pre>
+</div>
+<p>顶层变量：</p>
+<div class="sample">
+<pre><code class="language-kotlin">//sampleStart
+val PI = 3.14
+var x = 0
+
+fun incrementX() { 
+    x += 1 
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    println("x = $x; PI = $PI")
+    incrementX()
+    println("incrementX()")
+    println("x = $x; PI = $PI")
 }
 </code></pre>
 </div>
@@ -1029,7 +1046,7 @@ fun printProduct(arg1: String, arg2: String) {
     val x = parseInt(arg1)
     val y = parseInt(arg2)
 
-    // 直接使用 `x * y` 可能会报错，因为他们可能为 null
+    // 直接使用 `x * y` 会导致编译错误，因为他们可能为 null
     if (x != null &amp;&amp; y != null) {
         // 在空检测后，x 和 y 会自动转换为非空值（non-nullable）
         println(x * y)

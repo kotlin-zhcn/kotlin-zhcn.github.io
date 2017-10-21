@@ -29,16 +29,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/reference/delegated-properties.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description"
-          content="Kotlin 针对是 JVM、Android 和浏览器的静态类型编程语言，可与 Java 进行 100％ 互操作">
+    <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
@@ -1051,21 +1049,26 @@ class C {
 -->创建属性委托实例。</p>
 <p><code>provideDelegate</code> 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检查属性一致性。</p>
 <p>例如，如果要在绑定之前检查属性名称，可以这样写：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class ResourceLoader&lt;T&gt;(id: ResourceID&lt;T&gt;) {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class ResourceDelegate&lt;T&gt; : ReadOnlyProperty&lt;MyUI, T&gt; {
+    override fun getValue(thisRef: MyUI, property: KProperty&lt;*&gt;): T { ... }
+}
+    
+class ResourceLoader&lt;T&gt;(id: ResourceID&lt;T&gt;) {
     operator fun provideDelegate(
             thisRef: MyUI,
             prop: KProperty&lt;*&gt;
     ): ReadOnlyProperty&lt;MyUI, T&gt; {
         checkProperty(thisRef, prop.name)
         // 创建委托
+        return ResourceDelegate()
     }
 
     private fun checkProperty(thisRef: MyUI, name: String) { …… }
 }
 
-fun &lt;T&gt; bindResource(id: ResourceID&lt;T&gt;): ResourceLoader&lt;T&gt; { …… }
-
 class MyUI {
+    fun &lt;T&gt; bindResource(id: ResourceID&lt;T&gt;): ResourceLoader&lt;T&gt; { …… }
+
     val image by bindResource(ResourceID.image_id)
     val text by bindResource(ResourceID.text_id)
 }
