@@ -425,7 +425,7 @@ kotlin {
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
     ...
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.18"
+    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.19.2"
 }
 </code></pre>
 <p>This library is published to Bintray JCenter repository, so let us add it:</p>
@@ -457,7 +457,7 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jetbrains.kotlinx&lt;/groupId&gt;
         &lt;artifactId&gt;kotlinx-coroutines-core&lt;/artifactId&gt;
-        &lt;version&gt;0.18&lt;/version&gt;
+        &lt;version&gt;0.19.2&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
@@ -476,11 +476,13 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
 The biggest difference is that coroutines are very cheap, almost free: we can create thousands of them, and pay very little in terms of performance.
 True threads, on the other hand, are expensive to start and keep around. A thousand threads can be a serious challenge for a modern machine.</p>
 <p>So, how do we start a coroutine? Let's use the <code>launch {}</code> function:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">launch(CommonPool) {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">launch {
     ...
 }
 </code></pre>
-<p>This starts a new coroutine on a given thread pool. In this case we are using <code>CommonPool</code> that uses <code>ForkJoinPool.commonPool()</code>. Threads still exist in a program based on coroutines, but one thread can run many coroutines, so there's no need for too many threads.</p>
+<p>This starts a new coroutine. By default, coroutines are run on a shared pool of threads. 
+Threads still exist in a program based on coroutines, but one thread can run many coroutines, so there's no need for 
+too many threads.</p>
 <p>Let's look at a full program that uses <code>launch</code>:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.coroutines.experimental.*
 
@@ -488,7 +490,7 @@ fun main(args: Array&lt;String&gt;) {
     println("Start")
 
     // Start a coroutine
-    launch(CommonPool) {
+    launch {
         delay(1000)
         println("Hello")
     }
@@ -528,7 +530,7 @@ println(c.get())
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val c = AtomicInteger()
 
 for (i in 1..1_000_000)
-    launch(CommonPool) {
+    launch {
         c.addAndGet(i)
     }
 
@@ -540,7 +542,7 @@ println(c.get())
 <p>Another way of starting a coroutine is <code>async {}</code>. It is like <code>launch {}</code>, but returns an instance of <code>Deferred&lt;T&gt;</code>, which has an <code>await()</code> function that returns the result of the coroutine. <code>Deferred&lt;T&gt;</code> is a very basic <a href="https://en.wikipedia.org/wiki/Futures_and_promises">future</a> (fully-fledged JDK futures are also supported, but here we'll confine ourselves to <code>Deferred</code> for now).</p>
 <p>Let's create a million coroutines again, keeping their <code>Deferred</code> objects. Now there's no need in the atomic counter, as we can just return the numbers to be added from our coroutines:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val deferred = (1..1_000_000).map { n -&gt;
-    async (CommonPool) {
+    async {
         n
     }
 }
@@ -561,7 +563,7 @@ println(c.get())
 <p>Now it prints something sensible: <code>1784293664</code>, because all coroutines complete.</p>
 <p>Let's also make sure that our coroutines actually run in parallel. If we add a 1-second <code>delay()</code> to each of the <code>async</code>'s, the resulting program won't run for 1'000'000 seconds (over 11,5 days):</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val deferred = (1..1_000_000).map { n -&gt;
-    async (CommonPool) {
+    async {
         delay(1000)
         n
     }
@@ -586,7 +588,7 @@ println(c.get())
 }
 </code></pre>
 <p>Now when we call <code>workload()</code> from a coroutine, the compiler knows that it may suspend and will prepare accordingly:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">async (CommonPool) {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">async {
     workload(n)
 }
 </code></pre>
