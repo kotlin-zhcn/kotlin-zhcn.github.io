@@ -83,9 +83,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="icon"></div>
     </div>
 </nav>        </div>
-        <a class="conference-banner" href="https://kotlinconf.com/?utm_source=kotlinlang&utm_medium=web&utm_campaign=regular-admission">
-            <div class="conference-banner__img"></div>
-        </a>
     </div>
 
     <div class="g-layout">
@@ -864,16 +861,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="使用-kotlin-注解处理工具">使用 Kotlin 注解处理工具</h1>
+<h1 id="kotlin-注解处理">Kotlin 注解处理</h1>
 <blockquote>
 <p>译注：kapt 即 Kotlin annotation processing tool（Kotlin 注解处理工具）缩写。</p>
 </blockquote>
-<p>Kotlin 插件支持注解处理器，如 <em>Dagger</em> 或 <em>DBFlow</em> 。
-为了让它们与 Kotlin 类一起工作，需要应用 <code>kotlin-kapt</code> 插件：</p>
-<h2 id="gradle-配置">Gradle 配置</h2>
+<p>在 Kotlin 中通过 <em>kapt</em> 编译器插件支持注解处理器（参见<a href="https://jcp.org/en/jsr/detail?id=269">JSR 269</a>）。</p>
+<p>简而言之，你可以在 Kotlin 项目中使用像 <a href="https://google.github.io/dagger/">Dagger</a> 或者 <a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding</a> 这样的库。</p>
+<p>关于如何将 <em>kapt</em> 插件应用于 Gradle/Maven 构建中，请阅读下文。</p>
+<h2 id="在-gradle-中使用">在 Gradle 中使用</h2>
+<p>应用 <code>kotlin-kapt</code> Gradle 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-kapt'
 </code></pre>
-<p>或者，从 Kotlin 1.1.1 起，你可以使用插件 DSL 应用它：</p>
+<p>或者，你可以使用插件 DSL 应用它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
     id "org.jetbrains.kotlin.kapt" version "1.1.51"
 }
@@ -883,15 +882,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     kapt 'groupId:artifactId:版本'
 }
 </code></pre>
-<p>如果你以前使用 <a href="https://bitbucket.org/hvisser/android-apt">android-apt</a> 插件，请将其从 <code>build.gradle</code> 文件中删除，并用 <code>kapt</code> 取代 <code>apt</code> 配置的用法。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
+<p>如果你以前使用 <a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config">Android 支持</a>作为注解处理器，那么以 <code>kapt</code> 取代 <code>annotationProcessor</code> 配置的使用。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
 <p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
 <p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
     correctErrorTypes = true
 }
 </code></pre>
-<p>请注意，这个选项是实验性的，且默认是禁用的。</p>
-<h2 id="maven-配置自-kotlin-112-起">Maven 配置（自 Kotlin 1.1.2 起）</h2>
+<h2 id="在-maven-中使用">在 Maven 中使用</h2>
 <p>在 <code>compile</code> 之前在 kotlin-maven-plugin 中添加 <code>kapt</code> 目标的执行：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
     &lt;id&gt;kapt&lt;/id&gt;
@@ -917,6 +915,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>你可以在
 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin 示例版本库</a> 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。</p>
 <p>请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。</p>
+<h2 id="在命令行中使用">在命令行中使用</h2>
+<p>Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。</p>
+<p>可以使用 kotlinc 选项 <code>Xplugin</code> 提供该 JAR 文件的路径来附加该插件：</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">-Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar
+</code></pre>
+<p>以下是可用选项的列表：</p>
+<ul>
+<li><code>sources</code>（<em>必需</em>）：所生成文件的输出路径。</li>
+<li><code>classes</code>（<em>必需</em>）：所生成类文件与资源的输出路径。</li>
+<li><code>stubs</code>（<em>必需</em>）：存根文件的输出路径。换句话说，一些临时目录。</li>
+<li><code>incrementalData</code>：二进制存根的输出路径。</li>
+<li><code>apclasspath</code>（<em>可重复</em>）：注解处理器 JAR 包路径。如果有的多个 JAR 包就传多个 <code>apclasspath</code> 选项。</li>
+<li><code>apoptions</code>：注解处理器选项的 base64 编码列表。详见 <a href="#apjavac-选项编码">AP/javac options encoding</a>。</li>
+<li><code>javacArguments</code>：传给 javac 的选项的 base64 编码列表。详见 <a href="#apjavac-选项编码">AP/javac options encoding</a>。</li>
+<li><code>processors</code>：逗号分隔的注解处理器全类名列表。如果指定，kapt 就不会尝试在 <code>apclasspath</code> 中查找注解处理器。</li>
+<li><code>verbose</code>：启用详细输出。</li>
+<li><code>aptMode</code>（<em>必需</em>）
+    <ul>
+<li><code>stubs</code>——只生成注解处理所需的存根；</li>
+<li><code>apt</code>——只运行注解处理；</li>
+<li><code>stubsAndApt</code>——生成存根并运行注解处理。</li>
+</ul>
+</li>
+<li><code>correctErrorTypes</code>：参见<a href="#在-gradle-中使用">下文</a>。默认未启用。</li>
+</ul>
+<p>插件选项格式为：<code>-P plugin:&lt;plugin id&gt;:&lt;key&gt;=&lt;value&gt;</code>。选项可以重复。</p>
+<p>一个示例：</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">-P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources
+-P plugin:org.jetbrains.kotlin.kapt3:classes=build/kapt/classes
+-P plugin:org.jetbrains.kotlin.kapt3:stubs=build/kapt/stubs
+
+-P plugin:org.jetbrains.kotlin.kapt3:apclasspath=lib/ap.jar
+-P plugin:org.jetbrains.kotlin.kapt3:apclasspath=lib/anotherAp.jar
+
+-P plugin:org.jetbrains.kotlin.kapt3:correctErrorTypes=true
+</code></pre>
+<h2 id="生成-kotlin-代码">生成 Kotlin 代码</h2>
+<p>Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入<code>processingEnv.options["kapt.kotlin.generated"]</code> 所指定的目录，这些文件会与主源代码一起编译。</p>
+<p>可以在 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation">kotlin-examples</a> Github 版本库中找到完整的示例。</p>
+<p>请注意，对于所生成 Kotlin 文件，Kapt 不支持多轮处理。</p>
+<h2 id="apjavac-选项编码">AP/javac 选项编码</h2>
+<p><code>apoptions</code> 与 <code>javacArguments</code> 命令行选项接受选项编码映射。
+这是自己编码选项的方式：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun encodeList(options: Map&lt;String, String&gt;): String {
+    val os = ByteArrayOutputStream()
+    val oos = ObjectOutputStream(os)
+
+    oos.writeInt(options.size)
+    for ((key, value) in options.entries) {
+        oos.writeUTF(key)
+        oos.writeUTF(value)
+    }
+
+    oos.flush()
+    return Base64.getEncoder().encodeToString(os.toByteArray())
+}
+</code></pre>
 
         </article>
     </div>
