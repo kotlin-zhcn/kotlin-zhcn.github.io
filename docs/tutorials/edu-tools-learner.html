@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/httpservlets.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/edu-tools-learner.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
+    <meta property="og:description" content="This tutorial walks you through the interactive learning with a set of Kotlin programming tasks.">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
+    <meta name="twitter:description" content="This tutorial walks you through the interactive learning with a set of Kotlin programming tasks.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>使用 Http Servlet 创建 Web 应用 - Kotlin 语言中文站</title>
+    <title>Learning Kotlin with EduTools plugin - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -345,10 +345,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">用 Http Servlets 创建 web 应用</div>
-            </div>
+            <a href="/docs/tutorials/httpservlets.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">用 Http Servlets 创建 web 应用</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -390,12 +392,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/edu-tools-learner.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">通过 EduTools 插件学习 Kotlin</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">通过 EduTools 插件学习 Kotlin</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -415,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/httpservlets.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/edu-tools-learner.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -423,58 +423,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                使用 Http Servlet 创建 Web 应用
+                Learning Kotlin with EduTools plugin
             </h1>
             <table>
-                    <tr>
-                        <td>
-                            <strong>源代码</strong>
-                        </td>
-                        <td>
-                            <a href="https://github.com/JetBrains/kotlin-examples/tree/master/tutorials/servlet-web-applications">On GitHub</a>
-                        </td>
-                    </tr>
             </table>
-                本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。
+                This tutorial walks you through the interactive learning with a set of Kotlin programming tasks.
                 <br/>
                 <br/>
             
-<p>Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到<!--
--->如何让一个简单的控制器返回 "Hello, World!"。</p>
-<h3 id="定义项目和依赖关系">定义项目和依赖关系</h3>
-<p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.
-The main dependency required for using HTTP servlets is the JavaEE API:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
-    compile group: 'javax', name: 'javaee-api', version: '7.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-</code></pre>
-<p>我们还需要 <em>war</em> 插件，帮助我们生成相应的构件运行和部署</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: war
-</code></pre>
-<p>可以在Github检出项目来查看完整的Gradle脚本。</p>
-<h3 id="创建一个-home-controller">创建一个 Home Controller</h3>
-<p>一旦我们在构建脚本中定义了正确的依赖，现在就可以创建一个控制器</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@WebServlet(name = "Hello", value = "/hello")
-class HomeController : HttpServlet() {
-    override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
-        res.writer.write("Hello, World!")
-    }
-}
-</code></pre>
-<h3 id="运行程序">运行程序</h3>
-<p>使用IntelliJ IDEA，我们可以很容易地运行和调试应用程序，在任何可能的应用程序服务器定义 如Tomcat，Glassfish或WildFly。 在这种情况下我们要使用Tomcat
-<a href="http://www.jetbrains.com/idea/webhelp/defining-application-servers-in-intellij-idea.html">曾被定义为一个应用程序服务器在IntelliJ IDEA</a>。
-Note that application server support is only available in IntelliJ IDEA Ultimate.</p>
-<p>为了运行，我们需要相应的 WAR(s) 部署。我们可以使用 <em>war</em> 生成这些任务，可以很容易地通过在IntelliJ IDEA的Gradle工具执行。</p>
-<p><img alt="Gradle Tasks" src="/assets/images/tutorials/httpservlets/gradle-tasks.png"/></p>
-<p>或者使用命令行构建：</p>
-<pre><code>gradle war
-</code></pre>
-<p>下一步是在IntelliJ IDEA中创建一个运行配置，使用 Tomcat/Local 部署并启动 WAR。</p>
-<p><img alt="Run Config" src="/assets/images/tutorials/httpservlets/tomcat-config.png"/></p>
-<p>一旦我们运行应用程序(使用之前的配置)，成功部署，应该能够使用浏览器打开URL看到如下的响应：</p>
-<p><img alt="Browser Run" src="/assets/images/tutorials/httpservlets/browser.png"/></p>
+<p>With <a href="https://plugins.jetbrains.com/plugin/10081-edutools">EduTools</a> plugin you can learn and teach Kotlin through code practicing tasks. It is available both in <a href="https://developer.android.com/studio">Android Studio</a> and <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>. This tutorial describes the interactive learning. If you want to use the EduTools plugin for teaching, read <a href="/docs/tutorials/edu-tools-educator.html">"Teaching Kotlin with EduTools plugin"</a>.</p>
+<h3 id="installing-edutools-plugin">Installing EduTools plugin</h3>
+<p>Go to <strong>Preferences -&gt; Plugins</strong> (or <strong>Configure -&gt; Plugins</strong> from the <strong>Welcome Screen</strong>), press <strong>Install JetBrains Plugin…</strong> and search for EduTools plugin:</p>
+<p><img alt="Installing EduTools plugin" src="/assets/images/tutorials/education/install_plugin.png"/></p>
+<p>When installed for the first time, the EduTools plugin asks if you're a Learner or an Educator. Please choose <strong>Learner</strong>:</p>
+<p><img alt="Learner role" src="/assets/images/tutorials/education/learning/learner.png"/></p>
+<h3 id="joining-a-course">Joining a course</h3>
+<p>To open the list of available courses, go to <strong>Browse Courses</strong> on the <strong>Welcome Screen</strong> or in the <strong>File Menu</strong>. You can start with the <a href="/docs/tutorials/koans.html">Kotlin Koans</a>, a series of exercises created to get you familiar with the Kotlin Syntax:</p>
+<p><img alt="Join a course" src="/assets/images/tutorials/education/learning/join_course.png"/></p>
+<p><em>If you have a course archive shared with you by your teacher or co-worker, use the <strong>Import Course</strong> icon to open it. You can also log in to <a href="https://stepik.org/">Stepik</a> with the corresponding link to see all the courses available to you on this MOOC platform.</em></p>
+<h3 id="getting-around">Getting around</h3>
+<p>To start the course, go to <strong>View -&gt; Tool Windows -&gt; Project</strong>. You will find a course plan, the list of lessons. Every lesson has a set of tasks and code exercises you need to solve. Start with the very first one:</p>
+<p><img alt="Course plan" src="/assets/images/tutorials/education/learning/course_structure.png"/></p>
+<p>Every task has a description that you can read in the <strong>Task Description</strong> panel (<strong>View -&gt; Tool Windows -&gt; Task Description</strong>) and exercise code in the <code>Task.kt</code> file:</p>
+<p><img alt="Task details" src="/assets/images/tutorials/education/learning/task_details.png"/></p>
+<h3 id="getting-started">Getting started</h3>
+<p>Now you're ready to start learning. Read the first task description and the exercise code. You will find a placeholder in the exercise code which you need to complete to solve the task:</p>
+<p><img alt="Solve a task" src="/assets/images/tutorials/education/learning/solve_task.png"/></p>
+<p>When you are ready, verify the task with the <strong>Check</strong> icon at the top of <strong>Task Description</strong> panel. If you passed, there will be the <strong>Congratulations!</strong> message:</p>
+<p><img alt="Verify task" src="/assets/images/tutorials/education/learning/check_task.png"/>
+<img alt="Passed task" src="/assets/images/tutorials/education/learning/task_passed.png"/></p>
+<p>Go on to the next task with the <strong>Next</strong> icon at the top of <strong>Task Description</strong> panel:</p>
+<p><img alt="Next icon" src="/assets/images/tutorials/education/learning/next_task.png"/></p>
+<h3 id="carry-on-solving">Carry on solving</h3>
+<p>Continue on with the code exercises and learn more about Kotlin. Even if you make a mistake, EduTools will help you if you get stuck. If the verification failed, you will get a message to help you to find the mistake:</p>
+<p><img alt="Failed task" src="/assets/images/tutorials/education/learning/task_failed.png"/></p>
+<p>If you want to start from scratch with the task, use the <strong>Reset</strong> icon at the top of <strong>Task Description</strong> panel:</p>
+<p><img alt="Reset task" src="/assets/images/tutorials/education/learning/reset_task.png"/></p>
+<p>Or you can fill in the right answer with the <strong>Bulb</strong> icon:</p>
+<p><img alt="Get an answer" src="/assets/images/tutorials/education/learning/get_answer.png"/></p>
+<p>Do not give up early! Make all the exercises green to finish the course:</p>
+<p><img alt="Course progress" src="/assets/images/tutorials/education/learning/course_progress.png"/></p>
 
         </article>
     </div>

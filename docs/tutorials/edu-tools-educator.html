@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/httpservlets.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/edu-tools-educator.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
+    <meta property="og:description" content="This tutorial will walk you through creating a simple Kotlin course with a set of programming tasks and integrated tests.">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。">
+    <meta name="twitter:description" content="This tutorial will walk you through creating a simple Kotlin course with a set of programming tasks and integrated tests.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>使用 Http Servlet 创建 Web 应用 - Kotlin 语言中文站</title>
+    <title>Teaching Kotlin with EduTools plugin - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -345,10 +345,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">用 Http Servlets 创建 web 应用</div>
-            </div>
+            <a href="/docs/tutorials/httpservlets.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">用 Http Servlets 创建 web 应用</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -399,12 +401,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/edu-tools-educator.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">通过 EduTools 插件讲授 Kotlin</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">通过 EduTools 插件讲授 Kotlin</div>
+            </div>
     </div>
 
     </div>
@@ -415,7 +415,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/httpservlets.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/edu-tools-educator.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -423,58 +423,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                使用 Http Servlet 创建 Web 应用
+                Teaching Kotlin with EduTools plugin
             </h1>
             <table>
-                    <tr>
-                        <td>
-                            <strong>源代码</strong>
-                        </td>
-                        <td>
-                            <a href="https://github.com/JetBrains/kotlin-examples/tree/master/tutorials/servlet-web-applications">On GitHub</a>
-                        </td>
-                    </tr>
             </table>
-                本教程通过使用 HttpServlet 创建一个简单的控制器来显示 Hello World。
+                This tutorial will walk you through creating a simple Kotlin course with a set of programming tasks and integrated tests.
                 <br/>
                 <br/>
             
-<p>Kotlin 可以使用 JavaEE 的 Http Servlet，就像使用其他的 Java 库或者框架一样。我们将看到<!--
--->如何让一个简单的控制器返回 "Hello, World!"。</p>
-<h3 id="定义项目和依赖关系">定义项目和依赖关系</h3>
-<p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.
-The main dependency required for using HTTP servlets is the JavaEE API:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
-    compile group: 'javax', name: 'javaee-api', version: '7.0'
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-</code></pre>
-<p>我们还需要 <em>war</em> 插件，帮助我们生成相应的构件运行和部署</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: war
-</code></pre>
-<p>可以在Github检出项目来查看完整的Gradle脚本。</p>
-<h3 id="创建一个-home-controller">创建一个 Home Controller</h3>
-<p>一旦我们在构建脚本中定义了正确的依赖，现在就可以创建一个控制器</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@WebServlet(name = "Hello", value = "/hello")
-class HomeController : HttpServlet() {
-    override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
-        res.writer.write("Hello, World!")
-    }
-}
-</code></pre>
-<h3 id="运行程序">运行程序</h3>
-<p>使用IntelliJ IDEA，我们可以很容易地运行和调试应用程序，在任何可能的应用程序服务器定义 如Tomcat，Glassfish或WildFly。 在这种情况下我们要使用Tomcat
-<a href="http://www.jetbrains.com/idea/webhelp/defining-application-servers-in-intellij-idea.html">曾被定义为一个应用程序服务器在IntelliJ IDEA</a>。
-Note that application server support is only available in IntelliJ IDEA Ultimate.</p>
-<p>为了运行，我们需要相应的 WAR(s) 部署。我们可以使用 <em>war</em> 生成这些任务，可以很容易地通过在IntelliJ IDEA的Gradle工具执行。</p>
-<p><img alt="Gradle Tasks" src="/assets/images/tutorials/httpservlets/gradle-tasks.png"/></p>
-<p>或者使用命令行构建：</p>
-<pre><code>gradle war
-</code></pre>
-<p>下一步是在IntelliJ IDEA中创建一个运行配置，使用 Tomcat/Local 部署并启动 WAR。</p>
-<p><img alt="Run Config" src="/assets/images/tutorials/httpservlets/tomcat-config.png"/></p>
-<p>一旦我们运行应用程序(使用之前的配置)，成功部署，应该能够使用浏览器打开URL看到如下的响应：</p>
-<p><img alt="Browser Run" src="/assets/images/tutorials/httpservlets/browser.png"/></p>
+<p>With <a href="https://plugins.jetbrains.com/plugin/10081-edutools">EduTools</a> plugin you can learn and teach Kotlin through code practicing tasks. It is available both in <a href="https://developer.android.com/studio">Android Studio</a> and <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>. This tutorial describes course creation for an educator. If you want to use EduTools plugin for learning, read <a href="/docs/tutorials/edu-tools-learner.html">"Learning Kotlin with EduTools plugin"</a>.</p>
+<h3 id="installing-edutools-plugin">Installing EduTools plugin</h3>
+<p>Go to <strong>Preferences -&gt; Plugins</strong> (or <strong>Configure -&gt; Plugins</strong> from the <strong>Welcome Screen</strong>), press <strong>Install JetBrains Plugin…</strong> and search for EduTools plugin:</p>
+<p><img alt="Installing EduTools plugin" src="/assets/images/tutorials/education/install_plugin.png"/></p>
+<p>When installed for the first time, EduTools plugin asks if you're a Learner or an Educator. Please choose <strong>Educator</strong> to enable course creation functionality:</p>
+<p><img alt="Educator role" src="/assets/images/tutorials/education/teaching/educator.png"/></p>
+<p><em>If you need to enable the course creation functionality later, you can go to <strong>Help Menu -&gt; Enable Course Creator Features</strong>.</em></p>
+<h3 id="creating-a-course">Creating a course</h3>
+<p>To create a course, go to <strong>Create New Course</strong> from the <strong>Welcome Screen</strong> or in the <strong>File Menu</strong>, fill in the title, author and description:</p>
+<p><img alt="Creating a course" src="/assets/images/tutorials/education/teaching/course_creation.png"/></p>
+<p>Every Kotlin course created with EduTools is structured as a list of lessons. Each lesson contains tasks. A task has the following components: a description, a <code>Task.kt</code> file with exercise code, a <code>Tests.kt</code> file with the task check, and any other files needed for the learner to complete the task.</p>
+<p>Go to <strong>View -&gt; Tool Windows -&gt; Project</strong> to look at the course structure:</p>
+<p><img alt="Course structure" src="/assets/images/tutorials/education/teaching/course_structure.png"/></p>
+<p>Add more lessons and tasks via the <strong>File Menu -&gt; New</strong>, drag-n-drop items to reorder them, or to rename items right-click them then in the menu use <strong>Refactor -&gt; Rename</strong>:</p>
+<p><img alt="Rename a task" src="/assets/images/tutorials/education/teaching/rename_task.png"/></p>
+<p><em>If you need additional files for the task, just add them and decide whether you want to make them visible to learners or not with the <strong>Course Creator -&gt; Make Visible to / Hide from Student</strong>.</em></p>
+<h3 id="working-with-tasks">Working with tasks</h3>
+<p>Open <code>Task.kt</code> file to write the code you want for the exercise:</p>
+<p><img alt="Task code" src="/assets/images/tutorials/education/teaching/task_code.png"/></p>
+<p>Once the code is ready, select a fragment you want a learner to fill in, invoke <strong>Add Answer Placeholder</strong> command from the right-click menu and add the placeholder text and some hints to help the learner find the right solution:</p>
+<p><img alt="Answer placeholder" src="/assets/images/tutorials/education/teaching/answer_placeholder.png"/></p>
+<p>If you want to see how your task will be look to the learner, right-click the <code>Task.kt</code> file in the <strong>Project</strong> tool window, and choose <strong>Course Creator -&gt; Show Preview</strong>:</p>
+<p><img alt="Task preview" src="/assets/images/tutorials/education/teaching/task_preview.png"/></p>
+<p>Now it's time to add the task description. Click the <strong>Edit</strong> icon at the top of <strong>Task Description</strong> panel to switch to the editing mode:</p>
+<p><img alt="Task description editing" src="/assets/images/tutorials/education/teaching/task_description_editing.png"/><br/>
+<img alt="Task description preview" src="/assets/images/tutorials/education/teaching/task_description_preview.png"/></p>
+<p><em>EduTools supports HTML and Markdown, so you can start editing with your preferred format, or even a combination of both.</em></p>
+<h3 id="writing-tests">Writing tests</h3>
+<p>You can write your custom tests using EduTools testing framework to automatically verify the learner's solution. Every task has a <code>Tests.kt</code> file already filled in with a test template that you will need to modify:</p>
+<p><img alt="Test file" src="/assets/images/tutorials/education/teaching/test_file.png"/></p>
+<p>Let's replace <code>testSolution()</code> function content with the following:</p>
+<p><img alt="Write test" src="/assets/images/tutorials/education/teaching/write_test.png"/></p>
+<p>To check that your code passes your own test click the <strong>Check</strong> icon at the top of <strong>Task Description</strong> panel. If your code and test are correct, you will see the <strong>"Congratulations!"</strong> text:</p>
+<p><img alt="Write test" src="/assets/images/tutorials/education/teaching/test_passed.png"/></p>
+<h3 id="course-preview">Course preview</h3>
+<p>When you have finished creating your course, it's a good idea to view your course from a learner's perspective and test it. Right-click on the course view and go to <strong>Course Creator -&gt; Create Course Preview</strong> to open your course in learner mode:</p>
+<p><img alt="Course preview" src="/assets/images/tutorials/education/teaching/course_preview.png"/></p>
+<p>So you can solve tasks:</p>
+<p><img alt="Course preview" src="/assets/images/tutorials/education/teaching/course_preview_1.png"/></p>
+<p>And verify them:</p>
+<p><img alt="Course preview" src="/assets/images/tutorials/education/teaching/course_preview_2.png"/></p>
+<h3 id="course-sharing">Course sharing</h3>
+<p>You can share your learning materials publicly or privately with your students or co-workers on <a href="https://stepik.org/">Stepik</a>, a learning management and MOOC platform. Or you can save your course as an archive file.</p>
+<p>To save your course as a zip file, go to <strong>Course Creator -&gt; Generate Course Archive</strong> action. The generated archive can be opened via the <strong>Browse Courses</strong> available from the <strong>Welcome Screen</strong> and in the <strong>File Menu</strong> with the <strong>Import Course</strong> icon:</p>
+<p><img alt="Import course" src="/assets/images/tutorials/education/teaching/import_course.png"/></p>
+<p><img alt="Import course" src="/assets/images/tutorials/education/teaching/import_course_2.png"/></p>
+<p>If you have an account on <a href="https://stepik.org/">Stepik</a>, you can easily upload your course there, update it anytime you need, and <a href="https://blog.jetbrains.com/pycharm/2017/06/integration-with-stepik-for-educators/">share publicly or privately</a>.</p>
 
         </article>
     </div>
