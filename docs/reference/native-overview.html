@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/kotlin-doc.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/native-overview.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>编写 Kotlin 代码文档 - Kotlin 语言中文站</title>
+    <title>Kotlin/Native - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -161,12 +161,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/native-overview.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin/Native</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Kotlin/Native</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -738,10 +736,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">编写 Kotlin 代码文档</div>
-            </div>
+            <a href="/docs/reference/kotlin-doc.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编写 Kotlin 代码文档</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -862,7 +862,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/kotlin-doc.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/native-overview.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -870,119 +870,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="编写-kotlin-代码文档">编写 Kotlin 代码文档</h1>
-<p>用来编写 Kotlin 代码文档的语言（相当于 Java 的 JavaDoc）称为 <strong>KDoc</strong>。本质上 KDoc
-是将 JavaDoc 的块标签（block tags）语法（扩展为支持 Kotlin 的特定构造）和 Markdown 的<!--
--->内联标记（inline markup）结合在一起。</p>
-<h2 id="生成文档">生成文档</h2>
-<p>Kotlin 的文档生成工具称为 <a href="https://github.com/Kotlin/dokka">Dokka</a>。其使用说明请参见
-<a href="https://github.com/Kotlin/dokka/blob/master/README.md">Dokka README</a>。</p>
-<p>Dokka 有 Gradle、Maven 和 Ant 的插件，因此你可以将文档生成集成到你的构建过程中。</p>
-<h2 id="kdoc-语法">KDoc 语法</h2>
-<p>像 JavaDoc 一样，KDoc 注释也以 <code>/**</code> 开头、以 <code>*/</code> 结尾。注释的每一行可以以<!--
--->星号开头，该星号不会当作注释内容的一部分。</p>
-<p>按惯例来说，文档文本的第一段（到第一行空白行结束）是该元素的<!--
--->总体描述，接下来的注释是详细描述。</p>
-<p>每个块标签都以一个新行开始且以 <code>@</code> 字符开头。</p>
-<p>以下是使用 KDoc 编写类文档的一个示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
- * 一组*成员*。
- *
- * 这个类没有有用的逻辑; 它只是一个文档示例。
- *
- * @param T 这个组中的成员的类型。
- * @property name 这个组的名称。
- * @constructor 创建一个空组。
- */
-class Group&lt;T&gt;(val name: String) {
-    /**
-     * 将 [member] 添加到这个组。
-     * @return 这个组的新大小。
-     */
-    fun add(member: T): Int { …… }
-}
+<h1 id="kotlinnative">Kotlin/Native</h1>
+<p><a href="https://github.com/JetBrains/kotlin-native/">Kotlin/Native</a> 是一种将 Kotlin 编译为没有任何虚拟机的原生二进制文件的技术。
+它包含基于 LLVM 的 Kotlin 编译器后端以及 Kotlin 运行时库的原生实现<!--
+-->。Kotlin/Native 主要为允许在<!--
+-->不希望或不可能使用虚拟机的平台（如 iOS、嵌入式领域等）编译、
+或者开发人员需要生成不需要额外运行时的合理大小的独立程序而设计的。</p>
+<p>Kotlin/Native 完全支持与原生代码的互操作。对于平台库，相应<!--
+-->互操作库已可以开箱即用。对于其他库，我们提供了一个<!--
+-->由 C 语言头文件<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">生成互操作库的工具</a><!--
+-->，完全支持所有 C 语言功能。
+在 macOS 与 iOS 上，还支持与 Objective/C 代码互操作。</p>
+<p>Kotlin/Native 目前还在开发中；可以试用其预览版。
+Kotlin/Native 的 IDE 支持已作为 <a href="https://www.jetbrains.com/clion/">CLion</a> 的插件提供。</p>
+<h3 id="目标平台">目标平台</h3>
+<p>Kotlin/Native 目前支持以下平台：</p>
+<pre><code>* Windows（目前只支持 x86_64）
+* Linux（x86_64、 arm32、 MIPS、 MIPS little endian）
+* MacOS（x86_64）
+* iOS（只支持 arm64）
+* Android（arm32 与 arm64）
+* WebAssembly（只支持 wasm32)
 </code></pre>
-<h2 id="块标签">块标签</h2>
-<p>KDoc 目前支持以下块标签（block tags）：</p>
-<h4 id="param-名称"><code>@param &lt;名称&gt;</code></h4>
-<p>用于函数的值参数或者类、属性或函数的类型参数。
-为了更好地将参数名称与描述分开，如果你愿意，可以将参数的名称括在<!--
--->方括号中。因此，以下两种语法是等效的：</p>
-<pre><code>@param name 描述。
-@param[name] 描述。
-</code></pre>
-<h4 id="return"><code>@return</code></h4>
-<p>用于函数的返回值。</p>
-<h4 id="constructor"><code>@constructor</code></h4>
-<p>用于类的主构造函数。</p>
-<h4 id="receiver"><code>@receiver</code></h4>
-<p>用于扩展函数的接收者。</p>
-<h4 id="property-名称"><code>@property &lt;名称&gt;</code></h4>
-<p>用于类中具有指定名称的属性。这个标签可用于在<!--
--->主构造函数中声明的属性，当然直接在属性定义的前面放置 doc 注释会很<!--
--->别扭。</p>
-<h4 id="throws-类-exception-类"><code>@throws &lt;类&gt;</code>, <code>@exception &lt;类&gt;</code></h4>
-<p>用于方法可能抛出的异常。因为 Kotlin 没有受检异常，所以<!--
--->也没有期望所有可能的异常都写文档，但是当它会为类的用户提供有用的信息时，
-仍然可以使用这个标签。</p>
-<h4 id="sample-标识符"><code>@sample &lt;标识符&gt;</code></h4>
-<p>将具有指定限定的名称的函数的主体嵌入到当前元素的文档中，
-以显示如何使用该元素的示例。</p>
-<h4 id="see-标识符"><code>@see &lt;标识符&gt;</code></h4>
-<p>将到指定类或方法的链接添加到文档的<strong>另请参见</strong>块。</p>
-<h4 id="author"><code>@author</code></h4>
-<p>指定要编写文档的元素的作者。</p>
-<h4 id="since"><code>@since</code></h4>
-<p>指定要编写文档的元素引入时的软件版本。</p>
-<h4 id="suppress"><code>@suppress</code></h4>
-<p>从生成的文档中排除元素。可用于不是模块的官方 API 的一部分<!--
--->但还是必须在对外可见的元素。</p>
-<blockquote class="note">
-<p>KDoc 不支持 <code>@deprecated</code> 这个标签。作为替代，请使用 <code>@Deprecated</code> 注解。</p>
-</blockquote>
-<h2 id="内联标记">内联标记</h2>
-<p>对于内联标记，KDoc 使用常规 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a> 语法，扩展<!--
--->了支持用于链接到代码中其他元素的简写语法。</p>
-<h3 id="链接到元素">链接到元素</h3>
-<p>要链接到另一个元素（类、方法、属性或参数），只需将其名称放在方括号中：</p>
-<pre><code>为此目的，请使用方法 [foo]。
-</code></pre>
-<p>如果要为链接指定自定义标签（label），请使用 Markdown 引用样式语法：</p>
-<pre><code>为此目的，请使用[这个方法][foo]。
-</code></pre>
-<p>你还可以在链接中使用限定的名称。请注意，与 JavaDoc 不同，限定的名称总是使用点字符<!--
--->来分隔组件，即使在方法名称之前：</p>
-<pre><code>使用 [kotlin.reflect.KClass.properties] 来枚举类的属性。
-</code></pre>
-<p>链接中的名称与正写文档的元素内使用该名称使用相同的规则解析。
-特别是，这意味着如果你已将名称导入当前文件，那么当你在 KDoc 注释中使用它时，
-不需要再对其进行完整限定。</p>
-<p>请注意 KDoc 没有用于解析链接中的重载成员的任何语法。 因为 Kotlin 文档生成<!--
--->工具将一个函数的所有重载的文档放在同一页面上，标识一个特定的重载函数<!--
--->并不是链接生效所必需的。</p>
-<h2 id="模块和包文档">模块和包文档</h2>
-<p>作为一个整体的模块、以及该模块中的包的文档，由单独的 Markdown 文件提供，
-并且使用 <code>-include</code> 命令行参数或 Ant、Maven 和 Gradle 中的相应插件<!--
--->将该文件的路径传递给 Dokka。</p>
-<p>在该文件内部，作为一个整体的模块和分开的软件包的文档由相应的一级标题引入
-。标题的文本对于模块必须是“Module <code>&lt;模块名&gt;</code>”，对于包必须是“Package <code>&lt;限定的包名&gt;</code>”。</p>
-<p>以下是该文件的一个示例内容：</p>
-<pre><code># Module kotlin-demo
-
-该模块显示 Dokka 语法的用法。
-
-# Package org.jetbrains.kotlin.demo
-
-包含各种有用的东西。
-
-## 二级标题
-
-这个标题下的文本也是 `org.jetbrains.kotlin.demo` 文档的一部分。
-
-# Package org.jetbrains.kotlin.demo2
-
-另一个包中有用的东西。
-</code></pre>
+<h3 id="示例项目">示例项目</h3>
+<p>我们已经构建了一些示例项目来展示 Kotlin/Native 的可能性：</p>
+<ul>
+<li><a href="https://github.com/JetBrains/kotlin-native/tree/master/samples">Kotlin/Native GitHub 版本库</a>包含一些示例项目；</li>
+<li><a href="https://github.com/jetbrains/kotlinconf-spinner">KotlinConf Spinner 应用</a>是一个简单的跨平台<!--
+-->移动端多人游戏，完全使用 Kotlin/Native 构建，由以下组件组成：
+    - 后端，使用 SQLite 来做数据存储并暴露一个 REST/JSON API；
+    - iOS 与 Android 移动客户端，使用 OpenGL；
+    - 一个基于 WebAssembly 的浏览器前端用于查看游戏分数。</li>
+<li><a href="https://github.com/JetBrains/kotlinconf-app/tree/master/ios">KotlinConf 应用</a>是一个具有<!--
+-->基于 UIKit 的 UI 的 iOS 应用程序，展示了 Kotlin/Native 与 Objective/C 互操作的便利性。</li>
+</ul>
 
         </article>
     </div>

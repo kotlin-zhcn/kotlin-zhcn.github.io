@@ -161,6 +161,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin/Native</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew11.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -947,7 +956,7 @@ Kotlin 类型。编译器支持多种可空性注解，包括：</p>
 <li><a href="https://www.jetbrains.com/idea/help/nullable-and-notnull-annotations.html">JetBrains</a>
 （<code>org.jetbrains.annotations</code> 包中的  <code>@Nullable</code> 和 <code>@NotNull</code>）</li>
 <li>Android（<code>com.android.annotations</code> 和 <code>android.support.annotations</code>)</li>
-<li>JSR-305（<code>javax.annotation</code>）</li>
+<li>JSR-305（<code>javax.annotation</code>，详见下文）</li>
 <li>FindBugs（<code>edu.umd.cs.findbugs.annotations</code>）</li>
 <li>Eclipse（<code>org.eclipse.jdt.annotation</code>）</li>
 <li>Lombok（<code>lombok.NonNull</code>）。</li>
@@ -995,7 +1004,8 @@ interface A {
 <ul>
 <li><code>ElementType.METHOD</code> 用于方法的返回值；</li>
 <li><code>ElementType.PARAMETER</code> 用于值参数；</li>
-<li><code>ElementType.FIELD</code> 用于字段。</li>
+<li><code>ElementType.FIELD</code> 用于字段；以及</li>
+<li><code>ElementType.TYPE_USE</code>（自 1.1.60 起）适用于任何类型，包括类型参数、类型参数的上界与通配符类型。</li>
 </ul>
 <p>当类型并未标注可空性注解时使用默认可空性，并且该默认值是<!--
 -->由最内层标注有带有与所用类型相匹配的
@@ -1006,7 +1016,7 @@ public @interface NonNullApi {
 }
 
 @Nonnull(when = When.MAYBE)
-@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER, ElementType.TYPE_USE})
 public @interface NullableApi {
 }
 
@@ -1017,6 +1027,10 @@ interface A {
     @NotNullApi // 覆盖来自接口的默认值
     String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
     
+    // 由于 `@NullableApi` 具有 `TYPE_USE` 元素类型，
+    // 因此认为 List&lt;String&gt; 类型参数是可空的：
+    String baz(List&lt;String&gt; x); // fun baz(List&lt;String?&gt;?): String?
+
     // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
     // 可空性注解：
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
@@ -1027,20 +1041,64 @@ interface A {
 @NonNullApi // 默认将“test”包中所有类型声明为不可空
 package test;
 </code></pre>
-<h4 id="编译器配置">编译器配置</h4>
-<p>可以通过添加带有下述值之一的 <code>-Xjsr305</code> 编译器标志来配置 JSR-305 检测：</p>
+<h4 id="undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解（自 1.1.60 起）</h4>
+<p>库的维护者可以使用 <code>@UnderMigration</code> 注解（在单独的构件 <code>kotlin-annotations-jvm</code> 中提供）<!--
+-->来定义可为空性类型限定符的迁移状态。</p>
+<p><code>@UnderMigration(status = ...)</code> 中的状态值指定了编译器如何处理 Kotlin 中注解类型的不当用法<!--
+-->（例如，使用 <code>@MyNullable</code> 标注的类型值作为非空值）：</p>
 <ul>
 <li>
-<p><code>-Xjsr305=strict</code> 使 JSR-305 注解作为简单可空注解来用，即对<!--
--->已标注类型的不当用法报错；</p>
+<p><code>MigrationStatus.STRICT</code> 使注解像任何纯可空性注解一样工作，即对<!--
+-->不当用法报错；</p>
 </li>
 <li>
-<p><code>-Xjsr305=warn</code> 使不当用法产生警告而非错误；</p>
+<p>对于 <code>MigrationStatus.WARN</code>，不当用法报为警告而不是错误；而</p>
 </li>
 <li>
-<p><code>-Xjsr305=ignore</code> 使编译器完全忽略 JSR-305 可空性注解。</p>
+<p><code>MigrationStatus.IGNORE</code> 使编译器完全忽略可空性注解。</p>
 </li>
 </ul>
+<p>库的维护者还可以将 <code>@UnderMigration</code> 状态添加到类型限定符别名与类型限定符默认值：</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">@Nonnull(when = When.ALWAYS)
+@TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
+@UnderMigration(status = MigrationStatus.WARN)
+public @interface NonNullApi {
+}
+
+// 类中的类型是非空的，但是只报警告
+// 因为 `@NonNullApi` 标注了 `@UnderMigration(status = MigrationStatus.WARN)`
+@NonNullApi 
+public class Test {}
+</code></pre>
+<p>注意：可空性注解的迁移状态并不会从其类型限定符别名继承，而是适用<!--
+-->于默认类型限定符的用法。</p>
+<p>如果默认类型限定符使用类型限定符别名，并且它们都标注有 <code>@UnderMigration</code>，那么<!--
+-->使用默认类型限定符的状态。</p>
+<h4 id="编译器配置">编译器配置</h4>
+<p>可以通过添加带有以下选项的 <code>-Xjsr305</code> 编译器标志来配置 JSR-305 检测：</p>
+<ul>
+<li>
+<p><code>-Xjsr305={strict|warn|ignore}</code> 设置非 <code>@UnderMigration</code> 注解的行为。
+自定义的可空性限定符，尤其是
+<code>@TypeQualifierDefault</code> 已经在很多知名库中流传，而用户<!--
+-->更新到包含 JSR-305 支持的 Kotlin 版本时可能需要平滑迁移。自 Kotlin 1.1.60 起，这一标志只影响非 <code>@UnderMigration</code> 注解。</p>
+</li>
+<li>
+<p><code>-Xjsr305=under-migration:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖 <code>@UnderMigration</code> 注解的行为。
+用户可能对库的迁移状态有不同的看法：
+他们可能希望在官方迁移状态为 <code>WARN</code> 时报错误，反之亦然，<!--
+-->他们可能希望推迟错误报告直到他们完成迁移。</p>
+</li>
+<li>
+<p><code>-Xjsr305=@&lt;fq.name&gt;:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖单个注解的行为，其中 <code>&lt;fq.name&gt;</code> 是<!--
+-->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
+-->对于管理特定库的迁移状态非常有用。</p>
+</li>
+</ul>
+<p>其中 <code>strict</code>、 <code>warn</code> 与 <code>ignore</code> 值的含义与 <code>MigrationStatus</code> 中的相同。</p>
+<p>例如，将 <code>-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn</code> 添加到<!--
+-->编译器参数中，会使编译器对由
+<code>@org.library.MyNullable</code> 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。</p>
 <p>对于 kotlin 1.1.50+/1.2 版本，其默认行为等同于 <code>-Xjsr305=warn</code>。
 <code>strict</code> 值应认为是实验性的（以后可能添加更多检测）。</p>
 <h2 id="已映射类型">已映射类型</h2>
