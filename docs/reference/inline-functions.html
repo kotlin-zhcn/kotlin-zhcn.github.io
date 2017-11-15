@@ -890,7 +890,7 @@ finally {
 </code></pre>
 <p>这个不是我们从一开始就想要的吗？</p>
 <p>为了让编译器这么做，我们需要使用 <code>inline</code> 修饰符标记 <code>lock()</code> 函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun lock&lt;T&gt;(lock: Lock, body: () -&gt; T): T {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;T&gt; lock(lock: Lock, body: () -&gt; T): T {
     // ……
 }
 </code></pre>
