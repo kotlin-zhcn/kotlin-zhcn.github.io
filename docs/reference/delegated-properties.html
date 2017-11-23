@@ -904,13 +904,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 println(e.p)
 </code></pre>
 <p>输出结果：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">Example@33a17727, thank you for delegating ‘p’ to me!
+<pre><code>Example@33a17727, thank you for delegating ‘p’ to me!
 </code></pre>
 <p>类似地，当我们给 <code>p</code> 赋值时，将调用 <code>setValue()</code> 函数。前两个参数相同，第三个参数保存将要被赋予的值：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">e.p = "NEW"
 </code></pre>
 <p>输出结果：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">NEW has been assigned to ‘p’ in Example@33a17727.
+<pre><code>NEW has been assigned to ‘p’ in Example@33a17727.
 </code></pre>
 <p>委托对象的要求规范可以在<a href="delegated-properties.html#属性委托要求">下文</a>找到。</p>
 <p>请注意，自 Kotlin 1.1 起你可以在函数或代码块中声明一个委托属性，因此它不一定是类的成员。

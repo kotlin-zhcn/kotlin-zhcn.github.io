@@ -991,8 +991,11 @@ public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); // 被视为 `fun foo(x: String): String?`
-    String bar(List&lt;@MyNonnull String&gt; x);       // 被视为 `fun bar(x: List&lt;String&gt;!): String!`
+    @MyNullable String foo(@MyNonnull String x); 
+    // 在 Kotlin（严格模式）中：`fun foo(x: String): String?`
+    
+    String bar(List&lt;@MyNonnull String&gt; x);       
+    // 在 Kotlin（严格模式）中：`fun bar(x: List&lt;String&gt;!): String!`
 }
 </code></pre>
 <h4 id="类型限定符默认值自-1150-起">类型限定符默认值（自 1.1.50 起）</h4>
@@ -1031,11 +1034,14 @@ interface A {
     // 因此认为 List&lt;String&gt; 类型参数是可空的：
     String baz(List&lt;String&gt; x); // fun baz(List&lt;String?&gt;?): String?
 
-    // “x”参数仍然是平台类型，因为有显式 UNKNOWN 标记的
-    // 可空性注解：
+    // “x”参数仍然是平台类型，因为有显式
+    // UNKNOWN 标记的可空性注解：
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 </code></pre>
+<blockquote>
+<p>注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 <a href="#undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解</a>与<a href="#编译器配置">编译器配置</a>两节。</p>
+</blockquote>
 <p>也支持包级的默认可空性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// 文件：test/package-info.java
 @NonNullApi // 默认将“test”包中所有类型声明为不可空
@@ -1049,13 +1055,14 @@ package test;
 <ul>
 <li>
 <p><code>MigrationStatus.STRICT</code> 使注解像任何纯可空性注解一样工作，即对<!--
--->不当用法报错；</p>
+-->不当用法报错并影响注解声明内的类型在 Kotlin 中的呈现；</p>
 </li>
 <li>
-<p>对于 <code>MigrationStatus.WARN</code>，不当用法报为警告而不是错误；而</p>
+<p>对于 <code>MigrationStatus.WARN</code>，不当用法报为警告而不是错误；
+但注解声明内的类型仍是平台类型；而</p>
 </li>
 <li>
-<p><code>MigrationStatus.IGNORE</code> 使编译器完全忽略可空性注解。</p>
+<p><code>MigrationStatus.IGNORE</code> 则使编译器完全忽略可空性注解。</p>
 </li>
 </ul>
 <p>库的维护者还可以将 <code>@UnderMigration</code> 状态添加到类型限定符别称与类型限定符默认值：</p>
@@ -1095,7 +1102,10 @@ public class Test {}
 -->对于管理特定库的迁移状态非常有用。</p>
 </li>
 </ul>
-<p>其中 <code>strict</code>、 <code>warn</code> 与 <code>ignore</code> 值的含义与 <code>MigrationStatus</code> 中的相同。</p>
+<p>其中 <code>strict</code>、 <code>warn</code> 与 <code>ignore</code> 值的含义与 <code>MigrationStatus</code> 中的相同，并且只有 <code>strict</code> 模式会影响注解声明中的类型在 Kotlin 中的呈现。</p>
+<blockquote>
+<p>注意：内置的 JSR-305 注解 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a>、 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html"><code>@Nullable</code></a> 与 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html"><code>@CheckForNull</code></a> 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 <code>-Xjsr305</code> 标志。</p>
+</blockquote>
 <p>例如，将 <code>-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn</code> 添加到<!--
 -->编译器参数中，会使编译器对由
 <code>@org.library.MyNullable</code> 标注的不当用法生成警告，而忽略所有其他 JSR-305 注解。</p>
