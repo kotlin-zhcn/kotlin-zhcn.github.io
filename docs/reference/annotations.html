@@ -178,6 +178,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -564,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目（预览版）</span>
+                <span class="text">多平台项目</span>
             </a>
     </div>
 
@@ -1038,6 +1047,7 @@ public @interface AnnWithValue {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin
 @AnnWithValue("abc") class C
 </code></pre>
+<h3 id="数组作为注解参数">数组作为注解参数</h3>
 <p>如果 Java 中的 <code>value</code> 参数具有数组类型，它会成为 Kotlin 中的一个 <code>vararg</code> 参数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface AnnWithArrayValue {
@@ -1047,15 +1057,22 @@ public @interface AnnWithArrayValue {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin
 @AnnWithArrayValue("abc", "foo", "bar") class C
 </code></pre>
-<p>对于具有数组类型的其他参数，你需要显式使用 <code>arrayOf</code>：</p>
+<p>对于具有数组类型的其他参数，你需要显式使用数组字面值语法（自 Kotlin 1.2 起）或者
+<code>arrayOf(……)</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface AnnWithArrayMethod {
     String[] names();
 }
 </code></pre>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin
-@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) class C
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Kotlin 1.2+：
+@AnnWithArrayMethod(names = ["abc", "foo", "bar"]) 
+class C
+
+// 旧版本 Kotlin：
+@AnnWithArrayMethod(names = arrayOf("abc", "foo", "bar")) 
+class D
 </code></pre>
+<h3 id="访问注解实例的属性">访问注解实例的属性</h3>
 <p>注解实例的值会作为属性暴露给 Kotlin 代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 public @interface Ann {

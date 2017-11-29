@@ -178,6 +178,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -564,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目（预览版）</span>
+                <span class="text">多平台项目</span>
             </a>
     </div>
 
@@ -970,7 +979,7 @@ public val table: Map&lt;String, Int&gt;
 
 @Deprecated(SUBSYSTEM_DEPRECATED) fun foo() { …… }
 </code></pre>
-<h2 id="延迟初始化属性">延迟初始化属性</h2>
+<h2 id="延迟初始化属性与变量">延迟初始化属性与变量</h2>
 <p>一般地，属性声明为非空类型必须在构造函数中初始化。
 然而，这经常不方便。例如：属性可以通过依赖注入来初始化，
 或者在单元测试的 setup 方法中初始化。 这种情况下，你不能在构造函数内提供一个非空初始器。
@@ -988,11 +997,20 @@ public val table: Map&lt;String, Int&gt;
     }
 }
 </code></pre>
-<p>该修饰符只能用于在类体中（不是在主构造函数中）声明的 <code>var</code> 属性，并且仅<!--
--->当该属性没有自定义 getter 或 setter 时。该属性必须是非空类型，并且不能是<!--
--->原生类型。</p>
+<p>该修饰符只能用于在类体中的属性（不是在主构造函数中声明的 <code>var</code> 属性，并且仅<!--
+-->当该属性没有自定义 getter 或 setter 时），而自 Kotlin 1.2 起，也用于顶层属性与<!--
+-->局部变量。该属性或变量必须为非空类型，并且不能是原生类型。</p>
 <p>在初始化前访问一个 <code>lateinit</code> 属性会抛出一个特定异常，该异常明确标识该属性<!--
 -->被访问及它没有初始化的事实。</p>
+<h3 id="检测一个-lateinit-var-是否已初始化自-12-起">检测一个 lateinit var 是否已初始化（自 1.2 起）</h3>
+<p>要检测一个 <code>lateinit var</code> 是否已经初始化过，请在<a href="reflection.html#属性引用">该属性的引用</a>上使用
+<code>.isInitialized</code>：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (foo::bar.isInitialized) {
+    println(foo.bar)
+}
+</code></pre>
+<p>此检测仅对可词法级访问的属性可用，即声明位于同一个类型内、位于其中一个<!--
+-->外围类型中或者位于相同文件的顶层的属性。</p>
 <h2 id="覆盖属性">覆盖属性</h2>
 <p>参见<a href="classes.html#覆盖属性">覆盖属性</a></p>
 <h2 id="委托属性">委托属性</h2>

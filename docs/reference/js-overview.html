@@ -176,6 +176,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -564,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目（预览版）</span>
+                <span class="text">多平台项目</span>
             </a>
     </div>
 
@@ -871,10 +880,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlin-javascript-概述">Kotlin JavaScript 概述</h1>
-<p>Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有<!--
--->最终目标为 ECMAScript 2015 的计划。</p>
-<p>当你选择 JavaScript 目标时，作为项目一部分的任何 Kotlin 代码以及 Kotlin 附带的标准库都会转换为 JavaScript。
-但是，这不包括使用的 JDK 和任何 JVM 或 Java 框架或库。任何不是 Kotlin 的文件会在编译期间忽略掉。</p>
+<p>Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有最终目标为 ECMAScript 2015 的计划。</p>
+<p>当你选择 JavaScript 目标时，作为项目一部分的任何 Kotlin 代码以及 Kotlin 附带的标准库都会转换为 JavaScript。然而，这不包括使用的 JDK 和任何 JVM 或 Java 框架或库。任何不是 Kotlin 的文件会在编译期间忽略掉。</p>
 <p>Kotlin 编译器努力遵循以下目标：</p>
 <ul>
 <li>提供最佳大小的输出</li>
@@ -899,15 +906,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>
 <p>创建面向服务器端 JavaScript 的 Kotlin 代码</p>
 <ul>
-<li><strong>使用服务器端技术</strong>。你可以使用 Kotlin 与服务器端 JavaScript（如 node.js）进行交互</li>
+<li><strong>使用服务器端技术</strong>。你可以使用 Kotlin 与服务器端 JavaScript（如 Node.js）进行交互</li>
 </ul>
 </li>
 </ul>
-<p>Kotlin 可以与现有的第三方库和框架（如 JQuery 或 ReactJS）一起使用。要使用强类型
+<p>Kotlin 可以与现有的第三方库和框架（如 jQuery 或 ReactJS）一起使用。要使用强类型
 API 访问第三方框架，可以使用 <a href="https://github.com/kotlin/ts2kt">ts2kt</a> 工具将 TypeScript 定义从 <a href="http://definitelytyped.org/">Definitely Typed</a>
 类型定义仓库转换为 Kotlin。或者，你可以使用<!--
 --><a href="dynamic-type.html">动态类型</a>访问任何框架，而无需强类型。</p>
-<p>Kotlin 还兼容 CommonJS、AMD 和 UMD，直截了当<a href="/docs/tutorials/javascript/working-with-modules/working-with-modules.html">与不同的模块系统交互</a>。</p>
+<p>JetBrains 特地为 React 社区开发并维护了几个工具：<a href="https://github.com/JetBrains/kotlin-wrappers">React bindings</a> 以及 <a href="https://github.com/JetBrains/create-react-kotlin-app">Create React Kotlin App</a>。后者可以帮你开始使用 Kotlin 构建 React 应用程序而无需构建配置。</p>
+<p>Kotlin 兼容 CommonJS、AMD 和 UMD，直截了当<a href="/docs/tutorials/javascript/working-with-modules/working-with-modules.html">与不同的模块系统交互</a>。</p>
 <h2 id="kotlin-转-javascript-入门">Kotlin 转 JavaScript 入门</h2>
 <p>要了解如何开始使用 JavaScript 平台的 Kotlin，请参考其<a href="/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html">教程</a>。</p>
 

@@ -178,6 +178,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -566,7 +575,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目（预览版）</span>
+                <span class="text">多平台项目</span>
             </a>
     </div>
 
@@ -985,6 +994,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
 -->的标识符：</p>
 <ul>
+<li><code>actual</code> 表示<a href="/docs/reference/multiplatform.html">多平台项目</a>中的一个平台相关实现</li>
 <li><code>abstract</code> 将一个类或成员标记为<a href="classes.html#抽象类">抽象</a></li>
 <li><code>annotation</code> 声明一个<a href="annotations.html">注解类</a></li>
 <li><code>companion</code> 声明一个<a href="object-declarations.html#伴生对象">伴生对象</a></li>
@@ -992,13 +1002,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><code>crossinline</code> 禁止<a href="inline-functions.html#非局部返回">传递给内联函数的 lambda 中的非局部返回</a></li>
 <li><code>data</code> 指示编译器<a href="data-classes.html">为类生成典型成员</a></li>
 <li><code>enum</code> 声明一个<a href="enum-classes.html">枚举</a></li>
+<li><code>expect</code> 将一个声明标记为<a href="/docs/reference/multiplatform.html">平台相关</a>，并期待在平台模块中实现。</li>
 <li><code>external</code> 将一个声明标记为不是在 Kotlin 中实现（通过 <a href="java-interop.html#在-kotlin-中使用-jni">JNI</a> 访问或者在 <a href="js-interop.html#external-修饰符">JavaScript</a> 中实现）</li>
 <li><code>final</code> 禁止<a href="classes.html#覆盖方法">成员覆盖</a></li>
 <li><code>infix</code> 允许以<a href="functions.html#中缀表示法">中缀表示法</a>调用函数</li>
 <li><code>inline</code> 告诉编译器<a href="inline-functions.html">在调用处内联传给它的函数和 lambda 表达式</a></li>
 <li><code>inner</code> 允许在<a href="nested-classes.html">嵌套类</a>中引用外部类实例</li>
 <li><code>internal</code> 将一个声明标记为<a href="visibility-modifiers.html">在当前模块中可见</a></li>
-<li><code>lateinit</code> 允许<a href="properties.html#延迟初始化属性">在构造函数之外初始化非空属性</a></li>
+<li><code>lateinit</code> 允许<a href="properties.html#延迟初始化属性与变量">在构造函数之外初始化非空属性</a></li>
 <li><code>noinline</code> 关闭<a href="inline-functions.html#禁用内联">传给内联函数的 lambda 表达式的内联</a></li>
 <li><code>open</code> 允许<a href="classes.html#继承">一个类子类化或覆盖成员</a></li>
 <li><code>operator</code> 将一个函数标记为<a href="operator-overloading.html">重载一个操作符或者实现一个约定</a></li>

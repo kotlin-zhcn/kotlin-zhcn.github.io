@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>多平台项目（预览版） - Kotlin 语言中文站</title>
+    <title>多平台项目 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -175,6 +175,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             >
                 <span class="marker"></span>
                 <span class="text">1.1 的新特性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
             </a>
     </div>
 
@@ -564,7 +573,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
-                <div class="text">多平台项目（预览版）</div>
+                <div class="text">多平台项目</div>
             </div>
     </div>
 
@@ -870,7 +879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="多平台项目预览版">多平台项目（预览版）</h1>
+<h1 id="多平台项目">多平台项目</h1>
 <blockquote class="note">
 <p>多平台项目是 Kotlin 1.2 中的一个新的实验性功能。本文档中所描述的全部语言与<!--
 -->工具功能都可能在未来的 Kotlin 版本中发生变化。</p>
@@ -914,14 +923,13 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 <li>将 <code>kotlin-platform-common</code> 插件应用到公共模块</li>
 <li>将 <code>kotlin-stdlib-common</code> 依赖添加到公共模块中</li>
 <li>将 <code>kotlin-platform-jvm</code> 与 <code>kotlin-platform-js</code> 插件分别应用到 JVM 与 JS 平台模块</li>
-<li>将平台模块 <code>implement</code> 作用域中添加到到公共模块的依赖</li>
+<li>将平台模块 <code>expectedBy</code> 作用域中添加到到公共模块的依赖</li>
 </ul>
 <p>以下示例演示了一个使用 Kotlin 1.2-Beta 的公共模块的完整的 <code>build.gradle</code> 文件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2-Beta'
+    ext.kotlin_version = '1.2.0'
 
     repositories {
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         mavenCentral()
     }
     dependencies {
@@ -932,7 +940,6 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 apply plugin: 'kotlin-platform-common'
 
 repositories {
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     mavenCentral()
 }
 
@@ -942,12 +949,11 @@ dependencies {
 }
 </code></pre>
 <p>而下述示例展示了一个用于 JVM 平台模块的完整的 <code>build.gradle</code>。请<!--
--->特别注意其 <code>dependencies</code> 块中的 <code>implement</code> 行：</p>
+-->特别注意其 <code>dependencies</code> 块中的 <code>expectedBy</code> 行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2-Beta'
+    ext.kotlin_version = '1.2.0'
 
     repositories {
-        maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
         mavenCentral()
     }
     dependencies {
@@ -958,13 +964,12 @@ dependencies {
 apply plugin: 'kotlin-platform-jvm'
 
 repositories {
-    maven { url 'http://dl.bintray.com/kotlin/kotlin-eap-1.2' }
     mavenCentral()
 }
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implement project(":")
+    expectedBy project(":")
     testCompile "junit:junit:4.12"
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
@@ -1041,6 +1046,14 @@ IDE 提供了帮你创建所缺实际声明的工具。</p>
 
 actual typealias AtomicRef&lt;V&gt; = java.util.concurrent.atomic.AtomicReference&lt;V&gt;
 </code></pre>
+<h2 id="多平台测试">多平台测试</h2>
+<p>可以在公共项目中编写测试，这样就可以在每个平台中编译与运行了。
+<code>kotlin.test</code> 包中提供了 4 个注解用于标记公共代码中的测试：<code>@Test</code>、 <code>@Ignore</code>、
+<code>@BeforeTest</code> 以及 <code>@AfterTest</code>.
+在 JVM 平台中这些注解会映射到相应 JUnit 4 注解，而在 JS 中自 1.1.4 起它们也已&lt;!– 
+可用于支持 JS 单元测试。</p>
+<p>为了使用它们，你需要将依赖 <code>kotlin-test-annotations-common</code> 添加到你的公共模块，将依赖 
+<code>kotlin-test-junit</code> 添加到你的 JVM 模块，并且将依赖 <code>kotlin-test-js</code> 添加到 JS 模块。</p>
 
         </article>
     </div>

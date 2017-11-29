@@ -178,6 +178,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -566,7 +575,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目（预览版）</span>
+                <span class="text">多平台项目</span>
             </a>
     </div>
 
@@ -876,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>使用 <code>kotlin-gradle-plugin</code> 编译 Kotlin 源代码和模块.</p>
 <p>要使用的 Kotlin 版本通常定义为 <code>kotlin_version</code> 属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.1.61'
+    ext.kotlin_version = '1.2.0'
 
     repositories {
         mavenCentral()
@@ -894,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>或者，从 Kotlin 1.1.1 起，可以使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.1.61"
+    id "org.jetbrains.kotlin.jvm" version "1.2.0"
 }
 </code></pre>
 <p>在这个块中的 <code>version</code> 必须是字面值，并且不能从其他构建脚本中应用。</p>
@@ -932,7 +941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.1.61'
+    ext.kotlin_version = '1.2.0'
 
     ……
 
@@ -969,9 +978,10 @@ dependencies {
 <p>如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含<!--
 -->为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 <code>kotlin-stdlib</code>
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jre7"
-compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
+<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 </code></pre>
+<p>在 Kotlin 1.1.x 中，请使用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
 <p>如果你的项目中使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a>或者测试设施，你也需要添加相应的依赖：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-reflect"
 testCompile "org.jetbrains.kotlin:kotlin-test"

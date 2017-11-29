@@ -440,28 +440,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <p>在本章教程中，我们将逐步介绍如何使用 Kotlin 安卓扩展插件提升安卓的开发体验。</p>
+<h2 id="view-binding">View Binding</h2>
 <h3 id="背景">背景</h3>
-<p>相信每一位安卓开发人员对 <code>findViewById()</code> 这个方法再熟悉不过了，毫无疑问，潜在的 bug 和脏乱的代码令后续开发无从下手的。
-尽管存在一系列的开源库能够为这个问题带来解决方案，然而对于运行时依赖的库，需要为每一个 <code>View</code> 注解变量字段。</p>
-<p>现在 Kotlin 安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码，也不影响任何运行时体验。</p>
-<p>因此，我们可以写出如下代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 使用来自主代码集的 R.layout.activity_main
+<p>相信每一位安卓开发人员对 <code>findViewById()</code> 这个方法再熟悉不过了，毫无疑问，潜在的 bug 和脏乱的代码令后续开发无从下手的。尽管存在一系列的开源库能够为这个问题带来解决方案，those libraries require annotating fields for each exposed <code>View</code>.</p>
+<p>现在 Kotlin 安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码。</p>
+<p>In essence, this allows for the following code:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Using R.layout.activity_main from the 'main' source set
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MyActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        
+        // Instead of findViewById&lt;TextView&gt;(R.id.textView)
         textView.setText("Hello, world!")
-        // 而不是 findViewById(R.id.textView) as TextView
     }
 }
 </code></pre>
-<p><code>textView</code> 是对 <code>Activity</code> 的一项扩展属性，与在 <code>activity_main.xml</code> 中的声明具有同样类型。</p>
+<p><code>textView</code> 是对 <code>Activity</code> 的一项扩展属性，与在 <code>activity_main.xml</code> 中的声明具有同样类型 (so it is a <code>TextView</code>)。</p>
 <h3 id="使用-kotlin-安卓扩展">使用 Kotlin 安卓扩展</h3>
 <h4 id="依赖配置">依赖配置</h4>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
-<p>安卓扩展是 Kotlin IDEA 插件的组成之一，因此不需要再单独安装额外插件。</p>
+<p>安卓扩展是 IntelliJ IDEA 与 Android Studio 的 Kotlin 插件的组成之一，因此不需要再单独安装额外插件。</p>
 <p>开发者仅需要在模块的 <code>build.gradle</code> 文件中启用 Gradle 安卓扩展插件即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin-android-extensions'
 </code></pre>
@@ -470,22 +471,36 @@ class MyActivity : Activity() {
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.synthetic.main.＜布局＞.*
 </code></pre>
 <p>假设当前布局文件是 <code>activity_main.xml</code>，我们只需要引入 <code>kotlinx.android.synthetic.main.activity_main.*</code>。</p>
-<p>若需要调用 <code>View</code> 的合成属性(在适配器类中非常有用)，同时还应该导入 <code>kotlinx.android.synthetic.main.activity_main.view.*</code>。</p>
-<p>导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，
-比如下例:</p>
+<p>若需要调用 <code>View</code> 的合成属性，同时还应该导入 <code>kotlinx.android.synthetic.main.activity_main.view.*</code>。</p>
+<p>导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，比如下例:</p>
 <pre><code class="code _highlighted" data-lang="application/xml">    &lt;TextView
         android:id="@+id/hello"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Hello World, MyActivity"
-        /&gt;
+        android:layout_height="wrap_content"/&gt;
 </code></pre>
 <p>将有一个名为 <code>hello</code> 的属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">activity.hello.setText("Hi!")
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">activity.hello.text = "Hello World!"
 </code></pre>
-<h3 id="安卓多渠道">安卓多渠道</h3>
+<h3 id="experimental-mode">Experimental Mode</h3>
+<p>Android Extensions plugin includes several experimental features such as <code>LayoutContainer</code> support and a <code>Parcelable</code> implementation generator. These features are not considered production ready yet, so you need to turn on the experimental mode in <code>build.gradle</code> in order to use them:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">androidExtensions {
+    experimental = true
+}
+</code></pre>
+<h3 id="layoutcontainer-support"><code>LayoutContainer</code> Support</h3>
+<p>Android Extensions plugin supports different kinds of containers. The most basic ones are <a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>, <a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a> and <a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a>, but you can turn (virtually) any class to an Android Extensions container by implementing the <code>LayoutContainer</code> interface, e.g.:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.extensions.LayoutContainer
+
+class ViewHolder(override val containerView: View) : ViewHolder(containerView), LayoutContainer {
+    fun setup(title: String) {
+        itemTitle.text = "Hello World!"
+    }
+}
+</code></pre>
+<p>Note that you need to turn on the <a href="#experimental-mode">experimental flag</a> to use <code>LayoutContainer</code>.</p>
+<h3 id="多渠道支持">多渠道支持</h3>
 <p>安卓扩展插件现已支持安卓多渠道。假设当前在 <code>build.gradle</code> 文件中指定一个名为 <code>free</code> 的渠道：</p>
-<pre><code>android {
+<pre><code class="code _highlighted" data-lang="text/x-groovy">android {
     productFlavors {
         free {
             versionName "1.0-free"
@@ -496,27 +511,115 @@ class MyActivity : Activity() {
 <p>所以现在只需要添加一行导入语句即可从 <code>free/res/layout/activity_free.xml</code> 布局中导入所有的合成属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.synthetic.free.activity_free.*
 </code></pre>
-<h3 id="背后原理">背后原理</h3>
-<p>Kotlin 安卓扩展作为 Kotlin 编译器的插件，主要有两大作用：</p>
-<ol>
-<li>在每一个 Kotlin<code>Activity</code> 中添加一个隐藏缓存函数以及一个变量。该方法非常简洁，因此不会直接对APK体积有明显增加。</li>
-<li>使用函数调用替换每一个合成属性。</li>
-</ol>
-<p>其工作原理是，当调用合成属性，在模块资源中 Kotlin Activity/Fragment 类作为接收器时，缓存函数将被调用。
-例如：</p>
+<p>In the <a href="#experimental-mode">experimental mode</a>, you can specify any variant name (not only flavor), e.g. <code>freeDebug</code> or <code>freeRelease</code> will work as well.</p>
+<h3 id="view-caching">View Caching</h3>
+<p>Invoking <code>findViewById()</code> can be slow, especially in case of huge view hierarchies, so Android Extensions tries to minimize <code>findViewById()</code> calls by caching views in containers.</p>
+<p>By default, Android Extensions adds a hidden cache function and a storage field to each container (<a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>, <a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a>, <a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a> or a <code>LayoutContainer</code> implementation) written in Kotlin. The method is pretty small so it does not increase the size of APK much.</p>
+<p>In the following example, <code>findViewById()</code> is only invoked once:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyActivity : Activity()
+
 fun MyActivity.a() { 
-    this.textView.setText(“”)
+    textView.text = "Hidden view"
+    textView.visibility = View.INVISIBLE
 }
 </code></pre>
-<p>在 MyActivity 中生成一个隐藏缓存函数，因此我们可以使用缓存机制。</p>
 <p>然而在下面的例子中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Activity.b() { 
-    this.textView.setText(“”)
+    textView.text = "Hidden view"
+    textView.visibility = View.INVISIBLE
 }
 </code></pre>
-<p>我们并不知道这个函数会被我们自己的来源或者普通的 Java Activity 调用，因此，
-即便在前一个示例中的 MyActivity 是接收器，也不会使用缓存。</p>
+<p>We wouldn't know if this function would be invoked on only activities from our sources or on plain Java activities also. Because of this, we don’t use caching there, even if <code>MyActivity</code> instance from the previous example is passed as a receiver.</p>
+<h3 id="changing-view-caching-strategy">Changing View Caching Strategy</h3>
+<p>You can change the caching strategy globally or per container. This also requires switching on the <a href="#experimental-mode">experimental mode</a>.</p>
+<p>Project-global caching strategy is set in the <code>build.gradle</code> file:</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">androidExtensions {
+    defaultCacheImplementation = "HASH_MAP" // also SPARSE_ARRAY, NONE
+}
+</code></pre>
+<p>By default, Android Extensions plugin uses <code>HashMap</code> as a backing storage, but you can switch to the <code>SparseArray</code> implementation, or just switch off caching. The latter is especially useful when you use only the <a href="#parcelable">Parcelable</a> part of Android Extensions.</p>
+<p>Also, you can annotate a container with <code>@ContainerOptions</code> to change its caching strategy:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.extensions.ContainerOptions
+
+@ContainerOptions(cache = CacheImplementation.NO_CACHE)
+class MyActivity : Activity()
+
+fun MyActivity.a() { 
+    // findViewById() will be called twice
+    textView.text = "Hidden view"
+    textView.visibility = View.INVISIBLE
+}
+</code></pre>
+<h2 id="parcelable">Parcelable</h2>
+<p>Starting from Kotlin 1.1.4, Android Extensions plugin provides Parcelable implementation generator as an experimental feature.</p>
+<h3 id="enabling-parcelable-support">Enabling Parcelable support</h3>
+<p>Apply the <code>kotlin-android-extensions</code> Gradle plugin as described [above]((#configuring-the-dependency) and <a href="#experimental-mode">turn on</a> the experimental flag.</p>
+<h3 id="how-to-use">How to use</h3>
+<p>Annotate the class with <code>@Parcelize</code>, and a <code>Parcelable</code> implementation will be generated automatically.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.android.parcel.Parcelize
+
+@Parcelize
+class User(val firstName: String, val lastName: String, val age: Int): Parcelable
+</code></pre>
+<p><code>@Parcelize</code> requires all serialized properties to be declared in the primary constructor. Android Extensions will issue a warning on each property with a backing field declared in the class body. Also, <code>@Parcelize</code> can't be applied if some of the primary constructor parameters are not properties.</p>
+<p>If your class requires more advanced serialization logic, you can write it inside a companion class:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Parcelize
+data class Value(val firstName: String, val lastName: String, val age: Int) : Parcelable {
+    private companion object : Parceler&lt;User&gt; {
+        override fun User.write(parcel: Parcel, flags: Int) {
+            // Custom write implementation
+        }
+
+        override fun create(parcel: Parcel): User {
+            // Custom read implementation
+        }
+    }
+}
+</code></pre>
+<h3 id="supported-types">Supported Types</h3>
+<p><code>@Parcelize</code> supports a wide range of types:</p>
+<ul>
+<li>Primitive types (and its boxed versions);</li>
+<li>Objects and enums;</li>
+<li><code>String</code>, <code>CharSequence</code>;</li>
+<li><code>Exception</code>;</li>
+<li><code>Size</code>, <code>SizeF</code>, <code>Bundle</code>, <code>IBinder</code>, <code>IInterface</code>, <code>FileDescriptor</code>;</li>
+<li><code>SparseArray</code>, <code>SparseIntArray</code>, <code>SparseLongArray</code>, <code>SparseBooleanArray</code>;</li>
+<li>All <code>Serializable</code> (yes, <code>Date</code> is supported too) and <code>Parcelable</code> implementations;</li>
+<li>Collections of all supported types: <code>List</code> (mapped to <code>ArrayList</code>), <code>Set</code> (mapped to <code>LinkedHashSet</code>), <code>Map</code> (mapped to <code>LinkedHashMap</code>);
+    <ul>
+<li>Also a number of concrete implementations: <code>ArrayList</code>, <code>LinkedList</code>, <code>SortedSet</code>, <code>NavigableSet</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code>, <code>SortedMap</code>, <code>NavigableMap</code>, <code>HashMap</code>, <code>LinkedHashMap</code>, <code>TreeMap</code>, <code>ConcurrentHashMap</code>;</li>
+</ul>
+</li>
+<li>Arrays of all supported types;</li>
+<li>Nullable versions of all supported types.</li>
+</ul>
+<h3 id="custom-parcelers">Custom <code>Parceler</code>s</h3>
+<p>Even if your type is not supported directly, you can write a <code>Parceler</code> mapping object for it.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class ExternalClass(val value: Int)
+
+object ExternalClassParceler : Parceler&lt;ExternalClass&gt; {
+    override fun create(parcel: Parcel) = ExternalClass(parcel.readInt())
+
+    override fun ExternalClass.write(parcel: Parcel, flags: Int) {
+        parcel.writeInt(value)
+    }
+}
+</code></pre>
+<p>External parcelers can be applied using <code>@TypeParceler</code> or <code>@WriteWith</code> annotations:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Class-local parceler
+@Parcelable
+@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;()
+class MyClass(val external: ExternalClass)
+
+// Property-local parceler
+@Parcelable
+class MyClass(@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;() val external: ExternalClass)
+
+// Type-local parceler
+@Parcelable
+class MyClass(val external: @WriteWith&lt;ExternalClassParceler&gt;() ExternalClass)
+</code></pre>
 
         </article>
     </div>
