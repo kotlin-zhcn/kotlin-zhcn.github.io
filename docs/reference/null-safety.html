@@ -956,7 +956,8 @@ for (item in listWithNulls) {
 }
 </code></pre>
 <h2 id="-操作符"><code>!!</code> 操作符</h2>
-<p>第三种选择是为 NPE 爱好者准备的。我们可以写 <code>b!!</code> ，这会返回一个非空的 <code>b</code> 值
+<p>第三种选择是为 NPE 爱好者准备的：非空断言运算符（<code>!!</code>）将任何值转换为非空<!--
+-->类型，若该值为空则抛出异常。我们可以写 <code>b!!</code> ，这会返回一个非空的 <code>b</code> 值
 （例如：在我们例子中的 <code>String</code>）或者如果 <code>b</code> 为空，就会抛出一个 <code>NPE</code> 异常：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b!!.length
 </code></pre>

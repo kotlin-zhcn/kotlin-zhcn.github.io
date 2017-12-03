@@ -1005,6 +1005,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>或者，使用 <code>-Dkotlin.compiler.incremental=true</code> 选项运行构建。</p>
 <h2 id="注解处理">注解处理</h2>
 <p>请参见 <a href="kapt.html">Kotlin 注解处理工具</a>（<code>kapt</code>）的描述。</p>
+<h2 id="协程支持">协程支持</h2>
+<p>在 Kotlin 1.2 中<a href="coroutines.html">协程</a>支持是一项实验性的功能，因此当你在项目中使用协程时 Kotlin 编译器会报警告。
+可以将以下代码块添加到 <code>pom.xml</code> 文件中来关闭这一警告：</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;configuration&gt;
+    &lt;experimentalCoroutines&gt;enable&lt;/experimentalCoroutines&gt;
+&lt;/configuration&gt;
+</code></pre>
 <h2 id="jar-文件">Jar 文件</h2>
 <p>要创建一个仅包含模块代码的小型 Jar 文件，请在 Maven pom.xml 文件中的 <code>build-&gt;plugins</code> 下面包含以下内容，
 其中 <code>main.class</code> 定义为一个属性，并指向主 Kotlin 或 Java 类：</p>

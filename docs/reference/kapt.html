@@ -902,6 +902,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>如果你以前使用 <a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config">Android 支持</a>作为注解处理器，那么以 <code>kapt</code> 取代 <code>annotationProcessor</code> 配置的使用。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
 <p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
+<h2 id="注解处理器参数">注解处理器参数</h2>
+<p>使用 <code>arguments {}</code> 块将参数传给注解处理器：</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
+    arguments {
+        arg("key", "value")
+    }
+}
+</code></pre>
+<h2 id="java-编译器选项">Java 编译器选项</h2>
+<p>Kapt 使用 Java 编译器来运行注解处理器。
+以下是将任意选项传给 javac 的方式：</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
+    javacOptions {
+        // 增加注解处理器的最大错误次数
+        // 默认为 100。
+        option("-Xmaxerrs", 500)
+    }
+}
+</code></pre>
+<h2 id="非存在类型校正">非存在类型校正</h2>
 <p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
     correctErrorTypes = true
