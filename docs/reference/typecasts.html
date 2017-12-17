@@ -946,6 +946,84 @@ Kotlin 中的不安全转换由中缀操作符 <em class="keyword">as</em>（参
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: String? = y as? String
 </code></pre>
 <p>请注意，尽管事实上 <em class="keyword">as?</em> 的右边是一个非空类型的 <code>String</code>，但是其转换的结果是可空的。</p>
+<h2 id="类型擦除与泛型检测">类型擦除与泛型检测</h2>
+<p>Kotlin 在编译时确保涉及<a href="generics.html">泛型</a>操作的类型安全性，
+而在运行时，泛型类型的实例并无未带有关于它们实际类型参数的信息。例如，
+<code>List&lt;Foo&gt;</code> 会被擦除为 <code>List&lt;*&gt;</code>。通常，在运行时无法检测一个实例是否属于带有某个类型参数的泛型类型<!--
+-->。</p>
+<p>为此，编译器会禁止由于类型擦除而无法执行的 <em class="keyword">is</em> 检测，例如
+<code>ints is List&lt;Int&gt;</code> 或者 <code>list is T</code>（类型参数）。当然，你可以对一个实例检测<a href="generics.html#星投影">星投影的类型</a>：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (something is List&lt;*&gt;) {
+    something.forEach { println(it) } // 这些项的类型都是 `Any?`
+}
+</code></pre>
+<p>类似地，当已经让一个实例的类型参数（在编译期）静态检测，
+就可以对涉及非泛型部分做 <em class="keyword">is</em> 检测或者类型转换。请注意，
+在这种情况下，会省略尖括号：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun handleStrings(list: List&lt;String&gt;) {
+    if (list is ArrayList) {
+        // `list` 会智能转换为 `ArrayList&lt;String&gt;`
+    }
+}
+</code></pre>
+<p>省略类型参数的这种语法可用于不考虑类型参数的类型转换：<code>list as ArrayList</code>。</p>
+<p>带有<a href="inline-functions.html#具体化的类型参数">具体化的类型参数</a>的内联函数使其类型实参<!--
+-->在每个调用处内联，这就能够对类型参数进行 <code>arg is T</code> 检测，但是如果 <code>arg</code>
+自身是一个泛型实例，<strong>其</strong>类型参数还是会被擦除。例如：</p>
+<div class="sample">
+<pre><code class="language-kotlin">//sampleStart
+inline fun &lt;reified A, reified B&gt; Pair&lt;*, *&gt;.asPairOf(): Pair&lt;A, B&gt;? {
+    if (first !is A || second !is B) return null
+    return first as A to second as B
+}
+
+val somePair: Pair&lt;Any?, Any?&gt; = "items" to listOf(1, 2, 3)
+
+val stringToSomething = somePair.asPairOf&lt;String, Any&gt;()
+val stringToInt = somePair.asPairOf&lt;String, Int&gt;()
+val stringToList = somePair.asPairOf&lt;String, List&lt;*&gt;&gt;()
+val stringToStringList = somePair.asPairOf&lt;String, List&lt;String&gt;&gt;() // 破坏类型安全！
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    println("stringToSomething = " + stringToSomething)
+    println("stringToInt = " + stringToInt)
+    println("stringToList = " + stringToList)
+    println("stringToStringList = " + stringToStringList)
+}
+</code></pre>
+</div>
+<h2 id="非受检类型转换">非受检类型转换</h2>
+<p>如上所述，类型擦除使运行时不可能对泛型类型实例的类型实参进行检测，并且<!--
+-->代码中的泛型可能相互连接不够紧密，以致于编译器无法确保<!--
+-->类型安全。</p>
+<p>即便如此，有时候我们有高级的程序逻辑来暗示类型安全。例如：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun readDictionary(file: File): Map&lt;String, *&gt; = file.inputStream().use { 
+    TODO("Read a mapping of strings to arbitrary elements.")
+}
+
+// 我们已将存有一些 `Int` 的映射保存到该文件
+val intsFile = File("ints.dictionary")
+
+// Warning: Unchecked cast: `Map&lt;String, *&gt;` to `Map&lt;String, Int&gt;`
+val intsDictionary: Map&lt;String, Int&gt; = readDictionary(intsFile) as Map&lt;String, Int&gt;
+</code></pre>
+<p>编译器会对最后一行的类型转换产生一个警告。该类型转换不能在运行时完全检测，并且<!--
+-->不能保证映射中的值是“Int”。</p>
+<p>为避免未受检类型转换，可以重新设计程序结构：在上例中，可以使用具有类型安全实现的不同接口
+<code>DictionaryReader&lt;T&gt;</code> 与 <code>DictionaryWriter&lt;T&gt;</code>。
+可以引入合理的抽象，将未受检的类型转换从调用代码移动到实现细节中。
+正确使用<a href="generics.html#型变">泛型型变</a>也有帮助。</p>
+<p>对于泛型函数，使用<a href="inline-functions.html#具体化的类型参数">具体化的类型参数</a>可以使<!--
+-->诸如 <code>arg as T</code> 这样的类型转换受检，除非 <code>arg</code> 对应类型的<em>自身</em>类型参数已被擦除。</p>
+<p>可以通过在产生警告的语句或声明上用注解 <code>@Suppress("UNCHECKED_CAST")</code>
+<a href="annotations.html#注解">标注</a>来禁止未受检类型转换警告：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">inline fun &lt;reified T&gt; List&lt;*&gt;.asListOfType(): List&lt;T&gt;? =
+    if (all { it is T })
+        @Suppress("UNCHECKED_CAST")
+        this as List&lt;T&gt; else
+        null
+</code></pre>
 
         </article>
     </div>

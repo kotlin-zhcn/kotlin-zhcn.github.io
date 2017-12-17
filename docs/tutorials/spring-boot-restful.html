@@ -457,7 +457,7 @@ and the project layout structure, as well as the initialization code.</p>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
 <p>The Gradle file is pretty much standard for Spring Boot. The only differences are the structure layout for source folders for Kotlin, the required Kotlin dependencies and the <a href="https://kotlinlang.org/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a> Gradle plugin (CGLIB proxies used for example for <code>@Configuration</code> and <code>@Bean</code> processing require <code>open</code> classes).</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.0' // Required for Kotlin integration
+    ext.kotlin_version = '1.2.10' // Required for Kotlin integration
     ext.spring_boot_version = '1.5.4.RELEASE'
     repositories {
         jcenter()
