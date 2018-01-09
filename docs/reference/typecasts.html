@@ -1024,6 +1024,10 @@ val intsDictionary: Map&lt;String, Int&gt; = readDictionary(intsFile) as Map&lt;
         this as List&lt;T&gt; else
         null
 </code></pre>
+<p>在 JVM 平台中，<a href="basic-types.html#数组">数组类型</a>（<code>Array&lt;Foo&gt;</code>）会保留关于<!--
+-->其元素被擦除类型的信息，并且类型转换为一个数组类型可以部分受检：
+元素类型的可空性与类型实参仍然会被擦除。例如，
+如果 <code>foo</code> 是一个保存了任何 <code>List&lt;*&gt;</code>（无论可不可空）的数组的话，类型转换 <code>foo as Array&lt;List&lt;String&gt;?&gt;</code> 都会成功。</p>
 
         </article>
     </div>

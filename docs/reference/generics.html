@@ -958,8 +958,8 @@ void demo(Source&lt;String&gt; strs) {
 <p>为了修正这一点，我们必须声明对象的类型为 <code>Source&lt;? extends Object&gt;</code>，这是毫无意义的，因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。</p>
 <p>在 Kotlin 中，有一种方法向编译器解释这种情况。这称为<strong>声明处型变</strong>：我们可以标注 <code>Source</code> 的<strong>类型参数</strong> <code>T</code> 来确保它仅从 <code>Source&lt;T&gt;</code> 成员中<strong>返回</strong>（生产），并从不被消费。
 为此，我们提供 <strong>out</strong> 修饰符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Source&lt;out T&gt; {
-    abstract fun nextT(): T
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Source&lt;out T&gt; {
+    fun nextT(): T
 }
 
 fun demo(strs: Source&lt;String&gt;) {
@@ -974,9 +974,9 @@ fun demo(strs: Source&lt;String&gt;) {
 <p><strong>out</strong>修饰符称为<strong>型变注解</strong>，并且由于它在类型参数声明处提供，所以我们讲<strong>声明处型变</strong>。
 这与 Java 的<strong>使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
 <p>另外除了 <strong>out</strong>，Kotlin 又补充了一个型变注释：<strong>in</strong>。它使得一个类型参数<strong>逆变</strong>：只可以被消费而不可以<!--
--->被生产。逆变类的一个很好的例子是 <code>Comparable</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Comparable&lt;in T&gt; {
-    abstract fun compareTo(other: T): Int
+-->被生产。逆变类型的一个很好的例子是 <code>Comparable</code>：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Comparable&lt;in T&gt; {
+    operator fun compareTo(other: T): Int
 }
 
 fun demo(x: Comparable&lt;Number&gt;) {
@@ -1056,6 +1056,9 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
 <p>要调用泛型函数，在调用处函数名<strong>之后</strong>指定类型参数即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList&lt;Int&gt;(1)
 </code></pre>
+<p>Type arguments can be omitted if they can be inferred from the context, so the following example works as well:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList(1)
+</code></pre>
 <h2 id="泛型约束">泛型约束</h2>
 <p>能够替换给定类型参数的所有可能类型的集合可以由<strong>泛型约束</strong>限制。</p>
 <h3 id="上界">上界</h3>
@@ -1070,12 +1073,28 @@ sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt
 </code></pre>
 <p>默认的上界（如果没有声明）是 <code>Any?</code>。在尖括号中只能指定一个上界。
 如果同一类型参数需要多个上界，我们需要一个单独的 <strong>where</strong>-子句：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; cloneWhenGreater(list: List&lt;T&gt;, threshold: T): List&lt;T&gt;
-    where T : Comparable&lt;T&gt;,
-          T : Cloneable {
-  return list.filter { it &gt; threshold }.map { it.clone() }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; copyWhenGreater(list: List&lt;T&gt;, threshold: T): List&lt;String&gt;
+    where T : CharSequence,
+          T : Comparable&lt;T&gt; {
+    return list.filter { it &gt; threshold }.map { it.toString() }
 }
 </code></pre>
+<h2 id="type-erasure">Type erasure</h2>
+<p>The type safety checks that Kotlin performs for generic declaration usages are only done at compile time.
+At runtime, the instances of generic types do not hold any information about their actual type arguments.
+The type information is said to be <em>erased</em>. For example, the instances of <code>Foo&lt;Bar&gt;</code> and <code>Foo&lt;Baz?&gt;</code> are erased to
+just <code>Foo&lt;*&gt;</code>.</p>
+<p>Therefore, there is no general way to check whether an instance of a generic type was created with certain type
+arguments at runtime, and the compiler <a href="typecasts.html#类型擦除与泛型检测">prohibits such <em class="keyword">is</em>-checks</a>.</p>
+<p>Type casts to generic types with concrete type arguments, e.g. <code>foo as List&lt;String&gt;</code>, cannot be checked at runtime.<br/>
+These <a href="typecasts.html#非受检类型转换">unchecked casts</a> can be used when type safety is implied by the high-level 
+program logic but cannot be inferred directly by the compiler. The compiler issues a warning on unchecked casts, and at 
+runtime, only the non-generic part is checked (equivalent to <code>foo as List&lt;*&gt;</code>).</p>
+<p>The type arguments of generic function calls are also only checked at compile time. Inside the function bodies, 
+the type parameters cannot be used for type checks, and type casts to type parameters (<code>foo as T</code>) are unchecked. However,
+<a href="inline-functions.html#具体化的类型参数">reified type parameters</a> of inline functions are substituted by the actual 
+type arguments in the inlined function body at the call sites and thus can be used for type checks and casts,
+with the same restrictions for instances of generic types as described above.</p>
 
         </article>
     </div>

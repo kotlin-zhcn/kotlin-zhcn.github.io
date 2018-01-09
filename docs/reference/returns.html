@@ -922,7 +922,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 （注意，这种非局部的返回只支持传给<a href="inline-functions.html">内联函数</a>的 lambda 表达式。）
 如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 <em class="keyword">return</em>。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
-    ints.forEach lit@ {
+    ints.forEach lit@{
         if (it == 0) return@lit
         print(it)
     }

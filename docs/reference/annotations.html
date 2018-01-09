@@ -955,7 +955,7 @@ annotation class Deprecated(
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">
 import kotlin.reflect.KClass
 
-annotation class Ann(val arg1: KClass&lt;*&gt;, val arg2: KClass&lt;out Any?&gt;)
+annotation class Ann(val arg1: KClass&lt;*&gt;, val arg2: KClass&lt;out Any&gt;)
 
 @Ann(String::class, Int::class) class MyClass
 </code></pre>

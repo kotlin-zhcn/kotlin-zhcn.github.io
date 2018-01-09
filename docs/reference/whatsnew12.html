@@ -880,29 +880,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlin-12-的新特性">Kotlin 1.2 的新特性</h1>
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="目录">目录</h2>
 <ul>
-<li><a href="#multiplatform-projects-experimental">Multiplatform projects</a></li>
-<li><a href="#other-language-features">Other language features</a></li>
-<li><a href="#standard-library">Standard library</a></li>
-<li><a href="#jvm-backend">JVM backend</a></li>
-<li><a href="#javascript-backend">JavaScript backend</a></li>
+<li><a href="#多平台项目实验性的">多平台项目</a></li>
+<li><a href="#其他语言特性">其他语言特性</a></li>
+<li><a href="#标准库">标准库</a></li>
+<li><a href="#jvm-后端">JVM 后端</a></li>
+<li><a href="#javascript-后端">JavaScript 后端</a></li>
 </ul>
-<h2 id="multiplatform-projects-experimental">Multiplatform Projects (experimental)</h2>
-<p>Multiplatform projects are a new <strong>experimental</strong> feature in Kotlin 1.2, allowing you to reuse code between target platforms supported by Kotlin – JVM, JavaScript and (in the future) Native. In a multiplatform project, you have three kinds of modules:</p>
+<h2 id="多平台项目实验性的">多平台项目（实验性的）</h2>
+<p>多平台项目是 Kotlin 1.2 中的一个新的<strong>实验性的</strong>功能，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：</p>
 <ul>
-<li>A <em>common</em> module contains code that is not specific to any platform, as well as declarations without implementation of platform-dependent APIs.</li>
-<li>A <em>platform</em> module contains implementations of platform-dependent declarations in the common module for a specific platform, as well as other platform-dependent code.</li>
-<li>A regular module targets a specific platform and can either be a dependency of platform modules or depend on platform modules.</li>
+<li>一个<em>公共</em>模块包含平台无关代码，以及无实现的依赖平台的 API 声明。</li>
+<li><em>平台</em>模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。</li>
+<li>常规模块针对指定的平台，既可以是平台模块的依赖，也可以依赖平台模块。</li>
 </ul>
-<p>When you compile a multiplatform project for a specific platform, the code for both the common and platform-specific parts is generated.</p>
-<p>A key feature of the multiplatform project support is the possibility to express dependencies of common code on platform-specific parts through <strong>expected and actual declarations</strong>. An expected declaration specifies an API (class, interface, annotation, top-level declaration etc.). An actual declaration is either a platform-dependent implementation of the API or a typealias referring to an existing implementation of the API in an external library. Here's an example:</p>
-<p>In common code:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// expected platform-specific API:
+<p>当你为指定平台编译多平台项目时，既会生成公共代码也会生成平台相关代码。</p>
+<p>多平台项目支持的一个主要特点是可以通过<strong>预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
+<p>在公共代码中：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 预期平台相关 API:
 expect fun hello(world: String): String
 
 fun greet() {
-    // usage of the expected API:
+    // 该预期 API 的用法：
     val greeting = hello("multi-platform world")
     println(greeting)
 }
@@ -912,26 +912,26 @@ expect class URL(spec: String) {
     open fun getPath(): String
 }
 </code></pre>
-<p>In JVM platform code:</p>
+<p>在 JVM 平台代码中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">actual fun hello(world: String): String =
     "Hello, $world, on the JVM platform!"
 
-// using existing platform-specific implementation:
+// 使用既有平台相关实现：
 actual typealias URL = java.net.URL
 </code></pre>
-<p>See the <a href="http://kotlinlang.org/docs/reference/multiplatform.html">documentation</a> for details and steps to build a 
-multiplatform project.</p>
-<h2 id="other-language-features">Other Language Features</h2>
-<h3 id="array-literals-in-annotations">Array literals in annotations</h3>
-<p>Starting with Kotlin 1.2, array arguments for annotations can be passed with the new array literal syntax instead 
-of the <code>arrayOf</code> function:</p>
+<p>关于构建多平台项目的详细信息与步骤，请参见其<a href="http://kotlinlang.org/docs/reference/multiplatform.html">documentation</a><!--
+-->。</p>
+<h2 id="其他语言特性">其他语言特性</h2>
+<h3 id="注解中的数组字面值">注解中的数组字面值</h3>
+<p>自 Kotlin 1.2 起，注解的数组参数可以通过新的数组字面值语法传入，而无需<!--
+-->使用 <code>arrayOf</code> 函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@CacheConfig(cacheNames = ["books", "default"])
 public class BookRepositoryImpl {
-    // ...
+    // ……
 }
 </code></pre>
-<p>The array literal syntax is constrained to annotation arguments.</p>
-<h3 id="lateinit-top-level-properties-and-local-variables">Lateinit top-level properties and local variables</h3>
+<p>该数组字面值语法仅限于注解参数。</p>
+<h3 id="lateinit-顶层属性与局部变量">lateinit 顶层属性与局部变量</h3>
 <p>The <code>lateinit</code> modifier can now be used on top-level properties and local variables. The latter can be used, 
 for example, when a lambda passed as a constructor argument to one object refers to another object 
 which has to be defined later:</p>
@@ -1079,7 +1079,7 @@ thus have been deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1
 <h3 id="deprecation-mutating-backing-field-of-a-read-only-property">Deprecation: mutating backing field of a read-only property</h3>
 <p>Mutating the backing field of a read-only property by assigning <code>field = ...</code> in the custom getter has been 
 deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1.3.</p>
-<h2 id="standard-library">Standard Library</h2>
+<h2 id="标准库">标准库</h2>
 <h3 id="kotlin-standard-library-artifacts-and-split-packages">Kotlin standard library artifacts and split packages</h3>
 <p>The Kotlin standard library is now fully compatible with the Java 9 module system, which forbids split packages 
 (multiple jar files declaring classes in the same package). In order to support that, new artifacts <code>kotlin-stdlib-jdk7</code> 
@@ -1193,7 +1193,7 @@ from other numeric types. These are:</p>
 <p>The <code>Closeable.use</code> function calls <code>Throwable.addSuppressed</code> when an exception is thrown during closing the resource 
 after some other exception.</p>
 <p>To enable this behavior you need to have <code>kotlin-stdlib-jdk7</code> in your dependencies.</p>
-<h2 id="jvm-backend">JVM Backend</h2>
+<h2 id="jvm-后端">JVM 后端</h2>
 <h3 id="constructor-calls-normalization">Constructor calls normalization</h3>
 <p>Ever since version 1.0, Kotlin supported expressions with complex control flow, such as try-catch expressions and 
 inline function calls. Such code is valid according to the Java Virtual Machine specification. Unfortunately, some 
@@ -1227,7 +1227,7 @@ Starting with Kotlin 1.2, calling <code>x.equals(...)</code> on a null value of 
 would thus allow null to escape into the other code. Kotlin 1.2 forces this check at the call sites, throwing an exception
 if the receiver is null.</p>
 <p>To switch to the old behavior, pass the fallback flag <code>-Xno-receiver-assertions</code> to the compiler.</p>
-<h2 id="javascript-backend">JavaScript Backend</h2>
+<h2 id="javascript-后端">JavaScript 后端</h2>
 <h3 id="typedarrays-support-enabled-by-default">TypedArrays support enabled by default</h3>
 <p>The JS typed arrays support that translates Kotlin primitive arrays, such as <code>IntArray</code>, <code>DoubleArray</code>, 
 into <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a>, that was 

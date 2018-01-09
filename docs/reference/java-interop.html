@@ -1343,6 +1343,7 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 </tr>
 </tbody>
 </table>
+<p>注意：这些 Java 类型的静态成员不能在相应 Kotlin 类型的<a href="object-declarations.html#伴生对象">伴生对象</a>中直接访问。要调用它们，请使用 Java 类型的完整限定名，例如 <code>java.lang.Integer.toHexString(foo)</code>。</p>
 <h2 id="kotlin-中的-java-泛型">Kotlin 中的 Java 泛型</h2>
 <p>Kotlin 的泛型与 Java 有点不同（参见<a href="generics.html">泛型</a>）。当将 Java 类型导入 Kotlin 时，我们会执行一些转换：</p>
 <ul>
@@ -1475,6 +1476,7 @@ class Example : Cloneable {
     // ……
 }
 </code></pre>
+<p>要访问<a href="#已映射类型">已映射</a>到 Kotlin 类型的 Java 类型的静态成员，请使用 Java 类型的完整限定名：<code>java.lang.Integer.bitCount(foo)</code>。</p>
 <h2 id="java-反射">Java 反射</h2>
 <p>Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 <code>instance::class.java</code>,
 <code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。</p>

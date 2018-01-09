@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/calling-javascript-from-kotlin/calling-javascript-from-kotlin.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/basic-kotlin-native-app.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to work with JavaScript from Kotlin">
+    <meta property="og:description" content="A look at how to compile our first Kotlin/Native application">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to work with JavaScript from Kotlin">
+    <meta name="twitter:description" content="A look at how to compile our first Kotlin/Native application">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Calling JavaScript from Kotlin - Kotlin 语言中文站</title>
+    <title>A Basic Kotlin/Native Application - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -326,12 +326,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/basic-kotlin-native-app.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">基本 Kotlin/Native 应用程序</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">基本 Kotlin/Native 应用程序</div>
+            </div>
     </div>
 
     </div>
@@ -436,7 +434,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/javascript/calling-javascript-from-kotlin/calling-javascript-from-kotlin.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/basic-kotlin-native-app.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -444,7 +442,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Calling JavaScript from Kotlin
+                A Basic Kotlin/Native Application
             </h1>
             <table>
                     <tr>
@@ -452,116 +450,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2016-10-07
+                            2017-12-03
                         </td>
                     </tr>
             </table>
-                A look at how to work with JavaScript from Kotlin
+                A look at how to compile our first Kotlin/Native application
                 <br/>
                 <br/>
             
-<p>When targeting JavaScript with Kotlin, we can interoperate by</p>
+<p>In this tutorial we'll see how to</p>
 <ul>
-<li>Calling Kotlin from JavaScript</li>
-<li>Calling JavaScript from Kotlin</li>
+<li><a href="#obtaining-the-compiler">Obtain the Kotlin/Native compiler</a></li>
+<li><a href="#creating-hello-kotlin">Write the application</a></li>
+<li><a href="#compiling-and-examining-output">Compile and examine output</a></li>
+<li><a href="#running-the-application">Run the application</a></li>
 </ul>
-<p>This tutorial is going to cover the second case. For more information about the first scenario please see</p>
-<ul>
-<li><a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></li>
-<li><a href="../working-with-modules/working-with-modules.html">Working with Modules</a></li>
-</ul>
-<p>If you're new to working with Kotlin and JavaScript, it's recommended you read the previous tutorials first to get a 
-better understanding of how things work under the covers.</p>
-<p>What we'll see in this tutorial is how to</p>
-<ul>
-<li><a href="#using-standard-library-functions">Use Standard Library Function to emit JavaScript</a></li>
-<li><a href="#working-with-strongly-typed-libraries">Work with strongly-typed libraries</a></li>
-<li><a href="#invoking-javascript-only-members">Invoke a member that does not exist in Kotlin</a></li>
-<li><a href="#creating-mappings-with-native">Create mappings with Dynamic and Native</a></li>
-</ul>
-<h2 id="using-standard-library-functions">Using Standard Library Functions</h2>
-<p>The Standard Library comes with a function named <code>js</code> which allows us to emit JavaScript easily from Kotlin.</p>
+<h2 id="obtaining-the-compiler">Obtaining the compiler</h2>
+<p>Kotlin/Native is available for macOS, Linux and Windows. Depending on the operating system we're working on, we'll need to download
+the correct compiler. While cross-platform compilation is possible (i.e. using one platform to compile for another), in this first tutorial
+we're going to compile for the same operating system we're running on. In our case this will be macOS.</p>
+<p>We can obtain the latest version of the compiler from the <a href="https://github.com/JetBrains/kotlin-native/releases">GitHub releases page</a>.</p>
+<p>Once downloaded, we can uncompress it in any folder, e.g. ~/kotlin-native. For convenience it's useful to add the <code>bin</code> folder to the system path so that we can invoke the 
+compiler from any location. If we uncompressed to ~/kotlin-native, this would be ~/kotlin-native/bin)</p>
+<p>While the output by the compiler does not have any dependencies, the compiler itself does require Java 8, which should be on the system.</p>
+<h2 id="creating-hello-kotlin">Creating Hello Kotlin</h2>
+<p>Our first application is going to simply print some text on the standard output. In our case, this will be "Hello Kotlin/Native"</p>
+<p>We can open up our favorite IDE or editor and write the following code in a file named <code>hello.kt</code></p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
-
-    js("alert('Hello from Kotlin')")
-
+    println("Hello Kotlin/Native!")
 }
 </code></pre>
-<p>The code above would emit a JavaScript message dialog as soon as the main function is executed. It's important to note that this is not merely an <code>eval</code>. The JavaScript 
-code is verified to be valid and injected into the generated code.</p>
-<h2 id="working-with-strongly-typed-libraries">Working with Strongly-Typed Libraries</h2>
-<p>Kotlin standard library ships with a series of headers for interacting with JavaScript libraries such as jQuery[1].</p>
-<p>For the case of jQuery, we can use the <code>jq</code> standard library function. This allows us to write jQuery directly without having to resort to invoking it using
-inline JavaScript.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
-    jq("#message").html("Hello from Kotlin")
-}
+<h2 id="compiling-and-examining-output">Compiling and examining output</h2>
+<p>The Kotlin compiler uses a technology known as <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> to target multiple platforms. LLVM requires as input what's know as intermediate representation or IR. This IR is
+represented by a bitcode file, which is a bitstream file format.</p>
+<p><img alt="Compiler Diagram" src="/assets/images/tutorials/native/basic-kotlin-native/llvm-diagram.png"/></p>
+<p>We now need to compile our application, which is done using the compiler downloaded in the first step. If we have the <code>bin</code> folder
+correctly added to the path, we should be able to invoke the compiler using</p>
+<p><code>kotlinc hello.kt</code></p>
+<p>which is telling the compiler to compile the source code <code>hello.kt</code>.</p>
+<p>The first time the compiler runs, it downloads a list of necessary requirements, thus first run does take longer. If everything runs correctly, the output 
+should be</p>
+<p><code>hello.kexe</code></p>
+<p>The <code>hello.kexe</code> file is the actual binary produced for our target platform. The compiler provides us with a series of options, one of these
+being the ability to specify the output filename. In order to do this, we can use the -output (or -o) option</p>
+<p><code>kotlinc -o first hello.kt</code></p>
+<p>which would produce</p>
+<p><code>first.kexe</code></p>
+<p>The extension cannot be set and is determined based on the target platform, but we can of course rename the executable to anything we like, using 
+the usual system commands to rename files.</p>
+<h2 id="running-the-application">Running the application</h2>
+<p>To run the application, we can merely invoke it</p>
+<p><code>/hello.kexe</code></p>
+<p>It's important to understand that this is now a native application, and no runtime or virtual machine is required. The output should be</p>
+<pre><code>Hello Kotlin/Native!
 </code></pre>
-<p>which would set the HTML of the <code>div</code> with id <code>message</code></p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Sample&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id="message"&gt;
-&lt;/div&gt;
-    &lt;script type="text/javascript" src="src/jquery-3.1.1.min.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="src/kotlin.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="src/main.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<h2 id="invoking-javascript-only-members">Invoking JavaScript-only members</h2>
-<p>There are cases in which we want to invoke some method that only exists in JavaScript. For instance, let's assume we want to use the <a href="https://datatables.net/">DataTables</a> jQuery plugin that creates a grid out of a table. This plugin requires
-us to invoke <code>Datatable()</code> on a DOM table element.</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">    $('#table').DataTable();
-</code></pre>
-<p>If we were to try and do this using our <code>jq()</code> function, the code wouldn't compile</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
-    jq("#table").DataTable()
-}
-</code></pre>
-<p>and we'd get an unresolved reference</p>
-<p><img alt="Unresolved Reference" src="/assets/images/tutorials/javascript/calling-javascript-from-kotlin/unresolved-reference.png"/></p>
-<p>In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a href="https://kotlinlang.org/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
-    jq("#table").asDynamic().DataTable()
-}
-</code></pre>
-<p>At runtime, the call will be mapped to the same member invocation.</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var workingWithJavaScript = function (Kotlin) {
-  'use strict';
-  var _ = Kotlin.defineRootPackage(null, /** @lends _ */ {
-    main_kand9s$: function (args) {
-      $('#table').DataTable(); // &lt;-- LITERAL TRANSLATION  
-    }
-  });
-  Kotlin.defineModule('workingWithJavaScript', _);
-  _.main_kand9s$([]);
-  return _;
-}(kotlin);
-</code></pre>
-<h2 id="creating-mappings-with-native">Creating mappings with Native</h2>
-<p>In the above scenario, <code>DataTable()</code> was transpiled to the same member name in JavaScript. What happens however when we want to map to something different? In fact, we're doing this with <code>jq</code> itself. 
-If we notice the output of the code above, we see the <code>jq</code> has been transpiled to <code>$</code>. How does this happen?</p>
-<p>Kotlin allows us to map a function to something else in JavaScript by annotating it using the <code>@native</code> annotation. If we look at the standard library, we can see that the <code>jq</code> function has the following definition</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@native("$")
-public fun jq(selector: String): JQuery = JQuery();
-@native("$")
-public fun jq(selector: String, context: Element): JQuery = JQuery();
-@native("$")
-public fun jq(callback: () -&gt; Unit): JQuery = JQuery();
-@native("$")
-public fun jq(obj: JQuery): JQuery = JQuery();
-@native("$")
-public fun jq(el: Element): JQuery = JQuery();
-@native("$")
-public fun jq(): JQuery = JQuery();
-</code></pre>
-<p>Using a combination of <code>dynamic</code> and <code>native</code> we can use third-party libraries that are available in JavaScript for which we do not currently have strongly-typed header definitions.</p>
-<p>[1] At some point these headers might be separated out into their own library as part of the <a href="https://github.com/kotlin/">Kotlinx project</a></p>
 
         </article>
     </div>

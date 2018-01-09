@@ -881,69 +881,644 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="编码规范">编码规范</h1>
 <p>此页面包含当前 Kotlin 语言的编码风格</p>
-<h2 id="命名风格">命名风格</h2>
-<p>如果拿不准的时候，默认使用Java的编码规范，比如：</p>
+<blockquote>
+<p>Note: To configure the IntelliJ formatter according to this style guide, please install Kotlin plugin version
+1.2.20-eap-33 or newer, go to Settings | Editor | Code Style | Kotlin, click on "Set from…" link in the upper
+right corner, and select "Predefined style / Kotlin style guide" from the menu.</p>
+</blockquote>
+<h2 id="source-code-organization">Source code organization</h2>
+<h3 id="directory-structure">Directory structure</h3>
+<p>In mixed-language projects, Kotlin source files should reside in the same source root as the Java source files,
+and follow the same directory structure (each file should be stored in the directory corresponding to each package
+statement).</p>
+<p>In pure Kotlin projects, the recommended directory structure is to follow the package structure with
+the common root package omitted (e.g. if all the code in the project is in the "org.example.kotlin" package and its
+subpackages, files with the "org.example.kotlin" package should be placed directly under the source root, and
+files in "org.example.kotlin.foo.bar" should be in the "foo/bar" subdirectory of the source root).</p>
+<h3 id="source-file-names">Source file names</h3>
+<p>If a Kotlin file contains a single class (potentially with related top-level declarations), its name should be the same
+as the name of the class, with the .kt extension appended. If a file contains multiple classes, or only top-level declarations,
+choose a name describing what the file contains, and name the file accordingly. Use camel humps with an uppercase first letter
+(e.g. <code>ProcessDeclarations.kt</code>).</p>
+<p>The name of the file should describe what the code in the file does. Therefore, you should avoid using meaningless
+words such as "Util" in file names.</p>
+<h3 id="source-file-organization">Source file organization</h3>
+<p>Placing multiple declarations (classes, top-level functions or properties) in the same Kotlin source file is encouraged
+as long as these declarations are closely related to each other semantically and the file size remains reasonable
+(not exceeding a few hundred lines).</p>
+<p>In particular, when defining extension functions for a class which are relevant for all clients of this class,
+put them in the same file where the class itself is defined. When defining extension functions that make sense 
+only for a specific client, put them next to the code of that client. Do not create files just to hold 
+"all extensions of Foo".</p>
+<h3 id="class-layout">Class layout</h3>
+<p>Generally, the contents of a class is sorted in the following order:</p>
 <ul>
-<li>使用驼峰法命名（并避免命名含有下划线）</li>
-<li>类型名以大写字母开头</li>
-<li>方法和属性以小写字母开头</li>
-<li>使用 4 个空格缩进</li>
-<li>公有函数应撰写函数文档，这样这些文档才会出现在 Kotlin Doc 中</li>
+<li>Property declarations and initializer blocks</li>
+<li>Secondary constructors</li>
+<li>Method declarations</li>
+<li>Companion object</li>
 </ul>
-<h2 id="冒号">冒号</h2>
-<p>类型和超类型之间的冒号前要有一个空格，而实例和类型之间的冒号前不要有空格：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Foo&lt;out T : Any&gt; : Bar {
-    fun foo(a: Int): T
+<p>Do not sort the method declarations alphabetically or by visibility, and do not separate regular methods
+from extension methods. Instead, put related stuff together, so that someone reading the class from top to bottom would
+be able to follow the logic of what's happening. Choose an order (either higher-level stuff first, or vice versa)
+and stick to it.</p>
+<p>Put nested classes next to the code that uses those classes. If the classes are intended to be used externally and aren't
+referenced inside the class, put them in the end, after the companion object.</p>
+<h3 id="interface-implementation-layout">Interface implementation layout</h3>
+<p>When implementing an interface, keep the implementing members in the same order as members of the interface (if necessary,
+interspersed with additional private methods used for the implementation)</p>
+<h3 id="overload-layout">Overload layout</h3>
+<p>Always put overloads next to each other in a class.</p>
+<h2 id="naming-rules">Naming rules</h2>
+<p>Kotlin follows the Java naming conventions. In particular:</p>
+<p>Names of packages are always lower case and do not use underscores (<code>org.example.myproject</code>). Using multi-word
+names is generally discouraged, but if you do need to use multiple words, you can either simply concatenate them together
+or use camel humps (<code>org.example.myProject</code>).</p>
+<p>Names of classes and objects start with an upper case letter and use camel humps:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class DeclarationProcessor { ... }
+
+object EmptyDeclarationProcessor : DeclarationProcessor() { ... }
+</code></pre>
+<h3 id="function-names">Function names</h3>
+<p>Names of functions, properties and local variables start with a lower case letter and use camel humps and no underscores:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun processDeclarations() { ... }
+var declarationCount = ...
+</code></pre>
+<p>Exception: factory functions used to create instances of classes can have the same name as the class being created:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo { ... }
+
+class FooImpl : Foo { ... }
+
+fun Foo(): Foo { return FooImpl(...) }
+</code></pre>
+<h4 id="names-for-test-methods">Names for test methods</h4>
+<p>In tests (and only in tests), it's acceptable to use method names with spaces enclosed in backticks.
+(Note that such method names are currently not supported by the Android runtime.) Underscores in method names are
+also allowed in test code.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyTestCase {
+     @Test fun `ensure everything works`() {
+     }
+     
+     @Test fun ensureEverythingWorks_onAndroid() {
+     }
 }
 </code></pre>
-<h2 id="lambda表达式">Lambda表达式</h2>
-<p>在lambda表达式中, 大括号左右要加空格，分隔参数与代码体的箭头左右也要加空格
-。lambda表达应尽可能不要写在圆括号中</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">list.filter { it &gt; 10 }.map { element -&gt; element * 2 }
+<h3 id="property-names">Property names</h3>
+<p>Names of constants (properties marked with <code>const</code>, or top-level or object <code>val</code> properties with no custom <code>get</code> function
+that hold deeply immutable data) should use uppercase underscore-separated names:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">const val MAX_COUNT = 8
+val USER_NAME_FIELD = "UserName"
 </code></pre>
-<p>在非嵌套的短lambda表达式中，最好使用约定俗成的默认参数 <code>it</code> 来替代显式声明参数名
-。在嵌套的有参数的lambda表达式中，参数应该总是显式声明。</p>
-<h2 id="类头格式化">类头格式化</h2>
-<p>有少数几个参数的类可以写成一行：</p>
+<p>Names of top-level or object properties which hold objects with behavior or mutable data should use regular camel-hump names:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val mutableCollection: MutableSet&lt;String&gt; = HashSet()
+</code></pre>
+<p>Names of properties holding references to singleton objects can use the same naming style as <code>object</code> declarations:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val PersonComparator: Comparator&lt;Person&gt; = ...
+</code></pre>
+<p>For enum constants, it's OK to use either uppercase underscore-separated names
+(<code>enum class Color { RED, GREEN }</code>) or regular camel-humps names starting with an uppercase letter, depending on the usage.</p>
+<h4 id="names-for-backing-properties">Names for backing properties</h4>
+<p>If a class has two properties which are conceptually the same but one is part of a public API and another is an implementation
+detail, use an underscore as the prefix for the name of the private property:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+    private val _elementList = mutableListOf&lt;Element&gt;()
+
+    val elementList: List&lt;Element&gt;
+         get() = _elementList
+}
+</code></pre>
+<h3 id="choosing-good-names">Choosing good names</h3>
+<p>The name of a class is usually a noun or a noun phrase explaining what the class <em>is</em>: <code>List</code>, <code>PersonReader</code>.</p>
+<p>The name of a method is usually a verb or a verb phrase saying what the method <em>does</em>: <code>close</code>, <code>readPersons</code>.
+The name should also suggest if the method is mutating the object or returning a new one. For instance <code>sort</code> is
+sorting a collection in place, while <code>sorted</code> is returning a sorted copy of the collection.</p>
+<p>The names should make it clear what the purpose of the entity is, so it's best to avoid using meaningless words
+(<code>Manager</code>, <code>Wrapper</code> etc.) in names.</p>
+<p>When using an acronym as part of a declaration name, capitalize it if it consists of two letters (<code>IOStream</code>);
+capitalize only the first letter if it is longer (<code>HttpInputStream</code>).</p>
+<h2 id="formatting">Formatting</h2>
+<p>In most cases, Kotlin follows the Java coding conventions.</p>
+<p>Use 4 spaces for indentation. Do not use tabs.</p>
+<p>For curly braces, put the opening brace in the end of the line where the construct begins, and the closing brace
+on a separate line aligned vertically with the opening construct.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (elements != null) {
+    for (element in elements) {
+        // ...
+    }
+}
+</code></pre>
+<p>(Note: In Kotlin, semicolons are optional, and therefore line breaks are significant. The language design assumes 
+Java-style braces, and you may encounter surprising behavior if you try to use a different formatting style.)</p>
+<h3 id="horizontal-whitespace">Horizontal whitespace</h3>
+<p>Put spaces around binary operators (<code>a + b</code>). Exception: don't put spaces around the "range to" operator (<code>0..i</code>).</p>
+<p>Do not put spaces around unary operators (<code>a++</code>)</p>
+<p>Put spaces between control flow keywords (<code>if</code>, <code>when</code>, <code>for</code> and <code>while</code>) and the corresponding opening parenthesis.</p>
+<p>Do not put a space before an opening parenthesis in a primary constructor declaration, method declaration or method call.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class A(val x: Int)
+
+fun foo(x: Int) { }
+
+fun bar() {
+    foo(1)
+}
+</code></pre>
+<p>Never put a space after <code>(</code>, <code>[</code>, or before <code>]</code>, <code>)</code>.</p>
+<p>Put a space after <code>//</code>: <code>// This is a comment</code></p>
+<p>Do not put spaces around angle brackets used to specify type parameters: <code>class Map&lt;K, V&gt; { ... }</code></p>
+<p>Do not put spaces around <code>::</code>: <code>Foo::class</code>, <code>String::length</code></p>
+<p>Do not put a space before <code>?</code> used to mark a nullable type: <code>String?</code></p>
+<p>As a general rule, avoid horizontal alignment of any kind. Renaming an identifier to a name with a different length
+should not affect the formatting of either the declaration or any of the usages.</p>
+<h3 id="colon">Colon</h3>
+<p>Put a space before <code>:</code> in the following cases:</p>
+<ul>
+<li>when it's used to separate a type and a supertype;</li>
+<li>when delegating to a superclass constructor or a different constructor of the same class;</li>
+<li>after the <code>object</code> keyword.</li>
+</ul>
+<p>Don't put a space before <code>:</code> when it separates a declaration and its type.</p>
+<p>Always put a space after <code>:</code>.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo&lt;out T : Any&gt; : IFoo {
+    abstract fun foo(a: Int): T
+}
+
+class FooImpl : Foo() {
+    constructor(x: String) : this(x) {
+        //...
+    }
+    
+    val x = object : IFoo { ... } 
+} 
+</code></pre>
+<h3 id="class-header-formatting">Class header formatting</h3>
+<p>Classes with a few arguments can be written in a single line:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(id: Int, name: String)
 </code></pre>
-<p>具有较长类头的类应该格式化，以使每个主构造函数参数位于带有缩进的单独一行中。
-此外，右括号应该另起一行。如果我们使用继承，那么超类构造函数调用或者实现接口列表<!--
--->应位于与括号相同的行上：</p>
+<p>Classes with longer headers should be formatted so that each primary constructor argument is in a separate line with indentation.
+Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
+should be located on the same line as the parenthesis:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
-    id: Int, 
+    id: Int,
     name: String,
     surname: String
 ) : Human(id, name) {
-    // ……
+
+    // ...
 }
 </code></pre>
-<p>对于多个接口，应首先放置超类构造函数调用，然后每个接口应位于不同的行中：</p>
+<p>For multiple interfaces, the superclass constructor call should be located first and then each interface should be located in a different line:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
-    id: Int, 
+    id: Int,
     name: String,
     surname: String
 ) : Human(id, name),
     KotlinMaker {
-    // ……
+    
+    // ...
 }
 </code></pre>
-<p>构造函数参数可以使用常规缩进或连续缩进（双倍的常规缩进）。</p>
-<h2 id="unit">Unit</h2>
-<p>如果函数返回 Unit 类型，该返回类型应该省略：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // 省略了 ": Unit"
+<p>For classes with a long supertype list, put a line break after the colon and align all supertype names vertically:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
+    MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
+    SomeOtherInterface,
+    AndAnotherOne {
+
+    fun foo() {}
+}
+</code></pre>
+<p>To clearly separate the class header and body when the class header is long, either put a blank line
+following the class header (as in the example above), or put the opening curly brace on a separate line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
+    MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
+    SomeOtherInterface,
+    AndAnotherOne
+{
+    fun foo() {}
+}
+</code></pre>
+<p>Use regular indent (4 spaces) for constructor parameters.</p>
+<blockquote>
+<p>Rationale: This ensures that properties declared in the primary constructor have the same indentation as properties
+declared in the body of a class.</p>
+</blockquote>
+<h3 id="modifiers">Modifiers</h3>
+<p>If a declaration has multiple modifiers, always put them in the following order:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">public / protected / private / internal
+expect / actual
+final / open / abstract / sealed / const
+external
+override
+lateinit
+tailrec
+vararg
+suspend
+inner
+enum / annotation
+companion
+inline
+infix
+operator
+data
+</code></pre>
+<p>Place all annotations before modifiers:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Named("Foo")
+private val foo: Foo
+</code></pre>
+<p>Unless you're working on a library, omit redundant modifiers (e.g. <code>public</code>).</p>
+<h3 id="annotation-formatting">Annotation formatting</h3>
+<p>Annotations are typically placed on separate lines, before the declaration to which they are attached, and with the same indentation:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Target(AnnotationTarget.PROPERTY)
+annotation class JsonExclude
+</code></pre>
+<p>Annotations without arguments may be placed on the same line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsonExclude @JvmField
+var x: String
+</code></pre>
+<p>A single annotation without arguments may be placed on the same line as the corresponding declaration:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Test fun foo() { ... }
+</code></pre>
+<h3 id="file-annotations">File annotations</h3>
+<p>File annotations are placed after the file comment (if any), before the <code>package</code> statement, and are separated from <code>package</code> with a blank line (to emphasize the fact that they target the file and not the package).</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** License, copyright and whatever */
+@file:JvmName("FooBar")
+
+package foo.bar
+</code></pre>
+<h3 id="function-formatting">Function formatting</h3>
+<p>If the function signature doesn't fit on a single line, use the following syntax:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun longMethodName(
+    argument: ArgumentType = defaultValue,
+    argument2: AnotherArgumentType
+): ReturnType {
+    // body
+}
+</code></pre>
+<p>Use regular indent (4 spaces) for function parameters.</p>
+<blockquote>
+<p>Rationale: Consistency with constructor parameters</p>
+</blockquote>
+<p>Prefer using an expression body for functions with the body consisting of a single expression.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // bad
+    return 1 
+}
+
+fun foo() = 1        // good
+</code></pre>
+<h3 id="expression-body-formatting">Expression body formatting</h3>
+<p>If the function has an expression body that doesn't fit in the same line as the declaration, put the <code>=</code> sign on the first line.
+Indent the expression body by 4 spaces.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f(x: String) =
+    x.length
+</code></pre>
+<h2 id="property-formatting">Property formatting</h2>
+<p>For very simple read-only properties, consider one-line formatting:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty: Boolean get() = size == 0
+</code></pre>
+<p>For more complex properties, always put <code>get</code> and <code>set</code> keywords on separate lines:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val foo: String
+    get() {
+        // ...
+    }
+
+</code></pre>
+<p>For properties with an initializer, if the initializer is long, add a line break after the equals sign
+and indent the initializer by four spaces:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">private val defaultCharset: Charset? =
+    EncodingRegistry.getInstance().getDefaultCharsetForPropertiesFiles(file)
+</code></pre>
+<h3 id="formatting-control-flow-statements">Formatting control flow statements</h3>
+<p>If the condition of an <code>if</code> or <code>when</code> statement is multiline, always use curly braces around the body of the statement.
+Indent each subsequent line of the condition by 4 spaces relative to statement begin. 
+Put the closing parentheses of the condition together with the opening curly brace on a separate line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (!component.isSyncing &amp;&amp;
+    !hasAnyKotlinRuntimeInScope(module)
+) {
+    return createKotlinNotConfiguredPanel(module)
+}
+</code></pre>
+<blockquote>
+<p>Rationale: Tidy alignment and clear separation of condition and statement body</p>
+</blockquote>
+<p>Put the <code>else</code>, <code>catch</code>, <code>finally</code> keywords, as well as the <code>while</code> keyword of a do/while loop, on the same line as the 
+preceding curly brace:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (condition) {
+    // body
+} else {
+    // else part
+}
+
+try {
+    // body
+} finally {
+    // cleanup
+}
+</code></pre>
+<p>In a <code>when</code> statement, if a branch is more than a single line, consider separating it from adjacent case blocks with a blank line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">private fun parsePropertyValue(propName: String, token: Token) {
+    when (token) {
+        is Token.ValueToken -&gt;
+            callback.visitValue(propName, token.value)
+
+        Token.LBRACE -&gt; { // ...
+        }
+    }
+}
+</code></pre>
+<p>Put short branches on the same line as the condition, without braces.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">when (foo) {
+    true -&gt; bar() // good
+    false -&gt; { baz() } // bad
+}
+</code></pre>
+<h3 id="method-call-formatting">Method call formatting</h3>
+<p>In long argument lists, put a line break after the opening parenthesis. Indent arguments by 4 spaces. 
+Group multiple closely related arguments on the same line.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(
+    x = 10, y = 10,
+    width = 100, height = 100,
+    fill = true
+)
+</code></pre>
+<p>Put spaces around the <code>=</code> sign separating the argument name and value.</p>
+<h3 id="chained-call-wrapping">Chained call wrapping</h3>
+<p>When wrapping chained calls, put the . character or the <code>?.</code> operator on the next line, with a single indent:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val anchor = owner
+    ?.firstChild!!
+    .siblings(forward = true)
+    .dropWhile { it is PsiComment || it is PsiWhiteSpace }
+</code></pre>
+<p>The first call in the chain usually should have a line break before it, but it's OK to omit it the code makes more sense that way.</p>
+<h3 id="lambda-formatting">Lambda formatting</h3>
+<p>In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters
+from the body. If a call takes a single lambda, it should be passed outside of parentheses whenever possible.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">list.filter { it &gt; 10 }
+</code></pre>
+<p>If assigning a label for a lambda, do not put a space between the label and the opening curly brace:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
+    ints.forEach lit@{
+        // ...
+    }
+}
+</code></pre>
+<p>When declaring parameter names in a multiline lambda, put the names on the first line, followed by the arrow and the newline:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">appendCommaSeparated(properties) { prop -&gt;
+    val propertyValue = prop.get(obj)  // ...
+}
+</code></pre>
+<p>If the parameter list is too long to fit on a line, put the arrow on a separate line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">foo {
+   context: Context,
+   environment: Env
+   -&gt;
+   context.configureEnv(environment)
+}
+</code></pre>
+<h2 id="documentation-comments">Documentation comments</h2>
+<p>For longer documentation comments, place the opening <code>/**</code> on a separate line and begin each subsequent line
+with an asterisk:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
+ * This is a documentation comment
+ * on multiple lines.
+ */
+</code></pre>
+<p>Short comments can be placed on a single line:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** This is a short documentation comment. */
+</code></pre>
+<p>Generally, avoid using <code>@param</code> and <code>@return</code> tags. Instead, incorporate the description of parameters and return values
+directly into the documentation comment, and add links to parameters wherever they are mentioned. Use <code>@param</code> and
+<code>@return</code> only when a lengthy description is required which doesn't fit into the flow of the main text.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Avoid doing this:
+
+/**
+ * Returns the absolute value of the given number.
+ * @param number The number to return the absolute value for.
+ * @return The absolute value.
+ */
+fun abs(number: Int) = ...
+
+// Do this instead:
+
+/**
+ * Returns the absolute value of the given [number].
+ */
+fun abs(number: Int) = ...
+</code></pre>
+<h2 id="avoiding-redundant-constructs">Avoiding redundant constructs</h2>
+<p>In general, if a certain syntactic construction in Kotlin is optional and highlighted by the IDE
+as redundant, you should omit it in your code. Do not leave unnecessary syntactic elements in code
+just "for clarity".</p>
+<h3 id="unit">Unit</h3>
+<p>If a function returns Unit, the return type should be omitted:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // ": Unit" is omitted here
 
 }
 </code></pre>
-<h2 id="函数还是属性">函数还是属性</h2>
-<p>很多场合无参的函数可与只读属性互换。
-尽管语义相近，也有一些取舍的风格约定。</p>
-<p>底层算法优先使用属性而不是函数：</p>
+<h3 id="semicolons">Semicolons</h3>
+<p>Omit semicolons whenever possible.</p>
+<h3 id="string-templates">String templates</h3>
+<p>Don't use curly braces when inserting a simple variable into a string template. Use curly braces only for longer expressions.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">println("$name has ${children.size} children")
+</code></pre>
+<h2 id="idiomatic-use-of-language-features">Idiomatic use of language features</h2>
+<h3 id="default-parameter-values">Default parameter values</h3>
+<p>Prefer declaring functions with default parameter values to declaring overloaded functions.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad
+fun foo() = foo("a")
+fun foo(a: String) { ... }
+
+// Good
+fun foo(a: String = "a") { ... }
+</code></pre>
+<h3 id="type-aliases">Type aliases</h3>
+<p>If you have a functional type or a type with type parameters which is used multiple times in a codebase, prefer defining
+a type alias for it:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit
+typealias PersonIndex = Map&lt;String, Person&gt;
+</code></pre>
+<h3 id="lambda-parameters">Lambda parameters</h3>
+<p>In lambdas which are short and not nested, it's recommended to use the <code>it</code> convention instead of declaring the parameter
+explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.</p>
+<h3 id="returns-in-a-lambda">Returns in a lambda</h3>
+<p>Avoid using multiple labeled returns in a lambda. Consider restructuring the lambda so that it will have a single exit point.
+If that's not possible or not clear enough, consider converting the lambda into an anonymous function.</p>
+<p>Do not use a labeled return for the last statement in a lambda.</p>
+<h3 id="named-arguments">Named arguments</h3>
+<p>Use the named argument syntax when a method takes multiple parameters of the same primitive type, or for parameters of <code>Boolean</code> type,
+unless the meaning of all parameters is absolutely clear from context.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
+</code></pre>
+<h3 id="using-conditional-statements">Using conditional statements</h3>
+<p>Prefer using the expression form of <code>try</code>, <code>if</code> and <code>when</code>. Examples:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">return if (x) foo() else bar()
+
+return when(x) {
+    0 -&gt; "zero"
+    else -&gt; "nonzero"
+}
+</code></pre>
+<p>The above is preferable to:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (x)
+    return foo()
+else
+    return bar()
+    
+when(x) {
+    0 -&gt; return "zero"
+    else -&gt; return "nonzero"
+}    
+</code></pre>
+<h3 id="if-versus-when"><code>if</code> versus <code>when</code></h3>
+<p>Prefer using <code>if</code> for binary conditions instead of <code>when</code>. Instead of</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
+    null -&gt; ...
+    else -&gt; ...
+}
+</code></pre>
+<p>use <code>if (x == null) ... else ...</code></p>
+<p>Prefer using <code>when</code> if there are three or more options.</p>
+<h3 id="using-nullable-boolean-values-in-conditions">Using nullable <code>Boolean</code> values in conditions</h3>
+<p>If you need to use a nullable <code>Boolean</code> in a conditional statement, use <code>if (value == true)</code> or <code>if (value == false)</code> checks.</p>
+<h3 id="using-loops">Using loops</h3>
+<p>Prefer using higher-order functions (<code>filter</code>, <code>map</code> etc.) to loops. Exception: <code>forEach</code> (prefer using a regular <code>for</code> loop instead,
+unless the receiver of <code>forEach</code> is nullable or <code>forEach</code> is used as part of a longer call chain).</p>
+<p>When making a choice between a complex expression using multiple higher-order functions and a loop, understand the cost
+of the operations being performed in each case and keep performance considerations in mind.</p>
+<h3 id="loops-on-ranges">Loops on ranges</h3>
+<p>Use the <code>until</code> function to loop over an open range:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 0..n - 1) { ... }  // bad
+for (i in 0 until n) { ... }  // good
+</code></pre>
+<h3 id="using-strings">Using strings</h3>
+<p>Prefer using string templates to string concatenation.</p>
+<p>Prefer to use multiline strings instead of embedding <code>\n</code> escape sequences into regular string literals.</p>
+<p>To maintain indentation in multiline strings, use <code>trimIndent</code> when the resulting string does not require any internal
+indentation, or <code>trimMargin</code> when internal indentation is required:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">assertEquals("""Foo
+                Bar""".trimIndent(), value)
+
+val a = """if(a &gt; 1) {
+          |    return a
+          |}""".trimMargin()
+</code></pre>
+<h3 id="functions-vs-properties">Functions vs Properties</h3>
+<p>In some cases functions with no arguments might be interchangeable with read-only properties. 
+Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.</p>
+<p>Prefer a property over a function when the underlying algorithm:</p>
 <ul>
-<li>不会抛出任何异常</li>
-<li><code>O(1)</code> 复杂度</li>
-<li>计算廉价（或缓存第一次运行）</li>
-<li>不同调用返回相同结果</li>
+<li>does not throw</li>
+<li>is cheap to calculate (or caсhed on the first run)</li>
+<li>returns the same result over invocations if the object state hasn't changed</li>
+</ul>
+<h3 id="using-extension-functions">Using extension functions</h3>
+<p>Use extension functions liberally. Every time you have a function that works primarily on an object, consider making it
+an extension function accepting that object as a receiver. To minimize API pollution, restrict the visibility of
+extension functions as much as it makes sense. As necessary, use local extension functions, member extension functions,
+or top-level extension functions with private visibility.</p>
+<h3 id="using-infix-functions">Using infix functions</h3>
+<p>Declare a function as infix only when it works on two objects which play a similar role. Good examples: <code>and</code>, <code>to</code>, <code>zip</code>.
+Bad example: <code>add</code>.</p>
+<p>Don't declare a method as infix if it mutates the receiver object.</p>
+<h3 id="factory-functions">Factory functions</h3>
+<p>If you declare a factory function for a class, avoid giving it the same name as the class itself. Prefer using a distinct name
+making it clear why the behavior of the factory function is special. Only if there is really no special semantics,
+you can use the same name as the class.</p>
+<p>Example:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Point(val x: Double, val y: Double) {
+    companion object {
+        fun fromPolar(angle: Double, radius: Double) = Point(...)
+    }
+}
+</code></pre>
+<p>If you have an object with multiple overloaded constructors that don't call different superclass constructors and
+can't be reduced to a single constructor with default argument values, prefer to replace the overloaded constructors with
+factory functions.</p>
+<h3 id="platform-types">Platform types</h3>
+<p>A public function/method returning an expression of a platform type must declare its Kotlin type explicitly:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun apiCall(): String = MyJavaApi.getProperty("name")
+</code></pre>
+<p>Any property (package-level or class-level) initialised with an expression of a platform type must declare its Kotlin type explicitly:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person {
+    val name: String = MyJavaApi.getProperty("name")
+}
+</code></pre>
+<p>A local value initialised with an expression of a platform type may or may not have a type declaration:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+    val name = MyJavaApi.getProperty("name")
+    println(name)
+}
+</code></pre>
+<h3 id="using-scope-functions-applywithrunalsolet">Using scope functions apply/with/run/also/let</h3>
+<p>Kotlin provides a variety of functions to execute a block of code in the context of a given object. To choose the correct
+function, consider the following:</p>
+<ul>
+<li>Are you calling methods on multiple objects in the block, or passing the instance of the context object as an 
+argument? If you are, use one of the functions that allows you to access the context object as <code>it</code>,
+not <code>this</code> (<code>also</code> or <code>let</code>). Use <code>also</code> if the receiver is not used at all in the block.</li>
+</ul>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Context object is 'it'
+class Baz {
+    var currentBar: Bar?
+    val observable: Observable
+
+    val foo = createBar().also {
+        currentBar = it                    // Accessing property of Baz
+        observable.registerCallback(it)    // Passing context object as argument
+    }
+}
+
+// Receiver not used in the block
+val foo = createBar().also {
+    LOG.info("Bar created")
+}
+
+// Context object is 'this'
+class Baz {
+    val foo: Bar = createBar().apply {
+        color = RED    // Accessing only properties of Bar
+        text = "Foo"
+    }
+}
+</code></pre>
+<ul>
+<li>What should the result of the call be? If the result needs to be the context object, use <code>apply</code> or <code>also</code>.
+If you need to return a value from the block, use <code>with</code>, <code>let</code> or <code>run</code></li>
+</ul>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Return value is context object
+class Baz {
+    val foo: Bar = createBar().apply {
+        color = RED    // Accessing only properties of Bar
+        text = "Foo"
+    }
+}
+
+
+// Return value is block result
+class Baz {
+    val foo: Bar = createNetworkConnection().let {
+        loadBar()
+    }
+}
+</code></pre>
+<ul>
+<li>Is the context object nullable, or is it evaluated as a result of a call chain? If it is, use <code>apply</code>, <code>let</code> or <code>run</code>.
+Otherwise, use <code>with</code> or <code>also</code>.</li>
+</ul>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Context object is nullable
+person.email?.let { sendEmail(it) }
+
+// Context object is non-null and accessible directly
+with(person) {
+    println("First name: $firstName, last name: $lastName")
+}
+</code></pre>
+<h2 id="coding-conventions-for-libraries">Coding conventions for libraries</h2>
+<p>When writing libraries, it's recommended to follow an additional set of rules to ensure API stability:</p>
+<ul>
+<li>Always explicitly specify member visibility (to avoid accidentally exposing declarations as public API)</li>
+<li>Always explicitly specify function return types and property types (to avoid accidentally changing the return type
+when the implementation changes)</li>
+<li>Provide KDoc comments for all public members, with the exception of overrides that do not require any new documentation
+(to support generating documentation for the library)</li>
 </ul>
 
         </article>
