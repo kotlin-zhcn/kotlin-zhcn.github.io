@@ -926,9 +926,9 @@ else {
 <p>请注意，当编译器不能保证变量在检查和使用之间不可改变时，智能转换不能用。
 更具体地，智能转换能否适用根据以下规则：</p>
 <ul>
-<li><em class="keyword">val</em> 局部变量——总是可以；</li>
+<li><em class="keyword">val</em> 局部变量——总是可以，<a href="delegated-properties.html#局部委托属性自-11-起">局部委托属性除外</a>；</li>
 <li><em class="keyword">val</em> 属性——如果属性是 private 或 internal，或者该检查在声明属性的同一模块中执行。智能转换不适用于 open 的属性或者具有自定义 getter 的属性；</li>
-<li><em class="keyword">var</em> 局部变量——如果变量在检查和使用之间没有修改、并且没有在会修改它的 lambda 中捕获；</li>
+<li><em class="keyword">var</em> 局部变量——如果变量在检查和使用之间没有修改、没有在会修改它的 lambda 中捕获、并且不是局部委托属性；</li>
 <li><em class="keyword">var</em> 属性——决不可能（因为该变量可以随时被其他代码修改）。</li>
 </ul>
 <h2 id="不安全的转换操作符">“不安全的”转换操作符</h2>

@@ -1051,10 +1051,10 @@ class FooImpl : Foo() {
 } 
 </code></pre>
 <h3 id="class-header-formatting">Class header formatting</h3>
-<p>Classes with a few arguments can be written in a single line:</p>
+<p>Classes with a few primary constructor parameters can be written in a single line:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(id: Int, name: String)
 </code></pre>
-<p>Classes with longer headers should be formatted so that each primary constructor argument is in a separate line with indentation.
+<p>Classes with longer headers should be formatted so that each primary constructor parameter is in a separate line with indentation.
 Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
 should be located on the same line as the parenthesis:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
@@ -1320,6 +1320,24 @@ just "for clarity".</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println("$name has ${children.size} children")
 </code></pre>
 <h2 id="idiomatic-use-of-language-features">Idiomatic use of language features</h2>
+<h3 id="immutability">Immutability</h3>
+<p>Prefer using immutable data to mutable. Always declare local variables and properties as <code>val</code> rather than <code>var</code> if
+they are not modified after initialization.</p>
+<p>Always use immutable collection interfaces (<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Map</code>) to declare collections which are not
+mutated. When using factory functions to create collection instances, always use functions that return immutable
+collection types when possible:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad: use of mutable collection type for value which will not be mutated
+fun validateValue(actualValue: String, allowedValues: HashSet&lt;String&gt;) { ... }
+
+// Good: immutable collection type used instead
+fun validateValue(actualValue: String, allowedValues: Set&lt;String&gt;) { ... }
+
+// Bad: arrayListOf() returns ArrayList&lt;T&gt;, which is a mutable collection type
+val allowedValues = arrayListOf("a", "b", "c")
+
+// Good: listOf() returns List&lt;T&gt;
+val allowedValues = listOf("a", "b", "c")
+</code></pre>
 <h3 id="default-parameter-values">Default parameter values</h3>
 <p>Prefer declaring functions with default parameter values to declaring overloaded functions.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad

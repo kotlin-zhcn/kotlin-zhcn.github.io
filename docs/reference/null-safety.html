@@ -887,8 +887,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>显式调用 <code>throw NullPointerException()</code>；</li>
 <li>使用了下文描述的 <code>!!</code> 操作符；</li>
-<li>外部 Java 代码导致的；</li>
-<li>对于初始化，有一些数据不一致（如一个未初始化的 <code>this</code> 用于构造函数的某个地方）。</li>
+<li>对于初始化，有一些数据不一致（如一个未初始化的 <code>this</code> 用于构造函数的某个地方）；</li>
+<li>Java 互操作：
+    <ul>
+<li>企图访问<a href="java-interop.html#空安全与平台类型">平台类型</a>的 <code>null</code> 引用的成员；</li>
+<li>用于具有错误可空性的 Java 互操作的泛型类型，例如一段 Java 代码可能会向 Kotlin 的 <code>MutableList&lt;String&gt;</code> 中加入 <code>null</code>，这意味着应该使用 <code>MutableList&lt;String?&gt;</code> 来处理它；</li>
+<li>由外部 Java 代码引发的其他问题。</li>
+</ul>
+</li>
 </ul>
 <p>在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 <em class="keyword">null</em>：</p>
