@@ -964,6 +964,10 @@ println(files?.size ?: "empty")
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val values = ……
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 </code></pre>
+<h3 id="在可能会空的集合中取第一元素">在可能会空的集合中取第一元素</h3>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">val emails = ... // 可能会是空集合
+val mainEmail = emails.firstOrNull() ?: ""
+</code></pre>
 <h3 id="if-not-null-执行代码">if not null 执行代码</h3>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val value = ……
 

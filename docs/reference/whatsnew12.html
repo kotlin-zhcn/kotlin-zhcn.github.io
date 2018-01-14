@@ -994,24 +994,24 @@ fun main(args: Array&lt;String&gt;) {
 <h3 id="源自显式类型转换的信息会用于类型推断">源自显式类型转换的信息会用于类型推断</h3>
 <p>Kotlin 编译器现在可将类型转换信息用于类型推断。如果你调用一个<!--
 -->返回类型参数 <code>T</code> 的泛型方法并将返回值转换为指定类型 <code>Foo</code>，那么编译器现在知道<!--
--->对于本次调用需要约束类型为 <code>Foo</code>。</p>
+-->对于本次调用需要绑定类型为 <code>Foo</code>。</p>
 <p>这对于 Android 开发者来说尤为重要，因为编译器现在可以正确分析
 Android API 级别 26 中的泛型 <code>findViewById</code> 调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val button = findViewById(R.id.button) as Button
 </code></pre>
 <h3 id="智能类型转换改进">智能类型转换改进</h3>
-<p>When a variable is assigned from a safe call expression and checked for null, the smart cast is now applied to 
-the safe call receiver as well:</p>
+<p>当一个变量有安全调用表达式与空检测赋值时，其智能转换现在也可以应用于<!--
+-->安全调用接收者：</p>
 <div class="sample" data-min-compiler-version="1.2">
 <pre><code class="language-kotlin">fun countFirst(s: Any): Int {
     //sampleStart
     val firstChar = (s as? CharSequence)?.firstOrNull()
     if (firstChar != null)
-       return s.count { it == firstChar } // s: Any is smart cast to CharSequence
+       return s.count { it == firstChar } // s: Any 会智能转换为 CharSequence
     
     val firstItem = (s as? Iterable&lt;*&gt;)?.firstOrNull()
     if (firstItem != null)
-       return s.count { it == firstItem } // s: Any is smart cast to Iterable&lt;*&gt;
+       return s.count { it == firstItem } // s: Any 会智能转换为 Iterable&lt;*&gt;
     //sampleEnd
     
     return -1
@@ -1028,7 +1028,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p>Also, smart casts in a lambda are now allowed for local variables that are only modified before the lambda:</p>
+<p>智能转换现在也允许用于在 lambda 表达式中局部变量，只要这些局部变量仅在 lambda 表达式之前修改即可：</p>
 <div class="sample" data-min-compiler-version="1.2">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     val flag = args.size == 0
@@ -1039,48 +1039,48 @@ fun main(args: Array&lt;String&gt;) {
 
     run {
         if (x != null) {
-            println(x.length) // x is smart cast to String
+            println(x.length) // x 会智能转换为 String
         }
     }
     //sampleEnd
 }
 </code></pre>
 </div>
-<h3 id="support-for--foo-as-a-shorthand-for-thisfoo">Support for  ::foo as a shorthand for this::foo</h3>
-<p>A bound callable reference to a member of <code>this</code> can now be written without explicit receiver, <code>::foo</code> instead 
-of <code>this::foo</code>. This also makes callable references more convenient to use in lambdas where you refer to a member 
-of the outer receiver.</p>
-<h3 id="breaking-change-sound-smart-casts-after-try-blocks">Breaking change: sound smart casts after try blocks</h3>
-<p>Earlier, Kotlin used assignments made inside a <code>try</code> block for smart casts after the block, which could break type- and null-safety 
-and lead to runtime failures. This release fixes this issue, making the smart casts more strict, but breaking some code
-that relied on such smart casts.</p>
-<p>To switch to the old smart casts behavior, pass the fallback flag <code>-Xlegacy-smart-cast-after-try</code> as the compiler 
-argument. It will become deprecated in Kotlin 1.3.</p>
-<h3 id="deprecation-data-classes-overriding-copy">Deprecation: data classes overriding copy</h3>
-<p>When a data class derived from a type that already had the <code>copy</code> function with the same signature, the <code>copy</code> 
-implementation generated for the data class used the defaults from the supertype, leading to counter-intuitive behavior, 
-or failed at runtime if there were no default parameters in the supertype.</p>
-<p>Inheritance that leads to a <code>copy</code> conflict has become deprecated with a warning in Kotlin 1.2 
-and will be an error in Kotlin 1.3.</p>
-<h3 id="deprecation-nested-types-in-enum-entries">Deprecation: nested types in enum entries</h3>
-<p>Inside enum entries, defining a nested type that is not an <code>inner class</code> has been deprecated due to issues in the 
-initialization logic. This causes a warning in Kotlin 1.2 and will become an error in Kotlin 1.3.</p>
-<h3 id="deprecation-single-named-argument-for-vararg">Deprecation: single named argument for vararg</h3>
-<p>For consistency with array literals in annotations, passing a single item for a vararg parameter in the named 
-form (<code>foo(items = i)</code>) has been deprecated. Please use the spread operator with the corresponding 
-array factory functions:</p>
+<h3 id="支持-foo-作为-thisfoo-的简写">支持 ::foo 作为 this::foo 的简写</h3>
+<p>现在写绑定到 <code>this</code> 成员的可调用引用可以无需显式接收者，即 <code>::foo</code> 取代
+<code>this:: foo</code>。这也使在引用外部接收者的成员的 lambda 表达式中使用可调用引用更加方便<!--
+-->。</p>
+<h3 id="阻断性改动try-块后可靠智能转换">阻断性改动：try 块后可靠智能转换</h3>
+<p>Kotlin 以前将 <code>try</code> 块中的赋值语句用于块后的智能转换，这可能会破坏类型安全与空安全<!--
+-->并引发运行时故障。这个版本修复了该问题，使智能转换更加严格，但可能会破坏一些<!--
+-->依靠这种智能转换的代码。</p>
+<p>如果要切换到旧版智能转换行为，请传入回退标志 <code>-Xlegacy-smart-cast-after-try</code> 作为编译器<!--
+-->参数。该参数会在 Kotlin 1.3 中弃用。</p>
+<h3 id="弃用数据类弃用-copy">弃用：数据类弃用 copy</h3>
+<p>当从已具有签名相同的 <code>copy</code> 函数的类型派生数据类时，为数据类生成的 <code>copy</code>
+实现使用超类型的默认值，这导致反直觉行为，
+或者导致运行时失败，如果超类型中没有默认参数的话。</p>
+<p>导致 <code>copy</code> 冲突的继承在 Kotlin 1.2 中已弃用并带有警告，
+而在 Kotlin 1.3 中将会是错误。</p>
+<h3 id="弃用枚举条目中的嵌套类型">弃用：枚举条目中的嵌套类型</h3>
+<p>由于初始化逻辑的问题，已弃用在枚举条目内部定义一个非 <code>inner class</code>
+的嵌套类。这在 Kotlin 1.2 中会引起警告，而在 Kotlin 1.3 中会成为错误。</p>
+<h3 id="弃用vararg-单个命名参数">弃用：vararg 单个命名参数</h3>
+<p>为了与注解中的数组字面值保持一致，向一个命名参数形式的 vararg 参数传入单个项目<!--
+-->的用法（<code>foo(items = i)</code>）已被弃用。请使用伸展操作符连同相应的<!--
+-->数组工厂函数：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">foo(items = *intArrayOf(1))
 </code></pre>
-<p>There is an optimization that removes redundant arrays creation in such cases, which prevents performance degradation. 
-The single-argument form produces warnings in Kotlin 1.2 and is to be dropped in Kotlin 1.3.</p>
-<h3 id="deprecation-inner-classes-of-generic-classes-extending-throwable">Deprecation: inner classes of generic classes extending Throwable</h3>
-<p>Inner classes of generic types that inherit from <code>Throwable</code> could violate type-safety in a throw-catch scenario and 
-thus have been deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1.3.</p>
-<h3 id="deprecation-mutating-backing-field-of-a-read-only-property">Deprecation: mutating backing field of a read-only property</h3>
-<p>Mutating the backing field of a read-only property by assigning <code>field = ...</code> in the custom getter has been 
-deprecated, with a warning in Kotlin 1.2 and an error in Kotlin 1.3.</p>
+<p>在这种情况下有一项防止性能下降的优化可以消除冗余的数组创建。
+单参数形式在 Kotlin 1.2 中会产生警告，而在 Kotlin 1.3 中会放弃。</p>
+<h3 id="弃用扩展-throwable-的泛型类的内部类">弃用：扩展 Throwable 的泛型类的内部类</h3>
+<p>继承自 <code>Throwable</code> 的泛型类的内部类可能会在 throw-catch 场景中违反类型安全性，因此<!--
+-->已弃用，在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
+<h3 id="弃用修改只读属性的幕后字段">弃用：修改只读属性的幕后字段</h3>
+<p>通过在自定义 getter 中赋值 <code>field = ……</code> 来修改只读属性的幕后字段的用法已被弃用，
+在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
 <h2 id="标准库">标准库</h2>
-<h3 id="kotlin-standard-library-artifacts-and-split-packages">Kotlin standard library artifacts and split packages</h3>
+<h3 id="kotlin-标准库构件与拆分包">Kotlin 标准库构件与拆分包</h3>
 <p>The Kotlin standard library is now fully compatible with the Java 9 module system, which forbids split packages 
 (multiple jar files declaring classes in the same package). In order to support that, new artifacts <code>kotlin-stdlib-jdk7</code> 
 and <code>kotlin-stdlib-jdk8</code> are introduced, which replace the old <code>kotlin-stdlib-jre7</code> and <code>kotlin-stdlib-jre8</code>.</p>
@@ -1090,7 +1090,7 @@ your source code.</p>
 <p>Another change made to ensure compatibility with the new module system is removing the deprecated 
 declarations in the <code>kotlin.reflect</code> package from the <code>kotlin-reflect</code> library. If you were using them, you need 
 to switch to using the declarations in the <code>kotlin.reflect.full</code> package, which is supported since Kotlin 1.1.</p>
-<h3 id="windowed-chunked-zipwithnext">windowed, chunked, zipWithNext</h3>
+<h3 id="windowedchunkedzipwithnext">windowed、chunked、zipWithNext</h3>
 <p>New extensions for <code>Iterable&lt;T&gt;</code>, <code>Sequence&lt;T&gt;</code>, and <code>CharSequence</code> cover such use cases as buffering or 
 batch processing (<code>chunked</code>), sliding window and computing sliding average (<code>windowed</code>) , and processing pairs 
 of subsequent items (<code>zipWithNext</code>):</p>
@@ -1116,7 +1116,7 @@ of subsequent items (<code>zipWithNext</code>):</p>
 }
 </code></pre>
 </div>
-<h3 id="fill-replaceall-shuffleshuffled">fill, replaceAll, shuffle/shuffled</h3>
+<h3 id="fillreplaceallshuffleshuffled">fill、replaceAll、shuffle/shuffled</h3>
 <p>A set of extension functions was added for manipulating lists: <code>fill</code>, <code>replaceAll</code> and <code>shuffle</code> for <code>MutableList</code>, 
 and <code>shuffled</code> for read-only <code>List</code>:</p>
 <div class="sample" data-min-compiler-version="1.2">
@@ -1136,7 +1136,7 @@ and <code>shuffled</code> for read-only <code>List</code>:</p>
 }
 </code></pre>
 </div>
-<h3 id="math-operations-in-kotlin-stdlib">Math operations in kotlin-stdlib</h3>
+<h3 id="kotlin-stdlib-中的数学操作">kotlin-stdlib 中的数学操作</h3>
 <p>Satisfying the longstanding request, Kotlin 1.2 adds the <code>kotlin.math</code> API for math operations that is common 
 for JVM and JS and contains the following:</p>
 <ul>
@@ -1168,7 +1168,7 @@ for JVM and JS and contains the following:</p>
 </li>
 </ul>
 <p>The same set of functions (but without constants) is also available for <code>Float</code> arguments.</p>
-<h3 id="operators-and-conversions-for-biginteger-and-bigdecimal">Operators and conversions for BigInteger and BigDecimal</h3>
+<h3 id="用于-biginteger-与-bigdecimal-的操作符与转换">用于 BigInteger 与 BigDecimal 的操作符与转换</h3>
 <p>Kotlin 1.2 introduces a set of functions for operating with <code>BigInteger</code> and <code>BigDecimal</code> and creating them 
 from other numeric types. These are:</p>
 <ul>
@@ -1181,7 +1181,7 @@ from other numeric types. These are:</p>
 </ul>
 </li>
 </ul>
-<h3 id="floating-point-to-bits-conversions">Floating point to bits conversions</h3>
+<h3 id="浮点数到比特的转换">浮点数到比特的转换</h3>
 <p>New functions were added for converting <code>Double</code> and <code>Float</code> to and from their bit representations:</p>
 <ul>
 <li><code>toBits</code> and <code>toRawBits</code> returning <code>Long</code> for <code>Double</code> and <code>Int</code> for <code>Float</code>;</li>
