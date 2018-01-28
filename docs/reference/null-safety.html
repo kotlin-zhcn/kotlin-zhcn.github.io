@@ -943,6 +943,10 @@ for (item in listWithNulls) {
      item?.let { println(it) } // 输出 A 并忽略 null
 }
 </code></pre>
+<p>安全调用也可以出现在赋值的左侧。这样，如果调用链中的任何一个接收者为空都会跳过赋值，而右侧的表达式根本不会求值：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 如果 `person` 或者 `person.department` 其中之一为空，都不会调用该函数：
+person?.department?.head = managersPool.getManager()
+</code></pre>
 <h2 id="elvis-操作符">Elvis 操作符</h2>
 <p>当我们有一个可空的引用 <code>r</code> 时，我们可以说“如果 <code>r</code> 非空，我使用它；否则使用某个非空的值 <code>x</code>”：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l: Int = if (b != null) b.length else -1

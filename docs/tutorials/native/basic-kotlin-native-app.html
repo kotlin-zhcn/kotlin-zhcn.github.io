@@ -332,6 +332,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/interop-with-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 C 语言库互操作</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -486,21 +495,22 @@ represented by a bitcode file, which is a bitstream file format.</p>
 <p><img alt="Compiler Diagram" src="/assets/images/tutorials/native/basic-kotlin-native/llvm-diagram.png"/></p>
 <p>We now need to compile our application, which is done using the compiler downloaded in the first step. If we have the <code>bin</code> folder
 correctly added to the path, we should be able to invoke the compiler using</p>
-<p><code>konanc hello.kt</code></p>
+<pre><code>konanc hello.kt
+</code></pre>
 <p>which is telling the compiler to compile the source code <code>hello.kt</code>.</p>
 <p>The first time the compiler runs, it downloads a list of necessary requirements, thus first run does take longer. If everything runs correctly, the output 
-should be</p>
-<p><code>hello.kexe</code></p>
-<p>The <code>hello.kexe</code> file is the actual binary produced for our target platform. The compiler provides us with a series of options, one of these
+should be <code>hello.kexe</code></p>
+<p>The file is the actual binary produced for our target platform. The compiler provides us with a series of options, one of these
 being the ability to specify the output filename. In order to do this, we can use the -output (or -o) option</p>
-<p><code>konanc -o first hello.kt</code></p>
-<p>which would produce</p>
-<p><code>first.kexe</code></p>
+<pre><code>konanc -o first hello.kt
+</code></pre>
+<p>which would produce <code>first.kexe</code></p>
 <p>The extension cannot be set and is determined based on the target platform, but we can of course rename the executable to anything we like, using 
 the usual system commands to rename files.</p>
 <h2 id="running-the-application">Running the application</h2>
 <p>To run the application, we can merely invoke it</p>
-<p><code>/hello.kexe</code></p>
+<pre><code>/hello.kexe
+</code></pre>
 <p>It's important to understand that this is now a native application, and no runtime or virtual machine is required. The output should be</p>
 <pre><code>Hello Kotlin/Native!
 </code></pre>

@@ -883,7 +883,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>此页面包含当前 Kotlin 语言的编码风格</p>
 <blockquote>
 <p>Note: To configure the IntelliJ formatter according to this style guide, please install Kotlin plugin version
-1.2.20-eap-33 or newer, go to Settings | Editor | Code Style | Kotlin, click on "Set from…" link in the upper
+1.2.20 or newer, go to Settings | Editor | Code Style | Kotlin, click on "Set from…" link in the upper
 right corner, and select "Predefined style / Kotlin style guide" from the menu.</p>
 </blockquote>
 <h2 id="source-code-organization">Source code organization</h2>
@@ -995,7 +995,7 @@ sorting a collection in place, while <code>sorted</code> is returning a sorted c
 <p>The names should make it clear what the purpose of the entity is, so it's best to avoid using meaningless words
 (<code>Manager</code>, <code>Wrapper</code> etc.) in names.</p>
 <p>When using an acronym as part of a declaration name, capitalize it if it consists of two letters (<code>IOStream</code>);
-capitalize only the first letter if it is longer (<code>HttpInputStream</code>).</p>
+capitalize only the first letter if it is longer (<code>XmlFormatter</code>, <code>HttpInputStream</code>).</p>
 <h2 id="formatting">Formatting</h2>
 <p>In most cases, Kotlin follows the Java coding conventions.</p>
 <p>Use 4 spaces for indentation. Do not use tabs.</p>
@@ -1023,6 +1023,7 @@ fun bar() {
 }
 </code></pre>
 <p>Never put a space after <code>(</code>, <code>[</code>, or before <code>]</code>, <code>)</code>.</p>
+<p>Never put a space around <code>.</code> or <code>?.</code>: <code>foo.bar().filter { it &gt; 2 }.joinToString()</code>, <code>foo?.bar()</code></p>
 <p>Put a space after <code>//</code>: <code>// This is a comment</code></p>
 <p>Do not put spaces around angle brackets used to specify type parameters: <code>class Map&lt;K, V&gt; { ... }</code></p>
 <p>Do not put spaces around <code>::</code>: <code>Foo::class</code>, <code>String::length</code></p>

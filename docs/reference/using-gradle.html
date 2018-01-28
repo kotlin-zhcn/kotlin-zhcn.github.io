@@ -885,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>使用 <code>kotlin-gradle-plugin</code> 编译 Kotlin 源代码和模块.</p>
 <p>要使用的 Kotlin 版本通常定义为 <code>kotlin_version</code> 属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.10'
+    ext.kotlin_version = '1.2.21'
 
     repositories {
         mavenCentral()
@@ -903,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>或者，从 Kotlin 1.1.1 起，可以使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.10"
+    id "org.jetbrains.kotlin.jvm" version "1.2.21"
 }
 </code></pre>
 <p>在这个块中的 <code>version</code> 必须是字面值，并且不能从其他构建脚本中应用。</p>
@@ -941,7 +941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.10'
+    ext.kotlin_version = '1.2.21'
 
     ……
 
@@ -1023,6 +1023,14 @@ testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 <p>为了避免这种情况，请考虑手动设置唯一的 <code>archivesBaseName</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">archivesBaseName = 'myExampleProject_lib'
 </code></pre>
+<h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
+<p>Kotlin 插件支持 <a href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
+<p>由于注解处理器运行的任意代码可能不一定会将任务输入转换为输出、可能访问与修改 Gradle 未跟踪的文件等，因此默认不缓存 kapt 注解处理任务。要启用 kapt 缓存，请将以下列几行添加到构建脚本中：</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
+    useBuildCache = true
+}
+</code></pre>
+<p>要禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
 <h2 id="编译器选项">编译器选项</h2>
 <p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
 <p>当针对 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于<!--
@@ -1048,7 +1056,7 @@ compileKotlin {
 }
 </code></pre>
 <p>对于 Gradle 任务的完整选项列表如下：</p>
-<h3 id="jvm-和-js-的公共属性">JVM 和 JS 的公共属性</h3>
+<h3 id="jvmjs-与-js-dce-的公共属性">JVM、JS 与 JS DCE 的公共属性</h3>
 <table>
 <thead>
 <tr>
@@ -1060,16 +1068,10 @@ compileKotlin {
 </thead>
 <tbody>
 <tr>
-<td><code>apiVersion</code></td>
-<td>只允许使用来自捆绑库的指定版本中的声明</td>
-<td>"1.0"、 "1.1"</td>
-<td>"1.1"</td>
-</tr>
-<tr>
-<td><code>languageVersion</code></td>
-<td>提供与指定语言版本源代码兼容性</td>
-<td>"1.0"、 "1.1"</td>
-<td>"1.1"</td>
+<td><code>allWarningsAsErrors</code></td>
+<td>任何警告都报告为错误</td>
+<td> </td>
+<td>false</td>
 </tr>
 <tr>
 <td><code>suppressWarnings</code></td>
@@ -1088,6 +1090,31 @@ compileKotlin {
 <td>附加编译器参数的列表</td>
 <td> </td>
 <td>[]</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jvm-与-js-的公共属性">JVM 与 JS 的公共属性</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Possible values</th>
+<th>Default value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>apiVersion</code></td>
+<td>只允许使用来自捆绑库的指定版本中的声明</td>
+<td>"1.0", "1.1", "1.2", "1.3 (EXPERIMENTAL)"</td>
+<td> </td>
+</tr>
+<tr>
+<td><code>languageVersion</code></td>
+<td>提供与指定语言版本源代码兼容性</td>
+<td>"1.0", "1.1", "1.2", "1.3 (EXPERIMENTAL)"</td>
+<td> </td>
 </tr>
 </tbody>
 </table>
@@ -1152,6 +1179,12 @@ compileKotlin {
 </thead>
 <tbody>
 <tr>
+<td><code>friendModulesDisabled</code></td>
+<td>禁用内部声明导出</td>
+<td> </td>
+<td>false</td>
+</tr>
+<tr>
 <td><code>main</code></td>
 <td>是否要调用 main 函数</td>
 <td>"call"、 "noCall"</td>
@@ -1191,7 +1224,7 @@ compileKotlin {
 <td><code>sourceMapEmbedSources</code></td>
 <td>将源代码嵌入到源代码映射中</td>
 <td>"never"、 "always"、 "inlining"</td>
-<td>"inlining"</td>
+<td> </td>
 </tr>
 <tr>
 <td><code>sourceMapPrefix</code></td>
@@ -1209,7 +1242,7 @@ compileKotlin {
 <td><code>typedArrays</code></td>
 <td>将原生数组转换为 JS 带类型数组</td>
 <td> </td>
-<td>false</td>
+<td>true</td>
 </tr>
 </tbody>
 </table>
