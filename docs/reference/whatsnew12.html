@@ -1081,19 +1081,19 @@ fun main(args: Array&lt;String&gt;) {
 在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
 <h2 id="标准库">标准库</h2>
 <h3 id="kotlin-标准库构件与拆分包">Kotlin 标准库构件与拆分包</h3>
-<p>The Kotlin standard library is now fully compatible with the Java 9 module system, which forbids split packages 
-(multiple jar files declaring classes in the same package). In order to support that, new artifacts <code>kotlin-stdlib-jdk7</code> 
-and <code>kotlin-stdlib-jdk8</code> are introduced, which replace the old <code>kotlin-stdlib-jre7</code> and <code>kotlin-stdlib-jre8</code>.</p>
-<p>The declarations in the new artifacts are visible under the same package names from the Kotlin point of view, but have 
-different package names for Java. Therefore, switching to the new artifacts will not require any changes to 
-your source code.</p>
-<p>Another change made to ensure compatibility with the new module system is removing the deprecated 
-declarations in the <code>kotlin.reflect</code> package from the <code>kotlin-reflect</code> library. If you were using them, you need 
-to switch to using the declarations in the <code>kotlin.reflect.full</code> package, which is supported since Kotlin 1.1.</p>
+<p>Kotlin 标准库现在完全兼容 Java 9 的模块系统，它禁止拆分包
+（多个 jar 文件声明的类在同一包中）。为了支持这点，我们引入了新的 <code>kotlin-stdlib-jdk7</code>
+与 <code>kotlin-stdlib-jdk8</code>，它们取代了旧版的 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
+<p>在 Kotlin 看来新的构件中的声明在相同的包名内，而在
+Java 看来有不同的包名。因此，切换到新的构件无需修改任何<!--
+-->源代码。</p>
+<p>确保与新的模块系统兼容的另一处变更是在 <code>kotlin-reflect</code> 库中删除了
+<code>kotlin.reflect</code> 包中弃用的声明。如果你正在使用它们，你需要<!--
+-->切换到使用 <code>kotlin.reflect.full</code> 包中的声明，自 Kotlin 1.1 起就支持这个包了。</p>
 <h3 id="windowedchunkedzipwithnext">windowed、chunked、zipWithNext</h3>
-<p>New extensions for <code>Iterable&lt;T&gt;</code>, <code>Sequence&lt;T&gt;</code>, and <code>CharSequence</code> cover such use cases as buffering or 
-batch processing (<code>chunked</code>), sliding window and computing sliding average (<code>windowed</code>) , and processing pairs 
-of subsequent items (<code>zipWithNext</code>):</p>
+<p>用于 <code>Iterable&lt;T&gt;</code>、 <code>Sequence&lt;T&gt;</code> 与 <code>CharSequence</code> 的新的扩展覆盖了这些应用场景：缓存或<!--
+-->批处理（<code>chunked</code>）、 滑动窗口与计算滑动均值（<code>windowed</code>）以及处理成对<!--
+-->的后续条目（<code>zipWithNext</code>）：</p>
 <div class="sample" data-min-compiler-version="1.2">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
@@ -1117,8 +1117,8 @@ of subsequent items (<code>zipWithNext</code>):</p>
 </code></pre>
 </div>
 <h3 id="fillreplaceallshuffleshuffled">fill、replaceAll、shuffle/shuffled</h3>
-<p>A set of extension functions was added for manipulating lists: <code>fill</code>, <code>replaceAll</code> and <code>shuffle</code> for <code>MutableList</code>, 
-and <code>shuffled</code> for read-only <code>List</code>:</p>
+<p>添加了一些用于操作列表的扩展函数：<code>MutableList</code> 的 <code>fill</code>、<code>replaceAll</code> 与 <code>shuffle</code>，
+以及只读 <code>List</code> 的 <code>shuffled</code>：</p>
 <div class="sample" data-min-compiler-version="1.2">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
@@ -1136,63 +1136,63 @@ and <code>shuffled</code> for read-only <code>List</code>:</p>
 }
 </code></pre>
 </div>
-<h3 id="kotlin-stdlib-中的数学操作">kotlin-stdlib 中的数学操作</h3>
-<p>Satisfying the longstanding request, Kotlin 1.2 adds the <code>kotlin.math</code> API for math operations that is common 
-for JVM and JS and contains the following:</p>
+<h3 id="kotlin-stdlib-中的数学运算">kotlin-stdlib 中的数学运算</h3>
+<p>为满足由来已久的需求，Kotlin 1.2 添加了 JVM 与 JS 公用的用于数学运算的 <code>kotlin.math</code> API，
+包含以下内容：</p>
 <ul>
-<li>Constants: <code>PI</code> and <code>E</code>;</li>
-<li>Trigonometric: <code>cos</code>, <code>sin</code>, <code>tan</code> and inverse of them: <code>acos</code>, <code>asin</code>, <code>atan</code>, <code>atan2</code>;</li>
-<li>Hyperbolic: <code>cosh</code>, <code>sinh</code>, <code>tanh</code> and their inverse: <code>acosh</code>, <code>asinh</code>, <code>atanh</code></li>
-<li>Exponentation: <code>pow</code> (an extension function), <code>sqrt</code>, <code>hypot</code>, <code>exp</code>, <code>expm1</code>;</li>
-<li>Logarithms: <code>log</code>, <code>log2</code>, <code>log10</code>, <code>ln</code>, <code>ln1p</code>;</li>
-<li>Rounding:
+<li>常量：<code>PI</code> 与 <code>E</code>；</li>
+<li>三角函数：<code>cos</code>、 <code>sin</code>、 <code>tan</code> 及其反函数：<code>acos</code>、 <code>asin</code>、 <code>atan</code>、 <code>atan2</code>；</li>
+<li>双曲函数：<code>cosh</code>、 <code>sinh</code>、 <code>tanh</code> 及其反函数：<code>acosh</code>、 <code>asinh</code>、 <code>atanh</code></li>
+<li>指数函数：<code>pow</code>（扩展函数）、 <code>sqrt</code>、 <code>hypot</code>、 <code>exp</code>、 <code>expm1</code>；</li>
+<li>对数函数：<code>log</code>、 <code>log2</code>、 <code>log10</code>、 <code>ln</code>、 <code>ln1p</code>；</li>
+<li>取整:
     <ul>
-<li><code>ceil</code>, <code>floor</code>, <code>truncate</code>, <code>round</code> (half to even) functions;</li>
-<li><code>roundToInt</code>, <code>roundToLong</code> (half to integer) extension functions;</li>
+<li><code>ceil</code>、 <code>floor</code>、 <code>truncate</code>、 <code>round</code>（奇进偶舍）函数；</li>
+<li><code>roundToInt</code>、 <code>roundToLong</code>（四舍五入）扩展函数；</li>
 </ul>
 </li>
-<li>Sign and absolute value:
+<li>符号与绝对值：
     <ul>
-<li><code>abs</code> and <code>sign</code> functions;</li>
-<li><code>absoluteValue</code> and <code>sign</code> extension properties;</li>
-<li><code>withSign</code> extension function;</li>
+<li><code>abs</code> 与 <code>sign</code> 函数；</li>
+<li><code>absoluteValue</code> 与 <code>sign</code> 扩展属性；</li>
+<li><code>withSign</code> 扩展函数；</li>
 </ul>
 </li>
-<li><code>max</code> and <code>min</code> of two values;</li>
-<li>Binary representation:
+<li>两个数的最值函数：<code>max</code> 与 <code>min</code>；</li>
+<li>二进制表示：
     <ul>
-<li><code>ulp</code> extension property;</li>
-<li><code>nextUp</code>, <code>nextDown</code>, <code>nextTowards</code> extension functions;</li>
-<li><code>toBits</code>, <code>toRawBits</code>, <code>Double.fromBits</code> (these are in the <code>kotlin</code> package).</li>
+<li><code>ulp</code> 扩展属性；</li>
+<li><code>nextUp</code>、 <code>nextDown</code>、 <code>nextTowards</code> 扩展函数；</li>
+<li><code>toBits</code>、 <code>toRawBits</code>、 <code>Double.fromBits</code>（这些在 <code>kotlin</code> 包中）。</li>
 </ul>
 </li>
 </ul>
-<p>The same set of functions (but without constants) is also available for <code>Float</code> arguments.</p>
+<p>这些函数同样也有 <code>Float</code> 参数版本（但不包括常量）。</p>
 <h3 id="用于-biginteger-与-bigdecimal-的操作符与转换">用于 BigInteger 与 BigDecimal 的操作符与转换</h3>
-<p>Kotlin 1.2 introduces a set of functions for operating with <code>BigInteger</code> and <code>BigDecimal</code> and creating them 
-from other numeric types. These are:</p>
+<p>Kotlin 1.2 引入了一些使用  <code>BigInteger</code> 与 <code>BigDecimal</code> 运算以及由其他<!--
+-->数字类型创建它们的函数。具体如下：</p>
 <ul>
-<li><code>toBigInteger</code> for <code>Int</code> and <code>Long</code>;</li>
-<li><code>toBigDecimal</code> for <code>Int</code>, <code>Long</code>, <code>Float</code>, <code>Double</code>, and <code>BigInteger</code>;</li>
-<li>Arithmetic and bitwise operator functions:
+<li><code>toBigInteger</code> 用于 <code>Int</code> 与 <code>Long</code>；</li>
+<li><code>toBigDecimal</code> 用于 <code>Int</code>、 <code>Long</code>、 <code>Float</code>、 <code>Double</code> 以及 <code>BigInteger</code>；</li>
+<li>算术与位运算操作符函数：
     <ul>
-<li>Binary operators  <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> and infix functions <code>and</code>, <code>or</code>, <code>xor</code>, <code>shl</code>, <code>shr</code>;</li>
-<li>Unary operators <code>-</code>, <code>++</code>, <code>--</code>, and a function <code>inv</code>.</li>
+<li>二元操作符  <code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> 以及中缀函数 <code>and</code>、 <code>or</code>、 <code>xor</code>、 <code>shl</code>、 <code>shr</code>；</li>
+<li>一元操作符 <code>-</code>、 <code>++</code>、 <code>--</code> 以及函数 <code>inv</code>。</li>
 </ul>
 </li>
 </ul>
 <h3 id="浮点数到比特的转换">浮点数到比特的转换</h3>
-<p>New functions were added for converting <code>Double</code> and <code>Float</code> to and from their bit representations:</p>
+<p>添加了用于将 <code>Double</code> 及 <code>Float</code> 与其比特表示形式相互转换的函数：</p>
 <ul>
-<li><code>toBits</code> and <code>toRawBits</code> returning <code>Long</code> for <code>Double</code> and <code>Int</code> for <code>Float</code>;</li>
-<li><code>Double.fromBits</code> and <code>Float.fromBits</code> for creating floating point numbers from the bit representation.</li>
+<li><code>toBits</code> 与 <code>toRawBits</code> 对于 <code>Double</code> 返回 <code>Long</code> 而对于 <code>Float</code> 返回 <code>Int</code>；</li>
+<li><code>Double.fromBits</code> 与 <code>Float.fromBits</code> 用于有相应比特表示形式创建浮点数。</li>
 </ul>
-<h3 id="regex-is-now-serializable">Regex is now serializable</h3>
-<p>The <code>kotlin.text.Regex</code> class has become <code>Serializable</code> and can now be used in serializable hierarchies.</p>
-<h3 id="closeableuse-calls-throwableaddsuppressed-if-available">Closeable.use calls Throwable.addSuppressed if available</h3>
-<p>The <code>Closeable.use</code> function calls <code>Throwable.addSuppressed</code> when an exception is thrown during closing the resource 
-after some other exception.</p>
-<p>To enable this behavior you need to have <code>kotlin-stdlib-jdk7</code> in your dependencies.</p>
+<h3 id="正则表达式现在可序列化">正则表达式现在可序列化</h3>
+<p><code>kotlin.text.Regex</code> 类现在已经是 <code>Serializable</code> 的了并且可用在可序列化的继承结构中。</p>
+<h3 id="如果可用closeableuse-会调用-throwableaddsuppressed">如果可用，Closeable.use 会调用 Throwable.addSuppressed</h3>
+<p>当在其他异常之后关闭资源期间抛出一个异常，<code>Closeable.use</code> 函数会调用 <code>Throwable.addSuppressed</code>
+。</p>
+<p>要启用这个行为，需要依赖项中有 <code>kotlin-stdlib-jdk7</code>。</p>
 <h2 id="jvm-后端">JVM 后端</h2>
 <h3 id="constructor-calls-normalization">Constructor calls normalization</h3>
 <p>Ever since version 1.0, Kotlin supported expressions with complex control flow, such as try-catch expressions and 
