@@ -911,41 +911,96 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
 标签限制的 <em class="keyword">return</em> 允许我们从外层函数返回。
 最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
-    ints.forEach {
-        if (it == 0) return  // nonlocal return from inside lambda directly to the caller of foo()
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) return // 非局部直接返回到 foo() 的调用者
         print(it)
     }
+    println("this point is unreachable")
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    foo()
 }
 </code></pre>
+</div>
 <p>这个 <em class="keyword">return</em> 表达式从最直接包围它的函数即 <code>foo</code> 中返回。
 （注意，这种非局部的返回只支持传给<a href="inline-functions.html">内联函数</a>的 lambda 表达式。）
 如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 <em class="keyword">return</em>。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
-    ints.forEach lit@{
-        if (it == 0) return@lit
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach lit@{
+        if (it == 3) return@lit // 局部返回到该 lambda 表达式的调用者，即 forEach 循环
         print(it)
     }
+    print(" done with explicit label")
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    foo()
 }
 </code></pre>
+</div>
 <p>现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。
 该标签与接受该 lambda 的函数同名。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
-    ints.forEach {
-        if (it == 0) return@forEach
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach {
+        if (it == 3) return@forEach // 局部返回到该 lambda 表达式的调用者，即 forEach 循环
         print(it)
     }
+    print(" done with implicit label")
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    foo()
 }
 </code></pre>
+</div>
 <p>或者，我们用一个<a href="lambdas.html#匿名函数">匿名函数</a>替代 lambda 表达式。
 匿名函数内部的 <em class="keyword">return</em> 语句将从该匿名函数自身返回</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
-    ints.forEach(fun(value: Int) {
-        if (value == 0) return  // local return to the caller of the anonymous fun, i.e. the forEach loop
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+fun foo() {
+    listOf(1, 2, 3, 4, 5).forEach(fun(value: Int) {
+        if (value == 3) return  // 局部返回到匿名函数的调用者，即 forEach 循环
         print(value)
     })
+    print(" done with anonymous function")
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    foo()
 }
 </code></pre>
+</div>
+<p>请注意，前文三个示例中使用的局部返回类似于在常规循环中使用 <em class="keyword">continue</em>。并没有 <em class="keyword">break</em> 的直接等价形式，不过可以通过增加另一层嵌套 lambda 表达式并从其中非局部返回来模拟：</p>
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+fun foo() {
+    run loop@{
+        listOf(1, 2, 3, 4, 5).forEach {
+            if (it == 3) return@loop // 从传入 run 的 lambda 表达式非局部返回
+            print(it)
+        }
+    }
+    print(" done with nested loop")
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    foo()
+}
+</code></pre>
+</div>
 <p>当要返一个回值的时候，解析器优先选用标签限制的 return，即</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">return@a 1
 </code></pre>

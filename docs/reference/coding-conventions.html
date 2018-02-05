@@ -880,23 +880,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="编码规范">编码规范</h1>
-<p>此页面包含当前 Kotlin 语言的编码风格</p>
-<blockquote>
-<p>注意：如需根据本风格指南配置 IntelliJ 格式化程序，请安装 Kotlin 插件
-1.2.20 或者更高版本，转到“Settings | Editor | Code Style | Kotlin”，点击右<!--
+<p>本页包含当前 Kotlin 语言的编码风格</p>
+<ul>
+<li><a href="#源代码组织">源代码组织</a></li>
+<li><a href="#命名规则">命名规则</a></li>
+<li><a href="#格式化">格式化</a></li>
+<li><a href="#文档注释">文档注释</a></li>
+<li><a href="#避免重复结构">避免重复结构</a></li>
+<li><a href="#语言特性的惯用法">语言特性的惯用法</a></li>
+<li><a href="#库的编码规范">库的编码规范</a></li>
+</ul>
+<h3 id="应用风格指南">应用风格指南</h3>
+<p>如需根据本风格指南配置 IntelliJ 格式化程序，请安装 Kotlin 插件
+1.2.20 或更高版本，转到“Settings | Editor | Code Style | Kotlin”，点击右<!--
 -->上角的“Set from…”链接，并从菜单中选择“Predefined style / Kotlin style guide”。</p>
-</blockquote>
+<p>如需验证代码已按风格指南格式化，请转到探查设置并启用
+“Kotlin | Style issues | File is not formatted according to project settings”探查项。
+验证风格指南中描述的其他问题（如命名约定）的附加探查项默认已启用。</p>
 <h2 id="源代码组织">源代码组织</h2>
 <h3 id="目录结构">目录结构</h3>
-<p>在混合语言项目中，Kotlin 源文件应当与 Java 源文件位于同一源文件根目录，
-并遵循相同的目录结构（每个文件应存储在与其 package 语句相对应的目录中
+<p>在混合语言项目中，Kotlin 源文件应当与 Java 源文件位于同一源文件根目录下，
+并遵循相同的目录结构（每个文件应存储在与其 package 语句对应的目录中
 ）。</p>
 <p>在纯 Kotlin 项目中，推荐的目录结构遵循省略了公共根包的包结构
 （例如，如果项目中的所有代码都位于“org.example.kotlin”包及其<!--
 -->子包中，那么“org.example.kotlin”包的文件应该直接放在源代码根目录下，而
 “org.example.kotlin.foo.bar”中的文件应该放在源代码根目录下的“foo/bar”子目录中）。</p>
 <h3 id="源文件名称">源文件名称</h3>
-<p>如果 Kotlin 文件包含单个类（以及可能相关的顶层声明），则文件名应与<!--
+<p>如果 Kotlin 文件包含单个类（以及可能相关的顶层声明），那么文件名应该与<!--
 -->该类的名称相同，并追加 .kt 扩展名。如果文件包含多个类或只包含顶层声明，
 那么选择一个描述该文件所包含内容的名称，并以此命名该文件。使用首字母大写的驼峰风格
 （例如 <code>ProcessDeclarations.kt</code>）。</p>
@@ -920,41 +931,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>不要按字母顺序或者可见性对方法声明排序，也不要将常规方<!--
 -->法与扩展方法分开。而是要把相关的东西放在一起，这样从上到下<!--
--->阅读类的人就能够跟进所发生的事情的逻辑。选择一个顺序（高级别优先，或者相反）
+-->阅读类的人就能够跟进所发生事情的逻辑。选择一个顺序（高级别优先，或者相反）
 并坚持下去。</p>
-<p>将嵌套类放在紧挨使用这些类的代码之后。如果打算在外部使用嵌套类，并且类中没有<!--
+<p>将嵌套类放在紧挨使用这些类的代码之后。如果打算在外部使用嵌套类，而且类中并没有<!--
 -->引用这些类，那么把它们放到末尾，在伴生对象之后。</p>
 <h3 id="接口实现布局">接口实现布局</h3>
 <p>在实现一个接口时，实现成员的顺序应该与该接口的成员顺序相同（如果需要，
 还要插入用于实现的额外的私有方法）</p>
 <h3 id="重载布局">重载布局</h3>
 <p>在类中总是将重载放在一起。</p>
-<h2 id="naming-rules">Naming rules</h2>
-<p>Kotlin follows the Java naming conventions. In particular:</p>
-<p>Names of packages are always lower case and do not use underscores (<code>org.example.myproject</code>). Using multi-word
-names is generally discouraged, but if you do need to use multiple words, you can either simply concatenate them together
-or use camel humps (<code>org.example.myProject</code>).</p>
-<p>Names of classes and objects start with an upper case letter and use camel humps:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class DeclarationProcessor { ... }
+<h2 id="命名规则">命名规则</h2>
+<p>Kotlin 遵循 Java 命名约定。尤其是：</p>
+<p>包的名称总是小写且不使用下划线（<code>org.example.myproject</code>）。
+通常不鼓励使用多个词的名称，但是如果确实需要使用多个词，可以将它们连接在一起<!--
+-->或使用驼峰（<code>org.example.myProject</code>）。</p>
+<p>类和对象的名称以大写字母开头并使用驼峰：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class DeclarationProcessor { …… }
 
-object EmptyDeclarationProcessor : DeclarationProcessor() { ... }
+object EmptyDeclarationProcessor : DeclarationProcessor() { …… }
 </code></pre>
-<h3 id="function-names">Function names</h3>
-<p>Names of functions, properties and local variables start with a lower case letter and use camel humps and no underscores:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun processDeclarations() { ... }
-var declarationCount = ...
+<h3 id="函数名">函数名</h3>
+<p>函数、属性与局部变量的名称以小写字母开头、使用驼峰而不使用下划线：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun processDeclarations() { …… }
+var declarationCount = ……
 </code></pre>
-<p>Exception: factory functions used to create instances of classes can have the same name as the class being created:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo { ... }
+<p>例外：用于创建类实例的工厂函数可以与要创建的类具有相同的名称：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo { …… }
 
-class FooImpl : Foo { ... }
+class FooImpl : Foo { …… }
 
-fun Foo(): Foo { return FooImpl(...) }
+fun Foo(): Foo { return FooImpl(……) }
 </code></pre>
-<h4 id="names-for-test-methods">Names for test methods</h4>
-<p>In tests (and only in tests), it's acceptable to use method names with spaces enclosed in backticks.
-(Note that such method names are currently not supported by the Android runtime.) Underscores in method names are
-also allowed in test code.</p>
+<h4 id="测试方法的名称">测试方法的名称</h4>
+<p>当且仅当在测试中，可以使用反引号括起来的带空格的方法名。
+（请注意，Android 运行时目前不支持这样的方法名。）测试代码中<!--
+-->也允许方法名使用下划线。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyTestCase {
      @Test fun `ensure everything works`() {
      }
@@ -963,23 +974,23 @@ also allowed in test code.</p>
      }
 }
 </code></pre>
-<h3 id="property-names">Property names</h3>
-<p>Names of constants (properties marked with <code>const</code>, or top-level or object <code>val</code> properties with no custom <code>get</code> function
-that hold deeply immutable data) should use uppercase underscore-separated names:</p>
+<h3 id="属性名">属性名</h3>
+<p>常量名称（标有 <code>const</code> 的属性，或者保存不可变数据的没有自定义 <code>get</code> 函数<!--
+-->的顶层/对象 <code>val</code> 属性）应该使用大写、下划线分隔的名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">const val MAX_COUNT = 8
 val USER_NAME_FIELD = "UserName"
 </code></pre>
-<p>Names of top-level or object properties which hold objects with behavior or mutable data should use regular camel-hump names:</p>
+<p>保存带有行为的对象或者可变数据的顶层/对象属性的名称应该使用常规驼峰名称：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val mutableCollection: MutableSet&lt;String&gt; = HashSet()
 </code></pre>
-<p>Names of properties holding references to singleton objects can use the same naming style as <code>object</code> declarations:</p>
+<p>保存单例对象引用的属性的名称可以使用与 <code>object</code> 声明相同的命名风格：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val PersonComparator: Comparator&lt;Person&gt; = ...
 </code></pre>
-<p>For enum constants, it's OK to use either uppercase underscore-separated names
-(<code>enum class Color { RED, GREEN }</code>) or regular camel-humps names starting with an uppercase letter, depending on the usage.</p>
-<h4 id="names-for-backing-properties">Names for backing properties</h4>
-<p>If a class has two properties which are conceptually the same but one is part of a public API and another is an implementation
-detail, use an underscore as the prefix for the name of the private property:</p>
+<p>对于枚举常量，可以使用大写、下划线分隔的名称
+（<code>enum class Color { RED, GREEN }</code>）也可使用以大写字母开头的常规驼峰名称，具体取决于用途。</p>
+<h4 id="幕后属性的名称">幕后属性的名称</h4>
+<p>如果一个类有两个概念上相同的属性，一个是公共 API 的一部分，另一个是实现<!--
+-->细节，那么使用下划线作为私有属性名称的前缀：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
     private val _elementList = mutableListOf&lt;Element&gt;()
 
@@ -987,16 +998,16 @@ detail, use an underscore as the prefix for the name of the private property:</p
          get() = _elementList
 }
 </code></pre>
-<h3 id="choosing-good-names">Choosing good names</h3>
-<p>The name of a class is usually a noun or a noun phrase explaining what the class <em>is</em>: <code>List</code>, <code>PersonReader</code>.</p>
-<p>The name of a method is usually a verb or a verb phrase saying what the method <em>does</em>: <code>close</code>, <code>readPersons</code>.
-The name should also suggest if the method is mutating the object or returning a new one. For instance <code>sort</code> is
-sorting a collection in place, while <code>sorted</code> is returning a sorted copy of the collection.</p>
-<p>The names should make it clear what the purpose of the entity is, so it's best to avoid using meaningless words
-(<code>Manager</code>, <code>Wrapper</code> etc.) in names.</p>
-<p>When using an acronym as part of a declaration name, capitalize it if it consists of two letters (<code>IOStream</code>);
-capitalize only the first letter if it is longer (<code>XmlFormatter</code>, <code>HttpInputStream</code>).</p>
-<h2 id="formatting">Formatting</h2>
+<h3 id="选择好名称">选择好名称</h3>
+<p>类的名称通常是用来解释类<em>是</em>什么的名词或者名词短语：<code>List</code>、 <code>PersonReader</code>。</p>
+<p>方法的名称通常是动词或动词短语，说明该方法<em>做</em>什么：<code>close</code>、 <code>readPersons</code>。
+修改对象或者返回一个新对象的名称也应遵循建议。例如 <code>sort</code> 是<!--
+-->对一个集合就地排序，而 <code>sorted</code> 是返回一个排序后的集合副本。</p>
+<p>名称应该表明实体的目的是什么，所以最好避免在名称中使用无意义的单词
+（<code>Manager</code>、 <code>Wrapper</code> 等）。</p>
+<p>当使用首字母缩写作为名称的一部分时，如果缩写由两个字母组成，就将其大写（<code>IOStream</code>）；
+而如果缩写更长一些，就只大写首首字母（<code>XmlFormatter</code>、 <code>HttpInputStream</code>）。</p>
+<h2 id="格式化">格式化</h2>
 <p>In most cases, Kotlin follows the Java coding conventions.</p>
 <p>Use 4 spaces for indentation. Do not use tabs.</p>
 <p>For curly braces, put the opening brace in the end of the line where the construct begins, and the closing brace
@@ -1171,7 +1182,7 @@ Indent the expression body by 4 spaces.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f(x: String) =
     x.length
 </code></pre>
-<h2 id="property-formatting">Property formatting</h2>
+<h3 id="property-formatting">Property formatting</h3>
 <p>For very simple read-only properties, consider one-line formatting:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty: Boolean get() = size == 0
 </code></pre>
@@ -1274,7 +1285,7 @@ from the body. If a call takes a single lambda, it should be passed outside of p
    context.configureEnv(environment)
 }
 </code></pre>
-<h2 id="documentation-comments">Documentation comments</h2>
+<h2 id="文档注释">文档注释</h2>
 <p>For longer documentation comments, place the opening <code>/**</code> on a separate line and begin each subsequent line
 with an asterisk:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
@@ -1304,7 +1315,7 @@ fun abs(number: Int) = ...
  */
 fun abs(number: Int) = ...
 </code></pre>
-<h2 id="avoiding-redundant-constructs">Avoiding redundant constructs</h2>
+<h2 id="避免重复结构">避免重复结构</h2>
 <p>In general, if a certain syntactic construction in Kotlin is optional and highlighted by the IDE
 as redundant, you should omit it in your code. Do not leave unnecessary syntactic elements in code
 just "for clarity".</p>
@@ -1320,7 +1331,7 @@ just "for clarity".</p>
 <p>Don't use curly braces when inserting a simple variable into a string template. Use curly braces only for longer expressions.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println("$name has ${children.size} children")
 </code></pre>
-<h2 id="idiomatic-use-of-language-features">Idiomatic use of language features</h2>
+<h2 id="语言特性的惯用法">语言特性的惯用法</h2>
 <h3 id="immutability">Immutability</h3>
 <p>Prefer using immutable data to mutable. Always declare local variables and properties as <code>val</code> rather than <code>var</code> if
 they are not modified after initialization.</p>
@@ -1530,7 +1541,7 @@ with(person) {
     println("First name: $firstName, last name: $lastName")
 }
 </code></pre>
-<h2 id="coding-conventions-for-libraries">Coding conventions for libraries</h2>
+<h2 id="库的编码规范">库的编码规范</h2>
 <p>When writing libraries, it's recommended to follow an additional set of rules to ensure API stability:</p>
 <ul>
 <li>Always explicitly specify member visibility (to avoid accidentally exposing declarations as public API)</li>

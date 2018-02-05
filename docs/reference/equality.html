@@ -882,12 +882,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="相等性">相等性</h1>
 <p>Kotlin 中有两种类型的相等性：</p>
 <ul>
-<li>引用相等（两个引用指向同一对象）；</li>
-<li>结构相等（用 <code>equals()</code> 检查）。</li>
+<li>结构相等（用 <code>equals()</code> 检查）；</li>
+<li>引用相等（两个引用指向同一对象）。</li>
 </ul>
-<h2 id="引用相等">引用相等</h2>
-<p>引用相等由 <code>===</code>（以及其否定形式 <code>!==</code>）操作判断。<code>a === b</code>
-当且仅当 <code>a</code> 和 <code>b</code> 指向同一个对象时求值为 true。</p>
 <h2 id="结构相等">结构相等</h2>
 <p>结构相等由 <code>==</code>（以及其否定形式 <code>!=</code>）操作判断。按照惯例，像 <code>a == b</code> 这样的表达式会翻译成：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">a?.equals(b) ?: (b === null)
@@ -899,6 +896,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 浮点数运算标准。</p>
 <p>否则会使用不符合该标准的结构相等性检测，这会导致 <code>NaN</code> 等于其自身，而 <code>-0.0</code> 不等于 <code>0.0</code>。</p>
 <p>参见：<a href="basic-types.html#浮点数比较">浮点数比较</a>。</p>
+<h2 id="引用相等">引用相等</h2>
+<p>引用相等由 <code>===</code>（以及其否定形式 <code>!==</code>）操作判断。<code>a === b</code>
+当且仅当 <code>a</code> 和 <code>b</code> 指向同一个对象时求值为 true。对于运行时表示为原生类型的值
+（例如 <code>Int</code>），<code>===</code> 相等检测等价于 <code>==</code> 检测。</p>
 
         </article>
     </div>

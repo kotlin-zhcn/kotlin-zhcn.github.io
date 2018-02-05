@@ -896,7 +896,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     ……
 }
 </code></pre>
-<p>这样的函数称为<em>挂起函数</em>，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程和其他挂起函数中调用。事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 <code>async()</code> 函数（源自 <a href="#kotlincoroutines-中的生成器-api"><code>kotlinx.coroutines</code></a> 库）：</p>
+<p>这样的函数称为<em>挂起函数</em>，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程、其他挂起函数以及内联到其中的函数字面值中调用。</p>
+<p>事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 <code>async()</code> 函数（源自 <a href="#kotlincoroutines-中的生成器-api"><code>kotlinx.coroutines</code></a> 库）：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; async(block: suspend () -&gt; T)
 </code></pre>
 <p>这里的 <code>async()</code> 是一个普通函数（不是挂起函数），但是它的 <code>block</code> 参数具有一个带 <code>suspend</code> 修饰符的函数类型： <code>suspend () -&gt; T</code>。所以，当我们将一个 lambda 表达式传给 <code>async()</code> 时，它会是<em>挂起 lambda 表达式</em>，于是我们可以从中调用挂起函数：</p>
@@ -916,9 +917,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 <p>更多关于 <code>async/await</code> 函数实际在 <code>kotlinx.coroutines</code> 中如何工作的信息可以在<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions">这里</a>找到。</p>
-<p>请注意，挂起函数 <code>await()</code> 和 <code>doSomething()</code> 不能在像 <code>main()</code> 这样的普通函数中调用：</p>
+<p>请注意，挂起函数 <code>await()</code> 与 <code>doSomething()</code> 不能在没有内联到挂起函数体的函数字面值以及像 <code>main()</code> 这样的普通函数中调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
     doSomething() // 错误：挂起函数从非协程上下文调用
+    
+    async { 
+        ...
+        computations.forEach { // `forEach` 是一个内联函数，该 lambda 表达式是内联的
+            it.await() // OK
+}
+            
+        thread { // `thread` 不是内联函数，所以该 lambda 表达式并非内联的
+            doSomething() // 错误
+        }
+    }
 }
 </code></pre>
 <p>还要注意的是，挂起函数可以是虚拟的，当覆盖它们时，必须指定 <code>suspend</code> 修饰符：</p>
