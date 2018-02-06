@@ -1008,23 +1008,23 @@ val USER_NAME_FIELD = "UserName"
 <p>当使用首字母缩写作为名称的一部分时，如果缩写由两个字母组成，就将其大写（<code>IOStream</code>）；
 而如果缩写更长一些，就只大写首首字母（<code>XmlFormatter</code>、 <code>HttpInputStream</code>）。</p>
 <h2 id="格式化">格式化</h2>
-<p>In most cases, Kotlin follows the Java coding conventions.</p>
-<p>Use 4 spaces for indentation. Do not use tabs.</p>
-<p>For curly braces, put the opening brace in the end of the line where the construct begins, and the closing brace
-on a separate line aligned vertically with the opening construct.</p>
+<p>在大多数情况下，Kotlin 遵循 Java 编码规范。</p>
+<p>使用 4 个空格缩进。不要使用 tab。</p>
+<p>对于大括号，将左大括号放在结构起始处的行尾，而将右大括号<!--
+-->放在与左括结构垂直对齐的单独一行。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (elements != null) {
     for (element in elements) {
-        // ...
+        // ……
     }
 }
 </code></pre>
-<p>(Note: In Kotlin, semicolons are optional, and therefore line breaks are significant. The language design assumes 
-Java-style braces, and you may encounter surprising behavior if you try to use a different formatting style.)</p>
-<h3 id="horizontal-whitespace">Horizontal whitespace</h3>
-<p>Put spaces around binary operators (<code>a + b</code>). Exception: don't put spaces around the "range to" operator (<code>0..i</code>).</p>
-<p>Do not put spaces around unary operators (<code>a++</code>)</p>
-<p>Put spaces between control flow keywords (<code>if</code>, <code>when</code>, <code>for</code> and <code>while</code>) and the corresponding opening parenthesis.</p>
-<p>Do not put a space before an opening parenthesis in a primary constructor declaration, method declaration or method call.</p>
+<p>（注意：在 Kotlin 中，分号是可选的，因此换行很重要。语言设计采用
+Java 风格的大括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。）</p>
+<h3 id="横向空白">横向空白</h3>
+<p>在二元操作符左右留空格（<code>a + b</code>）。例外：不要在“range to”操作符（<code>0..i</code>）左右留空格。</p>
+<p>不要在一元运算符左右留空格（<code>a++</code>）</p>
+<p>在控制流关键字（<code>if</code>、 <code>when</code>、 <code>for</code> 以及 <code>while</code>）与相应的左括号之间留空格。</p>
+<p>不要在主构造函数声明、方法声明或者方法调用的左括号之前留空格。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class A(val x: Int)
 
 fun foo(x: Int) { }
@@ -1033,52 +1033,52 @@ fun bar() {
     foo(1)
 }
 </code></pre>
-<p>Never put a space after <code>(</code>, <code>[</code>, or before <code>]</code>, <code>)</code>.</p>
-<p>Never put a space around <code>.</code> or <code>?.</code>: <code>foo.bar().filter { it &gt; 2 }.joinToString()</code>, <code>foo?.bar()</code></p>
-<p>Put a space after <code>//</code>: <code>// This is a comment</code></p>
-<p>Do not put spaces around angle brackets used to specify type parameters: <code>class Map&lt;K, V&gt; { ... }</code></p>
-<p>Do not put spaces around <code>::</code>: <code>Foo::class</code>, <code>String::length</code></p>
-<p>Do not put a space before <code>?</code> used to mark a nullable type: <code>String?</code></p>
-<p>As a general rule, avoid horizontal alignment of any kind. Renaming an identifier to a name with a different length
-should not affect the formatting of either the declaration or any of the usages.</p>
-<h3 id="colon">Colon</h3>
-<p>Put a space before <code>:</code> in the following cases:</p>
+<p>绝不在 <code>(</code>、 <code>[</code> 之后或者 <code>]</code>、 <code>)</code> 之前留空格。</p>
+<p>绝不在<code>.</code> 或者 <code>?.</code> 左右留空格：<code>foo.bar().filter { it &gt; 2 }.joinToString()</code>, <code>foo?.bar()</code></p>
+<p>在 <code>//</code> 之后留一个空格：<code>// 这是一条注释</code></p>
+<p>不要在用于指定类型参数的尖括号前后留空格：<code>class Map&lt;K, V&gt; { …… }</code></p>
+<p>不要在 <code>::</code> 前后留空格：<code>Foo::class</code>、 <code>String::length</code></p>
+<p>不要在用于标记可空类型的 <code>?</code> 前留空格：<code>String?</code></p>
+<p>作为一般规则，避免任何类型的水平对齐。将标识符重命名为不同长度的名称<!--
+-->不应该影响声明或者任何用法的格式。</p>
+<h3 id="冒号">冒号</h3>
+<p>在以下场景中的 <code>:</code> 之前留一个空格：</p>
 <ul>
-<li>when it's used to separate a type and a supertype;</li>
-<li>when delegating to a superclass constructor or a different constructor of the same class;</li>
-<li>after the <code>object</code> keyword.</li>
+<li>当它用于分隔类型与超类型时；</li>
+<li>当委托给一个超类的构造函数或者同一类的另一个构造函数时；</li>
+<li>在 <code>object</code> 关键字之后。</li>
 </ul>
-<p>Don't put a space before <code>:</code> when it separates a declaration and its type.</p>
-<p>Always put a space after <code>:</code>.</p>
+<p>而当分隔声明与其类型时，不要在 <code>:</code> 之前留空格。</p>
+<p>在 <code>:</code> 之后总要留一个空格。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo&lt;out T : Any&gt; : IFoo {
     abstract fun foo(a: Int): T
 }
 
 class FooImpl : Foo() {
     constructor(x: String) : this(x) {
-        //...
+        //……
     }
     
-    val x = object : IFoo { ... } 
+    val x = object : IFoo { …… } 
 } 
 </code></pre>
-<h3 id="class-header-formatting">Class header formatting</h3>
-<p>Classes with a few primary constructor parameters can be written in a single line:</p>
+<h3 id="类头格式化">类头格式化</h3>
+<p>具有少数主构造函数参数的类可以写成一行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(id: Int, name: String)
 </code></pre>
-<p>Classes with longer headers should be formatted so that each primary constructor parameter is in a separate line with indentation.
-Also, the closing parenthesis should be on a new line. If we use inheritance, then the superclass constructor call or list of implemented interfaces
-should be located on the same line as the parenthesis:</p>
+<p>具有较长类头的类应该格式化，以使每个主构造函数参数都在带有缩进的独立的行中。
+另外，右括号应该位于一个新行上。如果使用了继承，那么超类的构造函数调用或者所实现接口的列表<!--
+-->应该与左括号位于同一行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
     id: Int,
     name: String,
     surname: String
 ) : Human(id, name) {
 
-    // ...
+    // ……
 }
 </code></pre>
-<p>For multiple interfaces, the superclass constructor call should be located first and then each interface should be located in a different line:</p>
+<p>对于多个接口，应该将超类构造函数调用放在首位，然后将每个接口应放在不同的行中：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
     id: Int,
     name: String,
@@ -1086,10 +1086,10 @@ should be located on the same line as the parenthesis:</p>
 ) : Human(id, name),
     KotlinMaker {
     
-    // ...
+    // ……
 }
 </code></pre>
-<p>For classes with a long supertype list, put a line break after the colon and align all supertype names vertically:</p>
+<p>对于具有很长超类型列表的类，在冒号后面换行，并垂直对齐所有超类型名：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
     MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
     SomeOtherInterface,
@@ -1098,8 +1098,8 @@ should be located on the same line as the parenthesis:</p>
     fun foo() {}
 }
 </code></pre>
-<p>To clearly separate the class header and body when the class header is long, either put a blank line
-following the class header (as in the example above), or put the opening curly brace on a separate line:</p>
+<p>为了将类头与类体分隔清楚，当类头很长时，可以在类头后放一空行
+（如上例所示）或者将左大括号放在独立行上：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
     MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
     SomeOtherInterface,
@@ -1108,13 +1108,13 @@ following the class header (as in the example above), or put the opening curly b
     fun foo() {}
 }
 </code></pre>
-<p>Use regular indent (4 spaces) for constructor parameters.</p>
+<p>构造函数参数使用常规缩进（4 个空格）。</p>
 <blockquote>
-<p>Rationale: This ensures that properties declared in the primary constructor have the same indentation as properties
-declared in the body of a class.</p>
+<p>理由：这确保了在主构造函数中声明的属性与
+在类体中声明的属性具有相同的缩进。</p>
 </blockquote>
-<h3 id="modifiers">Modifiers</h3>
-<p>If a declaration has multiple modifiers, always put them in the following order:</p>
+<h3 id="修饰符">修饰符</h3>
+<p>如果一个声明有多个修饰符，请始终按照以下顺序安放：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">public / protected / private / internal
 expect / actual
 final / open / abstract / sealed / const
@@ -1132,69 +1132,69 @@ infix
 operator
 data
 </code></pre>
-<p>Place all annotations before modifiers:</p>
+<p>将所有注解放在修饰符前：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Named("Foo")
 private val foo: Foo
 </code></pre>
-<p>Unless you're working on a library, omit redundant modifiers (e.g. <code>public</code>).</p>
-<h3 id="annotation-formatting">Annotation formatting</h3>
-<p>Annotations are typically placed on separate lines, before the declaration to which they are attached, and with the same indentation:</p>
+<p>除非你在编写库，否则请省略多余的修饰符（例如 <code>public</code>）。</p>
+<h3 id="注解格式化">注解格式化</h3>
+<p>注解通常放在单独的行上，在它们所依附的声明之前，并使用相同的缩进：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Target(AnnotationTarget.PROPERTY)
 annotation class JsonExclude
 </code></pre>
-<p>Annotations without arguments may be placed on the same line:</p>
+<p>无参数的注解可以放在同一行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsonExclude @JvmField
 var x: String
 </code></pre>
-<p>A single annotation without arguments may be placed on the same line as the corresponding declaration:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Test fun foo() { ... }
+<p>无参数的单个注解可以与相应的声明放在同一行：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Test fun foo() { …… }
 </code></pre>
-<h3 id="file-annotations">File annotations</h3>
-<p>File annotations are placed after the file comment (if any), before the <code>package</code> statement, and are separated from <code>package</code> with a blank line (to emphasize the fact that they target the file and not the package).</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** License, copyright and whatever */
+<h3 id="文件注解">文件注解</h3>
+<p>文件注解位于文件注释（如果有的话）之后、<code>package</code> 语句之前，并且用一个空白行与 <code>package</code> 分开（为了强调其针对文件而不是包）。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** 授权许可、版权以及任何其他内容 */
 @file:JvmName("FooBar")
 
 package foo.bar
 </code></pre>
-<h3 id="function-formatting">Function formatting</h3>
-<p>If the function signature doesn't fit on a single line, use the following syntax:</p>
+<h3 id="函数格式化">函数格式化</h3>
+<p>如果函数签名不适合单行，请使用以下语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun longMethodName(
     argument: ArgumentType = defaultValue,
     argument2: AnotherArgumentType
 ): ReturnType {
-    // body
+    // 函数体
 }
 </code></pre>
-<p>Use regular indent (4 spaces) for function parameters.</p>
+<p>函数参数使用常规缩进（4 个空格）。</p>
 <blockquote>
-<p>Rationale: Consistency with constructor parameters</p>
+<p>理由：与构造函数参数一致</p>
 </blockquote>
-<p>Prefer using an expression body for functions with the body consisting of a single expression.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // bad
+<p>对于由单个表达式构成的函数体，首选使用表达式形式。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // 较差
     return 1 
 }
 
-fun foo() = 1        // good
+fun foo() = 1        // 良好
 </code></pre>
-<h3 id="expression-body-formatting">Expression body formatting</h3>
-<p>If the function has an expression body that doesn't fit in the same line as the declaration, put the <code>=</code> sign on the first line.
-Indent the expression body by 4 spaces.</p>
+<h3 id="表达式函数体格式化">表达式函数体格式化</h3>
+<p>如果函数的表达式函数体与函数声明不适合放在同一行，那么将 <code>=</code> 留在第一行。
+将表达式函数体缩进 4 个空格。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f(x: String) =
     x.length
 </code></pre>
-<h3 id="property-formatting">Property formatting</h3>
-<p>For very simple read-only properties, consider one-line formatting:</p>
+<h3 id="属性格式化">属性格式化</h3>
+<p>对于非常简单的只读属性，请考虑单行格式：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty: Boolean get() = size == 0
 </code></pre>
-<p>For more complex properties, always put <code>get</code> and <code>set</code> keywords on separate lines:</p>
+<p>对于更复杂的属性，总是将 <code>get</code> 与 <code>set</code> 关键字放在不同的行上：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val foo: String
     get() {
-        // ...
+        // ……
     }
 
 </code></pre>
-<p>For properties with an initializer, if the initializer is long, add a line break after the equals sign
-and indent the initializer by four spaces:</p>
+<p>对于具有初始化器的属性，如果初始化器很长，那么在等号后增加一个换行<!--
+-->并将初始化器缩进四个空格：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">private val defaultCharset: Charset? =
     EncodingRegistry.getInstance().getDefaultCharsetForPropertiesFiles(file)
 </code></pre>
