@@ -883,11 +883,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="可空类型与非空类型">可空类型与非空类型</h2>
 <p>Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为<a href="http://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">《十亿美元的错误》</a>。</p>
 <p>许多编程语言（包括 Java）中最常见的陷阱之一，就是访问空引用的成员会导致空引用异常。在 Java 中，这等同于 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>
-<p>Kotlin 的类型系统旨在从我们的代码中消除 <code>NullPointerException</code>。NPE 的唯一可能的原因可能是</p>
+<p>Kotlin 的类型系统旨在从我们的代码中消除 <code>NullPointerException</code>。NPE 的唯一可能的原因可能是：</p>
 <ul>
 <li>显式调用 <code>throw NullPointerException()</code>；</li>
 <li>使用了下文描述的 <code>!!</code> 操作符；</li>
-<li>对于初始化，有一些数据不一致（如一个未初始化的 <code>this</code> 用于构造函数的某个地方）；</li>
+<li>有些数据在初始化时不一致，例如当：
+    <ul>
+<li>传递一个在构造函数中出现的未初始化的 <em class="keyword">this</em> 并用于其他地方（“泄漏 <em class="keyword">this</em>”）；</li>
+<li><a href="classes.html#派生类初始化顺序">超类的构造函数调用一个开放成员</a>，该成员在派生中类的实现使用了未初始化的状态；</li>
+</ul>
+</li>
 <li>Java 互操作：
     <ul>
 <li>企图访问<a href="java-interop.html#空安全与平台类型">平台类型</a>的 <code>null</code> 引用的成员；</li>

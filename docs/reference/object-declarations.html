@@ -879,7 +879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="对象表达式和对象声明">对象表达式和对象声明</h1>
+<h1 id="对象表达式与对象声明">对象表达式与对象声明</h1>
 <p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。
 Java 用<em>匿名内部类</em> 处理这种情况。
 Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p>
@@ -956,7 +956,8 @@ val ab: A = object : A(1), B {
 }
 </code></pre>
 <h2 id="对象声明">对象声明</h2>
-<p><a href="http://en.wikipedia.org/wiki/Singleton_pattern">单例模式</a>是一种非常有用的模式，而 Kotlin（继 Scala 之后）使单例声明变得很容易：</p>
+<p><a href="http://en.wikipedia.org/wiki/Singleton_pattern">单例模式</a>在一些场景中很有用，
+而 Kotlin（继 Scala 之后）使单例声明变得很容易：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">object DataProviderManager {
     fun registerDataProvider(provider: DataProvider) {
         // ……
@@ -968,7 +969,8 @@ val ab: A = object : A(1), B {
 </code></pre>
 <p>这称为<em>对象声明</em>。并且它总是在 <em class="keyword">object</em> 关键字后跟一个名称。
 就像变量声明一样，对象声明不是一个表达式，不能用在赋值语句的右边。</p>
-<p>要引用该对象，我们直接使用其名称即可：</p>
+<p>对象声明的初始化过程是线程安全的。</p>
+<p>如需引用该对象，我们直接使用其名称即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">DataProviderManager.registerDataProvider(……)
 </code></pre>
 <p>这些对象可以有超类型：</p>

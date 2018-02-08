@@ -1018,15 +1018,23 @@ val customer = Customer("Joe Smith")
 <p>在 Kotlin 中所有类都有一个共同的超类 <code>Any</code>，这对于没有超类型声明的类是默认超类：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example // 从 Any 隐式继承
 </code></pre>
-<p><code>Any</code> 不是 <code>java.lang.Object</code>；尤其是，它除了 <code>equals()</code>、<code>hashCode()</code>和<code>toString()</code>外没有任何成员。
+<blockquote>
+<p>注意：<code>Any</code> 并不是 <code>java.lang.Object</code>；尤其是，它除了 <code>equals()</code>、<code>hashCode()</code>和<code>toString()</code>外没有任何成员。
 更多细节请查阅<a href="java-interop.html#对象方法">Java互操作性</a>部分。</p>
+</blockquote>
 <p>要声明一个显式的超类型，我们把类型放到类头的冒号之后：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Base(p: Int)
 
 class Derived(p: Int) : Base(p)
 </code></pre>
-<p>如果该类有一个主构造函数，其基类型可以（并且必须）
-用（基类型的）主构造函数参数就地初始化。</p>
+<blockquote>
+<p>类上的 <em class="keyword">open</em> 标注与 Java 中 <em class="keyword">final</em> 相反，它允许其他类<!--
+-->从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
+对应于 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>书中的<!--
+-->第 17 条：<strong>要么为继承而设计，并提供文档说明，要么就禁止继承</strong>。</p>
+</blockquote>
+<p>如果派生类有一个主构造函数，其基类型可以（并且必须）
+用基类的主构造函数参数就地初始化。</p>
 <p>如果类没有主构造函数，那么每个次构造函数必须<!--
 -->使用 <em class="keyword">super</em> 关键字初始化其基类型，或委托给另一个构造函数做到这一点。
 注意，在这种情况下，不同的次构造函数可以调用基类型的不同的构造函数：</p>
@@ -1036,10 +1044,6 @@ class Derived(p: Int) : Base(p)
     constructor(ctx: Context, attrs: AttributeSet) : super(ctx, attrs)
 }
 </code></pre>
-<p>类上的 <em class="keyword">open</em> 标注与 Java 中 <em class="keyword">final</em> 相反，它允许其他类<!--
--->从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
-对应于 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>书中的<!--
--->第 17 条：<strong>要么为继承而设计，并提供文档说明，要么就禁止继承</strong>。</p>
 <h3 id="覆盖方法">覆盖方法</h3>
 <p>我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式<!--
 -->标注可覆盖的成员（我们称之为<em>开放</em>）和覆盖后的成员：</p>
@@ -1081,6 +1085,37 @@ class Bar2 : Foo {
     override var count: Int = 0
 }
 </code></pre>
+<h3 id="派生类初始化顺序">派生类初始化顺序</h3>
+<p>在构造派生类的新实例的过程中，第一步完成其基类的初始化（在之前只有对基类构造函数参数的求值），因此发生在派生类的初始化逻辑运行之前。</p>
+<div class="sample" data-min-compiler-version="1.2">
+<pre><code class="language-kotlin">//sampleStart
+open class Base(val name: String) {
+
+    init { println("Initializing Base") }
+
+    open val size: Int = 
+        name.length.also { println("Initializing size in Base: $it") }
+}
+
+class Derived(
+    name: String,
+    val lastName: String
+) : Base(name.capitalize().also { println("Argument for Base: $it") }) {
+
+    init { println("Initializing Derived") }
+
+    override val size: Int =
+        (super.size + lastName.length).also { println("Initializing size in Derived: $it") }
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    println("Constructing Derived(\"hello\", \"world\")")
+    val d = Derived("hello", "world")
+}
+</code></pre>
+</div>
+<p>这意味着，基类构造函数执行时，派生类中声明或覆盖的属性都还没有初始化。如果在基类初始化逻辑中（直接或通过另一个覆盖的 <em class="keyword">open</em> 成员的实现间接）使用了任何一个这种属性，那么都可能导致不正确的行为或运行时故障。设计一个基类时，应该避免在构造函数、属性初始化器以及 <em class="keyword">init</em> 块中使用 <em class="keyword">open</em> 成员。</p>
 <h3 id="调用超类实现">调用超类实现</h3>
 <p>派生类中的代码可以使用 <em class="keyword">super</em> 关键字调用其超类的函数与属性访问器的实现：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Foo {
