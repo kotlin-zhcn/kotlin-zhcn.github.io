@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/kotlin-native-with-clion.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta property="og:description" content="Using CLion for Kotlin/Native development">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta name="twitter:description" content="Using CLion for Kotlin/Native development">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Getting Started with Kotlin and JavaScript with Gradle - Kotlin 语言中文站</title>
+    <title>Kotlin/Native with CLion - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -253,10 +253,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">以 Gradle 入门</div>
-            </div>
+            <a href="/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 Gradle 入门</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -342,12 +344,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/kotlin-native-with-clion.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin/Native 使用 CLion</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Kotlin/Native 使用 CLion</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -470,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/kotlin-native-with-clion.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -478,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Getting Started with Kotlin and JavaScript with Gradle
+                Kotlin/Native with CLion
             </h1>
             <table>
                     <tr>
@@ -486,89 +486,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2016-11-04
+                            2018-01-23
                         </td>
                     </tr>
             </table>
-                A look at how to use Gradle to target JavaScript.
+                Using CLion for Kotlin/Native development
                 <br/>
                 <br/>
             
 <p>In this tutorial we'll see how to</p>
 <ul>
-<li>Create an application targeting JavaScript with Gradle</li>
-<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
+<li><a href="#configuring-clion-for-kotlinnative-development">Configure Kotlin/Native in CLion</a></li>
+<li><a href="#building-an-running-the-application">Build and run a sample application</a></li>
 </ul>
-<p>In order to use Gradle to target JavaScript, we need to use the <code>kotlin2js</code> plugin as opposed to the <code>kotlin</code> plugin.</p>
-<p>Our <code>build.gradle</code> file should look like the following</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">group 'org.example'
-version '1.0-SNAPSHOT'
-
-buildscript {
-    ext.kotlin_version = '1.2.21'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: 'kotlin2js'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-}
-
-</code></pre>
-<p>To use an EAP build instead, we need to specify its version in <code>ext.kotlin_version</code> and 
-add the corresponding repository to the <code>buildscript</code> section (usually EAP builds are located on <a href="https://bintray.com/kotlin">Bintray</a>)</p>
-<p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuring-compiler-options">the compiler options</a>.</p>
-<p>In order to assemble an application, we also need to include the Kotlin standard library, i.e. <code>kotlin.js</code>, which was included as a dependency, and the other libraries if any.</p>
-<p>By default, Gradle does not expand the JARs in the build process, so we need to add an additional step in our build to do so:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">task assembleWeb(type: Sync) {
-    configurations.compile.each { File file -&gt;
-        from(zipTree(file.absolutePath), {
-            includeEmptyDirs = false
-            include { fileTreeElement -&gt;
-                def path = fileTreeElement.path
-                path.endsWith(".js") &amp;&amp; (path.startsWith("META-INF/resources/") || 
-                    !path.startsWith("META-INF/"))
-            }
-        })
-    }
-    from compileKotlin2Js.destinationDir
-    into "${projectDir}/web"
-
-    dependsOn classes
-}
-
-assemble.dependsOn assembleWeb
-</code></pre>
-<p>This task copies both dependencies runtime files and the compilation output to the <code>web</code> directory.</p>
-<p>For more information on the output generated and the instructions for running the application, please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
-<h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
-<p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
-    kotlinOptions.outputFile = "${projectDir}/web/output.js"
-    kotlinOptions.moduleKind = "amd"
-    kotlinOptions.sourceMap = true
-}
-</code></pre>
-<p>where <code>moduleKind</code> can be</p>
-<ul>
-<li>plain (default)</li>
-<li>amd</li>
-<li>commonjs</li>
-<li>umd</li>
-</ul>
-<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.html">Working with Modules</a></p>
-<p>We can also see how we can define whether we want the compiler to generate sourcemaps for us by indicating this via the <code>sourceMap</code> option.</p>
+<h2 id="configuring-clion-for-kotlinnative-development">Configuring CLion for Kotlin/Native development</h2>
+<p>While it is certainly possible to use any editor to write Kotlin/Native code, JetBrains provides 
+a fully-fledged IDE experience for Kotlin/Native via <a href="https://www.jetbrains.com/clion">CLion</a>. CLion is a C/C++ IDE built on the
+IntelliJ platform.</p>
+<p>Kotlin support in CLion is provided via a couple of plugins, namely the Kotlin plugin which provides core support for the language, and the Kotlin/Native plugin which 
+adds functionality for native support. Both of these plugins are provided by JetBrains and can be installed using the the <code>Plugins</code> configuration dialog</p>
+<p><img alt="Plugins" src="/assets/images/tutorials/native/kotlin-native-with-clion/plugins.png"/></p>
+<p>Once installed (which requires a restart of the IDE), we should now have Kotlin support enabled. We can now create a new project using the 
+<code>New Project</code> wizard</p>
+<p><img alt="New Project" src="/assets/images/tutorials/native/kotlin-native-with-clion/new-project.png"/></p>
+<p>Additionally we can also create a new project based on an exiting sample template, by choosing one of the available ones</p>
+<p><img alt="New Project Template" src="/assets/images/tutorials/native/kotlin-native-with-clion/new-project-hello.png"/></p>
+<p>In our case we're going to use the <code>Hello World</code> template to generate a sample application.</p>
+<h2 id="building-an-running-the-application">Building an running the application</h2>
+<p>Once we have created the application, we can build and run it by using the <code>Run</code> menu and selecting <code>Build</code>, or alternatively
+pressing the assigned keyboard shortcut (which depends on our keyboard mapping)</p>
+<p><img alt="Build and Run" src="/assets/images/tutorials/native/kotlin-native-with-clion/build-run.png"/></p>
+<p>To run the application, we merely select <code>Run</code> from the same <code>Build</code> menu and see the output</p>
+<p><img alt="Run" src="/assets/images/tutorials/native/kotlin-native-with-clion/run.png"/></p>
 
         </article>
     </div>

@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/working-with-klib.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta property="og:description" content="A look at how to work with Kotlin/Native libraries">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta name="twitter:description" content="A look at how to work with Kotlin/Native libraries">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Getting Started with Kotlin and JavaScript with Gradle - Kotlin 语言中文站</title>
+    <title>Working with Kotlin/Native Libraries - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -253,10 +253,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">以 Gradle 入门</div>
-            </div>
+            <a href="/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 Gradle 入门</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -360,12 +362,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">使用 Kotlin/Native 库</div>
+            </div>
     </div>
 
     </div>
@@ -470,7 +470,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/working-with-klib.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -478,7 +478,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Getting Started with Kotlin and JavaScript with Gradle
+                Working with Kotlin/Native Libraries
             </h1>
             <table>
                     <tr>
@@ -486,89 +486,104 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2016-11-04
+                            2018-01-22
                         </td>
                     </tr>
             </table>
-                A look at how to use Gradle to target JavaScript.
+                A look at how to work with Kotlin/Native libraries
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll see how to</p>
+<p>In this tutorial we'll see</p>
 <ul>
-<li>Create an application targeting JavaScript with Gradle</li>
-<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
+<li><a href="#what-is-kotlinnative-library">What is a Kotlin/Native Libary</a></li>
+<li><a href="#creating-a-kotlinnative-libraries">How to create a Kotlin/Native Library</a></li>
+<li><a href="#consuming-a-kotlinnative-library">How to consume Kotlin/Native libraries</a></li>
+<li><a href="#using-and-creating-library-repositories">How to use and create library repositories</a></li>
 </ul>
-<p>In order to use Gradle to target JavaScript, we need to use the <code>kotlin2js</code> plugin as opposed to the <code>kotlin</code> plugin.</p>
-<p>Our <code>build.gradle</code> file should look like the following</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">group 'org.example'
-version '1.0-SNAPSHOT'
+<h2 id="what-is-kotlinnative-library">What is Kotlin/Native Library</h2>
+<p>The concept of a library, a collection of functions and other resources such as images, to be used by applications is available in Kotlin/Native and it is represented
+as a file with the extension <code>klib</code>. Kotlin/Native libraries are artifacts that are only available at compile time, i.e. we do not ship these as dependencies to our application
+(as we would for instance with DLL files on the Windows platform).</p>
+<p>A <code>klib</code> file is a compressed archive in zip format with the following directory structure:</p>
+<p>File <code>utils.klib</code></p>
+<pre><code>    targets/                    /* One or more target platforms */
+    
+        macbook/                /* When targeting macbook, this entry would appear */
+        
+            kotlin/             /* Kotlin code compiled to LLVM bitcode */
+            
+            native/             /* Bitcode for additonal native objects */ 
+            
+        linux/                  /* When targeting Linux, this entry would appear */
+        
+            kotlin/
+            
+            native/
+            
+    linkdata/                   /* A set of [ProtoBuf](https://github.com/google/protobuf) files with serialised linkage metadata */ 
+    
+    resources/                  /* Resource files such as images, etc. */
 
-buildscript {
-    ext.kotlin_version = '1.2.21'
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
-}
-
-apply plugin: 'kotlin2js'
-
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
-}
-
+    manifest                    /* A file in Java Property Format describing the library */ 
 </code></pre>
-<p>To use an EAP build instead, we need to specify its version in <code>ext.kotlin_version</code> and 
-add the corresponding repository to the <code>buildscript</code> section (usually EAP builds are located on <a href="https://bintray.com/kotlin">Bintray</a>)</p>
-<p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuring-compiler-options">the compiler options</a>.</p>
-<p>In order to assemble an application, we also need to include the Kotlin standard library, i.e. <code>kotlin.js</code>, which was included as a dependency, and the other libraries if any.</p>
-<p>By default, Gradle does not expand the JARs in the build process, so we need to add an additional step in our build to do so:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">task assembleWeb(type: Sync) {
-    configurations.compile.each { File file -&gt;
-        from(zipTree(file.absolutePath), {
-            includeEmptyDirs = false
-            include { fileTreeElement -&gt;
-                def path = fileTreeElement.path
-                path.endsWith(".js") &amp;&amp; (path.startsWith("META-INF/resources/") || 
-                    !path.startsWith("META-INF/"))
-            }
-        })
-    }
-    from compileKotlin2Js.destinationDir
-    into "${projectDir}/web"
+<h2 id="creating-a-kotlinnative-libraries">Creating a Kotlin/Native Libraries</h2>
+<p>There are two ways we can create a Kotlin/Native library. The first and most common way is to use the Kotlin compiler. Let's assume
+we create a small library called <code>utils.kt</code> which contains the following two functions</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">package utils
 
-    dependsOn classes
+fun printMessage(message: String) {
+    println("Message: $message")
 }
 
-assemble.dependsOn assembleWeb
-</code></pre>
-<p>This task copies both dependencies runtime files and the compilation output to the <code>web</code> directory.</p>
-<p>For more information on the output generated and the instructions for running the application, please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
-<h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
-<p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
-    kotlinOptions.outputFile = "${projectDir}/web/output.js"
-    kotlinOptions.moduleKind = "amd"
-    kotlinOptions.sourceMap = true
+fun printWarning(warning: String) {
+    println("Warning: $warning")
 }
 </code></pre>
-<p>where <code>moduleKind</code> can be</p>
-<ul>
-<li>plain (default)</li>
-<li>amd</li>
-<li>commonjs</li>
-<li>umd</li>
-</ul>
-<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.html">Working with Modules</a></p>
-<p>We can also see how we can define whether we want the compiler to generate sourcemaps for us by indicating this via the <code>sourceMap</code> option.</p>
+<p>To create a library from this file, we can use the compiler with the parameter <code>-produce library</code> or <code>-p library</code> for short:</p>
+<pre><code>konanc utils.kt -p library
+</code></pre>
+<p>By default, the output of the filename is <code>library.klib</code>. We can override it using the <code>-output</code> or <code>-o</code> parameter:</p>
+<pre><code>konanc utils.kt -p library -o utils
+</code></pre>
+<p>The second way to create a library is using the <code>cinterop</code> tool which allows us to create a Kotlin/Native library from an existing
+C library. See the <a href="interop-with-c.html">Interop with C tutorial</a> on how to accomplish this.</p>
+<h2 id="consuming-a-kotlinnative-library">Consuming a Kotlin/Native Library</h2>
+<p>Now that we have our library, we can use it in our application. In our case this is a simple file named <code>sample.kt</code> with the following contents:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">import utils.*
+
+fun main(args: Array&lt;String&gt;) {
+    printWarning("App is about to shut down!")
+}
+</code></pre>
+<p>Notice how we need to import the necessary package from the library on the first line using the <code>import</code> statement.</p>
+<p>In order for the compiler to correctly link in the library, we need to pass the library name using the <code>-library</code> or <code>-l</code> parameter</p>
+<pre><code>konanc sample.kt -l utils
+</code></pre>
+<p>This would then produce a single executable file with no runtime dependencies.</p>
+<h2 id="using-and-creating-library-repositories">Using and creating library repositories</h2>
+<p>Often it is useful to use the same library across multiple applications. To avoid having various copies of the same library, the Kotlin
+compiler can search for libraries in what's called a library repository. The default repository is usually installed under the folder <code>~/konanc/klib</code> and we can 
+add and remove our own libraries with a utility named <code>klib</code> that ships as part of the compiler tools.</p>
+<h3 id="installing-libraries-to-the-default-repository">Installing libraries to the default repository</h3>
+<p>The easiest way to install a library so that it can be later referenced by any application is to use <code>klib</code> with the following command:</p>
+<pre><code>klib install utils
+</code></pre>
+<p>This will copy and extract the necessary files to the proper locations in the default library folder, allowing us to then compile our application and link 
+a specific library without needing to have the <code>klib</code> file in the project folder:</p>
+<pre><code>konanc sample.kt -l utils
+</code></pre>
+<p>We can of course also uninstall libraries at any point by issuing the command:</p>
+<pre><code>klib remove utils
+</code></pre>
+<h3 id="installing-libraries-to-custom-repositories">Installing libraries to custom repositories</h3>
+<p>In addition to using the default repository, we can also have libraries stored in custom repositories, which can be useful for instance
+if we want to share libraries amongst a group of projects.</p>
+<p>In order to do this, we can once again use the command <code>klib</code>:</p>
+<pre><code>klib install utils -repository jetbrains
+</code></pre>
+<p>but this time adding the parameter <code>-repository</code> with the value <code>jetbrains</code>. This installs the <code>utils</code> library into a custom repository located in a subdirecty named <code>jetbrains</code> relative to where we execute the command. For instance if our project is located under the directory <code>/home/kotlin/projects/</code>, the above command would install the library to the directory <code>/home/kotlin/projects/jetbrains/utils</code>.</p>
+<p>For more information about the commands available for <code>klib</code> as well as the sequence when searching for libraries, please see the <a href="https://github.com/JetBrains/kotlin-native/blob/master/LIBRARIES.md#advanced-topics">README</a></p>
 
         </article>
     </div>

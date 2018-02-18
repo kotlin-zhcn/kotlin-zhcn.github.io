@@ -1010,7 +1010,7 @@ val USER_NAME_FIELD = "UserName"
 <h2 id="格式化">格式化</h2>
 <p>在大多数情况下，Kotlin 遵循 Java 编码规范。</p>
 <p>使用 4 个空格缩进。不要使用 tab。</p>
-<p>对于大括号，将左大括号放在结构起始处的行尾，而将右大括号<!--
+<p>对于花括号，将左花括号放在结构起始处的行尾，而将右花括号<!--
 -->放在与左括结构垂直对齐的单独一行。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (elements != null) {
     for (element in elements) {
@@ -1019,7 +1019,7 @@ val USER_NAME_FIELD = "UserName"
 }
 </code></pre>
 <p>（注意：在 Kotlin 中，分号是可选的，因此换行很重要。语言设计采用
-Java 风格的大括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。）</p>
+Java 风格的花括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。）</p>
 <h3 id="横向空白">横向空白</h3>
 <p>在二元操作符左右留空格（<code>a + b</code>）。例外：不要在“range to”操作符（<code>0..i</code>）左右留空格。</p>
 <p>不要在一元运算符左右留空格（<code>a++</code>）</p>
@@ -1099,7 +1099,7 @@ class FooImpl : Foo() {
 }
 </code></pre>
 <p>为了将类头与类体分隔清楚，当类头很长时，可以在类头后放一空行
-（如上例所示）或者将左大括号放在独立行上：</p>
+（如上例所示）或者将左花括号放在独立行上：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
     MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
     SomeOtherInterface,
@@ -1198,10 +1198,10 @@ fun foo() = 1        // 良好
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">private val defaultCharset: Charset? =
     EncodingRegistry.getInstance().getDefaultCharsetForPropertiesFiles(file)
 </code></pre>
-<h3 id="formatting-control-flow-statements">Formatting control flow statements</h3>
-<p>If the condition of an <code>if</code> or <code>when</code> statement is multiline, always use curly braces around the body of the statement.
-Indent each subsequent line of the condition by 4 spaces relative to statement begin. 
-Put the closing parentheses of the condition together with the opening curly brace on a separate line:</p>
+<h3 id="格式化控制流语句">格式化控制流语句</h3>
+<p>如果 <code>if</code> 或 <code>when</code> 语句的条件有多行，那么在语句体外边总是使用大括号。
+将该条件的每个后续行相对于条件语句起始处缩进 4 个空格。
+将该条件的右圆括号与左花括号放在单独一行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (!component.isSyncing &amp;&amp;
     !hasAnyKotlinRuntimeInScope(module)
 ) {
@@ -1209,75 +1209,75 @@ Put the closing parentheses of the condition together with the opening curly bra
 }
 </code></pre>
 <blockquote>
-<p>Rationale: Tidy alignment and clear separation of condition and statement body</p>
+<p>理由：对齐整齐并且将条件与语句体分隔清楚</p>
 </blockquote>
-<p>Put the <code>else</code>, <code>catch</code>, <code>finally</code> keywords, as well as the <code>while</code> keyword of a do/while loop, on the same line as the 
-preceding curly brace:</p>
+<p>将 <code>else</code>、 <code>catch</code>、 <code>finally</code> 关键字以及 do/while 循环的 <code>while</code> 关键字与<!--
+-->之前的花括号放在相同的行上：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (condition) {
-    // body
+    // 主体
 } else {
-    // else part
+    // else 部分
 }
 
 try {
-    // body
+    // 主体
 } finally {
-    // cleanup
+    // 清理
 }
 </code></pre>
-<p>In a <code>when</code> statement, if a branch is more than a single line, consider separating it from adjacent case blocks with a blank line:</p>
+<p>在 <code>when</code> 语句中，如果一个分支不止一行，可以考虑用空行将其与相邻的分支块分开：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">private fun parsePropertyValue(propName: String, token: Token) {
     when (token) {
         is Token.ValueToken -&gt;
             callback.visitValue(propName, token.value)
 
-        Token.LBRACE -&gt; { // ...
+        Token.LBRACE -&gt; { // ……
         }
     }
 }
 </code></pre>
-<p>Put short branches on the same line as the condition, without braces.</p>
+<p>将短分支放在与条件相同的行上，无需花括号。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (foo) {
-    true -&gt; bar() // good
-    false -&gt; { baz() } // bad
+    true -&gt; bar() // 良好
+    false -&gt; { baz() } // 较差
 }
 </code></pre>
-<h3 id="method-call-formatting">Method call formatting</h3>
-<p>In long argument lists, put a line break after the opening parenthesis. Indent arguments by 4 spaces. 
-Group multiple closely related arguments on the same line.</p>
+<h3 id="方法调用格式化">方法调用格式化</h3>
+<p>在较长参数列表的左括号后添加一个换行符。按 4 个空格缩进参数。
+将密切相关的多个参数分在同一行。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(
     x = 10, y = 10,
     width = 100, height = 100,
     fill = true
 )
 </code></pre>
-<p>Put spaces around the <code>=</code> sign separating the argument name and value.</p>
-<h3 id="chained-call-wrapping">Chained call wrapping</h3>
-<p>When wrapping chained calls, put the . character or the <code>?.</code> operator on the next line, with a single indent:</p>
+<p>在分隔参数名与值的 <code>=</code> 左右留空格。</p>
+<h3 id="链式调用换行">链式调用换行</h3>
+<p>当对链式调用换行时，将 . 字符或者 <code>?.</code> 操作符放在下一行，并带有单倍缩进：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val anchor = owner
     ?.firstChild!!
     .siblings(forward = true)
     .dropWhile { it is PsiComment || it is PsiWhiteSpace }
 </code></pre>
-<p>The first call in the chain usually should have a line break before it, but it's OK to omit it the code makes more sense that way.</p>
-<h3 id="lambda-formatting">Lambda formatting</h3>
-<p>In lambda expressions, spaces should be used around the curly braces, as well as around the arrow which separates the parameters
-from the body. If a call takes a single lambda, it should be passed outside of parentheses whenever possible.</p>
+<p>调用链的第一个调用通常在换行之前，当然如果能让代码更有意义也可以忽略这点。</p>
+<h3 id="lambda-表达式格式化">Lambda 表达式格式化</h3>
+<p>在 lambda 表达式中，应该在花括号左右以及分隔参数与代码体的箭头左右留空格。
+如果一个调用接受单个 lambda 表达式，应该尽可能将其放在圆括号外边传入。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">list.filter { it &gt; 10 }
 </code></pre>
-<p>If assigning a label for a lambda, do not put a space between the label and the opening curly brace:</p>
+<p>如果为 lambda 表达式分配一个标签，那么不要在该标签与左花括号之间留空格：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
     ints.forEach lit@{
-        // ...
+        // ……
     }
 }
 </code></pre>
-<p>When declaring parameter names in a multiline lambda, put the names on the first line, followed by the arrow and the newline:</p>
+<p>在多行的 lambda 表达式中声明参数名时，将参数名放在第一行，后跟箭头与换行符：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">appendCommaSeparated(properties) { prop -&gt;
-    val propertyValue = prop.get(obj)  // ...
+    val propertyValue = prop.get(obj)  // ……
 }
 </code></pre>
-<p>If the parameter list is too long to fit on a line, put the arrow on a separate line:</p>
+<p>如果参数列表太长而无法放在一行上，请将箭头放在单独一行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">foo {
    context: Context,
    environment: Env

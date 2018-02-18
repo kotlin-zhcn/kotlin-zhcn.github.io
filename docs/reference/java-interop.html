@@ -1390,7 +1390,7 @@ javaObj.removeIndices(array)  // 将 int[] 传给方法
 </code></pre>
 <p>当编译为 JVM 字节代码时，编译器会优化对数组的访问，这样就不会引入任何开销：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val array = arrayOf(1, 2, 3, 4)
-array[x] = array[x] * 2 // 不会实际生成对 get() 和 set() 的调用
+array[1] = array[1] * 2 // 不会实际生成对 get() 和 set() 的调用
 for (x in array) { // 不会创建迭代器
     print(x)
 }
