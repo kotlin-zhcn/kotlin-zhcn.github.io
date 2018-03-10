@@ -922,12 +922,12 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 <li>将 Kotlin Gradle 插件添加到构建脚本的类路径中：<code>classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"</code>。</li>
 <li>将 <code>kotlin-platform-common</code> 插件应用到公共模块</li>
 <li>将 <code>kotlin-stdlib-common</code> 依赖添加到公共模块中</li>
-<li>将 <code>kotlin-platform-jvm</code> 与 <code>kotlin-platform-js</code> 插件分别应用到 JVM 与 JS 平台模块</li>
+<li>将 <code>kotlin-platform-jvm</code>、 <code>kotlin-platform-android</code> 与 <code>kotlin-platform-js</code> 插件分别应用到 JVM、Android 与 JS 平台模块</li>
 <li>将平台模块 <code>expectedBy</code> 作用域中添加到到公共模块的依赖</li>
 </ul>
 <p>以下示例演示了一个使用 Kotlin 1.2-Beta 的公共模块的完整的 <code>build.gradle</code> 文件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.30'
 
     repositories {
         mavenCentral()
@@ -951,7 +951,7 @@ dependencies {
 <p>而下述示例展示了一个用于 JVM 平台模块的完整的 <code>build.gradle</code>。请<!--
 -->特别注意其 <code>dependencies</code> 块中的 <code>expectedBy</code> 行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.21'
+    ext.kotlin_version = '1.2.30'
 
     repositories {
         mavenCentral()

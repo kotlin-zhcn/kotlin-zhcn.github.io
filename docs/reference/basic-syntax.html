@@ -1192,7 +1192,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
-    val items = listOf("apple", "banana", "kiwi")
+    val items = listOf("apple", "banana", "kiwifruit")
     for (item in items) {
         println(item)
     }
@@ -1204,7 +1204,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
-    val items = listOf("apple", "banana", "kiwi")
+    val items = listOf("apple", "banana", "kiwifruit")
     for (index in items.indices) {
         println("item at $index is ${items[index]}")
     }
@@ -1217,7 +1217,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
-    val items = listOf("apple", "banana", "kiwi")
+    val items = listOf("apple", "banana", "kiwifruit")
     var index = 0
     while (index &lt; items.size) {
         println("item at $index is ${items[index]}")
@@ -1312,7 +1312,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>对集合进行迭代:</p>
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    val items = listOf("apple", "banana", "kiwi")
+    val items = listOf("apple", "banana", "kiwifruit")
 //sampleStart
     for (item in items) {
         println(item)
@@ -1324,7 +1324,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>使用 <em class="keyword">in</em> 运算符来判断集合内是否包含某实例：</p>
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    val items = setOf("apple", "banana", "kiwi")
+    val items = setOf("apple", "banana", "kiwifruit")
 //sampleStart
     when {
         "orange" in items -&gt; println("juicy")
@@ -1337,7 +1337,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>使用 lambda 表达式来过滤（filter）和映射（map）集合：</p>
 <div class="sample">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    val fruits = listOf("banana", "avocado", "apple", "kiwi")
+    val fruits = listOf("banana", "avocado", "apple", "kiwifruit")
 //sampleStart
     fruits
         .filter { it.startsWith("a") }

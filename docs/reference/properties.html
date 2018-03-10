@@ -941,11 +941,10 @@ var setterWithAnnotation: Any? = null
 </code></pre>
 <h3 id="幕后字段">幕后字段</h3>
 <p>在 Kotlin 类中不能直接声明字段。然而，当一个属性需要一个幕后字段时，Kotlin 会自动提供。这个幕后字段可以使用<code>field</code>标识符在访问器中引用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var counter = 0 // 此初始器值直接写入到幕后字段
-  set(value) {
-    if (value &gt;= 0)
-      field = value
-  }
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">var counter = 0 // 注意：这个初始器直接为幕后字段赋值
+    set(value) {
+        if (value &gt;= 0) field = value
+    }
 </code></pre>
 <p><code>field</code> 标识符只能用在属性的访问器内。</p>
 <p>如果属性至少一个访问器使用默认实现，或者自定义访问器通过 <code>field</code> 引用幕后字段，将会为该属性生成一个幕后字段。</p>
