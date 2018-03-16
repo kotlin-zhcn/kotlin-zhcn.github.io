@@ -985,18 +985,45 @@ val max = if (a &gt; b) a else b
 </li>
 </ul>
 <p>这三个函数都需要标记为 <code>operator</code>。</p>
-<p>对数组的 <code>for</code> 循环会被编译为并不创建迭代器的基于索引的循环。</p>
-<p>如果你想要通过索引遍历一个数组或者一个 list，你可以这么做：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in array.indices) {
-    print(array[i])
+<p>如需在数字区间上迭代，请使用<a href="ranges.html">区间表达式</a>:</p>
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+for (i in 1..3) {
+    println(i)
+}
+for (i in 6 downTo 0 step 2) {
+    println(i)
+}
+//sampleEnd
 }
 </code></pre>
-<p>注意这种“在区间上遍历”会编译成优化的实现而不会创建额外对象。</p>
+</div>
+<p>对区间或者数组的 <code>for</code> 循环会被编译为并不创建迭代器的基于索引的循环。</p>
+<p>如果你想要通过索引遍历一个数组或者一个 list，你可以这么做：</p>
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+val array = arrayOf("a", "b", "c")
+//sampleStart
+for (i in array.indices) {
+    println(array[i])
+}
+//sampleEnd
+}
+</code></pre>
+</div>
 <p>或者你可以用库函数 <code>withIndex</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((index, value) in array.withIndex()) {
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+val array = arrayOf("a", "b", "c")
+//sampleStart
+for ((index, value) in array.withIndex()) {
     println("the element at $index is $value")
 }
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>参见<a href="grammar.html#for"><em class="keyword">for</em> 语法</a>。</p>
 <h2 id="while-循环">While 循环</h2>
 <p><em class="keyword">while</em> 和 <em class="keyword">do</em>..<em class="keyword">while</em> 照常使用</p>

@@ -1089,16 +1089,35 @@ x[0] = x[1] + x[2]
 <p>字符串用 <code>String</code> 类型表示。字符串是不可变的。
 字符串的元素——字符可以使用索引运算符访问: <code>s[i]</code>。
 可以用 <em class="keyword">for</em> 循环迭代字符串:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (c in str) {
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+val str = "abcd"
+//sampleStart
+for (c in str) {
     println(c)
 }
+//sampleEnd
+}
 </code></pre>
+</div>
+<p>可以用 <code>+</code> 操作符连接字符串。这也适用于连接字符串与其他类型的值，
+只要表达式中的第一个元素是字符串：</p>
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+val s = "abc" + 1
+println(s + "def")
+//sampleEnd
+}
+</code></pre>
+</div>
+<p>请注意，在大多数情况下，优先使用<a href="字符串模板">字符串模板</a>或原始字符串而不是字符串连接。</p>
 <h3 id="字符串字面值">字符串字面值</h3>
-<p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原生字符串可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
+<p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原始字符串可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = "Hello, world!\n"
 </code></pre>
 <p>转义采用传统的反斜杠方式。参见上面的 <a href="#字符">字符</a> 查看支持的转义序列。</p>
-<p><em>原生字符串</em> 使用三个引号（<code>"""</code>）分界符括起来，内部没有转义并且可以包含换行和任何其他字符:</p>
+<p><em>原始字符串</em> 使用三个引号（<code>"""</code>）分界符括起来，内部没有转义并且可以包含换行和任何其他字符:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val text = """
     for (c in "foo")
         print(c)
@@ -1116,15 +1135,27 @@ x[0] = x[1] + x[2]
 <h3 id="字符串模板">字符串模板</h3>
 <p>字符串可以包含<em>模板表达式</em> ，即一些小段代码，会求值并把结果合并到字符串中。
 模板表达式以美元符（<code>$</code>）开头，由一个简单的名字构成:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val i = 10
-val s = "i = $i" // 求值结果为 "i = 10"
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+val i = 10
+println("i = $i") // 输出“i = 10”
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>或者用花括号括起来的任意表达式:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = "abc"
-val str = "$s.length is ${s.length}" // 求值结果为 "abc.length is 3"
+<div class="sample">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+val s = "abc"
+println("$s.length is ${s.length}") // 输出“abc.length is 3”
+//sampleEnd
+}
 </code></pre>
-<p>原生字符串和转义字符串内部都支持模板。
-如果你需要在原生字符串中表示字面值 <code>$</code> 字符（它不支持反斜杠转义），你可以用下列语法：</p>
+</div>
+<p>原始字符串和转义字符串内部都支持模板。
+如果你需要在原始字符串中表示字面值 <code>$</code> 字符（它不支持反斜杠转义），你可以用下列语法：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val price = """
 ${'$'}9.99
 """
