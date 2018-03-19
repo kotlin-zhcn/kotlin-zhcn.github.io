@@ -1003,7 +1003,7 @@ fun body(init: Body.() -&gt; Unit) = initTag(Body(), init)
 <p>所以基本上，我们只是把一个字符串放进一个标签体内部，但在它前面有一个小的 <code>+</code>，
 所以它是一个函数调用，调用一个前缀 <code>unaryPlus()</code> 操作。
 该操作实际上是由一个扩展函数 <code>unaryPlus()</code> 定义的，该函数是 <code>TagWithText</code> 抽象类（<code>Title</code> 的父类）的成员：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun String.unaryPlus() {
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">operator fun String.unaryPlus() {
     children.add(TextElement(this))
 }
 </code></pre>
