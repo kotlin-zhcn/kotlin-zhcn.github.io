@@ -541,10 +541,10 @@ fun printWarning(warning: String) {
 }
 </code></pre>
 <p>To create a library from this file, we can use the compiler with the parameter <code>-produce library</code> or <code>-p library</code> for short:</p>
-<pre><code>konanc utils.kt -p library
+<pre><code class="code _highlighted" data-lang="text/x-sh">konanc utils.kt -p library
 </code></pre>
 <p>By default, the output of the filename is <code>library.klib</code>. We can override it using the <code>-output</code> or <code>-o</code> parameter:</p>
-<pre><code>konanc utils.kt -p library -o utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">konanc utils.kt -p library -o utils
 </code></pre>
 <p>The second way to create a library is using the <code>cinterop</code> tool which allows us to create a Kotlin/Native library from an existing
 C library. See the <a href="interop-with-c.html">Interop with C tutorial</a> on how to accomplish this.</p>
@@ -558,7 +558,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 <p>Notice how we need to import the necessary package from the library on the first line using the <code>import</code> statement.</p>
 <p>In order for the compiler to correctly link in the library, we need to pass the library name using the <code>-library</code> or <code>-l</code> parameter</p>
-<pre><code>konanc sample.kt -l utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">konanc sample.kt -l utils
 </code></pre>
 <p>This would then produce a single executable file with no runtime dependencies.</p>
 <h2 id="using-and-creating-library-repositories">Using and creating library repositories</h2>
@@ -567,20 +567,20 @@ compiler can search for libraries in what's called a library repository. The def
 add and remove our own libraries with a utility named <code>klib</code> that ships as part of the compiler tools.</p>
 <h3 id="installing-libraries-to-the-default-repository">Installing libraries to the default repository</h3>
 <p>The easiest way to install a library so that it can be later referenced by any application is to use <code>klib</code> with the following command:</p>
-<pre><code>klib install utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">klib install utils
 </code></pre>
 <p>This will copy and extract the necessary files to the proper locations in the default library folder, allowing us to then compile our application and link 
 a specific library without needing to have the <code>klib</code> file in the project folder:</p>
-<pre><code>konanc sample.kt -l utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">konanc sample.kt -l utils
 </code></pre>
 <p>We can of course also uninstall libraries at any point by issuing the command:</p>
-<pre><code>klib remove utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">klib remove utils
 </code></pre>
 <h3 id="installing-libraries-to-custom-repositories">Installing libraries to custom repositories</h3>
 <p>In addition to using the default repository, we can also have libraries stored in custom repositories, which can be useful for instance
 if we want to share libraries amongst a group of projects.</p>
 <p>In order to do this, we can once again use the command <code>klib</code>:</p>
-<pre><code>klib install utils -repository jetbrains
+<pre><code class="code _highlighted" data-lang="text/x-sh">klib install utils -repository jetbrains
 </code></pre>
 <p>but this time adding the parameter <code>-repository</code> with the value <code>jetbrains</code>. This installs the <code>utils</code> library into a custom repository located in a subdirecty named <code>jetbrains</code> relative to where we execute the command. For instance if our project is located under the directory <code>/home/kotlin/projects/</code>, the above command would install the library to the directory <code>/home/kotlin/projects/jetbrains/utils</code>.</p>
 <p>For more information about the commands available for <code>klib</code> as well as the sequence when searching for libraries, please see the <a href="https://github.com/JetBrains/kotlin-native/blob/master/LIBRARIES.md#advanced-topics">README</a></p>

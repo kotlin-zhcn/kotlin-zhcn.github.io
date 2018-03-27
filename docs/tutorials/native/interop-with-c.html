@@ -537,7 +537,7 @@ beforehand as <code>cinterop</code> needs an existing folder. The <em>c_interop<
 <p>Now that we have our library and Kotlin stubs, we can consume them from our application. To keep things simple, in this tutorial we're going to convert one of the simplest 
 libcurl examples over to Kotlin.</p>
 <p>The code in question is from the <a href="https://curl.haxx.se/libcurl/c/simple.html">simple</a> example (comments removed for brevity)</p>
-<pre><code>#include &lt;stdio.h&gt;
+<pre><code class="code _highlighted" data-lang="text/x-csrc">#include &lt;stdio.h&gt;
 #include &lt;curl/curl.h&gt;
  
 int main(void)
@@ -581,7 +581,7 @@ expect in the <code>libcurl</code> library are available in their Kotlin version
 <h2 id="compiling-and-linking-the-library">Compiling and Linking the library</h2>
 <p>The next step is to compile our application. We already covered the basics of compiling a Kotlin/Native application from the command line in the <a href="basic-kotlin-native-app.html">A Basic Kotlin/Native application</a> tutorial.
 The only difference in this case is that we have to include the library that <code>cinterop</code> generated for us.</p>
-<pre><code>konanc Main.kt -library build/c_interop/libcurl
+<pre><code class="code _highlighted" data-lang="text/x-sh">konanc Main.kt -library build/c_interop/libcurl
 </code></pre>
 <p>We can see that we're passing in as <code>library</code> parameter the output path of <code>cinterop</code>.</p>
 <p>If there are no errors during compilation, we should see the output as a file named <code>program.kexe</code>, which on execution should output 
