@@ -1438,7 +1438,7 @@ javaObj.removeIndicesVarArg(*array)
 而因为 <code>Any</code> 不是平台指定的，它只声明了 <code>toString()</code>、<code>hashCode()</code> 和 <code>equals()</code> 作为其成员，
 所以为了能用到 <code>java.lang.Object</code> 的其他成员，Kotlin 要用到<a href="extensions.html">扩展函数</a>。</p>
 <h3 id="waitnotify">wait()/notify()</h3>
-<p><a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 第 69 条善意地建议优先使用并发工具（concurrency utilities）而不是 <code>wait()</code> 和 <code>notify()</code>。
+<p><a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 第 81 条善意地建议优先使用并发工具（concurrency utilities）而不是 <code>wait()</code> 和 <code>notify()</code>。
 因此，类型 <code>Any</code> 的引用不提供这两个方法。
 如果你真的需要调用它们的话，你可以将其转换为 <code>java.lang.Object</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">(foo as java.lang.Object).wait()
@@ -1457,7 +1457,7 @@ class Example : Cloneable {
     override fun clone(): Any { …… }
 }
 </code></pre>
-<p>不要忘记 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 的第 11 条: <em>谨慎地改写clone</em>。</p>
+<p>不要忘记<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 的第 13 条: <em>谨慎地改写clone</em>。</p>
 <h3 id="finalize">finalize()</h3>
 <p>要覆盖 <code>finalize()</code>，所有你需要做的就是简单地声明它，而不需要 <em class="keyword">override</em> 关键字：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {

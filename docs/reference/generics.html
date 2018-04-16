@@ -894,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="型变">型变</h2>
 <p>Java 类型系统中最棘手的部分之一是通配符类型（参见 <a href="http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">Java Generics FAQ</a>）。
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。</p>
-<p>首先，让我们思考为什么 Java 需要那些神秘的通配符。在 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a> 解释了该问题——第28条：<em>利用有限制通配符来提升 API 的灵活性</em>。
+<p>首先，让我们思考为什么 Java 需要那些神秘的通配符。在 <a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 解释了该问题——第 31 条：<em>利用有限制通配符来提升 API 的灵活性</em>。
 首先，Java 中的泛型是<strong>不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
 为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没<!--
 -->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
@@ -918,7 +918,7 @@ void copyAll(Collection&lt;Object&gt; to, Collection&lt;String&gt; from) {
                    //       Collection&lt;String&gt; 不是 Collection&lt;Object&gt; 的子类型
 }
 </code></pre>
-<p>（在 Java 中，我们艰难地学到了这个教训，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">Effective Java</a>，第25条：<em>列表优先于数组</em>）</p>
+<p>（在 Java 中，我们艰难地学到了这个教训，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a>，第 28 条：<em>列表优先于数组</em>）</p>
 <p>这就是为什么 <code>addAll()</code> 的实际签名是以下这样：</p>
 <pre><code class="code _highlighted" data-lang="text/x-java">// Java
 interface Collection&lt;E&gt; …… {
@@ -1056,7 +1056,7 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
 <p>要调用泛型函数，在调用处函数名<strong>之后</strong>指定类型参数即可：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList&lt;Int&gt;(1)
 </code></pre>
-<p>Type arguments can be omitted if they can be inferred from the context, so the following example works as well:</p>
+<p>可以省略能够从上下文中推断出来的类型参数，所以以下示例同样适用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList(1)
 </code></pre>
 <h2 id="泛型约束">泛型约束</h2>
