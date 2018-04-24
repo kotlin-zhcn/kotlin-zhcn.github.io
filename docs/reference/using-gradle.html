@@ -885,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>使用 <code>kotlin-gradle-plugin</code> 编译 Kotlin 源代码和模块.</p>
 <p>要使用的 Kotlin 版本通常定义为 <code>kotlin_version</code> 属性：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.31'
+    ext.kotlin_version = '1.2.40'
 
     repositories {
         mavenCentral()
@@ -903,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>或者，从 Kotlin 1.1.1 起，可以使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.2.31"
+    id "org.jetbrains.kotlin.jvm" version "1.2.40"
 }
 </code></pre>
 <p>在这个块中的 <code>version</code> 必须是字面值，并且不能从其他构建脚本中应用。</p>
@@ -941,7 +941,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.31'
+    ext.kotlin_version = '1.2.40'
 
     ……
 
