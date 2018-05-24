@@ -918,6 +918,26 @@ class Child : MyInterface {
     override val prop: Int = 29
 }
 </code></pre>
+<h2 id="接口继承">接口继承</h2>
+<p>一个接口可以从其他接口派生，从而既提供基类型成员的实现也声明新的函数与属性。很自然地，实现这样接口的类只需定义所缺少的实现：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Named {
+    val name: String
+}
+
+interface Person : Named {
+    val firstName: String
+    val lastName: String
+    
+    override val name: String get() = "$firstName $lastName"
+}
+
+data class Employee(
+    // 不必实现“name”
+    override val firstName: String,
+    override val lastName: String,
+    val position: Position
+) : Person
+</code></pre>
 <h2 id="解决覆盖冲突">解决覆盖冲突</h2>
 <p>实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">interface A {

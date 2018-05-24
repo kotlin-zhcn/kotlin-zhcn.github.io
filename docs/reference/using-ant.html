@@ -887,7 +887,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>kotlin2js: 针对 JavaScript 的 Kotlin 编译器；</li>
 <li>withKotlin: 使用标准 <em>javac</em> Ant 任务时编译 Kotlin 文件的任务。</li>
 </ul>
-<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.2.40">Kotlin 编译器</a>的 <em>lib</em> 文件夹中
+<p>这仨任务在 <em>kotlin-ant.jar</em> 库中定义，该库位于 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.2.41">Kotlin 编译器</a>的 <em>lib</em> 文件夹中
 需要 Ant 1.8.2+ 版本。</p>
 <h2 id="针对-jvm-只用-kotlin-源代码">针对 JVM 只用 Kotlin 源代码</h2>
 <p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务：</p>
@@ -931,12 +931,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
-<p>要为 <code>&lt;withKotlin&gt;</code> 指定额外的命令行参数，可以使用嵌套的 <code>&lt;compilerArg&gt;</code> 参数。
-当运行 <code>kotlinc -help</code> 时，会显示可以使用的参数的完整列表。
-还可以将正在编译的模块的名称指定为 <code>moduleName</code> 属性：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;withKotlin moduleName="myModule"&gt;
-    &lt;compilerarg value="-no-stdlib"/&gt;
-&lt;/withKotlin&gt;
+<p>还可以将正在编译的模块的名称指定为 <code>moduleName</code> 属性：</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;withKotlin moduleName="myModule"/&gt;
 </code></pre>
 <h2 id="针对-javascript-用单个源文件夹">针对 JavaScript 用单个源文件夹</h2>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
@@ -1099,6 +1095,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 </tbody>
 </table>
+<h3 id="传递原始编译器参数">传递原始编译器参数</h3>
+<p>如需传递原始编译器参数，可以使用带 <code>value</code> 或 <code>line</code> 属性的 <code>&lt;compilerarg&gt;</code> 元素。
+可以放在 <code>&lt;kotlinc&gt;</code>、 <code>&lt;kotlin2js&gt;</code> 与 <code>&lt;withKotlin&gt;</code> 任务元素内，如下所示：</p>
+<pre><code class="code _highlighted" data-lang="application/xml">&lt;kotlinc src="${test.data}/hello.kt" output="${temp}/hello.jar"&gt;
+    &lt;compilerarg value="-Xno-inline"/&gt;
+    &lt;compilerarg line="-Xno-call-assertions -Xno-param-assertions"/&gt;
+    &lt;compilerarg value="-Xno-optimize"/&gt;
+&lt;/kotlinc&gt;
+</code></pre>
+<p>当运行 <code>kotlinc -help</code> 时，会显示可以使用的参数的完整列表。</p>
 
         </article>
     </div>

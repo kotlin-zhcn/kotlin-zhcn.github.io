@@ -971,6 +971,18 @@ Kotlin 类型。编译器支持多种可空性注解，包括：</p>
 <li>Lombok（<code>lombok.NonNull</code>）。</li>
 </ul>
 <p>你可以在 <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt">Kotlin 编译器源代码</a>中找到完整的列表。</p>
+<h3 id="注解类型参数">注解类型参数</h3>
+<p>可以标注泛型类型的类型参数，以便同时为其提供可空性信息。例如，考虑这些 Java 声明的注解：</p>
+<pre><code class="code _highlighted" data-lang="text/x-java">@NotNull
+Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elements) { …… }
+</code></pre>
+<p>在 Kotlin 中可见的是以下签名：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun toSet(elements: (Mutable)Collection&lt;String&gt;) : (Mutable)Set&lt;String&gt; { …… }
+</code></pre>
+<p>请注意 <code>String</code> 类型参数上的 <code>@NotNull</code> 注解。如果没有的话，类型参数会是平台类型：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun toSet(elements: (Mutable)Collection&lt;String!&gt;) : (Mutable)Set&lt;String!&gt; { …… }
+</code></pre>
+<p>标注类型参数适用于针对 Java 8 或更高版本环境，并且要求可空性注解支持 <code>TYPE_USE</code> 目标（<code>org.jetbrains.annotations</code> 15 或以上版本支持）。</p>
 <h3 id="jsr-305-支持">JSR-305 支持</h3>
 <p>已支持 <a href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> 中定义的 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a>
 注解来表示 Java 类型的可空性。</p>

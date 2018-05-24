@@ -1286,53 +1286,53 @@ try {
 }
 </code></pre>
 <h2 id="文档注释">文档注释</h2>
-<p>For longer documentation comments, place the opening <code>/**</code> on a separate line and begin each subsequent line
-with an asterisk:</p>
+<p>对于较长的文档注释，将开头 <code>/**</code> 放在一个独立行中，并且每个后续行都<!--
+-->以星号开头：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
- * This is a documentation comment
- * on multiple lines.
+ * 这是一条多行
+ * 文档注释。
  */
 </code></pre>
-<p>Short comments can be placed on a single line:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** This is a short documentation comment. */
+<p>简短注释可以放在一行内：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** 这是一条简短文档注释。 */
 </code></pre>
-<p>Generally, avoid using <code>@param</code> and <code>@return</code> tags. Instead, incorporate the description of parameters and return values
-directly into the documentation comment, and add links to parameters wherever they are mentioned. Use <code>@param</code> and
-<code>@return</code> only when a lengthy description is required which doesn't fit into the flow of the main text.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Avoid doing this:
+<p>通常，避免使用 <code>@param</code> 与 <code>@return</code> 标记。而是将参数与返回值的描述<!--
+-->直接合并到文档注释中，并在提到参数的任何地方加上参数链接。
+只有当需要不适合放进主文本流程的冗长描述时才应使用 <code>@param</code> 与 <code>@return</code>。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 避免这样：
 
 /**
  * Returns the absolute value of the given number.
  * @param number The number to return the absolute value for.
  * @return The absolute value.
  */
-fun abs(number: Int) = ...
+fun abs(number: Int) = ……
 
-// Do this instead:
+// 而要这样：
 
 /**
  * Returns the absolute value of the given [number].
  */
-fun abs(number: Int) = ...
+fun abs(number: Int) = ……
 </code></pre>
 <h2 id="避免重复结构">避免重复结构</h2>
-<p>In general, if a certain syntactic construction in Kotlin is optional and highlighted by the IDE
-as redundant, you should omit it in your code. Do not leave unnecessary syntactic elements in code
-just "for clarity".</p>
+<p>一般来说，如果 Kotlin 中的某种语法结构是可选的并且被 IDE
+高亮为冗余的，那么应该在代码中省略之。为了清楚起见，不要在代码中保留不必要的语法元素
+。</p>
 <h3 id="unit">Unit</h3>
-<p>If a function returns Unit, the return type should be omitted:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // ": Unit" is omitted here
+<p>如果函数返回 Unit，那么应该省略返回类型：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // 这里省略了“: Unit”
 
 }
 </code></pre>
-<h3 id="semicolons">Semicolons</h3>
-<p>Omit semicolons whenever possible.</p>
-<h3 id="string-templates">String templates</h3>
-<p>Don't use curly braces when inserting a simple variable into a string template. Use curly braces only for longer expressions.</p>
+<h3 id="分号">分号</h3>
+<p>尽可能省略分号。</p>
+<h3 id="字符串模版">字符串模版</h3>
+<p>将简单变量传入到字符串模版中时不要使用花括号。只有用到更长表达式时才使用花括号。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">println("$name has ${children.size} children")
 </code></pre>
 <h2 id="语言特性的惯用法">语言特性的惯用法</h2>
-<h3 id="immutability">Immutability</h3>
+<h3 id="不可变性">不可变性</h3>
 <p>Prefer using immutable data to mutable. Always declare local variables and properties as <code>val</code> rather than <code>var</code> if
 they are not modified after initialization.</p>
 <p>Always use immutable collection interfaces (<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Map</code>) to declare collections which are not
@@ -1350,7 +1350,7 @@ val allowedValues = arrayListOf("a", "b", "c")
 // Good: listOf() returns List&lt;T&gt;
 val allowedValues = listOf("a", "b", "c")
 </code></pre>
-<h3 id="default-parameter-values">Default parameter values</h3>
+<h3 id="默认参数值">默认参数值</h3>
 <p>Prefer declaring functions with default parameter values to declaring overloaded functions.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad
 fun foo() = foo("a")
@@ -1359,25 +1359,25 @@ fun foo(a: String) { ... }
 // Good
 fun foo(a: String = "a") { ... }
 </code></pre>
-<h3 id="type-aliases">Type aliases</h3>
+<h3 id="类型别名">类型别名</h3>
 <p>If you have a functional type or a type with type parameters which is used multiple times in a codebase, prefer defining
 a type alias for it:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit
 typealias PersonIndex = Map&lt;String, Person&gt;
 </code></pre>
-<h3 id="lambda-parameters">Lambda parameters</h3>
+<h3 id="lambda-表达式参数">Lambda 表达式参数</h3>
 <p>In lambdas which are short and not nested, it's recommended to use the <code>it</code> convention instead of declaring the parameter
 explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.</p>
-<h3 id="returns-in-a-lambda">Returns in a lambda</h3>
+<h3 id="在-lambda-表达式中返回">在 lambda 表达式中返回</h3>
 <p>Avoid using multiple labeled returns in a lambda. Consider restructuring the lambda so that it will have a single exit point.
 If that's not possible or not clear enough, consider converting the lambda into an anonymous function.</p>
 <p>Do not use a labeled return for the last statement in a lambda.</p>
-<h3 id="named-arguments">Named arguments</h3>
+<h3 id="命名参数">命名参数</h3>
 <p>Use the named argument syntax when a method takes multiple parameters of the same primitive type, or for parameters of <code>Boolean</code> type,
 unless the meaning of all parameters is absolutely clear from context.</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 </code></pre>
-<h3 id="using-conditional-statements">Using conditional statements</h3>
+<h3 id="使用条件语句">使用条件语句</h3>
 <p>Prefer using the expression form of <code>try</code>, <code>if</code> and <code>when</code>. Examples:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">return if (x) foo() else bar()
 
@@ -1397,7 +1397,7 @@ when(x) {
     else -&gt; return "nonzero"
 }    
 </code></pre>
-<h3 id="if-versus-when"><code>if</code> versus <code>when</code></h3>
+<h3 id="if-还是-when"><code>if</code> 还是 <code>when</code></h3>
 <p>Prefer using <code>if</code> for binary conditions instead of <code>when</code>. Instead of</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
     null -&gt; ...
@@ -1408,17 +1408,17 @@ when(x) {
 <p>Prefer using <code>when</code> if there are three or more options.</p>
 <h3 id="using-nullable-boolean-values-in-conditions">Using nullable <code>Boolean</code> values in conditions</h3>
 <p>If you need to use a nullable <code>Boolean</code> in a conditional statement, use <code>if (value == true)</code> or <code>if (value == false)</code> checks.</p>
-<h3 id="using-loops">Using loops</h3>
+<h3 id="使用循环">使用循环</h3>
 <p>Prefer using higher-order functions (<code>filter</code>, <code>map</code> etc.) to loops. Exception: <code>forEach</code> (prefer using a regular <code>for</code> loop instead,
 unless the receiver of <code>forEach</code> is nullable or <code>forEach</code> is used as part of a longer call chain).</p>
 <p>When making a choice between a complex expression using multiple higher-order functions and a loop, understand the cost
 of the operations being performed in each case and keep performance considerations in mind.</p>
-<h3 id="loops-on-ranges">Loops on ranges</h3>
+<h3 id="区间上循环">区间上循环</h3>
 <p>Use the <code>until</code> function to loop over an open range:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 0..n - 1) { ... }  // bad
 for (i in 0 until n) { ... }  // good
 </code></pre>
-<h3 id="using-strings">Using strings</h3>
+<h3 id="使用字符串">使用字符串</h3>
 <p>Prefer using string templates to string concatenation.</p>
 <p>Prefer to use multiline strings instead of embedding <code>\n</code> escape sequences into regular string literals.</p>
 <p>To maintain indentation in multiline strings, use <code>trimIndent</code> when the resulting string does not require any internal
@@ -1430,7 +1430,7 @@ val a = """if(a &gt; 1) {
           |    return a
           |}""".trimMargin()
 </code></pre>
-<h3 id="functions-vs-properties">Functions vs Properties</h3>
+<h3 id="函数还是属性">函数还是属性</h3>
 <p>In some cases functions with no arguments might be interchangeable with read-only properties. 
 Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.</p>
 <p>Prefer a property over a function when the underlying algorithm:</p>
@@ -1439,16 +1439,16 @@ Although the semantics are similar, there are some stylistic conventions on when
 <li>is cheap to calculate (or caсhed on the first run)</li>
 <li>returns the same result over invocations if the object state hasn't changed</li>
 </ul>
-<h3 id="using-extension-functions">Using extension functions</h3>
+<h3 id="使用扩展函数">使用扩展函数</h3>
 <p>Use extension functions liberally. Every time you have a function that works primarily on an object, consider making it
 an extension function accepting that object as a receiver. To minimize API pollution, restrict the visibility of
 extension functions as much as it makes sense. As necessary, use local extension functions, member extension functions,
 or top-level extension functions with private visibility.</p>
-<h3 id="using-infix-functions">Using infix functions</h3>
+<h3 id="使用中缀函数">使用中缀函数</h3>
 <p>Declare a function as infix only when it works on two objects which play a similar role. Good examples: <code>and</code>, <code>to</code>, <code>zip</code>.
 Bad example: <code>add</code>.</p>
 <p>Don't declare a method as infix if it mutates the receiver object.</p>
-<h3 id="factory-functions">Factory functions</h3>
+<h3 id="工厂函数">工厂函数</h3>
 <p>If you declare a factory function for a class, avoid giving it the same name as the class itself. Prefer using a distinct name
 making it clear why the behavior of the factory function is special. Only if there is really no special semantics,
 you can use the same name as the class.</p>
@@ -1462,7 +1462,7 @@ you can use the same name as the class.</p>
 <p>If you have an object with multiple overloaded constructors that don't call different superclass constructors and
 can't be reduced to a single constructor with default argument values, prefer to replace the overloaded constructors with
 factory functions.</p>
-<h3 id="platform-types">Platform types</h3>
+<h3 id="平台类型">平台类型</h3>
 <p>A public function/method returning an expression of a platform type must declare its Kotlin type explicitly:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun apiCall(): String = MyJavaApi.getProperty("name")
 </code></pre>
@@ -1477,7 +1477,7 @@ factory functions.</p>
     println(name)
 }
 </code></pre>
-<h3 id="using-scope-functions-applywithrunalsolet">Using scope functions apply/with/run/also/let</h3>
+<h3 id="使用作用域函数-applywithrunalsolet">使用作用域函数 apply/with/run/also/let</h3>
 <p>Kotlin provides a variety of functions to execute a block of code in the context of a given object. To choose the correct
 function, consider the following:</p>
 <ul>

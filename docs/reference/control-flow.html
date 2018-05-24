@@ -927,7 +927,7 @@ val max = if (a &gt; b) a else b
 -->是块中最后的表达式的值。）</p>
 <p>如果其他分支都不满足条件将会求值 <em class="keyword">else</em> 分支。
 如果 <em class="keyword">when</em> 作为一个表达式使用，则必须有 <em class="keyword">else</em> 分支，
-除非编译器能够检测出所有的可能情况都已经覆盖了。</p>
+除非编译器能够检测出所有的可能情况都已经覆盖了［例如，对于 <a href="enum-classes.html">枚举（<em class="keyword">enum</em>）类</a>条目与<a href="sealed-classes.html">密封（<em class="keyword">sealed</em>）类</a>子类型］。</p>
 <p>如果很多分支需要用相同的方式处理，则可以把多个分支条件放在一起，用逗号分隔：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
     0, 1 -&gt; print("x == 0 or x == 1")

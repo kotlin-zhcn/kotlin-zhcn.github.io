@@ -912,6 +912,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 -->成员，要使用分号将成员定义中的枚举常量定义分隔开，就像<!--
 -->在 Java 中一样。</p>
 <p>枚举条目不能包含内部类以外的嵌套类型（已在 Kotlin 1.2 中弃用）。</p>
+<h2 id="在枚举类中实现接口">在枚举类中实现接口</h2>
+<p>一个枚举类可以实现接口（但不能从类继承），可以为所有条目提供统一的接口成员实现，也可以在相应匿名类中为每个条目提供各自的实现。只需将接口添加到枚举类声明中即可，如下所示：</p>
+<div class="sample">
+<pre><code class="language-kotlin">import java.util.function.BinaryOperator
+import java.util.function.IntBinaryOperator
+
+//sampleStart
+enum class IntArithmetics : BinaryOperator&lt;Int&gt;, IntBinaryOperator {
+    PLUS {
+        override fun apply(t: Int, u: Int): Int = t + u
+    },
+    TIMES {
+        override fun apply(t: Int, u: Int): Int = t * u
+    };
+    
+    override fun applyAsInt(t: Int, u: Int) = apply(t, u)
+}
+//sampleEnd
+
+fun main(args: Array&lt;String&gt;) {
+    val a = 13
+    val b = 31
+    for (f in IntArithmetics.values()) {
+        println("$f($a, $b) = ${f.apply(a, b)}")
+    }
+}
+</code></pre>
+</div>
 <h2 id="使用枚举常量">使用枚举常量</h2>
 <p>就像在 Java 中一样，Kotlin 中的枚举类也有合成方法允许列出<!--
 -->定义的枚举常量以及通过名称获取枚举常量。这些方法的<!--

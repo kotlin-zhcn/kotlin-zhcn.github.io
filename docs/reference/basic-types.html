@@ -970,9 +970,9 @@ print(boxedA == anotherBoxedA) // 输出“true”
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// 假想的代码，实际上并不能编译：
 val a: Int? = 1 // 一个装箱的 Int (java.lang.Integer)
 val b: Long? = a // 隐式转换产生一个装箱的 Long (java.lang.Long)
-print(a == b) // 惊！这将输出“false”鉴于 Long 的 equals() 检测其他部分也是 Long
+print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测另一个是否也为 Long
 </code></pre>
-<p>所以同一性还有相等性都会在所有地方悄无声息地失去。</p>
+<p>所以相等性会在所有地方悄无声息地失去，更别说同一性了。</p>
 <p>因此较小的类型<strong>不能</strong>隐式转换为较大的类型。
 这意味着在不进行显式转换的情况下我们不能把 <code>Byte</code> 型值赋给一个 <code>Int</code> 变量。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Byte = 1 // OK, 字面值是静态检测的

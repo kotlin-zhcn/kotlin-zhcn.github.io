@@ -619,7 +619,7 @@ class User(val firstName: String, val lastName: String, val age: Int): Parcelabl
 <p><code>@Parcelize</code> requires all serialized properties to be declared in the primary constructor. Android Extensions will issue a warning on each property with a backing field declared in the class body. Also, <code>@Parcelize</code> can't be applied if some of the primary constructor parameters are not properties.</p>
 <p>If your class requires more advanced serialization logic, you can write it inside a companion class:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">@Parcelize
-data class Value(val firstName: String, val lastName: String, val age: Int) : Parcelable {
+data class User(val firstName: String, val lastName: String, val age: Int) : Parcelable {
     private companion object : Parceler&lt;User&gt; {
         override fun User.write(parcel: Parcel, flags: Int) {
             // Custom write implementation
@@ -663,16 +663,16 @@ object ExternalClassParceler : Parceler&lt;ExternalClass&gt; {
 </code></pre>
 <p>External parcelers can be applied using <code>@TypeParceler</code> or <code>@WriteWith</code> annotations:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">// Class-local parceler
-@Parcelable
+@Parcelize
 @TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;()
 class MyClass(val external: ExternalClass)
 
 // Property-local parceler
-@Parcelable
+@Parcelize
 class MyClass(@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;() val external: ExternalClass)
 
 // Type-local parceler
-@Parcelable
+@Parcelize
 class MyClass(val external: @WriteWith&lt;ExternalClassParceler&gt;() ExternalClass)
 </code></pre>
 

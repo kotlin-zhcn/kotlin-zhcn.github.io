@@ -912,7 +912,7 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 -->每个平台的编译后的实现代码的多个平台相关 .jar。</p>
 <h2 id="设置多平台项目">设置多平台项目</h2>
 <p>截止到 Kotlin 1.2，多平台项目必须用 Gradle 构建；暂不支持其他构建系统<!--
--->。</p>
+-->。如果在 IDE 中使用多平台项目，请确保启用选项 <code>Delegate IDE build/run actions to gradle</code> 并为 <code>Run tests using</code> 选项设置 <code>Gradle Test Runner</code>。这两个选项均位于： <em>Settings &gt; Build, execution, Deployment &gt; Build Tools &gt; Gradle &gt; Runner</em></p>
 <p>要在 IDE 中创建一个新的多平台项目，请在“New Project”对话框中选择<!--
 -->“Kotlin”下的“Kotlin (Multiplatform)”选项。这会创建一个具有三个模块的项目，一个公共项目<!--
 -->以及分别用于 JVM 与 JS 平台的两个平台项目。要添加额外的模块，请在“New Module”对话框中选择“Gradle”下的<!--
@@ -925,9 +925,9 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 <li>将 <code>kotlin-platform-jvm</code>、 <code>kotlin-platform-android</code> 与 <code>kotlin-platform-js</code> 插件分别应用到 JVM、Android 与 JS 平台模块</li>
 <li>将平台模块 <code>expectedBy</code> 作用域中添加到到公共模块的依赖</li>
 </ul>
-<p>以下示例演示了一个使用 Kotlin 1.2-Beta 的公共模块的完整的 <code>build.gradle</code> 文件：</p>
+<p>以下示例演示了一个使用 Kotlin 1.2 的公共模块的完整的 <code>build.gradle</code> 文件：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.40'
+    ext.kotlin_version = '1.2.41'
 
     repositories {
         mavenCentral()
@@ -951,7 +951,7 @@ dependencies {
 <p>而下述示例展示了一个用于 JVM 平台模块的完整的 <code>build.gradle</code>。请<!--
 -->特别注意其 <code>dependencies</code> 块中的 <code>expectedBy</code> 行：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
-    ext.kotlin_version = '1.2.40'
+    ext.kotlin_version = '1.2.41'
 
     repositories {
         mavenCentral()
