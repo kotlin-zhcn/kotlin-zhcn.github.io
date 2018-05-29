@@ -1423,8 +1423,13 @@ for (i in 0 until n) { ... }  // good
 <p>Prefer to use multiline strings instead of embedding <code>\n</code> escape sequences into regular string literals.</p>
 <p>To maintain indentation in multiline strings, use <code>trimIndent</code> when the resulting string does not require any internal
 indentation, or <code>trimMargin</code> when internal indentation is required:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">assertEquals("""Foo
-                Bar""".trimIndent(), value)
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">assertEquals(
+    """
+    Foo
+    Bar
+    """.trimIndent(), 
+    value
+)
 
 val a = """if(a &gt; 1) {
           |    return a
