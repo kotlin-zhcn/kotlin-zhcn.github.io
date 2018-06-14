@@ -1253,7 +1253,7 @@ try {
 </code></pre>
 <p>在分隔参数名与值的 <code>=</code> 左右留空格。</p>
 <h3 id="链式调用换行">链式调用换行</h3>
-<p>当对链式调用换行时，将 . 字符或者 <code>?.</code> 操作符放在下一行，并带有单倍缩进：</p>
+<p>当对链式调用换行时，将 <code>.</code> 字符或者 <code>?.</code> 操作符放在下一行，并带有单倍缩进：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val anchor = owner
     ?.firstChild!!
     .siblings(forward = true)
@@ -1333,48 +1333,48 @@ fun abs(number: Int) = ……
 </code></pre>
 <h2 id="语言特性的惯用法">语言特性的惯用法</h2>
 <h3 id="不可变性">不可变性</h3>
-<p>Prefer using immutable data to mutable. Always declare local variables and properties as <code>val</code> rather than <code>var</code> if
-they are not modified after initialization.</p>
-<p>Always use immutable collection interfaces (<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Map</code>) to declare collections which are not
-mutated. When using factory functions to create collection instances, always use functions that return immutable
-collection types when possible:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad: use of mutable collection type for value which will not be mutated
-fun validateValue(actualValue: String, allowedValues: HashSet&lt;String&gt;) { ... }
+<p>优先使用不可变（而不是可变）数据。初始化后未修改的局部变量与属性，总是将其声明为 <code>val</code> 而不是 <code>var</code>
+。</p>
+<p>总是使用不可变集合接口（<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Map</code>）来声明无需<!--
+-->改变的集合。使用工厂函数创建集合实例时，尽可能选用返回不可变<!--
+-->集合类型的函数：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 不良：使用可变集合类型作为无需改变的值
+fun validateValue(actualValue: String, allowedValues: HashSet&lt;String&gt;) { …… }
 
-// Good: immutable collection type used instead
-fun validateValue(actualValue: String, allowedValues: Set&lt;String&gt;) { ... }
+// 良好：使用不可变集合类型
+fun validateValue(actualValue: String, allowedValues: Set&lt;String&gt;) { …… }
 
-// Bad: arrayListOf() returns ArrayList&lt;T&gt;, which is a mutable collection type
+// 不良：arrayListOf() 返回 ArrayList&lt;T&gt;，这是一个可变集合类型
 val allowedValues = arrayListOf("a", "b", "c")
 
-// Good: listOf() returns List&lt;T&gt;
+// 良好：listOf() 返回 List&lt;T&gt;
 val allowedValues = listOf("a", "b", "c")
 </code></pre>
 <h3 id="默认参数值">默认参数值</h3>
-<p>Prefer declaring functions with default parameter values to declaring overloaded functions.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Bad
+<p>优先声明带有默认参数的函数而不是声明重载函数。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 不良
 fun foo() = foo("a")
-fun foo(a: String) { ... }
+fun foo(a: String) { …… }
 
-// Good
-fun foo(a: String = "a") { ... }
+// 良好
+fun foo(a: String = "a") { …… }
 </code></pre>
 <h3 id="类型别名">类型别名</h3>
-<p>If you have a functional type or a type with type parameters which is used multiple times in a codebase, prefer defining
-a type alias for it:</p>
+<p>如果有一个在代码库中多次用到的函数类型或者带有类型参数的类型，那么最好为它定义<!--
+-->一个类型别名：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit
 typealias PersonIndex = Map&lt;String, Person&gt;
 </code></pre>
 <h3 id="lambda-表达式参数">Lambda 表达式参数</h3>
-<p>In lambdas which are short and not nested, it's recommended to use the <code>it</code> convention instead of declaring the parameter
-explicitly. In nested lambdas with parameters, parameters should be always declared explicitly.</p>
+<p>在简短、非嵌套的 lambda 表达式中建议使用 <code>it</code> 用法而不是<!--
+-->显式声明参数。而在有参数的嵌套 lambda 表达式中，始终应该显式声明参数。</p>
 <h3 id="在-lambda-表达式中返回">在 lambda 表达式中返回</h3>
-<p>Avoid using multiple labeled returns in a lambda. Consider restructuring the lambda so that it will have a single exit point.
-If that's not possible or not clear enough, consider converting the lambda into an anonymous function.</p>
-<p>Do not use a labeled return for the last statement in a lambda.</p>
+<p>避免在 lambda 表达式中使用多个返回到标签。请考虑重新组织这样的 lambda 表达式使其只有单一退出点。
+如果这无法做到或者不够清晰，请考虑将 lambda 表达式转换为匿名函数。</p>
+<p>不要在 lambda 表达式的最后一条语句中使用返回到标签。</p>
 <h3 id="命名参数">命名参数</h3>
-<p>Use the named argument syntax when a method takes multiple parameters of the same primitive type, or for parameters of <code>Boolean</code> type,
-unless the meaning of all parameters is absolutely clear from context.</p>
+<p>当一个方法接受多个相同的原生类型参数或者多个 <code>Boolean</code> 类型参数时，请使用命名参数语法，
+除非在上下文中的所有参数的含义都已绝对清楚。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 </code></pre>
 <h3 id="使用条件语句">使用条件语句</h3>

@@ -943,7 +943,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>
 <p>所有函数类型都有一个圆括号括起来的参数类型列表以及一个返回类型：<code>(A, B) -&gt; C</code> 表示<!--
 -->接受类型分别为 <code>A</code> 与 <code>B</code> 两个参数并返回一个 <code>C</code> 类型值的函数类型。
- 参数类型列表可以为空，如 <code>() -&gt; A</code>。<a href="functions.html#unit-返回类型"><code>Unit</code> 返回类型</a><!--
+ 参数类型列表可以为空，如 <code>() -&gt; A</code>。<a href="functions.html#返回-unit-的函数"><code>Unit</code> 返回类型</a><!--
 -->不可省略。</p>
 </li>
 <li>
@@ -960,7 +960,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>函数类型表示法可以选择性地包含函数的参数名：<code>(x: Int, y: Int) -&gt; Point</code>。
 这些名称可用于表明参数的含义。</p>
 <blockquote>
-<p>如需将函数类型指定为<a href="null-safety.html#可空与非空类型">可空</a>，请使用圆括号：<code>((Int, Int) -&gt; Int)?</code>。</p>
+<p>如需将函数类型指定为<a href="null-safety.html#可空类型与非空类型">可空</a>，请使用圆括号：<code>((Int, Int) -&gt; Int)?</code>。</p>
 <p>函数类型可以使用圆括号进行接合：<code>(Int) -&gt; ((Int) -&gt; Unit)</code></p>
 <p>箭头表示法是右结合的，<code>(Int) -&gt; (Int) -&gt; Unit</code> 与前述示例等价，但不等于
 <code>((Int) -&gt; (Int)) -&gt; Unit</code>。</p>
@@ -1095,7 +1095,7 @@ ints.filter {
     return@filter shouldFilter
 }
 </code></pre>
-<p>这一约定连同<a href="将-lambda-表达式传给最后一个参数">在圆括号外传递 lambda 表达式</a>一起支持
+<p>这一约定连同<a href="#将-lambda-表达式传给最后一个参数">在圆括号外传递 lambda 表达式</a>一起支持
 <a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx">LINQ-风格</a> 的代码：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 </code></pre>
@@ -1140,10 +1140,10 @@ ints.filter { it &gt; 0 }.forEach {
 }
 print(sum)
 </code></pre>
-<h3 id="带接收者的函数字面值">带接收者的函数字面值</h3>
+<h3 id="带有接收者的函数字面值">带有接收者的函数字面值</h3>
 <p>带有接收者的<a href="#函数类型">函数类型</a>，例如 <code>A.(B) -&gt; C</code>，可以用特殊形式的函数字面值实例化——
 带有接收者的函数字面值。</p>
-<p>如上所述，Kotlin 提供了<a href="函数类型实例调用">调用</a>带有接收者（提供<em>接收者对象</em>）的函数类型实例的能力。</p>
+<p>如上所述，Kotlin 提供了<a href="#函数类型实例调用">调用</a>带有接收者（提供<em>接收者对象</em>）的函数类型实例的能力。</p>
 <p>在这样的函数字面值内部，传给调用的接收者对象成为<em>隐式</em>的<em class="keyword">this</em>，以便<!--
 -->访问接收者对象的成员而无需任何额外的限定符，亦可使用
 <a href="this-expressions.html"><code>this</code> 表达式</a> 访问接收者对象。</p>
