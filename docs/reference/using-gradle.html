@@ -1081,7 +1081,7 @@ val kotlinCompile: KotlinCompile by tasks
 
 kotlinCompile.kotlinOptions.suppressWarnings = true
 </code></pre>
-<p>相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCommonCompile</code>。</p>
+<p>相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCompileCommon</code>。</p>
 <p>也可以在项目中配置所有 Kotlin 编译任务：</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
