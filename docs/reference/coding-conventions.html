@@ -880,7 +880,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="编码规范">编码规范</h1>
-<p>本页包含当前 Kotlin 语言的编码风格</p>
+<p>本页包含当前 Kotlin 语言的编码风格。</p>
 <ul>
 <li><a href="#源代码组织">源代码组织</a></li>
 <li><a href="#命名规则">命名规则</a></li>
@@ -894,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>如需根据本风格指南配置 IntelliJ 格式化程序，请安装 Kotlin 插件
 1.2.20 或更高版本，转到“Settings | Editor | Code Style | Kotlin”，点击右<!--
 -->上角的“Set from…”链接，并从菜单中选择“Predefined style / Kotlin style guide”。</p>
-<p>如需验证代码已按风格指南格式化，请转到探查设置并启用
+<p>如需验证代码已按风格指南格式化，请转到探查设置（Inspections）并启用
 “Kotlin | Style issues | File is not formatted according to project settings”探查项。
 验证风格指南中描述的其他问题（如命名约定）的附加探查项默认已启用。</p>
 <h2 id="源代码组织">源代码组织</h2>
@@ -1006,7 +1006,7 @@ val USER_NAME_FIELD = "UserName"
 <p>名称应该表明实体的目的是什么，所以最好避免在名称中使用无意义的单词
 （<code>Manager</code>、 <code>Wrapper</code> 等）。</p>
 <p>当使用首字母缩写作为名称的一部分时，如果缩写由两个字母组成，就将其大写（<code>IOStream</code>）；
-而如果缩写更长一些，就只大写首首字母（<code>XmlFormatter</code>、 <code>HttpInputStream</code>）。</p>
+而如果缩写更长一些，就只大写其首字母（<code>XmlFormatter</code>、 <code>HttpInputStream</code>）。</p>
 <h2 id="格式化">格式化</h2>
 <p>在大多数情况下，Kotlin 遵循 Java 编码规范。</p>
 <p>使用 4 个空格缩进。不要使用 tab。</p>
@@ -1169,8 +1169,8 @@ package foo.bar
 <blockquote>
 <p>理由：与构造函数参数一致</p>
 </blockquote>
-<p>对于由单个表达式构成的函数体，首选使用表达式形式。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // 较差
+<p>对于由单个表达式构成的函数体，优先使用表达式形式。</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // 不良
     return 1 
 }
 
@@ -1239,7 +1239,7 @@ try {
 <p>将短分支放在与条件相同的行上，无需花括号。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (foo) {
     true -&gt; bar() // 良好
-    false -&gt; { baz() } // 较差
+    false -&gt; { baz() } // 不良
 }
 </code></pre>
 <h3 id="方法调用格式化">方法调用格式化</h3>
@@ -1286,7 +1286,7 @@ try {
 }
 </code></pre>
 <h2 id="文档注释">文档注释</h2>
-<p>对于较长的文档注释，将开头 <code>/**</code> 放在一个独立行中，并且每个后续行都<!--
+<p>对于较长的文档注释，将开头 <code>/**</code> 放在一个独立行中，并且后续每行都<!--
 -->以星号开头：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
  * 这是一条多行
@@ -1378,7 +1378,7 @@ typealias PersonIndex = Map&lt;String, Person&gt;
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 </code></pre>
 <h3 id="使用条件语句">使用条件语句</h3>
-<p>Prefer using the expression form of <code>try</code>, <code>if</code> and <code>when</code>. Examples:</p>
+<p>优先使用 <code>try</code>、<code>if</code> 与 <code>when</code> 的表达形式。例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">return if (x) foo() else bar()
 
 return when(x) {
@@ -1386,7 +1386,7 @@ return when(x) {
     else -&gt; "nonzero"
 }
 </code></pre>
-<p>The above is preferable to:</p>
+<p>优先选用上述代码而不是：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">if (x)
     return foo()
 else
@@ -1398,31 +1398,31 @@ when(x) {
 }    
 </code></pre>
 <h3 id="if-还是-when"><code>if</code> 还是 <code>when</code></h3>
-<p>Prefer using <code>if</code> for binary conditions instead of <code>when</code>. Instead of</p>
+<p>二元条件优先使用 <code>if</code> 而不是 <code>when</code>。不要使用</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
-    null -&gt; ...
-    else -&gt; ...
+    null -&gt; ……
+    else -&gt; ……
 }
 </code></pre>
-<p>use <code>if (x == null) ... else ...</code></p>
-<p>Prefer using <code>when</code> if there are three or more options.</p>
-<h3 id="using-nullable-boolean-values-in-conditions">Using nullable <code>Boolean</code> values in conditions</h3>
-<p>If you need to use a nullable <code>Boolean</code> in a conditional statement, use <code>if (value == true)</code> or <code>if (value == false)</code> checks.</p>
+<p>而应使用 <code>if (x == null) …… else ……</code></p>
+<p>如果有三个或多个选项时优先使用 <code>when</code>。</p>
+<h3 id="在条件中使用可空的-boolean-值">在条件中使用可空的 <code>Boolean</code> 值</h3>
+<p>如果需要在条件语句中用到可空的 <code>Boolean</code>, 使用 <code>if (value == true)</code> 或 <code>if (value == false)</code> 检测。</p>
 <h3 id="使用循环">使用循环</h3>
-<p>Prefer using higher-order functions (<code>filter</code>, <code>map</code> etc.) to loops. Exception: <code>forEach</code> (prefer using a regular <code>for</code> loop instead,
-unless the receiver of <code>forEach</code> is nullable or <code>forEach</code> is used as part of a longer call chain).</p>
-<p>When making a choice between a complex expression using multiple higher-order functions and a loop, understand the cost
-of the operations being performed in each case and keep performance considerations in mind.</p>
+<p>优先使用高阶函数（<code>filter</code>、<code>map</code> 等）而不是循环。例外：<code>forEach</code>（优先使用常规的 <code>for</code> 循环，
+除非 <code>forEach</code> 的接收者是可空的或者 <code>forEach</code> 用做长调用链的一部分。）</p>
+<p>当在使用多个高阶函数的复杂表达式与循环之间进行选择时，请了解<!--
+-->每种情况下所执行操作的开销并且记得考虑性能因素。</p>
 <h3 id="区间上循环">区间上循环</h3>
-<p>Use the <code>until</code> function to loop over an open range:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 0..n - 1) { ... }  // bad
-for (i in 0 until n) { ... }  // good
+<p>使用 <code>until</code> 函数在一个区间上循环：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 0..n - 1) { …… }  // 不良
+for (i in 0 until n) { …… }  // 良好
 </code></pre>
 <h3 id="使用字符串">使用字符串</h3>
-<p>Prefer using string templates to string concatenation.</p>
-<p>Prefer to use multiline strings instead of embedding <code>\n</code> escape sequences into regular string literals.</p>
-<p>To maintain indentation in multiline strings, use <code>trimIndent</code> when the resulting string does not require any internal
-indentation, or <code>trimMargin</code> when internal indentation is required:</p>
+<p>优先使用字符串模板而不是字符串拼接。</p>
+<p>优先使用多行字符串而不是将 <code>\n</code> 转义序列嵌入到常规字符串字面值中。</p>
+<p>如需在多行字符串中维护缩进，当生成的字符串不需要任何内部<!--
+-->缩进时使用 <code>trimIndent</code>，而需要内部缩进时使用 <code>trimMargin</code>：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">assertEquals(
     """
     Foo
@@ -1436,98 +1436,98 @@ val a = """if(a &gt; 1) {
           |}""".trimMargin()
 </code></pre>
 <h3 id="函数还是属性">函数还是属性</h3>
-<p>In some cases functions with no arguments might be interchangeable with read-only properties. 
-Although the semantics are similar, there are some stylistic conventions on when to prefer one to another.</p>
-<p>Prefer a property over a function when the underlying algorithm:</p>
+<p>在某些情况下，不带参数的函数可与只读属性互换。
+虽然语义相似，但是在某种程度上有一些风格上的约定。</p>
+<p>底层算法优先使用属性而不是函数：</p>
 <ul>
-<li>does not throw</li>
-<li>is cheap to calculate (or caсhed on the first run)</li>
-<li>returns the same result over invocations if the object state hasn't changed</li>
+<li>不会抛异常</li>
+<li>计算开销小（或者在首次运行时缓存）</li>
+<li>如果对象状态没有改变，那么多次调用都会返回相同结果</li>
 </ul>
 <h3 id="使用扩展函数">使用扩展函数</h3>
-<p>Use extension functions liberally. Every time you have a function that works primarily on an object, consider making it
-an extension function accepting that object as a receiver. To minimize API pollution, restrict the visibility of
-extension functions as much as it makes sense. As necessary, use local extension functions, member extension functions,
-or top-level extension functions with private visibility.</p>
+<p>放手去用扩展函数。每当你有一个主要用于某个对象的函数时，可以考虑使其成为<!--
+-->一个以该对象为接收者的扩展函数。为了尽量减少 API 污染，尽可能地限制<!--
+-->扩展函数的可见性。根据需要，使用局部扩展函数、成员扩展函数<!--
+-->或者具有私有可视性的顶层扩展函数。</p>
 <h3 id="使用中缀函数">使用中缀函数</h3>
-<p>Declare a function as infix only when it works on two objects which play a similar role. Good examples: <code>and</code>, <code>to</code>, <code>zip</code>.
-Bad example: <code>add</code>.</p>
-<p>Don't declare a method as infix if it mutates the receiver object.</p>
+<p>一个函数只有用于两个角色类似的对象时才将其声明为中缀函数。良好示例如：<code>and</code>、 <code>to</code>、<code>zip</code>。
+不良示例如：<code>add</code>。</p>
+<p>如果一个方法会改动其接收者，那么不要声明为中缀形式。</p>
 <h3 id="工厂函数">工厂函数</h3>
-<p>If you declare a factory function for a class, avoid giving it the same name as the class itself. Prefer using a distinct name
-making it clear why the behavior of the factory function is special. Only if there is really no special semantics,
-you can use the same name as the class.</p>
-<p>Example:</p>
+<p>如果为一个类声明一个工厂函数，那么不要让它与类自身同名。优先使用独特的名称，
+该名称能表明为何该工厂函数的行为与众不同。只有当确实没有特殊的语义时，
+才可以使用与该类相同的名称。</p>
+<p>例如：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Point(val x: Double, val y: Double) {
     companion object {
         fun fromPolar(angle: Double, radius: Double) = Point(...)
     }
 }
 </code></pre>
-<p>If you have an object with multiple overloaded constructors that don't call different superclass constructors and
-can't be reduced to a single constructor with default argument values, prefer to replace the overloaded constructors with
-factory functions.</p>
+<p>如果一个对象有多个重载的构造函数，它们并非调用不同的超类构造函数，并且<!--
+-->不能简化为具有默认参数值的单个构造函数，那么优先用工厂函数取代<!--
+-->这些重载的构造函数。</p>
 <h3 id="平台类型">平台类型</h3>
-<p>A public function/method returning an expression of a platform type must declare its Kotlin type explicitly:</p>
+<p>返回平台类型表达式的公有函数/方法必须显式声明其 Kotlin 类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun apiCall(): String = MyJavaApi.getProperty("name")
 </code></pre>
-<p>Any property (package-level or class-level) initialised with an expression of a platform type must declare its Kotlin type explicitly:</p>
+<p>任何使用平台类型表达式初始化的属性（包级别或类级别）必须显式声明其 Kotlin 类型：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person {
     val name: String = MyJavaApi.getProperty("name")
 }
 </code></pre>
-<p>A local value initialised with an expression of a platform type may or may not have a type declaration:</p>
+<p>使用平台类型表达式初始化的局部值可以有也可以没有类型声明：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
     val name = MyJavaApi.getProperty("name")
     println(name)
 }
 </code></pre>
 <h3 id="使用作用域函数-applywithrunalsolet">使用作用域函数 apply/with/run/also/let</h3>
-<p>Kotlin provides a variety of functions to execute a block of code in the context of a given object. To choose the correct
-function, consider the following:</p>
+<p>Kotlin 提供了一系列用来在给定对象上下文中执行代码块的函数。要选择正确的<!--
+-->函数，请考虑以下几点：</p>
 <ul>
-<li>Are you calling methods on multiple objects in the block, or passing the instance of the context object as an 
-argument? If you are, use one of the functions that allows you to access the context object as <code>it</code>,
-not <code>this</code> (<code>also</code> or <code>let</code>). Use <code>also</code> if the receiver is not used at all in the block.</li>
+<li>是否在块中的多个对象上调用方法，或者将上下文对象的实例作为<!--
+-->参数传递？如果是，那么使用以 <code>it</code> 而不是 <code>this</code> 形式访问上下文对象的函数之一
+（ <code>also</code> 或 <code>let</code> ）。如果在代码块中根本没有用到接收者，那么使用 <code>also</code>。</li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Context object is 'it'
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 上下文对象是“it”
 class Baz {
     var currentBar: Bar?
     val observable: Observable
 
     val foo = createBar().also {
-        currentBar = it                    // Accessing property of Baz
-        observable.registerCallback(it)    // Passing context object as argument
+        currentBar = it                    // 访问 Baz 的属性
+        observable.registerCallback(it)    // 将上下文对象作为参数传递
     }
 }
 
-// Receiver not used in the block
+// 代码块中未使用接收者
 val foo = createBar().also {
     LOG.info("Bar created")
 }
 
-// Context object is 'this'
+// 上下文对象是“this”
 class Baz {
     val foo: Bar = createBar().apply {
-        color = RED    // Accessing only properties of Bar
+        color = RED    // 只访问 Bar 的属性
         text = "Foo"
     }
 }
 </code></pre>
 <ul>
-<li>What should the result of the call be? If the result needs to be the context object, use <code>apply</code> or <code>also</code>.
-If you need to return a value from the block, use <code>with</code>, <code>let</code> or <code>run</code></li>
+<li>调用的结果是什么？如果结果需是该上下文对象，那么使用 <code>apply</code> 或 <code>also</code>。
+如果需要从代码块中返回一个值，那么使用 <code>with</code>、<code>let</code> 或者 <code>run</code></li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Return value is context object
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 返回值是上下文对象
 class Baz {
     val foo: Bar = createBar().apply {
-        color = RED    // Accessing only properties of Bar
+        color = RED    // 只访问 Bar 的属性
         text = "Foo"
     }
 }
 
 
-// Return value is block result
+// 返回值是代码块的结果
 class Baz {
     val foo: Bar = createNetworkConnection().let {
         loadBar()
@@ -1535,25 +1535,25 @@ class Baz {
 }
 </code></pre>
 <ul>
-<li>Is the context object nullable, or is it evaluated as a result of a call chain? If it is, use <code>apply</code>, <code>let</code> or <code>run</code>.
-Otherwise, use <code>with</code> or <code>also</code>.</li>
+<li>上下文对象是否可空，或者是否作为调用链的结果求值而来的？如果是，那么使用 <code>apply</code>、<code>let</code> 或者 <code>run</code>。
+否则，使用 <code>with</code> 或者 <code>also</code>。</li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// Context object is nullable
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 上下文对象可空
 person.email?.let { sendEmail(it) }
 
-// Context object is non-null and accessible directly
+// 上下文对象非空且可直接访问
 with(person) {
     println("First name: $firstName, last name: $lastName")
 }
 </code></pre>
 <h2 id="库的编码规范">库的编码规范</h2>
-<p>When writing libraries, it's recommended to follow an additional set of rules to ensure API stability:</p>
+<p>在编写库时，建议遵循一组额外的规则以确保 API 的稳定性：</p>
 <ul>
-<li>Always explicitly specify member visibility (to avoid accidentally exposing declarations as public API)</li>
-<li>Always explicitly specify function return types and property types (to avoid accidentally changing the return type
-when the implementation changes)</li>
-<li>Provide KDoc comments for all public members, with the exception of overrides that do not require any new documentation
-(to support generating documentation for the library)</li>
+<li>总是显式指定成员的可见性（以避免将声明意外暴露为公有 API ）</li>
+<li>总是显式指定函数返回类型以及属性类型（以避免当实现改变时<!--
+-->意外更改返回类型）</li>
+<li>为所有公有成员提供 KDoc 注释，不需要任何新文档的覆盖成员除外
+（以支持为该库生成文档）</li>
 </ul>
 
         </article>
