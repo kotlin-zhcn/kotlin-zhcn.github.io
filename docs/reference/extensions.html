@@ -985,7 +985,7 @@ fun MyClass.Companion.foo() {
 <p>大多数时候我们在顶层定义扩展，即直接在包里：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package foo.bar
 
-fun Baz.goo() { …… } 
+fun Baz.goo() { …… }
 </code></pre>
 <p>要使用所定义包之外的一个扩展，我们需要在调用方导入它：</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.usage
@@ -1002,7 +1002,7 @@ fun usage(baz: Baz) {
 <p>更多信息参见<a href="packages.html#导入">导入</a></p>
 <h2 id="扩展声明为成员">扩展声明为成员</h2>
 <p>在一个类内部你可以为另一个类声明扩展。在这样的扩展内部，有多个 <em>隐式接收者</em> ——
-其中的对象成员可以无需通过限定符访问。扩展声明所在的类的实例称为 
+其中的对象成员可以无需通过限定符访问。扩展声明所在的类的实例称为
 <em>分发接收者</em>，扩展方法调用所在的接收者类型的实例称为 <em>扩展接收者</em> 。</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">class D {
     fun bar() { …… }
@@ -1065,6 +1065,12 @@ C().caller(D())   // 输出 "D.foo in C"
 C1().caller(D())  // 输出 "D.foo in C1" —— 分发接收者虚拟解析
 C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
 </code></pre>
+<h2 id="关于可见性的说明">关于可见性的说明</h2>
+<p>扩展的可见性与相同作用域内声明的[其他实体的可见性]相同。例如：</p>
+<ul>
+<li>在文件顶层声明的扩展可以访问同一文件中的其他 <code>private</code> 顶层声明；</li>
+<li>如果扩展是在其接收者类型外部声明的，那么该扩展不能访问接收者的 <code>private</code> 成员。</li>
+</ul>
 <h2 id="动机">动机</h2>
 <p>在Java中，我们将类命名为“*Utils”：<code>FileUtils</code>、<code>StringUtils</code> 等，著名的 <code>java.util.Collections</code> 也属于同一种命名方式。
 关于这些 Utils-类的不愉快的部分是代码写成这样：</p>
