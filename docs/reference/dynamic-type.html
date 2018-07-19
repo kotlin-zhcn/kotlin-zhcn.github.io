@@ -885,8 +885,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </blockquote>
 <p>作为一种静态类型的语言，Kotlin仍然需要与无类型或松散类型的环境（例如
 JavaScript生态系统）进行互操作。为了方便这些使用场景，语言中有 <code>dynamic</code> 类型可用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val dyn: dynamic = ……
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val dyn: dynamic = ……
 </code></pre>
+</div>
 <p><code>dynamic</code> 类型基本上关闭了 Kotlin 的类型检查系统：</p>
 <ul>
 <li>该类型的值可以赋值给任何变量或作为参数传递到任何位置；</li>
@@ -895,22 +897,28 @@ JavaScript生态系统）进行互操作。为了方便这些使用场景，语�
 </ul>
 <p><code>dynamic</code> 最特别的特性是，我们可以对 <code>dynamic</code> 变量调用<strong>任何</strong>属性或以任意参数调用<strong>任何</strong>函数
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.whatever(1, "foo", dyn) // “whatever”在任何地方都没有定义
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">dyn.whatever(1, "foo", dyn) // “whatever”在任何地方都没有定义
 dyn.whatever(*arrayOf(1, 2, 3))
 </code></pre>
+</div>
 <p>在 JavaScript 平台上，该代码将按照原样编译：在生成的 JavaScript 代码中，Kotlin中的 <code>dyn.whatever(1)</code> 变为 <code>dyn.whatever(1)</code>
 。</p>
 <p>当在 <code>dynamic</code> 类型的值上调用 Kotlin 写的函数时，请记住由
 Kotlin 到 JavaScript 编译器执行的名字修饰。你可能需要使用 <a href="js-to-kotlin-interop.html#jsname-注解">@JsName 注解</a><!--
 -->为要调用的函数分配明确的名称。</p>
 <p>动态调用总是返回 <code>dynamic</code> 作为结果，所以我们可以自由地这样链接调用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.foo().bar.baz()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">dyn.foo().bar.baz()
 </code></pre>
+</div>
 <p>当我们把一个 lambda 表达式传给一个动态调用时，它的所有参数默认都是 <code>dynamic</code> 类型的：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dyn.foo {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">dyn.foo {
     x -&gt; x.bar() // x 是 dynamic
 }
 </code></pre>
+</div>
 <p>使用 <code>dynamic</code> 类型值的表达式会按照原样转换为 JavaScript，并且不使用 Kotlin 运算符约定。
 支持以下运算符：</p>
 <ul>

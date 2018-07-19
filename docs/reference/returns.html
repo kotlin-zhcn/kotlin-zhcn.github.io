@@ -887,31 +887,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><em class="keyword">continue</em>。继续下一次最直接包围它的循环。</li>
 </ul>
 <p>所有这些表达式都可以用作更大表达式的一部分：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = person.name ?: return
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val s = person.name ?: return
 </code></pre>
+</div>
 <p>这些表达式的类型是 <a href="exceptions.html#nothing-类型">Nothing 类型</a>。</p>
 <h2 id="break-与-continue-标签">Break 与 Continue 标签</h2>
 <p>在 Kotlin 中任何表达式都可以用标签（<em class="keyword">label</em>）来标记。
 标签的格式为标识符后跟 <code>@</code> 符号，例如：<code>abc@</code>、<code>fooBar@</code>都是有效的标签（参见<a href="grammar.html#labelReference">语法</a>）。
 要为一个表达式加标签，我们只要在其前加标签即可。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">loop@ for (i in 1..100) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">loop@ for (i in 1..100) {
     // ……
 }
 </code></pre>
+</div>
 <p>现在，我们可以用标签限制 <em class="keyword">break</em> 或者<em class="keyword">continue</em>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">loop@ for (i in 1..100) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">loop@ for (i in 1..100) {
     for (j in 1..100) {
         if (……) break@loop
     }
 }
 </code></pre>
+</div>
 <p>标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。
 <em class="keyword">continue</em> 继续标签指定的循环的下一次迭代。</p>
 <h2 id="标签处返回">标签处返回</h2>
 <p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
 标签限制的 <em class="keyword">return</em> 允许我们从外层函数返回。
 最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach {
@@ -930,7 +936,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>这个 <em class="keyword">return</em> 表达式从最直接包围它的函数即 <code>foo</code> 中返回。
 （注意，这种非局部的返回只支持传给<a href="inline-functions.html">内联函数</a>的 lambda 表达式。）
 如果我们需要从 lambda 表达式中返回，我们必须给它加标签并用以限制 <em class="keyword">return</em>。</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach lit@{
@@ -948,7 +954,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>现在，它只会从 lambda 表达式中返回。通常情况下使用隐式标签更方便。
 该标签与接受该 lambda 的函数同名。</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach {
@@ -966,7 +972,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>或者，我们用一个<a href="lambdas.html#匿名函数">匿名函数</a>替代 lambda 表达式。
 匿名函数内部的 <em class="keyword">return</em> 语句将从该匿名函数自身返回</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
 fun foo() {
     listOf(1, 2, 3, 4, 5).forEach(fun(value: Int) {
@@ -983,7 +989,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>请注意，前文三个示例中使用的局部返回类似于在常规循环中使用 <em class="keyword">continue</em>。并没有 <em class="keyword">break</em> 的直接等价形式，不过可以通过增加另一层嵌套 lambda 表达式并从其中非局部返回来模拟：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
 fun foo() {
     run loop@{
@@ -1002,8 +1008,10 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>当要返一个回值的时候，解析器优先选用标签限制的 return，即</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">return@a 1
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">return@a 1
 </code></pre>
+</div>
 <p>意为“从标签 <code>@a</code> 返回 1”，而不是“返回一个标签标注的表达式 <code>(@a 1)</code>”。</p>
 
         </article>

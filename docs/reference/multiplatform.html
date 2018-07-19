@@ -926,7 +926,8 @@ Kotlin/JVM 平台的平台模块还可以包含 Java 以及其他 JVM 语言的�
 <li>将平台模块 <code>expectedBy</code> 作用域中添加到到公共模块的依赖</li>
 </ul>
 <p>以下示例演示了一个使用 Kotlin 1.2 的公共模块的完整的 <code>build.gradle</code> 文件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.2.51'
 
     repositories {
@@ -948,9 +949,11 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test-common:$kotlin_version"
 }
 </code></pre>
+</div>
 <p>而下述示例展示了一个用于 JVM 平台模块的完整的 <code>build.gradle</code>。请<!--
 -->特别注意其 <code>dependencies</code> 块中的 <code>expectedBy</code> 行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.2.51'
 
     repositories {
@@ -975,6 +978,7 @@ dependencies {
     testCompile "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
 }
 </code></pre>
+</div>
 <h2 id="平台相关声明">平台相关声明</h2>
 <p>Kotlin 多平台代码的关键潜能之一就是公共代码依赖平台相关声明的一种方式。
 在其他语言中，这通常<!--
@@ -987,7 +991,8 @@ dependencies {
 通过这种机制，公共模块中可定义 <em>预期声明</em>，而平台模块<!--
 -->中可提供与预期声明相对应的 <em>实际声明</em>。
 为了解其工作原理，我们先看一个示例。这段代码是公共模块的一部分：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package org.jetbrains.foo
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package org.jetbrains.foo
 
 expect class Foo(bar: String) {
     fun frob()
@@ -997,8 +1002,10 @@ fun main(args: Array&lt;String&gt;) {
     Foo("Hello").frob()
 }
 </code></pre>
+</div>
 <p>而这是相应的 JVM 模块：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package org.jetbrains.foo
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package org.jetbrains.foo
 
 actual class Foo actual constructor(val bar: String) {
     actual fun frob() {
@@ -1006,6 +1013,7 @@ actual class Foo actual constructor(val bar: String) {
     }
 }
 </code></pre>
+</div>
 <p>这阐明了几个重点：</p>
 <ul>
 <li>公共模块中的预期声明与相应的实际声明总是<!--
@@ -1020,7 +1028,8 @@ actual class Foo actual constructor(val bar: String) {
 在本例中，预期的类有一个构造函数，可以直接在公共代码中创建该类。
 也可以将 <code>expect</code> 修饰符应用于其他声明，包括顶层声明与<!--
 -->注解：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 公共
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 公共
 expect fun formatString(source: String, vararg args: Any): String
 
 expect annotation class Test
@@ -1031,13 +1040,15 @@ actual fun formatString(source: String, vararg args: Any) =
     
 actual typealias Test = org.junit.Test
 </code></pre>
+</div>
 <p>编译器确保每个预期声明在实现相应公共模块的所有平台<!--
 -->模块中都有实际声明，缺失任何实际声明都会报错。
 IDE 提供了帮你创建所缺实际声明的工具。</p>
 <p>如果你有一个平台相关的库，并希望在公共模块中使用，同时为另一平台提供自己<!--
 -->的实现，那么你可以提供一个已有类的类型别名作为实际<!--
 -->声明：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">expect class AtomicRef&lt;V&gt;(value: V) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">expect class AtomicRef&lt;V&gt;(value: V) {
   fun get(): V
   fun set(value: V)
   fun getAndSet(value: V): V
@@ -1046,6 +1057,7 @@ IDE 提供了帮你创建所缺实际声明的工具。</p>
 
 actual typealias AtomicRef&lt;V&gt; = java.util.concurrent.atomic.AtomicReference&lt;V&gt;
 </code></pre>
+</div>
 <h2 id="多平台测试">多平台测试</h2>
 <p>可以在公共项目中编写测试，这样就可以在每个平台中编译与运行了。
 <code>kotlin.test</code> 包中提供了 4 个注解用于标记公共代码中的测试：<code>@Test</code>、 <code>@Ignore</code>、

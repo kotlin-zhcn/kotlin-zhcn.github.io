@@ -887,8 +887,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h2 id="结构相等">结构相等</h2>
 <p>结构相等由 <code>==</code>（以及其否定形式 <code>!=</code>）操作判断。按照惯例，像 <code>a == b</code> 这样的表达式会翻译成：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">a?.equals(b) ?: (b === null)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">a?.equals(b) ?: (b === null)
 </code></pre>
+</div>
 <p>也就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 是否与 <code>null</code> 引用相等。</p>
 <p>请注意，当与 <code>null</code> 显式比较时完全没必要优化你的代码：<code>a == null</code> 会被自动转换为 <code>a=== null</code>。</p>
 <h2 id="浮点数相等性">浮点数相等性</h2>

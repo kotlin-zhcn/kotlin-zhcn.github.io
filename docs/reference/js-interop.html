@@ -888,22 +888,27 @@ Kotlin 中自由地与 JavaScript 交流，但是如果你想要 Kotlin 类型�
 <h2 id="内联-javascript">内联 JavaScript</h2>
 <p>你可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/js.html">js("……")</a> 函数将一些 JavaScript 代码嵌入到 Kotlin 代码中。
 例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun jsTypeOf(o: Any): String {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun jsTypeOf(o: Any): String {
     return js("typeof o")
 }
 </code></pre>
+</div>
 <p><code>js</code> 的参数必须是字符串常量。因此，以下代码是不正确的：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun jsTypeOf(o: Any): String {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun jsTypeOf(o: Any): String {
     return js(getTypeof() + " o") // 此处报错
 }
 fun getTypeof() = "typeof"
 </code></pre>
+</div>
 <h2 id="external-修饰符"><code>external</code> 修饰符</h2>
 <p>要告诉 Kotlin 某个声明是用纯 JavaScript 编写的，你应该用 <code>external</code> 修饰符来标记它。
 当编译器看到这样的声明时，它假定相应类、函数或<!--
 -->属性的实现由开发人员提供，因此不会尝试从声明中生成任何 JavaScript 代码。
 这意味着你应该省略 <code>external</code> 声明内容的代码体。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external fun alert(message: Any?): Unit
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external fun alert(message: Any?): Unit
 
 external class Node {
     val firstChild: Node
@@ -917,20 +922,23 @@ external class Node {
 
 external val window: Window
 </code></pre>
+</div>
 <p>请注意，嵌套的声明会继承 <code>external</code> 修饰符，即在 <code>Node</code> 类中，我们在<!--
 -->成员函数和属性之前并不放置 <code>external</code>。</p>
 <p><code>external</code> 修饰符只允许在包级声明中使用。 你不能声明一个非 <code>external</code> 类的 <code>external</code> 成员。</p>
 <h3 id="声明类的静态成员">声明类的（静态）成员</h3>
 <p>在 JavaScript 中，你可以在原型或者类本身上定义成员。即：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">function MyClass() {
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">function MyClass() { …… }
 MyClass.sharedMember = function() { /* 实现 */ };
 MyClass.prototype.ownMember = function() { /* 实现 */ };
 </code></pre>
+</div>
 <p>Kotlin 中没有这样的语法。然而，在 Kotlin 中我们有伴生（<code>companion</code>）对象。Kotlin 以特殊的方式处理
 <code>external</code> 类的伴生对象：替代期待一个对象的是，它假定伴生对象的成员<!--
 -->就是该类自身的成员。要描述来自上例中的 <code>MyClass</code>，你可以这样写：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external class MyClass {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external class MyClass {
     companion object {
         fun sharedMember()
     }
@@ -938,21 +946,25 @@ MyClass.prototype.ownMember = function() { /* 实现 */ };
     fun ownMember()
 }
 </code></pre>
+</div>
 <h3 id="声明可选参数">声明可选参数</h3>
 <p>一个外部函数可以有可选参数。
 JavaScript 实现实际上如何计算这些参数的默认值，是 Kotlin 所不知道的，
 因此在 Kotlin 中不可能使用通常的语法声明这些参数。
 你应该使用以下语法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external fun myFunWithOptionalArgs(x: Int,
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external fun myFunWithOptionalArgs(x: Int,
     y: String = definedExternally,
     z: Long = definedExternally)
 </code></pre>
+</div>
 <p>这意味着你可以使用一个必需参数和两个可选参数来调用 <code>myFunWithOptionalArgs</code>（它们的<!--
 -->默认值由一些 JavaScript 代码算出）。</p>
 <h3 id="扩展-javascript-类">扩展 JavaScript 类</h3>
 <p>你可以轻松扩展 JavaScript 类，因为它们是 Kotlin 类。只需定义一个 <code>external</code> 类并用<!--
 -->非 <code>external</code> 类扩展它。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external open class HTMLElement : Element() {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external open class HTMLElement : Element() {
     /* 成员 */
 }
 
@@ -962,6 +974,7 @@ class CustomElement : HTMLElement() {
     }
 }
 </code></pre>
+</div>
 <p>有一些限制：</p>
 <ol>
 <li>当一个外部基类的函数被签名重载时，不能在派生类中覆盖它。</li>
@@ -972,7 +985,8 @@ class CustomElement : HTMLElement() {
 <p>JavaScript 没有接口的概念。当函数期望其参数支持 <code>foo</code>
 和 <code>bar</code> 方法时，只需传递实际具有这些方法的对象。
 对于静态类型的 Kotlin，你可以使用接口来表达这点，例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external interface HasFooAndBar {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external interface HasFooAndBar {
     fun foo()
 
     fun bar()
@@ -980,8 +994,10 @@ class CustomElement : HTMLElement() {
 
 external fun myFunction(p: HasFooAndBar)
 </code></pre>
+</div>
 <p>外部接口的另一个使用场景是描述设置对象。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external interface JQueryAjaxSettings {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external interface JQueryAjaxSettings {
     var async: Boolean
 
     var cache: Boolean
@@ -1007,6 +1023,7 @@ fun sendQuery() {
     })
 }
 </code></pre>
+</div>
 <p>外部接口有一些限制：</p>
 <ol>
 <li>它们不能在 <code>is</code> 检查的右侧使用。</li>

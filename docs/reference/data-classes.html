@@ -883,8 +883,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>我们经常创建一些只保存数据的类。
 在这些类中，一些标准函数往往是从<!--
 -->数据机械推导而来的。在 Kotlin 中，这叫做 <em>数据类</em> 并标记为 <code>data</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String, val age: Int)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">data class User(val name: String, val age: Int)
 </code></pre>
+</div>
 <p>编译器自动从主构造函数中声明的所有属性导出以下成员：</p>
 <ul>
 <li><code>equals()</code>/<code>hashCode()</code> 对；</li>
@@ -901,7 +903,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>此外，成员生成遵循关于成员继承的这些规则：</p>
 <ul>
-<li>如果在数据类体中有显式实现 <code>equals()</code>、 <code>hashCode()</code> 或者 <code>toString()</code>，或者这些函数在父类中有 
+<li>如果在数据类体中有显式实现 <code>equals()</code>、 <code>hashCode()</code> 或者 <code>toString()</code>，或者这些函数在父类中有
 <em class="keyword">final</em> 实现，那么不会生成这些函数，而会使用现有<!--
 -->函数；</li>
 <li>如果超类型具有 <em class="keyword">open</em> 的 <code>componentN()</code> 函数并且返回兼容的类型，
@@ -914,29 +916,30 @@ Kotlin 1.2 中已弃用，并且会在 Kotlin 1.3 中禁用。</li>
 <p>自 1.1 起，数据类可以扩展其他类（示例请参见<a href="sealed-classes.html">密封类</a>）。</p>
 <p>在 JVM 中，如果生成的类需要含有一个无参的构造函数，则所有的属性必须指定默认值。
 （参见<a href="classes.html#构造函数">构造函数</a>）。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class User(val name: String = "", val age: Int = 0)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">data class User(val name: String = "", val age: Int = 0)
 </code></pre>
+</div>
 <h2 id="在类体中声明的属性">在类体中声明的属性</h2>
 <p>请注意，对于那些自动生成的函数，编译器只使用在主构造函数内部定义的属性。如需在生成的实现中排出一个属性，请将其声明在类体中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Person(val name: String) {
-    var age: Int = 0
-}
-</code></pre>
-<p>在 <code>toString()</code>、 <code>equals()</code>、 <code>hashCode()</code> 以及 <code>copy()</code> 的实现中只会用到 <code>name</code> 属性，并且只有一个 component 函数 <code>component1()</code>。虽然两个 <code>Person</code> 对象可以有不同的年龄，但它们会视为相等。</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">data class Person(val name: String) {
     var age: Int = 0
 }
-
+</code></pre>
+</div>
+<p>在 <code>toString()</code>、 <code>equals()</code>、 <code>hashCode()</code> 以及 <code>copy()</code> 的实现中只会用到 <code>name</code> 属性，并且只有一个 component 函数 <code>component1()</code>。虽然两个 <code>Person</code> 对象可以有不同的年龄，但它们会视为相等。</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">data class Person(val name: String) {
+    var age: Int = 0
+}
 fun main(args: Array&lt;String&gt;) {
-    //sampleStart
+//sampleStart
     val person1 = Person("John")
     val person2 = Person("John")
-
     person1.age = 10
     person2.age = 20
-    //sampleEnd
-
+//sampleEnd
     println("person1 == person2: ${person1 == person2}")
     println("person1 with age ${person1.age}: ${person1}")
     println("person2 with age ${person2.age}: ${person2}")
@@ -945,19 +948,25 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h2 id="复制">复制</h2>
 <p>在很多情况下，我们需要复制一个对象改变它的一些属性，但其余部分保持不变。
-<code>copy()</code> 函数就是为此而生成。对于上文的 <code>User</code> 类，其实现会类似下面这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
+ <code>copy()</code> 函数就是为此而生成。对于上文的 <code>User</code> 类，其实现会类似下面这样：</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun copy(name: String = this.name, age: Int = this.age) = User(name, age)     
 </code></pre>
+</div>
 <p>这让我们可以写：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val jack = User(name = "Jack", age = 1)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val jack = User(name = "Jack", age = 1)
 val olderJack = jack.copy(age = 2)
 </code></pre>
+</div>
 <h2 id="数据类和解构声明">数据类和解构声明</h2>
 <p>为数据类生成的 <em>Component 函数</em> 使它们可在<a href="multi-declarations.html">解构声明</a>中使用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val jane = User("Jane", 35)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val jane = User("Jane", 35)
 val (name, age) = jane
 println("$name, $age years of age") // 输出 "Jane, 35 years of age"
 </code></pre>
+</div>
 <h2 id="标准数据类">标准数据类</h2>
 <p>标准库提供了 <code>Pair</code> 和 <code>Triple</code>。尽管在很多情况下命名数据类是更好的设计选择，
 因为它们通过为属性提供有意义的名称使代码更具可读性。</p>

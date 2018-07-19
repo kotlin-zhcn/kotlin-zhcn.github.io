@@ -903,89 +903,147 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 <em class="keyword">null</em>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var a: String = "abc"
-a = null // 编译错误
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    var a: String = "abc"
+    a = null // 编译错误
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>如果要允许为空，我们可以声明一个变量为可空字符串，写作 <code>String?</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var b: String? = "abc"
-b = null // ok
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    var b: String? = "abc"
+    b = null // ok
+    print(b)
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>现在，如果你调用 <code>a</code> 的方法或者访问它的属性，它保证不会导致 <code>NPE</code>，这样你就可以放心地使用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = a.length
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = a.length
 </code></pre>
+</div>
 <p>但是如果你想访问 <code>b</code> 的同一个属性，那么这是不安全的，并且编译器会报告一个错误：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b.length // 错误：变量“b”可能为空
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = b.length // 错误：变量“b”可能为空
 </code></pre>
+</div>
 <p>但是我们还是需要访问该属性，对吧？有几种方式可以做到。</p>
 <h2 id="在条件中检查-null">在条件中检查 <em class="keyword">null</em></h2>
 <p>首先，你可以显式检查 <code>b</code> 是否为 <em class="keyword">null</em>，并分别处理两种可能：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = if (b != null) b.length else -1
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = if (b != null) b.length else -1
 </code></pre>
+</div>
 <p>编译器会跟踪所执行检查的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
 同时，也支持更复杂（更智能）的条件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (b != null &amp;&amp; b.length &gt; 0) {
-    print("String of length ${b.length}")
-} else {
-    print("Empty string")
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val b = "Kotlin"
+    if (b != null &amp;&amp; b.length &gt; 0) {
+        print("String of length ${b.length}")
+    } else {
+        print("Empty string")
+    }
+//sampleEnd
 }
+
 </code></pre>
+</div>
 <p>请注意，这只适用于 <code>b</code> 是不可变的情况（即在检查和使用之间没有修改过的局部变量
 ，或者不可覆盖并且有幕后字段的 <em class="keyword">val</em> 成员），因为否则可能会发生<!--
 -->在检查之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
 <h2 id="安全的调用">安全的调用</h2>
 <p>你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">b?.length
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val a = "Kotlin"
+    val b: String? = null
+    println(b?.length)
+    println(a?.length)
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>如果 <code>b</code> 非空，就返回 <code>b.length</code>，否则返回 <em class="keyword">null</em>，这个表达式的类型是 <code>Int?</code>。</p>
 <p>安全调用在链式调用中很有用。例如，如果一个员工 Bob 可能会（或者不会）分配给一个部门，
 并且可能有另外一个员工是该部门的负责人，那么获取 Bob 所在部门负责人（如果有的话）的名字，我们写作：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">bob?.department?.head?.name
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">bob?.department?.head?.name
 </code></pre>
+</div>
 <p>如果任意一个属性（环节）为空，这个链式调用就会返回 <em class="keyword">null</em>。</p>
 <p>如果要只对非空值执行某个操作，安全调用操作符可以与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html"><code>let</code></a> 一起使用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val listWithNulls: List&lt;String?&gt; = listOf("A", null)
-for (item in listWithNulls) {
-     item?.let { println(it) } // 输出 A 并忽略 null
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val listWithNulls: List&lt;String?&gt; = listOf("Kotlin", null)
+    for (item in listWithNulls) {
+         item?.let { println(it) } // 输出 A 并忽略 null
+    }
+//sampleEnd
 }
 </code></pre>
+</div>
 <p>安全调用也可以出现在赋值的左侧。这样，如果调用链中的任何一个接收者为空都会跳过赋值，而右侧的表达式根本不会求值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 如果 `person` 或者 `person.department` 其中之一为空，都不会调用该函数：
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 如果 `person` 或者 `person.department` 其中之一为空，都不会调用该函数：
 person?.department?.head = managersPool.getManager()
 </code></pre>
+</div>
 <h2 id="elvis-操作符">Elvis 操作符</h2>
 <p>当我们有一个可空的引用 <code>r</code> 时，我们可以说“如果 <code>r</code> 非空，我使用它；否则使用某个非空的值 <code>x</code>”：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l: Int = if (b != null) b.length else -1
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l: Int = if (b != null) b.length else -1
 </code></pre>
+</div>
 <p>除了完整的 <em class="keyword">if</em>-表达式，这还可以通过 Elvis 操作符表达，写作 <code>?:</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b?.length ?: -1
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = b?.length ?: -1
 </code></pre>
+</div>
 <p>如果 <code>?:</code> 左侧表达式非空，elvis 操作符就返回其左侧表达式，否则返回右侧表达式。
 请注意，当且仅当左侧为空时，才会对右侧表达式求值。</p>
 <p>请注意，因为 <em class="keyword">throw</em> 和 <em class="keyword">return</em> 在 Kotlin 中都是表达式，所以它们也可以用在
  elvis 操作符右侧。这可能会非常方便，例如，检查函数参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(node: Node): String? {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(node: Node): String? {
     val parent = node.getParent() ?: return null
     val name = node.getName() ?: throw IllegalArgumentException("name expected")
     // ……
 }
 </code></pre>
+</div>
 <h2 id="-操作符"><code>!!</code> 操作符</h2>
 <p>第三种选择是为 NPE 爱好者准备的：非空断言运算符（<code>!!</code>）将任何值转换为非空<!--
 -->类型，若该值为空则抛出异常。我们可以写 <code>b!!</code> ，这会返回一个非空的 <code>b</code> 值
 （例如：在我们例子中的 <code>String</code>）或者如果 <code>b</code> 为空，就会抛出一个 <code>NPE</code> 异常：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = b!!.length
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = b!!.length
 </code></pre>
+</div>
 <p>因此，如果你想要一个 NPE，你可以得到它，但是你必须显式要求它，否则它不会不期而至。</p>
 <h2 id="安全的类型转换">安全的类型转换</h2>
 <p>如果对象不是目标类型，那么常规类型转换可能会导致 <code>ClassCastException</code>。
 另一个选择是使用安全的类型转换，如果尝试转换不成功则返回 <em class="keyword">null</em>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val aInt: Int? = a as? Int
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val aInt: Int? = a as? Int
 </code></pre>
+</div>
 <h2 id="可空类型的集合">可空类型的集合</h2>
 <p>如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 <code>filterNotNull</code> 来实现：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val nullableList: List&lt;Int?&gt; = listOf(1, 2, null, 4)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val nullableList: List&lt;Int?&gt; = listOf(1, 2, null, 4)
 val intList: List&lt;Int&gt; = nullableList.filterNotNull()
 </code></pre>
+</div>
 
         </article>
     </div>

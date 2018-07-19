@@ -884,26 +884,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 -->实现。与抽象类不同的是，接口无法保存状态。它可以有<!--
 -->属性但必须声明为抽象或提供访问器实现。</p>
 <p>使用关键字 <em class="keyword">interface</em> 来定义接口</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface MyInterface {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface MyInterface {
     fun bar()
     fun foo() {
       // 可选的方法体
     }
 }
 </code></pre>
+</div>
 <h2 id="实现接口">实现接口</h2>
 <p>一个类或者对象可以实现一个或多个接口。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Child : MyInterface {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Child : MyInterface {
     override fun bar() {
         // 方法体
     }
 }
 </code></pre>
+</div>
 <h2 id="接口中的属性">接口中的属性</h2>
 <p>你可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供<!--
 -->访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器<!--
 -->不能引用它们。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface MyInterface {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface MyInterface {
     val prop: Int // 抽象的
 
     val propertyWithImplementation: String
@@ -918,9 +923,11 @@ class Child : MyInterface {
     override val prop: Int = 29
 }
 </code></pre>
+</div>
 <h2 id="接口继承">接口继承</h2>
 <p>一个接口可以从其他接口派生，从而既提供基类型成员的实现也声明新的函数与属性。很自然地，实现这样接口的类只需定义所缺少的实现：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Named {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface Named {
     val name: String
 }
 
@@ -938,9 +945,11 @@ data class Employee(
     val position: Position
 ) : Person
 </code></pre>
+</div>
 <h2 id="解决覆盖冲突">解决覆盖冲突</h2>
 <p>实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface A {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface A {
     fun foo() { print("A") }
     fun bar()
 }
@@ -965,6 +974,7 @@ class D : A, B {
     }
 }
 </code></pre>
+</div>
 <p>上例中，接口 <em>A</em> 和 <em>B</em> 都定义了方法 <em>foo()</em> 和 <em>bar()</em>。 两者都实现了 <em>foo()</em>, 但是只有 <em>B</em> 实现了 <em>bar()</em> (<em>bar()</em> 在 <em>A</em> 中没有标记为抽象，
 因为没有方法体时默认为抽象）。因为 <em>C</em> 是一个实现了 <em>A</em> 的具体类，所以必须要重写 <em>bar()</em> 并<!--
 -->实现这个抽象方法。</p>

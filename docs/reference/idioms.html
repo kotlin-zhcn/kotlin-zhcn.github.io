@@ -882,8 +882,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="习惯用法">习惯用法</h1>
 <p>一些在 Kotlin 中广泛使用的语法习惯，如果你有更喜欢的语法习惯或者风格，建一个 pull request 贡献给我们吧！</p>
 <h3 id="创建-dtospojospocos">创建 DTOs（POJOs/POCOs）</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Customer(val name: String, val email: String)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">data class Customer(val name: String, val email: String)
 </code></pre>
+</div>
 <p>会为 <code>Customer</code> 类提供以下功能：</p>
 <ul>
 <li>所有属性的 getters （对于 <em class="keyword">var</em> 定义的还有 setters）</li>
@@ -894,94 +896,133 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>所有属性的 <code>component1()</code>、 <code>component2()</code>……等等（参见<a href="data-classes.html">数据类</a>）</li>
 </ul>
 <h3 id="函数的默认参数">函数的默认参数</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(a: Int = 0, b: String = "") { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(a: Int = 0, b: String = "") { …… }
 </code></pre>
+</div>
 <h3 id="过滤-list">过滤 list</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val positives = list.filter { x -&gt; x &gt; 0 }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val positives = list.filter { x -&gt; x &gt; 0 }
 </code></pre>
+</div>
 <p>或者可以更短:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val positives = list.filter { it &gt; 0 }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val positives = list.filter { it &gt; 0 }
 </code></pre>
+</div>
 <h3 id="string-内插">String 内插</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">println("Name $name")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">println("Name $name")
 </code></pre>
+</div>
 <h3 id="类型判断">类型判断</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">when (x) {
     is Foo //-&gt; ……
     is Bar //-&gt; ……
     else   //-&gt; ……
 }
 </code></pre>
+</div>
 <h3 id="遍历-mappair型list">遍历 map/pair型list</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((k, v) in map) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for ((k, v) in map) {
     println("$k -&gt; $v")
 }
 </code></pre>
+</div>
 <p><code>k</code>、<code>v</code> 可以改成任意名字。</p>
 <h3 id="使用区间">使用区间</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..100) { …… }  // 闭区间：包含 100
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for (i in 1..100) { …… }  // 闭区间：包含 100
 for (i in 1 until 100) { …… } // 半开区间：不包含 100
 for (x in 2..10 step 2) { …… }
 for (x in 10 downTo 1) { …… }
 if (x in 1..10) { …… }
 </code></pre>
+</div>
 <h3 id="只读-list">只读 list</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = listOf("a", "b", "c")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val list = listOf("a", "b", "c")
 </code></pre>
+</div>
 <h3 id="只读-map">只读 map</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val map = mapOf("a" to 1, "b" to 2, "c" to 3)
 </code></pre>
+</div>
 <h3 id="访问-map">访问 map</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">println(map["key"])
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">println(map["key"])
 map["key"] = value
 </code></pre>
+</div>
 <h3 id="延迟属性">延迟属性</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val p: String by lazy {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val p: String by lazy {
     // 计算该字符串
 }
 </code></pre>
+</div>
 <h3 id="扩展函数">扩展函数</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun String.spaceToCamelCase() { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun String.spaceToCamelCase() { …… }
 
 "Convert this to camelcase".spaceToCamelCase()
 </code></pre>
+</div>
 <h3 id="创建单例">创建单例</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">object Resource {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">object Resource {
     val name = "Name"
 }
 </code></pre>
+</div>
 <h3 id="if-not-null-缩写">If not null 缩写</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val files = File("Test").listFiles()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val files = File("Test").listFiles()
 
 println(files?.size)
 </code></pre>
+</div>
 <h3 id="if-not-null-and-else-缩写">If not null and else 缩写</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val files = File("Test").listFiles()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val files = File("Test").listFiles()
 
 println(files?.size ?: "empty")
 </code></pre>
+</div>
 <h3 id="if-null-执行一个语句">if null 执行一个语句</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val values = ……
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val values = ……
 val email = values["email"] ?: throw IllegalStateException("Email is missing!")
 </code></pre>
+</div>
 <h3 id="在可能会空的集合中取第一元素">在可能会空的集合中取第一元素</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val emails = ... // 可能会是空集合
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val emails = ... // 可能会是空集合
 val mainEmail = emails.firstOrNull() ?: ""
 </code></pre>
+</div>
 <h3 id="if-not-null-执行代码">if not null 执行代码</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val value = ……
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val value = ……
 
 value?.let {
     …… // 代码会执行到此处, 假如data不为null
 }
 </code></pre>
+</div>
 <h3 id="映射可空值如果非空的话">映射可空值（如果非空的话）</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val value = ……
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val value = ……
 
 val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
 </code></pre>
+</div>
 <h3 id="返回-when-表达式">返回 when 表达式</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun transform(color: String): Int {
     return when (color) {
         "Red" -&gt; 0
         "Green" -&gt; 1
@@ -990,8 +1031,10 @@ val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
     }
 }
 </code></pre>
+</div>
 <h3 id="trycatch表达式">“try/catch”表达式</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun test() {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun test() {
     val result = try {
         count()
     } catch (e: ArithmeticException) {
@@ -1001,8 +1044,10 @@ val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
     // 使用 result
 }
 </code></pre>
+</div>
 <h3 id="if表达式">“if”表达式</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(param: Int) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(param: Int) {
     val result = if (param == 1) {
         "one"
     } else if (param == 2) {
@@ -1012,29 +1057,39 @@ val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
     }
 }
 </code></pre>
+</div>
 <h3 id="返回类型为-unit-的方法的-builder-风格用法">返回类型为 <code>Unit</code> 的方法的 Builder 风格用法</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun arrayOfMinusOnes(size: Int): IntArray {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun arrayOfMinusOnes(size: Int): IntArray {
     return IntArray(size).apply { fill(-1) }
 }
 </code></pre>
+</div>
 <h3 id="单表达式函数">单表达式函数</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun theAnswer() = 42
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun theAnswer() = 42
 </code></pre>
+</div>
 <p>等价于</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun theAnswer(): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun theAnswer(): Int {
     return 42
 }
 </code></pre>
+</div>
 <p>单表达式函数与其它惯用法一起使用能简化代码，例如和 <em class="keyword">when</em> 表达式一起使用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun transform(color: String): Int = when (color) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun transform(color: String): Int = when (color) {
     "Red" -&gt; 0
     "Green" -&gt; 1
     "Blue" -&gt; 2
     else -&gt; throw IllegalArgumentException("Invalid color param value")
 }
 </code></pre>
+</div>
 <h3 id="对一个对象实例调用多个方法-with">对一个对象实例调用多个方法 （<code>with</code>）</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Turtle {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Turtle {
     fun penDown()
     fun penUp()
     fun turn(degrees: Double)
@@ -1051,28 +1106,35 @@ with(myTurtle) { // 画一个 100 像素的正方形
     penUp()
 }
 </code></pre>
+</div>
 <h3 id="java-7-的-try-with-resources">Java 7 的 try with resources</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val stream = Files.newInputStream(Paths.get("/some/file.txt"))
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val stream = Files.newInputStream(Paths.get("/some/file.txt"))
 stream.buffered().reader().use { reader -&gt;
     println(reader.readText())
 }
 </code></pre>
+</div>
 <h3 id="对于需要泛型信息的泛型函数的适宜形式">对于需要泛型信息的泛型函数的适宜形式</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">//  public final class Gson {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">//  public final class Gson {
 //     ……
 //     public &lt;T&gt; T fromJson(JsonElement json, Class&lt;T&gt; classOfT) throws JsonSyntaxException {
 //     ……
 
 inline fun &lt;reified T: Any&gt; Gson.fromJson(json: JsonElement): T = this.fromJson(json, T::class.java)
 </code></pre>
+</div>
 <h3 id="使用可空布尔">使用可空布尔</h3>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Boolean? = ……
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val b: Boolean? = ……
 if (b == true) {
     ……
 } else {
     // `b` 是 false 或者 null
 }
 </code></pre>
+</div>
 
         </article>
     </div>

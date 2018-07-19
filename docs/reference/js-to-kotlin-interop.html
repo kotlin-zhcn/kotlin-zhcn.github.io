@@ -886,30 +886,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>为了防止损坏全局对象，Kotlin 创建一个包含当前模块中所有 Kotlin 声明的对象
 。所以如果你把模块命名为 <code>myModule</code>，那么所有的声明都可以<!--
 -->通过 <code>myModule</code> 对象在 JavaScript 中可用。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() = "Hello"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo() = "Hello"
 </code></pre>
+</div>
 <p>可以在 JavaScript 中这样调用：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.foo());
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">alert(myModule.foo());
 </code></pre>
+</div>
 <p>这不适用于当你将 Kotlin 模块编译为 JavaScript 模块时（关于这点的详细信息请参见 <a href="js-modules.html">JavaScript 模块</a>）。
 在这种情况下，不会有一个包装对象，而是将声明作为相应类型的 JavaScript 模块对外暴露。例如，
 对于 CommonJS 的场景，你应该写：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(require('myModule').foo());
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">alert(require('myModule').foo());
 </code></pre>
+</div>
 <h2 id="包结构">包结构</h2>
 <p>Kotlin 将其包结构暴露给 JavaScript，因此除非你在根包中定义声明，
 否则必须在 JavaScript 中使用完整限定的名称。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package my.qualified.packagename
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package my.qualified.packagename
 
 fun foo() = "Hello"
 </code></pre>
+</div>
 <p>可以在 JavaScript 中这样调用：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">alert(myModule.my.qualified.packagename.foo());
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">alert(myModule.my.qualified.packagename.foo());
 </code></pre>
+</div>
 <h3 id="jsname-注解"><code>@JsName</code> 注解</h3>
 <p>在某些情况下（例如为了支持重载），Kotlin 编译器会修饰（mangle） JavaScript 代码中生成的函数和属性<!--
 -->的名称。要控制生成的名称，可以使用 <code>@JsName</code> 注解：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 模块“kjs”
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 模块“kjs”
 class Person(val name: String) {
     fun hello() {
         println("Hello $name!")
@@ -921,11 +932,14 @@ class Person(val name: String) {
     }
 }
 </code></pre>
+</div>
 <p>现在，你可以通过以下方式在 JavaScript 中使用这个类：</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var person = new kjs.Person("Dmitry");   // 引用到模块“kjs”
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">var person = new kjs.Person("Dmitry");   // 引用到模块“kjs”
 person.hello();                          // 输出“Hello Dmitry!”
 person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 </code></pre>
+</div>
 <p>如果我们没有指定 <code>@JsName</code> 注解，相应函数的名称会包含<!--
 -->从函数签名计算而来的后缀，例如 <code>hello_61zpoe$</code>。</p>
 <p>请注意，Kotlin 编译器不会对 <code>external</code> 声明应用这种修饰，因此你不必在其上<!--
@@ -934,21 +948,24 @@ person.helloWithGreeting("Servus");      // 输出“Servus Dmitry!”
 <p><code>@JsName</code> 的参数需要是一个常量字符串字面值，该字面值是一个有效的标识符。
 任何尝试将非标识符字符串传递给 <code>@JsName</code> 时，编译器都会报错。
 以下示例会产生编译期错误：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("new C()")   // 此处出错
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@JsName("new C()")   // 此处出错
 external fun newC()
 </code></pre>
+</div>
 <h2 id="在-javascript-中表示-kotlin-类型">在 JavaScript 中表示 Kotlin 类型</h2>
 <ul>
 <li>除了 <code>kotlin.Long</code> 的 Kotlin 数字类型映射到 JavaScript Number。</li>
 <li><code>kotlin.Char</code> 映射到 JavaScript Number 来表示字符代码。</li>
-<li>
-<p>Kotlin 在运行时无法区分数字类型（<code>kotlin.Long</code> 除外），即以下代码能够工作：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f() {
+<li>Kotlin 在运行时无法区分数字类型（<code>kotlin.Long</code> 除外），即以下代码能够工作：
+    <div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun f() {
     val x: Int = 23
     val y: Any = x
     println(y as Float)
 }
 </code></pre>
+</div>
 </li>
 <li>Kotlin 保留了 <code>kotlin.Int</code>、 <code>kotlin.Byte</code>、 <code>kotlin.Short</code>、 <code>kotlin.Char</code> 和 <code>kotlin.Long</code> 的溢出语义。</li>
 <li>JavaScript 中没有 64 位整数，所以 <code>kotlin.Long</code> 没有映射到任何 JavaScript 对象，

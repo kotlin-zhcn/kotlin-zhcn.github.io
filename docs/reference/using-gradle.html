@@ -884,7 +884,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="插件和版本">插件和版本</h2>
 <p>使用 <code>kotlin-gradle-plugin</code> 编译 Kotlin 源代码和模块.</p>
 <p>要使用的 Kotlin 版本通常定义为 <code>kotlin_version</code> 属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.2.51'
 
     repositories {
@@ -896,57 +897,75 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 }
 </code></pre>
+</div>
 <p>当通过 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 与 <a href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 使用 Kotlin Gradle 插件 1.1.1 及以上版本时，这不是必需的。</p>
 <h2 id="针对-jvm">针对 JVM</h2>
 <p>针对 JVM，需要应用 Kotlin 插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: "kotlin"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">apply plugin: "kotlin"
 </code></pre>
+</div>
 <p>或者，从 Kotlin 1.1.1 起，可以使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">plugins {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">plugins {
     id "org.jetbrains.kotlin.jvm" version "1.2.51"
 }
 </code></pre>
+</div>
 <p>在这个块中的 <code>version</code> 必须是字面值，并且不能从其他构建脚本中应用。</p>
 <p>对于 Gradle Kotlin DSL，请按以下方式应用插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">plugins {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">plugins {
     kotlin("jvm") version "1.2.51"
 }
 </code></pre>
+</div>
 <p>Kotlin 源代码可以与同一个文件夹或不同文件夹中的 Java 源代码混用。默认约定是使用不同的文件夹：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">project
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">project
     - src
         - main (root)
             - kotlin
             - java
 </code></pre>
+</div>
 <p>如果不使用默认约定，那么应该更新相应的 <em>sourceSets</em> 属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">sourceSets {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">sourceSets {
     main.kotlin.srcDirs += 'src/main/myKotlin'
     main.java.srcDirs += 'src/main/myJava'
 }
 </code></pre>
+</div>
 <p>对于 Gradle Kotlin DSL，请改用 <code>java.sourceSets { …… }</code> 配置源集。</p>
 <h2 id="针对-javascript">针对 JavaScript</h2>
 <p>当针对 JavaScript 时，须应用不同的插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: "kotlin2js"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">apply plugin: "kotlin2js"
 </code></pre>
+</div>
 <p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
 -->针对 JVM 一样，如果不使用默认约定，我们需要使用 <em>sourceSets</em> 来指定源代码文件夹：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">sourceSets {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">sourceSets {
     main.kotlin.srcDirs += 'src/main/myKotlin'
 }
 </code></pre>
+</div>
 <p>除了输出的 JavaScript 文件，该插件默认会创建一个带二进制描述符的额外 JS 文件。
 如果你是构建其他 Kotlin 模块可以依赖的可重用库，那么该文件是必需的，并且应该与转换结果一起分发。
 其生成由 <code>kotlinOptions.metaInfo</code> 选项控制：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compileKotlin2Js {
     kotlinOptions.metaInfo = true
 }
 </code></pre>
+</div>
 <h2 id="针对-android">针对 Android</h2>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.2.51'
 
     ……
@@ -958,10 +977,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 </code></pre>
+</div>
 <p>不要忘记配置<a href="#配置依赖">标准库依赖关系</a>。</p>
 <h3 id="android-studio">Android Studio</h3>
 <p>如果使用 Android Studio，那么需要在 android 下添加以下内容：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">android {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">android {
   ……
 
   sourceSets {
@@ -969,10 +990,12 @@ apply plugin: 'kotlin-android'
   }
 }
 </code></pre>
+</div>
 <p>这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 <code>src/main/java</code>。</p>
 <h2 id="配置依赖">配置依赖</h2>
 <p>除了上面显示的 <code>kotlin-gradle-plugin</code> 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">repositories {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">repositories {
     mavenCentral()
 }
 
@@ -980,32 +1003,41 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib"
 }
 </code></pre>
+</div>
 <p>如果针对 JavaScript，请使用 <code>compile "org.jetbrains.kotlin:kotlin-stdlib-js"</code> 替代之。</p>
 <p>如果是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，其中包含<!--
 -->为新版 JDK 增加的额外的扩展函数。使用以下依赖之一来取代 <code>kotlin-stdlib</code>
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7"
 compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 </code></pre>
+</div>
 <p>对于 Gradle Kotlin DSL，以下表示法的依赖关系与其等价：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">dependencies {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">dependencies {
     compile(kotlin("stdlib"))
     // 或者以下之一：
     compile(kotlin("stdlib-jdk7"))
     compile(kotlin("stdlib-jdk8"))
 }
 </code></pre>
+</div>
 <p>在 Kotlin 1.1.x 中，请使用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
 <p>如果你的项目中使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a>或者测试设施，你也需要添加相应的依赖：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-reflect"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compile "org.jetbrains.kotlin:kotlin-reflect"
 testCompile "org.jetbrains.kotlin:kotlin-test"
 testCompile "org.jetbrains.kotlin:kotlin-test-junit"
 </code></pre>
+</div>
 <p>或者，对于 Gradle Kotlin DSL：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">compile(kotlin("reflect"))
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compile(kotlin("reflect"))
 testCompile(kotlin("test"))
 testCompile(kotlin("test-junit"))
 </code></pre>
+</div>
 <p>从 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用<!--
 -->从已应用的插件获得的版本来解析。你可以用完整的依赖关系符号
 （如 <code>compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"</code>，或者在 Gradle Kotlin DSL 中用 <code>kotlin("stdlib", kotlinVersion)</code>）手动提供其版本。</p>
@@ -1028,33 +1060,43 @@ testCompile(kotlin("test-junit"))
 <h2 id="协程支持">协程支持</h2>
 <p><a href="coroutines.html">协程</a>支持是 Kotlin 1.2 中的一个实验性的功能，所以当你在项目中使用协程时，Kotlin 编译器会报告一个警告。
 如果要关闭该警告，可以将以下块添加到你的 <code>build.gradle</code> 文件中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">kotlin {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">kotlin {
     experimental {
         coroutines 'enable'
     }
 }
 </code></pre>
+</div>
 <p>或者，对于 Gradle Kotlin DSL：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import org.jetbrains.kotlin.gradle.dsl.Coroutines
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.dsl.Coroutines
 // ……
 
 kotlin.experimental.coroutines = Coroutines.ENABLE
 </code></pre>
+</div>
 <h2 id="模块名称">模块名称</h2>
 <p>构建生成的 Kotlin 模块会按照该项目的 <code>archivesBaseName</code> 属性命名。 如果一个项目具有宽泛的名称如 <code>lib</code> 或者 <code>jvm</code>——这在子项目中很常见，与该模块相关的 Kotlin 输出文件（<code>*.kotlin_module</code>）可能会与来自第三方的同名模块发生冲突。 当项目打包成单一归档（例如 APK）时这会出问题。</p>
 <p>为了避免这种情况，请考虑手动设置唯一的 <code>archivesBaseName</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">archivesBaseName = 'myExampleProject_lib'
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">archivesBaseName = 'myExampleProject_lib'
 </code></pre>
+</div>
 <p>对于 Gradle Kotlin DSL，要这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">setProperty("archivesBaseName", "myExampleProject_lib")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">setProperty("archivesBaseName", "myExampleProject_lib")
 </code></pre>
+</div>
 <h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
 <p>Kotlin 插件支持 <a href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
 <p>由于注解处理器运行的任意代码可能不一定会将任务输入转换为输出、可能访问与修改 Gradle 未跟踪的文件等，因此默认不缓存 kapt 注解处理任务。要启用 kapt 缓存，请将以下列几行添加到构建脚本中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">kapt {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">kapt {
     useBuildCache = true
 }
 </code></pre>
+</div>
 <p>要禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
 <h2 id="编译器选项">编译器选项</h2>
 <p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
@@ -1063,7 +1105,8 @@ kotlin.experimental.coroutines = Coroutines.ENABLE
 <p>Android 项目中的任务名称包含<a href="https://developer.android.com/studio/build/build-variants.html">构建变体</a> 名称，并遵循 <code>compile&lt;BuildVariant&gt;Kotlin</code> 的模式，例如 <code>compileDebugKotlin</code>、 <code>compileReleaseUnitTestKotlin</code>。</p>
 <p>当针对 JavaScript 时，这些任务分别称为 <code>compileKotlin2Js</code> 与 <code>compileTestKotlin2Js</code>，以及对于自定义源文件集称为 <code>compile＜Name＞Kotlin2Js</code>。</p>
 <p>要配置单个任务，请使用其名称。示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compileKotlin {
     kotlinOptions.suppressWarnings = true
 }
 
@@ -1073,22 +1116,25 @@ compileKotlin {
     }
 }
 </code></pre>
+</div>
 <p>对于 Gradle Kotlin DSL，首先从项目的 <code>tasks</code> 中获取任务：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // ……
 
 val kotlinCompile: KotlinCompile by tasks
 
 kotlinCompile.kotlinOptions.suppressWarnings = true
 </code></pre>
+</div>
 <p>相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCompileCommon</code>。</p>
 <p>也可以在项目中配置所有 Kotlin 编译任务：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        // ……
-    }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions { …… }
 }
 </code></pre>
+</div>
 <p>对于 Gradle 任务的完整选项列表如下：</p>
 <h3 id="jvmjs-与-js-dce-的公共属性">JVM、JS 与 JS DCE 的公共属性</h3>
 <table>

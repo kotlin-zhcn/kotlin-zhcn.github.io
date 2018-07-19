@@ -881,7 +881,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="嵌套类与内部类">嵌套类与内部类</h1>
 <p>类可以嵌套在其他类中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Outer {
     private val bar: Int = 1
     class Nested {
         fun foo() = 2
@@ -890,9 +891,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 val demo = Outer.Nested().foo() // == 2
 </code></pre>
+</div>
 <h2 id="内部类">内部类</h2>
 <p>类可以标记为 <em class="keyword">inner</em> 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Outer {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Outer {
     private val bar: Int = 1
     inner class Inner {
         fun foo() = bar
@@ -901,23 +904,25 @@ val demo = Outer.Nested().foo() // == 2
 
 val demo = Outer().Inner().foo() // == 1
 </code></pre>
+</div>
 <p>参见<a href="this-expressions.html">限定的 <em class="keyword">this</em> 表达式</a>以了解内部类中的 <em class="keyword">this</em> 的消歧义用法。</p>
 <h2 id="匿名内部类">匿名内部类</h2>
 <p>使用<a href="object-declarations.html#对象表达式">对象表达式</a>创建匿名内部类实例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">window.addMouseListener(object: MouseAdapter() {
-    override fun mouseClicked(e: MouseEvent) {
-        // ……
-    }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">window.addMouseListener(object: MouseAdapter() {
+
+    override fun mouseClicked(e: MouseEvent) { …… }
                                                                                                             
-    override fun mouseEntered(e: MouseEvent) {
-        // ……
-    }
+    override fun mouseEntered(e: MouseEvent) { …… }
 })
 </code></pre>
+</div>
 <p>如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
 你可以使用带接口类型前缀的lambda表达式创建它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val listener = ActionListener { println("clicked") }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val listener = ActionListener { println("clicked") }
 </code></pre>
+</div>
 
         </article>
     </div>

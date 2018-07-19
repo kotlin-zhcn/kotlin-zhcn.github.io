@@ -890,7 +890,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 该 <code>JsClass</code> 实例本身就是对构造函数的引用。
 这可以用于与期望构造函数的引用的 JS 函数进行互操作。</p>
 <p>示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class A
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class A
 class B
 class C
 
@@ -904,6 +905,7 @@ println(B::class.simpleName)  // 获取一个类型的类；输出“B”
 println(B::class.js.name)     // 输出“B”
 foo&lt;C&gt;()                      // 输出“C”
 </code></pre>
+</div>
 
         </article>
     </div>

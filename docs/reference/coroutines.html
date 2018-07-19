@@ -892,33 +892,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>另一个区别是，协程不能在随机的指令中挂起，而只能在所谓的<em>挂起点</em>挂起，这会调用特别标记的函数。</p>
 <h2 id="挂起函数">挂起函数</h2>
 <p>当我们调用标记有特殊修饰符 <code>suspend</code> 的函数时，会发生挂起：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">suspend fun doSomething(foo: Foo): Bar {
-    ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">suspend fun doSomething(foo: Foo): Bar { …… }
 </code></pre>
+</div>
 <p>这样的函数称为<em>挂起函数</em>，因为调用它们可能挂起协程（如果相关调用的结果已经可用，库可以决定继续进行而不挂起）。挂起函数能够以与普通函数相同的方式获取参数和返回值，但它们只能从协程、其他挂起函数以及内联到其中的函数字面值中调用。</p>
 <p>事实上，要启动协程，必须至少有一个挂起函数，它通常是匿名的（即它是一个挂起 lambda 表达式）。让我们来看一个例子，一个简化的 <code>async()</code> 函数（源自 <a href="#kotlincoroutines-中的生成器-api"><code>kotlinx.coroutines</code></a> 库）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; async(block: suspend () -&gt; T)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; async(block: suspend () -&gt; T)
 </code></pre>
+</div>
 <p>这里的 <code>async()</code> 是一个普通函数（不是挂起函数），但是它的 <code>block</code> 参数具有一个带 <code>suspend</code> 修饰符的函数类型： <code>suspend () -&gt; T</code>。所以，当我们将一个 lambda 表达式传给 <code>async()</code> 时，它会是<em>挂起 lambda 表达式</em>，于是我们可以从中调用挂起函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">async {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">async {
     doSomething(foo)
     ……
 }
 </code></pre>
+</div>
 <blockquote>
 <p><strong>注意：</strong>目前挂起函数类型不能用作超类型，并且目前不支持匿名挂起函数。</p>
 </blockquote>
 <p>继续该类比，<code>await()</code> 可以是一个挂起函数（因此也可以在一个 <code>async {}</code> 块中调用），该函数挂起一个协程，直到一些计算完成并返回其结果：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">async {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">async {
     ……
     val result = computation.await()
     ……
 }
 </code></pre>
+</div>
 <p>更多关于 <code>async/await</code> 函数实际在 <code>kotlinx.coroutines</code> 中如何工作的信息可以在<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/coroutines-guide.md#composing-suspending-functions">这里</a>找到。</p>
 <p>请注意，挂起函数 <code>await()</code> 与 <code>doSomething()</code> 不能在没有内联到挂起函数体的函数字面值以及像 <code>main()</code> 这样的普通函数中调用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     doSomething() // 错误：挂起函数从非协程上下文调用
     
     async { 
@@ -933,8 +940,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 }
 </code></pre>
+</div>
 <p>还要注意的是，挂起函数可以是虚拟的，当覆盖它们时，必须指定 <code>suspend</code> 修饰符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Base {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface Base {
     suspend fun foo()
 }
 
@@ -942,15 +951,16 @@ class Derived: Base {
     override suspend fun foo() { …… }
 }
 </code></pre>
+</div>
 <h3 id="restrictssuspension-注解"><code>@RestrictsSuspension</code> 注解</h3>
 <p>扩展函数（和 lambda 表达式）也可以标记为 <code>suspend</code>，就像普通的一样。这允许创建 <a href="type-safe-builders.html">DSL</a> 及其他用户可扩展的 API。在某些情况下，库作者需要阻止用户添加<em>新方式</em>来挂起协程。</p>
 <p>为了实现这一点，可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-restricts-suspension/index.html"><code>@RestrictsSuspension</code></a> 注解。当接收者类/接口 <code>R</code> 用它标注时，所有挂起扩展都需要委托给 <code>R</code> 的成员或其它委托给它的扩展。由于扩展不能无限相互委托（程序不会终止），这保证所有挂起都通过调用 <code>R</code> 的成员发生，库的作者就可以完全控制了。</p>
 <p>这在<em>少数</em>情况是需要的，当每次挂起在库中以特殊方式处理时。例如，当通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-sequence.html"><code>buildSequence()</code></a> 函数实现<a href="#kotlincoroutines-中的生成器-api">下文</a>所述的生成器时，我们需要确保在协程中的任何挂起调用最终调用 <code>yield()</code> 或 <code>yieldAll()</code> 而不是任何其他函数。这就是为什么 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-sequence-builder/index.html"><code>SequenceBuilder</code></a> 用 <code>@RestrictsSuspension</code> 注解：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@RestrictsSuspension
-public abstract class SequenceBuilder&lt;in T&gt; {
-    ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@RestrictsSuspension
+public abstract class SequenceBuilder&lt;in T&gt; { …… }
 </code></pre>
+</div>
 <p>参见其 <a href="https://github.com/JetBrains/kotlin/blob/master/libraries/stdlib/src/kotlin/coroutines/experimental/SequenceBuilder.kt">Github 上</a> 的源代码。</p>
 <h2 id="协程的内部机制">协程的内部机制</h2>
 <p>我们不是在这里给出一个关于协程如何工作的完整解释，然而粗略地认识发生了什么是相当重要的。</p>
@@ -993,7 +1003,7 @@ public abstract class SequenceBuilder&lt;in T&gt; {
 <li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/build-iterator.html"><code>buildIterator()</code></a></li>
 </ul>
 <p>这些包含在 <code>kotlin-stdlib</code> 中因为他们与序列相关。这些函数（我们可以仅限于这里的 <code>buildSequence()</code>）实现了 <em>生成器</em> ，即提供一种廉价构建惰性序列的方法：</p>
-<div class="sample" data-min-compiler-version="1.1">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
 
 fun main(args: Array&lt;String&gt;) {
@@ -1021,7 +1031,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>这通过创建一个协程生成一个惰性的、潜在无限的斐波那契数列，该协程通过调用 <code>yield()</code> 函数来产生连续的斐波纳契数。当在这样的序列的迭代器上迭代每一步，都会执行生成下一个数的协程的另一部分。因此，我们可以从该序列中取出任何有限的数字列表，例如 <code>fibonacciSeq.take(8).toList()</code> 结果是 <code>[1, 1, 2, 3, 5, 8, 13, 21]</code>。协程足够廉价使这很实用。</p>
 <p>为了演示这样一个序列的真正惰性，让我们在调用 <code>buildSequence()</code> 内部输出一些调试信息：</p>
-<div class="sample" data-min-compiler-version="1.1">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
 
 fun main(args: Array&lt;String&gt;) {
@@ -1043,7 +1053,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>运行上述代码会输出前三个元素。这些数字与生成循环中的 <code>STEP</code> 相交叉。这意味着计算确实是惰性的。要输出 <code>1</code>，我们只执行到第一个 <code>yield(i)</code>，并且过程中会输出 <code>START</code>。然后，输出 <code>2</code>，我们需要继续下一个 <code>yield(i)</code>，并会输出 <code>STEP</code>。<code>3</code> 也一样。永远不会输出再下一个 <code>STEP</code>（以及<code>END</code>），因为我们再也没有请求序列的后续元素。</p>
 <p>为了一次产生值的集合（或序列），可以使用 <code>yieldAll()</code> 函数：</p>
-<div class="sample" data-min-compiler-version="1.1">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
 
 fun main(args: Array&lt;String&gt;) {
@@ -1060,7 +1070,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p><code>buildIterator()</code> 的工作方式类似于 <code>buildSequence()</code>，但返回一个惰性迭代器。</p>
 <p>可以通过为 <code>SequenceBuilder</code> 类写挂起扩展（带有<a href="#restrictssuspension-注解">上文</a>描述的 <code>@RestrictsSuspension</code> 注解）来为 <code>buildSequence()</code> 添加自定义生产逻辑（custom yielding logic）：</p>
-<div class="sample" data-min-compiler-version="1.1">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.experimental.*
 
 //sampleStart

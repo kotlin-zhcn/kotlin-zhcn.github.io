@@ -891,7 +891,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>一个不错的示例是集合的<a href="https://en.wikipedia.org/wiki/Fold_(higher-order_function)">函数式风格的 <code>fold</code></a>，
 它接受一个初始累积值与一个接合函数，并通过将当前累积值与每个集合元素连<!--
 -->续接合起来代入累积值来构建返回值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T, R&gt; Collection&lt;T&gt;.fold(
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T, R&gt; Collection&lt;T&gt;.fold(
     initial: R, 
     combine: (acc: R, nextElement: T) -&gt; R
 ): R {
@@ -902,13 +903,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     return accumulator
 }
 </code></pre>
+</div>
 <p>在上述代码中，参数 <code>combine</code> 具有<a href="#函数类型">函数类型</a> <code>(R, T) -&gt; R</code>，因此 <code>fold</code> 接受一个函数作为参数，
 该函数接受类型分别为 <code>R</code> 与 <code>T</code> 的两个参数并返回一个 <code>R</code> 类型的值。
 在 <em class="keyword">for</em>-循环内部调用该函数，然后将其返回值<!--
 -->赋值给 <code>accumulator</code>。</p>
 <p>为了调用 <code>fold</code>，需要传给它一个<a href="#函数类型实例化">函数类型的实例</a>作为参数，而在高阶函数调用处，（<a href="#lambda-表达式与匿名函数">下文详述的</a>）lambda 表达
 式广泛用于此目的。</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
     val items = listOf(1, 2, 3, 4, 5)
@@ -966,8 +968,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <code>((Int) -&gt; (Int)) -&gt; Unit</code>。</p>
 </blockquote>
 <p>还可以通过使用<a href="type-aliases.html">类型别名</a>给函数类型起一个别称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias ClickHandler = (Button, ClickEvent) -&gt; Unit
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">typealias ClickHandler = (Button, ClickEvent) -&gt; Unit
 </code></pre>
+</div>
 <h3 id="函数类型实例化">函数类型实例化</h3>
 <p>有几种方法可以获得函数类型的实例：</p>
 <ul>
@@ -988,21 +992,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </li>
 <li>
 <p>使用实现函数类型接口的自定义类的实例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">  class IntTransformer: (Int) -&gt; Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">  class IntTransformer: (Int) -&gt; Int {
       override operator fun invoke(x: Int): Int = TODO()
   }
     
   val intFunction: (Int) -&gt; Int = IntTransformer() 
 </code></pre>
+</div>
 </li>
 </ul>
 <p>如果有足够信息，编译器可以推断变量的函数类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val a = { i: Int -&gt; i + 1 } // 推断出的类型是 (Int) -&gt; Int
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val a = { i: Int -&gt; i + 1 } // 推断出的类型是 (Int) -&gt; Int
 </code></pre>
+</div>
 <p>带与不带接收者的函数类型<em>非字面</em>值可以互换，其中接收者可以替代<!--
 -->第一个参数，反之亦然。例如，<code>(A, B) -&gt; C</code> 类型的值可以传给或赋值<!--
 -->给期待 <code>A.(B) -&gt; C</code> 的地方，反之亦然：</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
     val repeat: String.(Int) -&gt; String = { times -&gt; repeat(times) }
@@ -1028,7 +1036,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 调用带有接收者的函数类型值的另一个方式是在其前面加上接收者对象，
 就好比该值是一个<a href="extensions.html">扩展函数</a>：<code>1.foo(2)</code>，</p>
 <p>例如：</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
     val stringPlus: (String, String) -&gt; String = String::plus
@@ -1050,42 +1058,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="lambda-表达式与匿名函数">Lambda 表达式与匿名函数</h2>
 <p>lambda 表达式与匿名函数是“函数字面值”，即未声明的函数，
 但立即做为表达式传递。考虑下面的例子：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">max(strings, { a, b -&gt; a.length &lt; b.length })
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">max(strings, { a, b -&gt; a.length &lt; b.length })
 </code></pre>
+</div>
 <p>函数 <code>max</code> 是一个高阶函数，它接受一个函数作为第二个参数。
 其第二个参数是一个表达式，它本身是一个函数，即函数字面值，它等价于<!--
 -->以下命名函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun compare(a: String, b: String): Boolean = a.length &lt; b.length
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun compare(a: String, b: String): Boolean = a.length &lt; b.length
 </code></pre>
+</div>
 <h3 id="lambda-表达式语法">Lambda 表达式语法</h3>
 <p>Lambda 表达式的完整语法形式如下：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = { x: Int, y: Int -&gt; x + y }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val sum = { x: Int, y: Int -&gt; x + y }
 </code></pre>
+</div>
 <p>lambda 表达式总是括在花括号中，
 完整语法形式的参数声明放在花括号内，并有可选的类型标注，
 函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。</p>
 <p>如果我们把所有可选标注都留下，看起来如下：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum: (Int, Int) -&gt; Int = { x, y -&gt; x + y }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val sum: (Int, Int) -&gt; Int = { x, y -&gt; x + y }
 </code></pre>
+</div>
 <h3 id="将-lambda-表达式传给最后一个参数">将 lambda 表达式传给最后一个参数</h3>
 <p>在 Kotlin 中有一个约定：如果函数的最后一个参数接受函数，那么作为相应参数<!--
 -->传入的 lambda 表达式可以放在圆括号之外：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val product = items.fold(1) { acc, e -&gt; acc * e }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val product = items.fold(1) { acc, e -&gt; acc * e }
 </code></pre>
+</div>
 <p>如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">run { println("...") }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">run { println("...") }
 </code></pre>
+</div>
 <h3 id="it单个参数的隐式名称"><code>it</code>：单个参数的隐式名称</h3>
 <p>一个 lambda 表达式只有一个参数是很常见的。</p>
 <p>如果编译器自己可以识别出签名，也可以不用声明唯一的参数并忽略 <code>-&gt;</code>。
 该参数会隐式声明为 <code>it</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter { it &gt; 0 } // 这个字面值是“(it: Int) -&gt; Boolean”类型的
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">ints.filter { it &gt; 0 } // 这个字面值是“(it: Int) -&gt; Boolean”类型的
 </code></pre>
+</div>
 <h3 id="从-lambda-表达式中返回一个值">从 lambda 表达式中返回一个值</h3>
 <p>我们可以使用<a href="returns.html#标签处返回">限定的返回</a>语法从 lambda 显式返回一个值。
 否则，将隐式返回最后一个表达式的值。</p>
 <p>因此，以下两个片段是等价的：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">ints.filter {
     val shouldFilter = it &gt; 0 
     shouldFilter
 }
@@ -1095,32 +1118,43 @@ ints.filter {
     return@filter shouldFilter
 }
 </code></pre>
+</div>
 <p>这一约定连同<a href="#将-lambda-表达式传给最后一个参数">在圆括号外传递 lambda 表达式</a>一起支持
 <a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx">LINQ-风格</a> 的代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }
 </code></pre>
+</div>
 <h3 id="下划线用于未使用的变量自-11-起">下划线用于未使用的变量（自 1.1 起）</h3>
 <p>如果 lambda 表达式的参数未使用，那么可以用下划线取代其名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">map.forEach { _, value -&gt; println("$value!") }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">map.forEach { _, value -&gt; println("$value!") }
 </code></pre>
+</div>
 <h3 id="在-lambda-表达式中解构自-11-起">在 lambda 表达式中解构（自 1.1 起）</h3>
 <p>在 lambda 表达式中解构是作为<a href="multi-declarations.html#在-lambda-表达式中解构自-11-起">解构声明</a>的一部分描述的。</p>
 <h3 id="匿名函数">匿名函数</h3>
 <p>上面提供的 lambda 表达式语法缺少的一个东西是指定函数的返回类型的<!--
 -->能力。在大多数情况下，这是不必要的。因为返回类型可以自动推断出来。然而，如果<!--
 -->确实需要显式指定，可以使用另一种语法： <em>匿名函数</em> 。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int = x + y
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun(x: Int, y: Int): Int = x + y
 </code></pre>
+</div>
 <p>匿名函数看起来非常像一个常规函数声明，除了其名称省略了。其函数体<!--
 -->可以是表达式（如上所示）或代码块：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun(x: Int, y: Int): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun(x: Int, y: Int): Int {
     return x + y
 }
 </code></pre>
+</div>
 <p>参数和返回类型的指定方式与常规函数相同，除了<!--
 -->能够从上下文推断出的参数类型可以省略：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">ints.filter(fun(item) = item &gt; 0)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">ints.filter(fun(item) = item &gt; 0)
 </code></pre>
+</div>
 <p>匿名函数的返回类型推断机制与正常函数一样：对于具有表达式函数体的匿名函数将自动<!--
 -->推断返回类型，而具有代码块函数体的返回类型必须显式<!--
 -->指定（或者已假定为 <code>Unit</code>）。</p>
@@ -1134,12 +1168,14 @@ ints.filter {
 <h3 id="闭包">闭包</h3>
 <p>Lambda 表达式或者匿名函数（以及<a href="functions.html#局部函数">局部函数</a>和<a href="object-declarations.html#对象表达式">对象表达式</a>）
 可以访问其 <em>闭包</em> ，即在外部作用域中声明的变量。 与 Java 不同的是可以修改闭包中捕获的变量：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">var sum = 0
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">var sum = 0
 ints.filter { it &gt; 0 }.forEach {
     sum += it
 }
 print(sum)
 </code></pre>
+</div>
 <h3 id="带有接收者的函数字面值">带有接收者的函数字面值</h3>
 <p>带有接收者的<a href="#函数类型">函数类型</a>，例如 <code>A.(B) -&gt; C</code>，可以用特殊形式的函数字面值实例化——
 带有接收者的函数字面值。</p>
@@ -1151,15 +1187,20 @@ print(sum)
 -->。</p>
 <p>这里有一个带有接收者的函数字面值及其类型的示例，其中在接收者对象上调用了 <code>plus</code>
 ：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum: Int.(Int) -&gt; Int = { other -&gt; plus(other) } 
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val sum: Int.(Int) -&gt; Int = { other -&gt; plus(other) } 
 </code></pre>
+</div>
 <p>匿名函数语法允许你直接指定函数字面值的接收者类型。
 如果你需要使用带接收者的函数类型声明一个变量，并在之后使用它，这将非常有用。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = fun Int.(other: Int): Int = this + other
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val sum = fun Int.(other: Int): Int = this + other
 </code></pre>
+</div>
 <p>当接收者类型可以从上下文推断时，lambda 表达式可以用作带接收者的函数字面值。
 One of the most important examples of their usage is <a href="type-safe-builders.html">type-safe builders</a>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class HTML {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class HTML {
     fun body() { …… }
 }
 
@@ -1173,6 +1214,7 @@ html {       // 带接收者的 lambda 由此开始
     body()   // 调用该接收者对象的一个方法
 }
 </code></pre>
+</div>
 
         </article>
     </div>

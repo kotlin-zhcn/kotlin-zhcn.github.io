@@ -941,46 +941,77 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h3 id="数字字面值中的下划线自-11-起">数字字面值中的下划线（自 1.1 起）</h3>
 <p>你可以使用下划线使数字常量更易读：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val oneMillion = 1_000_000
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val oneMillion = 1_000_000
 val creditCardNumber = 1234_5678_9012_3456L
 val socialSecurityNumber = 999_99_9999L
 val hexBytes = 0xFF_EC_DE_5E
 val bytes = 0b11010010_01101001_10010100_10010010
 </code></pre>
+</div>
 <h3 id="表示方式">表示方式</h3>
 <p>在 Java 平台数字是物理存储为 JVM 的原生类型，除非我们需要一个可空的引用（如 <code>Int?</code>）或泛型。
 后者情况下会把数字装箱。</p>
 <p>注意数字装箱不必保留同一性:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 10000
-print(a === a) // 输出“true”
-val boxedA: Int? = a
-val anotherBoxedA: Int? = a
-print(boxedA === anotherBoxedA) // ！！！输出“false”！！！
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val a: Int = 10000
+    println(a === a) // 输出“true”
+    val boxedA: Int? = a
+    val anotherBoxedA: Int? = a
+    println(boxedA === anotherBoxedA) // ！！！输出“false”！！！
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>另一方面，它保留了相等性:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val a: Int = 10000
-print(a == a) // 输出“true”
-val boxedA: Int? = a
-val anotherBoxedA: Int? = a
-print(boxedA == anotherBoxedA) // 输出“true”
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val a: Int = 10000
+    println(a == a) // 输出“true”
+    val boxedA: Int? = a
+    val anotherBoxedA: Int? = a
+    println(boxedA == anotherBoxedA) // 输出“true”
+//sampleEnd
+}
 </code></pre>
+</div>
 <h3 id="显式转换">显式转换</h3>
 <p>由于不同的表示方式，较小类型并不是较大类型的子类型。
 如果它们是的话，就会出现下述问题：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 假想的代码，实际上并不能编译：
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 假想的代码，实际上并不能编译：
 val a: Int? = 1 // 一个装箱的 Int (java.lang.Integer)
 val b: Long? = a // 隐式转换产生一个装箱的 Long (java.lang.Long)
 print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测另一个是否也为 Long
 </code></pre>
+</div>
 <p>所以相等性会在所有地方悄无声息地失去，更别说同一性了。</p>
 <p>因此较小的类型<strong>不能</strong>隐式转换为较大的类型。
 这意味着在不进行显式转换的情况下我们不能把 <code>Byte</code> 型值赋给一个 <code>Int</code> 变量。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val b: Byte = 1 // OK, 字面值是静态检测的
-val i: Int = b // 错误
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    val b: Byte = 1 // OK, 字面值是静态检测的
+    val i: Int = b // 错误
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>我们可以显式转换来拓宽数字</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val i: Int = b.toInt() // OK: 显式拓宽
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+    val b: Byte = 1
+//sampleStart
+    val i: Int = b.toInt() // OK：显式拓宽
+    print(i)
+//sampleEnd
+}
+
 </code></pre>
+</div>
 <p>每个数字类型支持如下的转换:</p>
 <ul>
 <li><code>toByte(): Byte</code></li>
@@ -992,14 +1023,18 @@ val i: Int = b // 错误
 <li><code>toChar(): Char</code></li>
 </ul>
 <p>缺乏隐式类型转换并不显著，因为类型会从上下文推断出来，而算术运算会有重载做适当转换，例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = 1L + 3 // Long + Int =&gt; Long
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = 1L + 3 // Long + Int =&gt; Long
 </code></pre>
+</div>
 <h3 id="运算">运算</h3>
 <p>Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。
 参见<a href="operator-overloading.html">运算符重载</a>。</p>
 <p>对于位运算，没有特殊字符来表示，而只可用中缀方式调用命名函数，例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val x = (1 shl 2) and 0x000FF000
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val x = (1 shl 2) and 0x000FF000
 </code></pre>
+</div>
 <p>这是完整的位运算列表（只用于 <code>Int</code> 和 <code>Long</code>）：</p>
 <ul>
 <li><code>shl(bits)</code> – 有符号左移 (Java 的 <code>&lt;&lt;</code>)</li>
@@ -1030,23 +1065,27 @@ val i: Int = b // 错误
 </ul>
 <h2 id="字符">字符</h2>
 <p>字符用 <code>Char</code> 类型表示。它们不能直接当作数字</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun check(c: Char) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun check(c: Char) {
     if (c == 1) { // 错误：类型不兼容
         // ……
     }
 }
 </code></pre>
+</div>
 <p>字符字面值用单引号括起来: <code>'1'</code>。
 特殊字符可以用反斜杠转义。
 支持这几个转义序列：<code>\t</code>、 <code>\b</code>、<code>\n</code>、<code>\r</code>、<code>\'</code>、<code>\"</code>、<code>\\</code> 和 <code>\$</code>。
 编码其他字符要用 Unicode 转义序列语法：<code>'\uFF00'</code>。</p>
 <p>我们可以显式把字符转换为 <code>Int</code> 数字：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun decimalDigitValue(c: Char): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun decimalDigitValue(c: Char): Int {
     if (c !in '0'..'9')
         throw IllegalArgumentException("Out of range")
     return c.toInt() - '0'.toInt() // 显式转换为数字
 }
 </code></pre>
+</div>
 <p>当需要可空引用时，像数字、字符会被装箱。装箱操作不会保留同一性。</p>
 <h2 id="布尔">布尔</h2>
 <p>布尔用 <code>Boolean</code> 类型表示，它有两个值：<em class="keyword">true</em> 和 <em class="keyword">false</em>。</p>
@@ -1059,7 +1098,8 @@ val i: Int = b // 错误
 </ul>
 <h2 id="数组">数组</h2>
 <p>数组在 Kotlin 中使用 <code>Array</code> 类来表示，它定义了 <code>get</code> 和 <code>set</code> 函数（按照运算符重载约定这会转变为 <code>[]</code>）和 <code>size</code> 属性，以及一些其他有用的成员函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Array&lt;T&gt; private constructor() {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Array&lt;T&gt; private constructor() {
     val size: Int
     operator fun get(index: Int): T
     operator fun set(index: Int, value: T): Unit
@@ -1068,13 +1108,21 @@ val i: Int = b // 错误
     // ……
 }
 </code></pre>
+</div>
 <p>我们可以使用库函数 <code>arrayOf()</code> 来创建一个数组并传递元素值给它，这样 <code>arrayOf(1, 2, 3)</code> 创建了 array [1, 2, 3]。
 或者，库函数 <code>arrayOfNulls()</code> 可以用于创建一个指定大小的、所有元素都为空的数组。</p>
 <p>另一个选项是用接受数组大小和一个函数参数的 <code>Array</code> 构造函数，用作参数的函数能够返回<!--
 -->给定索引的每个元素初始值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 创建一个 Array&lt;String&gt; 初始化为 ["0", "1", "4", "9", "16"]
-val asc = Array(5, { i -&gt; (i * i).toString() })
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+    // 创建一个 Array&lt;String&gt; 初始化为 ["0", "1", "4", "9", "16"]
+    val asc = Array(5, { i -&gt; (i * i).toString() })
+    asc.forEach { println(it) }
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>如上所述，<code>[]</code> 运算符代表调用成员函数 <code>get()</code> 和 <code>set()</code>。</p>
 <p>注意: 与 Java 不同的是，Kotlin 中数组是不型变的（invariant）。这意味着 Kotlin 不让我们把 <code>Array&lt;String&gt;</code>
 赋值给 <code>Array&lt;Any&gt;</code>，以防止可能的运行时失败（但是你可以使用 <code>Array&lt;out Any&gt;</code>,
@@ -1082,14 +1130,16 @@ val asc = Array(5, { i -&gt; (i * i).toString() })
 <p>Kotlin 也有无装箱开销的专门的类来表示原生类型数组: <code>ByteArray</code>、
 <code>ShortArray</code>、<code>IntArray</code> 等等。这些类和 <code>Array</code> 并没有继承关系，但是<!--
 -->它们有同样的方法属性集。它们也都有相应的工厂方法:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val x: IntArray = intArrayOf(1, 2, 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val x: IntArray = intArrayOf(1, 2, 3)
 x[0] = x[1] + x[2]
 </code></pre>
+</div>
 <h2 id="字符串">字符串</h2>
 <p>字符串用 <code>String</code> 类型表示。字符串是不可变的。
 字符串的元素——字符可以使用索引运算符访问: <code>s[i]</code>。
 可以用 <em class="keyword">for</em> 循环迭代字符串:</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 val str = "abcd"
 //sampleStart
@@ -1102,7 +1152,7 @@ for (c in str) {
 </div>
 <p>可以用 <code>+</code> 操作符连接字符串。这也适用于连接字符串与其他类型的值，
 只要表达式中的第一个元素是字符串：</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
 val s = "abc" + 1
@@ -1114,28 +1164,34 @@ println(s + "def")
 <p>请注意，在大多数情况下，优先使用<a href="#字符串模板">字符串模板</a>或原始字符串而不是字符串连接。</p>
 <h3 id="字符串字面值">字符串字面值</h3>
 <p>Kotlin 有两种类型的字符串字面值: 转义字符串可以有转义字符，以及原始字符串可以包含换行和任意文本。转义字符串很像 Java 字符串:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val s = "Hello, world!\n"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val s = "Hello, world!\n"
 </code></pre>
+</div>
 <p>转义采用传统的反斜杠方式。参见上面的 <a href="#字符">字符</a> 查看支持的转义序列。</p>
 <p><em>原始字符串</em> 使用三个引号（<code>"""</code>）分界符括起来，内部没有转义并且可以包含换行和任何其他字符:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val text = """
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val text = """
     for (c in "foo")
         print(c)
 """
 </code></pre>
+</div>
 <p>你可以通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/trim-margin.html"><code>trimMargin()</code></a> 函数去除前导空格：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val text = """
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val text = """
     |Tell me and I forget.
     |Teach me and I remember.
     |Involve me and I learn.
     |(Benjamin Franklin)
     """.trimMargin()
 </code></pre>
+</div>
 <p>默认 <code>|</code> 用作边界前缀，但你可以选择其他字符并作为参数传入，比如 <code>trimMargin("&gt;")</code>。</p>
 <h3 id="字符串模板">字符串模板</h3>
 <p>字符串可以包含<em>模板表达式</em> ，即一些小段代码，会求值并把结果合并到字符串中。
 模板表达式以美元符（<code>$</code>）开头，由一个简单的名字构成:</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
 val i = 10
@@ -1145,7 +1201,7 @@ println("i = $i") // 输出“i = 10”
 </code></pre>
 </div>
 <p>或者用花括号括起来的任意表达式:</p>
-<div class="sample">
+<div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
 val s = "abc"
@@ -1156,10 +1212,12 @@ println("$s.length is ${s.length}") // 输出“abc.length is 3”
 </div>
 <p>原始字符串和转义字符串内部都支持模板。
 如果你需要在原始字符串中表示字面值 <code>$</code> 字符（它不支持反斜杠转义），你可以用下列语法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val price = """
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val price = """
 ${'$'}9.99
 """
 </code></pre>
+</div>
 
         </article>
     </div>

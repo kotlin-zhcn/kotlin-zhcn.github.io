@@ -883,7 +883,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin 在设计时就考虑了 Java 互操作性。可以从 Kotlin 中自然地调用现存的 Java 代码，并且在 Java 代码中也可以<!--
 -->很顺利地调用 Kotlin 代码。在本节中我们会介绍从 Kotlin 中调用 Java 代码的一些细节。</p>
 <p>几乎所有 Java 代码都可以使用而没有任何问题：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.*
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import java.util.*
 
 fun demo(source: List&lt;Int&gt;) {
     val list = ArrayList&lt;Int&gt;()
@@ -897,12 +898,14 @@ fun demo(source: List&lt;Int&gt;) {
     }
 }
 </code></pre>
+</div>
 <h2 id="getter-和-setter">Getter 和 Setter</h2>
 <p>遵循 Java 约定的 getter 和 setter 的方法（名称以 <code>get</code> 开头的无参数方法和以 <code>set</code> 开头的单参数方法）在 Kotlin 中表示为属性。
 <code>Boolean</code> 访问器方法（其中 getter 的名称以 <code>is</code> 开头而 setter 的名称以 <code>set</code> 开头）<!--
 -->会表示为与 getter 方法具有相同名称的属性。
 例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import java.util.Calendar
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import java.util.Calendar
 
 fun calendarDemo() {
     val calendar = Calendar.getInstance()
@@ -914,6 +917,7 @@ fun calendarDemo() {
     }
 }
 </code></pre>
+</div>
 <p>请注意，如果 Java 类只有一个 setter，它在 Kotlin 中不会作为属性可见，因为 Kotlin 目前不支持只写（set-only）属性。</p>
 <h2 id="返回-void-的方法">返回 void 的方法</h2>
 <p>如果一个 Java 方法返回 void，那么从 Kotlin 调用时中返回 <code>Unit</code>。
@@ -923,28 +927,36 @@ fun calendarDemo() {
 <p>一些 Kotlin 关键字在 Java 中是有效标识符：<em class="keyword">in</em>、 <em class="keyword">object</em>、 <em class="keyword">is</em> 等等。
 如果一个 Java 库使用了 Kotlin 关键字作为方法，你仍然可以通过反引号（`）字符转义它<!--
 -->来调用该方法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">foo.`is`(bar)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">foo.`is`(bar)
 </code></pre>
+</div>
 <h2 id="空安全与平台类型">空安全与平台类型</h2>
 <p>Java 中的任何引用都可能是 <em class="keyword">null</em>，这使得 Kotlin 对来自 Java 的对象要求严格空安全是不现实的。
 Java 声明的类型在 Kotlin 中会被特别对待并称为<em>平台类型</em>。对这种类型的空检查会放宽，
 因此它们的安全保证与在 Java 中相同（更多请参见<a href="#已映射类型">下文</a>）。</p>
 <p>考虑以下示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = ArrayList&lt;String&gt;() // 非空（构造函数结果）
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val list = ArrayList&lt;String&gt;() // 非空（构造函数结果）
 list.add("Item")
 val size = list.size // 非空（原生 int）
 val item = list[0] // 推断为平台类型（普通 Java 对象）
 </code></pre>
+</div>
 <p>当我们调用平台类型变量的方法时，Kotlin 不会在编译时报告可空性错误，
 但在运行时调用可能会失败，因为空指针异常或者 Kotlin 生成的阻止空值传播的断言：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">item.substring(1) // 允许，如果 item == null 可能会抛出异常
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">item.substring(1) // 允许，如果 item == null 可能会抛出异常
 </code></pre>
+</div>
 <p>平台类型是<em>不可标示</em>的，意味着不能在语言中明确地写下它们。
 当把一个平台值赋值给一个 Kotlin 变量时，可以依赖类型推断（该变量会具有推断出的的平台类型，
 如上例中 <code>item</code> 所具有的类型），或者我们可以选择我们期望的类型（可空或非空类型均可）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val nullable: String? = item // 允许，没有问题
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val nullable: String? = item // 允许，没有问题
 val notNull: String = item // 允许，运行时可能失败
 </code></pre>
+</div>
 <p>如果我们选择非空类型，编译器会在赋值时触发一个断言。这防止 Kotlin 的非空变量保存<!--
 -->空值。当我们把平台值传递给期待非空值等的 Kotlin 函数时，也会触发断言。
 总的来说，编译器尽力阻止空值通过程序向远传播（尽管鉴于泛型的原因，有时这<!--
@@ -973,15 +985,21 @@ Kotlin 类型。编译器支持多种可空性注解，包括：</p>
 <p>你可以在 <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt">Kotlin 编译器源代码</a>中找到完整的列表。</p>
 <h3 id="注解类型参数">注解类型参数</h3>
 <p>可以标注泛型类型的类型参数，以便同时为其提供可空性信息。例如，考虑这些 Java 声明的注解：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">@NotNull
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">@NotNull
 Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elements) { …… }
 </code></pre>
+</div>
 <p>在 Kotlin 中可见的是以下签名：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun toSet(elements: (Mutable)Collection&lt;String&gt;) : (Mutable)Set&lt;String&gt; { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun toSet(elements: (Mutable)Collection&lt;String&gt;) : (Mutable)Set&lt;String&gt; { …… }
 </code></pre>
+</div>
 <p>请注意 <code>String</code> 类型参数上的 <code>@NotNull</code> 注解。如果没有的话，类型参数会是平台类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun toSet(elements: (Mutable)Collection&lt;String!&gt;) : (Mutable)Set&lt;String!&gt; { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun toSet(elements: (Mutable)Collection&lt;String!&gt;) : (Mutable)Set&lt;String!&gt; { …… }
 </code></pre>
+</div>
 <p>标注类型参数适用于针对 Java 8 或更高版本环境，并且要求可空性注解支持 <code>TYPE_USE</code> 目标（<code>org.jetbrains.annotations</code> 15 或以上版本支持）。</p>
 <h3 id="jsr-305-支持">JSR-305 支持</h3>
 <p>已支持 <a href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> 中定义的 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a>
@@ -999,7 +1017,8 @@ Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elem
 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html"><code>@TypeQualifierNickname</code></a>
 与 JSR-305 <code>@Nonnull</code>（或者它的其他别称，如 <code>@CheckForNull</code>），那么该注解类型自身将用于
 检索精确的可空性，且具有与该可空性注解相同的含义：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">@TypeQualifierNickname
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">@TypeQualifierNickname
 @Nonnull(when = When.ALWAYS)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface MyNonnull {
@@ -1019,6 +1038,7 @@ interface A {
     // 在 Kotlin（严格模式）中：`fun bar(x: List&lt;String&gt;!): String!`
 }
 </code></pre>
+</div>
 <h4 id="类型限定符默认值自-1150-起">类型限定符默认值（自 1.1.50 起）</h4>
 <p><a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html"><code>@TypeQualifierDefault</code></a>
 引入应用时在所标注元素的作用域内定义默认可空性的注解<!--
@@ -1034,7 +1054,8 @@ interface A {
 <p>当类型并未标注可空性注解时使用默认可空性，并且该默认值是<!--
 -->由最内层标注有带有与所用类型相匹配的
 <code>ElementType</code> 的类型限定符默认注解的元素确定。</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">@Nonnull
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">@Nonnull
 @TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
 public @interface NonNullApi {
 }
@@ -1060,14 +1081,17 @@ interface A {
     String qux(@Nonnull(when = When.UNKNOWN) String x); // fun baz(x: String!): String?
 }
 </code></pre>
+</div>
 <blockquote>
 <p>注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 <a href="#undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解</a>与<a href="#编译器配置">编译器配置</a>两节。</p>
 </blockquote>
 <p>也支持包级的默认可空性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// 文件：test/package-info.java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// 文件：test/package-info.java
 @NonNullApi // 默认将“test”包中所有类型声明为不可空
 package test;
 </code></pre>
+</div>
 <h4 id="undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解（自 1.1.60 起）</h4>
 <p>库的维护者可以使用 <code>@UnderMigration</code> 注解（在单独的构件 <code>kotlin-annotations-jvm</code> 中提供）<!--
 -->来定义可为空性类型限定符的迁移状态。</p>
@@ -1087,7 +1111,8 @@ package test;
 </li>
 </ul>
 <p>库的维护者还可以将 <code>@UnderMigration</code> 状态添加到类型限定符别称与类型限定符默认值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">@Nonnull(when = When.ALWAYS)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">@Nonnull(when = When.ALWAYS)
 @TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
 @UnderMigration(status = MigrationStatus.WARN)
 public @interface NonNullApi {
@@ -1098,6 +1123,7 @@ public @interface NonNullApi {
 @NonNullApi 
 public class Test {}
 </code></pre>
+</div>
 <p>注意：可空性注解的迁移状态并不会从其类型限定符别称继承，而是适用<!--
 -->于默认类型限定符的用法。</p>
 <p>如果默认类型限定符使用类型限定符别称，并且它们都标注有 <code>@UnderMigration</code>，那么<!--
@@ -1375,10 +1401,12 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 即 <code>ArrayList&lt;Integer&gt;()</code> 和 <code>ArrayList&lt;Character&gt;()</code> 是不能区分的。
 这使得执行 <em class="keyword">is</em>-检测不可能照顾到泛型。
 Kotlin 只允许 <em class="keyword">is</em>-检测星投影的泛型类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (a is List&lt;Int&gt;) // 错误：无法检查它是否真的是一个 Int 列表
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (a is List&lt;Int&gt;) // 错误：无法检查它是否真的是一个 Int 列表
 // but
 if (a is List&lt;*&gt;) // OK：不保证列表的内容
 </code></pre>
+</div>
 <h3 id="java-数组">Java 数组</h3>
 <p>与 Java 不同，Kotlin 中的数组是不型变的。这意味着 Kotlin 不允许我们把一个 <code>Array&lt;String&gt;</code> 赋值给一个 <code>Array&lt;Any&gt;</code>，
 从而避免了可能的运行时故障。Kotlin 也禁止我们把一个子类的数组当做超类的数组传递给 Kotlin 的方法，
@@ -1388,49 +1416,63 @@ if (a is List&lt;*&gt;) // OK：不保证列表的内容
 对于每种原生类型的数组都有一个特化的类（<code>IntArray</code>、 <code>DoubleArray</code>、 <code>CharArray</code> 等等）来处理这种情况。
 它们与 <code>Array</code> 类无关，并且会编译成 Java 原生类型数组以获得最佳性能。</p>
 <p>假设有一个接受 int 数组索引的 Java 方法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">public class JavaArrayExample {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">public class JavaArrayExample {
 
     public void removeIndices(int[] indices) {
         // 在此编码……
     }
 }
 </code></pre>
+</div>
 <p>在 Kotlin 中你可以这样传递一个原生类型的数组：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val javaObj = JavaArrayExample()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndices(array)  // 将 int[] 传给方法
 </code></pre>
+</div>
 <p>当编译为 JVM 字节代码时，编译器会优化对数组的访问，这样就不会引入任何开销：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val array = arrayOf(1, 2, 3, 4)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val array = arrayOf(1, 2, 3, 4)
 array[1] = array[1] * 2 // 不会实际生成对 get() 和 set() 的调用
 for (x in array) { // 不会创建迭代器
     print(x)
 }
 </code></pre>
+</div>
 <p>即使当我们使用索引定位时，也不会引入任何开销：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in array.indices) {// 不会创建迭代器
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for (i in array.indices) {// 不会创建迭代器
     array[i] += 2
 }
 </code></pre>
+</div>
 <p>最后，<em class="keyword">in</em>-检测也没有额外开销：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in array.indices) { // 同 (i &gt;= 0 &amp;&amp; i &lt; array.size)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (i in array.indices) { // 同 (i &gt;= 0 &amp;&amp; i &lt; array.size)
     print(array[i])
 }
 </code></pre>
+</div>
 <h2 id="java-可变参数">Java 可变参数</h2>
 <p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">public class JavaArrayExample {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">public class JavaArrayExample {
 
     public void removeIndicesVarArg(int... indices) {
         // 在此编码……
     }
 }
 </code></pre>
+</div>
 <p>在这种情况下，你需要使用展开运算符 <code>*</code> 来传递 <code>IntArray</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val javaObj = JavaArrayExample()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val javaObj = JavaArrayExample()
 val array = intArrayOf(0, 1, 2, 3)
 javaObj.removeIndicesVarArg(*array)
 </code></pre>
+</div>
 <p>目前无法传递 <em class="keyword">null</em> 给一个声明为可变参数的方法。</p>
 <h2 id="操作符">操作符</h2>
 <p>由于 Java 无法标记用于运算符语法的方法，Kotlin 允许<!--
@@ -1439,12 +1481,14 @@ javaObj.removeIndicesVarArg(*array)
 <h2 id="受检异常">受检异常</h2>
 <p>在 Kotlin 中，所有异常都是非受检的，这意味着编译器不会强迫你捕获其中的任何一个。
 因此，当你调用一个声明受检异常的 Java 方法时，Kotlin 不会强迫你做任何事情：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun render(list: List&lt;*&gt;, to: Appendable) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun render(list: List&lt;*&gt;, to: Appendable) {
     for (item in list) {
         to.append(item.toString()) // Java 会要求我们在这里捕获 IOException
     }
 }
 </code></pre>
+</div>
 <h2 id="对象方法">对象方法</h2>
 <p>当 Java 类型导入到 Kotlin 中时，类型 <code>java.lang.Object</code> 的所有引用都成了 <code>Any</code>。
 而因为 <code>Any</code> 不是平台指定的，它只声明了 <code>toString()</code>、<code>hashCode()</code> 和 <code>equals()</code> 作为其成员，
@@ -1453,41 +1497,50 @@ javaObj.removeIndicesVarArg(*array)
 <p><a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 第 81 条善意地建议优先使用并发工具（concurrency utilities）而不是 <code>wait()</code> 和 <code>notify()</code>。
 因此，类型 <code>Any</code> 的引用不提供这两个方法。
 如果你真的需要调用它们的话，你可以将其转换为 <code>java.lang.Object</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">(foo as java.lang.Object).wait()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
+</div>
 <h3 id="getclass">getClass()</h3>
 <p>要取得对象的 Java 类，请在<a href="reflection.html#类引用">类引用</a>上使用 <code>java</code> 扩展属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo::class.java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val fooClass = foo::class.java
 </code></pre>
+</div>
 <p>上面的代码使用了自 Kotlin 1.1 起支持的<a href="reflection.html#绑定的类引用自-11-起">绑定的类引用</a>。你也可以使用 <code>javaClass</code> 扩展属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val fooClass = foo.javaClass
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val fooClass = foo.javaClass
 </code></pre>
+</div>
 <h3 id="clone">clone()</h3>
 <p>要覆盖 <code>clone()</code>，需要继承 <code>kotlin.Cloneable</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">
-class Example : Cloneable {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Example : Cloneable {
     override fun clone(): Any { …… }
 }
 </code></pre>
+</div>
 <p>不要忘记<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 的第 13 条: <em>谨慎地改写clone</em>。</p>
 <h3 id="finalize">finalize()</h3>
 <p>要覆盖 <code>finalize()</code>，所有你需要做的就是简单地声明它，而不需要 <em class="keyword">override</em> 关键字：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     protected fun finalize() {
         // 终止化逻辑
     }
 }
 </code></pre>
+</div>
 <p>根据 Java 的规则，<code>finalize()</code> 不能是 <em class="keyword">private</em> 的。</p>
 <h2 id="从-java-类继承">从 Java 类继承</h2>
 <p>在 kotlin 中，类的超类中最多只能有一个 Java 类（以及按你所需的多个 Java 接口）。</p>
 <h2 id="访问静态成员">访问静态成员</h2>
 <p>Java 类的静态成员会形成该类的“伴生对象”。我们无法将这样的“伴生对象”作为值来传递，
 但可以显式访问其成员，例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (Character.isLetter(a)) {
-    // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (Character.isLetter(a)) { …… }
 </code></pre>
+</div>
 <p>要访问<a href="#已映射类型">已映射</a>到 Kotlin 类型的 Java 类型的静态成员，请使用 Java 类型的完整限定名：<code>java.lang.Integer.bitCount(foo)</code>。</p>
 <h2 id="java-反射">Java 反射</h2>
 <p>Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 <code>instance::class.java</code>,
@@ -1498,26 +1551,34 @@ class Example : Cloneable {
 -->只有一个非默认方法的 Java 接口的实现，只要这个方法的参数类型<!--
 -->能够与这个 Kotlin 函数的参数类型相匹配。</p>
 <p>你可以这样创建 SAM 接口的实例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val runnable = Runnable { println("This runs in a runnable") }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val runnable = Runnable { println("This runs in a runnable") }
 </code></pre>
+</div>
 <p>……以及在方法调用中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val executor = ThreadPoolExecutor()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val executor = ThreadPoolExecutor()
 // Java 签名：void execute(Runnable command)
 executor.execute { println("This runs in a thread pool") }
 </code></pre>
+</div>
 <p>如果 Java 类有多个接受函数式接口的方法，那么可以通过使用<!--
 -->将 lambda 表达式转换为特定的 SAM 类型的适配器函数来选择需要调用的方法。这些适配器函数也会按需<!--
 -->由编译器生成：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">executor.execute(Runnable { println("This runs in a thread pool") })
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">executor.execute(Runnable { println("This runs in a thread pool") })
 </code></pre>
+</div>
 <p>请注意，SAM 转换只适用于接口，而不适用于抽象类，即使这些抽象类也只有一个<!--
 -->抽象方法。</p>
 <p>还要注意，此功能只适用于 Java 互操作；因为 Kotlin 具有合适的函数类型，所以不需要将函数自动转换<!--
 -->为 Kotlin 接口的实现，因此不受支持。</p>
 <h2 id="在-kotlin-中使用-jni">在 Kotlin 中使用 JNI</h2>
 <p>要声明一个在本地（C 或 C++）代码中实现的函数，你需要使用 <code>external</code> 修饰符来标记它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">external fun foo(x: Int): Double
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">external fun foo(x: Int): Double
 </code></pre>
+</div>
 <p>其余的过程与 Java 中的工作方式完全相同。</p>
 
         </article>

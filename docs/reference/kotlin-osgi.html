@@ -910,16 +910,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <h2 id="gradle">Gradle</h2>
 <p>将 <code>kotlin-osgi-bundle</code> 引入到 gradle 项目中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">compile "org.jetbrains.kotlin:kotlin-osgi-bundle:$kotlinVersion"
 </code></pre>
+</div>
 <p>要排除作为传递依赖的默认 Kotlin 库，你可以使用以下方法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">dependencies {
  compile (
    [group: 'some.group.id', name: 'some.library', version: 'someversion'],
    ……) {
   exclude group: 'org.jetbrains.kotlin'
 }
 </code></pre>
+</div>
 <h2 id="faq">FAQ</h2>
 <h4 id="为什么不只是添加必需的清单选项到所有-kotlin-库">为什么不只是添加必需的清单选项到所有 Kotlin 库</h4>
 <p>尽管它是提供 OSGi 支持的最好的方式，遗憾的是现在做不到，是因为不能轻易消除的所谓的

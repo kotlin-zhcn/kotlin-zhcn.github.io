@@ -881,14 +881,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="包">包</h1>
 <p>源文件通常以包声明开头:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package foo.bar
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package foo.bar
 
-fun baz() {}
-
-class Goo {}
+fun baz() { ... }
+class Goo { ... }
 
 // ……
 </code></pre>
+</div>
 <p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
 所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
 <p>如果没有指明包，该文件的内容属于无名字的默认包。</p>
@@ -922,15 +923,21 @@ class Goo {}
 <p>除了默认导入之外，每个文件可以包含它自己的导入指令。
 导入语法在<a href="grammar.html#import">语法</a>中讲述。</p>
 <p>可以导入一个单独的名字，如.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.Bar // 现在 Bar 可以不用限定符访问
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import foo.Bar // 现在 Bar 可以不用限定符访问
 </code></pre>
+</div>
 <p>也可以导入一个作用域下的所有内容（包、类、对象等）:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.* // “foo”中的一切都可访问
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import foo.* // “foo”中的一切都可访问
 </code></pre>
+</div>
 <p>如果出现名字冲突，可以使用 <em class="keyword">as</em> 关键字在本地重命名冲突项来消歧义：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import foo.Bar // Bar 可访问
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import foo.Bar // Bar 可访问
 import bar.Bar as bBar // bBar 代表“bar.Bar”
 </code></pre>
+</div>
 <p>关键字 <code>import</code> 并不仅限于导入类；也可用它来导入其他声明：</p>
 <ul>
 <li>顶层函数及属性；</li>

@@ -882,29 +882,56 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="区间">区间</h1>
 <p>区间表达式由具有操作符形式 <code>..</code> 的 <code>rangeTo</code> 函数辅以 <em class="keyword">in</em> 和 <em class="keyword">!in</em> 形成。
 区间是为任何可比较类型定义的，但对于整型原生类型，它有一个优化的实现。以下是使用区间的一些示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (i in 1..10) { // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (i in 1..10) { // 等同于 1 &lt;= i &amp;&amp; i &lt;= 10
     println(i)
 }
 </code></pre>
+</div>
 <p>整型区间（<code>IntRange</code>、 <code>LongRange</code>、 <code>CharRange</code>）有一个额外的特性：它们可以迭代。
 编译器负责将其转换为类似 Java 的基于索引的 <em class="keyword">for</em>-循环而无额外开销：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4) print(i) // 输出“1234”
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+for (i in 1..4) print(i)
 
-for (i in 4..1) print(i) // 什么都不输出
-</code></pre>
-<p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 4 downTo 1) print(i) // 输出“4321”
-</code></pre>
-<p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1..4 step 2) print(i) // 输出“13”
-
-for (i in 4 downTo 1 step 2) print(i) // 输出“42”
-</code></pre>
-<p>要创建一个不包括其结束元素的区间，可以使用 <code>until</code> 函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 1 until 10) {   // i in [1, 10) 排除了 10
-     println(i)
+for (i in 4..1) print(i)
+//sampleEnd
 }
 </code></pre>
+</div>
+<p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数：</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+for (i in 4 downTo 1) print(i)
+//sampleEnd
+}
+</code></pre>
+</div>
+<p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此：</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+for (i in 1..4 step 2) print(i)
+
+for (i in 4 downTo 1 step 2) print(i)
+//sampleEnd
+}
+</code></pre>
+</div>
+<p>要创建一个不包括其结束元素的区间，可以使用 <code>until</code> 函数：</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+//sampleStart
+for (i in 1 until 10) {
+     // i in [1, 10) 排除了 10
+     println(i)
+}
+//sampleEnd
+}
+</code></pre>
+</div>
 <h2 id="它是如何工作的">它是如何工作的</h2>
 <p>区间实现了该库中的一个公共接口：<code>ClosedRange&lt;T&gt;</code>。</p>
 <p><code>ClosedRange&lt;T&gt;</code> 在数学意义上表示一个闭区间，它是为可比较类型定义的。
@@ -915,21 +942,26 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
 第一个元素是 <code>first</code>，后续元素是前一个元素加上 <code>step</code>。 <code>last</code> 元素总会被迭代命中，除非该数列是空的。</p>
 <p>数列是 <code>Iterable&lt;N&gt;</code> 的子类型，其中 <code>N</code> 分别为 <code>Int</code>、 <code>Long</code> 或者 <code>Char</code>，所以它可用于 <em class="keyword">for</em>-循环以及像 <code>map</code>、<code>filter</code> 等函数中。
 对 <code>Progression</code> 迭代相当于 Java/JavaScript 的基于索引的 <em class="keyword">for</em>-循环：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">for (int i = first; i != last; i += step) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">for (int i = first; i != last; i += step) {
   // ……
 }
 </code></pre>
+</div>
 <p>对于整型类型，<code>..</code> 操作符创建一个同时实现 <code>ClosedRange&lt;T&gt;</code> 和 <code>*Progression</code> 的对象。
 例如，<code>IntRange</code> 实现了 <code>ClosedRange&lt;Int&gt;</code> 并扩展自 <code>IntProgression</code>，因此为 <code>IntProgression</code> 定义的所有操作也可用于 <code>IntRange</code>。
 <code>downTo()</code> 和 <code>step()</code> 函数的结果总是一个 <code>*Progression</code>。</p>
 <p>数列由在其伴生对象中定义的 <code>fromClosedRange</code> 函数构造：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">IntProgression.fromClosedRange(start, end, step)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">IntProgression.fromClosedRange(start, end, step)
 </code></pre>
+</div>
 <p>数列的 <code>last</code> 元素这样计算：对于正的 <code>step</code> 找到不大于 <code>end</code> 值的最大值、或者对于负的 <code>step</code> 找到不小于 <code>end</code> 值的最小值，使得 <code>(last - first) % increment == 0</code>。</p>
 <h2 id="一些实用函数">一些实用函数</h2>
 <h3 id="rangeto"><code>rangeTo()</code></h3>
 <p>整型类型的 <code>rangeTo()</code> 操作符只是调用 <code>*Range</code> 类的构造函数，例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Int {
     //……
     operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
     //……
@@ -937,13 +969,17 @@ for (i in 4 downTo 1 step 2) print(i) // 输出“42”
     //……
 }
 </code></pre>
+</div>
 <p>浮点数（<code>Double</code>、 <code>Float</code>）未定义它们的 <code>rangeTo</code> 操作符，而使用标准库提供的泛型 <code>Comparable</code> 类型的操作符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
 </code></pre>
+</div>
 <p>该函数返回的区间不能用于迭代。</p>
 <h3 id="downto"><code>downTo()</code></h3>
 <p>扩展函数 <code>downTo()</code> 是为任何整型类型对定义的，这里有两个例子：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Long.downTo(other: Int): LongProgression {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun Long.downTo(other: Int): LongProgression {
     return LongProgression.fromClosedRange(this, other.toLong(), -1L)
 }
 
@@ -951,17 +987,21 @@ fun Byte.downTo(other: Int): IntProgression {
     return IntProgression.fromClosedRange(this.toInt(), other, -1)
 }
 </code></pre>
+</div>
 <h3 id="reversed"><code>reversed()</code></h3>
 <p>扩展函数 <code>reversed()</code> 是为每个 <code>*Progression</code> 类定义的，并且所有这些函数返回反转后的数列：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.reversed(): IntProgression {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun IntProgression.reversed(): IntProgression {
     return IntProgression.fromClosedRange(last, first, -step)
 }
 </code></pre>
+</div>
 <h3 id="step"><code>step()</code></h3>
 <p>扩展函数 <code>step()</code> 是为每个 <code>*Progression</code> 类定义的，
 所有这些函数都返回带有修改了 <code>step</code> 值（函数参数）的数列。
 步长（step）值必须始终为正，因此该函数不会更改迭代的方向：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun IntProgression.step(step: Int): IntProgression {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun IntProgression.step(step: Int): IntProgression {
     if (step &lt;= 0) throw IllegalArgumentException("Step must be positive, was: $step")
     return IntProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
 }
@@ -971,11 +1011,14 @@ fun CharProgression.step(step: Int): CharProgression {
     return CharProgression.fromClosedRange(first, last, if (this.step &gt; 0) step else -step)
 }
 </code></pre>
+</div>
 <p>请注意，返回数列的 <code>last</code> 值可能与原始数列的 <code>last</code> 值不同，以便保持不变式 <code>(last - first) % step == 0</code> 成立。这里是一个例子：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">(1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">(1..12 step 2).last == 11  // 值为 [1, 3, 5, 7, 9, 11] 的数列
 (1..12 step 3).last == 10  // 值为 [1, 4, 7, 10] 的数列
 (1..12 step 4).last == 9   // 值为 [1, 5, 9] 的数列
 </code></pre>
+</div>
 
         </article>
     </div>

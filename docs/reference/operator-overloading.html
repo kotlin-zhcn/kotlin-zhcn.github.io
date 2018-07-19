@@ -918,13 +918,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p><em>注意</em> 这些操作以及所有其他操作都针对<a href="basic-types.html">基本类型</a>做了优化，不会为它们引入函数调用的开销。</p>
 <p>以下是如何重载一元减运算符的示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Point(val x: Int, val y: Int)
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">data class Point(val x: Int, val y: Int)
 
 operator fun Point.unaryMinus() = Point(-x, -y)
 
 val point = Point(10, 20)
-println(-point)  // 输出“(-10, -20)”
+
+fun main(args: Array&lt;String&gt;) {
+   println(-point)  // 输出“(-10, -20)”
+}
+
 </code></pre>
+</div>
 <h3 id="递增与递减">递增与递减</h3>
 <table>
 <thead>

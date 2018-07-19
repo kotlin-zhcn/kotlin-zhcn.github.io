@@ -888,15 +888,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>把多个属性储存在一个映射（map）中，而不是每个存在单独的字段中。</li>
 </ul>
 <p>为了涵盖这些（以及其他）情况，Kotlin 支持 <em>委托属性</em>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Example {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Example {
     var p: String by Delegate()
 }
 </code></pre>
+</div>
 <p>语法是： <code>val/var &lt;属性名&gt;: &lt;类型&gt; by &lt;表达式&gt;</code>。在 <em class="keyword">by</em> 后面的表达式是该 <em>委托</em>，
 因为属性对应的 <code>get()</code>（和 <code>set()</code>）会被委托给它的 <code>getValue()</code> 和 <code>setValue()</code> 方法。
 属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（和 <code>setValue()</code>——对于 <em class="keyword">var</em> 属性）。
 例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Delegate {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Delegate {
     operator fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): String {
         return "$thisRef, thank you for delegating '${property.name}' to me!"
     }
@@ -906,18 +909,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 }
 </code></pre>
+</div>
 <p>当我们从委托到一个 <code>Delegate</code> 实例的 <code>p</code> 读取时，将调用 <code>Delegate</code> 中的 <code>getValue()</code> 函数，
-所以它第一个参数是读出 <code>p</code> 的对象、第二个参数保存了对 <code>p</code> 自身的描述 
+所以它第一个参数是读出 <code>p</code> 的对象、第二个参数保存了对 <code>p</code> 自身的描述
 （例如你可以取它的名字)。 例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val e = Example()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val e = Example()
 println(e.p)
 </code></pre>
+</div>
 <p>输出结果：</p>
 <pre><code>Example@33a17727, thank you for delegating ‘p’ to me!
 </code></pre>
 <p>类似地，当我们给 <code>p</code> 赋值时，将调用 <code>setValue()</code> 函数。前两个参数相同，第三个参数保存将要被赋予的值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">e.p = "NEW"
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">e.p = "NEW"
 </code></pre>
+</div>
 <p>输出结果：</p>
 <pre><code>NEW has been assigned to ‘p’ in Example@33a17727.
 </code></pre>
@@ -930,7 +938,8 @@ println(e.p)
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/lazy.html"><code>lazy()</code></a> 是接受一个 lambda 并返回一个 <code>Lazy &lt;T&gt;</code> 实例的函数，返回的实例可以作为实现延迟属性的委托：
 第一次调用 <code>get()</code> 会执行已传递给 <code>lazy()</code> 的 lambda 表达式并记录结果，
 后续调用 <code>get()</code> 只是返回记录的结果。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val lazyValue: String by lazy {
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">val lazyValue: String by lazy {
     println("computed!")
     "Hello"
 }
@@ -940,11 +949,7 @@ fun main(args: Array&lt;String&gt;) {
     println(lazyValue)
 }
 </code></pre>
-<p>这个例子输出：</p>
-<pre><code>computed!
-Hello
-Hello
-</code></pre>
+</div>
 <p>默认情况下，对于 lazy 属性的求值是<strong>同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程<!--
 -->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
 -->可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
@@ -954,7 +959,8 @@ Hello
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值和修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个<!--
 -->参数：被赋值的属性、旧值和新值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.properties.Delegates
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">import kotlin.properties.Delegates
 
 class User {
     var name: String by Delegates.observable("&lt;no name&gt;") {
@@ -969,41 +975,60 @@ fun main(args: Array&lt;String&gt;) {
     user.name = "second"
 }
 </code></pre>
-<p>这个例子输出：</p>
-<pre><code>&lt;no name&gt; -&gt; first
-first -&gt; second
-</code></pre>
+</div>
 <p>如果你想能够截获一个赋值并“否决”它，就使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> 取代 <code>observable()</code>。
 在属性被赋新值生效<em>之前</em>会调用传递给 <code>vetoable</code> 的处理程序。</p>
 <h2 id="把属性储存在映射中">把属性储存在映射中</h2>
 <p>一个常见的用例是在一个映射（map）里存储属性的值。
 这经常出现在像解析 JSON 或者做其他“动态”事情的应用中。
 在这种情况下，你可以使用映射实例自身作为委托来实现委托属性。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class User(val map: Map&lt;String, Any?&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class User(val map: Map&lt;String, Any?&gt;) {
     val name: String by map
     val age: Int     by map
 }
 </code></pre>
+</div>
 <p>在这个例子中，构造函数接受一个映射参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val user = User(mapOf(
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val user = User(mapOf(
     "name" to "John Doe",
     "age"  to 25
 ))
 </code></pre>
+</div>
 <p>委托属性会从这个映射中取值（通过字符串键——属性的名称）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">println(user.name) // Prints "John Doe"
-println(user.age)  // Prints 25
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">class User(val map: Map&lt;String, Any?&gt;) {
+    val name: String by map
+    val age: Int     by map
+}
+
+fun main(args: Array&lt;String&gt;) {
+    val user = User(mapOf(
+        "name" to "John Doe",
+        "age"  to 25
+    ))
+//sampleStart
+    println(user.name) // Prints "John Doe"
+    println(user.age)  // Prints 25
+//sampleEnd
+}
 </code></pre>
+</div>
 <p>这也适用于 <em class="keyword">var</em> 属性，如果把只读的 <code>Map</code> 换成 <code>MutableMap</code> 的话：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MutableUser(val map: MutableMap&lt;String, Any?&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MutableUser(val map: MutableMap&lt;String, Any?&gt;) {
     var name: String by map
     var age: Int     by map
 }
 </code></pre>
+</div>
 <h2 id="局部委托属性自-11-起">局部委托属性（自 1.1 起）</h2>
 <p>你可以将局部变量声明为委托属性。
 例如，你可以使一个局部变量惰性初始化：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun example(computeFoo: () -&gt; Foo) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun example(computeFoo: () -&gt; Foo) {
     val memoizedFoo by lazy(computeFoo)
 
     if (someCondition &amp;&amp; memoizedFoo.isValid()) {
@@ -1011,6 +1036,7 @@ println(user.age)  // Prints 25
     }
 }
 </code></pre>
+</div>
 <p><code>memoizedFoo</code> 变量只会在第一次访问时计算。
 如果 <code>someCondition</code> 失败，那么该变量根本不会计算。</p>
 <h2 id="属性委托要求">属性委托要求</h2>
@@ -1032,7 +1058,8 @@ println(user.age)  // Prints 25
 两函数都需要用 <code>operator</code> 关键字来进行标记。</p>
 <p>委托类可以实现包含所需 <code>operator</code> 方法的 <code>ReadOnlyProperty</code> 或 <code>ReadWriteProperty</code> 接口之一。
 这俩接口是在 Kotlin 标准库中声明的：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface ReadOnlyProperty&lt;in R, out T&gt; {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface ReadOnlyProperty&lt;in R, out T&gt; {
     operator fun getValue(thisRef: R, property: KProperty&lt;*&gt;): T
 }
 
@@ -1041,10 +1068,12 @@ interface ReadWriteProperty&lt;in R, T&gt; {
     operator fun setValue(thisRef: R, property: KProperty&lt;*&gt;, value: T)
 }
 </code></pre>
+</div>
 <h3 id="翻译规则">翻译规则</h3>
 <p>在每个委托属性的实现的背后，Kotlin 编译器都会生成辅助属性并委托给它。
 例如，对于属性 <code>prop</code>，生成隐藏属性 <code>prop$delegate</code>，而访问器的代码只是简单地委托给这个附加属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     var prop: Type by MyDelegate()
 }
 
@@ -1056,6 +1085,7 @@ class C {
         set(value: Type) = prop$delegate.setValue(this, this::prop, value)
 }
 </code></pre>
+</div>
 <p>Kotlin 编译器在参数中提供了关于 <code>prop</code> 的所有必要信息：第一个参数 <code>this</code> 引用到外部类 <code>C</code> 的实例而 <code>this::prop</code> 是 <code>KProperty</code> 类型的反射对象，该对象描述 <code>prop</code> 自身。</p>
 <p>请注意，直接在代码中引用<a href="reflection.html#绑定的函数与属性引用自-11-起">绑定的可调用引用</a>的语法 <code>this::prop</code> 自 Kotlin 1.1 起才可用。</p>
 <h3 id="提供委托自-11-起">提供委托（自 1.1 起）</h3>
@@ -1064,7 +1094,8 @@ class C {
 -->创建属性委托实例。</p>
 <p><code>provideDelegate</code> 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检查属性一致性。</p>
 <p>例如，如果要在绑定之前检查属性名称，可以这样写：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class ResourceDelegate&lt;T&gt; : ReadOnlyProperty&lt;MyUI, T&gt; {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class ResourceDelegate&lt;T&gt; : ReadOnlyProperty&lt;MyUI, T&gt; {
     override fun getValue(thisRef: MyUI, property: KProperty&lt;*&gt;): T { ... }
 }
     
@@ -1088,6 +1119,7 @@ class MyUI {
     val text by bindResource(ResourceID.text_id)
 }
 </code></pre>
+</div>
 <p><code>provideDelegate</code> 的参数与 <code>getValue</code> 相同：</p>
 <ul>
 <li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型；</li>
@@ -1096,7 +1128,8 @@ class MyUI {
 <p>在创建 <code>MyUI</code> 实例期间，为每个属性调用 <code>provideDelegate</code> 方法，并立即执行必要的验证。</p>
 <p>如果没有这种拦截属性与其委托之间的绑定的能力，为了实现相同的功能，
 你必须显式传递属性名，这不是很方便：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 检查属性名称而不使用“provideDelegate”功能
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 检查属性名称而不使用“provideDelegate”功能
 class MyUI {
     val image by bindResource(ResourceID.image_id, "image")
     val text by bindResource(ResourceID.text_id, "text")
@@ -1110,10 +1143,12 @@ fun &lt;T&gt; MyUI.bindResource(
    // 创建委托
 }
 </code></pre>
+</div>
 <p>在生成的代码中，会调用 <code>provideDelegate</code> 方法来初始化辅助的 <code>prop$delegate</code> 属性。
 比较对于属性声明 <code>val prop: Type by MyDelegate()</code> 生成的代码与<!--
 --><a href="delegated-properties.html#翻译规则">上面</a>（当 <code>provideDelegate</code> 方法不存在时）生成的代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     var prop: Type by MyDelegate()
 }
 
@@ -1127,6 +1162,7 @@ class C {
         set(value: Type) = prop$delegate.setValue(this, this::prop, value)
 }
 </code></pre>
+</div>
 <p>请注意，<code>provideDelegate</code> 方法只影响辅助属性的创建，并不会影响为 getter 或 setter 生成的代码。</p>
 
         </article>

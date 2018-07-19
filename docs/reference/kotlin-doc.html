@@ -894,7 +894,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 -->总体描述，接下来的注释是详细描述。</p>
 <p>每个块标签都以一个新行开始且以 <code>@</code> 字符开头。</p>
 <p>以下是使用 KDoc 编写类文档的一个示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">/**
  * 一组*成员*。
  *
  * 这个类没有有用的逻辑; 它只是一个文档示例。
@@ -911,6 +912,7 @@ class Group&lt;T&gt;(val name: String) {
     fun add(member: T): Int { …… }
 }
 </code></pre>
+</div>
 <h2 id="块标签">块标签</h2>
 <p>KDoc 目前支持以下块标签（block tags）：</p>
 <h4 id="param-名称"><code>@param &lt;名称&gt;</code></h4>

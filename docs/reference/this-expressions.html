@@ -891,7 +891,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>要访问来自外部作用域的<em class="keyword">this</em>（一个<a href="classes.html">类</a> 或者<a href="extensions.html">扩展函数</a>，
 或者带标签的<a href="lambdas.html#带有接收者的函数字面值">带有接收者的函数字面值</a>）我们使用<code>this@label</code>，其中 <code>@label</code> 是一个<!--
 -->代指 <em class="keyword">this</em> 来源的标签：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class A { // 隐式标签 @A
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class A { // 隐式标签 @A
     inner class B { // 隐式标签 @B
         fun Int.foo() { // 隐式标签 @foo
             val a = this@A // A 的 this
@@ -914,6 +915,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 }
 </code></pre>
+</div>
 
         </article>
     </div>

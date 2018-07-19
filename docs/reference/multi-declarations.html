@@ -881,30 +881,39 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="解构声明">解构声明</h1>
 <p>有时把一个对象 <em>解构</em> 成很多变量会很方便，例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val (name, age) = person
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val (name, age) = person
 </code></pre>
+</div>
 <p>这种语法称为 <em>解构声明</em> 。一个解构声明同时创建多个变量。
-我们已经声明了两个新变量：<code>name</code> 和 <code>age</code>，并且可以独立使用它们：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">println(name)
+我们已经声明了两个新变量： <code>name</code> 和 <code>age</code>，并且可以独立使用它们：</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">println(name)
 println(age)
 </code></pre>
+</div>
 <p>一个解构声明会被编译成以下代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val name = person.component1()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val name = person.component1()
 val age = person.component2()
 </code></pre>
+</div>
 <p>其中的 <code>component1()</code> 和 <code>component2()</code> 函数是在 Kotlin 中广泛使用的 <em>约定原则</em> 的另一个例子。
 （参见像 <code>+</code> 和 <code>*</code>、<em class="keyword">for</em>-循环等操作符）。
 任何表达式都可以出现在解构声明的右侧，只要可以对它调用所需数量的 component 函数即可。
 当然，可以有 <code>component3()</code> 和 <code>component4()</code> 等等。</p>
 <p>请注意，<code>componentN()</code> 函数需要用 <code>operator</code> 关键字标记，以允许在解构声明中使用它们。</p>
 <p>解构声明也可以用在 <em class="keyword">for</em>-循环中：当你写：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((a, b) in collection) { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for ((a, b) in collection) { …… }
 </code></pre>
+</div>
 <p>变量 <code>a</code> 和 <code>b</code> 的值取自对集合中的元素上调用 <code>component1()</code> 和 <code>component2()</code> 的返回值。</p>
 <h2 id="例从函数中返回两个变量">例：从函数中返回两个变量</h2>
 <p>让我们假设我们需要从一个函数返回两个东西。例如，一个结果对象和一个某种状态。
-在 Kotlin 中一个简洁的实现方式是声明一个<a href="data-classes.html"><em>数据类</em></a>并返回其实例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Result(val result: Int, val status: Status)
+在 Kotlin 中一个简洁的实现方式是声明一个<a href="data-classes.html"><em>数据类</em></a> 并返回其实例：</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">data class Result(val result: Int, val status: Status)
 fun function(……): Result {
     // 各种计算
 
@@ -914,52 +923,66 @@ fun function(……): Result {
 // 现在，使用该函数：
 val (result, status) = function(……)
 </code></pre>
+</div>
 <p>因为数据类自动声明 <code>componentN()</code> 函数，所以这里可以用解构声明。</p>
 <p><strong>注意</strong>：我们也可以使用标准类 <code>Pair</code> 并且让 <code>function()</code> 返回 <code>Pair&lt;Int, Status&gt;</code>，
 但是让数据合理命名通常更好。</p>
 <h2 id="例解构声明和映射">例：解构声明和映射</h2>
 <p>可能遍历一个映射（map）最好的方式就是这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for ((key, value) in map) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for ((key, value) in map) {
    // 使用该 key、value 做些事情
 }
 </code></pre>
+</div>
 <p>为使其能用，我们应该</p>
 <ul>
 <li>通过提供一个 <code>iterator()</code> 函数将映射表示为一个值的序列；</li>
 <li>通过提供函数 <code>component1()</code> 和 <code>component2()</code> 来将每个元素呈现为一对。</li>
 </ul>
 <p>当然事实上，标准库提供了这样的扩展：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">operator fun &lt;K, V&gt; Map&lt;K, V&gt;.iterator(): Iterator&lt;Map.Entry&lt;K, V&gt;&gt; = entrySet().iterator()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">operator fun &lt;K, V&gt; Map&lt;K, V&gt;.iterator(): Iterator&lt;Map.Entry&lt;K, V&gt;&gt; = entrySet().iterator()
 operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component1() = getKey()
 operator fun &lt;K, V&gt; Map.Entry&lt;K, V&gt;.component2() = getValue()
-
 </code></pre>
+</div>
 <p>因此你可以在 <em class="keyword">for</em>-循环中对映射（以及数据类实例的集合等）自由使用解构声明。</p>
 <h2 id="下划线用于未使用的变量自-11-起">下划线用于未使用的变量（自 1.1 起）</h2>
 <p>如果在解构声明中你不需要某个变量，那么可以用下划线取代其名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val (_, status) = getResult()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val (_, status) = getResult()
 </code></pre>
+</div>
 <p>对于以这种方式跳过的组件，不会调用相应的 <code>componentN()</code> 操作符函数。</p>
 <h2 id="在-lambda-表达式中解构自-11-起">在 lambda 表达式中解构（自 1.1 起）</h2>
 <p>你可以对 lambda 表达式参数使用解构声明语法。
 如果 lambda 表达式具有 <code>Pair</code> 类型（或者 <code>Map.Entry</code> 或任何其他具有相应 <code>componentN</code> 函数的类型）的参数，那么可以通过将它们放在括号中来引入多个新参数来取代单个新参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { entry -&gt; "${entry.value}!" }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">map.mapValues { entry -&gt; "${entry.value}!" }
 map.mapValues { (key, value) -&gt; "$value!" }
 </code></pre>
+</div>
 <p>注意声明两个参数和声明一个解构对来取代单个参数之间的区别：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">{ a //-&gt; …… } // 一个参数
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">{ a //-&gt; …… } // 一个参数
 { a, b //-&gt; …… } // 两个参数
 { (a, b) //-&gt; …… } // 一个解构对
 { (a, b), c //-&gt; …… } // 一个解构对以及其他参数
 </code></pre>
+</div>
 <p>如果解构的参数中的一个组件未使用，那么可以将其替换为下划线，以避免编造其名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { (_, value) -&gt; "$value!" }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">map.mapValues { (_, value) -&gt; "$value!" }
 </code></pre>
+</div>
 <p>你可以指定整个解构的参数的类型或者分别指定特定组件的类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">map.mapValues { (_, value): Map.Entry&lt;Int, String&gt; -&gt; "$value!" }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">map.mapValues { (_, value): Map.Entry&lt;Int, String&gt; -&gt; "$value!" }
 
 map.mapValues { (_, value: String) -&gt; "$value!" }
 </code></pre>
+</div>
 
         </article>
     </div>

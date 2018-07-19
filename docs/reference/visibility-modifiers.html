@@ -887,12 +887,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>以下解释了这些修饰符如何应用到不同类型的声明作用域。</p>
 <h2 id="包">包</h2>
 <p>函数、属性和类、对象和接口可以在顶层声明，即直接在包内：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 文件名：example.kt
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 文件名：example.kt
 package foo
 
-fun baz() {}
-class Bar {}
+fun baz() { ... }
+class Bar { ... }
 </code></pre>
+</div>
 <ul>
 <li>如果你不指定任何可见性修饰符，默认为 <code>public</code>，这意味着你的声明<!--
 -->将随处可见；</li>
@@ -902,16 +904,18 @@ class Bar {}
 </ul>
 <p>注意：要使用另一包中可见的顶层声明，仍需将其<a href="packages.html#导入">导入</a>进来。</p>
 <p>例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 文件名：example.kt
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 文件名：example.kt
 package foo
 
-private fun foo() {} // 在 example.kt 内可见
+private fun foo() { …… } // 在 example.kt 内可见
 
 public var bar: Int = 5 // 该属性随处可见
     private set         // setter 只在 example.kt 内可见
     
 internal val baz = 6    // 相同模块内可见
 </code></pre>
+</div>
 <h2 id="类和接口">类和接口</h2>
 <p>对于类内部声明的成员：</p>
 <ul>
@@ -923,7 +927,8 @@ internal val baz = 6    // 相同模块内可见
 <p><em>注意</em> 对于Java用户：Kotlin 中外部类不能访问内部类的 private 成员。</p>
 <p>如果你覆盖一个 <code>protected</code> 成员并且没有显式指定其可见性，该成员还会是 <code>protected</code> 可见性。</p>
 <p>例子:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class Outer {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class Outer {
     private val a = 1
     protected open val b = 2
     internal val c = 3
@@ -948,11 +953,14 @@ class Unrelated(o: Outer) {
     // Outer.Nested 不可见，Nested::e 也不可见
 }
 </code></pre>
+</div>
 <h3 id="构造函数">构造函数</h3>
 <p>要指定一个类的的主构造函数的可见性，使用以下语法（注意你需要添加一个<!--
 -->显式 <em class="keyword">constructor</em> 关键字）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C private constructor(a: Int) { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C private constructor(a: Int) { …… }
 </code></pre>
+</div>
 <p>这里的构造函数是私有的。默认情况下，所有构造函数都是 <code>public</code>，这实际上<!--
 -->等于类可见的地方它就可见（即 一个 <code>internal</code> 类的构造函数只能<!--
 -->在相同模块内可见).</p>

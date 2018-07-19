@@ -946,58 +946,72 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 通常不鼓励使用多个词的名称，但是如果确实需要使用多个词，可以将它们连接在一起<!--
 -->或使用驼峰（<code>org.example.myProject</code>）。</p>
 <p>类和对象的名称以大写字母开头并使用驼峰：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class DeclarationProcessor { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class DeclarationProcessor { …… }
 
 object EmptyDeclarationProcessor : DeclarationProcessor() { …… }
 </code></pre>
+</div>
 <h3 id="函数名">函数名</h3>
 <p>函数、属性与局部变量的名称以小写字母开头、使用驼峰而不使用下划线：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun processDeclarations() { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun processDeclarations() { …… }
 var declarationCount = ……
 </code></pre>
+</div>
 <p>例外：用于创建类实例的工厂函数可以与要创建的类具有相同的名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">abstract class Foo { …… }
 
 class FooImpl : Foo { …… }
 
 fun Foo(): Foo { return FooImpl(……) }
 </code></pre>
+</div>
 <h4 id="测试方法的名称">测试方法的名称</h4>
 <p>当且仅当在测试中，可以使用反引号括起来的带空格的方法名。
 （请注意，Android 运行时目前不支持这样的方法名。）测试代码中<!--
 -->也允许方法名使用下划线。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyTestCase {
-     @Test fun `ensure everything works`() {
-     }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MyTestCase {
+     @Test fun `ensure everything works`() { ... }
      
-     @Test fun ensureEverythingWorks_onAndroid() {
-     }
+     @Test fun ensureEverythingWorks_onAndroid() { ... }
 }
 </code></pre>
+</div>
 <h3 id="属性名">属性名</h3>
 <p>常量名称（标有 <code>const</code> 的属性，或者保存不可变数据的没有自定义 <code>get</code> 函数<!--
 -->的顶层/对象 <code>val</code> 属性）应该使用大写、下划线分隔的名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">const val MAX_COUNT = 8
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">const val MAX_COUNT = 8
 val USER_NAME_FIELD = "UserName"
 </code></pre>
+</div>
 <p>保存带有行为的对象或者可变数据的顶层/对象属性的名称应该使用常规驼峰名称：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val mutableCollection: MutableSet&lt;String&gt; = HashSet()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val mutableCollection: MutableSet&lt;String&gt; = HashSet()
 </code></pre>
+</div>
 <p>保存单例对象引用的属性的名称可以使用与 <code>object</code> 声明相同的命名风格：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val PersonComparator: Comparator&lt;Person&gt; = ...
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val PersonComparator: Comparator&lt;Person&gt; = ...
 </code></pre>
+</div>
 <p>对于枚举常量，可以使用大写、下划线分隔的名称
 （<code>enum class Color { RED, GREEN }</code>）也可使用以大写字母开头的常规驼峰名称，具体取决于用途。</p>
 <h4 id="幕后属性的名称">幕后属性的名称</h4>
 <p>如果一个类有两个概念上相同的属性，一个是公共 API 的一部分，另一个是实现<!--
 -->细节，那么使用下划线作为私有属性名称的前缀：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     private val _elementList = mutableListOf&lt;Element&gt;()
 
     val elementList: List&lt;Element&gt;
          get() = _elementList
 }
 </code></pre>
+</div>
 <h3 id="选择好名称">选择好名称</h3>
 <p>类的名称通常是用来解释类<em>是</em>什么的名词或者名词短语：<code>List</code>、 <code>PersonReader</code>。</p>
 <p>方法的名称通常是动词或动词短语，说明该方法<em>做</em>什么：<code>close</code>、 <code>readPersons</code>。
@@ -1012,12 +1026,14 @@ val USER_NAME_FIELD = "UserName"
 <p>使用 4 个空格缩进。不要使用 tab。</p>
 <p>对于花括号，将左花括号放在结构起始处的行尾，而将右花括号<!--
 -->放在与左括结构垂直对齐的单独一行。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (elements != null) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (elements != null) {
     for (element in elements) {
         // ……
     }
 }
 </code></pre>
+</div>
 <p>（注意：在 Kotlin 中，分号是可选的，因此换行很重要。语言设计采用
 Java 风格的花括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。）</p>
 <h3 id="横向空白">横向空白</h3>
@@ -1025,14 +1041,16 @@ Java 风格的花括号格式，如果尝试使用不同的格式化风格，那
 <p>不要在一元运算符左右留空格（<code>a++</code>）</p>
 <p>在控制流关键字（<code>if</code>、 <code>when</code>、 <code>for</code> 以及 <code>while</code>）与相应的左括号之间留空格。</p>
 <p>不要在主构造函数声明、方法声明或者方法调用的左括号之前留空格。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class A(val x: Int)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class A(val x: Int)
 
-fun foo(x: Int) { }
+fun foo(x: Int) { ... }
 
 fun bar() {
     foo(1)
 }
 </code></pre>
+</div>
 <p>绝不在 <code>(</code>、 <code>[</code> 之后或者 <code>]</code>、 <code>)</code> 之前留空格。</p>
 <p>绝不在<code>.</code> 或者 <code>?.</code> 左右留空格：<code>foo.bar().filter { it &gt; 2 }.joinToString()</code>, <code>foo?.bar()</code></p>
 <p>在 <code>//</code> 之后留一个空格：<code>// 这是一条注释</code></p>
@@ -1050,64 +1068,68 @@ fun bar() {
 </ul>
 <p>而当分隔声明与其类型时，不要在 <code>:</code> 之前留空格。</p>
 <p>在 <code>:</code> 之后总要留一个空格。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">abstract class Foo&lt;out T : Any&gt; : IFoo {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">abstract class Foo&lt;out T : Any&gt; : IFoo {
     abstract fun foo(a: Int): T
 }
 
 class FooImpl : Foo() {
-    constructor(x: String) : this(x) {
-        //……
-    }
+    constructor(x: String) : this(x) { …… }
     
-    val x = object : IFoo { …… } 
+    val x = object : IFoo { …… }
 } 
 </code></pre>
+</div>
 <h3 id="类头格式化">类头格式化</h3>
 <p>具有少数主构造函数参数的类可以写成一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(id: Int, name: String)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Person(id: Int, name: String)
 </code></pre>
+</div>
 <p>具有较长类头的类应该格式化，以使每个主构造函数参数都在带有缩进的独立的行中。
 另外，右括号应该位于一个新行上。如果使用了继承，那么超类的构造函数调用或者所实现接口的列表<!--
 -->应该与右括号位于同一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Person(
     id: Int,
     name: String,
     surname: String
-) : Human(id, name) {
-
-    // ……
-}
+) : Human(id, name) { …… }
 </code></pre>
+</div>
 <p>对于多个接口，应该将超类构造函数调用放在首位，然后将每个接口应放在不同的行中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person(
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Person(
     id: Int,
     name: String,
     surname: String
 ) : Human(id, name),
-    KotlinMaker {
-    
-    // ……
-}
+    KotlinMaker { …… }
 </code></pre>
+</div>
 <p>对于具有很长超类型列表的类，在冒号后面换行，并垂直对齐所有超类型名：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MyFavouriteVeryLongClassHolder :
     MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
     SomeOtherInterface,
     AndAnotherOne {
 
-    fun foo() {}
+    fun foo() { ... }
 }
 </code></pre>
+</div>
 <p>为了将类头与类体分隔清楚，当类头很长时，可以在类头后放一空行
 （如上例所示）或者将左花括号放在独立行上：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyFavouriteVeryLongClassHolder :
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MyFavouriteVeryLongClassHolder :
     MyLongHolder&lt;MyFavouriteVeryLongClass&gt;(),
     SomeOtherInterface,
-    AndAnotherOne
-{
-    fun foo() {}
+    AndAnotherOne {
+
+    fun foo() { ... }
 }
 </code></pre>
+</div>
 <p>构造函数参数使用常规缩进（4 个空格）。</p>
 <blockquote>
 <p>理由：这确保了在主构造函数中声明的属性与
@@ -1115,7 +1137,8 @@ class FooImpl : Foo() {
 </blockquote>
 <h3 id="修饰符">修饰符</h3>
 <p>如果一个声明有多个修饰符，请始终按照以下顺序安放：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">public / protected / private / internal
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">public / protected / private / internal
 expect / actual
 final / open / abstract / sealed / const
 external
@@ -1132,88 +1155,111 @@ infix
 operator
 data
 </code></pre>
+</div>
 <p>将所有注解放在修饰符前：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Named("Foo")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Named("Foo")
 private val foo: Foo
 </code></pre>
+</div>
 <p>除非你在编写库，否则请省略多余的修饰符（例如 <code>public</code>）。</p>
 <h3 id="注解格式化">注解格式化</h3>
 <p>注解通常放在单独的行上，在它们所依附的声明之前，并使用相同的缩进：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Target(AnnotationTarget.PROPERTY)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Target(AnnotationTarget.PROPERTY)
 annotation class JsonExclude
 </code></pre>
+</div>
 <p>无参数的注解可以放在同一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsonExclude @JvmField
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@JsonExclude @JvmField
 var x: String
 </code></pre>
+</div>
 <p>无参数的单个注解可以与相应的声明放在同一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@Test fun foo() { …… }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Test fun foo() { …… }
 </code></pre>
+</div>
 <h3 id="文件注解">文件注解</h3>
 <p>文件注解位于文件注释（如果有的话）之后、<code>package</code> 语句之前，并且用一个空白行与 <code>package</code> 分开（为了强调其针对文件而不是包）。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** 授权许可、版权以及任何其他内容 */
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">/** 授权许可、版权以及任何其他内容 */
 @file:JvmName("FooBar")
 
 package foo.bar
 </code></pre>
+</div>
 <h3 id="函数格式化">函数格式化</h3>
 <p>如果函数签名不适合单行，请使用以下语法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun longMethodName(
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun longMethodName(
     argument: ArgumentType = defaultValue,
     argument2: AnotherArgumentType
 ): ReturnType {
     // 函数体
 }
 </code></pre>
+</div>
 <p>函数参数使用常规缩进（4 个空格）。</p>
 <blockquote>
 <p>理由：与构造函数参数一致</p>
 </blockquote>
 <p>对于由单个表达式构成的函数体，优先使用表达式形式。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(): Int {     // 不良
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(): Int {     // 不良
     return 1 
 }
 
 fun foo() = 1        // 良好
 </code></pre>
+</div>
 <h3 id="表达式函数体格式化">表达式函数体格式化</h3>
 <p>如果函数的表达式函数体与函数声明不适合放在同一行，那么将 <code>=</code> 留在第一行。
 将表达式函数体缩进 4 个空格。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun f(x: String) =
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun f(x: String) =
     x.length
 </code></pre>
+</div>
 <h3 id="属性格式化">属性格式化</h3>
 <p>对于非常简单的只读属性，请考虑单行格式：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val isEmpty: Boolean get() = size == 0
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val isEmpty: Boolean get() = size == 0
 </code></pre>
+</div>
 <p>对于更复杂的属性，总是将 <code>get</code> 与 <code>set</code> 关键字放在不同的行上：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val foo: String
-    get() {
-        // ……
-    }
-
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val foo: String
+    get() { …… }
 </code></pre>
+</div>
 <p>对于具有初始化器的属性，如果初始化器很长，那么在等号后增加一个换行<!--
 -->并将初始化器缩进四个空格：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">private val defaultCharset: Charset? =
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">private val defaultCharset: Charset? =
     EncodingRegistry.getInstance().getDefaultCharsetForPropertiesFiles(file)
 </code></pre>
+</div>
 <h3 id="格式化控制流语句">格式化控制流语句</h3>
 <p>如果 <code>if</code> 或 <code>when</code> 语句的条件有多行，那么在语句体外边总是使用大括号。
 将该条件的每个后续行相对于条件语句起始处缩进 4 个空格。
 将该条件的右圆括号与左花括号放在单独一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (!component.isSyncing &amp;&amp;
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (!component.isSyncing &amp;&amp;
     !hasAnyKotlinRuntimeInScope(module)
 ) {
     return createKotlinNotConfiguredPanel(module)
 }
 </code></pre>
+</div>
 <blockquote>
 <p>理由：对齐整齐并且将条件与语句体分隔清楚</p>
 </blockquote>
 <p>将 <code>else</code>、 <code>catch</code>、 <code>finally</code> 关键字以及 do/while 循环的 <code>while</code> 关键字与<!--
 -->之前的花括号放在相同的行上：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (condition) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (condition) {
     // 主体
 } else {
     // else 部分
@@ -1225,8 +1271,10 @@ try {
     // 清理
 }
 </code></pre>
+</div>
 <p>在 <code>when</code> 语句中，如果一个分支不止一行，可以考虑用空行将其与相邻的分支块分开：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">private fun parsePropertyValue(propName: String, token: Token) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">private fun parsePropertyValue(propName: String, token: Token) {
     when (token) {
         is Token.ValueToken -&gt;
             callback.visitValue(propName, token.value)
@@ -1236,70 +1284,90 @@ try {
     }
 }
 </code></pre>
+</div>
 <p>将短分支放在与条件相同的行上，无需花括号。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">when (foo) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">when (foo) {
     true -&gt; bar() // 良好
     false -&gt; { baz() } // 不良
 }
 </code></pre>
+</div>
 <h3 id="方法调用格式化">方法调用格式化</h3>
 <p>在较长参数列表的左括号后添加一个换行符。按 4 个空格缩进参数。
 将密切相关的多个参数分在同一行。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">drawSquare(
     x = 10, y = 10,
     width = 100, height = 100,
     fill = true
 )
 </code></pre>
+</div>
 <p>在分隔参数名与值的 <code>=</code> 左右留空格。</p>
 <h3 id="链式调用换行">链式调用换行</h3>
 <p>当对链式调用换行时，将 <code>.</code> 字符或者 <code>?.</code> 操作符放在下一行，并带有单倍缩进：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val anchor = owner
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val anchor = owner
     ?.firstChild!!
     .siblings(forward = true)
     .dropWhile { it is PsiComment || it is PsiWhiteSpace }
 </code></pre>
+</div>
 <p>调用链的第一个调用通常在换行之前，当然如果能让代码更有意义也可以忽略这点。</p>
 <h3 id="lambda-表达式格式化">Lambda 表达式格式化</h3>
 <p>在 lambda 表达式中，应该在花括号左右以及分隔参数与代码体的箭头左右留空格。
 如果一个调用接受单个 lambda 表达式，应该尽可能将其放在圆括号外边传入。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">list.filter { it &gt; 10 }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">list.filter { it &gt; 10 }
 </code></pre>
+</div>
 <p>如果为 lambda 表达式分配一个标签，那么不要在该标签与左花括号之间留空格：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo() {
     ints.forEach lit@{
         // ……
     }
 }
 </code></pre>
+</div>
 <p>在多行的 lambda 表达式中声明参数名时，将参数名放在第一行，后跟箭头与换行符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">appendCommaSeparated(properties) { prop -&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">appendCommaSeparated(properties) { prop -&gt;
     val propertyValue = prop.get(obj)  // ……
 }
 </code></pre>
+</div>
 <p>如果参数列表太长而无法放在一行上，请将箭头放在单独一行：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">foo {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">foo {
    context: Context,
    environment: Env
    -&gt;
    context.configureEnv(environment)
 }
 </code></pre>
+</div>
 <h2 id="文档注释">文档注释</h2>
 <p>对于较长的文档注释，将开头 <code>/**</code> 放在一个独立行中，并且后续每行都<!--
 -->以星号开头：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/**
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">/**
  * 这是一条多行
  * 文档注释。
  */
 </code></pre>
+</div>
 <p>简短注释可以放在一行内：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">/** 这是一条简短文档注释。 */
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">/** 这是一条简短文档注释。 */
 </code></pre>
+</div>
 <p>通常，避免使用 <code>@param</code> 与 <code>@return</code> 标记。而是将参数与返回值的描述<!--
 -->直接合并到文档注释中，并在提到参数的任何地方加上参数链接。
 只有当需要不适合放进主文本流程的冗长描述时才应使用 <code>@param</code> 与 <code>@return</code>。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 避免这样：
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 避免这样：
 
 /**
  * Returns the absolute value of the given number.
@@ -1315,22 +1383,27 @@ fun abs(number: Int) = ……
  */
 fun abs(number: Int) = ……
 </code></pre>
+</div>
 <h2 id="避免重复结构">避免重复结构</h2>
 <p>一般来说，如果 Kotlin 中的某种语法结构是可选的并且被 IDE
 高亮为冗余的，那么应该在代码中省略之。为了清楚起见，不要在代码中保留不必要的语法元素
 。</p>
 <h3 id="unit">Unit</h3>
 <p>如果函数返回 Unit，那么应该省略返回类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo() { // 这里省略了“: Unit”
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo() { // 这里省略了“: Unit”
 
 }
 </code></pre>
+</div>
 <h3 id="分号">分号</h3>
 <p>尽可能省略分号。</p>
 <h3 id="字符串模版">字符串模版</h3>
 <p>将简单变量传入到字符串模版中时不要使用花括号。只有用到更长表达式时才使用花括号。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">println("$name has ${children.size} children")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">println("$name has ${children.size} children")
 </code></pre>
+</div>
 <h2 id="语言特性的惯用法">语言特性的惯用法</h2>
 <h3 id="不可变性">不可变性</h3>
 <p>优先使用不可变（而不是可变）数据。初始化后未修改的局部变量与属性，总是将其声明为 <code>val</code> 而不是 <code>var</code>
@@ -1338,7 +1411,8 @@ fun abs(number: Int) = ……
 <p>总是使用不可变集合接口（<code>Collection</code>, <code>List</code>, <code>Set</code>, <code>Map</code>）来声明无需<!--
 -->改变的集合。使用工厂函数创建集合实例时，尽可能选用返回不可变<!--
 -->集合类型的函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 不良：使用可变集合类型作为无需改变的值
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 不良：使用可变集合类型作为无需改变的值
 fun validateValue(actualValue: String, allowedValues: HashSet&lt;String&gt;) { …… }
 
 // 良好：使用不可变集合类型
@@ -1350,21 +1424,26 @@ val allowedValues = arrayListOf("a", "b", "c")
 // 良好：listOf() 返回 List&lt;T&gt;
 val allowedValues = listOf("a", "b", "c")
 </code></pre>
+</div>
 <h3 id="默认参数值">默认参数值</h3>
 <p>优先声明带有默认参数的函数而不是声明重载函数。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 不良
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 不良
 fun foo() = foo("a")
 fun foo(a: String) { …… }
 
 // 良好
 fun foo(a: String = "a") { …… }
 </code></pre>
+</div>
 <h3 id="类型别名">类型别名</h3>
 <p>如果有一个在代码库中多次用到的函数类型或者带有类型参数的类型，那么最好为它定义<!--
 -->一个类型别名：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">typealias MouseClickHandler = (Any, MouseEvent) -&gt; Unit
 typealias PersonIndex = Map&lt;String, Person&gt;
 </code></pre>
+</div>
 <h3 id="lambda-表达式参数">Lambda 表达式参数</h3>
 <p>在简短、非嵌套的 lambda 表达式中建议使用 <code>it</code> 用法而不是<!--
 -->显式声明参数。而在有参数的嵌套 lambda 表达式中，始终应该显式声明参数。</p>
@@ -1375,19 +1454,24 @@ typealias PersonIndex = Map&lt;String, Person&gt;
 <h3 id="命名参数">命名参数</h3>
 <p>当一个方法接受多个相同的原生类型参数或者多个 <code>Boolean</code> 类型参数时，请使用命名参数语法，
 除非在上下文中的所有参数的含义都已绝对清楚。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)
 </code></pre>
+</div>
 <h3 id="使用条件语句">使用条件语句</h3>
 <p>优先使用 <code>try</code>、<code>if</code> 与 <code>when</code> 的表达形式。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">return if (x) foo() else bar()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">return if (x) foo() else bar()
 
 return when(x) {
     0 -&gt; "zero"
     else -&gt; "nonzero"
 }
 </code></pre>
+</div>
 <p>优先选用上述代码而不是：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">if (x)
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if (x)
     return foo()
 else
     return bar()
@@ -1397,13 +1481,16 @@ when(x) {
     else -&gt; return "nonzero"
 }    
 </code></pre>
+</div>
 <h3 id="if-还是-when"><code>if</code> 还是 <code>when</code></h3>
 <p>二元条件优先使用 <code>if</code> 而不是 <code>when</code>。不要使用</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">when (x) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">when (x) {
     null -&gt; ……
     else -&gt; ……
 }
 </code></pre>
+</div>
 <p>而应使用 <code>if (x == null) …… else ……</code></p>
 <p>如果有三个或多个选项时优先使用 <code>when</code>。</p>
 <h3 id="在条件中使用可空的-boolean-值">在条件中使用可空的 <code>Boolean</code> 值</h3>
@@ -1415,15 +1502,18 @@ when(x) {
 -->每种情况下所执行操作的开销并且记得考虑性能因素。</p>
 <h3 id="区间上循环">区间上循环</h3>
 <p>使用 <code>until</code> 函数在一个区间上循环：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">for (i in 0..n - 1) { …… }  // 不良
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">for (i in 0..n - 1) { …… }  // 不良
 for (i in 0 until n) { …… }  // 良好
 </code></pre>
+</div>
 <h3 id="使用字符串">使用字符串</h3>
 <p>优先使用字符串模板而不是字符串拼接。</p>
 <p>优先使用多行字符串而不是将 <code>\n</code> 转义序列嵌入到常规字符串字面值中。</p>
 <p>如需在多行字符串中维护缩进，当生成的字符串不需要任何内部<!--
 -->缩进时使用 <code>trimIndent</code>，而需要内部缩进时使用 <code>trimMargin</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">assertEquals(
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">assertEquals(
     """
     Foo
     Bar
@@ -1435,6 +1525,7 @@ val a = """if(a &gt; 1) {
           |    return a
           |}""".trimMargin()
 </code></pre>
+</div>
 <h3 id="函数还是属性">函数还是属性</h3>
 <p>在某些情况下，不带参数的函数可与只读属性互换。
 虽然语义相似，但是在某种程度上有一些风格上的约定。</p>
@@ -1458,30 +1549,38 @@ val a = """if(a &gt; 1) {
 该名称能表明为何该工厂函数的行为与众不同。只有当确实没有特殊的语义时，
 才可以使用与该类相同的名称。</p>
 <p>例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Point(val x: Double, val y: Double) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Point(val x: Double, val y: Double) {
     companion object {
         fun fromPolar(angle: Double, radius: Double) = Point(...)
     }
 }
 </code></pre>
+</div>
 <p>如果一个对象有多个重载的构造函数，它们并非调用不同的超类构造函数，并且<!--
 -->不能简化为具有默认参数值的单个构造函数，那么优先用工厂函数取代<!--
 -->这些重载的构造函数。</p>
 <h3 id="平台类型">平台类型</h3>
 <p>返回平台类型表达式的公有函数/方法必须显式声明其 Kotlin 类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun apiCall(): String = MyJavaApi.getProperty("name")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun apiCall(): String = MyJavaApi.getProperty("name")
 </code></pre>
+</div>
 <p>任何使用平台类型表达式初始化的属性（包级别或类级别）必须显式声明其 Kotlin 类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Person {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Person {
     val name: String = MyJavaApi.getProperty("name")
 }
 </code></pre>
+</div>
 <p>使用平台类型表达式初始化的局部值可以有也可以没有类型声明：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     val name = MyJavaApi.getProperty("name")
     println(name)
 }
 </code></pre>
+</div>
 <h3 id="使用作用域函数-applywithrunalsolet">使用作用域函数 apply/with/run/also/let</h3>
 <p>Kotlin 提供了一系列用来在给定对象上下文中执行代码块的函数。要选择正确的<!--
 -->函数，请考虑以下几点：</p>
@@ -1490,7 +1589,8 @@ val a = """if(a &gt; 1) {
 -->参数传递？如果是，那么使用以 <code>it</code> 而不是 <code>this</code> 形式访问上下文对象的函数之一
 （ <code>also</code> 或 <code>let</code> ）。如果在代码块中根本没有用到接收者，那么使用 <code>also</code>。</li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 上下文对象是“it”
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 上下文对象是“it”
 class Baz {
     var currentBar: Bar?
     val observable: Observable
@@ -1514,11 +1614,13 @@ class Baz {
     }
 }
 </code></pre>
+</div>
 <ul>
 <li>调用的结果是什么？如果结果需是该上下文对象，那么使用 <code>apply</code> 或 <code>also</code>。
 如果需要从代码块中返回一个值，那么使用 <code>with</code>、<code>let</code> 或者 <code>run</code></li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 返回值是上下文对象
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 返回值是上下文对象
 class Baz {
     val foo: Bar = createBar().apply {
         color = RED    // 只访问 Bar 的属性
@@ -1534,11 +1636,13 @@ class Baz {
     }
 }
 </code></pre>
+</div>
 <ul>
 <li>上下文对象是否可空，或者是否作为调用链的结果求值而来的？如果是，那么使用 <code>apply</code>、<code>let</code> 或者 <code>run</code>。
 否则，使用 <code>with</code> 或者 <code>also</code>。</li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 上下文对象可空
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 上下文对象可空
 person.email?.let { sendEmail(it) }
 
 // 上下文对象非空且可直接访问
@@ -1546,6 +1650,7 @@ with(person) {
     println("First name: $firstName, last name: $lastName")
 }
 </code></pre>
+</div>
 <h2 id="库的编码规范">库的编码规范</h2>
 <p>在编写库时，建议遵循一组额外的规则以确保 API 的稳定性：</p>
 <ul>

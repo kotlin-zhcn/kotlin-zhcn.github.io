@@ -882,34 +882,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="函数">函数</h1>
 <h2 id="函数声明">函数声明</h2>
 <p>Kotlin 中的函数使用 <em class="keyword">fun</em> 关键字声明：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun double(x: Int): Int {
     return 2 * x
 }
 </code></pre>
+</div>
 <h2 id="函数用法">函数用法</h2>
 <p>调用函数使用传统的方法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val result = double(2)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val result = double(2)
 </code></pre>
+</div>
 <p>调用成员函数使用点表示法：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
 </code></pre>
+</div>
 <h3 id="参数">参数</h3>
 <p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun powerOf(number: Int, exponent: Int) {
-……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun powerOf(number: Int, exponent: Int) { …… }
 </code></pre>
+</div>
 <h3 id="默认参数">默认参数</h3>
 <p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少<!--
 -->重载数量：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) {
-……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) { …… }
 </code></pre>
+</div>
 <p>默认值通过类型后面的 <strong>=</strong> 及给出的值来定义。</p>
 <p>覆盖方法总是使用与基类型方法相同的默认参数值。
 当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class A {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class A {
     open fun foo(i: Int = 10) { …… }
 }
 
@@ -917,21 +924,27 @@ class B : A() {
     override fun foo(i: Int) { …… }  // 不能有默认值
 }
 </code></pre>
+</div>
 <p>如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用<a href="#命名参数">命名参数</a>调用该函数来使用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(bar: Int = 0, baz: Int) { /* …… */ }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int) { …… }
 
 foo(baz = 1) // 使用默认值 bar = 0
 </code></pre>
+</div>
 <p>不过如果最后一个 <a href="lambdas.html#lambda-表达式与匿名函数">lambda 表达式</a>参数从括号外传给函数函数调用，那么允许默认参数不传值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /* …… */ }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { …… }
 
-foo(1) { println("hello") } // 使用默认值 baz = 1 
+foo(1) { println("hello") } // 使用默认值 baz = 1
 foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 </code></pre>
+</div>
 <h3 id="命名参数">命名参数</h3>
 <p>可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。</p>
 <p>给定以下函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun reformat(str: String,
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun reformat(str: String,
              normalizeCase: Boolean = true,
              upperCaseFirstLetter: Boolean = true,
              divideByCamelHumps: Boolean = false,
@@ -939,35 +952,47 @@ foo { println("hello") }    // 使用两个默认值 bar = 0 与 baz = 1
 ……
 }
 </code></pre>
+</div>
 <p>我们可以使用默认参数来调用它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">reformat(str)
 </code></pre>
+</div>
 <p>然而，当使用非默认参数调用它时，该调用看起来就像：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, true, true, false, '_')
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">reformat(str, true, true, false, '_')
 </code></pre>
+</div>
 <p>使用命名参数我们可以使代码更具有可读性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str,
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">reformat(str,
     normalizeCase = true,
     upperCaseFirstLetter = true,
     divideByCamelHumps = false,
     wordSeparator = '_'
 )
 </code></pre>
+</div>
 <p>并且如果我们不需要所有的参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">reformat(str, wordSeparator = '_')
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">reformat(str, wordSeparator = '_')
 </code></pre>
+</div>
 <p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
 <p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun foo(vararg strings: String) { /* …… */ }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(vararg strings: String) { …… }
 
 foo(strings = *arrayOf("a", "b", "c"))
 </code></pre>
+</div>
 <p>请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
 -->总是保留函数参数的名称。</p>
 <h3 id="返回-unit-的函数">返回 Unit 的函数</h3>
 <p>如果一个函数不返回任何有用的值，它的返回类型是 <code>Unit</code>。<code>Unit</code> 是一种只有一个值——<code>Unit</code> 的类型。这个<!--
 -->值不需要显式返回：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun printHello(name: String?): Unit {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun printHello(name: String?): Unit {
     if (name != null)
         println("Hello ${name}")
     else
@@ -975,43 +1000,54 @@ foo(strings = *arrayOf("a", "b", "c"))
     // `return Unit` 或者 `return` 是可选的
 }
 </code></pre>
+</div>
 <p><code>Unit</code> 返回类型声明也是可选的。上面的代码等同于：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun printHello(name: String?) {
-    ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun printHello(name: String?) { …… }
 </code></pre>
+</div>
 <h3 id="单表达式函数">单表达式函数</h3>
 <p>当函数返回单个表达式时，可以省略花括号并且在 <strong>=</strong> 符号之后指定代码体即可：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int): Int = x * 2
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun double(x: Int): Int = x * 2
 </code></pre>
+</div>
 <p>当返回值类型可由编译器推断时，显式声明返回类型是<a href="#显式返回类型">可选</a>的：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun double(x: Int) = x * 2
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun double(x: Int) = x * 2
 </code></pre>
+</div>
 <h3 id="显式返回类型">显式返回类型</h3>
 <p>具有块代码体的函数必须始终显式指定返回类型，除非他们旨在返回 <code>Unit</code>，<a href="#返回-unit-的函数">在这种情况下它是可选的</a>。
 Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函数在代码体中可能有复杂的控制流，并且返回<!--
 -->类型对于读者（有时甚至对于编译器）是不明显的。</p>
 <h3 id="可变数量的参数varargs">可变数量的参数（Varargs）</h3>
 <p>函数的参数（通常是最后一个）可以用 <code>vararg</code> 修饰符标记：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; asList(vararg ts: T): List&lt;T&gt; {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; asList(vararg ts: T): List&lt;T&gt; {
     val result = ArrayList&lt;T&gt;()
     for (t in ts) // ts is an Array
         result.add(t)
     return result
 }
 </code></pre>
+</div>
 <p>允许将可变数量的参数传递给函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val list = asList(1, 2, 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val list = asList(1, 2, 3)
 </code></pre>
+</div>
 <p>在函数内部，类型 <code>T</code> 的 <code>vararg</code> 参数的可见方式是作为 <code>T</code> 数组，即上例中的 <code>ts</code> 变量具有类型 <code>Array &lt;out T&gt;</code>。</p>
 <p>只有一个参数可以标注为 <code>vararg</code>。如果 <code>vararg</code> 参数不是列表中的最后一个参数， 可以使用<!--
 -->命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部<!--
 -->传一个 lambda。</p>
 <p>当我们调用 <code>vararg</code>-函数时，我们可以一个接一个地传参，例如 <code>asList(1, 2, 3)</code>，或者，如果我们已经有一个数组<!--
 -->并希望将其内容传给该函数，我们使用<strong>伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val a = arrayOf(1, 2, 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
 </code></pre>
+</div>
 <h3 id="中缀表示法">中缀表示法</h3>
 <p>标有 <em class="keyword">infix</em> 关键字的函数也可以使用中缀表示法（忽略该调用的点与圆括号）调用。中缀函数必须满足以下要求：</p>
 <ul>
@@ -1019,9 +1055,8 @@ val list = asList(-1, 0, *a, 4)
 <li>它们必须只有一个参数；</li>
 <li>其参数不得<a href="#可变数量的参数varargs">接受可变数量的参数</a>且不能有<a href="#默认参数">默认值</a>。</li>
 </ul>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">infix fun Int.shl(x: Int): Int {
-    // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">infix fun Int.shl(x: Int): Int { …… }
 
 // 用中缀表示法调用该函数
 1 shl 2
@@ -1029,6 +1064,7 @@ val list = asList(-1, 0, *a, 4)
 // 等同于这样
 1.shl(2)
 </code></pre>
+</div>
 <blockquote class="note">
 <p>中缀函数调用的优先级低于算术操作符、类型转换以及 <code>rangeTo</code> 操作符。
 以下表达式是等价的：</p>
@@ -1047,8 +1083,9 @@ val list = asList(-1, 0, *a, 4)
 <p>请注意，中缀函数总是要求指定接收者与参数。当<!--
 -->使用中缀表示法在当前接收者上调用方法时，需要显式使用 <code>this</code>；不能像常规方法调用<!--
 -->那样省略。这是确保非模糊解析所必需的。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyStringCollection {
-    infix fun add(s: String) { /* …… */ }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MyStringCollection {
+    infix fun add(s: String) { …… }
     
     fun build() {
         this add "abc"   // 正确
@@ -1057,12 +1094,14 @@ val list = asList(-1, 0, *a, 4)
     }
 }
 </code></pre>
+</div>
 <h2 id="函数作用域">函数作用域</h2>
 <p>在 Kotlin 中函数可以在文件顶层声明，这意味着你不需要像一些语言如 Java、C# 或 Scala 那样创建一个类来保存一个函数。此外<!--
 -->除了顶层函数，Kotlin 中函数也可以声明在局部作用域、作为成员函数以及扩展函数。</p>
 <h3 id="局部函数">局部函数</h3>
 <p>Kotlin 支持局部函数，即一个函数在另一个函数内部：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun dfs(graph: Graph) {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun dfs(graph: Graph) {
     fun dfs(current: Vertex, visited: Set&lt;Vertex&gt;) {
         if (!visited.add(current)) return
         for (v in current.neighbors)
@@ -1072,8 +1111,10 @@ val list = asList(-1, 0, *a, 4)
     dfs(graph.vertices[0], HashSet())
 }
 </code></pre>
+</div>
 <p>局部函数可以访问外部函数（即闭包）的局部变量，所以在上例中，<em>visited</em> 可以是局部变量：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun dfs(graph: Graph) {
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun dfs(graph: Graph) {
     val visited = HashSet&lt;Vertex&gt;()
     fun dfs(current: Vertex) {
         if (!visited.add(current)) return
@@ -1084,22 +1125,27 @@ val list = asList(-1, 0, *a, 4)
     dfs(graph.vertices[0])
 }
 </code></pre>
+</div>
 <h3 id="成员函数">成员函数</h3>
 <p>成员函数是在类或对象内部定义的函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Sample() {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Sample() {
     fun foo() { print("Foo") }
 }
 </code></pre>
+</div>
 <p>成员函数以点表示法调用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
 </code></pre>
+</div>
 <p>关于类和覆盖成员的更多信息参见<a href="classes.html">类</a>和<a href="classes.html#继承">继承</a>。</p>
 <h2 id="泛型函数">泛型函数</h2>
 <p>函数可以有泛型参数，通过在函数名前使用尖括号指定：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
-    // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; { …… }
 </code></pre>
+</div>
 <p>关于泛型函数的更多信息参见<a href="generics.html">泛型</a>。</p>
 <h2 id="内联函数">内联函数</h2>
 <p>内联函数在<a href="inline-functions.html">这里</a>讲述。</p>
@@ -1111,11 +1157,14 @@ val list = asList(-1, 0, *a, 4)
 <p>Kotlin 支持一种称为<a href="https://zh.wikipedia.org/wiki/%E5%B0%BE%E8%B0%83%E7%94%A8">尾递归</a>的函数式编程风格。
 这允许一些通常用循环写的算法改用递归函数来写，而无堆栈溢出的风险。
 当一个函数用 <code>tailrec</code> 修饰符标记并满足所需的形式时，编译器会优化该递归，留下一个快速而高效的基于循环的版本：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">tailrec fun findFixPoint(x: Double = 1.0): Double
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">tailrec fun findFixPoint(x: Double = 1.0): Double
         = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
 </code></pre>
+</div>
 <p>这段代码计算余弦的不动点（fixpoint of cosine），这是一个数学常数。 它只是重复地从 1.0 开始调用 Math.cos，直到结果不再改变，产生0.7390851332151607的结果。最终代码相当于这种更传统风格的代码：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">private fun findFixPoint(): Double {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">private fun findFixPoint(): Double {
     var x = 1.0
     while (true) {
         val y = Math.cos(x)
@@ -1124,6 +1173,7 @@ val list = asList(-1, 0, *a, 4)
     }
 }
 </code></pre>
+</div>
 <p>要符合 <code>tailrec</code> 修饰符的条件的话，函数必须将其自身调用作为它执行的最后一个操作。在递归调用后有更多代码时，不能使用尾递归，并且不能用在 try/catch/finally 块中。目前尾部递归只在 JVM 后端中支持。</p>
 
         </article>

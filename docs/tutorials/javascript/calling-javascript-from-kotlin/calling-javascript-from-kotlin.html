@@ -517,22 +517,26 @@ better understanding of how things work under the covers.</p>
 </ul>
 <h2 id="using-standard-library-functions">Using Standard Library Functions</h2>
 <p>The Standard Library comes with a function named <code>js</code> which allows us to emit JavaScript easily from Kotlin.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 
     js("alert('Hello from Kotlin')")
 
 }
 </code></pre>
-<p>The code above would emit a JavaScript message dialog as soon as the main function is executed. It's important to note that this is not merely an <code>eval</code>. The JavaScript 
+</div>
+<p>The code above would emit a JavaScript message dialog as soon as the main function is executed. It's important to note that this is not merely an <code>eval</code>. The JavaScript
 code is verified to be valid and injected into the generated code.</p>
 <h2 id="working-with-strongly-typed-libraries">Working with Strongly-Typed Libraries</h2>
 <p>Kotlin standard library ships with a series of headers for interacting with JavaScript libraries such as jQuery[1].</p>
 <p>For the case of jQuery, we can use the <code>jq</code> standard library function. This allows us to write jQuery directly without having to resort to invoking it using
 inline JavaScript.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#message").html("Hello from Kotlin")
 }
 </code></pre>
+</div>
 <p>which would set the HTML of the <code>div</code> with id <code>message</code></p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -552,26 +556,33 @@ inline JavaScript.</p>
 <h2 id="invoking-javascript-only-members">Invoking JavaScript-only members</h2>
 <p>There are cases in which we want to invoke some method that only exists in JavaScript. For instance, let's assume we want to use the <a href="https://datatables.net/">DataTables</a> jQuery plugin that creates a grid out of a table. This plugin requires
 us to invoke <code>Datatable()</code> on a DOM table element.</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">    $('#table').DataTable();
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">    $('#table').DataTable();
 </code></pre>
+</div>
 <p>If we were to try and do this using our <code>jq()</code> function, the code wouldn't compile</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#table").DataTable()
 }
 </code></pre>
+</div>
 <p>and we'd get an unresolved reference</p>
 <p><img alt="Unresolved Reference" src="/assets/images/tutorials/javascript/calling-javascript-from-kotlin/unresolved-reference.png"/></p>
 <p>In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a href="https://kotlinlang.org/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#table").asDynamic().DataTable()
 }
 </code></pre>
+</div>
 <p>At runtime, the call will be mapped to the same member invocation.</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">var workingWithJavaScript = function (Kotlin) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">var workingWithJavaScript = function (Kotlin) {
   'use strict';
   var _ = Kotlin.defineRootPackage(null, /** @lends _ */ {
     main_kand9s$: function (args) {
-      $('#table').DataTable(); // &lt;-- LITERAL TRANSLATION  
+      $('#table').DataTable(); // &lt;-- LITERAL TRANSLATION
     }
   });
   Kotlin.defineModule('workingWithJavaScript', _);
@@ -579,11 +590,13 @@ us to invoke <code>Datatable()</code> on a DOM table element.</p>
   return _;
 }(kotlin);
 </code></pre>
+</div>
 <h2 id="creating-mappings-with-native">Creating mappings with Native</h2>
-<p>In the above scenario, <code>DataTable()</code> was transpiled to the same member name in JavaScript. What happens however when we want to map to something different? In fact, we're doing this with <code>jq</code> itself. 
+<p>In the above scenario, <code>DataTable()</code> was transpiled to the same member name in JavaScript. What happens however when we want to map to something different? In fact, we're doing this with <code>jq</code> itself.
 If we notice the output of the code above, we see the <code>jq</code> has been transpiled to <code>$</code>. How does this happen?</p>
 <p>Kotlin allows us to map a function to something else in JavaScript by annotating it using the <code>@native</code> annotation. If we look at the standard library, we can see that the <code>jq</code> function has the following definition</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@native("$")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@native("$")
 public fun jq(selector: String): JQuery = JQuery();
 @native("$")
 public fun jq(selector: String, context: Element): JQuery = JQuery();
@@ -596,6 +609,7 @@ public fun jq(el: Element): JQuery = JQuery();
 @native("$")
 public fun jq(): JQuery = JQuery();
 </code></pre>
+</div>
 <p>Using a combination of <code>dynamic</code> and <code>native</code> we can use third-party libraries that are available in JavaScript for which we do not currently have strongly-typed header definitions.</p>
 <p>[1] At some point these headers might be separated out into their own library as part of the <a href="https://github.com/kotlin/">Kotlinx project</a></p>
 

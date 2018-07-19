@@ -898,7 +898,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>当你为指定平台编译多平台项目时，既会生成公共代码也会生成平台相关代码。</p>
 <p>多平台项目支持的一个主要特点是可以通过<strong>预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
 <p>在公共代码中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 预期平台相关 API:
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 预期平台相关 API:
 expect fun hello(world: String): String
 
 fun greet() {
@@ -912,43 +913,48 @@ expect class URL(spec: String) {
     open fun getPath(): String
 }
 </code></pre>
+</div>
 <p>在 JVM 平台代码中：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">actual fun hello(world: String): String =
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">actual fun hello(world: String): String =
     "Hello, $world, on the JVM platform!"
 
 // 使用既有平台相关实现：
 actual typealias URL = java.net.URL
 </code></pre>
+</div>
 <p>关于构建多平台项目的详细信息与步骤，请参见其<a href="http://kotlinlang.org/docs/reference/multiplatform.html">documentation</a><!--
 -->。</p>
 <h2 id="其他语言特性">其他语言特性</h2>
 <h3 id="注解中的数组字面值">注解中的数组字面值</h3>
 <p>自 Kotlin 1.2 起，注解的数组参数可以通过新的数组字面值语法传入，而无需<!--
 -->使用 <code>arrayOf</code> 函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@CacheConfig(cacheNames = ["books", "default"])
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@CacheConfig(cacheNames = ["books", "default"])
 public class BookRepositoryImpl {
     // ……
 }
 </code></pre>
+</div>
 <p>该数组字面值语法仅限于注解参数。</p>
 <h3 id="lateinit-顶层属性与局部变量">lateinit 顶层属性与局部变量</h3>
 <p><code>lateinit</code> 修饰符现在可以用于顶层属性与局部变量了。例如，后者可用于<!--
 -->当一个 lambda 表达式作为构造函数参数传给一个对象时，引用另一个<!--
 -->必须稍后定义的对象：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">class Node&lt;T&gt;(val value: T, val next: () -&gt; Node&lt;T&gt;)
 
 fun main(args: Array&lt;String&gt;) {
     //sampleStart
     // 三个节点的环：
     lateinit var third: Node&lt;Int&gt;
-    
+
     val second = Node(2, next = { third })
     val first = Node(1, next = { second })
-    
+
     third = Node(3, next = { first })
     //sampleEnd
-    
+
     val nodes = generateSequence(first) { it.next() }
     println("Values in the cycle: ${nodes.take(7).joinToString { it.value.toString() }}, ...")
 }
@@ -956,15 +962,15 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h3 id="检查-lateinit-变量是否已初始化">检查 lateinit 变量是否已初始化</h3>
 <p>现在可以通过属性引用的 <code>isInitialized</code> 来检测该 lateinit var 是否已初始化：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">class Foo {
     lateinit var lateinitVar: String
-    
+
     fun initializationLogic() {
         //sampleStart
         println("isInitialized before assignment: " + this::lateinitVar.isInitialized)
         lateinitVar = "value"
-        println("isInitialized after assignment: " + this::lateinitVar.isInitialized)    
+        println("isInitialized after assignment: " + this::lateinitVar.isInitialized)
         //sampleEnd
     }
 }
@@ -976,9 +982,9 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h3 id="内联函数带有默认函数式参数">内联函数带有默认函数式参数</h3>
 <p>内联函数现在允许其内联函式数参数具有默认值：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div auto-indent="false" class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
-inline fun &lt;E&gt; Iterable&lt;E&gt;.strings(transform: (E) -&gt; String = { it.toString() }) = 
+inline fun &lt;E&gt; Iterable&lt;E&gt;.strings(transform: (E) -&gt; String = { it.toString() }) =
     map { transform(it) }
 
 val defaultStrings = listOf(1, 2, 3).strings()
@@ -996,44 +1002,44 @@ fun main(args: Array&lt;String&gt;) {
 -->返回类型参数 <code>T</code> 的泛型方法并将返回值转换为指定类型 <code>Foo</code>，那么编译器现在知道<!--
 -->对于本次调用需要绑定类型为 <code>Foo</code>。</p>
 <p>这对于 Android 开发者来说尤为重要，因为编译器现在可以正确分析
-Android API 级别 26 中的泛型 <code>findViewById</code> 调用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val button = findViewById(R.id.button) as Button
+ Android API 级别 26中的泛型 <code>findViewById</code> 调用：</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val button = findViewById(R.id.button) as Button
 </code></pre>
+</div>
 <h3 id="智能类型转换改进">智能类型转换改进</h3>
 <p>当一个变量有安全调用表达式与空检测赋值时，其智能转换现在也可以应用于<!--
 -->安全调用接收者：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div auto-indent="false" class="sample" data-min-compiler-version="1.2" indent="2" theme="idea">
 <pre><code class="language-kotlin">fun countFirst(s: Any): Int {
-    //sampleStart
-    val firstChar = (s as? CharSequence)?.firstOrNull()
-    if (firstChar != null)
-       return s.count { it == firstChar } // s: Any 会智能转换为 CharSequence
+//sampleStart
+  val firstChar = (s as? CharSequence)?.firstOrNull()
+  if (firstChar != null)
+    return s.count { it == firstChar } // s: Any 会智能转换为 CharSequence
     
-    val firstItem = (s as? Iterable&lt;*&gt;)?.firstOrNull()
-    if (firstItem != null)
-       return s.count { it == firstItem } // s: Any 会智能转换为 Iterable&lt;*&gt;
-    //sampleEnd
-    
+  val firstItem = (s as? Iterable&lt;*&gt;)?.firstOrNull()
+  if (firstItem != null)
+    return s.count { it == firstItem } // s: Any 会智能转换为 Iterable&lt;*&gt;
+//sampleEnd
     return -1
 }
 
 fun main(args: Array&lt;String&gt;) {
-    val string = "abacaba"
-    val countInString = countFirst(string)
-    println("called on \"$string\": $countInString")
-    
-    val list = listOf(1, 2, 3, 1, 2)
-    val countInList = countFirst(list)
-    println("called on $list: $countInList")
+  val string = "abacaba"
+  val countInString = countFirst(string)
+  println("called on \"$string\": $countInString")
+
+  val list = listOf(1, 2, 3, 1, 2)
+  val countInList = countFirst(list)
+  println("called on $list: $countInList")
 }
 </code></pre>
 </div>
 <p>智能转换现在也允许用于在 lambda 表达式中局部变量，只要这些局部变量仅在 lambda 表达式之前修改即可：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    val flag = args.size == 0
-    
     //sampleStart
+    val flag = args.size == 0
     var x: String? = null
     if (flag) x = "Yahoo!"
 
@@ -1048,53 +1054,55 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h3 id="支持-foo-作为-thisfoo-的简写">支持 ::foo 作为 this::foo 的简写</h3>
 <p>现在写绑定到 <code>this</code> 成员的可调用引用可以无需显式接收者，即 <code>::foo</code> 取代
-<code>this:: foo</code>。这也使在引用外部接收者的成员的 lambda 表达式中使用可调用引用更加方便<!--
+ <code>this::foo</code>。这也使在引用外部接收者的成员的 lambda 表达式中使用可调用引用更加方便<!--
 -->。</p>
 <h3 id="阻断性变更try-块后可靠智能转换">阻断性变更：try 块后可靠智能转换</h3>
 <p>Kotlin 以前将 <code>try</code> 块中的赋值语句用于块后的智能转换，这可能会破坏类型安全与空安全<!--
 -->并引发运行时故障。这个版本修复了该问题，使智能转换更加严格，但可能会破坏一些<!--
 -->依靠这种智能转换的代码。</p>
 <p>如果要切换到旧版智能转换行为，请传入回退标志 <code>-Xlegacy-smart-cast-after-try</code> 作为编译器<!--
--->参数。该参数会在 Kotlin 1.3 中弃用。</p>
+-->参数。该参数会在 Kotlin 1.3中弃用。</p>
 <h3 id="弃用数据类弃用-copy">弃用：数据类弃用 copy</h3>
 <p>当从已具有签名相同的 <code>copy</code> 函数的类型派生数据类时，为数据类生成的 <code>copy</code>
 实现使用超类型的默认值，这导致反直觉行为，
 或者导致运行时失败，如果超类型中没有默认参数的话。</p>
 <p>导致 <code>copy</code> 冲突的继承在 Kotlin 1.2 中已弃用并带有警告，
-而在 Kotlin 1.3 中将会是错误。</p>
+而在 Kotlin 1.3中将会是错误。</p>
 <h3 id="弃用枚举条目中的嵌套类型">弃用：枚举条目中的嵌套类型</h3>
 <p>由于初始化逻辑的问题，已弃用在枚举条目内部定义一个非 <code>inner class</code>
-的嵌套类。这在 Kotlin 1.2 中会引起警告，而在 Kotlin 1.3 中会成为错误。</p>
+的嵌套类。这在 Kotlin 1.2 中会引起警告，而在 Kotlin 1.3中会成为错误。</p>
 <h3 id="弃用vararg-单个命名参数">弃用：vararg 单个命名参数</h3>
 <p>为了与注解中的数组字面值保持一致，向一个命名参数形式的 vararg 参数传入单个项目<!--
 -->的用法（<code>foo(items = i)</code>）已被弃用。请使用伸展操作符连同相应的<!--
 -->数组工厂函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">foo(items = *intArrayOf(1))
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">foo(items = *intArrayOf(1))
 </code></pre>
+</div>
 <p>在这种情况下有一项防止性能下降的优化可以消除冗余的数组创建。
-单参数形式在 Kotlin 1.2 中会产生警告，而在 Kotlin 1.3 中会放弃。</p>
+单参数形式在 Kotlin 1.2 中会产生警告，而在 Kotlin 1.3中会放弃。</p>
 <h3 id="弃用扩展-throwable-的泛型类的内部类">弃用：扩展 Throwable 的泛型类的内部类</h3>
 <p>继承自 <code>Throwable</code> 的泛型类的内部类可能会在 throw-catch 场景中违反类型安全性，因此<!--
--->已弃用，在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
+-->已弃用，在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3中会是错误。</p>
 <h3 id="弃用修改只读属性的幕后字段">弃用：修改只读属性的幕后字段</h3>
 <p>通过在自定义 getter 中赋值 <code>field = ……</code> 来修改只读属性的幕后字段的用法已被弃用，
-在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3 中会是错误。</p>
+在 Kotlin 1.2 中会是警告，而在 Kotlin 1.3中会是错误。</p>
 <h2 id="标准库">标准库</h2>
 <h3 id="kotlin-标准库构件与拆分包">Kotlin 标准库构件与拆分包</h3>
 <p>Kotlin 标准库现在完全兼容 Java 9 的模块系统，它禁止拆分包
 （多个 jar 文件声明的类在同一包中）。为了支持这点，我们引入了新的 <code>kotlin-stdlib-jdk7</code>
-与 <code>kotlin-stdlib-jdk8</code>，它们取代了旧版的 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
+与 <code>kotlin-stdlib-jdk8</code> ，它们取代了旧版的 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
 <p>在 Kotlin 看来新的构件中的声明在相同的包名内，而在
-Java 看来有不同的包名。因此，切换到新的构件无需修改任何<!--
+ Java看来有不同的包名。因此，切换到新的构件无需修改任何<!--
 -->源代码。</p>
 <p>确保与新的模块系统兼容的另一处变更是在 <code>kotlin-reflect</code> 库中删除了
 <code>kotlin.reflect</code> 包中弃用的声明。如果你正在使用它们，你需要<!--
 -->切换到使用 <code>kotlin.reflect.full</code> 包中的声明，自 Kotlin 1.1 起就支持这个包了。</p>
 <h3 id="windowedchunkedzipwithnext">windowed、chunked、zipWithNext</h3>
-<p>用于 <code>Iterable&lt;T&gt;</code>、 <code>Sequence&lt;T&gt;</code> 与 <code>CharSequence</code> 的新的扩展覆盖了这些应用场景：缓存或<!--
+<p>用于 <code>Iterable&lt;T&gt;</code>、 <code>Sequence&lt;T&gt;</code>与 <code>CharSequence</code> 的新的扩展覆盖了这些应用场景：缓存或<!--
 -->批处理（<code>chunked</code>）、 滑动窗口与计算滑动均值（<code>windowed</code>）以及处理成对<!--
 -->的后续条目（<code>zipWithNext</code>）：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<div class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
     val items = (1..9).map { it * it }
@@ -1105,9 +1113,9 @@ Java 看来有不同的包名。因此，切换到新的构件无需修改任何
     val slidingAverage = items.windowed(4) { it.average() }
     val pairwiseDifferences = items.zipWithNext { a, b -&gt; b - a }
     //sampleEnd
-    
+
     println("items: $items\n")
-    
+
     println("chunked into lists: $chunkedIntoLists")
     println("3D points: $points3d")
     println("windowed by 4: $windowed")
@@ -1117,9 +1125,9 @@ Java 看来有不同的包名。因此，切换到新的构件无需修改任何
 </code></pre>
 </div>
 <h3 id="fillreplaceallshuffleshuffled">fill、replaceAll、shuffle/shuffled</h3>
-<p>添加了一些用于操作列表的扩展函数：<code>MutableList</code> 的 <code>fill</code>、<code>replaceAll</code> 与 <code>shuffle</code>，
-以及只读 <code>List</code> 的 <code>shuffled</code>：</p>
-<div class="sample" data-min-compiler-version="1.2">
+<p>添加了一些用于操作列表的扩展函数：<code>MutableList</code> 的 <code>fill</code>、 <code>replaceAll</code> 与 <code>shuffle</code> ，
+以及只读 <code>List</code>的 <code>shuffled</code>：</p>
+<div class="sample" data-min-compiler-version="1.2" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
     val items = (1..5).toMutableList()

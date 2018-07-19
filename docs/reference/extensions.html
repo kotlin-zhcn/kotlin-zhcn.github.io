@@ -885,24 +885,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="扩展函数">扩展函数</h2>
 <p>声明一个扩展函数，我们需要用一个 <em>接收者类型</em> 也就是被扩展的类型来作为他的前缀。
 下面代码为 <code>MutableList&lt;Int&gt;</code> 添加一个<code>swap</code> 函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun MutableList&lt;Int&gt;.swap(index1: Int, index2: Int) {
     val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
 </code></pre>
+</div>
 <p>这个 <em class="keyword">this</em> 关键字在扩展函数内部对应到接收者对象（传过来的在点符号前的对象）
 现在，我们对任意 <code>MutableList&lt;Int&gt;</code> 调用该函数了：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = mutableListOf(1, 2, 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = mutableListOf(1, 2, 3)
 l.swap(0, 2) // “swap()”内部的“this”得到“l”的值
 </code></pre>
+</div>
 <p>当然，这个函数对任何 <code>MutableList&lt;T&gt;</code> 起作用，我们可以泛化它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; MutableList&lt;T&gt;.swap(index1: Int, index2: Int) {
     val tmp = this[index1] // “this”对应该列表
     this[index1] = this[index2]
     this[index2] = tmp
 }
 </code></pre>
+</div>
 <p>为了在接收者类型表达式中使用泛型，我们要在函数名前声明泛型参数。
 参见<a href="generics.html">泛型函数</a>。</p>
 <h2 id="扩展是静态解析的">扩展是静态解析的</h2>
@@ -911,7 +917,8 @@ l.swap(0, 2) // “swap()”内部的“this”得到“l”的值
 <p>我们想强调的是扩展函数是静态分发的，即他们不是根据接收者类型的虚方法。
 这意味着调用的扩展函数是由函数调用所在的表达式的类型来决定的，
 而不是由表达式运行时求值结果决定的。例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class C
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class C
 
 class D: C()
 
@@ -925,70 +932,86 @@ fun printFoo(c: C) {
 
 printFoo(D())
 </code></pre>
+</div>
 <p>这个例子会输出 "c"，因为调用的扩展函数只取决于<!--
 -->参数 <code>c</code> 的声明类型，该类型是 <code>C</code> 类。</p>
 <p>如果一个类定义有一个成员函数和一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字<!--
 -->并且都适用给定的参数，这种情况<strong>总是取成员函数</strong>。
 例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     fun foo() { println("member") }
 }
 
 fun C.foo() { println("extension") }
 </code></pre>
+</div>
 <p>如果我们调用 <code>C</code> 类型 <code>c</code>的 <code>c.foo()</code>，它将输出“member”，而不是“extension”。</p>
 <p>当然，扩展函数重载同样名字但不同签名成员函数也完全可以：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     fun foo() { println("member") }
 }
 
 fun C.foo(i: Int) { println("extension") }
 </code></pre>
+</div>
 <p>调用 <code>C().foo(1)</code> 将输出 "extension"。</p>
 <h2 id="可空接收者">可空接收者</h2>
 <p>注意可以为可空的接收者类型定义扩展。这样的扩展可以在对象变量上调用，
 即使其值为 null，并且可以在函数体内检测 <code>this == null</code>，这能让你<!--
 -->在没有检测 null 的时候调用 Kotlin 中的toString()：检测发生在扩展函数的内部。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun Any?.toString(): String {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun Any?.toString(): String {
     if (this == null) return "null"
     // 空检测之后，“this”会自动转换为非空类型，所以下面的 toString()
     // 解析为 Any 类的成员函数
     return toString()
 }
 </code></pre>
+</div>
 <h2 id="扩展属性">扩展属性</h2>
 <p>和函数类似，Kotlin 支持扩展属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
     get() = size - 1
 </code></pre>
+</div>
 <p>注意：由于扩展没有实际的将成员插入类中，因此对扩展属性来说<!--
 --><a href="properties.html#幕后字段">幕后字段</a>是无效的。这就是为什么<strong>扩展属性不能有<!--
 -->初始化器</strong>。他们的行为只能由显式提供的 getters/setters 定义。</p>
 <p>例如:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val Foo.bar = 1 // 错误：扩展属性不能有初始化器
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val Foo.bar = 1 // 错误：扩展属性不能有初始化器
 </code></pre>
+</div>
 <h2 id="伴生对象的扩展">伴生对象的扩展</h2>
 <p>如果一个类定义有一个<a href="object-declarations.html#伴生对象">伴生对象</a> ，你也可以为伴生对象定义<!--
 -->扩展函数和属性：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class MyClass {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class MyClass {
     companion object { }  // 将被称为 "Companion"
 }
 
-fun MyClass.Companion.foo() {
-    // ……
-}
+fun MyClass.Companion.foo() { …… }
 </code></pre>
+</div>
 <p>就像伴生对象的其他普通成员，只需用类名作为限定符去调用他们</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">MyClass.foo()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">MyClass.foo()
 </code></pre>
+</div>
 <h2 id="扩展的作用域">扩展的作用域</h2>
 <p>大多数时候我们在顶层定义扩展，即直接在包里：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package foo.bar
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package foo.bar
 
 fun Baz.goo() { …… }
 </code></pre>
+</div>
 <p>要使用所定义包之外的一个扩展，我们需要在调用方导入它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package com.example.usage
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package com.example.usage
 
 import foo.bar.goo // 导入所有名为“goo”的扩展
                    // 或者
@@ -999,12 +1022,14 @@ fun usage(baz: Baz) {
 }
 
 </code></pre>
+</div>
 <p>更多信息参见<a href="packages.html#导入">导入</a></p>
 <h2 id="扩展声明为成员">扩展声明为成员</h2>
 <p>在一个类内部你可以为另一个类声明扩展。在这样的扩展内部，有多个 <em>隐式接收者</em> ——
 其中的对象成员可以无需通过限定符访问。扩展声明所在的类的实例称为
 <em>分发接收者</em>，扩展方法调用所在的接收者类型的实例称为 <em>扩展接收者</em> 。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class D {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class D {
     fun bar() { …… }
 }
 
@@ -1021,21 +1046,24 @@ class C {
     }
 }
 </code></pre>
+</div>
 <p>对于分发接收者和扩展接收者的成员名字冲突的情况，扩展接收者<!--
 -->优先。要引用分发接收者的成员你可以使用 <a href="this-expressions.html#限定的-this">限定的 <code>this</code> 语法</a>。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class C {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class C {
     fun D.foo() {
         toString()         // 调用 D.toString()
         this@C.toString()  // 调用 C.toString()
     }
+}
 </code></pre>
+</div>
 <p>声明为成员的扩展可以声明为 <code>open</code> 并在子类中覆盖。这意味着这些函数的分发<!--
 -->对于分发接收者类型是虚拟的，但对于扩展接收者类型是静态的。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">open class D {
-}
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">open class D { }
 
-class D1 : D() {
-}
+class D1 : D() { }
 
 open class C {
     open fun D.foo() {
@@ -1061,10 +1089,13 @@ class C1 : C() {
     }
 }
 
-C().caller(D())   // 输出 "D.foo in C"
-C1().caller(D())  // 输出 "D.foo in C1" —— 分发接收者虚拟解析
-C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
+fun main(args: Array&lt;String&gt;) {
+    C().caller(D())   // 输出 "D.foo in C"
+    C1().caller(D())  // 输出 "D.foo in C1" —— 分发接收者虚拟解析
+    C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
+}
 </code></pre>
+</div>
 <h2 id="关于可见性的说明">关于可见性的说明</h2>
 <p>扩展的可见性与相同作用域内声明的[其他实体的可见性]相同。例如：</p>
 <ul>
@@ -1074,17 +1105,25 @@ C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
 <h2 id="动机">动机</h2>
 <p>在Java中，我们将类命名为“*Utils”：<code>FileUtils</code>、<code>StringUtils</code> 等，著名的 <code>java.util.Collections</code> 也属于同一种命名方式。
 关于这些 Utils-类的不愉快的部分是代码写成这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
-Collections.swap(list, Collections.binarySearch(list, Collections.max(otherList)), Collections.max(list));
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
+Collections.swap(list, Collections.binarySearch(list,
+    Collections.max(otherList)),
+    Collections.max(list));
 </code></pre>
+</div>
 <p>这些类名总是碍手碍脚的，我们可以通过静态导入达到这样效果：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 swap(list, binarySearch(list, max(otherList)), max(list));
 </code></pre>
+</div>
 <p>这会变得好一点，但是我们并没有从 IDE 强大的自动补全功能中得到帮助。如果能这样就更好了：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 list.swap(list.binarySearch(otherList.max()), list.max());
 </code></pre>
+</div>
 <p>但是我们不希望在 <code>List</code> 类内实现这些所有可能的方法，对吧？这时候扩展将会帮助我们。</p>
 
         </article>
