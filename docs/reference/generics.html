@@ -881,16 +881,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="泛型">泛型</h1>
 <p>与 Java 类似，Kotlin 中的类也可以有类型参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Box&lt;T&gt;(t: T) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Box&lt;T&gt;(t: T) {
     var value = t
 }
 </code></pre>
+</div>
 <p>一般来说，要创建这样类的实例，我们需要提供类型参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val box: Box&lt;Int&gt; = Box&lt;Int&gt;(1)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val box: Box&lt;Int&gt; = Box&lt;Int&gt;(1)
 </code></pre>
+</div>
 <p>但是如果类型参数可以推断出来，例如从构造函数的参数或者从其他途径，允许省略类型参数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val box = Box(1) // 1 具有类型 Int，所以编译器知道我们说的是 Box&lt;Int&gt;。
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val box = Box(1) // 1 具有类型 Int，所以编译器知道我们说的是 Box&lt;Int&gt;。
 </code></pre>
+</div>
 <h2 id="型变">型变</h2>
 <p>Java 类型系统中最棘手的部分之一是通配符类型（参见 <a href="http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">Java Generics FAQ</a>）。
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。</p>
@@ -898,33 +904,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 首先，Java 中的泛型是<strong>不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
 为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没<!--
 -->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 List&lt;String&gt; strs = new ArrayList&lt;String&gt;();
 List&lt;Object&gt; objs = strs; // ！！！即将来临的问题的原因就在这里。Java 禁止这样！
 objs.add(1); // 这里我们把一个整数放入一个字符串列表
 String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换为字符串
 </code></pre>
+</div>
 <p>因此，Java 禁止这样的事情以保证运行时的安全。但这样会有一些影响。例如，考虑 <code>Collection</code> 接口中的 <code>addAll()</code>
 方法。该方法的签名应该是什么？直觉上，我们会这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;E&gt; items);
 }
 </code></pre>
+</div>
 <p>但随后，我们将无法做到以下简单的事情（这是完全安全）：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 void copyAll(Collection&lt;Object&gt; to, Collection&lt;String&gt; from) {
-  to.addAll(from); // ！！！对于这种简单声明的 addAll 将不能编译：
-                   //       Collection&lt;String&gt; 不是 Collection&lt;Object&gt; 的子类型
+  to.addAll(from);
+  // ！！！对于这种简单声明的 addAll 将不能编译：
+  // Collection&lt;String&gt; 不是 Collection&lt;Object&gt; 的子类型
 }
 </code></pre>
+</div>
 <p>（在 Java 中，我们艰难地学到了这个教训，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a>，第 28 条：<em>列表优先于数组</em>）</p>
 <p>这就是为什么 <code>addAll()</code> 的实际签名是以下这样：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;? extends E&gt; items);
 }
 </code></pre>
+</div>
 <p><strong>通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> <em>或者 <code>E</code> 的 一些子类型</em>对象的集合，而不只是 <code>E</code> 自身。
 这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）<strong>读取</strong> <code>E</code>，但<strong>不能写入</strong>，
 因为我们不知道什么对象符合那个未知的 <code>E</code> 的子类型。
@@ -943,22 +958,27 @@ interface Collection&lt;E&gt; …… {
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong>类型安全</strong>。不可变性完全是另一回事。</p>
 <h3 id="声明处型变">声明处型变</h3>
 <p>假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 interface Source&lt;T&gt; {
   T nextT();
 }
 </code></pre>
+</div>
 <p>那么，在 <code>Source &lt;Object&gt;</code> 类型的变量中存储 <code>Source &lt;String&gt;</code> 实例的引用是极为安全的——没有消费者-方法可以调用。但是 Java 并不知道这一点，并且仍然禁止这样操作：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">// Java
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">// Java
 void demo(Source&lt;String&gt; strs) {
   Source&lt;Object&gt; objects = strs; // ！！！在 Java 中不允许
   // ……
 }
 </code></pre>
+</div>
 <p>为了修正这一点，我们必须声明对象的类型为 <code>Source&lt;? extends Object&gt;</code>，这是毫无意义的，因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。</p>
 <p>在 Kotlin 中，有一种方法向编译器解释这种情况。这称为<strong>声明处型变</strong>：我们可以标注 <code>Source</code> 的<strong>类型参数</strong> <code>T</code> 来确保它仅从 <code>Source&lt;T&gt;</code> 成员中<strong>返回</strong>（生产），并从不被消费。
 为此，我们提供 <strong>out</strong> 修饰符：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Source&lt;out T&gt; {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface Source&lt;out T&gt; {
     fun nextT(): T
 }
 
@@ -967,6 +987,7 @@ fun demo(strs: Source&lt;String&gt;) {
     // ……
 }
 </code></pre>
+</div>
 <p>一般原则是：当一个类 <code>C</code> 的类型参数 <code>T</code> 被声明为 <strong>out</strong> 时，它就只能出现在 <code>C</code> 的成员的<strong>输出</strong>-位置，但回报是 <code>C&lt;Base&gt;</code> 可以安全地作为
 <code>C&lt;Derived&gt;</code>的超类。</p>
 <p>简而言之，他们说类 <code>C</code> 是在参数 <code>T</code> 上是<strong>协变的</strong>，或者说 <code>T</code> 是一个<strong>协变的</strong>类型参数。
@@ -975,7 +996,8 @@ fun demo(strs: Source&lt;String&gt;) {
 这与 Java 的<strong>使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
 <p>另外除了 <strong>out</strong>，Kotlin 又补充了一个型变注释：<strong>in</strong>。它使得一个类型参数<strong>逆变</strong>：只可以被消费而不可以<!--
 -->被生产。逆变类型的一个很好的例子是 <code>Comparable</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">interface Comparable&lt;in T&gt; {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface Comparable&lt;in T&gt; {
     operator fun compareTo(other: T): Int
 }
 
@@ -985,6 +1007,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
     val y: Comparable&lt;Double&gt; = x // OK！
 }
 </code></pre>
+</div>
 <p>我们相信 <strong>in</strong> 和 <strong>out</strong> 两词是自解释的（因为它们已经在 C# 中成功使用很长时间了），
 因此上面提到的助记符不是真正需要的，并且可以将其改写为更高的目标：</p>
 <p><strong><a href="https://zh.wikipedia.org/wiki/%E5%AD%98%E5%9C%A8%E4%B8%BB%E4%B9%89">存在性（The Existential）</a> 转换：消费者 in, 生产者 out!</strong> :-)</p>
@@ -992,39 +1015,45 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <h3 id="使用处型变类型投影">使用处型变：类型投影</h3>
 <p>将类型参数 T 声明为 <em>out</em> 非常方便，并且能避免使用处子类型化的麻烦，但是有些类实际上<strong>不能</strong>限制为只返回 <code>T</code>！
 一个很好的例子是 Array：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Array&lt;T&gt;(val size: Int) {
-    fun get(index: Int): T { ///* …… */ }
-    fun set(index: Int, value: T) { ///* …… */ }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Array&lt;T&gt;(val size: Int) {
+    fun get(index: Int): T { …… }
+    fun set(index: Int, value: T) { …… }
 }
 </code></pre>
+</div>
 <p>该类在 <code>T</code> 上既不能是协变的也不能是逆变的。这造成了一些不灵活性。考虑下述函数：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(from: Array&lt;Any&gt;, to: Array&lt;Any&gt;) {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun copy(from: Array&lt;Any&gt;, to: Array&lt;Any&gt;) {
     assert(from.size == to.size)
     for (i in from.indices)
         to[i] = from[i]
 }
 </code></pre>
+</div>
 <p>这个函数应该将项目从一个数组复制到另一个数组。让我们尝试在实践中应用它：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)
 val any = Array&lt;Any&gt;(3) { "" } 
 copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 </code></pre>
+</div>
 <p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--
 -->另一个的子类型。为什么？ 再次重复，因为 copy <strong>可能</strong>做坏事，也就是说，例如它可能尝试<strong>写</strong>一个 String 到 <code>from</code>，
 并且如果我们实际上传递一个 <code>Int</code> 的数组，一段时间后将会抛出一个 <code>ClassCastException</code> 异常。</p>
 <p>那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong>写</strong>到 <code>from</code>，我们可以：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) {
- // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) { …… }
 </code></pre>
-<p>这里发生的事情称为<strong>类型投影</strong>：我们说<code>from</code>不仅仅是一个数组，而是一个受限制的（<strong>投影的</strong>）数组：我们只可以调用返回类型为类型参数 
+</div>
+<p>这里发生的事情称为<strong>类型投影</strong>：我们说<code>from</code>不仅仅是一个数组，而是一个受限制的（<strong>投影的</strong>）数组：我们只可以调用返回类型为类型参数
 <code>T</code> 的方法，如上，这意味着我们只能调用 <code>get()</code>。这就是我们的<strong>使用处型变</strong>的用法，并且是对应于 Java 的 <code>Array&lt;? extends Object&gt;</code>、
 但使用更简单些的方式。</p>
 <p>你也可以使用 <strong>in</strong> 投影一个类型：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun fill(dest: Array&lt;in String&gt;, value: String) {
-    // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun fill(dest: Array&lt;in String&gt;, value: String) { …… }
 </code></pre>
+</div>
 <p><code>Array&lt;in String&gt;</code> 对应于 Java 的 <code>Array&lt;? super String&gt;</code>，也就是说，你可以传递一个 <code>CharSequence</code> 数组或一个 <code>Object</code> 数组给 <code>fill()</code> 函数。</p>
 <h3 id="星投影">星投影</h3>
 <p>有时你想说，你对类型参数一无所知，但仍然希望以安全的方式使用它。
@@ -1045,7 +1074,8 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 <p><em>注意</em>：星投影非常像 Java 的原始类型，但是安全。</p>
 <h2 id="泛型函数">泛型函数</h2>
 <p>不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称之前：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
     // ……
 }
 
@@ -1053,32 +1083,41 @@ fun &lt;T&gt; T.basicToString() : String {  // 扩展函数
     // ……
 }
 </code></pre>
+</div>
 <p>要调用泛型函数，在调用处函数名<strong>之后</strong>指定类型参数即可：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList&lt;Int&gt;(1)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = singletonList&lt;Int&gt;(1)
 </code></pre>
+</div>
 <p>可以省略能够从上下文中推断出来的类型参数，所以以下示例同样适用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val l = singletonList(1)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val l = singletonList(1)
 </code></pre>
+</div>
 <h2 id="泛型约束">泛型约束</h2>
 <p>能够替换给定类型参数的所有可能类型的集合可以由<strong>泛型约束</strong>限制。</p>
 <h3 id="上界">上界</h3>
 <p>最常见的约束类型是与 Java 的 <em>extends</em> 关键字对应的 <strong>上界</strong>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T : Comparable&lt;T&gt;&gt; sort(list: List&lt;T&gt;) {
-    // ……
-}
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T : Comparable&lt;T&gt;&gt; sort(list: List&lt;T&gt;) {  …… }
 </code></pre>
+</div>
 <p>冒号之后指定的类型是<strong>上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">sort(listOf(1, 2, 3)) // OK。Int 是 Comparable&lt;Int&gt; 的子类型
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">sort(listOf(1, 2, 3)) // OK。Int 是 Comparable&lt;Int&gt; 的子类型
 sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt; 不是 Comparable&lt;HashMap&lt;Int, String&gt;&gt; 的子类型
 </code></pre>
+</div>
 <p>默认的上界（如果没有声明）是 <code>Any?</code>。在尖括号中只能指定一个上界。
 如果同一类型参数需要多个上界，我们需要一个单独的 <strong>where</strong>-子句：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun &lt;T&gt; copyWhenGreater(list: List&lt;T&gt;, threshold: T): List&lt;String&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T&gt; copyWhenGreater(list: List&lt;T&gt;, threshold: T): List&lt;String&gt;
     where T : CharSequence,
           T : Comparable&lt;T&gt; {
     return list.filter { it &gt; threshold }.map { it.toString() }
 }
 </code></pre>
+</div>
 <h2 id="类型擦除">类型擦除</h2>
 <p>Kotlin 为泛型声明用法执行的类型安全检测仅在编译期进行。
 运行时泛型类型的实例不保留关于其类型实参的任何信息。

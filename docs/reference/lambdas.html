@@ -1013,13 +1013,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     //sampleStart
-    val repeat: String.(Int) -&gt; String = { times -&gt; repeat(times) }
-    val twoParameters: (String, Int) -&gt; String = repeat // OK
+    val repeatFun: String.(Int) -&gt; String = { times -&gt; this.repeat(times) }
+    val twoParameters: (String, Int) -&gt; String = repeatFun // OK
     
     fun runTransformation(f: (String, Int) -&gt; String): String {
         return f("hello", 3)
     }
-    val result = runTransformation(repeat) // OK
+    val result = runTransformation(repeatFun) // OK
     //sampleEnd
     println("result = $result")
 }
