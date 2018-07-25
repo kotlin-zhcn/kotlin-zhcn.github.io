@@ -502,55 +502,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h4 id="sdkman">SDKMAN!</h4>
 <p>An easier way to install Kotlin on UNIX based systems such as OS X, Linux, Cygwin, FreeBSD and Solaris is by using <a href="http://sdkman.io">SDKMAN!</a>.
 Simply run the following in a terminal and follow any instructions:</p>
-<pre><code>   $ curl -s https://get.sdkman.io | bash
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ curl -s https://get.sdkman.io | bash
 </code></pre>
 <p>Next open a new terminal and install Kotlin with:</p>
-<pre><code>   $ sdk install kotlin
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ sdk install kotlin
 </code></pre>
 <h4 id="homebrew">Homebrew</h4>
 <p>Alternatively, on OS X you can install the compiler via <a href="http://brew.sh/">Homebrew</a>.</p>
-<pre><code>   $ brew update
-   $ brew install kotlin
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ brew update
+$ brew install kotlin
 </code></pre>
 <h4 id="macports">MacPorts</h4>
 <p>If you're a <a href="https://www.macports.org/">MacPorts</a> user, you can install the compiler with:</p>
-<pre><code>   $ sudo port install kotlin
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ sudo port install kotlin
 </code></pre>
 <h4 id="snap-package"><a href="https://snapcraft.io/">Snap</a> package</h4>
 <p>If you’re on Ubuntu 16.04 or later, you can install the compiler from the command line:</p>
-<pre><code>   $ sudo snap install --classic kotlin
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ sudo snap install --classic kotlin
 </code></pre>
 <h3 id="creating-and-running-a-first-application">Creating and running a first application</h3>
 <ol>
 <li>
 <p>Create a simple application in Kotlin that displays Hello, World!. Using our favorite editor, we create a new file called <em>hello.kt</em> with the following:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello, World!")
 }
 </code></pre>
+</div>
 </li>
 <li>
 <p>Compile the application using the Kotlin compiler</p>
-<pre><code>$ kotlinc hello.kt -include-runtime -d hello.jar
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc hello.kt -include-runtime -d hello.jar
 </code></pre>
 <p>The <code>-d</code> option indicates what we want the output of the compiler to be called and may be either a directory name for class files or a <em>.jar</em> file name. The <code>-include-runtime</code> option makes the resulting <em>.jar</em> file self-contained and runnable by including the Kotlin runtime library in it.
 If you want to see all available options run</p>
-<pre><code>$ kotlinc -help
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc -help
 </code></pre>
 </li>
 <li>
 <p>Run the application.</p>
-<pre><code>$ java -jar hello.jar
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ java -jar hello.jar
 </code></pre>
 </li>
 </ol>
 <h3 id="compiling-a-library">Compiling a library</h3>
 <p>If you're developing a library to be used by other Kotlin applications, you can produce the .jar file without including the Kotlin runtime into it.</p>
-<pre><code>   $ kotlinc hello.kt -d hello.jar
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc hello.kt -d hello.jar
 </code></pre>
 <p>Since binaries compiled this way depend on the Kotlin runtime you should make sure the latter is present in the classpath whenever your compiled library is used.</p>
 <p>You can also use the <code>kotlin</code> script to run binaries produced by the Kotlin compiler:</p>
-<pre><code>   $ kotlin -classpath hello.jar HelloKt
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlin -classpath hello.jar HelloKt
 </code></pre>
 <p><code>HelloKt</code> is the main class name that the Kotlin compiler generates for the file named <code>hello.kt</code>.</p>
 <h3 id="running-the-repl">Running the REPL</h3>
@@ -558,13 +560,15 @@ If you want to see all available options run</p>
 <p><img alt="Shell" src="/assets/images/tutorials/command-line/kotlin_shell.png"/></p>
 <h3 id="using-the-command-line-to-run-scripts">Using the command line to run scripts</h3>
 <p>Kotlin can also be used as a scripting language. A script is a Kotlin source file (.kts) with top level executable code.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">   import java.io.File
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">   import java.io.File
 
    val folders = File(args[0]).listFiles { file -&gt; file.isDirectory() }
    folders?.forEach { folder -&gt; println(folder) }
 </code></pre>
+</div>
 <p>To run a script, we just pass the <code>-script</code> option to the compiler with the corresponding script file.</p>
-<pre><code>   $ kotlinc -script list_folders.kts &lt;path_to_folder_to_inspect&gt;
+<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc -script list_folders.kts &lt;path_to_folder_to_inspect&gt;
 </code></pre>
 
         </article>
