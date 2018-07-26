@@ -519,16 +519,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><code>{module}.js</code>. 程序实际的代码。 所有文件都被编译成一个与模块名称相同的JavaScript文件。</li>
 </ul>
 <p>另外, 每个文件都会生成一个 <code>{file}.meta.js</code> 文件用于对应Kotlin代码和Javascript代码的关系</p>
-<p>根据上面的描述, 我们给出下面的代码(模块名是<code>ConsoleOutput</code>)</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<p>根据上面的描述, 我们给出下面的代码(模块名是 <code>ConsoleOutput</code>)</p>
+<div class="sample" data-target-platform="js" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello JavaScript!")
 }
 </code></pre>
+</div>
 <p>Kotlin编译器将会生成下面的文件</p>
 <p><img alt="Compiler Output" src="/assets/images/tutorials/javascript/kotlin-to-javascript/compiler-output.png"/></p>
 <p>注意：包含kotlin.js和其他库文件的lib目录仅在基于IntelliJ IDEA的项目中创建，并由Kotlin构面设置中的复制库运行时文件标志控制。 在Maven或Gradle构建（包括多平台项目）中，默认情况下没有库文件被复制到编译输出目录。 请参阅相应的教程，了解如何在这些构建系统上实现相同的效果。</p>
 <p>我们最感兴趣的文件是<code>ConsoleOutput.js</code></p>
-<pre><code class="code _highlighted" data-lang="text/javascript">if (typeof kotlin === 'undefined') {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-javascript">if (typeof kotlin === 'undefined') {
   throw new Error("Error loading module 'ConsoleOutput'. Its dependency 'kotlin' was not found. /* ... */");
 }
 var ConsoleOutput = function (_, Kotlin) {
@@ -543,6 +546,7 @@ var ConsoleOutput = function (_, Kotlin) {
   return _;
 }(typeof ConsoleOutput === 'undefined' ? {} : ConsoleOutput, kotlin);
 </code></pre>
+</div>
 <p>这是我们的主函数生成的输出, 我们可以看到它声明了一个函数并将其赋给一个名为<code>ConsoleOutput</code>的变量，该变量名与模块名称一致。
 接下来，它使用传入参数<code>Kotlin</code>来调用函数<code>defineRootPackage</code>。 这个函数又接受一个对应于包中声明的代码的对象。 由于我们没有声明包名，它使用默认的根包。 如果我们在一个包中声明我们的代码，那么调用将是<code>definePackage</code>。这些函数都是Kotlin标准库文件<code>kotlin.js</code>中的一部分</p>
 <p>我们只声明了一个 <code>main</code> 函数. 我们可以看到编译器加了一些字母做为后缀, 原因是在Kotlin中可能会有重载的函数, 编译器会用这种方法把重载的函数编译成唯一的Javascript函数. 虽然目前我们不能影响这些函数的名字，但是会引入一个注解（<code>@JsName</code>）来允许这个选项。</p>

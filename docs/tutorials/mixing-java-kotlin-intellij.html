@@ -510,7 +510,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>向一个 Kotlin 项目添加 Java 代码非常简单，直接在包（或文件夹）中新建（Ctrl+N/Cmd+N）Java 文件即可。</p>
 <p><img alt="New Java Class" src="/assets/images/tutorials/mixing-java-kotlin-intellij/new-java-class.png"/></p>
 <p>现在不需要进行其它的额外操作，就可以从 Kotlin 代码中使用新建的 Java 类，反之亦然。例如添加以下 Java 类：</p>
-<pre><code class="code _highlighted" data-lang="text/x-java">public class Customer {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-java">public class Customer {
 
     private String name;
 
@@ -527,11 +528,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     }
 }
 </code></pre>
+</div>
 <p>可以像其它 Kotlin 内置类型一样，直接使用它。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">        val customer = Customer("Phase")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val customer = Customer("Phase")
 
-        println(customer.getName())
+println(customer.getName())
 </code></pre>
+</div>
 <h3 id="在已有的-java-项目中使用-kotlin">在已有的 Java 项目中使用 Kotlin</h3>
 <p>将 Kotlin 代码加入一个已有的 Java 工程也非常简单。有以下几种方式：</p>
 <h4 id="创建新的-kotlin-文件">创建新的 Kotlin 文件</h4>
