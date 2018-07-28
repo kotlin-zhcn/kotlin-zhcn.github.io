@@ -1144,10 +1144,12 @@ fun getX() = 10
 </code></pre>
 </div>
 <p>如需在没有显式实现 getter 与 setter 的情况下更改属性生成的访问器方法的名称，可以使用 <code>@get:JvmName</code> 与 <code>@set:JvmName</code>：</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@get:JvmName("x")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@get:JvmName("x")
 @set:JvmName("changeX")
 var x: Int = 23
 </code></pre>
+</div>
 <h2 id="生成重载">生成重载</h2>
 <p>通常，如果你写一个有默认参数值的 Kotlin 函数，在 Java 中只会有一个所有参数都存在的完整参数<!--
 -->签名的方法可见，如果希望向 Java 调用者暴露多个重载，可以使用

@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial walks us through creating a Kotlin JavaScript library using the command line compiler.">
+    <meta property="og:description" content="本教程将引导我们使用命令行编译器创建Kotlin JavaScript库。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial walks us through creating a Kotlin JavaScript library using the command line compiler.">
+    <meta name="twitter:description" content="本教程将引导我们使用命令行编译器创建Kotlin JavaScript库。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Creating a Kotlin JavaScript library with the Command Line Compiler - Kotlin 语言中文站</title>
+    <title>使用命令行编译 Kotlin JavaScript 库 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -487,19 +487,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Creating a Kotlin JavaScript library with the Command Line Compiler
+                使用命令行编译 Kotlin JavaScript 库
             </h1>
             <table>
             </table>
-                This tutorial walks us through creating a Kotlin JavaScript library using the command line compiler.
+                本教程将引导我们使用命令行编译器创建Kotlin JavaScript库。
                 <br/>
                 <br/>
             
-<h3 id="creating-a-kotlinjavascript-library">Creating a Kotlin/JavaScript library</h3>
-<p>We will create a simple Kotlin/JavaScript library.</p>
+<h3 id="创建一个-kotlinjavascript-库">创建一个 Kotlin/JavaScript 库</h3>
+<p>我们将创建一个简单的 Kotlin/JavaScript 库.</p>
 <ol>
 <li>
-<p>Using our favorite editor, we create a new file called <em>library.kt</em>:</p>
+<p>使用我们最喜欢的编辑器创建一个名为 <em>library.kt</em> 的文件:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">package org.sample
    
 fun factorial(n: Int): Long = if (n == 0) 1 else n * factorial(n - 1)
@@ -510,32 +510,29 @@ inline fun IntRange.forOdd(f: (Int) -&gt; Unit) {
 </code></pre>
 </li>
 <li>
-<p>Compile the library using the JS compiler</p>
+<p>使用JS编译器编译该库</p>
 <pre><code>$ kotlinc-js -output sample-library.js -meta-info library.kt
 </code></pre>
-<p>The <code>-meta-info</code> option indicates that an additional JS file with binary
-meta-information about compiled kotlin code will be created.</p>
-<p>If you want to see all available options run</p>
+<p><code>-meta-info</code> 选项表示创建带有二进制元信息的js附加文件</p>
+<p>如果要看到所有的命令参数可以运行:</p>
 <pre><code>$ kotlinc-js -help
 </code></pre>
-<p>After compilation we have two new files:</p>
+<p>编译完成以后会出现两个新文件:</p>
 <pre><code>sample-library.js
 sample-library.meta.js
 </code></pre>
 </li>
 <li>
 <p>You can simply distribute two JS files, <code>sample-library.js</code> and <code>sample-library.meta.js</code>.
-The former file contains translated JavaScript code, the latter file
-contains some meta-information about Kotlin code, which is needed by compiler.</p>
-<p>Alternatively, you can append the content of <code>sample-library.meta.js</code> to the end
-of <code>sample-library.js</code> and distribute only the resulting file.</p>
-<p>Also you can create an archive, which can be distributed as a library:</p>
+前者包含编译后的Javascript代码, 后者包含关于Kotlin代码的一些编译器需要的元信息.</p>
+<p>其实, 你也可以把 <code>sample-library.meta.js</code> 文件的内容追加到 <code>sample-library.js</code>, 得到一个结果文件.</p>
+<p>你也可以创建一个压缩包, 这个压缩包可以做为库进行分发:</p>
 <pre><code>$ jar cf sample-library.jar *.js
 </code></pre>
 </li>
 </ol>
-<h3 id="using-a-kotlinjavascript-library">Using a Kotlin/JavaScript library.</h3>
-<p>Create binom.kt:</p>
+<h3 id="使用-kotlinjavascript-库">使用 Kotlin/JavaScript 库.</h3>
+<p>创建 binom.kt:</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">import org.sample.factorial
 import org.sample.forOdd
     
@@ -548,14 +545,11 @@ fun oddFactorial(n: Int): Long {
     return result
 }        
 </code></pre>
-<p>Compile with library:</p>
+<p>和库一起编译:</p>
 <pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.meta.js binom.kt
 </code></pre>
-<p>Both files <code>sample-library.js</code> and <code>sample-library.meta.js</code> should be present in the latter case,
-   because translated JavaScript file contains meta-information about inlining, which 
-   is needed by compiler.</p>
-<p>If you have an archive <code>sample-library.jar</code>, which contains <code>sample-library.js</code> and <code>sample-library.meta.js</code>,
-   you can use the following command</p>
+<p><code>sample-library.js</code> 和 <code>sample-library.meta.js</code> 两个文件都要提供, 因为编译后的 Javascript 文件包含内联的元信息, 编译器需要这些信息</p>
+<p>如果库是以包含了 <code>sample-library.js</code> 和 <code>sample-library.meta.js</code> 文件的压缩包 <code>sample-library.jar</code> 提供的, 可以使用下面的命令</p>
 <pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.jar binom.kt
 </code></pre>
 
