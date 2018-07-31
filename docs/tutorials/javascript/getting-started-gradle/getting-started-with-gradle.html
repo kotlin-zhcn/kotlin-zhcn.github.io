@@ -510,7 +510,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>In order to use Gradle to target JavaScript, we need to use the <code>kotlin2js</code> plugin as opposed to the <code>kotlin</code> plugin.</p>
 <p>Our <code>build.gradle</code> file should look like the following</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">group 'org.example'
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">group 'org.example'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -534,12 +535,14 @@ dependencies {
 }
 
 </code></pre>
+</div>
 <p>To use an EAP build instead, we need to specify its version in <code>ext.kotlin_version</code> and 
 add the corresponding repository to the <code>buildscript</code> section (usually EAP builds are located on <a href="https://bintray.com/kotlin">Bintray</a>)</p>
 <p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuring-compiler-options">the compiler options</a>.</p>
 <p>In order to assemble an application, we also need to include the Kotlin standard library, i.e. <code>kotlin.js</code>, which was included as a dependency, and the other libraries if any.</p>
 <p>By default, Gradle does not expand the JARs in the build process, so we need to add an additional step in our build to do so:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">task assembleWeb(type: Sync) {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">task assembleWeb(type: Sync) {
     configurations.compile.each { File file -&gt;
         from(zipTree(file.absolutePath), {
             includeEmptyDirs = false
@@ -558,17 +561,20 @@ add the corresponding repository to the <code>buildscript</code> section (usuall
 
 assemble.dependsOn assembleWeb
 </code></pre>
+</div>
 <p>This task copies both dependencies runtime files and the compilation output to the <code>web</code> directory.</p>
 <p>For more information on the output generated and the instructions for running the application, please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
 <h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
 <p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
 <p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">compileKotlin2Js {
     kotlinOptions.outputFile = "${projectDir}/web/output.js"
     kotlinOptions.moduleKind = "amd"
     kotlinOptions.sourceMap = true
 }
 </code></pre>
+</div>
 <p>where <code>moduleKind</code> can be</p>
 <ul>
 <li>plain (default)</li>
