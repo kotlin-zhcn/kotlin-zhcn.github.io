@@ -503,7 +503,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Then follow the wizard steps. You'll have a <code>build.gradle</code> file created with Kotlin configured according to <a href="/docs/reference/using-gradle.html">this document</a>.
 Make sure it's configured for Kotlin 1.1 or higher.</p>
 <p>Since coroutines have the <em>experimental</em> status in Kotlin 1.1, by default the compiler reports a warning every time they are used. We can opt-in for the experimental feature and use it without a warning by adding this code to <code>build.gradle</code>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: 'kotlin'
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">apply plugin: 'kotlin'
 
 kotlin {
     experimental {
@@ -511,17 +512,22 @@ kotlin {
     }
 }
 </code></pre>
+</div>
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">dependencies {
     ...
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21"
 }
 </code></pre>
+</div>
 <p>This library is published to Bintray JCenter repository, so let us add it:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">repositories {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">repositories {
     jcenter()
 }
 </code></pre>
+</div>
 <p>That's it, we are good to go and write code under <code>src/main/kotlin</code>.</p>
 <h3 id="maven">Maven</h3>
 <p>In IntelliJ IDEA go to <em>File -&gt; New &gt; Project…</em> and check the <em>Create from archetype</em> box:</p>
@@ -529,7 +535,8 @@ kotlin {
 <p>Then follow the wizard steps. You'll have a <code>pom.xml</code>  file created with Kotlin configured according to <a href="/docs/reference/using-maven.html">this document</a>.
 Make sure it's configured for Kotlin 1.1 or higher.</p>
 <p>Since coroutines have the <em>experimental</em> status in Kotlin 1.1, by default the compiler reports a warning every time they are used. We can opt-in for the experimental feature and use it without a warning by adding this code to <code>pom.xml</code>:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;plugin&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
     &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
     ...
@@ -540,8 +547,10 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
     &lt;/configuration&gt;
 &lt;/plugin&gt;
 </code></pre>
+</div>
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;dependencies&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;dependencies&gt;
     ...
     &lt;dependency&gt;
         &lt;groupId&gt;org.jetbrains.kotlinx&lt;/groupId&gt;
@@ -550,8 +559,10 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
+</div>
 <p>This library is published to Bintray JCenter repository, so let us add it:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;repositories&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;repositories&gt;
     ...
     &lt;repository&gt;
         &lt;id&gt;central&lt;/id&gt;
@@ -559,21 +570,25 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
     &lt;/repository&gt;
 &lt;/repositories&gt;
 </code></pre>
+</div>
 <p>That's it, we are good to go and write code under <code>src/main/kotlin</code>.</p>
 <h2 id="my-first-coroutine">My first coroutine</h2>
 <p>One can think of a coroutine as a light-weight thread. Like threads, coroutines can run in parallel, wait for each other and communicate.
 The biggest difference is that coroutines are very cheap, almost free: we can create thousands of them, and pay very little in terms of performance.
 True threads, on the other hand, are expensive to start and keep around. A thousand threads can be a serious challenge for a modern machine.</p>
 <p>So, how do we start a coroutine? Let's use the <code>launch {}</code> function:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">launch {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">launch {
     ...
 }
 </code></pre>
+</div>
 <p>This starts a new coroutine. By default, coroutines are run on a shared pool of threads. 
 Threads still exist in a program based on coroutines, but one thread can run many coroutines, so there's no need for 
 too many threads.</p>
 <p>Let's look at a full program that uses <code>launch</code>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlinx.coroutines.experimental.*
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.experimental.*
 
 fun main(args: Array&lt;String&gt;) {
     println("Start")
@@ -588,6 +603,7 @@ fun main(args: Array&lt;String&gt;) {
     println("Stop")
 }
 </code></pre>
+</div>
 <p>Here we start a coroutine that waits for 1 second and prints <code>Hello</code>.</p>
 <p>We are using the <code>delay()</code> function that's like <code>Thread.sleep()</code>, but better: it <em>doesn't block a thread</em>, but only suspends the coroutine itself.
 The thread is returned to the pool while the coroutine is waiting, and when the waiting is done, the coroutine resumes on a free thread in the pool.</p>
@@ -598,14 +614,17 @@ The thread is returned to the pool while the coroutine is waiting, and when the 
 <p>Suspend functions are only allowed to be called from a coroutine or another suspend function</p>
 </blockquote>
 <p>This is because we are not inside any coroutine. We can use delay if we wrap it into <code>runBlocking {}</code> that starts a coroutine and waits until it's done:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">runBlocking {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">runBlocking {
     delay(2000)
 }
 </code></pre>
+</div>
 <p>So, first the resulting program prints <code>Start</code>, then it runs a coroutine through <code>launch {}</code>, then it runs another one through <code>runBlocking {}</code> and blocks until it's done, then prints <code>Stop</code>. Meanwhile the first coroutine completes and prints <code>Hello</code>. Just like threads, we told you :)</p>
 <h2 id="lets-run-a-lot-of-them">Let's run a lot of them</h2>
 <p>Now, let's make sure that coroutines are really cheaper than threads. How about starting a million of them? Let's try starting a million threads first:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val c = AtomicInteger()
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val c = AtomicInteger()
 
 for (i in 1..1_000_000)
     thread(start = true) {
@@ -614,9 +633,11 @@ for (i in 1..1_000_000)
 
 println(c.get())
 </code></pre>
+</div>
 <p>This runs a 1'000'000 threads each of which adds to a common counter. My patience runs out before this program completes on my machine (definitely over a minute).</p>
 <p>Let's try the same with coroutines:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val c = AtomicInteger()
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val c = AtomicInteger()
 
 for (i in 1..1_000_000)
     launch {
@@ -625,62 +646,77 @@ for (i in 1..1_000_000)
 
 println(c.get())
 </code></pre>
+</div>
 <p>This example completes in less than a second for me, but it prints some arbitrary number, because some coroutines don't finish before <code>main()</code> prints the result. Let's fix that.</p>
 <p>We could use the same means of synchronization that are applicable to threads (a <code>CountDownLatch</code> is what crosses my mind in this case), but let's take a safer and cleaner path.</p>
 <h2 id="async-returning-a-value-from-a-coroutine">Async: returning a value from a coroutine</h2>
 <p>Another way of starting a coroutine is <code>async {}</code>. It is like <code>launch {}</code>, but returns an instance of <code>Deferred&lt;T&gt;</code>, which has an <code>await()</code> function that returns the result of the coroutine. <code>Deferred&lt;T&gt;</code> is a very basic <a href="https://en.wikipedia.org/wiki/Futures_and_promises">future</a> (fully-fledged JDK futures are also supported, but here we'll confine ourselves to <code>Deferred</code> for now).</p>
 <p>Let's create a million coroutines again, keeping their <code>Deferred</code> objects. Now there's no need in the atomic counter, as we can just return the numbers to be added from our coroutines:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val deferred = (1..1_000_000).map { n -&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val deferred = (1..1_000_000).map { n -&gt;
     async {
         n
     }
 }
 </code></pre>
+</div>
 <p>All these have already started, all we need is collect the results:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val sum = deferred.sumBy { it.await() }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val sum = deferred.sumBy { it.await() }
 </code></pre>
+</div>
 <p>We simply take every coroutine and await its result here, then all results are added together by the standard library function <code>sumBy()</code>. But the compiler rightfully complains:</p>
 <blockquote>
 <p>Suspend functions are only allowed to be called from a coroutine or another suspend function</p>
 </blockquote>
 <p><code>await()</code> can not be called outside a coroutine, because it needs to suspend until the computation finishes, and only coroutines can suspend in a non-blocking way. So, let's put this inside a coroutine:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">runBlocking {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">runBlocking {
     val sum = deferred.sumBy { it.await() }
     println("Sum: $sum")
 }
 </code></pre>
+</div>
 <p>Now it prints something sensible: <code>1784293664</code>, because all coroutines complete.</p>
 <p>Let's also make sure that our coroutines actually run in parallel. If we add a 1-second <code>delay()</code> to each of the <code>async</code>'s, the resulting program won't run for 1'000'000 seconds (over 11,5 days):</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val deferred = (1..1_000_000).map { n -&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val deferred = (1..1_000_000).map { n -&gt;
     async {
         delay(1000)
         n
     }
 }
 </code></pre>
+</div>
 <p>This takes about 10 seconds on my machine, so yes, coroutines do run in parallel.</p>
 <h2 id="suspending-functions">Suspending functions</h2>
 <p>Now, let's say we want to extract our <em>workload</em> (which is "wait 1 second and return a number") into a separate function:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun workload(n: Int): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun workload(n: Int): Int {
     delay(1000)
     return n
 }
 </code></pre>
+</div>
 <p>A familiar error pops up:</p>
 <blockquote>
 <p>Suspend functions are only allowed to be called from a coroutine or another suspend function</p>
 </blockquote>
 <p>Let's dig a little into what it means. The biggest merit of coroutines is that they can <em>suspend</em> without blocking a thread. The compiler has to emit some special code to make this possible, so we have to mark functions that <em>may suspend</em> explicitly in the code. We use the <code>suspend</code> modifier for it:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">suspend fun workload(n: Int): Int {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">suspend fun workload(n: Int): Int {
     delay(1000)
     return n
 }
 </code></pre>
+</div>
 <p>Now when we call <code>workload()</code> from a coroutine, the compiler knows that it may suspend and will prepare accordingly:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">async {
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">async {
     workload(n)
 }
 </code></pre>
+</div>
 <p>Our <code>workload()</code> function can be called from a coroutine (or another suspending function), but <em>can not</em> be called from outside a coroutine. Naturally, <code>delay()</code> and <code>await()</code> that we used above are themselves declared as <code>suspend</code>, and this is why we had to put them inside <code>runBlocking {}</code>, <code>launch {}</code> or <code>async {}</code>.</p>
 
         </article>

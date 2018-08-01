@@ -520,7 +520,8 @@ and the project layout structure, as well as the initialization code.</p>
 <h3 id="defining-the-project-and-dependencies">Defining the project and dependencies</h3>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
 <p>The Gradle file is pretty much standard for Spring Boot. The only differences are the structure layout for source folders for Kotlin, the required Kotlin dependencies and the <a href="https://kotlinlang.org/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a> Gradle plugin (CGLIB proxies used for example for <code>@Configuration</code> and <code>@Bean</code> processing require <code>open</code> classes).</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.2.51' // Required for Kotlin integration
     ext.spring_boot_version = '1.5.4.RELEASE'
     repositories {
@@ -552,13 +553,17 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 </code></pre>
+</div>
 <h3 id="creating-a-greeting-data-class-and-controller">Creating a Greeting Data Class and Controller</h3>
 <p>The next step is to create Greeting Data class that has two properties: <em>id</em> and a <em>content</em></p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class Greeting(val id: Long, val content: String)
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">data class Greeting(val id: Long, val content: String)
 </code></pre>
+</div>
 <p>We now define the <em>GreetingController</em> which serves requests of the form <em>/greeting?name={value}</em> and returns a JSON object
 representing an instance of <em>Greeting</em></p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@RestController
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@RestController
 class GreetingController {
 
     val counter = AtomicLong()
@@ -569,17 +574,20 @@ class GreetingController {
 
 }
 </code></pre>
+</div>
 <p>As can be seen, this is again pretty much a one-to-one translation of Java to Kotlin, with nothing special required for Kotlin.</p>
 <h3 id="creating-the-application-class">Creating the Application class</h3>
 <p>Finally we need to define an Application class. As Spring Boot looks for a public static main method, we need to define this in Kotlin. It could be done with the <em>@JvmStatic</em> annotation and a companion object but here we prefer using a <a href="/docs/reference/functions.html">top-level function</a> defined outside Application class since it leads to more concise and clean code.</p>
 <p>No need to mark the Application class as <em>open</em> since we are using the <em>kotlin-spring</em> Gradle plugin which does that automatically.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@SpringBootApplication
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@SpringBootApplication
 class Application
 
 fun main(args: Array&lt;String&gt;) {
     SpringApplication.run(Application::class.java, *args)
 }
 </code></pre>
+</div>
 <h3 id="running-the-application">Running the application</h3>
 <p>We can now use any of the standard Gradle tasks for Spring Boot to run the application. As such, running</p>
 <pre><code>./gradlew bootRun

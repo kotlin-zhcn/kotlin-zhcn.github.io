@@ -508,24 +508,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="定义项目和依赖关系">定义项目和依赖关系</h3>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.
 The main dependency required for using HTTP servlets is the JavaEE API:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">dependencies {
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">dependencies {
     compile group: 'javax', name: 'javaee-api', version: '7.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 </code></pre>
+</div>
 <p>我们还需要 <em>war</em> 插件，帮助我们生成相应的构件运行和部署</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">apply plugin: war
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">apply plugin: war
 </code></pre>
+</div>
 <p>可以在Github检出项目来查看完整的Gradle脚本。</p>
 <h3 id="创建一个-home-controller">创建一个 Home Controller</h3>
 <p>一旦我们在构建脚本中定义了正确的依赖，现在就可以创建一个控制器</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@WebServlet(name = "Hello", value = "/hello")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@WebServlet(name = "Hello", value = "/hello")
 class HomeController : HttpServlet() {
     override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
         res.writer.write("Hello, World!")
     }
 }
 </code></pre>
+</div>
 <h3 id="运行程序">运行程序</h3>
 <p>使用IntelliJ IDEA，我们可以很容易地运行和调试应用程序，在任何可能的应用程序服务器定义 如Tomcat，Glassfish或WildFly。 在这种情况下我们要使用Tomcat
 <a href="http://www.jetbrains.com/idea/webhelp/defining-application-servers-in-intellij-idea.html">曾被定义为一个应用程序服务器在IntelliJ IDEA</a>。
