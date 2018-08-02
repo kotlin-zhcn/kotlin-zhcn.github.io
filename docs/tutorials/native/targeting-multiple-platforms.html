@@ -566,10 +566,12 @@ specified.</p>
 <p>Let's create a sample Kotlin/Native program and save it as <code>main.kt</code>. 
 You may want to have a look at the tutorial
 <a href="basic-kotlin-native-app.html#creating-hello-kotlin">A Basic Kotlin/Native Application</a> for more details.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
   println("Hello Kotlin/Native!")
 }
 </code></pre>
+</div>
 <p>We use the <code>-target</code> argument of the <code>kotlinc</code> to specify the platform. It is also 
 helpful to use <code>-output</code> to explicitly instruct
 the compiler on where to create the compiled binary, for example, to build for the iOS emulator on macOS we use:</p>

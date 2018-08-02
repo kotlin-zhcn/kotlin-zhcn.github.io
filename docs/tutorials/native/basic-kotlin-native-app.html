@@ -521,10 +521,12 @@ compiler from any location. If we uncompressed to ~/kotlin-native, this would be
 <h2 id="creating-hello-kotlin">Creating Hello Kotlin</h2>
 <p>Our first application is going to simply print some text on the standard output. In our case, this will be "Hello Kotlin/Native"</p>
 <p>We can open up our favorite IDE or editor and write the following code in a file named <code>hello.kt</code></p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun main(args: Array&lt;String&gt;) {
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello Kotlin/Native!")
 }
 </code></pre>
+</div>
 <h2 id="compiling-and-examining-output">Compiling and examining output</h2>
 <p>The Kotlin compiler uses a technology known as <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> to target multiple platforms. LLVM requires as input what's know as intermediate representation or IR. This IR is
 represented by a bitcode file, which is a bitstream file format.</p>
