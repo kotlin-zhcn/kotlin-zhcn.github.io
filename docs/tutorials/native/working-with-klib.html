@@ -516,6 +516,7 @@ as a file with the extension <code>klib</code>. Kotlin/Native libraries are arti
 (as we would for instance with DLL files on the Windows platform).</p>
 <p>A <code>klib</code> file is a compressed archive in zip format with the following directory structure:</p>
 <p>File <code>utils.klib</code></p>
+<div class="sample" data-highlight-only="" theme="idea">
 <pre><code>    targets/                    /* One or more target platforms */
     
         macbook/                /* When targeting macbook, this entry would appear */
@@ -536,10 +537,12 @@ as a file with the extension <code>klib</code>. Kotlin/Native libraries are arti
 
     manifest                    /* A file in Java Property Format describing the library */ 
 </code></pre>
+</div>
 <h2 id="creating-a-kotlinnative-libraries">Creating a Kotlin/Native Libraries</h2>
 <p>There are two ways we can create a Kotlin/Native library. The first and most common way is to use the Kotlin compiler. Let's assume
 we create a small library called <code>utils.kt</code> which contains the following two functions</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package utils
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package utils
 
 fun printMessage(message: String) {
     println("Message: $message")
@@ -549,6 +552,7 @@ fun printWarning(warning: String) {
     println("Warning: $warning")
 }
 </code></pre>
+</div>
 <p>To create a library from this file, we can use the compiler with the parameter <code>-produce library</code> or <code>-p library</code> for short:</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">konanc utils.kt -p library
 </code></pre>
@@ -559,12 +563,17 @@ fun printWarning(warning: String) {
 C library. See the <a href="interop-with-c.html">Interop with C tutorial</a> on how to accomplish this.</p>
 <h2 id="consuming-a-kotlinnative-library">Consuming a Kotlin/Native Library</h2>
 <p>Now that we have our library, we can use it in our application. In our case this is a simple file named <code>sample.kt</code> with the following contents:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import utils.*
-
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">//sampleStart
 fun main(args: Array&lt;String&gt;) {
     printWarning("App is about to shut down!")
 }
+//sampleEnd
+fun printWarning(warning: String) {
+    println("Warning: $warning")
+}
 </code></pre>
+</div>
 <p>Notice how we need to import the necessary package from the library on the first line using the <code>import</code> statement.</p>
 <p>In order for the compiler to correctly link in the library, we need to pass the library name using the <code>-library</code> or <code>-l</code> parameter</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">konanc sample.kt -l utils

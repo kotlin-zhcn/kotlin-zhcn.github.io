@@ -546,7 +546,8 @@ beforehand as <code>cinterop</code> needs an existing folder. The <em>c_interop<
 <p>Now that we have our library and Kotlin stubs, we can consume them from our application. To keep things simple, in this tutorial we're going to convert one of the simplest 
 libcurl examples over to Kotlin.</p>
 <p>The code in question is from the <a href="https://curl.haxx.se/libcurl/c/simple.html">simple</a> example (comments removed for brevity)</p>
-<pre><code class="code _highlighted" data-lang="text/x-csrc">#include &lt;stdio.h&gt;
+<div class="sample" mode="c" theme="idea">
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 #include &lt;curl/curl.h&gt;
  
 int main(void)
@@ -568,8 +569,10 @@ int main(void)
   return 0;
 }
 </code></pre>
+</div>
 <p>The first thing we'll need is a Kotlin file called <code>Main.kt</code> with the <code>main</code> function defined in it and then proceed to translate each line</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import libcurl.*
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import libcurl.*
 
 fun main(args: Array&lt;String&gt;) {
     val curl = curl_easy_init()
@@ -584,6 +587,7 @@ fun main(args: Array&lt;String&gt;) {
     }
 }
 </code></pre>
+</div>
 <p>As we can see, we've eliminated the explicit variable declarations in the Kotlin version, but everything else is pretty much verbatim to the C version. All the calls we'd
 expect in the <code>libcurl</code> library are available in their Kotlin version.</p>
 <p>Note that for the purpose of this tutorial, we've done a line by line literal translation. Obviously we could write this in a more Kotlin idiomatic way.</p>
