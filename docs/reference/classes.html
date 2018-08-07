@@ -879,7 +879,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="类和继承">类和继承</h1>
+<h1 id="类与继承">类与继承</h1>
 <h2 id="类">类</h2>
 <p>Kotlin 中使用关键字 <em class="keyword">class</em> 声明类</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -894,8 +894,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h3 id="构造函数">构造函数</h3>
-<p>在 Kotlin 中的一个类可以有一个<strong>主构造函数</strong>和一个或多个<strong>次构造函数</strong>。主<!--
--->构造函数是类头的一部分：它跟在类名（和可选的类型参数）后。</p>
+<p>在 Kotlin 中的一个类可以有一个<strong>主构造函数</strong>以及一个或多个<strong>次构造函数</strong>。主<!--
+-->构造函数是类头的一部分：它跟在类名（与可选的类型参数）后。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person constructor(firstName: String) { ... }
 </code></pre>
@@ -1021,14 +1021,14 @@ val customer = Customer("Joe Smith")
 </code></pre>
 </div>
 <p>注意 Kotlin 并没有 <em class="keyword">new</em> 关键字。</p>
-<p>创建嵌套类、内部类和匿名内部类的类实例在<a href="nested-classes.html">嵌套类</a>中有述。</p>
+<p>创建嵌套类、内部类与匿名内部类的类实例在<a href="nested-classes.html">嵌套类</a>中有述。</p>
 <h3 id="类成员">类成员</h3>
 <p>类可以包含：</p>
 <ul>
-<li><a href="classes.html#构造函数">构造函数和初始化块</a></li>
+<li><a href="classes.html#构造函数">构造函数与初始化块</a></li>
 <li><a href="functions.html">函数</a></li>
 <li><a href="properties.html">属性</a></li>
-<li><a href="nested-classes.html">嵌套类和内部类</a></li>
+<li><a href="nested-classes.html">嵌套类与内部类</a></li>
 <li><a href="object-declarations.html">对象声明</a></li>
 </ul>
 <h2 id="继承">继承</h2>
@@ -1038,7 +1038,7 @@ val customer = Customer("Joe Smith")
 </code></pre>
 </div>
 <blockquote>
-<p>注意：<code>Any</code> 并不是 <code>java.lang.Object</code>；尤其是，它除了 <code>equals()</code>、<code>hashCode()</code>和<code>toString()</code>外没有任何成员。
+<p>注意：<code>Any</code> 并不是 <code>java.lang.Object</code>；尤其是，它除了 <code>equals()</code>、<code>hashCode()</code> 与 <code>toString()</code> 外没有任何成员。
 更多细节请查阅<a href="java-interop.html#对象方法">Java互操作性</a>部分。</p>
 </blockquote>
 <p>要声明一个显式的超类型，我们把类型放到类头的冒号之后：</p>
@@ -1069,7 +1069,7 @@ class Derived(p: Int) : Base(p)
 </div>
 <h3 id="覆盖方法">覆盖方法</h3>
 <p>我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式<!--
--->标注可覆盖的成员（我们称之为<em>开放</em>）和覆盖后的成员：</p>
+-->标注可覆盖的成员（我们称之为<em>开放</em>）以及覆盖后的成员：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class Base {
     open fun v() { ... }
@@ -1204,11 +1204,11 @@ class C() : A(), B {
 }
 </code></pre>
 </div>
-<p>同时继承 <code>A</code> 和 <code>B</code> 没问题，并且 <code>a()</code> 和 <code>b()</code> 也没问题因为 <code>C</code> 只继承了每个函数的一个实现。
+<p>同时继承 <code>A</code> 与 <code>B</code> 没问题，并且 <code>a()</code> 与 <code>b()</code> 也没问题因为 <code>C</code> 只继承了每个函数的一个实现。
 但是 <code>f()</code> 由 <code>C</code> 继承了两个实现，所以我们<strong>必须</strong>在 <code>C</code> 中覆盖 <code>f()</code>
 并且提供我们自己的实现来消除歧义。</p>
 <h2 id="抽象类">抽象类</h2>
-<p>类和其中的某些成员可以声明为 <em class="keyword">abstract</em>。
+<p>类以及其中的某些成员可以声明为 <em class="keyword">abstract</em>。
 抽象成员在本类中可以不用实现。
 需要注意的是，我们并不需要用 <code>open</code> 标注一个抽象类或者函数——因为这不言而喻。</p>
 <p>我们可以用一个抽象成员覆盖一个非抽象的开放成员</p>

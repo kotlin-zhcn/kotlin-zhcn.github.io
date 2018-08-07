@@ -880,8 +880,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="扩展">扩展</h1>
-<p>Kotlin 同 C# 和 Gosu 类似，能够扩展一个类的新功能而无需继承该类或使用像装饰者这样的任何类型的设计模式。
-这通过叫做 <em>扩展</em> 的特殊声明完成。Kotlin 支持 <em>扩展函数</em> 和 <em>扩展属性</em>。</p>
+<p>Kotlin 同 C# 与 Gosu 类似，能够扩展一个类的新功能而无需继承该类或使用像装饰者这样的任何类型的设计模式。
+这通过叫做 <em>扩展</em> 的特殊声明完成。Kotlin 支持 <em>扩展函数</em> 与 <em>扩展属性</em>。</p>
 <h2 id="扩展函数">扩展函数</h2>
 <p>声明一个扩展函数，我们需要用一个 <em>接收者类型</em> 也就是被扩展的类型来作为他的前缀。
 下面代码为 <code>MutableList&lt;Int&gt;</code> 添加一个<code>swap</code> 函数：</p>
@@ -935,7 +935,7 @@ printFoo(D())
 </div>
 <p>这个例子会输出 "c"，因为调用的扩展函数只取决于<!--
 -->参数 <code>c</code> 的声明类型，该类型是 <code>C</code> 类。</p>
-<p>如果一个类定义有一个成员函数和一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字<!--
+<p>如果一个类定义有一个成员函数与一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字<!--
 -->并且都适用给定的参数，这种情况<strong>总是取成员函数</strong>。
 例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -971,7 +971,7 @@ fun C.foo(i: Int) { println("extension") }
 </code></pre>
 </div>
 <h2 id="扩展属性">扩展属性</h2>
-<p>和函数类似，Kotlin 支持扩展属性：</p>
+<p>与函数类似，Kotlin 支持扩展属性：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
     get() = size - 1
@@ -987,7 +987,7 @@ fun C.foo(i: Int) { println("extension") }
 </div>
 <h2 id="伴生对象的扩展">伴生对象的扩展</h2>
 <p>如果一个类定义有一个<a href="object-declarations.html#伴生对象">伴生对象</a> ，你也可以为伴生对象定义<!--
--->扩展函数和属性：</p>
+-->扩展函数与属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class MyClass {
     companion object { }  // 将被称为 "Companion"
@@ -1047,7 +1047,7 @@ class C {
 }
 </code></pre>
 </div>
-<p>对于分发接收者和扩展接收者的成员名字冲突的情况，扩展接收者<!--
+<p>对于分发接收者与扩展接收者的成员名字冲突的情况，扩展接收者<!--
 -->优先。要引用分发接收者的成员你可以使用 <a href="this-expressions.html#限定的-this">限定的 <code>this</code> 语法</a>。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class C {
@@ -1097,7 +1097,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <h2 id="关于可见性的说明">关于可见性的说明</h2>
-<p>扩展的可见性与相同作用域内声明的[其他实体的可见性]相同。例如：</p>
+<p>扩展的可见性与相同作用域内声明的<a href="visibility-modifiers.html">其他实体的可见性</a>相同。例如：</p>
 <ul>
 <li>在文件顶层声明的扩展可以访问同一文件中的其他 <code>private</code> 顶层声明；</li>
 <li>如果扩展是在其接收者类型外部声明的，那么该扩展不能访问接收者的 <code>private</code> 成员。</li>

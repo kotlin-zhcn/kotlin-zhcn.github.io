@@ -882,7 +882,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="异常">异常</h1>
 <h2 id="异常类">异常类</h2>
 <p>Kotlin 中所有异常类都是 <code>Throwable</code> 类的子孙类。
-每个异常都有消息、堆栈回溯信息和可选的原因。</p>
+每个异常都有消息、堆栈回溯信息以及可选的原因。</p>
 <p>使用 <em class="keyword">throw</em>-表达式来抛出异常：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">
@@ -907,7 +907,7 @@ finally {
 </code></pre>
 </div>
 <p>可以有零到多个 <em class="keyword">catch</em> 块。<em class="keyword">finally</em> 块可以省略。
-但是 <em class="keyword">catch</em> 和 <em class="keyword">finally</em> 块至少应该存在一个。</p>
+但是 <em class="keyword">catch</em> 与 <em class="keyword">finally</em> 块至少应该存在一个。</p>
 <h3 id="try-是一个表达式">Try 是一个表达式</h3>
 <p><em class="keyword">try</em> 是一个表达式，即它可以有一个返回值：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -939,7 +939,7 @@ catch (IOException e) {
 <p>这并不好，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 第 77 条：<em>不要忽略异常</em>。</p>
 <p>Bruce Eckel 在<a href="http://www.mindview.net/Etc/Discussions/CheckedExceptions">《Java 是否需要受检的异常？》（Does Java need Checked Exceptions?）</a> 中指出：</p>
 <blockquote>
-<p>通过一些小程序测试得出的结论是异常规范会同时提高开发者的生产力和代码质量，但是大型软件项目的经验表明一个不同的结论——生产力降低、代码质量很少或没有提高。</p>
+<p>通过一些小程序测试得出的结论是异常规范会同时提高开发者的生产力与代码质量，但是大型软件项目的经验表明一个不同的结论——生产力降低、代码质量很少或没有提高。</p>
 </blockquote>
 <p>其他相关引证：</p>
 <ul>

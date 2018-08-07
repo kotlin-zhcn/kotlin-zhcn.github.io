@@ -926,7 +926,7 @@ val max = if (a &gt; b) a else b
 }
 </code></pre>
 </div>
-<p><em class="keyword">when</em> 将它的参数和所有的分支条件顺序比较，直到某个分支满足条件。
+<p><em class="keyword">when</em> 将它的参数与所有的分支条件顺序比较，直到某个分支满足条件。
 <em class="keyword">when</em> 既可以被当做表达式使用也可以被当做语句使用。如果它被当做表达式，
 符合条件的分支的值就是整个表达式的值，如果当做语句使用，
 则忽略个别分支的值。（像 <em class="keyword">if</em> 一样，每一个分支可以是一个代码块，它的值<!--
@@ -961,7 +961,7 @@ val max = if (a &gt; b) a else b
 </code></pre>
 </div>
 <p>另一种可能性是检测一个值是（<em class="keyword">is</em>）或者不是（<em class="keyword">!is</em>）一个特定类型的值。注意：
-由于<a href="typecasts.html#智能转换">智能转换</a>，你可以访问该类型的方法和属性而无需<!--
+由于<a href="typecasts.html#智能转换">智能转换</a>，你可以访问该类型的方法与属性而无需<!--
 -->任何额外的检测。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun hasPrefix(x: Any) = when(x) {
@@ -1046,7 +1046,7 @@ for ((index, value) in array.withIndex()) {
 </div>
 <p>参见<a href="grammar.html#for"><em class="keyword">for</em> 语法</a>。</p>
 <h2 id="while-循环">While 循环</h2>
-<p><em class="keyword">while</em> 和 <em class="keyword">do</em>..<em class="keyword">while</em> 照常使用</p>
+<p><em class="keyword">while</em> 与 <em class="keyword">do</em>..<em class="keyword">while</em> 照常使用</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">while (x &gt; 0) {
     x--
@@ -1058,8 +1058,8 @@ do {
 </code></pre>
 </div>
 <p>参见<a href="grammar.html#while"><em class="keyword">while</em> 语法</a>.</p>
-<h2 id="循环中的break和continue">循环中的Break和continue</h2>
-<p>在循环中 Kotlin 支持传统的 <em class="keyword">break</em> 和 <em class="keyword">continue</em> 操作符。参见<a href="returns.html">返回和跳转</a>。</p>
+<h2 id="循环中的-break-与-continue">循环中的 Break 与 continue</h2>
+<p>在循环中 Kotlin 支持传统的 <em class="keyword">break</em> 与 <em class="keyword">continue</em> 操作符。参见<a href="returns.html">返回与跳转</a>。</p>
 
         </article>
     </div>

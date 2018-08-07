@@ -895,8 +895,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <p>语法是： <code>val/var &lt;属性名&gt;: &lt;类型&gt; by &lt;表达式&gt;</code>。在 <em class="keyword">by</em> 后面的表达式是该 <em>委托</em>，
-因为属性对应的 <code>get()</code>（和 <code>set()</code>）会被委托给它的 <code>getValue()</code> 和 <code>setValue()</code> 方法。
-属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（和 <code>setValue()</code>——对于 <em class="keyword">var</em> 属性）。
+因为属性对应的 <code>get()</code>（与 <code>set()</code>）会被委托给它的 <code>getValue()</code> 与 <code>setValue()</code> 方法。
+属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（与 <code>setValue()</code>——对于 <em class="keyword">var</em> 属性）。
 例如:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Delegate {
@@ -954,11 +954,11 @@ fun main(args: Array&lt;String&gt;) {
 -->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
 -->可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
 而如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
-它不会有任何线程安全的保证和相关的开销。</p>
+它不会有任何线程安全的保证以及相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值和修改时处理程序（handler）。
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值与修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个<!--
--->参数：被赋值的属性、旧值和新值：</p>
+-->参数：被赋值的属性、旧值与新值：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.properties.Delegates
 
@@ -1051,9 +1051,9 @@ fun main(args: Array&lt;String&gt;) {
 <ul>
 <li><code>thisRef</code> —— 同 <code>getValue()</code>；</li>
 <li><code>property</code> —— 同 <code>getValue()</code>；</li>
-<li>new value —— 必须和属性同类型或者是它的超类型。</li>
+<li>new value —— 必须与属性同类型或者是它的超类型。</li>
 </ul>
-<p><code>getValue()</code> 或/和 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
+<p><code>getValue()</code> 或/与 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
 当你需要委托属性到原本未提供的这些函数的对象时后者会更便利。
 两函数都需要用 <code>operator</code> 关键字来进行标记。</p>
 <p>委托类可以实现包含所需 <code>operator</code> 方法的 <code>ReadOnlyProperty</code> 或 <code>ReadWriteProperty</code> 接口之一。

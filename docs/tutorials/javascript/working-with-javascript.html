@@ -512,26 +512,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h2 id="interacting-with-the-dom">Interacting with the DOM</h2>
 <p>The Kotlin standard library provides a series of wrappers around the JavaScript API for interacting with documents. The main component we'd usually access is the variable <code>document</code>. Given we have access to this, we can simply read and write to the corresponding properties. For instance, to set the background of the page we can do</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">document.bgColor = "FFAA12" 
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">document.bgColor = "FFAA12" 
 </code></pre>
+</div>
 <p>The DOM also provides us a way to retrieve a specific element by ID, name, class name, tag name and so on. All returned elements are of type <code>NodeList</code>, and to access members we need to cast them to the specific type of element. The code below shows how we could access an input
 element on the page:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;body&gt;
-&lt;input type="text" name="email" id="email"/&gt;
-&lt;script type="text/javascript" src="scripts/kotlin.js"&gt;&lt;/script&gt;
-&lt;script type="text/javascript" src="scripts/domInteraction.js"&gt;&lt;/script&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-html">&lt;body&gt;
+    &lt;input type="text" name="email" id="email"/&gt;
+    &lt;script type="text/javascript" src="scripts/kotlin.js"&gt;&lt;/script&gt;
+    &lt;script type="text/javascript" src="scripts/domInteraction.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 </code></pre>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val email = document.getElementById("email") as HTMLInputElement
+</div>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val email = document.getElementById("email") as HTMLInputElement
 email.value = "hadi@jetbrains.com"
 </code></pre>
+</div>
 <p>An important note is to make sure that the scripts are located before the <code>body</code> tag is closed. Placing them at the top means that the scripts would be loaded before the DOM is fully available.</p>
 <p>Much like we reference an input element, we can access other elements on the page, casting them to the appropriate types.</p>
 <h2 id="using-kotlinxhtml">Using kotlinx.html</h2>
 <p>The <a href="http://www.github.com/kotlin/kotlinx.html">kotlinx.html library</a> provides the ability to generate DOM using statically typed HTML builders.
 The library is available when targeting the JVM as well as JavaScript. To use the library we need to include the corresponding
 dependency. In the case of Gradle this would be</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">repositories {
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">repositories {
     mavenCentral()
     maven {
         url  "http://dl.bintray.com/kotlin/kotlinx.html/"
@@ -543,10 +550,12 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-js:$kotlin_version"
 }
 </code></pre>
+</div>
 <p>For more information about configuring Gradle to target JavaScript please see <a href="getting-started-gradle/getting-started-with-gradle.html">Getting Started with Gradle</a>.</p>
 <p>Once the dependency is included, we can access the different interfaces provided to generate DOM. The code below will add a new <code>span</code> tag with the text <code>Hello</code> inside a <code>div</code> on the
 <code>window.load</code> event.</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import kotlin.browser.*
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import kotlin.browser.*
 import kotlinx.html.*
 import kotlinx.html.dom.*
 
@@ -560,30 +569,37 @@ fun printHello() {
     }
 }
 </code></pre>
+</div>
 <h2 id="using-ts2kt-to-generate-header-files-for-kotlin">Using ts2kt to generate header files for Kotlin</h2>
 <p>The standard library provides us with a series of wrappers around DOM as well as functions to work with JavaScript, using static typing. What happens however
 when we want to use a library such as jQuery? Kotlin does not have its own "header" files for all the different libraries available on the JavaScript ecosystem
 however, TypeScript does. The <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">Definitely Typed repository</a>  provides us with a very large selection of header files.</p>
 <p>Using the tool <code>ts2kt</code> (TypeScript to Kotlin) we can convert any <code>d.ts</code> files to Kotlin. To install the tool we can use <code>npm</code></p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">npm install ts2kt
+<pre><code class="code _highlighted" data-lang="text/x-sh">npm install ts2kt
 </code></pre>
 <p>To convert a file we simply provide the input file, and optionally an output directory. The command below will convert the file <code>jquery.d.ts</code> in the current folder, which we've previously
  downloaded from the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types/jquery/jquery.d.ts">Definitely Typed repository</a> to the output folder <code>headers</code>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">ts2kt -d headers jquery.d.ts 
+<pre><code class="code _highlighted" data-lang="text/x-sh">ts2kt -d headers jquery.d.ts 
 </code></pre>
 <p>Once we have the file generated, we can simply include it in our project and use it:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">jQuery("#area").hover { window.alert("Hello!") }
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">jQuery("#area").hover { window.alert("Hello!") }
 </code></pre>
+</div>
 <p>Note that <code>jQuery</code> needs to be included in the corresponding HTML:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-html">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
 
 &lt;!-- other script files ....  --&gt;
 </code></pre>
+</div>
 <h3 id="header-files-under-the-covers">Header files under the covers</h3>
 <p>The header files merely contain function declarations for functionality that is defined at runtime. For instance, we could define a <code>jQuery</code> function like so</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">@JsName("$")
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@JsName("$")
 public external fun jQuery(selector: String): JQuery
 </code></pre>
+</div>
 <p>The above code indicates that the function is defined externally. The <code>@JsName("$")</code> annotation allows us to map the name at runtime to <code>$</code>. 
 For more details on external declarations, please refer to the <a href="/docs/reference/js-interop.html#external-修饰符">JavaScript interop documentation</a>.</p>
 <p>Note that the type systems of TypeScript and Kotlin do not match exactly, so you may need to edit the generated headers in case
@@ -592,7 +608,8 @@ you encounter difficulties with using the APIs from Kotlin.</p>
 <p>While the above solution works well for situations in which we have a corresponding header file (be this something we've defined ourselves or converted from a TypeScript header), often times
 we need to work with some library that does not have a header. For instance, let's say we want to use a jQuery plugin, that allows us to convert an HTML table to a nice looking navigable grid.</p>
 <p>The way in which we'd use this from JavaScript would be to call <code>dataTable()</code> on the corresponding <code>&lt;table&gt;</code> element</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;table id="data" class="display" cellspacing="0" width="100%"&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-html">&lt;table id="data" class="display" cellspacing="0" width="100%"&gt;
     &lt;thead&gt;
     &lt;tr&gt;
         &lt;th&gt;Name&lt;/th&gt;
@@ -626,31 +643,40 @@ we need to work with some library that does not have a header. For instance, let
     &lt;/tbody&gt;
 &lt;/table&gt;
 </code></pre>
+</div>
 <p>we would invoke the following in JavaScript</p>
-<pre><code class="code _highlighted" data-lang="text/javascript">$("#data").dataTable()
+<div class="sample" mode="js" theme="idea">
+<pre><code class="language-javascript">$("#data").dataTable()
 </code></pre>
+</div>
 <p>How would we do this from Kotlin given that the function <code>dataTable()</code> does not exist, and calling it would give a compiler error?</p>
 <p>In situations like this we can use the <code>dynamic</code> type, which allows us to work with dynamic types when targeting JavaScript. The following
 variable is declared as <code>dynamic</code> meaning that whatever we invoke on it will not result in a compile-time error:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">val myObject: dynamic = null
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val myObject: dynamic = null
 
-. . .
+{ ... }
 
 myObject.callAnything()
 </code></pre>
+</div>
 <p>The above code compiles. However, it will produce a runtime error if the object is not properly initialised before use or if <code>callAnything()</code> is not
  defined at runtime.</p>
 <p>The standard library defines a function named <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.js/as-dynamic.html"><code>asDynamic()</code></a> which casts a value to the dynamic type.
 Given our previous example where we used jQuery to work with DOM elements, we can now combine this with <code>asDynamic()</code> to then invoke <code>dataTable()</code> on the result:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">$("#data").asDynamic().dataTable()
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">$("#data").asDynamic().dataTable()
 </code></pre>
+</div>
 <p>It is important to understand that just like in the case of <code>callAnything()</code>, the <code>dataTable()</code> function must exist at runtime. In our case, we need to make
 sure that the corresponding script file for our plugin is included:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-html">&lt;script type="text/javascript" src="js/jquery.js"&gt;&lt;/script&gt;
 &lt;script type="text/javascript" src="js/jquery.dataTables.js"&gt;&lt;/script&gt;
 
 &lt;!-- other script files ....  --&gt;
 </code></pre>
+</div>
 <p>For more information about <code>dynamic</code> see the <a href="../../reference/dynamic-type.html">reference documentation</a>.</p>
 
         </article>

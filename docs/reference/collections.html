@@ -880,9 +880,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="集合listsetmap">集合：List、Set、Map</h1>
-<p>与大多数语言不同，Kotlin 区分可变集合和不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 和设计良好的 API。</p>
-<p>预先了解一个可变集合的只读 <em>视图</em> 和一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。</p>
-<p>Kotlin 的 <code>List&lt;out T&gt;</code> 类型是一个提供只读操作如 <code>size</code>、<code>get</code>等的接口。和 Java 类似，它继承自 <code>Collection&lt;T&gt;</code> 进而继承自 <code>Iterable&lt;T&gt;</code>。改变 list 的方法是由 <code>MutableList&lt;T&gt;</code> 加入的。这一模式同样适用于 <code>Set&lt;out T&gt;/MutableSet&lt;T&gt;</code> 及 <code>Map&lt;K, out V&gt;/MutableMap&lt;K, V&gt;</code>。</p>
+<p>与大多数语言不同，Kotlin 区分可变集合与不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 以及设计良好的 API。</p>
+<p>预先了解一个可变集合的只读 <em>视图</em> 与一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。</p>
+<p>Kotlin 的 <code>List&lt;out T&gt;</code> 类型是一个提供只读操作如 <code>size</code>、<code>get</code>等的接口。与 Java 类似，它继承自 <code>Collection&lt;T&gt;</code> 进而继承自 <code>Iterable&lt;T&gt;</code>。改变 list 的方法是由 <code>MutableList&lt;T&gt;</code> 加入的。这一模式同样适用于 <code>Set&lt;out T&gt;/MutableSet&lt;T&gt;</code> 及 <code>Map&lt;K, out V&gt;/MutableMap&lt;K, V&gt;</code>。</p>
 <p>我们可以看下 list 及 set 类型的基本用法：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbers: MutableList&lt;Int&gt; = mutableListOf(1, 2, 3)
@@ -915,7 +915,7 @@ assert(strings.size == 3)
 </code></pre>
 </div>
 <p>这个 <code>toList</code> 扩展方法只是复制列表项，因此返回的 list 保证永远不会改变。</p>
-<p>List 和 set 有很多有用的扩展方法值得熟悉：</p>
+<p>List 与 set 有很多有用的扩展方法值得熟悉：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val items = listOf(1, 2, 3, 4)
 items.first() == 1
@@ -929,7 +929,7 @@ val item = rwList.firstOrNull()
 </code></pre>
 </div>
 <p>…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。</p>
-<p>Map 遵循同样模式。它们可以容易地实例化和访问，像这样：</p>
+<p>Map 遵循同样模式。它们可以容易地实例化与访问，像这样：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
 println(readWriteMap["foo"])  // 输出“1”

@@ -956,7 +956,7 @@ EnumClass.values(): Array&lt;EnumClass&gt;
 </code></pre>
 </div>
 <p>如果指定的名称与类中定义的任何枚举常量均不匹配，<code>valueOf()</code> 方法将抛出 <code>IllegalArgumentException</code> 异常。</p>
-<p>自 Kotlin 1.1 起，可以使用 <code>enumValues&lt;T&gt;()</code> 和 <code>enumValueOf&lt;T&gt;()</code> 函数以泛型的方式访问枚举类中的常量
+<p>自 Kotlin 1.1 起，可以使用 <code>enumValues&lt;T&gt;()</code> 与 <code>enumValueOf&lt;T&gt;()</code> 函数以泛型的方式访问枚举类中的常量
 ：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">enum class RGB { RED, GREEN, BLUE }
@@ -968,7 +968,7 @@ inline fun &lt;reified T : Enum&lt;T&gt;&gt; printAllValues() {
 printAllValues&lt;RGB&gt;() // 输出 RED, GREEN, BLUE
 </code></pre>
 </div>
-<p>每个枚举常量都具有在枚举类声明中获取其名称和位置的属性：</p>
+<p>每个枚举常量都具有在枚举类声明中获取其名称与位置的属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val name: String
 val ordinal: Int

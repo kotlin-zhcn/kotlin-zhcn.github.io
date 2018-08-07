@@ -894,7 +894,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="multi-declarations.html"><code>componentN()</code> 函数</a> 按声明顺序对应于所有属性；</li>
 <li><code>copy()</code> 函数（见下文）。</li>
 </ul>
-<p>为了确保生成的代码的一致性和有意义的行为，数据类必须满足以下要求：</p>
+<p>为了确保生成的代码的一致性以及有意义的行为，数据类必须满足以下要求：</p>
 <ul>
 <li>主构造函数需要至少有一个参数；</li>
 <li>主构造函数的所有参数需要标记为 <code>val</code> 或 <code>var</code>；</li>
@@ -959,7 +959,7 @@ fun main(args: Array&lt;String&gt;) {
 val olderJack = jack.copy(age = 2)
 </code></pre>
 </div>
-<h2 id="数据类和解构声明">数据类和解构声明</h2>
+<h2 id="数据类与解构声明">数据类与解构声明</h2>
 <p>为数据类生成的 <em>Component 函数</em> 使它们可在<a href="multi-declarations.html">解构声明</a>中使用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val jane = User("Jane", 35)
@@ -968,7 +968,7 @@ println("$name, $age years of age") // 输出 "Jane, 35 years of age"
 </code></pre>
 </div>
 <h2 id="标准数据类">标准数据类</h2>
-<p>标准库提供了 <code>Pair</code> 和 <code>Triple</code>。尽管在很多情况下命名数据类是更好的设计选择，
+<p>标准库提供了 <code>Pair</code> 与 <code>Triple</code>。尽管在很多情况下命名数据类是更好的设计选择，
 因为它们通过为属性提供有意义的名称使代码更具可读性。</p>
 
         </article>
