@@ -502,7 +502,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ol>
 <li>
 <p>Using our favorite editor, we create a new file called <em>library.kt</em>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">package org.sample
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">package org.sample
    
 fun factorial(n: Int): Long = if (n == 0) 1 else n * factorial(n - 1)
    
@@ -510,6 +511,7 @@ inline fun IntRange.forOdd(f: (Int) -&gt; Unit) {
     this.forEach { if (it % 2 == 1) f(it) }
 }
 </code></pre>
+</div>
 </li>
 <li>
 <p>Compile the library using the JS compiler</p>
@@ -538,7 +540,8 @@ of <code>sample-library.js</code> and distribute only the resulting file.</p>
 </ol>
 <h3 id="using-a-kotlinjavascript-library">Using a Kotlin/JavaScript library.</h3>
 <p>Create binom.kt:</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">import org.sample.factorial
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import org.sample.factorial
     
 fun binom(m: Int, n: Int): Long =
         if (m &lt; n) factorial(n) / factorial(m) / factorial(n-m) else 1
@@ -549,6 +552,7 @@ fun odd_factorial(n: Int): Long {
         return result
 }        
 </code></pre>
+</div>
 <p>Compile with library:</p>
 <pre><code>   $ kotlinc-js -output binom.js -libraries sample-library.meta.js binom.kt
 </code></pre>

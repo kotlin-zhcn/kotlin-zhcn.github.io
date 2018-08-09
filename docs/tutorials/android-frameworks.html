@@ -559,7 +559,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>我们注意到转换到 Kotlin 时注解代码几乎没有发生改变。
 接下来将介绍构建脚本(build script)中需要修改的部分。</p>
 <p>在 Java 中需要指定 <code>Dagger</code> 作为 <code>annotationProcessor</code>（或 <code>apt</code>）依赖：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
   ...
   annotationProcessor "com.google.dagger:dagger-compiler:$dagger-version"
@@ -567,7 +567,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>在 Kotlin 中则需要添加 <code>kotlin-kapt</code> 插件激活 <code>kapt</code>，并使用 <code>kapt</code> 替换 <code>annotationProcessor</code>：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 dependencies {
     ...
@@ -586,7 +586,7 @@ dependencies {
 <p>在 Kotlin 中使用 <code>ButterKnife</code> 与 Java 中完全一致。
 在 Gradle 构建脚本的修改如下，后面将重点介绍代码部分的差异。</p>
 <p>在 Gradle 依赖中添加 <code>kotlin-kapt</code> 插件，并使用 <code>kapt</code> 替代 <code>annotationProcessor</code>。</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 
 dependencies {
@@ -600,7 +600,7 @@ dependencies {
 参见<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-butterknife">详细代码</a>。</p>
 <p>让我门看看发生了什么变化。
 在 Java 中使用注解对将变量与之对应的 view 进行绑定：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@BindView(R2.id.title) TextView title;
 </code></pre>
 </div>
@@ -615,7 +615,7 @@ lateinit var title: TextView
 <p><a href="/docs/reference/properties.html#延迟初始化属性与变量">lateinit 修饰符</a>允许声明非空类型，并在对象创建后(构造函数调用后)初始化。
 不使用 <code>lateinit</code> 则需要声明<a href="/docs/reference/null-safety.html">可空类型</a>并且有额外的空安全检测操作。</p>
 <p>使用 ButterKnife 注解可以将方法设置为监听器：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@OnClick(R2.id.hello)
 internal fun sayHello() {
     Toast.makeText(this, "Hello, views!", LENGTH_SHORT).show()
@@ -634,7 +634,7 @@ internal fun sayHello() {
 <h3 id="data-binding">Data Binding</h3>
 <p>使用 <a href="https://developer.android.com/topic/libraries/data-binding/index.html">Data Binding 开源库</a>能够让开发者以更简洁的方式将应用程序数据与布局界面进行绑定。</p>
 <p>和使用 Java 一样，开发者需要在 gradle 文件中添加并激活配置。</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">android {
     ...
     dataBinding {
@@ -644,7 +644,7 @@ internal fun sayHello() {
 </code></pre>
 </div>
 <p>添加 <code>kapt</code> 的依赖后即可与 Kotlin 代码交互：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 dependencies {
     kapt "com.android.databinding:compiler:$android_plugin_version"
@@ -654,17 +654,21 @@ dependencies {
 <p>使用 Kotlin 并不需要修改任何的 xml 文件。
 例如，在 <code>data</code> 中使用 <code>variable</code> 来描述可能在布局中使用的变量，
 可以使用Kotlin类型声明变量：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;data&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;data&gt;
     &lt;variable name="data" type="org.example.kotlin.databinding.WeatherData"/&gt;
 &lt;/data&gt;
 </code></pre>
+</div>
 <p>现在，可以使用 <code>@{}</code> 语法引用 Kotlin 的<a href="/docs/reference/properties.html">属性</a>：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;ImageView
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;ImageView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:src="@{data.imageUrl}"
     android:contentDescription="@string/image" /&gt;
 </code></pre>
+</div>
 <p>值得一提的是，数据绑定表达式语言使用和 Kotlin 相同的语法对属性进行引用：<code>data.imageUrl</code>。
 在 Kotlin 中可以使用 <code>v.prop</code> 来替代 <code>v.getProp()</code>，尽管 <code>getProp()</code> 是Java中的方法。
 类似的，也可以直接向属性赋值，而不再需要调用setter。</p>
@@ -684,12 +688,14 @@ dependencies {
 </code></pre>
 </div>
 <p>在 xml 中绑定监听器，并在运行事对相应操作进行响应：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;Button
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;Button
     android:text="@string/next"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:onClick="startOtherActivity" /&gt;
 </code></pre>
+</div>
 <p>例如在 <code>MainActivity</code> 中定义的 <code>startOtherActivity</code> 方法：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class MainActivity : AppCompatActivity() {
@@ -701,11 +707,13 @@ dependencies {
 <p>本例中使用的效用函数 <code>startActivity</code> 创建一个不带任何数据参数的 intent，并启动一个新的 activity，这些方法都来自于 <a href="https://github.com/Kotlin/anko">Anko</a> 库。
 若需要添加参数，则调用 <code>startActivity&lt;OtherActivity&gt;("KEY" to "VALUE")</code>.</p>
 <p>请注意，与其在 xml 中声明 lambda 表达式，不如直接使用代码绑定相关动作：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;Button 
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;Button 
     android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
     android:onClick="@{() -&gt; presenter.onSaveClick(task)}" /&gt;
 </code></pre>
+</div>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 用 Kotlin 代码写的相同逻辑
 button.setOnClickListener { presenter.onSaveClick(task) }
@@ -766,7 +774,7 @@ data class User(@PrimaryKey var id: Long = 0, @Column var name: String? = null)
 <h3 id="auto-parcel">Auto-Parcel</h3>
 <p><a href="https://github.com/frankiesardo/auto-parcel">Auto-Parcel</a> 使用 <code>@AutoValue</code> 的注解为类文件自动生成 <code>Parcelable</code> 对应方法和值。</p>
 <p>同样的，gradle 文件中也需要使用 <code>kapt</code> 作为注解处理器来处理 Kotlin 文件：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 
 dependencies {

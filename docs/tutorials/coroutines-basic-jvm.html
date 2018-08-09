@@ -503,7 +503,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Then follow the wizard steps. You'll have a <code>build.gradle</code> file created with Kotlin configured according to <a href="/docs/reference/using-gradle.html">this document</a>.
 Make sure it's configured for Kotlin 1.1 or higher.</p>
 <p>Since coroutines have the <em>experimental</em> status in Kotlin 1.1, by default the compiler reports a warning every time they are used. We can opt-in for the experimental feature and use it without a warning by adding this code to <code>build.gradle</code>:</p>
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin'
 
 kotlin {
@@ -514,7 +514,7 @@ kotlin {
 </code></pre>
 </div>
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
     ...
     compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.21"
@@ -522,7 +522,7 @@ kotlin {
 </code></pre>
 </div>
 <p>This library is published to Bintray JCenter repository, so let us add it:</p>
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">repositories {
     jcenter()
 }
@@ -535,7 +535,7 @@ kotlin {
 <p>Then follow the wizard steps. You'll have a <code>pom.xml</code>  file created with Kotlin configured according to <a href="/docs/reference/using-maven.html">this document</a>.
 Make sure it's configured for Kotlin 1.1 or higher.</p>
 <p>Since coroutines have the <em>experimental</em> status in Kotlin 1.1, by default the compiler reports a warning every time they are used. We can opt-in for the experimental feature and use it without a warning by adding this code to <code>pom.xml</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
     &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
@@ -549,7 +549,7 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
 </code></pre>
 </div>
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;dependencies&gt;
     ...
     &lt;dependency&gt;
@@ -561,7 +561,7 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
 </code></pre>
 </div>
 <p>This library is published to Bintray JCenter repository, so let us add it:</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;repositories&gt;
     ...
     &lt;repository&gt;

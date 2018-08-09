@@ -1073,7 +1073,7 @@ copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
 </ul>
 <p><em>注意</em>：星投影非常像 Java 的原始类型，但是安全。</p>
 <h2 id="泛型函数">泛型函数</h2>
-<p>不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称之前：</p>
+<p>不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称<strong>之前</strong>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
     // ……

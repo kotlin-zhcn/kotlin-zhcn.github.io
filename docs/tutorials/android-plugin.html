@@ -530,7 +530,7 @@ class MyActivity : Activity() {
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
 <p>安卓扩展是 IntelliJ IDEA 与 Android Studio 的 Kotlin 插件的组成之一，因此不需要再单独安装额外插件。</p>
 <p>开发者仅需要在模块的 <code>build.gradle</code> 文件中启用 Gradle 安卓扩展插件即可：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-android-extensions'
 </code></pre>
 </div>
@@ -543,11 +543,13 @@ class MyActivity : Activity() {
 <p>假设当前布局文件是 <code>activity_main.xml</code>，我们只需要引入 <code>kotlinx.android.synthetic.main.activity_main.*</code>。</p>
 <p>若需要调用 <code>View</code> 的合成属性，同时还应该导入 <code>kotlinx.android.synthetic.main.activity_main.view.*</code>。</p>
 <p>导入完成后即可调用在xml文件中以视图控件命名属性的对应扩展，比如下例:</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;TextView
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;TextView
     android:id="@+id/hello"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"/&gt;
 </code></pre>
+</div>
 <p>将有一个名为 <code>hello</code> 的属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">activity.hello.text = "Hello World!"
@@ -555,7 +557,7 @@ class MyActivity : Activity() {
 </div>
 <h3 id="experimental-mode">Experimental Mode</h3>
 <p>Android Extensions plugin includes several experimental features such as <code>LayoutContainer</code> support and a <code>Parcelable</code> implementation generator. These features are not considered production ready yet, so you need to turn on the experimental mode in <code>build.gradle</code> in order to use them:</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">androidExtensions {
     experimental = true
 }
@@ -576,7 +578,7 @@ class ViewHolder(override val containerView: View) : ViewHolder(containerView), 
 <p>Note that you need to turn on the <a href="#experimental-mode">experimental flag</a> to use <code>LayoutContainer</code>.</p>
 <h3 id="多渠道支持">多渠道支持</h3>
 <p>安卓扩展插件现已支持安卓多渠道。假设当前在 <code>build.gradle</code> 文件中指定一个名为 <code>free</code> 的渠道：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">android {
     productFlavors {
         free {
@@ -617,7 +619,7 @@ fun MyActivity.a() {
 <h3 id="changing-view-caching-strategy">Changing View Caching Strategy</h3>
 <p>You can change the caching strategy globally or per container. This also requires switching on the <a href="#experimental-mode">experimental mode</a>.</p>
 <p>Project-global caching strategy is set in the <code>build.gradle</code> file:</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">androidExtensions {
     defaultCacheImplementation = "HASH_MAP" // also SPARSE_ARRAY, NONE
 }

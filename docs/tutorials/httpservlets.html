@@ -508,7 +508,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="定义项目和依赖关系">定义项目和依赖关系</h3>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.
 The main dependency required for using HTTP servlets is the JavaEE API:</p>
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
     compile group: 'javax', name: 'javaee-api', version: '7.0'
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -516,7 +516,7 @@ The main dependency required for using HTTP servlets is the JavaEE API:</p>
 </code></pre>
 </div>
 <p>我们还需要 <em>war</em> 插件，帮助我们生成相应的构件运行和部署</p>
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: war
 </code></pre>
 </div>
