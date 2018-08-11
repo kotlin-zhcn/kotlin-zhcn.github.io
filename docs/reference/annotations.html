@@ -1055,7 +1055,7 @@ class Tests {
 </div>
 <p>因为 Java 编写的注解没有定义参数顺序，所以不能使用常规函数调用<!--
 -->语法来传递参数。相反，你需要使用命名参数语法：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 public @interface Ann {
     int intValue();
@@ -1069,7 +1069,7 @@ public @interface Ann {
 </code></pre>
 </div>
 <p>就像在 Java 中一样，一个特殊的情况是 <code>value</code> 参数；它的值无需显式名称指定：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 public @interface AnnWithValue {
     String value();
@@ -1083,7 +1083,7 @@ public @interface AnnWithValue {
 </div>
 <h3 id="数组作为注解参数">数组作为注解参数</h3>
 <p>如果 Java 中的 <code>value</code> 参数具有数组类型，它会成为 Kotlin 中的一个 <code>vararg</code> 参数：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 public @interface AnnWithArrayValue {
     String[] value();
@@ -1097,7 +1097,7 @@ public @interface AnnWithArrayValue {
 </div>
 <p>对于具有数组类型的其他参数，你需要显式使用数组字面值语法（自 Kotlin 1.2 起）或者
 <code>arrayOf(……)</code>：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 public @interface AnnWithArrayMethod {
     String[] names();
@@ -1116,7 +1116,7 @@ class D
 </div>
 <h3 id="访问注解实例的属性">访问注解实例的属性</h3>
 <p>注解实例的值会作为属性暴露给 Kotlin 代码：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 public @interface Ann {
     int value();

@@ -945,7 +945,6 @@ public class BookRepositoryImpl {
 <pre><code class="language-kotlin">class Node&lt;T&gt;(val value: T, val next: () -&gt; Node&lt;T&gt;)
 
 fun main(args: Array&lt;String&gt;) {
-    //sampleStart
     // 三个节点的环：
     lateinit var third: Node&lt;Int&gt;
 
@@ -953,7 +952,6 @@ fun main(args: Array&lt;String&gt;) {
     val first = Node(1, next = { second })
 
     third = Node(3, next = { first })
-    //sampleEnd
 
     val nodes = generateSequence(first) { it.next() }
     println("Values in the cycle: ${nodes.take(7).joinToString { it.value.toString() }}, ...")
@@ -1244,10 +1242,12 @@ fun main(args: Array&lt;String&gt;) {
 <h3 id="警告作为错误">警告作为错误</h3>
 <p>编译器现在提供一个将所有警告视为错误的选项。可在命令行中使用 <code>-Werror</code>，或者<!--
 -->在 Gradle 中使用以下代码片段：</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin {
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">compileKotlin {
     kotlinOptions.allWarningsAsErrors = true
 }
 </code></pre>
+</div>
 
         </article>
     </div>
