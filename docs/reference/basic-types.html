@@ -1055,7 +1055,7 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 <p>当其中的操作数 <code>a</code> 与 <code>b</code> 都是静态已知的 <code>Float</code> 或 <code>Double</code> 或者它们对应的可空类型（声明为<!--
 -->该类型，或者推断为该类型，或者<a href="typecasts.html#智能转换">智能类型转换</a>的结果是该类型），两数字所形成的操作<!--
 -->或者区间遵循 IEEE 754 浮点运算标准。</p>
-<p>然而，为了支持泛型场景并提供全序支持，当这些操作符<strong>并非</strong>静态类型为<!--
+<p>然而，为了支持泛型场景并提供全序支持，当这些操作数<strong>并非</strong>静态类型为<!--
 -->浮点数（例如是 <code>Any</code>、 <code>Comparable&lt;……&gt;</code>、 类型参数）时，这些操作使用<!--
 -->为 <code>Float</code> 与 <code>Double</code> 实现的不符合标准的 <code>equals</code> 与 <code>compareTo</code>，这会出现：</p>
 <ul>
