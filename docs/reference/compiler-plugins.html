@@ -1117,8 +1117,9 @@ public interface TaskRunner {
 </code></pre>
 </div>
 <h3 id="在-gradle-中使用-2">在 Gradle 中使用</h3>
-<p>The usage is the same to all-open and no-arg, except the fact that sam-with-receiver does not have any built-in presets, and you need to specify your own list of special-treated annotations.</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">buildscript {
+<p>除了事实上 sam-with-receiver 没有任何内置预设、并且需要指定自己的特殊处理注解列表外，其用法与 all-open 及 no-arg 相同。</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-groovy">buildscript {
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-sam-with-receiver:$kotlin_version"
     }
@@ -1126,7 +1127,7 @@ public interface TaskRunner {
 
 apply plugin: "kotlin-sam-with-receiver"
 </code></pre>
-<p>&lt;/div&gt;</p>
+</div>
 <p>然后指定 SAM-with-receiver 的注解列表：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-groovy">samWithReceiver {

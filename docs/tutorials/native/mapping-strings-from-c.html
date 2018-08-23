@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/command-line.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/mapping-strings-from-c.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial walks us through creating a Hello World application using the command line compiler.">
+    <meta property="og:description" content="Strings from C and how they look in Kotlin/Native">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial walks us through creating a Hello World application using the command line compiler.">
+    <meta name="twitter:description" content="Strings from C and how they look in Kotlin/Native">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Working with the Command Line Compiler - Kotlin 语言中文站</title>
+    <title>Mapping Strings from C - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -151,10 +151,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">使用命令行编译器</div>
-            </div>
+            <a href="/docs/tutorials/command-line.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用命令行编译器</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -369,12 +371,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/mapping-strings-from-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">映射来自 C 语言的字符串</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">映射来自 C 语言的字符串</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -515,7 +515,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/command-line.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/mapping-strings-from-c.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -523,89 +523,158 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                Working with the Command Line Compiler
+                Mapping Strings from C
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>最近更新</strong>
+                        </td>
+                        <td>
+                            2018-07-23
+                        </td>
+                    </tr>
             </table>
-                This tutorial walks us through creating a Hello World application using the command line compiler.
+                Strings from C and how they look in Kotlin/Native
                 <br/>
                 <br/>
             
-<h3 id="downloading-the-compiler">Downloading the compiler</h3>
-<p>Every release ships with a standalone version of the compiler. We can download it from <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.2.61">GitHub Releases</a>. The latest release is 1.2.61.</p>
-<h4 id="manual-install">Manual Install</h4>
-<p>Unzip the standalone compiler into a directory and optionally add the <code>bin</code> directory to the system path. The <code>bin</code> directory contains the scripts needed to compile and run Kotlin on Windows, OS X and Linux.</p>
-<h4 id="sdkman">SDKMAN!</h4>
-<p>An easier way to install Kotlin on UNIX based systems such as OS X, Linux, Cygwin, FreeBSD and Solaris is by using <a href="http://sdkman.io">SDKMAN!</a>.
-Simply run the following in a terminal and follow any instructions:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ curl -s https://get.sdkman.io | bash
+<p>That is the last post in the series. You might want to begin with the first tutorial called
+<a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>.
+There are also <a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
+<a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a> tutorials.</p>
+<p>In that tutorial we see how to deal with C strings in Kotlin/Native.
+You will learn how to:</p>
+<ul>
+<li><a href="#passing-kotlin-string-to-c">Pass a Kotlin string to C</a></li>
+<li><a href="#reading-c-strings-in-kotlin">Read a C string in Kotlin</a></li>
+<li><a href="#receiving-c-string-bytes-from-kotlin">Receive C string bytes into a Kotlin string</a></li>
+</ul>
+<p>We need to have a Kotlin compiler on our machines. 
+You may want to take a look at the
+<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
+tutorial for more information on performing this step.
+Let's assume we have a console, where the <code>kotlinc</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
+<h2 id="working-with-c-strings">Working with C strings</h2>
+<p>There is no dedicated type in C language for strings. A developer knows from a method 
+signature or the documentation whether a given <code>char *</code> means a C string in the context. 
+Strings in the C language are null-terminated, a trailing zero character <code>\0</code> is added at the 
+end of a bytes sequence to mark a string termination.
+Usually, <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 encoded strings</a> are used. The UTF-8 encoding uses
+variable width characters and it is backward compatible with <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>.
+Kotlin/Native uses UTF-8 character encoding by default.</p>
+<p>The best way to understand the mapping between C and Kotlin languages is to try it out on a small example. We create
+a small library headers for that. First, we need to create a <code>lib.h</code> file with the following
+declaration of functions that deal with the C strings:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
+<pre><code class="language-c">#ifndef LIB2_H_INCLUDED
+#define LIB2_H_INCLUDED
+
+void pass_string(char* str);
+char* return_string();
+int copy_string(char* str, int size);
+
+#endif
 </code></pre>
-<p>Next open a new terminal and install Kotlin with:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ sdk install kotlin
+</div>
+<p>In the example we have the most popular ways to pass or receive a string in the C language. We should
+take the return of <code>return_string</code> with care. In general, it is best to make sure we
+use the right function to dispose the returned <code>char*</code> with the right <code>free(..)</code> function call.</p>
+<p>Kotlin/Native comes with the <code>cinterop</code> tool, the tool generates bindings between 
+C and Kotlin languages. It uses a <code>.def</code> file to specify a library headers to import. For more details
+you may check <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.
+We create the following <code>lib.def</code> file:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
+<pre><code class="language-c">headers = lib.h
 </code></pre>
-<h4 id="homebrew">Homebrew</h4>
-<p>Alternatively, on OS X you can install the compiler via <a href="http://brew.sh/">Homebrew</a>.</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ brew update
-$ brew install kotlin
+</div>
+<p>Now we call:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">cinterop -def lib.def -compilerOpts "-I." -o lib.klib
+klib contents lib.klib
 </code></pre>
-<h4 id="macports">MacPorts</h4>
-<p>If you're a <a href="https://www.macports.org/">MacPorts</a> user, you can install the compiler with:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ sudo port install kotlin
+<p>and it prints the following Kotlin API for our C library declarations:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
+<pre><code class="language-kotlin">fun pass_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?)
+fun return_string(): CPointer&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?
+
+fun copy_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?, size: Int): Int
 </code></pre>
-<h4 id="snap-package"><a href="https://snapcraft.io/">Snap</a> package</h4>
-<p>If you’re on Ubuntu 16.04 or later, you can install the compiler from the command line:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ sudo snap install --classic kotlin
-</code></pre>
-<h3 id="creating-and-running-a-first-application">Creating and running a first application</h3>
-<ol>
-<li>
-<p>Create a simple application in Kotlin that displays Hello, World!. Using our favorite editor, we create a new file called <em>hello.kt</em> with the following:</p>
-<div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    println("Hello, World!")
+</div>
+<p>These declarations look clear. All <code>char *</code> pointers are turned into <code>str: CValuesRef&lt;ByteVar&gt;?</code> for
+parameters and to <code>CPointer&lt;ByteVar&gt;?</code> in return types. Kotlin turns <code>char</code> type into <code>kotlin.Byte</code> type,
+as it is usually an 8-bit unsigned value.</p>
+<p>In the generated Kotlin declarations, we see that <code>str</code> is represented as <code>CValuesRef&lt;ByteVar/&gt;?</code>. The type
+is nullable, and we can simply pass Kotlin <code>null</code> as the parameter value.</p>
+<h2 id="passing-kotlin-string-to-c">Passing Kotlin string to C</h2>
+<p>Let's try to use the API from Kotlin. Let's call <code>pass_string</code> first:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
+<pre><code class="language-kotlin">fun passStringToC() {
+  val str = "this is a Kotlin String"
+  pass_string(str.cstr)
 }
 </code></pre>
 </div>
-</li>
-<li>
-<p>Compile the application using the Kotlin compiler</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc hello.kt -include-runtime -d hello.jar
-</code></pre>
-<p>The <code>-d</code> option indicates what we want the output of the compiler to be called and may be either a directory name for class files or a <em>.jar</em> file name. The <code>-include-runtime</code> option makes the resulting <em>.jar</em> file self-contained and runnable by including the Kotlin runtime library in it.
-If you want to see all available options run</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc -help
-</code></pre>
-</li>
-<li>
-<p>Run the application.</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ java -jar hello.jar
-</code></pre>
-</li>
-</ol>
-<h3 id="compiling-a-library">Compiling a library</h3>
-<p>If you're developing a library to be used by other Kotlin applications, you can produce the .jar file without including the Kotlin runtime into it.</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc hello.kt -d hello.jar
-</code></pre>
-<p>Since binaries compiled this way depend on the Kotlin runtime you should make sure the latter is present in the classpath whenever your compiled library is used.</p>
-<p>You can also use the <code>kotlin</code> script to run binaries produced by the Kotlin compiler:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlin -classpath hello.jar HelloKt
-</code></pre>
-<p><code>HelloKt</code> is the main class name that the Kotlin compiler generates for the file named <code>hello.kt</code>.</p>
-<h3 id="running-the-repl">Running the REPL</h3>
-<p>We can run the compiler without parameters to have an interactive shell. We can type any valid Kotlin code and see the results.</p>
-<p><img alt="Shell" src="/assets/images/tutorials/command-line/kotlin_shell.png"/></p>
-<h3 id="using-the-command-line-to-run-scripts">Using the command line to run scripts</h3>
-<p>Kotlin can also be used as a scripting language. A script is a Kotlin source file (.kts) with top level executable code.</p>
-<div class="sample" theme="idea">
-<pre><code class="language-kotlin">   import java.io.File
-
-   val folders = File(args[0]).listFiles { file -&gt; file.isDirectory() }
-   folders?.forEach { folder -&gt; println(folder) }
+<p>Passing a Kotlin string to C is easy, thanks to the fact that we have <code>String.cstr</code>
+<a href="../reference/extensions.html#extension-properties">extension property</a>
+in Kotlin for it. There is also <code>String.wcstr</code> for cases where you
+need UTF-16 wide characters.</p>
+<h2 id="reading-c-strings-in-kotlin">Reading C Strings in Kotlin</h2>
+<p>This time we take a returned <code>char *</code> from the <code>return_string</code> function and turn it into
+a Kotlin string. For that we do the following in Kotlin:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
+<pre><code class="language-kotlin">fun passStringToC() {
+  val stringFromC = return_string()?.toKString()
+  
+  println("Returned from C: $stringFromC")
+}
 </code></pre>
 </div>
-<p>To run a script, we just pass the <code>-script</code> option to the compiler with the corresponding script file.</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">$ kotlinc -script list_folders.kts &lt;path_to_folder_to_inspect&gt;
+<p>we use the <code>toKString()</code> extension function above. Please do not miss out the
+<code>toString()</code> function. The <code>toKString()</code> has two overloaded extension functions in Kotlin:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
+<pre><code class="language-kotlin">fun CPointer&lt;ByteVar&gt;.toKString(): String
+fun CPointer&lt;ShortVar&gt;.toKString(): String
 </code></pre>
+</div>
+<p>The first one takes a <code>char *</code> as a UTF-8 string and turns it into String.
+The second function does the same but for wide, UTF-16 strings.</p>
+<h2 id="receiving-c-string-bytes-from-kotlin">Receiving C string bytes from Kotlin</h2>
+<p>This time we will ask a C function to write us a C string to a given buffer. The function
+is called <code>copy_string</code>. It takes a pointer to the location writing characters and
+the allowed buffer size. The function returns something to indicate if it has succeeded or failed.
+Let's assume <code>0</code> means it succeeded and the supplied buffer was big enough:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
+<pre><code class="language-kotlin">fun sendString() {
+  val buf = ByteArray(255)
+  buf.usePinned { pinned -&gt;
+    if (copy_string(pinned.addressOf(0), buf.size - 1) != 0) {
+      throw Error("Failed to read string from C")
+    }
+  }
+
+  val copiedStringFromC = buf.stringFromUtf8()
+  println("Message from C: $copiedStringFromC")
+}
+
+</code></pre>
+</div>
+<p>First of all, we need to have a native pointer to pass
+to the C function. We use the <code>usePinned</code> extension function
+to temporarily pin the native memory address of the
+byte array. The C function fills in the
+byte array with the data. We use another extension 
+function <code>ByteArray.stringFromUtf8()</code> to turn the byte 
+array into Kotlin <code>String</code>, assuming UTF-8 encoding.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>You may continue exploring more C language types and their representation in Kotlin/Native
+in previous tutorials:</p>
+<ul>
+<li><a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a></li>
+<li><a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a></li>
+<li><a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a></li>
+</ul>
+<p>You may also want to have a look at the <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
+for more advanced scenarios.</p>
 
         </article>
     </div>
