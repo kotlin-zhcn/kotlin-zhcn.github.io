@@ -546,7 +546,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>In this tutorial you will learn how to:</p>
 <ul>
 <li><a href="#passing-kotlin-function-as-c-function-pointer">Pass Kotlin function as C function pointer</a></li>
-<li><a href="#using-c-function-pointer-from-kotlin">Use C function pointer from Kotlin</a></li>
+<li><a href="#using-the-c-function-pointer-from-kotlin">Use C function pointer from Kotlin</a></li>
 </ul>
 <p>We need to have a Kotlin compiler on our machines. 
 You may want to have a look at the
@@ -619,7 +619,7 @@ throwing any sudden exceptions from it</p>
 </code></pre>
 </div>
 <p>Kotlin turns the function pointer return type into a nullable <code>CPointer&lt;CFunction&lt;..&gt;</code> object. There is the need
-to explicitly check for <code>null</code> first. We use <a href="../reference/null-safety.html">elvis operator</a> for that.
+to explicitly check for <code>null</code> first. We use <a href="../../reference/null-safety.html">elvis operator</a> for that.
 The <code>cinterop</code> tool helps us to turn a C function pointer into an easy to call object in Kotlin. That is
 what we did with the last line</p>
 <h2 id="next-steps">Next Steps</h2>

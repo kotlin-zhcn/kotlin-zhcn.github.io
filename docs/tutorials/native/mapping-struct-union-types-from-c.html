@@ -632,7 +632,7 @@ objects instantiated for us.</p>
 by-value parameters are represented as <code>kotlinx.cinterop.CValue&lt;T&gt;</code>. And for typed pointer parameters we 
 see <code>kotlinx.cinterop.CValuesRef&lt;T&gt;</code>.
 Kotlin provides us with an API to deal with both types easily, let's try it and see.</p>
-<h3 id="creating-a-cvalue">Creating a CValue<t></t></h3>
+<h3 id="creating-a-cvaluet">Creating a <code>CValue&lt;T&gt;</code></h3>
 <p><code>CValue&lt;T&gt;</code> type is used to pass by-value parameters to a C function call.
 We use <code>cValue</code> function to create <code>CValue&lt;T&gt;</code> object instance. The function requires a
 <a href="../../reference/lambdas.html#function-literals-with-receiver">lambda function with a receiver</a> 
@@ -660,7 +660,7 @@ to initialize the underlying C type in-place. The function is declared as follow
 }
 </code></pre>
 </div>
-<h3 id="creating-struct-and-union-as-cvaluesref">Creating Struct and Union as CValuesRef<t></t></h3>
+<h3 id="creating-struct-and-union-as-cvaluesreft">Creating Struct and Union as <code>CValuesRef&lt;T&gt;</code></h3>
 <p><code>CValuesRef&lt;T&gt;</code> type is used in Kotlin to pass a typed pointer parameter of a C 
 function. First, we need an instance of 
 <code>MyStruct</code> and <code>MyUnion</code> classes. This time we create them directly in the native memory. 
@@ -708,7 +708,7 @@ to turn <code>MyStruct</code> and <code>MyUnion</code> instances into native poi
 when a <code>memScoped</code> function ends, which is equal to the end of its <code>block</code>. Be careful to make sure that a
 pointer outside is not needed for the <code>memScoped</code> call. We may use <code>Arena()</code> or <code>nativeHeap</code> for pointers that 
 should be available for longer, or are cached inside the C library.</p>
-<h3 id="conversion-between-cvalue-and-cvaluesref">Conversion between CValue<t> and CValuesRef<t></t></t></h3>
+<h3 id="conversion-between-cvaluet-and-cvaluesreft">Conversion between <code>CValue&lt;T&gt;</code> and <code>CValuesRef&lt;T&gt;</code></h3>
 <p>Of course, there are use cases, where we need to pass a struct as a value to one call, and then, to 
 pass the same struct as a reference to another call. This is possible in Kotlin/Native too. A 
 <code>NativePlacement</code> will be needed here.</p>
