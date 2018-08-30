@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/getting-started.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/dynamic-libraries.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
+    <meta property="og:description" content="Compiling Kotlin/Native code to a dynamic library">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
+    <meta name="twitter:description" content="Compiling Kotlin/Native code to a dynamic library">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>以 IntelliJ IDEA 入门 - Kotlin 语言中文站</title>
+    <title>Kotlin/Native as a Dynamic Library - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -133,10 +133,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">以 IntelliJ IDEA 入门</div>
-            </div>
+            <a href="/docs/tutorials/getting-started.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 IntelliJ IDEA 入门</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -396,12 +398,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/dynamic-libraries.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin/Native as a Dynamic Library</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Kotlin/Native as a Dynamic Library</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -533,7 +533,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/getting-started.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/dynamic-libraries.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -541,7 +541,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
             <h1>
-                以 IntelliJ IDEA 入门
+                Kotlin/Native as a Dynamic Library
             </h1>
             <table>
                     <tr>
@@ -549,57 +549,289 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2017-05-04
+                            2018-08-05
                         </td>
                     </tr>
             </table>
-                本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。
+                Compiling Kotlin/Native code to a dynamic library
                 <br/>
                 <br/>
             
-<h3 id="环境搭建">环境搭建</h3>
-<p>在本教程中，我们会使用 IntelliJ IDEA。
-关于如何使用命令行编译器编译和执行 Kotlin 应用程序的说明，请参见<a href="command-line.html">使用命令行编译器</a>。</p>
-<p>如果你是 JVM 及 Java 的新手，请查看 <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM Minimal Survival Guide</a>。如果你是 IntelliJ IDEA 的新手，请查看 <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">The IntelliJ IDEA Minimal Survival Guide</a>。</p>
-<ol>
-<li>
-<p><strong>安装最新版本的 IntelliJ IDEA</strong>。从版本 15 开始，Kotlin 就已内置于 IntelliJ IDEA 了。
-你可以从 <a href="http://www.jetbrains.com">JetBrains</a> 下载免费的<a href="http://www.jetbrains.com/idea/download/index.html">社区版</a>。</p>
-</li>
-<li>
-<p>创建一个新项目。我们选择 Java Module 并选择 SDK。 Kotlin 与 JDK 1.6+ 一起使用。 另外，选择 <em>Kotlin (Java)</em> 复选框。</p>
-<p><img alt="新建 Kotlin 项目" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
-</li>
-<li>
-<p>下一步给我们的项目起个名字。</p>
-<p><img alt="Kotlin 项目名" src="/assets/images/tutorials/getting-started/project_name.png"/></p>
-</li>
-<li>
-<p>我们现在应该已经创建了新项目并且有如下文件夹解构：</p>
-<p><img alt="Kotlin 文件夹解构" src="/assets/images/tutorials/getting-started/folders.png"/></p>
-</li>
-<li>
-<p>让我们在源代码文件夹下创建一个新的 Kotlin 文件。它可以任意命名。在本例中，我们称之为 <em>app</em>。</p>
-<p><img alt="新建 Kotlin 文件" src="/assets/images/tutorials/getting-started/new_file.png"/></p>
-</li>
-<li>
-<p>我们创建完文件后，我们需要键入主程序，这是 Kotlin 应用程序的入口点。IntelliJ IDEA 为我们提供了一个快速完成此操作的模板。只需键入 <em>main</em> 然后按 Tab 即可。</p>
-<p><img alt="Kotlin Main 函数" src="/assets/images/tutorials/getting-started/main.png"/></p>
-</li>
-<li>
-<p>现在我们添加一行代码来打印出“Hello, World!”吧。</p>
-<p><img alt="Kotlin 添加代码" src="/assets/images/tutorials/getting-started/hello_world.png"/></p>
-</li>
-<li>
-<p>现在我们可以运行应用程序了。最简单的方法是点击左边框中的 Kotlin 图标，然后选择 <em>Run 'AppKt'</em>。</p>
-<p><img alt="Kotlin 运行程序" src="/assets/images/tutorials/getting-started/run_default.png"/></p>
-</li>
-<li>
-<p>如果一切顺利，我们现在会在工具窗口 <strong>Run</strong> 中看到结果。</p>
-<p><img alt="Kotlin 运行窗口" src="/assets/images/tutorials/getting-started/run_window.png"/></p>
-</li>
-</ol>
-<p>恭喜！ 我们现在让我们的第一个应用程序运行起来了。</p>
+<p>In this tutorial, we look at how we can use a Kotlin/Native code from
+existing native applications or libraries. For this, we need to
+compile our Kotlin code into a dynamic library, <code>.so</code>, <code>.dylib</code> and <code>.dll</code>.</p>
+<p>Do you target an Apple platform? You may want to check out the 
+<a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>
+tutorial.</p>
+<p>In this tutorial, we will:</p>
+<ul>
+<li><a href="#creating-a-kotlin-library">Compile a Kotlin code to a dynamic library</a></li>
+<li><a href="#generated-headers-file">Examine generated C headers</a></li>
+<li><a href="#using-generated-headers-from-c">Use the Kotlin dynamic library from C</a></li>
+<li>Compile and run the example on <a href="#compiling-and-running-the-example-on-linux-and-macos">Linux and Mac</a>
+and <a href="#compiling-and-running-the-example-on-windows">Windows</a></li>
+</ul>
+<h2 id="creating-a-kotlin-library">Creating a Kotlin Library</h2>
+<p>Kotlin/Native compiler can produce a dynamic
+library out of the Kotlin code we have.
+A dynamic library often comes with a header file, an <code>.h</code> file,
+which we will use to call compiled code from C</p>
+<p>The best way to understand these techniques is to try them out. 
+Let's create a tiny Kotlin library first and use it from a C program 
+then.</p>
+<p>We can start by creating a library file in Kotlin and save it as <code>lib.kt</code>:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">package demo
+
+class DemoClass {
+  fun foo() : Long = 42
+}
+
+fun ints(b: Byte, s: Short, i: Int, l:Long) { }
+fun floats(f: Float, d: Double) { }
+
+fun strings(str: String) : String {
+  return "That is '$str' from C"
+}
+
+val globalString = "A global String"
+</code></pre>
+</div>
+<p>We need to have a Kotlin/Native compiler on our machines. 
+You may want to have a look at the
+<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
+tutorial for more information on performing this step.
+Let's assume that we have a console, where the <code>kotlinc</code> command is available.</p>
+<p>Now we can call the following command to compile the code into a dynamic library:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc lib.kt -produce dynamic -output demo
+</code></pre>
+<p>The <code>kotlinc</code> (with v0.8.2) generates the following files, depending on the OS, 
+where you run the compiler:</p>
+<ul>
+<li>macOS: <code>demo_api.h</code> and <code>libdemo.dylib</code></li>
+<li>Linux: <code>demo_api.h</code> and <code>libdemo.so</code></li>
+<li>Windows: <code>demo_api.h</code>, <code>demo_symbols.def</code> and <code>demo.dll</code></li>
+</ul>
+<p>Let's check the C API for our Kotlin code in the <code>demo_api.h</code></p>
+<h2 id="generated-headers-file">Generated Headers File</h2>
+<p>In the <code>demo_api.h</code> (with Kotlin/Native v0.8.2) you'll find the following code. 
+We will discuss the code in parts to make it easier to understand.</p>
+<p>Note, the way Kotlin/Native exports symbols is subject to change without notice.</p>
+<p>The very first part contains the standard C/C++ header and footer:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">#ifndef KONAN_DEMO_H
+#define KONAN_DEMO_H
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/// THE REST OF THE GENERATED CODE GOES HERE
+
+#ifdef __cplusplus
+}  /* extern "C" */
+#endif
+#endif  /* KONAN_DEMO_H */
+</code></pre>
+</div>
+<p>After the rituals in the <code>demo_api.h</code> we have a block with the common type definitions:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">#ifdef __cplusplus
+typedef bool            demo_KBoolean;
+#else
+typedef _Bool           demo_KBoolean;
+#endif
+typedef char            demo_KByte;
+typedef unsigned short  demo_KChar;
+typedef short           demo_KShort;
+typedef int             demo_KInt;
+typedef long long       demo_KLong;
+typedef float           demo_KFloat;
+typedef double          demo_KDouble;
+typedef void*           demo_KNativePtr;
+struct demo_KType;
+</code></pre>
+</div>
+<p>Kotlin uses the <code>demo_</code> prefix from the library name to make sure
+the symbols will not clash with other symbols in your C codebase.</p>
+<p>The definitions part shows how Kotlin primitive types map into C primitive types. 
+We discussed reverse mapping in the [C TYPES TUTORIAL] tutorial, 
+which you may want to check out.</p>
+<p>The next part of the <code>demo_api.h</code> file contains definitions of types
+that are used in the library:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">struct demo_KType;
+typedef struct demo_KType demo_KType;
+
+typedef struct {
+  demo_KNativePtr pinned;
+} demo_kref_demo_DemoClazz;
+
+</code></pre>
+</div>
+<p>The <code>typedef struct { .. } TYPE_NAME</code> syntax is used in C language to declare a structure. 
+You may want to take a look at <a href="https://stackoverflow.com/questions/1675351/typedef-struct-vs-struct-definitions">the thread</a>
+for an explanation of that pattern.</p>
+<p>We see from these definitions that the Kotlin object <code>DemoObject</code> is mapped into
+<code>demo_kref_demo_DemoObject</code> and <code>DemoClazz</code> is mapped into <code>demo_kref_demo_DemoClazz</code>.
+Both structs contain nothing but the <code>pinned</code> field with a pointer, the field type 
+<code>demo_KNativePtr</code> is defined as <code>void*</code> above.</p>
+<p>There is no namespaces support in C so that Kotlin/Native compiler generates 
+long names to avoid a possible clashes with other symbols from your native project.</p>
+<p>The most significant part of definitions goes further in the <code>demo_api.h</code> file.
+It includes the definition of our Kotlin/Native library world:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">typedef struct {
+  /* Service functions. */
+  void (*DisposeStablePointer)(demo_KNativePtr ptr);
+  void (*DisposeString)(const char* string);
+  demo_KBoolean (*IsInstance)(demo_KNativePtr ref, const demo_KType* type);
+
+  /* User functions. */
+  struct {
+    struct {
+      struct {
+        void (*ints)(demo_KByte b, demo_KShort s, demo_KInt i, demo_KLong l);
+        void (*floats)(demo_KFloat f, demo_KDouble d);
+        const char* (*strings)(const char* str);
+        const char* (*get_globalString)();
+        struct {
+          demo_KType* (*_type)(void);
+          demo_kref_demo_DemoClazz (*DemoClazz)();
+          demo_KLong (*foo)(demo_kref_demo_DemoClazz thiz, demo_KInt p);
+        } DemoClazz;
+      } demo;
+    } root;
+  } kotlin;
+} demo_ExportedSymbols;
+</code></pre>
+</div>
+<p>The code uses anonymous structure declarations. The code <code>struct { .. } foo</code>
+declares a field in the outer struct of that 
+anonymous structure type, the type with no name.</p>
+<p>C does not support objects too. People use function pointers to mimic 
+object semantics. A function pointer is declared as follows <code>RETURN_TYPE (* FIELD_NAME)(PARAMETERS)</code>.
+It is tricky to read, but we should be able to see function pointer fields in the structures above.</p>
+<h3 id="runtime-functions">Runtime Functions</h3>
+<p>The code reads as follows. We have the <code>demo_ExportedSymbols</code> structure which defines
+all the functions that Kotlin/Native and our library provides to us. It uses 
+nested anonymous structures heavily to mimic packages.</p>
+<p>The <code>demo_ExportedSymbols</code> structure contains several helper functions:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">void (*DisposeStablePointer)(demo_KNativePtr ptr);
+void (*DisposeString)(const char* string);
+demo_KBoolean (*IsInstance)(demo_KNativePtr ref, const demo_KType* type);
+</code></pre>
+</div>
+<p>These functions deal with Kotlin/Native objects. Call the 
+<code>DisposeStablePointer</code> to release a Kotlin object and <code>DisposeString</code> to release Kotlin String, 
+which has the <code>char*</code> type in C. It is possible to use the <code>IsInstance</code> function to check if a
+Kotlin type or a <code>demo_KNativePtr</code> is an instance of another type. The actual set of
+operations generated depend on the actual usage of your code.</p>
+<p>Kotlin/Native has garbage collection, but it does not help deal
+with Kotlin objects from the C language. Kotlin/Native has interop with Objective-C and 
+Swift and integrates with their reference counters. You may want to find more details
+in the <a href="https://github.com/JetBrains/kotlin-native/blob/master/OBJC_INTEROP.md">Objective-C Interop</a>
+documentation or to check the related tutorial named <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>.</p>
+<h3 id="our-library-functions">Our Library Functions</h3>
+<p>Let's take a look on the <code>kotlin.root.demo</code> field, it
+mimics the package structure of our Kotlin code with a <code>kotlin.root.</code> prefix.</p>
+<p>There is a <code>kotlin.root.demo.DemoClazz</code> field that 
+represents the <code>DemoClazz</code> from Kotlin. The <code>DemoClazz#foo</code> is
+accessible with the <code>foo</code> field. The only difference is that 
+the <code>foo</code> accepts <code>this</code> reference as the first parameter. 
+C language does not support objects, and that is the reason to pass a
+<code>this</code> pointer explicitly.</p>
+<p>There is a constructor in the <code>DemoClazz</code> field (aka <code>kotlin.root.demo.DemoClazz.DemoClazz</code>),
+which is the constructor function to create an instance of the <code>DemoClazz</code>.</p>
+<p>Properties are translated into functions too. The <code>get_</code> and <code>set_</code> prefix
+is used to name the getter and the setter functions respectively. For example, 
+the read-only property <code>globalString</code> from Kotlin is turned 
+into a <code>get_globalString</code> function in C.</p>
+<p>Global functions <code>ints</code>, <code>floats</code>, or <code>strings</code> are turned into the functions pointers in
+the <code>kotlin.root.demo</code> anonymous struct.</p>
+<h3 id="the-entry-point">The Entry Point</h3>
+<p>We can see how the API is created. To start with, we need to initialize the 
+<code>demo_ExportedSymbols</code> structure. Let's take a look at the latest part 
+of the <code>demo_api.h</code> for that:</p>
+<pre><code class="code _highlighted" data-lang="text/x-csrc">extern demo_ExportedSymbols* demo_symbols(void);
+</code></pre>
+<p>The function <code>demo_symbols</code> allows us to open the door from the native 
+code to the Kotlin/Native library. That is the entry point we use. The 
+library name is used as a prefix for the function name.</p>
+<p>Note, Kotlin/Native object references do not support multi-threaded access. 
+Hosting the returned <code>demo_ExportedSymbols*</code> pointer
+per thread might be necessary.</p>
+<h2 id="using-generated-headers-from-c">Using Generated Headers from C</h2>
+<p>The usage from C is straightforward and uncomplicated. We create a <code>main.c</code> file with the following 
+code:</p>
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
+<pre><code class="language-c">#include "demo_api.h"
+#include "stdio.h"
+
+int main(int argc, char** argv) {
+  //obtain reference for calling Kotlin/Native functions
+  demo_ExportedSymbols* lib = demo_symbols();
+
+  //call functions
+  lib-&gt;kotlin.root.demo.ints(1, 2, 3, 4);
+  lib-&gt;kotlin.root.demo.floats(1.0f, 2.0);
+
+  //use C and Kotlin/Native strings
+  const char* str = "Hello from Native!";
+  const char* response = lib-&gt;kotlin.root.demo.strings(str);
+  printf("in: %s\nout:%s\n", str, response);
+  lib-&gt;DisposeString(response);
+
+  //create Kotlin object instance
+  demo_kref_demo_DemoClazz newInstance 
+          = lib-&gt;kotlin.root.demo.DemoClazz.DemoClazz();
+  demo_KLong result = lib-&gt;kotlin.root.demo.DemoClazz.foo(newInstance, 42);
+  printf("DemoClazz returned %ld\n", result);
+  lib-&gt;DisposeStablePointer(newInstance.pinned);
+
+  return 0;
+}
+</code></pre>
+</div>
+<h2 id="compiling-and-running-the-example-on-linux-and-macos">Compiling and Running the Example on Linux and macOS</h2>
+<p>On macOS 10.13 with Xcode, we compile the C code and link it with the dynamic library
+with the following command:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">clang main.c libdemo.dylib
+</code></pre>
+<p>On Linux we call a similar command:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">gcc main.c libdemo.so
+</code></pre>
+<p>The compiler generates an executable called <code>a.out</code>. We need to run it to see Kotlin code
+being executed from C library in action. On Linux, we'll need to include <code>.</code> into the <code>LD_LIBRARY_PATH</code>
+to let the application know to load the <code>libdemo.so</code> library from the current folder.</p>
+<h2 id="compiling-and-running-the-example-on-windows">Compiling and Running the Example on Windows</h2>
+<p>To start with, you'll need a Microsoft Visual C++ compiler installed that supports a x64_64 
+target. The easiest way to do this is to have a version of Microsoft Visual Studio installed on 
+your Windows machine.</p>
+<p>We will be using the <code>x64 Native Tools Command Prompt &lt;VERSION&gt;</code> console. You'll see the 
+shortcut to open the console in the start menu. It comes with a Microsoft Visual Studio
+package.</p>
+<p>On Windows, Dynamic libraries are included either via a generated static library wrapper
+or with manual code which deals with the <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms684175.aspx">LoadLibrary</a>
+or similar Win32API functions. We will follow the first option and generate the static wrapper library
+for the <code>demo.dll</code> on our own.</p>
+<p>We call <code>lib.exe</code> from the toolchain to generate the static library 
+wrapper <code>demo.lib</code> that automates the DLL usage from the code:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">lib /def:demo_symbols.def /out:demo.lib
+</code></pre>
+<p>Now we are ready to compile our <code>main.c</code> into an executable. We include the generated <code>demo.lib</code> into
+the build command and start:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">cl.exe main.c demo.lib
+</code></pre>
+<p>The command produces the <code>main.exe</code> file, which we can run.</p>
+<h2 id="next-steps">Next Steps</h2>
+<p>Dynamic libraries are the main ways to use Kotlin code from existing programs. 
+You may use them to share your code with many platforms or languages, including JVM,
+<a href="https://github.com/JetBrains/kotlin-native/blob/master/samples/python_extension/src/main/c/kotlin_bridge.c">Python</a>,
+iOS, Android, and others.</p>
+<p>Kotlin/Native also has tight integration with Objective-C and Swift. 
+You may want to check out the <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>
+tutorial.</p>
 
         </article>
     </div>

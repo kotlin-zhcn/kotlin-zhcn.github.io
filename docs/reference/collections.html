@@ -905,7 +905,7 @@ assert(strings.size == 3)
 </code></pre>
 </div>
 <p>目前 <code>listOf</code> 方法是使用 array list 实现的，但是未来可以利用它们知道自己不能变的事实，返回更节约内存的完全不可变的集合类型。</p>
-<p>注意这些类型是<a href="generics.html#型变">协变的</a>。这意味着，你可以把一个 <code>List&lt;Rectangle&gt;</code> 赋值给 <code>List&lt;Shape&gt;</code> 假定 Rectangle 继承自 Shape。对于可变集合类型这是不允许的，因为这将导致运行时故障。</p>
+<p>注意这些类型是<a href="generics.html#型变">协变的</a>。这意味着，你可以把一个 <code>List&lt;Rectangle&gt;</code> 赋值给 <code>List&lt;Shape&gt;</code> 假定 <code>Rectangle</code> 继承自 <code>Shape</code>（集合类型与元素类型具有相同的继承关系）。对于可变集合类型这是不允许的，因为这将导致运行时故障：你可能向 <code>List&lt;Shape&gt;</code> 中添加一个 <code>Circle</code>，而在程序的其他地方创建了一个其中含有 <code>Circle</code> 的 List<rectangle>`。</rectangle></p>
 <p>有时你想给调用者返回一个集合在某个特定时间的一个快照, 一个保证不会变的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Controller {

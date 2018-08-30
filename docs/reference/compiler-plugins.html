@@ -996,7 +996,7 @@ apply plugin: "kotlin-spring" // 取代 "kotlin-allopen"
 <h2 id="无参编译器插件">无参编译器插件</h2>
 <p><em>无参（no-arg）</em>编译器插件为具有特定注解的类生成一个额外的零参数构造函数。</p>
 <p>这个生成的构造函数是合成的，因此不能从 Java 或 Kotlin 中直接调用，但可以使用反射调用。</p>
-<p>这允许 Java Persistence API（JPA）实例化 <code>data</code> 类，虽然它从 Kotlin 或 Java 的角度看没有无参构造函数（参见<a href="compiler-plugins.html#jpa-支持">下面</a>的 <code>kotlin-jpa</code> 插件的描述）。</p>
+<p>这允许 Java Persistence API（JPA）实例化一个类，就算它从 Kotlin 或 Java 的角度看没有无参构造函数（参见<a href="compiler-plugins.html#jpa-支持">下面</a>的 <code>kotlin-jpa</code> 插件的描述）。</p>
 <h3 id="在-gradle-中使用-1">在 Gradle 中使用</h3>
 <p>其用法非常类似于全开放插件。</p>
 <p>添加该插件并指定注解的列表，这些注解一定会导致被标注的类生成无参构造函数。</p>
