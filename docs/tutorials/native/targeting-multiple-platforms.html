@@ -578,14 +578,14 @@ the following platforms, including (as of Kotlin/Native v0.8):</p>
 You may have a look at the
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
 tutorial for more information on performing this step.
-Let's assume we have a console, where <code>kotlinc</code> (or the older <code>konanc</code>) command is available.</p>
+Let's assume we have a console, where <code>kotlinc-native</code> command is available.</p>
 <h2 id="specifying-a-target-platform">Specifying a Target Platform</h2>
-<p>The list of supported target platforms of <code>kotlinc</code> depends 
+<p>The list of supported target platforms of <code>kotlinc-native</code> depends 
 on the operating system where you run it. We may list them via</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc -list_targets
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native -list_targets
 </code></pre>
 <p>command. For example, on macOS X with Kotlin/Native v0.8:</p>
-<pre><code>&gt; kotlinc -list_targets
+<pre><code>&gt; kotlinc-native -list_targets
 macos_x64:                    (default) macbook, macos, imac
 ios_arm32:                              iphone32
 ios_arm64:                              iphone, ipad, ios
@@ -596,7 +596,7 @@ wasm32:
 zephyr_stm32f4_disco:
 </code></pre>
 <p>For Linux and Windows Subsystem for Linux (WSL) with Kotlin/Native v0.8 we have:</p>
-<pre><code>&gt; kotlinc -list_targets
+<pre><code>&gt; kotlinc-native -list_targets
 linux_x64:                    (default) linux
 linux_arm32_hfp:                        raspberrypi
 linux_mips32:
@@ -607,7 +607,7 @@ wasm32:
 zephyr_stm32f4_disco:
 </code></pre>
 <p>On Windows with Kotlin/Native v0.8 it shows:</p>
-<pre><code>&gt; kotlinc -list_targets
+<pre><code>&gt; kotlinc-native -list_targets
 mingw_x64:                    (default) mingw
 wasm32:
 zephyr_stm32f4_disco:
@@ -626,24 +626,24 @@ You may want to have a look at the tutorial
 }
 </code></pre>
 </div>
-<p>We use the <code>-target</code> argument of the <code>kotlinc</code> to specify the platform. It is also 
+<p>We use the <code>-target</code> argument of the <code>kotlinc-native</code> to specify the platform. It is also 
 helpful to use <code>-output</code> to explicitly instruct
 the compiler on where to create the compiled binary, for example, to build for the iOS emulator on macOS we use:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">    kotlinc -target ios_x64 -output bin/ios_x64 main.kt
+<pre><code class="code _highlighted" data-lang="text/x-sh">    kotlinc-native -target ios_x64 -output bin/ios_x64 main.kt
 </code></pre>
 <p>Native executable <code>bin/ios_x64.kexe</code> will be produced. We check that with the <code>file</code> command</p>
 <pre><code>&gt; file bin/ios_x64.kexe
 bin/ios_x64.kexe: Mach-O 64-bit executable x86_64
 </code></pre>
 <p>We use the command</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">    kotlinc -target ios_arm64 -output bin/ios_arm64 main.kt
+<pre><code class="code _highlighted" data-lang="text/x-sh">    kotlinc-native -target ios_arm64 -output bin/ios_arm64 main.kt
 </code></pre>
 <p>to create a binary for an iPhone supporting arm64.</p>
 <h2 id="building-a-console-utility">Building a Console Utility</h2>
 <p>We saw above that the set of supported target platforms depends on the host operating system.
 Running the compiler on Windows, macOS, and Linux is required to create a console application 
 for those operating systems. On each of the operating systems we call the compiler:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc main.kt -output bin/theTool
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native main.kt -output bin/theTool
 </code></pre>
 <p>The <code>-target</code> parameter is optional. If it is not included, the binary will be produced for the 
 system, where the compiler is executed. It matches the behavior of other native compilers.

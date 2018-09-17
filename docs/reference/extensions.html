@@ -935,8 +935,7 @@ printFoo(D())
 </div>
 <p>这个例子会输出 "c"，因为调用的扩展函数只取决于<!--
 -->参数 <code>c</code> 的声明类型，该类型是 <code>C</code> 类。</p>
-<p>如果一个类定义有一个成员函数与一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字<!--
--->并且都适用给定的参数，这种情况<strong>总是取成员函数</strong>。
+<p>如果一个类定义有一个成员函数与一个扩展函数，而这两个函数又有相同的接收者类型、相同的名字，都适用给定的参数，这种情况<strong>总是取成员函数</strong>。
 例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class C {

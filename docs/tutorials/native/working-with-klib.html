@@ -608,10 +608,10 @@ fun printWarning(warning: String) {
 </code></pre>
 </div>
 <p>To create a library from this file, we can use the compiler with the parameter <code>-produce library</code> or <code>-p library</code> for short:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">konanc utils.kt -p library
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native utils.kt -p library
 </code></pre>
 <p>By default, the output of the filename is <code>library.klib</code>. We can override it using the <code>-output</code> or <code>-o</code> parameter:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">konanc utils.kt -p library -o utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native utils.kt -p library -o utils
 </code></pre>
 <p>The second way to create a library is using the <code>cinterop</code> tool which allows us to create a Kotlin/Native library from an existing
 C library. See the <a href="interop-with-c.html">Interop with C tutorial</a> on how to accomplish this.</p>
@@ -630,12 +630,12 @@ fun printWarning(warning: String) {
 </div>
 <p>Notice how we need to import the necessary package from the library on the first line using the <code>import</code> statement.</p>
 <p>In order for the compiler to correctly link in the library, we need to pass the library name using the <code>-library</code> or <code>-l</code> parameter</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">konanc sample.kt -l utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native sample.kt -l utils
 </code></pre>
 <p>This would then produce a single executable file with no runtime dependencies.</p>
 <h2 id="using-and-creating-library-repositories">Using and creating library repositories</h2>
 <p>Often it is useful to use the same library across multiple applications. To avoid having various copies of the same library, the Kotlin
-compiler can search for libraries in what's called a library repository. The default repository is usually installed under the folder <code>~/konanc/klib</code> and we can 
+compiler can search for libraries in what's called a library repository. The default repository is usually installed under the folder <code>~/kotlinc-native/klib</code> and we can 
 add and remove our own libraries with a utility named <code>klib</code> that ships as part of the compiler tools.</p>
 <h3 id="installing-libraries-to-the-default-repository">Installing libraries to the default repository</h3>
 <p>The easiest way to install a library so that it can be later referenced by any application is to use <code>klib</code> with the following command:</p>
@@ -643,7 +643,7 @@ add and remove our own libraries with a utility named <code>klib</code> that shi
 </code></pre>
 <p>This will copy and extract the necessary files to the proper locations in the default library folder, allowing us to then compile our application and link 
 a specific library without needing to have the <code>klib</code> file in the project folder:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">konanc sample.kt -l utils
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native sample.kt -l utils
 </code></pre>
 <p>We can of course also uninstall libraries at any point by issuing the command:</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">klib remove utils

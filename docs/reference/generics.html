@@ -904,7 +904,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 首先，Java 中的泛型是<strong>不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong>不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
 为什么这样？ 如果 List 不是<strong>不型变的</strong>，它就没<!--
 -->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 List&lt;String&gt; strs = new ArrayList&lt;String&gt;();
 List&lt;Object&gt; objs = strs; // ！！！即将来临的问题的原因就在这里。Java 禁止这样！
@@ -914,7 +914,7 @@ String s = strs.get(0); // ！！！ ClassCastException：无法将整数转换�
 </div>
 <p>因此，Java 禁止这样的事情以保证运行时的安全。但这样会有一些影响。例如，考虑 <code>Collection</code> 接口中的 <code>addAll()</code>
 方法。该方法的签名应该是什么？直觉上，我们会这样：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;E&gt; items);
@@ -922,7 +922,7 @@ interface Collection&lt;E&gt; …… {
 </code></pre>
 </div>
 <p>但随后，我们将无法做到以下简单的事情（这是完全安全）：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 void copyAll(Collection&lt;Object&gt; to, Collection&lt;String&gt; from) {
   to.addAll(from);
@@ -933,7 +933,7 @@ void copyAll(Collection&lt;Object&gt; to, Collection&lt;String&gt; from) {
 </div>
 <p>（在 Java 中，我们艰难地学到了这个教训，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a>，第 28 条：<em>列表优先于数组</em>）</p>
 <p>这就是为什么 <code>addAll()</code> 的实际签名是以下这样：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 interface Collection&lt;E&gt; …… {
   void addAll(Collection&lt;? extends E&gt; items);
@@ -958,7 +958,7 @@ interface Collection&lt;E&gt; …… {
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong>类型安全</strong>。不可变性完全是另一回事。</p>
 <h3 id="声明处型变">声明处型变</h3>
 <p>假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 interface Source&lt;T&gt; {
   T nextT();
@@ -966,7 +966,7 @@ interface Source&lt;T&gt; {
 </code></pre>
 </div>
 <p>那么，在 <code>Source &lt;Object&gt;</code> 类型的变量中存储 <code>Source &lt;String&gt;</code> 实例的引用是极为安全的——没有消费者-方法可以调用。但是 Java 并不知道这一点，并且仍然禁止这样操作：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 void demo(Source&lt;String&gt; strs) {
   Source&lt;Object&gt; objects = strs; // ！！！在 Java 中不允许
@@ -1035,7 +1035,8 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)
 val any = Array&lt;Any&gt;(3) { "" } 
-copy(ints, any) // 错误：期望 (Array&lt;Any&gt;, Array&lt;Any&gt;)
+copy(ints, any)
+//   ^ type is Array&lt;Int&gt; but Array&lt;Any&gt; was expected
 </code></pre>
 </div>
 <p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--

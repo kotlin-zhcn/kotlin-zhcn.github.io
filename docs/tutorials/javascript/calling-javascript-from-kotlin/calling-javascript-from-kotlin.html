@@ -601,25 +601,26 @@ inline JavaScript.</p>
 </code></pre>
 </div>
 <p>which would set the HTML of the <code>div</code> with id <code>message</code></p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;!DOCTYPE html&gt;
+<div class="sample" mode="xml" theme="idea">
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;title&gt;Sample&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div id="message"&gt;
-&lt;/div&gt;
-    &lt;script type="text/javascript" src="src/jquery-3.1.1.min.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="src/kotlin.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="src/main.js"&gt;&lt;/script&gt;
-&lt;/body&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;title&gt;Sample&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div id="message" /&gt;
+        &lt;script type="text/javascript" src="src/jquery-3.1.1.min.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="src/kotlin.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="src/main.js"&gt;&lt;/script&gt;
+    &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
+</div>
 <h2 id="invoking-javascript-only-members">Invoking JavaScript-only members</h2>
 <p>There are cases in which we want to invoke some method that only exists in JavaScript. For instance, let's assume we want to use the <a href="https://datatables.net/">DataTables</a> jQuery plugin that creates a grid out of a table. This plugin requires
 us to invoke <code>Datatable()</code> on a DOM table element.</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">    $('#table').DataTable();
 </code></pre>
 </div>
@@ -640,7 +641,7 @@ us to invoke <code>Datatable()</code> on a DOM table element.</p>
 </code></pre>
 </div>
 <p>At runtime, the call will be mapped to the same member invocation.</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">var workingWithJavaScript = function (Kotlin) {
   'use strict';
   var _ = Kotlin.defineRootPackage(null, /** @lends _ */ {

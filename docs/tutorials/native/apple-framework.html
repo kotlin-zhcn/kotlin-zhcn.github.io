@@ -611,14 +611,14 @@ fun supplyFun() : (String) -&gt; String? = { "$it is cool!" }
 You may want to take a look at the
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
 tutorial for more information on performing this step.
-Let's assume we have a console, where the <code>kotlinc</code> command is available.</p>
+Let's assume we have a console, where the <code>kotlinc-native</code> command is available.</p>
 <p>Now let's call the following commands to compile the code into frameworks
 for macOS, iOS, and an iOS emulator respectively:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc lib.kt -produce framework -target macos_x64 -output macOS/Demo
-kotlinc lib.kt -produce framework -target ios_arm64 -output iOS/Demo
-kotlinc lib.kt -produce framework -target ios_x64 -output iOS_emu/Demo
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native lib.kt -produce framework -target macos_x64 -output macOS/Demo
+kotlinc-native lib.kt -produce framework -target ios_arm64 -output iOS/Demo
+kotlinc-native lib.kt -produce framework -target ios_x64 -output iOS_emu/Demo
 </code></pre>
-<p>The <code>kotlinc</code> generates three frameworks for us, named <code>Demo.framework</code> under 
+<p>The <code>kotlinc-native</code> generates three frameworks for us, named <code>Demo.framework</code> under 
 <code>macOS</code>, <code>iOS</code>, and <code>iOS_emu</code> folders respectively.</p>
 <p>Let's see what is inside</p>
 <h2 id="generated-framework-headers">Generated Framework Headers</h2>
@@ -725,12 +725,12 @@ the use of the framework from both Objective-C and Swift languages.
 respectively. The <code>Interface</code> is turned into <code>@protocol</code>, both a <code>class</code> and an <code>object</code> are represented as
 <code>@interface</code>.
 The <code>Demo</code> prefix comes from the <code>-output</code> parameter
-of the <code>kotlinc</code> compiler and the framework name. 
+of the <code>kotlinc-native</code> compiler and the framework name. 
 You may have spotted that the nullable return type <code>Long?</code> was turned into <code>NSNumber*</code> in Objective-C.</p>
 <h3 id="global-declarations-from-kotlin">Global Declarations from Kotlin</h3>
 <p>All global functions from Kotlin
 are turned into <code>Demo</code> class in Objective-C/Swift, where <code>Demo</code> is the framework name and set by
-the <code>-output</code> parameter of <code>kotlinc</code>.</p>
+the <code>-output</code> parameter of <code>kotlinc-native</code>.</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
 
