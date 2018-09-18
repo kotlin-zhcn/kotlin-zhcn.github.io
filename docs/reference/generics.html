@@ -1036,7 +1036,7 @@ fun demo(x: Comparable&lt;Number&gt;) {
 <pre><code class="language-kotlin">val ints: Array&lt;Int&gt; = arrayOf(1, 2, 3)
 val any = Array&lt;Any&gt;(3) { "" } 
 copy(ints, any)
-//   ^ type is Array&lt;Int&gt; but Array&lt;Any&gt; was expected
+//   ^ 其类型为 Array&lt;Int&gt; 但此处期望 Array&lt;Any&gt;
 </code></pre>
 </div>
 <p>这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong>不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--
