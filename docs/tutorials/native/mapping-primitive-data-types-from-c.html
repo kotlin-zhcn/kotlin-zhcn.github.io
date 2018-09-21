@@ -55,6 +55,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+
 <header class="global-header">
 
     <div class="global-header-panel">
@@ -589,6 +590,7 @@ There are following types in the C programming language:</p>
 #define LIB2_H_INCLUDED
 
 void ints(char c, short d, int e, long f);
+void uints(unsigned char c, unsigned short d, unsigned int e, unsigned long f);
 void doubles(float a, double b);
 
 #endif
@@ -626,6 +628,7 @@ command prints the API of the library to the console.</p>
 <p>From <code>cinterop</code> and <code>klib</code> calls we see the following API:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun doubles(a: Float, b: Double)
+fun uints(c: UByte, d: UShort, e: UInt, f: ULong)
 fun ints(c: Byte, d: Short, e: Int, f: Long)
 </code></pre>
 </div>
@@ -644,16 +647,32 @@ as it is usually an 8-bit unsigned value.</p>
 <td>kotlin.Byte</td>
 </tr>
 <tr>
+<td>unsigned char</td>
+<td>kotlin.UByte</td>
+</tr>
+<tr>
 <td>short</td>
 <td>kotlin.Short</td>
+</tr>
+<tr>
+<td>unsigned short</td>
+<td>kotlin.UShort</td>
 </tr>
 <tr>
 <td>int</td>
 <td>kotlin.Int</td>
 </tr>
 <tr>
+<td>unsigned int</td>
+<td>kotlin.UInt</td>
+</tr>
+<tr>
 <td>long</td>
 <td>kotlin.Long</td>
+</tr>
+<tr>
+<td>unsigned long</td>
+<td>kotlin.ULong</td>
 </tr>
 <tr>
 <td>float</td>
@@ -665,7 +684,6 @@ as it is usually an 8-bit unsigned value.</p>
 </tr>
 </tbody>
 </table>
-<p>Kotlin cannot explicitly tell if they are <code>signed</code> and <code>unsigned</code> types right now. This may change in the future…</p>
 <h2 id="next-steps">Next Steps</h2>
 <p>We will continue to explore more complicated C language types and their representation in Kotlin/Native
 in the next tutorials:</p>

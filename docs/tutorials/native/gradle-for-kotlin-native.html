@@ -55,6 +55,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+
 <header class="global-header">
 
     <div class="global-header-panel">
@@ -565,31 +566,22 @@ combine it with a script file (i.e. bash or bat file), it is more recommendable 
 <ul>
 <li><a href="#building-an-application">Build an application with Gradle</a></li>
 <li><a href="#building-and-referencing-a-library">Build and reference a library with Gradle</a></li>
-<li><a href="#generating-cmake-files">Generate CMake files to use with CLion</a></li>
 </ul>
 <p><strong>Note</strong>: This tutorial assumes basic familiarity with Gradle. If you're new to Gradle, while you should be able to follow along, it would be beneficial to review some of the 
 <a href="https://gradle.org/guides/#getting-started">Getting Started guides</a>. To install Gradle on your system please see the <a href="https://gradle.org/install/">Install guide</a>.</p>
 <h2 id="building-an-application">Building an Application</h2>
 <p>The following Gradle script (named <code>build.gradle</code>) is the simplest needed to compile an application</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-        }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:+"
-    }
+<pre><code class="language-groovy">plugins {
+  id 'org.jetbrains.kotlin.konan' version '0.9.1'
 }
 
-apply plugin: 'konan'
-
-konan.targets = ['macbook']
+konan.targets = [ 'macos_x64' ]
 
 konanArtifacts {
-    program('hello')
+  program("app") {
+    enableOptimizations(true)
+  }
 }
 </code></pre>
 </div>
@@ -626,21 +618,11 @@ we passed to the the parameter <code>program</code> in the build script.</p>
 <p>A common process in building applications is to build and reference libraries, be these native libraries we create from scratch in Kotlin, or as a result of interop with C or other languages.</p>
 <p>In Gradle we can combine all of this in a single script:</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">buildscript {
-    repositories {
-        mavenCentral()
-        maven {
-            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-        }
-    }
-    dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:+"
-    }
+<pre><code class="language-groovy">plugins {
+  id 'org.jetbrains.kotlin.konan' version '0.9.1'
 }
 
-apply plugin: 'konan'
-
-konan.targets = ['macbook']
+konan.targets = [ 'macos_x64' ]
 
 konanArtifacts {
     library('utils') {
@@ -664,13 +646,6 @@ during the building of our actual application.</p>
 </code></pre>
 <p>resulting in:</p>
 <p><img alt="Gradle Run Result" src="/assets/images/tutorials/native/gradle-for-kotlin-native/gradle-run.png"/></p>
-<h2 id="generating-cmake-files">Generating CMake files</h2>
-<p>In order to be able to use CLion, we need to have our project defined using CMake. The Gradle plugins provides us a convenient way to do this
-using the the command <code>generateCMake</code>:</p>
-<pre><code>gradle generateCMake
-</code></pre>
-<p>The result is a new file named <code>CMakeLists.txt</code> which allows us to open the project in CLion.</p>
-<p>This is a simple taste of what the Gradle plugin for Kotlin/Native provides. For more detailed information about these, see the <a href="https://github.com/JetBrains/kotlin-native/blob/master/GRADLE_PLUGIN.md">corresponding README</a>.</p>
 
         </article>
     </div>

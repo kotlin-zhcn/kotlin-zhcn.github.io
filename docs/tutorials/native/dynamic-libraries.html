@@ -55,6 +55,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+
 <header class="global-header">
 
     <div class="global-header-panel">
@@ -581,16 +582,20 @@ Let's create a tiny Kotlin library first and use it from a C program
 then.</p>
 <p>We can start by creating a library file in Kotlin and save it as <code>lib.kt</code>:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">package demo
+<pre><code class="language-kotlin">package example
 
-class DemoClass {
-  fun foo() : Long = 42
+object Object {
+  val field = "A"
 }
 
-fun ints(b: Byte, s: Short, i: Int, l:Long) { }
-fun floats(f: Float, d: Double) { }
+class Clazz {
+  fun memberFunction(p: Int): ULong = 42UL
+}
 
-fun strings(str: String) : String {
+fun forIntegers(b: Byte, s: Short, i: UInt, l: Long) { }
+fun forFloats(f: Float, d: Double) { }
+
+fun strings(str: String) : String? {
   return "That is '$str' from C"
 }
 
@@ -605,7 +610,7 @@ Let's assume that we have a console, where the <code>kotlinc-native</code> comma
 <p>Now we can call the following command to compile the code into a dynamic library:</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native lib.kt -produce dynamic -output demo
 </code></pre>
-<p>The <code>kotlinc-native</code> (with v0.8.2) generates the following files, depending on the OS, 
+<p>The <code>kotlinc-native</code> (with v0.9.2) generates the following files, depending on the OS, 
 where you run the compiler:</p>
 <ul>
 <li>macOS: <code>demo_api.h</code> and <code>libdemo.dylib</code></li>
@@ -614,7 +619,7 @@ where you run the compiler:</p>
 </ul>
 <p>Let's check the C API for our Kotlin code in the <code>demo_api.h</code></p>
 <h2 id="generated-headers-file">Generated Headers File</h2>
-<p>In the <code>demo_api.h</code> (with Kotlin/Native v0.8.2) you'll find the following code. 
+<p>In the <code>demo_api.h</code> (with Kotlin/Native v0.9.2) you'll find the following code. 
 We will discuss the code in parts to make it easier to understand.</p>
 <p>Note, the way Kotlin/Native exports symbols is subject to change without notice.</p>
 <p>The very first part contains the standard C/C++ header and footer:</p>
@@ -640,15 +645,18 @@ typedef bool            demo_KBoolean;
 #else
 typedef _Bool           demo_KBoolean;
 #endif
-typedef char            demo_KByte;
-typedef unsigned short  demo_KChar;
-typedef short           demo_KShort;
-typedef int             demo_KInt;
-typedef long long       demo_KLong;
-typedef float           demo_KFloat;
-typedef double          demo_KDouble;
-typedef void*           demo_KNativePtr;
-struct demo_KType;
+typedef unsigned short     demo_KChar;
+typedef signed char        demo_KByte;
+typedef short              demo_KShort;
+typedef int                demo_KInt;
+typedef long long          demo_KLong;
+typedef unsigned char      demo_KUByte;
+typedef unsigned short     demo_KUShort;
+typedef unsigned int       demo_KUInt;
+typedef unsigned long long demo_KULong;
+typedef float              demo_KFloat;
+typedef double             demo_KDouble;
+typedef void*              demo_KNativePtr;
 </code></pre>
 </div>
 <p>Kotlin uses the <code>demo_</code> prefix from the library name to make sure
@@ -664,15 +672,18 @@ typedef struct demo_KType demo_KType;
 
 typedef struct {
   demo_KNativePtr pinned;
-} demo_kref_demo_DemoClazz;
+} demo_kref_example_DemoObject;
 
+typedef struct {
+  demo_KNativePtr pinned;
+} demo_kref_example_DemoClazz;
 </code></pre>
 </div>
 <p>The <code>typedef struct { .. } TYPE_NAME</code> syntax is used in C language to declare a structure. 
 You may want to take a look at <a href="https://stackoverflow.com/questions/1675351/typedef-struct-vs-struct-definitions">the thread</a>
 for an explanation of that pattern.</p>
 <p>We see from these definitions that the Kotlin object <code>DemoObject</code> is mapped into
-<code>demo_kref_demo_DemoObject</code> and <code>DemoClazz</code> is mapped into <code>demo_kref_demo_DemoClazz</code>.
+<code>demo_kref_example_DemoObject</code> and <code>DemoClazz</code> is mapped into <code>demo_kref_example_DemoClazz</code>.
 Both structs contain nothing but the <code>pinned</code> field with a pointer, the field type 
 <code>demo_KNativePtr</code> is defined as <code>void*</code> above.</p>
 <p>There is no namespaces support in C so that Kotlin/Native compiler generates 
@@ -690,16 +701,21 @@ It includes the definition of our Kotlin/Native library world:</p>
   struct {
     struct {
       struct {
-        void (*ints)(demo_KByte b, demo_KShort s, demo_KInt i, demo_KLong l);
-        void (*floats)(demo_KFloat f, demo_KDouble d);
+        void (*forIntegers)(demo_KByte b, demo_KShort s, demo_KUInt i, demo_KLong l);
+        void (*forFloats)(demo_KFloat f, demo_KDouble d);
         const char* (*strings)(const char* str);
         const char* (*get_globalString)();
         struct {
           demo_KType* (*_type)(void);
-          demo_kref_demo_DemoClazz (*DemoClazz)();
-          demo_KLong (*foo)(demo_kref_demo_DemoClazz thiz, demo_KInt p);
-        } DemoClazz;
-      } demo;
+          demo_kref_example_Object (*_instance)();
+          const char* (*get_field)(demo_kref_example_Object thiz);
+        } Object;
+        struct {
+          demo_KType* (*_type)(void);
+          demo_kref_example_Clazz (*Clazz)();
+          demo_KULong (*memberFunction)(demo_kref_example_Clazz thiz, demo_KInt p);
+        } Clazz;
+      } example;
     } root;
   } kotlin;
 } demo_ExportedSymbols;
@@ -714,7 +730,8 @@ It is tricky to read, but we should be able to see function pointer fields in th
 <h3 id="runtime-functions">Runtime Functions</h3>
 <p>The code reads as follows. We have the <code>demo_ExportedSymbols</code> structure which defines
 all the functions that Kotlin/Native and our library provides to us. It uses 
-nested anonymous structures heavily to mimic packages.</p>
+nested anonymous structures heavily to mimic packages. The <code>demo_</code> prefix comes from the
+library name.</p>
 <p>The <code>demo_ExportedSymbols</code> structure contains several helper functions:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">void (*DisposeStablePointer)(demo_KNativePtr ptr);
@@ -733,22 +750,24 @@ Swift and integrates with their reference counters. You may want to find more de
 in the <a href="https://github.com/JetBrains/kotlin-native/blob/master/OBJC_INTEROP.md">Objective-C Interop</a>
 documentation or to check the related tutorial named <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>.</p>
 <h3 id="our-library-functions">Our Library Functions</h3>
-<p>Let's take a look on the <code>kotlin.root.demo</code> field, it
+<p>Let's take a look an the <code>kotlin.root.example</code> field, it
 mimics the package structure of our Kotlin code with a <code>kotlin.root.</code> prefix.</p>
-<p>There is a <code>kotlin.root.demo.DemoClazz</code> field that 
-represents the <code>DemoClazz</code> from Kotlin. The <code>DemoClazz#foo</code> is
-accessible with the <code>foo</code> field. The only difference is that 
-the <code>foo</code> accepts <code>this</code> reference as the first parameter. 
+<p>There is a <code>kotlin.root.example.Clazz</code> field that 
+represents the <code>Clazz</code> from Kotlin. The <code>Clazz#memberFunction</code> is
+accessible with the <code>memberFunction</code> field. The only difference is that 
+the <code>memberFunction</code> accepts <code>this</code> reference as the first parameter. 
 C language does not support objects, and that is the reason to pass a
 <code>this</code> pointer explicitly.</p>
-<p>There is a constructor in the <code>DemoClazz</code> field (aka <code>kotlin.root.demo.DemoClazz.DemoClazz</code>),
-which is the constructor function to create an instance of the <code>DemoClazz</code>.</p>
-<p>Properties are translated into functions too. The <code>get_</code> and <code>set_</code> prefix
+<p>There is a constructor in the <code>Clazz</code> field (aka <code>kotlin.root.example.Clazz.Clazz</code>),
+which is the constructor function to create an instance of the <code>Clazz</code>.</p>
+<p>Kotlin <code>object Object</code> is accessible as <code>kotlin.root.example.Object</code>. There is 
+the <code>_instance</code> function to get the only instance of the object.</p>
+<p>Properties are translated into functions. The <code>get_</code> and <code>set_</code> prefix
 is used to name the getter and the setter functions respectively. For example, 
 the read-only property <code>globalString</code> from Kotlin is turned 
 into a <code>get_globalString</code> function in C.</p>
-<p>Global functions <code>ints</code>, <code>floats</code>, or <code>strings</code> are turned into the functions pointers in
-the <code>kotlin.root.demo</code> anonymous struct.</p>
+<p>Global functions <code>forInts</code>, <code>forFloats</code>, or <code>strings</code> are turned into the functions pointers in
+the <code>kotlin.root.example</code> anonymous struct.</p>
 <h3 id="the-entry-point">The Entry Point</h3>
 <p>We can see how the API is created. To start with, we need to initialize the 
 <code>demo_ExportedSymbols</code> structure. Let's take a look at the latest part 
@@ -772,22 +791,21 @@ int main(int argc, char** argv) {
   //obtain reference for calling Kotlin/Native functions
   demo_ExportedSymbols* lib = demo_symbols();
 
-  //call functions
-  lib-&gt;kotlin.root.demo.ints(1, 2, 3, 4);
-  lib-&gt;kotlin.root.demo.floats(1.0f, 2.0);
+  lib-&gt;kotlin.root.example.forIntegers(1, 2, 3, 4);
+  lib-&gt;kotlin.root.example.forFloats(1.0f, 2.0);
 
   //use C and Kotlin/Native strings
   const char* str = "Hello from Native!";
-  const char* response = lib-&gt;kotlin.root.demo.strings(str);
+  const char* response = lib-&gt;kotlin.root.example.strings(str);
   printf("in: %s\nout:%s\n", str, response);
   lib-&gt;DisposeString(response);
 
   //create Kotlin object instance
-  demo_kref_demo_DemoClazz newInstance 
-          = lib-&gt;kotlin.root.demo.DemoClazz.DemoClazz();
-  demo_KLong result = lib-&gt;kotlin.root.demo.DemoClazz.foo(newInstance, 42);
-  printf("DemoClazz returned %ld\n", result);
+  demo_kref_example_Clazz newInstance = lib-&gt;kotlin.root.example.Clazz.Clazz();
+  long x = lib-&gt;kotlin.root.example.Clazz.memberFunction(newInstance, 42);
   lib-&gt;DisposeStablePointer(newInstance.pinned);
+
+  printf("DemoClazz returned %ld\n", x);
 
   return 0;
 }
