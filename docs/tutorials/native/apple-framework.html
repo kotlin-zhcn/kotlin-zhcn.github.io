@@ -757,13 +757,13 @@ There are also child classes per Kotlin number type:</p>
 <td><code>Long</code></td>
 <td><code>KotlinLong</code></td>
 <td><code>&lt;Package&gt;Long</code></td>
-<td><code>long</code></td>
+<td><code>long long</code></td>
 </tr>
 <tr>
 <td><code>ULong</code></td>
 <td><code>KotlinULong</code></td>
 <td><code>&lt;Package&gt;ULong</code></td>
-<td><code>unsigned long</code></td>
+<td><code>unsigned long long</code></td>
 </tr>
 <tr>
 <td><code>Float</code></td>
@@ -785,15 +785,20 @@ There are also child classes per Kotlin number type:</p>
 </tr>
 </tbody>
 </table>
-<p>Every number type has a class method to create a new instance from a simple type. Also, there are all instance methods
-to extract a simple value back. Schematically, declarations look like that,</p>
+<p>Every number type has a class method to create a new instance from the related simple type. Also, there is an instance method
+to extract a simple value back. Schematically, declarations look like that:</p>
 <div auto-indent="false" clacss="sample" data-highlight-only="" mode="obj-c" theme="idea">
-<pre><code class="code _highlighted" data-lang="text/x-objectivec">- (instancetype)initWith__TYPE_:(__TYPE__)value __attribute__((unavailable));
-+ (instancetype)numberWith__TYPE_:(__TYPE__)value __attribute__((unavailable));
+<pre><code class="code _highlighted" data-lang="text/x-objectivec">__attribute__((objc_runtime_name("Kotlin__TYPE__")))
+__attribute__((swift_name("Kotlin__TYPE__")))
+@interface Demo__TYPE__ : DemoNumber
+- (instancetype)initWith__TYPE__:(__CTYPE__)value;
++ (instancetype)numberWith__TYPE__:(__CTYPE__)value;
+@end;
 </code></pre>
 </div>
-<p>Where <code>__TYPE__</code> is one of the simple type names, capitalized if necessary, e.g. <code>initWithChar(char)</code>.</p>
-<p>These types are used to map boxed Kotlin number types into Objective-C and Swift.</p>
+<p>Where <code>__TYPE__</code> is one of the simple type names and <code>__CTYPE__</code> is the related Objective-C type, e.g. <code>initWithChar(char)</code>.</p>
+<p>These types are used to map boxed Kotlin number types into Objective-C and Swift.
+In Swift, you can simply call constructor to create an instance, e.g. <code>KotlinLong(value: 42)</code>.</p>
 <h3 id="classes-and-objects-from-kotlin">Classes and Objects from Kotlin</h3>
 <p>Let's see how <code>class</code> and <code>object</code> are mapped to Objective-C and Swift. 
 The generated <code>&lt;Framework&gt;/Headers/Demo.h</code> file contains the exact definitions for 
@@ -835,7 +840,7 @@ of the <code>kotlinc-native</code> compiler and the framework name.
 You may have spotted that the nullable return type <code>ULong?</code> was turned into <code>DemoLong*</code> in Objective-C.</p>
 <h3 id="global-declarations-from-kotlin">Global Declarations from Kotlin</h3>
 <p>All global functions from Kotlin
-are turned into <code>DemoLibKt</code> class in Objective-C/Swift, where <code>Demo</code> is the framework name and set by
+are turned into <code>DemoLibKt</code> in Objective-C and into <code>LibKt</code> in Swift, where <code>Demo</code> is the framework name and set by
 the <code>-output</code> parameter of <code>kotlinc-native</code>.</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
