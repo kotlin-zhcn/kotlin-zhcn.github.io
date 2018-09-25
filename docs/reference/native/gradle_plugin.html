@@ -999,7 +999,7 @@ the plugin portal. In this case you need to add a Kotlin EAP repository in your 
     repositories {
         gradlePluginPortal()
         maven {
-            url = 'http://dl.bintray.com/kotlin/kotlin-eap'
+            url = 'https://dl.bintray.com/kotlin/kotlin-eap'
         }
     }
 }
@@ -1016,7 +1016,7 @@ the following snippet in your build script:</p>
            url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
        }
        maven {
-           url "http://dl.bintray.com/kotlin/kotlin-eap"
+           url "https://dl.bintray.com/kotlin/kotlin-eap"
        }
    }
 
@@ -1279,7 +1279,7 @@ will use its <code>main</code> source set as a common module. One may specify cu
 <li>
 <p><strong>compileKonan&lt;ArtifactName&gt;&lt;Target&gt;</strong>. The plugin creates a task for each target declared in the <code>konan.targets</code> list and
 for each an artifact is defined in a <code>konanArtifacts</code> block. Such a task may have different properties depending on the artifact type:</p>
-<p>##### Properties available for a compiler task (executable, library or bitcode building task):</p>
+<p><strong>Properties available for a compiler task (executable, library or bitcode building task):</strong></p>
 <table>
 <thead>
 <tr>
@@ -1371,7 +1371,7 @@ for each an artifact is defined in a <code>konanArtifacts</code> block. Such a t
 </tr>
 </tbody>
 </table>
-<p>##### Properties available for a cinterop task (task building an interoperability library):</p>
+<p><strong>Properties available for a cinterop task (task building an interoperability library):</strong></p>
 <table>
 <thead>
 <tr>
