@@ -1149,12 +1149,6 @@ val customer = Customer("Joe Smith")
 class Derived(p: Int) : Base(p)
 </code></pre>
 </div>
-<blockquote>
-<p>类上的 <em class="keyword">open</em> 标注与 Java 中 <em class="keyword">final</em> 相反，它允许其他类<!--
--->从这个类继承。默认情况下，在 Kotlin 中所有的类都是 final，
-对应于<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a>书中的<!--
--->第 19 条：<strong>要么为继承而设计，并提供文档说明，要么就禁止继承</strong>。</p>
-</blockquote>
 <p>如果派生类有一个主构造函数，其基类型可以（并且必须）
 用基类的主构造函数参数就地初始化。</p>
 <p>如果类没有主构造函数，那么每个次构造函数必须<!--

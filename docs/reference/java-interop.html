@@ -1595,9 +1595,8 @@ javaObj.removeIndicesVarArg(*array)
 而因为 <code>Any</code> 不是平台指定的，它只声明了 <code>toString()</code>、<code>hashCode()</code> 和 <code>equals()</code> 作为其成员，
 所以为了能用到 <code>java.lang.Object</code> 的其他成员，Kotlin 要用到<a href="extensions.html">扩展函数</a>。</p>
 <h3 id="waitnotify">wait()/notify()</h3>
-<p><a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 第 81 条善意地建议优先使用并发工具（concurrency utilities）而不是 <code>wait()</code> 和 <code>notify()</code>。
-因此，类型 <code>Any</code> 的引用不提供这两个方法。
-如果你真的需要调用它们的话，你可以将其转换为 <code>java.lang.Object</code>：</p>
+<p>类型 <code>Any</code> 的引用没有提供 <code>wait()</code> 与 <code>notify()</code> 方法。通常不鼓励使用它们，而建议使用 <code>java.utl.concurrent</code>。</p>
+<p>如果确实需要调用这两个方法的话，那么可以将引用转换为 <code>java.lang.Object</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
