@@ -558,21 +558,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>That is the last post in the series. You might want to begin with the first tutorial called
+<p>This is the last tutorial in the series. The first tutorial of the series is
 <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>.
 There are also <a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
 <a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a> tutorials.</p>
-<p>In that tutorial we see how to deal with C strings in Kotlin/Native.
-You will learn how to:</p>
+<p>In this tutorial we see how to deal with C strings in Kotlin/Native.
+We will learn how to:</p>
 <ul>
 <li><a href="#passing-kotlin-string-to-c">Pass a Kotlin string to C</a></li>
 <li><a href="#reading-c-strings-in-kotlin">Read a C string in Kotlin</a></li>
 <li><a href="#receiving-c-string-bytes-from-kotlin">Receive C string bytes into a Kotlin string</a></li>
 </ul>
 <p>We need to have a Kotlin compiler on our machines. 
-You may want to take a look at the
+The
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial for more information on performing this step.
+tutorial explains the steps in detail.
 Let's assume we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
 <h2 id="working-with-c-strings">Working with C strings</h2>
 <p>There is no dedicated type in C language for strings. A developer knows from a method 
@@ -582,7 +582,7 @@ end of a bytes sequence to mark a string termination.
 Usually, <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 encoded strings</a> are used. The UTF-8 encoding uses
 variable width characters and it is backward compatible with <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>.
 Kotlin/Native uses UTF-8 character encoding by default.</p>
-<p>The best way to understand the mapping between C and Kotlin languages is to try it out on a small example. We create
+<p>The best way to understand the mapping between C and Kotlin languages is to try it out on a small example. We will create
 a small library headers for that. First, we need to create a <code>lib.h</code> file with the following
 declaration of functions that deal with the C strings:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
@@ -600,8 +600,8 @@ int copy_string(char* str, int size);
 take the return of <code>return_string</code> with care. In general, it is best to make sure we
 use the right function to dispose the returned <code>char*</code> with the right <code>free(..)</code> function call.</p>
 <p>Kotlin/Native comes with the <code>cinterop</code> tool, the tool generates bindings between 
-C and Kotlin languages. It uses a <code>.def</code> file to specify a library headers to import. For more details
-you may check <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.
+C and Kotlin languages. It uses a <code>.def</code> file to specify the library headers to import. 
+The <a href="interop-with-c.html">Interop with C Libraries</a> tutorial contains more details on this.
 We create the following <code>lib.def</code> file:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">headers = lib.h
@@ -621,7 +621,7 @@ fun copy_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?, s
 </div>
 <p>These declarations look clear. All <code>char *</code> pointers are turned into <code>str: CValuesRef&lt;ByteVar&gt;?</code> for
 parameters and to <code>CPointer&lt;ByteVar&gt;?</code> in return types. Kotlin turns <code>char</code> type into <code>kotlin.Byte</code> type,
-as it is usually an 8-bit unsigned value.</p>
+as it is usually an 8-bit signed value.</p>
 <p>In the generated Kotlin declarations, we see that <code>str</code> is represented as <code>CValuesRef&lt;ByteVar/&gt;?</code>. The type
 is nullable, and we can simply pass Kotlin <code>null</code> as the parameter value.</p>
 <h2 id="passing-kotlin-string-to-c">Passing Kotlin string to C</h2>
@@ -635,7 +635,7 @@ is nullable, and we can simply pass Kotlin <code>null</code> as the parameter va
 </div>
 <p>Passing a Kotlin string to C is easy, thanks to the fact that we have <code>String.cstr</code>
 <a href="../../reference/extensions.html#extension-properties">extension property</a>
-in Kotlin for it. There is also <code>String.wcstr</code> for cases where you
+in Kotlin for it. There is also <code>String.wcstr</code> for cases where we
 need UTF-16 wide characters.</p>
 <h2 id="reading-c-strings-in-kotlin">Reading C Strings in Kotlin</h2>
 <p>This time we take a returned <code>char *</code> from the <code>return_string</code> function and turn it into
@@ -655,7 +655,7 @@ a Kotlin string. For that we do the following in Kotlin:</p>
 fun CPointer&lt;ShortVar&gt;.toKString(): String
 </code></pre>
 </div>
-<p>The first one takes a <code>char *</code> as a UTF-8 string and turns it into String.
+<p>The first extension takes a <code>char *</code> as an UTF-8 string and turns it into a String.
 The second function does the same but for wide, UTF-16 strings.</p>
 <h2 id="receiving-c-string-bytes-from-kotlin">Receiving C string bytes from Kotlin</h2>
 <p>This time we will ask a C function to write us a C string to a given buffer. The function
@@ -685,15 +685,15 @@ byte array with the data. We use another extension
 function <code>ByteArray.stringFromUtf8()</code> to turn the byte 
 array into Kotlin <code>String</code>, assuming UTF-8 encoding.</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>You may continue exploring more C language types and their representation in Kotlin/Native
+<p>We continue exploring more C language types and their representation in Kotlin/Native
 in previous tutorials:</p>
 <ul>
 <li><a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a></li>
 <li><a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a></li>
 <li><a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a></li>
 </ul>
-<p>You may also want to have a look at the <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
-for more advanced scenarios.</p>
+<p>The <a href="/docs/reference/native/c_interop.html">C Interop documentation</a>
+documentation covers more advanced scenarios of the interop.</p>
 
         </article>
     </div>

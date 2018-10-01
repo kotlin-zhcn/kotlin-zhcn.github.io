@@ -558,26 +558,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>This is the second post in the series. If you haven't done so already, you may want to begin with the very first tutorial 
-of the series called <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>.
+<p>This is the second post in the series. The very first tutorial 
+of the series is <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>.
 There are also the <a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
 <a href="mapping-strings-from-c.html">Mapping Strings from C</a> tutorials.</p>
-<p>In the tutorial you will learn:</p>
+<p>In the tutorial we will learn:</p>
 <ul>
 <li><a href="#mapping-struct-and-union-c-types">How Struct and Union types are mapped</a></li>
 <li><a href="#using-struct-and-union-types-from-kotlin">How to use Struct and Union type from Kotlin</a></li>
 </ul>
 <p>We need to have a Kotlin compiler on our machines.
-You may want to take a look at the
+The
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial for more information on performing this step.
+tutorial contains more explanations for that step.
 Let's assume, we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
 <h2 id="mapping-struct-and-union-c-types">Mapping Struct and Union C types</h2>
 <p>The best way to understand the mapping between Kotlin and C is to try a tiny 
 example. We will declare a struct and an union in the C language to see how they are mapped into Kotlin.</p>
 <p>Kotlin/Native comes with the <code>cinterop</code> tool, the tool generates bindings between the C language and Kotlin.
-It uses a <code>.def</code> file to specify a C library to import. For more details
-you may want to check out the <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.</p>
+It uses a <code>.def</code> file to specify a C library to import. More details are discussed in the
+<a href="interop-with-c.html">Interop with C Libraries</a> tutorial.</p>
 <p>In <a href="mapping-primitive-data-types-from-c.html">the previous tutorial</a> we created a <code>lib.h</code> file. This time, 
 we are going to include those declarations directly into the <code>lib.def</code> file, after the <code>---</code> separator line:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
@@ -638,9 +638,8 @@ to represent passing a pointer to a structure or a union.</p>
 <p>Technically, there is no difference between <code>struct</code> and <code>union</code> types on the 
 Kotlin side. We should note, that <code>a</code>, <code>b</code>, and <code>c</code> properties of <code>MyUnion</code> class in Kotlin use
 the same memory location to read/write their value just like <code>union</code> does in C language.</p>
-<p>You may want to take a look at the 
-<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md#passing-and-receiving-structs-by-value">C Interop documentation</a>
-for more details.</p>
+<p>More details and advanced use-cases are presented in the<br/>
+<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md#passing-and-receiving-structs-by-value">C Interop documentation</a></p>
 <h2 id="using-struct-and-union-types-from-kotlin">Using Struct and Union Types from Kotlin</h2>
 <p>It is easy to use the generated wrapper classes for C <code>struct</code> and <code>union</code> types from Kotlin. Thanks to the generated
 properties, it feels natural to use them in Kotlin code. The only question, so far, is how do we create a new instance on those
@@ -721,12 +720,12 @@ and all allocations will be cleaned up automatically at the end of the <code>blo
 
 </code></pre>
 </div>
-<p>Note, here we use the extension property <code>ptr</code> which comes from a <code>memScoped</code> lambda receiver type, 
+<p>Note, we use the extension property <code>ptr</code> which comes from a <code>memScoped</code> lambda receiver type, 
 to turn <code>MyStruct</code> and <code>MyUnion</code> instances into native pointers.</p>
 <p>The <code>MyStruct</code> and <code>MyUnion</code> classes have the pointer to the native memory underneath. The memory will be released
 when a <code>memScoped</code> function ends, which is equal to the end of its <code>block</code>. Be careful to make sure that a
-pointer outside is not needed for the <code>memScoped</code> call. We may use <code>Arena()</code> or <code>nativeHeap</code> for pointers that 
-should be available for longer, or are cached inside the C library.</p>
+pointer is not used outside of the <code>memScoped</code> call. We may use <code>Arena()</code> or <code>nativeHeap</code> for pointers that 
+should be available longer, or are cached inside a C library.</p>
 <h3 id="conversion-between-cvaluet-and-cvaluesreft">Conversion between <code>CValue&lt;T&gt;</code> and <code>CValuesRef&lt;T&gt;</code></h3>
 <p>Of course, there are use cases, where we need to pass a struct as a value to one call, and then, to 
 pass the same struct as a reference to another call. This is possible in Kotlin/Native too. A 
@@ -745,7 +744,7 @@ pass the same struct as a reference to another call. This is possible in Kotlin/
 }
 </code></pre>
 </div>
-<p>Here we use the extension property <code>ptr</code> which comes from <code>memScoped</code> lambda receiver type 
+<p>We use the extension property <code>ptr</code> which comes from <code>memScoped</code> lambda receiver type 
 to turn <code>MyStruct</code> and <code>MyUnion</code> instances into native pointers. Those pointers are only valid
 inside the <code>memScoped</code> block.</p>
 <p>For the opposite conversion, to turn a pointer into a by-value variable, 
@@ -769,8 +768,8 @@ we call the <code>readValue()</code> extension function:</p>
 <li><a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a></li>
 <li><a href="mapping-strings-from-c.html">Mapping Strings from C</a></li>
 </ul>
-<p>You may also want to take a look at the <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
-for more advanced scenarios.</p>
+<p>The <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
+documentation covers more advanced scenarios of the interop.</p>
 
         </article>
     </div>

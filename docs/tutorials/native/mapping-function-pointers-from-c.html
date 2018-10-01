@@ -558,27 +558,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>This is the third post in the series. You might want to begin with the very first tutorial called
+<p>This is the third post in the series. The very first tutorial is
 <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>. There are also
 <a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
 <a href="mapping-strings-from-c.html">Mapping Strings from C</a> tutorials.</p>
-<p>In this tutorial you will learn how to:</p>
+<p>In this tutorial We will learn how to:</p>
 <ul>
 <li><a href="#passing-kotlin-function-as-c-function-pointer">Pass Kotlin function as C function pointer</a></li>
 <li><a href="#using-the-c-function-pointer-from-kotlin">Use C function pointer from Kotlin</a></li>
 </ul>
 <p>We need to have a Kotlin compiler on our machines. 
-You may want to have a look at the
+The
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial for more information on performing this step.
+tutorial covers that step in details.
 Let's assume that we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
 <h2 id="mapping-function-pointer-types-from-c">Mapping Function Pointer Types from C</h2>
 <p>The best way to understand the mapping between Kotlin and C is to try a tiny 
 example. We declare a function that accepts a function pointer as a parameter and 
 another function that returns a function pointer.</p>
 <p>Kotlin/Native comes with the <code>cinterop</code> tool; the tool generates bindings between the C language and Kotlin.
-It uses a <code>.def</code> file to specify a C library to import. For more details on this
-you may want to check out the <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.</p>
+It uses a <code>.def</code> file to specify a C library to import. More details on this are
+in the <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.</p>
 <p>The quickest way to try out C API mapping is to have all C declarations in the
 <code>lib.def</code> file, without creating any <code>.h</code> of <code>.c</code> files at all. Then place the C declarations 
 in a <code>.def</code> file after the special <code>---</code> separator line:</p>
@@ -610,7 +610,7 @@ typealias MyFunVar = kotlinx.cinterop.CPointerVarOf&lt;lib.MyFun&gt;
 <p>We see that our function typedef from C has been turned into Kotlin <code>typealias</code>. It uses <code>CPointer&lt;..&gt;</code> type
 to represent the pointer parameters, and <code>CFunction&lt;(Int)-&gt;Int&gt;</code> to represent the function signature. 
 There is an <code>invoke</code> operator extension function available for all <code>CPointer&lt;CFunction&lt;..&gt;</code> types, so that 
-it is possible to call it as you would call any other function in Kotlin.</p>
+it is possible to call it as we would call any other function in Kotlin.</p>
 <h2 id="passing-kotlin-function-as-c-function-pointer">Passing Kotlin Function as C Function Pointer</h2>
 <p>It is the time to try using C Functions from our Kotlin program. Let's call the <code>accept_fun</code>
 function and pass the C function pointer to a Kotlin lambda:</p>
@@ -621,7 +621,7 @@ function and pass the C function pointer to a Kotlin lambda:</p>
 
 </code></pre>
 </div>
-<p>Here we use <code>staticCFunction{..}</code> helper function from Kotlin/Native to wrap a Kotlin lambda function into a C Function pointer.
+<p>We use <code>staticCFunction{..}</code> helper function from Kotlin/Native to wrap a Kotlin lambda function into a C Function pointer.
 It only allows having unbound and non-capturing lambda functions. For example, it is not able
 to use a local variable from the function. We may only use globally visible declarations. Throwing exceptions
 from a <code>staticCFunction{..}</code> will end up in non-deterministic side-effects. It is vital to make sure that we are not 
@@ -642,15 +642,15 @@ to explicitly check for <code>null</code> first. We use <a href="../../reference
 The <code>cinterop</code> tool helps us to turn a C function pointer into an easy to call object in Kotlin. That is
 what we did with the last line</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>You may continue exploring more C language types and their representation in Kotlin/Native
+<p>We will continue exploring more C language types and their representation in Kotlin/Native
 in next tutorials:</p>
 <ul>
 <li><a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a></li>
 <li><a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a></li>
 <li><a href="mapping-strings-from-c.html">Mapping Strings from C</a></li>
 </ul>
-<p>You may also have a look at the <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
-for more advanced scenarios.</p>
+<p>The <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
+documentation covers more advanced scenarios of the interop.</p>
 
         </article>
     </div>

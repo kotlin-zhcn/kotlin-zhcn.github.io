@@ -558,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>With Kotlin/Native, you can compile a native binary for 
+<p>With Kotlin/Native, we can compile a native binary for 
 the following platforms, including (as of Kotlin/Native v0.9.2):</p>
 <ul>
 <li>Windows (x86_64)</li>
@@ -576,13 +576,13 @@ the following platforms, including (as of Kotlin/Native v0.9.2):</p>
 <li><a href="#building-a-console-utility">Build a Console Utility for several Operating Systems</a></li>
 </ul>
 <p>We need to have a Kotlin/Native compiler on our machines. 
-You may have a look at the
+The
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
-tutorial for more information on performing this step.
+tutorial covers that step in details
 Let's assume we have a console, where <code>kotlinc-native</code> command is available.</p>
 <h2 id="specifying-a-target-platform">Specifying a Target Platform</h2>
 <p>The list of supported target platforms of <code>kotlinc-native</code> depends 
-on the operating system where you run it. We may list them via</p>
+on the operating system where it is executed. We may list them via</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native -list-targets
 </code></pre>
 <p>command. For example, on macOS X with Kotlin/Native v0.9.2:</p>
@@ -619,8 +619,9 @@ is highlighted with <code>(default)</code> and used if no <code>-target</code> a
 specified.</p>
 <h2 id="building-for-a-specific-platform">Building for a Specific Platform</h2>
 <p>Let's create a sample Kotlin/Native program and save it as <code>main.kt</code>. 
-You may want to have a look at the tutorial
-<a href="basic-kotlin-native-app.html#creating-hello-kotlin">A Basic Kotlin/Native Application</a> for more details.</p>
+The
+<a href="basic-kotlin-native-app.html#creating-hello-kotlin">A Basic Kotlin/Native Application</a>
+tutorial explains that at more detailed level.</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
   println("Hello Kotlin/Native!")
@@ -651,10 +652,10 @@ system, where the compiler is executed. It matches the behavior of other native 
 A <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration</a>
 may be used to automate and simplify the process.</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>Build tools help to deal with compiler arguments. You might want to consider 
-using <a href="gradle-for-kotlin-native.html">Gradle build system</a> for your project. 
+<p>Build tools help to deal with compiler arguments. 
+<a href="gradle-for-kotlin-native.html">Gradle build system</a> can be a good choice for it. 
 Gradle with the Kotlin/Native plugin simplifies the setup for every operating system, downloads and runs 
-the Kotlin/Native compiler for you. It will be even more pleasant for you</p>
+the Kotlin/Native compiler automatically.</p>
 
         </article>
     </div>

@@ -558,7 +558,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>In this tutorial, we learn what C data types are visible in Kotlin/Native and vice versa. You will:</p>
+<p>In this tutorial, we learn what C data types are visible in Kotlin/Native and vice versa. We will:</p>
 <ul>
 <li>See what <a href="#types-in-c-language">Data Types are in C Language</a></li>
 <li>Create a <a href="#an-example-c-library">tiny C Library</a> that uses those types in exports</li>
@@ -597,13 +597,13 @@ void doubles(float a, double b);
 </code></pre>
 </div>
 <p>The file is missing the <code>extern "C"</code> block, which is not needed for our example, but may be 
-necessary if you use C++ and overloaded functions. For more details on this, you may want to check out the 
+necessary if we use C++ and overloaded functions. The 
 <a href="https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c">C++ compatibility</a>
-thread.</p>
+thread contains more details on this.</p>
 <p>It is only necessary to have a <code>.h</code> file to run the <code>cinterop</code> tool. And we do not need to create a 
 <code>lib.c</code> file, unless we want to compile and run the example.</p>
-<p>We still need to create a <code>.def</code> file to the <code>cinterop</code>. For more details on this,
-you may want to check out <a href="interop-with-c.html">Interop with C Libraries</a>. It is enough for
+<p>We still need to create a <code>.def</code> file to the <code>cinterop</code>. 
+More details on this are covered in the <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.
 the tutorial to create the <code>lib.def</code> file with the following content:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">headers = lib.h
@@ -613,9 +613,9 @@ the tutorial to create the <code>lib.def</code> file with the following content:
 directly to the <code>.def</code> file. This is what we do in the <a href="mapping-struct-union-types-from-c.html">next tutorial</a>.</p>
 <h2 id="inspecting-generated-kotlin-apis-for-a-c-library">Inspecting Generated Kotlin APIs for a C library</h2>
 <p>We need to have a Kotlin compiler on our machines. 
-You may want to have a look at the
+There is the
 <a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial for more information on performing this step.
+that covers this in a more detail.
 Let's assume we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
 <p>Now we are ready to compile the library and to import it into Kotlin. Let's 
 call the following commands:</p>
@@ -632,8 +632,8 @@ fun uints(c: UByte, d: UShort, e: UInt, f: ULong)
 fun ints(c: Byte, d: Short, e: Int, f: Long)
 </code></pre>
 </div>
-<p>C types are mapped in the way you would expect, note that <code>char</code> type is mapped to <code>kotlin.Byte</code> 
-as it is usually an 8-bit unsigned value.</p>
+<p>C types are mapped in the way we would expect, note that <code>char</code> type is mapped to <code>kotlin.Byte</code> 
+as it is usually an 8-bit signed value.</p>
 <table class="zebra">
 <thead>
 <tr>
@@ -692,8 +692,8 @@ in the next tutorials:</p>
 <li><a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a></li>
 <li><a href="mapping-strings-from-c.html">Mapping Strings from C</a></li>
 </ul>
-<p>You may also like to take a look at the <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
-for more advanced scenarios.</p>
+<p>The <a href="/docs/reference/native/c_interop.html">C Interop documentation</a>
+documentation covers more advanced scenarios of the interop.</p>
 
         </article>
     </div>
