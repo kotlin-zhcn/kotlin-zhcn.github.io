@@ -630,16 +630,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">语法</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/compatibility.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">兼容性</span>
+                <span class="text">Grammar</span>
             </a>
     </div>
 
@@ -911,6 +902,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="演进">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">演进</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/kotlin-evolution.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 语言演进</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/components-stability.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">不同组件的稳定性</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="常见问题">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -1069,7 +1088,7 @@ public abstract class SequenceBuilder&lt;in T&gt; { …… }
 <p>挂起的协程可以作为保持其挂起状态与局部变量的对象来存储与传递。这种对象的类型是 <code>Continuation</code>，而这里描述的整个代码转换对应于经典的<a href="https://en.wikipedia.org/wiki/Continuation-passing_style">延续性传递风格（Continuation-passing style）</a>。因此，挂起函数有一个 <code>Continuation</code> 类型的额外参数作为高级选项。</p>
 <p>关于协程工作原理的更多细节可以在<a href="https://github.com/Kotlin/kotlin-coroutines/blob/master/kotlin-coroutines-informal.md">这个设计文档</a>中找到。在其他语言（如 C# 或者 ECMAScript 2016）中的 async/await 的类似描述与此相关，虽然它们实现的语言功能可能不像 Kotlin 协程这样通用。</p>
 <h2 id="协程的实验性状态">协程的实验性状态</h2>
-<p>协程的设计是<a href="compatibility.html#实验性的功能">实验性的</a>，这意味着它会在即将发布的版本中更改。当在 Kotlin 1.1+ 中编译协程时，默认情况下会报一个警告：<em>“协程”功能是实验性的</em>。要移出该警告，你需要指定 <a href="/docs/diagnostics/experimental-coroutines.html">opt-in 标志</a>。</p>
+<p>协程的设计是<a href="compatibility.html#实验性的特性">实验性的</a>，这意味着它会在即将发布的版本中更改。当在 Kotlin 1.1+ 中编译协程时，默认情况下会报一个警告：<em>“协程”功能是实验性的</em>。要移出该警告，你需要指定 <a href="/docs/diagnostics/experimental-coroutines.html">opt-in 标志</a>。</p>
 <p>由于其实验性状态，标准库中协程相关的 API 放在 <code>kotlin.coroutines.experimental</code> 包下。当设计完成并且实验性状态解除时，最终的 API 会移动到 <code>kotlin.coroutines</code>，并且实验包会被保留（可能在一个单独的构件中）以实现向后兼容。</p>
 <p><strong>重要注意事项</strong>：我们建议库作者遵循相同惯例：给暴露基于协程 API 的包添加“experimental”后缀（如 <code>com.example.experimental</code>），以使你的库保持二进制兼容。当最终 API 发布时，请按照下列步骤操作：</p>
 <ul>

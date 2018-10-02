@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/native/platform_libs.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/evolution/kotlin-evolution.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>平台库 - Kotlin 语言中文站</title>
+    <title>Kotlin Evolution - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -766,10 +766,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">平台库</div>
-            </div>
+            <a href="/docs/reference/native/platform_libs.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">平台库</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -910,12 +912,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/evolution/kotlin-evolution.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin 语言演进</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Kotlin 语言演进</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -991,7 +991,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/master/PLATFORM_LIBS.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/evolution/kotlin-evolution.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -999,44 +999,100 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="platform-libraries">Platform libraries</h1>
-<h2 id="overview">Overview</h2>
-<p>To provide access to user's native operating system services,
-<code>Kotlin/Native</code> distribution includes a set of prebuilt libraries specific to
-each target. We call them <strong>Platform Libraries</strong>.</p>
-<h3 id="posix-bindings">POSIX bindings</h3>
-<p>For all <code>Unix</code> or <code>Windows</code> based targets (including <code>Android</code> and
-<code>iPhone</code>) we provide the <code>posix</code> platform lib. It contains bindings
-to platform's implementation of <code>POSIX</code> standard.</p>
-<p>To use the library just</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import platform.posix.*
+<h1 id="kotlin-evolution">Kotlin Evolution</h1>
+<h2 id="principles-of-pragmatic-evolution">Principles of Pragmatic Evolution</h2>
+<pre><code>                    Language design is cast in stone,
+                    but this stone is reasonably soft,
+                    and with some effort we can reshape it later.
+                    
+                    Kotlin Design Team
 </code></pre>
-</div>
-<p>The only target for which it is not available is <a href="https://en.wikipedia.org/wiki/WebAssembly">WebAssembly</a>.</p>
-<p>Note that the content of <code>platform.posix</code> is NOT identical on
-different platforms, in the same way as different <code>POSIX</code> implementations
-are a little different.</p>
-<h3 id="popular-native-libraries">Popular native libraries</h3>
-<p>There are many more platform libraries available for host and
-cross-compilation targets.  <code>Kotlin/Native</code> distribution provides access to
-<code>OpenGL</code>, <code>SDL</code>, <code>zlib</code> and other popular native libraries on
-applicable platforms.</p>
-<p>On Apple platforms <code>objc</code> library is provided for interoperability with <a href="https://en.wikipedia.org/wiki/Objective-C">Objective-C</a>.</p>
-<p>Inspect the contents of <code>dist/klib/platform/$target</code> of the distribution for the details.</p>
-<h2 id="availability-by-default">Availability by default</h2>
-<p>The packages from platform libraries are available by default. No
-special link flags need to be specified to use them. <code>Kotlin/Native</code>
-compiler automatically detects which of the platform libraries have
-been accessed and automatically links the needed libraries.</p>
-<p>On the other hand, the platform libs in the distribution are merely
-just wrappers and bindings to the native libraries.  That means the
-native libraries themselves (<code>.so</code>, <code>.a</code>, <code>.dylib</code>, <code>.dll</code> etc)
-should be installed on the machine.</p>
-<h2 id="examples">Examples</h2>
-<p><code>Kotlin/Native</code> installation provides a wide spectrum of examples
-demonstrating the use of platform libraries. 
-See <a href="https://github.com/JetBrains/kotlin-native/tree/master/samples">samples</a> for details.</p>
+<p>Kotlin is designed to be a pragmatic tool for programmers. When it comes to language evolution, its pragmatic nature is captured by the following principles:</p>
+<ul>
+<li>Keep the language modern over the years.</li>
+<li>Stay in the constant feedback loop with the users.</li>
+<li>Make updating to new versions comfortable for the users.</li>
+</ul>
+<p>As this is key to understanding how Kotlin is moving forward, let's expand on these principles.</p>
+<p><strong>Keeping the Language Modern</strong>. We acknowledge that systems accumulate legacy over time. What had once been cutting-edge technology can be hopelessly outdated today. We have to evolve the language to keep it relevant to the needs of the users and up-to-date with their expectations. This includes not only adding new features, but also phasing out old ones that are no longer recommended for production use and have altogether become legacy.</p>
+<p><strong>Comfortable Updates</strong>. Incompatible changes, such as removing things from a language, may lead to painful migration from one version to the next if carried out without proper care. We will always announce such changes well in advance, mark things as deprecated and provide automated migration tools <em>before the change happens</em>. By the time the language is changed we want most of the code in the world to be already updated and thus have no issues migrating to the new version.</p>
+<p><strong>Feedback Loop</strong>. Going through deprecation cycles requires significant effort, so we want to minimize the number of incompatible changes we'll be making in the future. Apart from using our best judgement, we believe that trying things out in real life is the best way to validate a design. Before casting things in stone we want them battle-tested. This is why we use every opportunity to make early versions of our designs available in production versions of the language, but with <em>experimental</em> status. Experimental features are not stable, they can be changed at any time, and the users that opt into using them do so explicitly to indicate that they are ready to deal with the future migration issues. These users provide invaluable feedback that we gather to iterate on the design and make it rock-solid.</p>
+<h2 id="incompatible-changes">Incompatible Changes</h2>
+<p>If, upon updating from one version to another, some code that used to work doesn't work any more, it is an <em>incompatible change</em> in the language (sometimes referred to as "breaking change"). There can be debates as to what "doesn't work any more" means precisely in some cases, but it definitely includes the following:</p>
+<ul>
+<li>Code that compiled and ran fine is now rejected with an error (at compile or link time). This includes removing language constructs and adding new restrictions.</li>
+<li>Code that executed normally is now throwing an exception.</li>
+</ul>
+<p>The less obvious cases that belong to the "grey area" include handling corner cases differently, throwing an exception of a different type than before, changing behavior observable only through reflection, changes in undocumented/undefined behavior, renaming binary artifacts, etc. Sometimes such changes are very important and affect migration experience dramatically, sometimes they are insignificant.</p>
+<p>Some examples of what definitely isn't an incompatible change include</p>
+<ul>
+<li>Adding new warnings.</li>
+<li>Enabling new language constructs or relaxing limitations for existing ones.</li>
+<li>Changing private/internal APIs and other implementation details.</li>
+</ul>
+<p>The principles of Keeping the Language Modern and Comfortable Updates suggest that incompatible changes are sometimes necessary, but they should be introduced carefully. Our goal is to make the users aware of upcoming changes well in advance to let them migrate their code comfortably.</p>
+<p>Ideally, every incompatible change should be announced through a compile-time warning reported in the problematic code (usually referred to as a <em>deprecation warning</em>) and accompanied with automated migration aids. So, the ideal migration workflow goes as follows:</p>
+<ul>
+<li>Update to version A (where the change is announced)
+    <ul>
+<li>See warnings about the upcoming change</li>
+<li>Migrate the code with the help of the tooling</li>
+</ul>
+</li>
+<li>Update to version B (where the change happens)
+    <ul>
+<li>See no issues at all</li>
+</ul>
+</li>
+</ul>
+<p>In practice some changes can't be accurately detected at compile time, so no warnings can be reported, but at least the users will be notified through Release notes of version A that a change is coming in version B.</p>
+<h3 id="dealing-with-compiler-bugs">Dealing with compiler bugs</h3>
+<p>Compilers are complicated software and despite the best effort of their developers they have bugs. The bugs that cause the compiler itself to fail or report spurious errors or generate obviously failing code, though annoying and often embarrassing, are easy to fix, because the fixes do not constitute incompatible changes. Other bugs may cause the compiler to generate incorrect code that does not fail: e.g. by missing some errors in the source or simply generating wrong instructions. Fixes of such bugs are technically incompatible changes (some code used to compile fine, but now it won't any more), but we are inclined to fixing them as soon as possible to prevent the bad code patterns from spreading across user code. In our opinion, this serves the principle of Comfortable Updates, because fewer users have a chance of encountering the issue. Of course, this applies only to bugs that are found soon after appearing in a released version.</p>
+<h2 id="decision-making">Decision Making</h2>
+<p><a href="https://jetbrains.com">JetBrains</a>, the original creator of Kotlin, is driving its progress with the help of the community and in accord with the <a href="/foundation/kotlin-foundation.html">Kotlin Foundation</a>.</p>
+<p>All changes to the Kotlin Programming Language are overseen by the <a href="/foundation/kotlin-foundation.html#lead-designer">Lead Language Designer</a> (currently Andrey Breslav). The Lead Designer has the final say in all matters related to language evolution. Additionally, incompatible changes to fully stable components have to be approved to by the <a href="/foundation/kotlin-foundation.html#language-committee">Language Committee</a> designated under the <a href="/foundation/kotlin-foundation.html">Kotlin Foundation</a> (currently comprised of Jeffrey van Gogh, William R. Cook and Andrey Breslav).</p>
+<p>The Language Committee makes final decisions on what incompatible changes will be made and what exact measures should be taken to make user updates comfortable. In doing so, it relies on a set of guidelines available <a href="/foundation/language-committee-guidelines.html">here</a>.</p>
+<h2 id="feature-releases-and-incremental-releases">Feature Releases and Incremental Releases</h2>
+<p>Stable releases with versions 1.2, 1.3, etc. are usually considered to be <em>feature releases</em> bringing major changes in the language. Normally, we publish <em>incremental releases</em>, numbered 1.2.20, 1.2.30, etc, in between feature releases.</p>
+<p>Incremental releases bring updates in the tooling (often including features), performance improvements and bug fixes. We try to keep such versions compatible with each other, so changes to the compiler are mostly optimizations and warning additions/removals. Experimental features may, of course, be added, removed or changed at any time.</p>
+<p>Feature releases often add new features and may remove or change previously deprecated ones. Feature graduation from experimental to stable also happens in feature releases.</p>
+<h3 id="eap-builds">EAP Builds</h3>
+<p>Before releasing stable versions, we usually publish a number of preview builds dubbed EAP (for "Early Access Preview") that let us iterate faster and gather feedback from the community. EAPs of feature releases usually produce binaries that will be later rejected by the stable compiler to make sure that possible bugs in the binary format survive no longer than the preview period. Final Release Candidates normally do not bear this limitation.</p>
+<h3 id="experimental-features">Experimental features</h3>
+<p>According to the Feedback Loop principle described above, we iterate on our designs in the open and release versions of the language where some features have the <em>experimental</em> status and <em>are supposed to change</em>. Experimental features can be added, changed or removed at any point and without warning. We make sure that experimental features can't be used accidentally by an unsuspecting user. Such features usually require some sort of an explicit opt-in either in the code or in the project configuration.</p>
+<p>Experimental features usually graduate to the stable status after some iterations.</p>
+<h3 id="status-of-different-components">Status of different components</h3>
+<p>To check the stability status of different components of Kotlin (Kotlin/JVM, JS, Native, various libraries, etc), please consult <a href="components-stability.html">this link</a>.</p>
+<h2 id="libraries">Libraries</h2>
+<p>A language is nothing without its ecosystem, so we pay extra attention to enabling smooth library evolution.</p>
+<p>Ideally, a new version of a library can be used as a "drop-in replacement" for an older version. This means that upgrading a binary dependency should not break anything, even if the application is not recompiled (this is possible under dynamic linking).</p>
+<p>On the one hand, to achieve this, the compiler has to provide certain ABI stability guarantees under the constraints of separate compilation. This is why every change in the language is examined from the point of view of binary compatibility.</p>
+<p>On the other hand, a lot depends on the library authors being careful about which changes are safe to make. Thus it's very important that library authors understand how source changes affect compatibility and follow certain best practices to keep both APIs and ABIs of their libraries stable. Here are some assumptions that we make when considering language changes from the library evolution standpoint:</p>
+<ul>
+<li>Library code should always specify return types of public/protected functions and properties explicitly thus never relying on type inference for public API. Subtle changes in type inference may cause return types to change inadvertently, leading to binary compatibility issues.</li>
+<li>Overloaded functions and properties provided by the same library should do essentially the same thing. Changes in type inference may result in more precise static types to be known at call sites causing changes in overload resolution.</li>
+</ul>
+<p>Library authors can use the @Deprecated and @Experimental annotations to control the evolution of their API surface. Note that @Deprecated(level=HIDDEN) can be used to preserve binary compatibility even for declarations removed from the API.</p>
+<p>Also, by convention, packages named "internal" are not considered public API. All API residing in packages named "experimental" is considered experimental and can change at any moment.</p>
+<p>We evolve the Kotlin Standard Library (kotlin-stdlib) for stable platforms according to the principles stated above. Changes to the contracts for its API undergo the same procedures as changes in the language itself.</p>
+<h2 id="compiler-keys">Compiler Keys</h2>
+<p>Command line keys accepted by the compiler are also a kind of public API, and they are subject to the same considerations. Supported flags (those that don't have the "-X" or "-XX" prefix) can be added only in feature releases and should be properly deprecated before removing them. The "-X" and "-XX" flags are experimental and can be added and removed at any time.</p>
+<h2 id="compatibility-tools">Compatibility Tools</h2>
+<p>As legacy features get removed and bugs fixed, the source language changes, and old code that has not been properly migrated may not compile any more. The normal deprecation cycle allows a comfortable period of time for migration, and even when it's over and the change ships in a stable version, there's still a way to compile unmigrated code.</p>
+<h3 id="compatibility-flags">Compatibility flags</h3>
+<p>We provide the -language-version and -api-version flags that make a new version emulate the behaviour of an old one, for compatibility purposes. Normally, at least one previous version is supported. This effectively leaves a time span of two full feature release cycles for migration (which usually amounts to about two years). Using an older kotlin-stdlib or kotlin-reflect with a newer compiler without specifying compatibility flags is not recommended, and the compiler will report a <a href="compatibility-modes.html">warning</a> when this happens.</p>
+<p>Actively maintained code bases can benefit from getting bug fixes ASAP, without waiting for a full deprecation cycle to complete. Currently such project can enable the -progressive flag and get such fixes enabled even in incremental releases.</p>
+<p>All flags are available on the command line as well as <a href="../using-gradle.html#compiler-options">Gradle</a> and <a href="../using-maven.html#specifying-compiler-options">Maven</a>.</p>
+<h3 id="evolving-the-binary-format">Evolving the binary format</h3>
+<p>Unlike sources that can be fixed by hand in the worst case, binaries are a lot harder to migrate, and this makes backwards compatibility very important in the case of binaries. Incompatible changes to binaries can make updates very uncomfortable and thus should be introduced with even more care than those in the source language syntax.</p>
+<p>For fully stable versions of the compiler the default binary compatibility protocol is the following:</p>
+<ul>
+<li>All binaries are backwards compatible, i.e. a newer compiler can read older binaries (e.g. 1.3 understands 1.0 through 1.2),</li>
+<li>Older compilers reject binaries that rely on new features (e.g. a 1.0 compiler rejects binaries that use coroutines).</li>
+<li>Preferably (but we can't guarantee it), the binary format is mostly forwards compatible with the next feature release, but not later ones (in the cases when new features are not used, e.g. 1.3 can understand most binaries from 1.4, but not 1.5).</li>
+</ul>
+<p>This protocol is designed for comfortable updates as no project can be blocked from updating its dependencies even if it's using a slightly outdated compiler.</p>
+<p>Please note that not all target platforms have reached this level of stability (but Kotlin/JVM has).</p>
 
         </article>
     </div>

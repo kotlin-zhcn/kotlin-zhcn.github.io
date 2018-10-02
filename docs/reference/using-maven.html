@@ -632,16 +632,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">语法</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/compatibility.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">兼容性</span>
+                <span class="text">Grammar</span>
             </a>
     </div>
 
@@ -911,6 +902,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="演进">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">演进</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/kotlin-evolution.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 语言演进</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/components-stability.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">不同组件的稳定性</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="常见问题">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -1000,7 +1019,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 <p>如果你是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，
 其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 <code>kotlin-stdlib-jdk7</code>
-或 <code>kotlin-stdlib-jdk8</code> 取代 <code>kotlin-stdlib</code>，这取决于你的 JDK 版本（对于 Kotlin 1.1.x 用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>)。</p>
+或 <code>kotlin-stdlib-jdk8</code> 取代 <code>kotlin-stdlib</code>，这取决于你的 JDK 版本（对于 Kotlin 1.1.x 用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>，因为相应的 <code>jdk</code> 构件在 1.2.0 才引入）。</p>
 <p>如果你的项目使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a> 或者测试设施，那么你还需要添加相应的依赖项。
 其构件 ID 对于反射库是 <code>kotlin-reflect</code>，对于测试库是 <code>kotlin-test</code> 与 <code>kotlin-test-junit</code>
 。</p>
@@ -1107,7 +1126,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="注解处理">注解处理</h2>
 <p>请参见 <a href="kapt.html">Kotlin 注解处理工具</a>（<code>kapt</code>）的描述。</p>
 <h2 id="协程支持">协程支持</h2>
-<p>在 Kotlin 1.2 中<a href="coroutines.html">协程</a>支持是一项实验性的功能，因此当你在项目中使用协程时 Kotlin 编译器会报警告。
+<p>在 Kotlin 1.2 中<a href="coroutines.html">协程</a>支持是一项实验性的特性，因此当你在项目中使用协程时 Kotlin 编译器会报警告。
 可以将以下代码块添加到 <code>pom.xml</code> 文件中来关闭这一警告：</p>
 <pre><code class="code _highlighted" data-lang="application/xml">&lt;configuration&gt;
     &lt;experimentalCoroutines&gt;enable&lt;/experimentalCoroutines&gt;

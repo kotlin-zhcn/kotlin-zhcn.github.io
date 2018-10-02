@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/compatibility.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/evolution/components-stability.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>兼容性 - Kotlin 语言中文站</title>
+    <title>不同组件的稳定性 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -632,15 +632,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">语法</span>
+                <span class="text">Grammar</span>
             </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">兼容性</div>
-            </div>
     </div>
 
     </div>
@@ -911,6 +904,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="演进">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">演进</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/kotlin-evolution.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 语言演进</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">不同组件的稳定性</div>
+            </div>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="常见问题">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -972,7 +991,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/compatibility.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/evolution/components-stability.md"
    class="page-link-to-github"
    target="_blank"
    title="Edit this page on GitHub">
@@ -980,297 +999,134 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">Edit Page</span>
 </a>
                 
-<h1 id="兼容性">兼容性</h1>
-<p>本页介绍 Kotlin 不同版本以及子系统的兼容性保证。</p>
-<h2 id="兼容性词汇表">兼容性词汇表</h2>
-<p>兼容性意味着回答这个问题：对于给定的两个版本的 Kotlin（例如，1.2 与 1.1.5），为一个版本编写的代码可以与另一个版本一起使用吗？下面的列表解释了不同版本对的兼容模式。请注意，如果版本号较小（即使发布时间晚于版本号较大的版本）那么版本较旧。对于“旧版本”我们使用 OV，对于“新版本”使用 NV。</p>
+<h1 id="不同组件的稳定性">不同组件的稳定性</h1>
+<p>依据组件的发展速度，可以有不同的稳定性模式：
+<a name="moving-fast"></a></p>
 <ul>
-<li><strong>C</strong>——完全兼容（Full <strong>C</strong>ompatibility）
-    <ul>
-<li>语言
-        <ul>
-<li>无语法改动（<em>除去 bug</em>*）</li>
-<li>可能添加或删除新的警告/提示</li>
-</ul>
+<li>
+<p><strong>快速流转（MF，Moving fast）</strong>：即使在<a href="kotlin-evolution.html#feature-releases-and-incremental-releases">增量版本</a>之间也不要期待任何兼容性，任何功能都可以在没有警告的情况下添加、删除或者更改。</p>
 </li>
-<li>API（<code>kotlin-stdlib-*</code>、 <code>kotlin-reflect-*</code>）
-        <ul>
-<li>无 API 改动</li>
-<li>可能添加/删除带有 <code>WARNING</code> 级的弃用项</li>
-</ul>
+<li>
+<p><strong>有功能添加的增量版本（AIR，Additions in Incremental Releases）</strong>：可以在增量版本中添加内容，应避免删除与更改行为，而如果必须要删改的话，应在之前的增量版本中预告。</p>
 </li>
-<li>二进制（ABI）
-        <ul>
-<li>运行时：二进制可以互换使用</li>
-<li>编译：二进制可以互换使用</li>
-</ul>
+<li>
+<p><strong>稳定增量版本（SIR，Stable Incremental Releases）</strong>：增量版本完全兼容，只会有优化与 bug 修复。可以在<a href="kotlin-evolution.html#feature-releases-and-incremental-releases">特性版本</a>中进行任何更改。</p>
 </li>
 </ul>
-</li>
-<li><strong>BCLA</strong>——语言及 API 向后兼容（<strong>B</strong>ackward <strong>C</strong>ompatibility for the <strong>L</strong>anguage and <strong>A</strong>PI）
-    <ul>
-<li>语言
-        <ul>
-<li>可能会在 NV 中删除 OV 中已弃用的语法</li>
-<li>除此之外，OV 中可编译的所有代码都可以在 NV 中编译（除去 bug*）</li>
-<li>可能在 NV 中添加新语法</li>
-<li>在 NV 中可以提升 OV 的一些限制</li>
-<li>可能添加或删除新的警告/提示</li>
-</ul>
-</li>
-<li>API（<code>kotlin-stdlib-*</code>、 <code>kotlin-reflect-*</code>）
-        <ul>
-<li>可能添加新的 API</li>
-<li>可能添加/删除带有 <code>WARNING</code> 级的弃用项</li>
-<li><code>WARNING</code> 级的弃用项可能在 NV 中提升到 <code>ERROR</code> 级或者 <code>HIDDEN</code> 级</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>BCB</strong>——二进制向后兼容（<strong>B</strong>ackward <strong>C</strong>ompatibility for <strong>B</strong>inaries）
-    <ul>
-<li>二进制（ABI）
-        <ul>
-<li>运行时：NV 的二进制可以在 OV 的二进制工作的任何地方使用</li>
-<li>NV 编译器：针对 OV 二进制编译的代码可针对 NV 二进制编译</li>
-<li>OV 编译器可能不接受 NV 二进制（例如，展示较新语言特性或 API 的二进制）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><strong>BC</strong>——完全向后兼容（Full <strong>B</strong>ackward <strong>C</strong>ompatibility）
-    <ul>
-<li>BC = BCLA &amp; BCB</li>
-</ul>
-</li>
-<li><strong>EXP</strong>——实验性的功能（Experimental feature）
-    <ul>
-<li>参见<a href="#实验性的功能">下文</a></li>
-</ul>
-</li>
-<li><strong>NO</strong>——无兼容性保证（No compatibility guarantees）
-    <ul>
-<li>我们会尽力提供顺利的迁移，但不能给出任何保证</li>
-<li>为每个不兼容的子系统单独规划迁移</li>
-</ul>
-</li>
-</ul>
-<hr/>
-<p>* <em>除去 bugs</em> 无改动意味着如果发现一个重要的 bug（例如在编译器诊断或其他地方），修复它可能会引入一个破坏性改动，但我们总是非常小心对待这样的改动。</p>
-<h2 id="kotlin-发行版的兼容性保证">Kotlin 发行版的兼容性保证</h2>
-<p><strong>JVM 平台的 Kotlin</strong>：</p>
+<p><a name="fully-stable"></a></p>
 <ul>
-<li>补丁版本更新（例如1.1.X）完全兼容；</li>
-<li>次版本更新（例如1.X）向后兼容。</li>
+<li><strong>完全稳定（FS，Fully Stable）</strong>：增量版本完全兼容，特性版本兼容旧版。</li>
 </ul>
+<p>对于相同的组件，源代码兼容性与二进制兼容性可以有不同的模式，例如，在二进制格式稳定之前，源代码语言可以达到完全稳定，反之亦然。</p>
+<p><a href="kotlin-evolution.html">Kotlin 演进制度</a>的条款只适用于已经达到完全稳定（FS）的组件。从那一刻起，不兼容的变更必须得到语言委员会的批注。</p>
 <table>
 <thead>
 <tr>
-<th style="text-align: right">Kotlin</th>
-<th style="text-align: center">1.0</th>
-<th style="text-align: center">1.0.X</th>
-<th style="text-align: center">1.1</th>
-<th style="text-align: center">1.1.X</th>
-<th style="text-align: center">…</th>
-<th style="text-align: center">2.0</th>
+<th><strong>组件</strong></th>
+<th><strong>进入该状态的版本</strong></th>
+<th><strong>源代码兼容模式</strong></th>
+<th><strong>二进制兼容模式</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align: right"><strong>1.0</strong></td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">C</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
+<td>Kotlin/JVM</td>
+<td>1.0</td>
+<td>FS</td>
+<td>FS</td>
 </tr>
 <tr>
-<td style="text-align: right"><strong>1.0.X</strong></td>
-<td style="text-align: center">C</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
+<td>kotlin-stdlib（JVM）</td>
+<td>1.0</td>
+<td>FS</td>
+<td>FS</td>
 </tr>
 <tr>
-<td style="text-align: right"><strong>1.1</strong></td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">C</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
+<td>KDoc 语法</td>
+<td>1.0</td>
+<td>FS</td>
+<td>N/A</td>
 </tr>
 <tr>
-<td style="text-align: right"><strong>1.1.X</strong></td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">C</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
+<td>协程</td>
+<td>1.3</td>
+<td>FS</td>
+<td>FS</td>
 </tr>
 <tr>
-<td style="text-align: right"><strong>…</strong></td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
+<td>kotlin-reflect（JVM）</td>
+<td>1.0</td>
+<td>SIR</td>
+<td>SIR</td>
 </tr>
 <tr>
-<td style="text-align: right"><strong>2.0</strong></td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">-</td>
+<td>Kotlin/JS</td>
+<td>1.1</td>
+<td>AIR</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>Kotlin/Native</td>
+<td>1.3</td>
+<td>AIR</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>Kotlin 脚本（*.kts）</td>
+<td>1.2</td>
+<td>AIR</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>dokka</td>
+<td>0.1</td>
+<td>MF</td>
+<td>N/A</td>
+</tr>
+<tr>
+<td>Kotlin 脚本 API</td>
+<td>1.2</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>编译器插件 API</td>
+<td>1.0</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>序列化</td>
+<td>1.3</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>多平台项目</td>
+<td>1.2</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>内联类</td>
+<td>1.3</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td>无符号算术</td>
+<td>1.3</td>
+<td>MF</td>
+<td>MF</td>
+</tr>
+<tr>
+<td><strong>默认情况下，所有其他实验性特性</strong></td>
+<td>N/A</td>
+<td><strong>MF</strong></td>
+<td><strong>MF</strong></td>
 </tr>
 </tbody>
 </table>
-<p><strong>JS 平台的 Kotlin</strong>：从 Kotlin 1.1 开始，补丁版本与次版本更新为语言及 API 提供向后兼容性（BCLA），但没有 BCB。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right">Kotlin</th>
-<th style="text-align: center">1.0.X</th>
-<th style="text-align: center">1.1</th>
-<th style="text-align: center">1.1.X</th>
-<th style="text-align: center">…</th>
-<th style="text-align: center">2.0</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right"><strong>1.0.X</strong></td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">EXP</td>
-<td style="text-align: center">EXP</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">EXP</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>1.1</strong></td>
-<td style="text-align: center">EXP</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">BCLA</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>1.1.X</strong></td>
-<td style="text-align: center">EXP</td>
-<td style="text-align: center">BCLA</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">?</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>…</strong></td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">…</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>2.0</strong></td>
-<td style="text-align: center">EXP</td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">?</td>
-<td style="text-align: center">…</td>
-<td style="text-align: center">-</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Kotlin Scripts</strong>：补丁版本与次版本更新为语言及 API 提供向后兼容性（BCLA），但没有 BCB。</p>
-<h2 id="跨平台兼容性">跨平台兼容性</h2>
-<p>Kotlin 可用于多个平台（JVM/Android、JavaScript 以及即将推出的本地平台）。每个平台都有自己的特殊性（例如 JavaScript 没有适当的整数），因此我们必须相应地调整语言。我们的目标是提供合理的代码可移植性，而不会牺牲太多。</p>
-<p>每个平台都可能具有特定的语言扩展（例如 JVM 的平台类型以及 JavaScript 的动态类型）或限制（例如 JVM 上与重载相关的限制），但核心语言保持不变。</p>
-<p>标准库提供了在所有平台上可用的核心 API，我们努力使这些 API 在每个平台上以相同的方式工作。除此之外，标准库提供了平台相关的扩展（例如，JVM 的<code> java.io</code> 或 JavaScript 的 <code>js()</code>）以及一些可以统一调用但工作方式不同的 API（例如 JVM 与 JavaScript 的正则表达式）。</p>
-<h2 id="实验性的功能">实验性的功能</h2>
-<p>实验性的功能，如 Kotlin 1.1 中的协程，可以从上面列出的兼容模式中豁免。这类功能需要选择性加入（opt-in）来使用才没有编译器警告。实验性的功能至少向后兼容补丁版本更新，但我们不保证任何次版本更新的兼容性（会尽可能提供迁移帮助）。</p>
-<table>
-<thead>
-<tr>
-<th style="text-align: right">Kotlin</th>
-<th style="text-align: center">1.1</th>
-<th style="text-align: center">1.1.X</th>
-<th style="text-align: center">1.2</th>
-<th style="text-align: center">1.2.X</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align: right"><strong>1.1</strong></td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">NO</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>1.1.X</strong></td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">NO</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>1.2</strong></td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">-</td>
-<td style="text-align: center">BC</td>
-</tr>
-<tr>
-<td style="text-align: right"><strong>1.2.X</strong></td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">NO</td>
-<td style="text-align: center">BC</td>
-<td style="text-align: center">-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="eap-构建版">EAP 构建版</h2>
-<p>我们发布早期访问预览（Early Access Preview，EAP）构建版到特殊渠道，该社区的早期采用者可以试用它们并提供反馈。这样的构建不提供任何兼容性保证（尽管我们尽最大努力保持它们与发行版以及彼此之间的合理的兼容性）。这类构建版的质量预期也远低于发行版。Beta 测试版本也属于这一类别。</p>
-<p><strong>重要注意事项</strong>：通过 EAP 为 1.X（例如 1.1.0-eap-X）编译的所有二进制文件<strong>会被编译器发行版版本拒绝</strong>。我们不希望预发布版本编译的任何代码在稳定版本发布后保留。这不涉及补丁版本的 EAP（例如 1.1.3-eap-X），这些 EAP 产生具有稳定 ABI 的构建。</p>
-<h2 id="兼容性模式">兼容性模式</h2>
-<p>当一个大团队迁移到一个新版本时，当一些开发人员已经更新、而其他人没有时，可能会在某个时候出现“不一致的状态”。为了防止前者编写并提交别人可能无法编译的代码，我们提供了以下命令行开关（在 IDE 以及 <a href="using-gradle.html#编译器选项">Gradle</a>/<a href="using-maven.html#指定编译器选项">Maven</a> 中也可用）：</p>
-<ul>
-<li><code>-language-version X.Y</code>——Kotlin 语言版本 X.Y 的兼容性模式，对其后出现的所有语言功能报告错误。</li>
-<li><code>-api-version X.Y</code>——Kotlin API 版本 X.Y 的兼容性模式，对使用来自 Kotlin 标准库（包括编译器生成的代码）的新版 API 的所有代码报告错误。</li>
-</ul>
-<h2 id="二进制兼容性警告">二进制兼容性警告</h2>
-<p>如果使用 NV Kotlin 编译器并在 classpath 中配有 OV 标准库或 OV 反射库，那么可能是项目配置错误的迹象。
-为了防止编译期或运行时出现意外问题，我们建议要么将依赖关系更新到 NV，要么明确指定 API 版本/语言版本参数。
-否则编译器会检测到某些东西可能出错，并报告警告。</p>
-<p>例如，如果 OV = 1.0 且 NV = 1.1，你可能观察到以下警告之一：</p>
-<pre><code>Runtime JAR files in the classpath have the version 1.0, which is older than the API version 1.1. 
-Consider using the runtime of version 1.1, or pass '-api-version 1.0' explicitly to restrict the 
-available APIs to the runtime of version 1.0.
-</code></pre>
-<p>这意味着你针对版本 1.0 的标准库或反射库使用 Kotlin 编译器 1.1。这可以通过不同的方式处理：</p>
-<ul>
-<li>如果你打算使用 1.1 标准库中的 API 或者依赖于这些 API 的语言特性，那么应将依赖关系升级到版本 1.1。</li>
-<li>如果你想保持你的代码与 1.0 标准库兼容，你可以传参 <code>-api-version 1.0</code>。</li>
-<li>如果你刚刚升级到 kotlin 1.1，但不能使用新的语言功能（例如，因为你的一些队友可能没有升级），你可以传参 <code>-language-version 1.0</code>，这会限制所有的 API 及语言功能到 1.0。</li>
-</ul>
-<pre><code>Runtime JAR files in the classpath should have the same version. These files were found in the classpath:
-    kotlin-reflect.jar (version 1.0)
-    kotlin-stdlib.jar (version 1.1)
-Consider providing an explicit dependency on kotlin-reflect 1.1 to prevent strange errors
-Some runtime JAR files in the classpath have an incompatible version. Consider removing them from the classpath
-</code></pre>
-<p>这意味着你对不同版本的库有依赖性，例如 1.1 标准库与 1.0 反射库。为了防止在运行时出现微妙的错误，我们建议你使用所有 Kotlin 库的相同版本。在本例中，请考虑对 1.1 反射库添加显式依赖关系。</p>
-<pre><code>Some JAR files in the classpath have the Kotlin Runtime library bundled into them. 
-This may cause difficult to debug problems if there's a different version of the Kotlin Runtime library in the classpath. 
-Consider removing these libraries from the classpath
-</code></pre>
-<p>这意味着在 classpath 中有一个库，它不是作为 Gradle/Maven 依赖项而依赖 Kotlin 标准库，而是与它分布在同一个构件中（即是<em>被捆绑的</em>）。这样的库可能会导致问题，因为标准构建工具不认为它是 Kotlin 标准库的实例，因此它不受依赖版本解析机制的限制，你可以在 classpath 找到同一个库的多个版本。请考虑联系这样的库的作者，并提出使用 Gradle/Maven 依赖取代的建议。</p>
 
         </article>
     </div>
