@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>与 C 语言交互 - Kotlin 语言中文站</title>
+    <title>与 C 语言互操作 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -820,18 +820,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/native/multiplatform.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">多平台项目</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
-                <div class="text">与 C 语言交互</div>
+                <div class="text">与 C 语言互操作</div>
             </div>
     </div>
 
@@ -840,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 Objective-C 及 Swift 交互</span>
+                <span class="text">与 Objective-C 及 Swift 互操作</span>
             </a>
     </div>
 
@@ -1144,7 +1135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="kotlinnative-interoperability"><em>Kotlin/Native</em> interoperability</h1>
+<h1 id="kotlinnative-互操作"><em>Kotlin/Native</em> 互操作</h1>
 <h2 id="introduction">Introduction</h2>
 <p><em>Kotlin/Native</em> follows the general tradition of Kotlin to provide excellent
 existing platform software interoperability. In the case of a native platform,
@@ -1162,52 +1153,48 @@ the types, functions, and constants into the Kotlin world. The generated stubs c
 imported into an IDE for the purpose of code completion and navigation.</p>
 <p>Interoperability with Swift/Objective-C is provided too and covered in a
 separate document <a href="objc_interop.html">OBJC_INTEROP.md</a>.</p>
+<h2 id="platform-libraries">Platform libraries</h2>
+<p>Note that in many cases there's no need to use custom interoperability library creation mechanisms described below,
+as for APIs available on the platform standartized bindings called <a href="platform_libs.html">platform libraries</a>
+could be used. For example, POSIX on Linux/macOS platforms, Win32 on Windows platform, or Apple frameworks
+on macOS/iOS are available this way.</p>
 <h2 id="simple-example">Simple example</h2>
-<p>Build the dependencies and compiler (see <code>README.md</code>).</p>
-<p>Prepare stubs for the system sockets library:</p>
+<p>Install libgit2 and prepare stubs for the git library:</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">
-cd samples/socket
-../../dist/bin/cinterop -def src/main/c_interop/sockets.def \
- -o sockets
+cd samples/gitchurn
+../../dist/bin/cinterop -def src/main/c_interop/libgit2.def \
+ -compilerOpts -I/usr/local/include -o libgit2
 </code></pre>
 </div>
-<p>Compile the echo server:</p>
+<p>Compile the client:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">../../dist/bin/kotlinc src/main/kotlin/EchoServer.kt \
- -library sockets -o EchoServer
+<pre><code class="language-bash">../../dist/bin/kotlinc src/main/kotlin \
+ -library libgit2 -o GitChurn
 </code></pre>
 </div>
-<p>This whole process is automated in the <code>build.sh</code> script, which also supports cross-compilation
-to supported cross-targets with <code>TARGET=raspberrypi ./build.sh</code> (the <code>cross_dist</code> target must
-be executed first).</p>
-<p>Run the server:</p>
+<p>Run the client:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">./EchoServer.kexe 3000 &amp;
+<pre><code class="language-bash">./GitChurn.kexe ../..
 </code></pre>
 </div>
-<p>Test the server by connecting to it, for example with telnet:</p>
-<div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">telnet localhost 3000
-</code></pre>
-</div>
-<p>Write something to the console and watch the server echo it back.</p>
 <h2 id="creating-bindings-for-a-new-library">Creating bindings for a new library</h2>
 <p>To create bindings for a new library, start by creating a <code>.def</code> file.
 Structurally it's a simple property file, which looks like this:</p>
 <div class="sample" mode="c" theme="idea">
-<pre><code class="language-c">headers = zlib.h
-compilerOpts = -std=c99
+<pre><code class="language-c">headers = png.h
+headerFilter = png.h
+package = png
 </code></pre>
 </div>
 <p>Then run the <code>cinterop</code> tool with something like this (note that for host libraries that are not included
 in the sysroot search paths, headers may be needed):</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">cinterop -def zlib.def -copt -I/opt/local/include -o zlib
+<pre><code class="language-bash">cinterop -def png.def -compilerOpts -I/usr/local/include -o png
 </code></pre>
 </div>
-<p>This command will produce a <code>zlib.klib</code> compiled library and
-<code>zlib-build/kotlin</code> directory containing Kotlin source code for the library.</p>
+<p>This command will produce a <code>png.klib</code> compiled library and
+<code>png-build/kotlin</code> directory containing Kotlin source code for the library.</p>
 <p>If the behavior for a certain platform needs to be modified, you can use a format like
 <code>compilerOpts.osx</code> or <code>compilerOpts.linux</code> to provide platform-specific values
 to the options.</p>
@@ -1257,6 +1244,24 @@ excludeDependentModules = true
 </div>
 <p>When both <code>excludeDependentModules</code> and <code>headerFilter</code> are used, they are
 applied as an intersection.</p>
+<h3 id="c-compiler-and-linker-options">C compiler and linker options</h3>
+<p>Options passed to the C compiler (used to analyze headers, such as preprocessor definitions) and the linker
+(used to link final executables) can be passed in the definition file as <code>compilerOpts</code> and <code>linkerOpts</code>
+respectively. For example</p>
+<div class="sample" mode="c" theme="idea">
+<pre><code class="language-c">compilerOpts = -DFOO=bar
+linkerOpts = -lpng
+</code></pre>
+</div>
+<p>Target-specific options, only applicable to the certain target can be specified as well, such as</p>
+<div class="sample" mode="c" theme="idea">
+<pre><code class="language-c"> compilerOpts = -DBAR=bar
+ compilerOpts.linux_x64 = -DFOO=foo1
+ compilerOpts.mac_x64 = -DFOO=foo2
+</code></pre>
+</div>
+<p>and so, C headers on Linux will be analyzed with <code>-DBAR=bar -DFOO=foo1</code> and on macOS with <code>-DBAR=bar -DFOO=foo2</code>.
+Note that any definition file option can have both common and the platform-specific part.</p>
 <h3 id="adding-custom-declarations">Adding custom declarations</h3>
 <p>Sometimes it is required to add custom C declarations to the library before
 generating bindings (e.g., for <a href="#macros">macros</a>). Instead of creating an
@@ -1298,7 +1303,7 @@ library binary into <code>klib</code>.</p>
 Kotlin counterpart with the same width.</li>
 <li>Pointers and arrays are mapped to <code>CPointer&lt;T&gt;?</code>.</li>
 <li>Enums can be mapped to either Kotlin enum or integral values, depending on
-heuristics and the definition file hints (see "Definition file hints" below).</li>
+heuristics and the <a href="#definition-file-hints">definition file hints</a>.</li>
 <li>Structs are mapped to types having fields available via the dot notation,
 i.e. <code>someStructInstance.field1</code>.</li>
 <li><code>typedef</code> are represented as <code>typealias</code>.</li>
@@ -1371,7 +1376,7 @@ can be omitted as usual due to the type inference.</p>
 </div>
 <p>or</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val bytePtr = placement.allocArray&lt;ByteVar&gt;(5):
+<pre><code class="language-kotlin">val bytePtr = placement.allocArray&lt;ByteVar&gt;(5)
 </code></pre>
 </div>
 <p>The most "natural" placement is in the object <code>nativeHeap</code>.
@@ -1392,7 +1397,7 @@ and the allocated memory will be automatically freed after leaving the scope.</p
 used like</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val fileSize = memScoped {
-    val statBuf = alloc&lt;statStruct&gt;()
+    val statBuf = alloc&lt;stat&gt;()
     val error = stat("/", statBuf.ptr)
     statBuf.st_size
 }
@@ -1435,9 +1440,9 @@ expecting a C string.</p>
 <p>There are also some tools available to convert between Kotlin and C strings
 manually:</p>
 <ul>
-<li><code>fun CPointer&lt;ByteRef&gt;.toKString(): String</code></li>
+<li><code>fun CPointer&lt;ByteVar&gt;.toKString(): String</code></li>
 <li>
-<p><code>val String.cstr: CValuesRef&lt;ByteRef&gt;</code>.</p>
+<p><code>val String.cstr: CValuesRef&lt;ByteVar&gt;</code>.</p>
 <p>To get the pointer, <code>.cstr</code> should be allocated in native memory, e.g.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code>val cString = kotlinString.cstr.getPointer(nativeHeap)
@@ -1520,23 +1525,22 @@ the callback itself, to safely swim from Kotlin to Kotlin through the C world.
 Such wrapping is possible with <code>StableRef</code> class.</p>
 <p>To wrap the reference:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val stablePtr = StableRef.create(kotlinReference)
-val voidPtr = stablePtr.value
+<pre><code class="language-kotlin">val stableRef = StableRef.create(kotlinReference)
+val voidPtr = stableRef.asCPointer()
 </code></pre>
 </div>
 <p>where the <code>voidPtr</code> is a <code>COpaquePointer</code> and can be passed to the C function.</p>
 <p>To unwrap the reference:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val stablePtr = StableRef.fromValue(voidPtr)
-val kotlinReference = stablePtr.get()
+<pre><code class="language-kotlin">val stableRef = voidPtr.asStableRef&lt;KotlinClass&gt;()
+val kotlinReference = stableRef.get()
 </code></pre>
 </div>
-<p>where <code>kotlinReference</code> is the original wrapped reference (however, it's type is
-<code>Any</code> so it may require casting).</p>
+<p>where <code>kotlinReference</code> is the original wrapped reference.</p>
 <p>The created <code>StableRef</code> should eventually be manually disposed using
 the <code>.dispose()</code> method to prevent memory leaks:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">stablePtr.dispose()
+<pre><code class="language-kotlin">stableRef.dispose()
 </code></pre>
 </div>
 <p>After that it becomes invalid, so <code>voidPtr</code> can't be unwrapped anymore.</p>
@@ -1573,6 +1577,10 @@ lists of the enums that should be generated as a Kotlin enum or as integral
 values correspondingly. If the enum is not included into any of these lists,
 then it is generated according to the heuristics.</p>
 </li>
+<li>
+<p><code>noStringConversion</code> property value is space-separated lists of the functions whose
+<code>const char*</code> parameters shall not be autoconverted as Kotlin string</p>
+</li>
 </ul>
 <h3 id="portability">Portability</h3>
 <p>Sometimes the C libraries have function parameters or struct fields of a
@@ -1598,6 +1606,27 @@ methods, depending on <code>type</code>.</p>
 </div>
 <p>Also, the type parameter can be inferred automatically and so may be omitted
 in some cases.</p>
+<h3 id="object-pinning">Object pinning</h3>
+<p>Kotlin objects could be pinned, i.e. their position in memory is guaranteed to be stable
+until unpinned, and pointers to such objects inner data could be passed to the C functions. For example</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun readData(fd: Int): String {
+    val buffer = ByteArray(1024)
+    buffer.usePinned { pinned -&gt;
+        while (true) {
+            val length = recv(fd, pinned.addressOf(0), buffer.size.convert(), 0).toInt()
+
+            if (length &lt;= 0) {
+               break
+            }
+            // Now `buffer` has raw data obtained from the `recv()` call.
+        }
+    }
+}
+</code></pre>
+</div>
+<p>Here we use service function <code>usePinned</code>, which pins an object, executes block and unpins it on normal and
+exception paths.</p>
 
         </article>
     </div>

@@ -820,20 +820,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/native/multiplatform.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">多平台项目</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/c_interop.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 C 语言交互</span>
+                <span class="text">与 C 语言互操作</span>
             </a>
     </div>
 
@@ -842,7 +833,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 Objective-C 及 Swift 交互</span>
+                <span class="text">与 Objective-C 及 Swift 互操作</span>
             </a>
     </div>
 
@@ -1145,9 +1136,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h3 id="q-how-do-i-run-my-program">Q: How do I run my program?</h3>
-<p>A: Define a top level function <code>fun main(args: Array&lt;String&gt;)</code>, please ensure it's not
-in a package. Also compiler switch <code>-entry</code> could be used to make any function taking
-<code>Array&lt;String&gt;</code> and return <code>Unit</code> as an entry point.</p>
+<p>A: Define a top level function <code>fun main(args: Array&lt;String&gt;)</code> or just  <code>fun main()</code> if you are not interested
+in passed arguments, please ensure it's not in a package.
+Also compiler switch <code>-entry</code> could be used to make any function taking <code>Array&lt;String&gt;</code> or no arguments
+and return <code>Unit</code> as an entry point.</p>
 <h3 id="q-what-is-kotlinnative-memory-management-model">Q: What is Kotlin/Native memory management model?</h3>
 <p>A: Kotlin/Native provides an automated memory management scheme, similar to what Java or Swift provides.
 The current implementation includes an automated reference counter with a cycle collector to collect cyclical

@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>与 Objective-C 及 Swift 交互 - Kotlin 语言中文站</title>
+    <title>与 Objective-C 及 Swift 互操作 - Kotlin 语言中文站</title>
 
     <script src="/0_assets/default.js"></script>
     <script src="/0_assets/common.js"></script>
@@ -820,27 +820,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/native/multiplatform.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">多平台项目</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/c_interop.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 C 语言交互</span>
+                <span class="text">与 C 语言互操作</span>
             </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
-                <div class="text">与 Objective-C 及 Swift 交互</div>
+                <div class="text">与 Objective-C 及 Swift 互操作</div>
             </div>
     </div>
 
@@ -1144,20 +1135,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="kotlinnative-interoperability-with-swiftobjective-c"><em>Kotlin/Native</em> interoperability with Swift/Objective-C</h1>
+<h1 id="kotlinnative-与-swiftobjective-c-互操作"><em>Kotlin/Native</em> 与 Swift/Objective-C 互操作</h1>
 <p>This document covers some details of Kotlin/Native interoperability with
 Swift/Objective-C.</p>
 <h2 id="usage">Usage</h2>
 <p>Kotlin/Native provides bidirectional interoperability with Objective-C.
 Objective-C frameworks and libraries can be used in Kotlin code if
 properly imported to the build (system frameworks are imported by default).
-See e.g. "Interop libraries" in
-<a href="gradle_plugin.html#building-artifacts">Gradle plugin documentation</a>.
+See e.g. "Using cinterop" in
+<a href="gradle_plugin.html#using-cinterop">Gradle plugin documentation</a>.
 A Swift library can be used in Kotlin code if its API is exported to Objective-C
 with <code>@objc</code>. Pure Swift modules are not yet supported.</p>
 <p>Kotlin modules can be used in Swift/Objective-C code if compiled into a
-<a href="gradle_plugin.html#framework">framework</a>. See <a href="https://github.com/JetBrains/kotlin-native/tree/master/samples/calculator">calculator sample</a>
-for an example.</p>
+framework (see "Targets and output kinds" section in <a href="gradle_plugin.html#targets-and-output-kinds">Gradle plugin documentation</a>).
+See <a href="https://github.com/JetBrains/kotlin-native/tree/master/samples/calculator">calculator sample</a> for an example.</p>
 <h2 id="mappings">Mappings</h2>
 <p>The table below shows how Kotlin concepts are mapped to Swift/Objective-C and vice versa.</p>
 <table>

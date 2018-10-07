@@ -818,20 +818,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/native/multiplatform.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">多平台项目</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/c_interop.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 C 语言交互</span>
+                <span class="text">与 C 语言互操作</span>
             </a>
     </div>
 
@@ -840,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">与 Objective-C 及 Swift 交互</span>
+                <span class="text">与 Objective-C 及 Swift 互操作</span>
             </a>
     </div>
 
@@ -1144,7 +1135,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="kotlinnative-libraries">Kotlin/Native libraries</h1>
+<h1 id="kotlinnative-库">Kotlin/Native 库</h1>
 <h2 id="kotlin-compiler-specifics">Kotlin compiler specifics</h2>
 <p>To produce a library with the Kotlin/Native compiler use the <code>-produce library</code> or <code>-p library</code> flag. For example:</p>
 <div class="sample" mode="shell" theme="idea">
@@ -1160,12 +1151,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>the above command will produce a <code>program.kexe</code> out of <code>qux.kt</code> and <code>bar.klib</code></p>
 <h2 id="cinterop-tool-specifics">cinterop tool specifics</h2>
 <p>The <strong>cinterop</strong> tool produces <code>.klib</code> wrappers for native libraries as its main output. 
-For example, using the simple <code>stdio.def</code> native library definition file provided in your Kotlin/Native distribution</p>
+For example, using the simple <code>libgit2.def</code> native library definition file provided in your Kotlin/Native distribution</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ cinterop -def  ./samples/csvparser/src/main/c_interop/stdio.def  -o stdio
+<pre><code class="language-bash">$ cinterop -def  samples/gitchurn/src/main/c_interop/libgit2.def -compilerOpts -I/usr/local/include -o libgit2
 </code></pre>
 </div>
-<p>we will obtain <code>stdio.klib</code>.</p>
+<p>we will obtain <code>libgit2.klib</code>.</p>
+<p>See more details in <a href="c_interop.html">INTEROP.md</a></p>
 <h2 id="klib-utility">klib utility</h2>
 <p>The <strong>klib</strong> library management utility allows you to inspect and install the libraries.</p>
 <p>The following commands are available.</p>
@@ -1195,49 +1187,55 @@ For example, using the simple <code>stdio.def</code> native library definition f
 </code></pre>
 </div>
 <h2 id="several-examples">Several examples</h2>
-<p>First let's create a library:</p>
+<p>First let's create a library.
+Place the tiny library source code into <code>kotlinizer.kt</code>:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ cinterop -h /usr/include/math.h -pkg libc.math -o math
+<pre><code class="language-kotlin">package kotlinizer
+val String.kotlinized
+    get() = "Kotlin $this"
+</code></pre>
+<pre><code class="language-bash">$ kotlinc kotlinizer.kt -p library -o kotlinizer
 </code></pre>
 </div>
 <p>The library has been created in the current directory:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ ls math.klib
-math.klib
+<pre><code class="language-bash">$ ls kotlinizer.klib
+kotlinizer.klib
 </code></pre>
 </div>
 <p>Now let's check out the contents of the library:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ klib contents math
+<pre><code class="language-bash">$ klib contents kotlinizer
 </code></pre>
 </div>
-<p>We can install <code>math</code> to the default repository:</p>
+<p>We can install <code>kotlinizer</code> to the default repository:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ klib install math
+<pre><code class="language-bash">$ klib install kotlinizer
 </code></pre>
 </div>
-<p>Remove any traces of it and its build process from the current directory:</p>
+<p>Remove any traces of it from the current directory:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ rm -rf ./math*
+<pre><code class="language-bash">$ rm kotlinizer.klib
 </code></pre>
 </div>
-<p>Create a very short program and place it into a <code>sin.kt</code> :</p>
+<p>Create a very short program and place it into a <code>use.kt</code> :</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import libc.math.*
+<pre><code class="language-kotlin">import kotlinizer.*
+
 fun main(args: Array&lt;String&gt;) {
-    println(sin(2.0))
+    println("Hello, ${"world".kotlinized}!")
 }
 </code></pre>
 </div>
 <p>Now compile the program linking with the library we have just created:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ kotlinc sin.kt -l math -o mysin
+<pre><code class="language-bash">$ kotlinc use.kt -l kotlinizer -o kohello
 </code></pre>
 </div>
 <p>And run the program:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ ./mysin.kexe
-0.9092974268256817
+<pre><code class="language-bash">$ ./kohello.kexe
+Hello, Kotlin world!
 </code></pre>
 </div>
 <p>Have fun!</p>
@@ -1253,7 +1251,6 @@ fun main(args: Array&lt;String&gt;) {
 * Libraries installed in `$installation/klib` directory.
 </code></pre>
 <h2 id="the-library-format">The library format</h2>
-<p><strong>WARNING</strong>: the library format is <em>very</em> preliminary. It is subject to change right under your fingertips. And it can include changes which will make it incompatible between releases at least until Kotlin/Native is stabilized.</p>
 <p>Kotlin/Native libraries are zip files containing a predefined 
 directory structure, with the following layout:</p>
 <p><strong>foo.klib</strong> when unpacked as <strong>foo/</strong> gives us:</p>
