@@ -1264,7 +1264,7 @@ of a target may be acccessed in the DSL, for example, to get the task names, dep
 </div>
 <p>All of the targets may share some of the sources and may have platform-specific sources in their compilations as well. 
 See <a href="#configuring-source-sets">Configuring source sets</a> for details.</p>
-<p>Some targets may require additional configuration. For Android and iOS examples, see the [Multiplatform Project: iOS and Android] TODO https://www.kotlincn.net/docs/tutorials/native/mpp-ios-android.html tutorial.</p>
+<p>Some targets may require additional configuration. For Android and iOS examples, see the <a href="https://www.kotlincn.net/docs/tutorials/native/mpp-ios-android.html">Multiplatform Project: iOS and Android</a> tutorial.</p>
 <h3 id="supported-platforms">Supported platforms</h3>
 <p>There are target presets that one can apply using <code>fromPreset(presets.&lt;presetName&gt;, '&lt;targetName&gt;')</code>, as described above, for the
 following target platforms:</p>
@@ -1376,7 +1376,7 @@ Most often, they need a <code>dependsOn commonMain</code> or <code>dependsOn com
             dependsOn desktopTest
             /* ... */
         }
-        linuxTest { // default test source et for target 'linux'
+        linuxTest { // default test source set for target 'linux'
             dependsOn desktopTest
         }
         /* ... */
@@ -1389,8 +1389,8 @@ Most often, they need a <code>dependsOn commonMain</code> or <code>dependsOn com
 are supported:</p>
 <ul>
 <li>
-<p><code>api</code> dependencies are used both during compilation and at runtime and are exported to a library consumers. If any types 
-from a dependency are used in the public API, then it should be an <code>api</code> dependency;</p>
+<p><code>api</code> dependencies are used both during compilation and at runtime and are exported to library consumers. If any types
+from a dependency are used in the public API of the current module, then it should be an <code>api</code> dependency;</p>
 </li>
 <li>
 <p><code>implementation</code> dependencies are used during compilation and at runtime for the current module, but are not exposed for compilation 
@@ -1406,7 +1406,7 @@ of other modules. These dependencies should be used for APIs which have a third-
 <p><code>runtimeOnly</code> dependencies are available at runtime but are not visible during compilation of any module.</p>
 </li>
 </ul>
-<p>They are specified per source set as follows:</p>
+<p>Dependencies are specified per source set as follows:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets {
@@ -1463,7 +1463,7 @@ of the compilation's default source set are used.</p>
 <p>The language settings are checked for consistency between source sets depending on each other. Namely, if <code>foo</code> depends on <code>bar</code>:</p>
 <ul>
 <li><code>foo</code> should set <code>languageVersion</code> that is greater than or equal to that of <code>bar</code>;</li>
-<li><code>foo</code> should enable all unstable language features that <code>bar</code> enabled (there's no such requirement for bugfix features);</li>
+<li><code>foo</code> should enable all unstable language features that <code>bar</code> enables (there's no such requirement for bugfix features);</li>
 <li><code>apiVersion</code>, bugfix language features, and <code>progressiveMode</code> can be set arbitrarily;</li>
 </ul>
 <h2 id="default-project-layout">Default Project Layout</h2>
@@ -1579,18 +1579,18 @@ unambiguous dependencies on its separate target modules, as if it had no experim
 <p>Add the following symmetrically, to both the library and the consumer projects. The consumer may only need to mark 
    a single target with the attribute:</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">   def testFrameworkAttribte = Attribute.of('com.example.testFramework', String)
+<pre><code class="language-groovy">   def testFrameworkAttribute = Attribute.of('com.example.testFramework', String)
       
    kotlin {
        targets {
            fromPreset(presets.jvm, 'junit') {
                attributes {
-                   attribute(testingFrameworkAttribte, 'junit')
+                   attribute(testingFrameworkAttribute, 'junit')
                }
            }
            fromPreset(presets.jvm, 'testng') {
                attributes {
-                   attribute(testingFrameworkAttribte, 'testng')
+                   attribute(testingFrameworkAttribute, 'testng')
                }
            }
        }
