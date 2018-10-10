@@ -1139,22 +1139,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <blockquote class="note">
 <p>Inline classes are available only since Kotlin 1.3 and currently are <em>experimental</em>. See details <a href="#experimental-status-of-inline-classes">below</a></p>
 </blockquote>
-<p>Sometimes it is necessary for business logic to create a wrapper around some type. However, it introduces runtime overhead due to additional heap allocations. Moreover, if wrapped type was primitive, performance hit is terrible, because primitive types usually are heavily optimized by runtime, while their wrappers don't get any special treatment.</p>
-<p>To solve such kind of issues, Kotlin introduces special kind of classes called <code>inline classes</code>, which are introduced by placing modifier <code>inline</code> before the name of the class:</p>
+<p>Sometimes it is necessary for business logic to create a wrapper around some type. However, it introduces runtime overhead due to additional heap allocations. Moreover, if the wrapped type is primitive, performance hit is terrible, because primitive types are usually heavily optimized by the runtime, while their wrappers don't get any special treatment.</p>
+<p>To solve such issues, Kotlin introduces a special kind of class called an <code>inline class</code>, which is declared by placing an <code>inline</code> modifier before the name of the class:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline class Password(val value: String)
 </code></pre>
 </div>
-<p>Inline class must have a single property initialized in the primary constructor. At runtime, instances of the inline class will be represented using this single property (see details about runtime representation <a href="#representation">below</a>):</p>
+<p>An inline class must have a single property initialized in the primary constructor. At runtime, instances of the inline class will be represented using this single property (see details about runtime representation <a href="#representation">below</a>):</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// No actual instantiation of class 'Password' happens
 // At runtime 'securePassword' contains just 'String'
 val securePassword = Password("Don't try this in production") 
 </code></pre>
 </div>
-<p>This is the primary property of inline classes, which inspired name "inline": data of the class is "inlined" into its usages (similar to how content of <a href="inline-functions.html">inline functions</a> is inlined to call sites)</p>
+<p>This is the main feature of inline classes, which inspired the name "inline": data of the class is "inlined" into its usages (similar to how content of <a href="inline-functions.html">inline functions</a> is inlined to call sites).</p>
 <h2 id="members">Members</h2>
-<p>Inline classes support some functionality of usual classes. In particular, they are allowed to declare properties and functions:</p>
+<p>Inline classes support some functionality of regular classes. In particular, they are allowed to declare properties and functions:</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">inline class Name(val s: String) {
     val length: Int
@@ -1172,18 +1172,18 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>However, there are some restrictions for inline classes members:</p>
+<p>However, there are some restrictions for inline class members:</p>
 <ul>
-<li>inline class cannot have <em class="keyword">init</em> block</li>
-<li>inline class cannot have <em class="keyword">inner</em> classes</li>
-<li>inline class field cannot have <a href="properties.html#backing-fields">backing fields</a>
+<li>inline classes cannot have <em class="keyword">init</em> blocks</li>
+<li>inline classes cannot have <em class="keyword">inner</em> classes</li>
+<li>inline class fields cannot have <a href="properties.html#backing-fields">backing fields</a>
 <ul>
-<li>it follows that inline class can have only simple computable properties (no lateinit/delegated properties)</li>
+<li>it follows that inline classes can only have simple computable properties (no lateinit/delegated properties)</li>
 </ul>
 </li>
 </ul>
 <h2 id="inheritance">Inheritance</h2>
-<p>Inline classes are allowed to inherit interfaces:</p>
+<p>Inline classes are allowed to inherit from interfaces:</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">interface Printable {
     fun prettyPrint(): String
@@ -1199,10 +1199,10 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>It is forbidden for inline classes to participate in classes hierarchy. This means inline classes cannot extend other classes and must be <em class="keyword">final</em>.</p>
+<p>It is forbidden for inline classes to participate in a class hierarchy. This means that inline classes cannot extend other classes and must be <em class="keyword">final</em>.</p>
 <h2 id="representation">Representation</h2>
-<p>In generated code, the Kotlin compiler keeps a <em>wrapper</em> for each inline class. Inline classes instances can be represented at runtime either as wrappers or the underlying type. This is similar to how <code>Int</code> can be <a href="basic-types.html#representation">represented</a> either as a primitive <code>int</code> or the wrapper <code>Integer</code>.</p>
-<p>The Kotlin compiler will prefer using underlying types instead of wrappers to produce the most performant and optimized code. However, sometimes it is necessary to keep wrappers around. The rule of thumb is, inline classes are boxed whenever they are used as another type.</p>
+<p>In generated code, the Kotlin compiler keeps a <em>wrapper</em> for each inline class. Inline class instances can be represented at runtime either as wrappers or as the underlying type. This is similar to how <code>Int</code> can be <a href="basic-types.html#representation">represented</a> either as a primitive <code>int</code> or as the wrapper <code>Integer</code>.</p>
+<p>The Kotlin compiler will prefer using underlying types instead of wrappers to produce the most performant and optimized code. However, sometimes it is necessary to keep wrappers around. As a rule of thumb, inline classes are boxed whenever they are used as another type.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface I
 
@@ -1223,7 +1223,7 @@ fun main() {
     asInterface(f) // boxed: used as type I
     asNullable(f)  // boxed: used as Foo?, which is different from Foo
     
-    // below, 'f' first is boxed (while passing to 'id') and then unboxed (when returned from 'id') 
+    // below, 'f' first is boxed (while being passed to 'id') and then unboxed (when returned from 'id') 
     // In the end, 'c' contains unboxed representation (just '42'), as 'f' 
     val c = id(f)  
 }
@@ -1231,22 +1231,23 @@ fun main() {
 </div>
 <p>Because inline classes may be represented both as the underlying value and as a wrapper, <a href="equality.html#referential-equality">referential equality</a> is pointless for them and is therefore prohibited.</p>
 <h3 id="mangling">Mangling</h3>
-<p>That inline classes are compiled to their underlying type may lead to various obscure errors, for example, unexpected platform signature clashes:</p>
+<p>Since inline classes are compiled to their underlying type, it may lead to various obscure errors, for example unexpected platform signature clashes:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline class UInt(val x: Int)
 
-// Represented as 'public final void compute(int x)' at JVM
+// Represented as 'public final void compute(int x)' on the JVM
 fun compute(x: Int) { }
-// Represented as 'public final void compute(int x)' at JVM too!
+
+// Also represented as 'public final void compute(int x)' on the JVM!
 fun compute(x: UInt) { }
 </code></pre>
 </div>
-<p>To mitigate such issues, functions which use inline classes are <em>mangled</em> by adding some stable hashcode to the function name. Therefore, <code>fun compute(x: UInt)</code> will be in fact represented as <code>public final void compute-&lt;hashcode&gt;(int x)</code>, which therefore solves the clash problem.</p>
+<p>To mitigate such issues, functions using inline classes are <em>mangled</em> by adding some stable hashcode to the function name. Therefore, <code>fun compute(x: UInt)</code> will be represented as <code>public final void compute-&lt;hashcode&gt;(int x)</code>, which solves the clash problem.</p>
 <blockquote class="note">
-<p>Note that <code>-</code> is a <em>invalid</em> symbol in Java, meaning that it is impossible to call functions which accept inline classes from Java.</p>
+<p>Note that <code>-</code> is an <em>invalid</em> symbol in Java, meaning that it's impossible to call functions which accept inline classes from Java.</p>
 </blockquote>
 <h2 id="inline-classes-vs-type-aliases">Inline classes vs type aliases</h2>
-<p>At first sight, inline classes may appear to be very similar to <a href="type-aliases.html">type aliases</a>. Indeed, both appear to introduce a new type and both will be represented as the underlying type at runtime.</p>
+<p>At first sight, inline classes may appear to be very similar to <a href="type-aliases.html">type aliases</a>. Indeed, both seem to introduce a new type and both will be represented as the underlying type at runtime.</p>
 <p>However, the crucial difference is that type aliases are <em>assignment-compatible</em> with their underlying type (and with other type aliases with the same underlying type), while inline classes are not.</p>
 <p>In other words, inline classes introduce a truly <em>new</em> type, contrary to type aliases which only introduce an alternative name (alias) for an existing type:</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1273,7 +1274,7 @@ fun main() {
 </div>
 <h2 id="experimental-status-of-inline-classes">Experimental status of inline classes</h2>
 <p>The design of inline classes is experimental, meaning that this feature is <em>moving fast</em> and no compatibility guarantees are given. When using inline classes in Kotlin 1.3+, a warning will be reported, indicating that this feature is experimental.</p>
-<p>To remove the warning, you have to opt into the usage of experimental features by passing the argument <code>-XXLanguage:+InlineClasses</code> to the <code>kotlinc</code>.</p>
+<p>To remove the warning you have to opt in to the usage of experimental features by passing the argument <code>-XXLanguage:+InlineClasses</code> to <code>kotlinc</code>.</p>
 <h3 id="enabling-inline-classes-in-gradle">Enabling inline classes in Gradle:</h3>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">
@@ -1282,7 +1283,7 @@ compileKotlin {
 }
 </code></pre>
 </div>
-<p>See <a href="using-gradle.html#compiler-options">Compiler options in Gradle</a> for details</p>
+<p>See <a href="using-gradle.html#compiler-options">Compiler options in Gradle</a> for details.</p>
 <h3 id="enabling-inline-classes-in-maven">Enabling inline classes in Maven</h3>
 <div class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;configuration&gt;
@@ -1292,9 +1293,9 @@ compileKotlin {
 &lt;/configuration&gt;
 </code></pre>
 </div>
-<p>See <a href="using-maven.html#specifying-compiler-options">Compiler options in Maven</a> for details</p>
+<p>See <a href="using-maven.html#specifying-compiler-options">Compiler options in Maven</a> for details.</p>
 <h2 id="further-discussion">Further discussion</h2>
-<p>See this <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-classes.md">language proposal for inline classes</a> for other technical details and discussion .</p>
+<p>See this <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-classes.md">language proposal for inline classes</a> for other technical details and discussion.</p>
 
         </article>
     </div>
