@@ -598,13 +598,15 @@ If you are using Maven or IDEA, the recipes would be similar.</p>
 <h2 id="generating-source-map">Generating source map</h2>
 <p>To debug Kotlin sources in the browser, you should tell the compiler to generate source map file.
 Add following lines to the Gradle configuration:</p>
-<pre><code class="code _highlighted" data-lang="text/x-groovy">compileKotlin2Js {
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">compileKotlin2Js {
     kotlinOptions.sourceMap = true
     kotlinOptions.sourceMapEmbedSources = "always"
 
     // remaining configuration options
 } 
 </code></pre>
+</div>
 <p>Now, if you rebuild the project, you should see both <code>.js</code> and <code>.js.map</code> files generated.</p>
 <h2 id="debugging-in-chrome-devtools">Debugging in Chrome DevTools</h2>
 <p>To debug Kotlin in Google Chrome, you should use DevTools.
