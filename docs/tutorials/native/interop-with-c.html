@@ -623,7 +623,7 @@ need to be relative to the folder where the definition file is, or be available 
 all the headers are also included. Sometimes this may not be needed, and we can use this parameter, <a href="https://en.wikipedia.org/wiki/Glob_(programming)">using glob patterns</a>, to fine tune things. 
 Note, that <code>headerFilter</code> is an optional argument and mostly only used when the library we're using is being installed as a system library and we do not want to fetch external dependencies 
 (such as system <code>stdint.h</code> header) into our interop library. It may be important for both optimising library size and fixing potential conflicts between system and the Kotlin/Native provided compilation environment.</p>
-<p>The third and forth lines are about providing linker options, which can vary based on different target platforms. In our cause we are defining it for macOS and Linux. 
+<p>The third and fourth lines are about providing linker options, which can vary based on different target platforms. In our cause we are defining it for macOS and Linux. 
 Compiler options can also be specific, albeit in this case it is not necessary.</p>
 <p>The convention that is followed is that each library gets its own definition file, usually named the same as the library. For more information on all
 the options available to <code>cinterop</code>, see <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">README available on GitHub</a></p>
