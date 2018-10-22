@@ -635,7 +635,7 @@ It is also possible to use <a href="https://jetbrains.com/idea">IntelliJ IDEA</a
 the <a href="https://developer.apple.com/xcode/">Apple Developer Site</a> for more details.</p>
 </li>
 </ul>
-<p><em>Note: We'll be using IntelliJ IDEA 2018.3 EAP, Android Studio 3.2, Kotlin 1.3.0, Xcode 10.0, macOS 10.14, Gradle 4.10.2</em></p>
+<p><em>Note: We'll be using IntelliJ IDEA 2018.3 EAP, Android Studio 3.2, Kotlin 1.3.0, Xcode 10.0, macOS 10.14, Gradle 4.7</em></p>
 <h1 id="creating-an-android-project">Creating an Android Project</h1>
 <p>We'll create a new Android project via <em>Start New Android Project</em> item. If using IntelliJ IDEA, we need to select <em>Android</em> in 
 the left panel of the <em>New Project</em> wizard.</p>
@@ -652,7 +652,7 @@ the following entry <em>twice</em>, into each of the <code>repositories { .. }</
 <p><a name="gradle-upgrade"></a>
 Kotlin/Native plugin requires a newer version of Gradle, let's patch the <code>gradle/wrapper/gradle-wrapper.properties</code>
 and use the following <code>distrubutionUrl</code>:</p>
-<pre><code>distributionUrl=https\://services.gradle.org/distributions/gradle-4.10.2-all.zip
+<pre><code>distributionUrl=https\://services.gradle.org/distributions/gradle-4.7-all.zip
 </code></pre>
 <p>We need to refresh the Gradle Project settings to apply these changes. Click on the <code>Sync Now</code> link or 
 use the <em>Gradle</em> tool window and click the refresh action from the context menu on the root Gradle project.</p>
@@ -872,7 +872,7 @@ We need to include the additional task to the end of the <code>SharedCode/build.
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="groovy" theme="idea">
 <pre><code class="language-groovy">task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
-    final String mode = System.getenv('CONFIGURATION')?.toUpperCase() ?: 'DEBUG'
+    final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
 
     inputs.property "mode", mode
     dependsOn kotlin.targets.iOS.compilations.main.linkTaskName("FRAMEWORK", mode)
@@ -893,7 +893,7 @@ tasks.build.dependsOn packForXCode
 </div>
 <p>Note, the task may not work <a href="https://github.com/gradle/gradle/issues/6330">correctly</a>
 if you use Gradle older than 4.10. 
-In this tutorial we have already <a href="#gradle-upgrade">upgraded it to 4.10.2</a>.</p>
+In this tutorial we have already <a href="#gradle-upgrade">upgraded it to 4.7</a>.</p>
 <p>Let's switch back to the Android Studio and execute the <code>build</code> target of the <code>SharedCode</code> project from
 the <em>Gradle</em> tool window. The task looks for environment variables set by the Xcode build and copies
 the right variant of the framework into the <code>SharedCode/build/xcode-frameworks</code> folder. We then include the
@@ -921,7 +921,7 @@ Xcode will then show the substituted path in the UI for it.</p>
 We open the <em>Build Phases</em> tab and click <code>+</code> to add the <em>New Run Script Phase</em> and add the following code into it:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="bash" theme="idea">
 <pre><code class="language-bash">cd "$SRCROOT/../../SharedCode/build/xcode-frameworks"
-./gradlew :SharedCode:packForXCode
+./gradlew :SharedCode:packForXCode -PXCODE_CONFIGURATION=${CONFIGURATION}
 </code></pre>
 </div>
 <p>Note, here we use the <code>$SRCROOT/../..</code> as the path to the root of our Gradle project.

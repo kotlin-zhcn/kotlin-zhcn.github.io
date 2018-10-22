@@ -1241,7 +1241,7 @@ Kotlin 类型。编译器支持多种可空性注解，包括：</p>
 <p>你可以在 <a href="https://github.com/JetBrains/kotlin/blob/master/core/descriptor.loader.java/src/org/jetbrains/kotlin/load/java/JvmAnnotationNames.kt">Kotlin 编译器源代码</a>中找到完整的列表。</p>
 <h3 id="注解类型参数">注解类型参数</h3>
 <p>可以标注泛型类型的类型参数，以便同时为其提供可空性信息。例如，考虑这些 Java 声明的注解：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@NotNull
 Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elements) { …… }
 </code></pre>
@@ -1273,7 +1273,7 @@ Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elem
 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierNickname.html"><code>@TypeQualifierNickname</code></a>
 与 JSR-305 <code>@Nonnull</code>（或者它的其他别称，如 <code>@CheckForNull</code>），那么该注解类型自身将用于
 检索精确的可空性，且具有与该可空性注解相同的含义：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@TypeQualifierNickname
 @Nonnull(when = When.ALWAYS)
 @Retention(RetentionPolicy.RUNTIME)
@@ -1287,10 +1287,10 @@ public @interface MyNullable {
 }
 
 interface A {
-    @MyNullable String foo(@MyNonnull String x); 
+    @MyNullable String foo(@MyNonnull String x);
     // 在 Kotlin（严格模式）中：`fun foo(x: String): String?`
-    
-    String bar(List&lt;@MyNonnull String&gt; x);       
+
+    String bar(List&lt;@MyNonnull String&gt; x);
     // 在 Kotlin（严格模式）中：`fun bar(x: List&lt;String&gt;!): String!`
 }
 </code></pre>
@@ -1299,7 +1299,7 @@ interface A {
 <p><a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/meta/TypeQualifierDefault.html"><code>@TypeQualifierDefault</code></a>
 引入应用时在所标注元素的作用域内定义默认可空性的注解<!--
 -->。</p>
-<p>这些注解类型应自身同时标注有 <code>@Nonnull</code>（或其别称）与 <code>@TypeQualifierDefault(...)</code> 注解，
+<p>这些注解类型应自身同时标注有 <code>@Nonnull</code>（或其别称）与 <code>@TypeQualifierDefault(...)</code>注解，
 后者带有一到多个 <code>ElementType</code> 值：</p>
 <ul>
 <li><code>ElementType.METHOD</code> 用于方法的返回值；</li>
@@ -1310,7 +1310,7 @@ interface A {
 <p>当类型并未标注可空性注解时使用默认可空性，并且该默认值是<!--
 -->由最内层标注有带有与所用类型相匹配的
 <code>ElementType</code> 的类型限定符默认注解的元素确定。</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@Nonnull
 @TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
 public @interface NonNullApi {
@@ -1324,10 +1324,10 @@ public @interface NullableApi {
 @NullableApi
 interface A {
     String foo(String x); // fun foo(x: String?): String?
- 
+
     @NotNullApi // 覆盖来自接口的默认值
-    String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String 
-    
+    String bar(String x, @Nullable String y); // fun bar(x: String, y: String?): String
+
     // 由于 `@NullableApi` 具有 `TYPE_USE` 元素类型，
     // 因此认为 List&lt;String&gt; 类型参数是可空的：
     String baz(List&lt;String&gt; x); // fun baz(List&lt;String?&gt;?): String?
@@ -1342,7 +1342,7 @@ interface A {
 <p>注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 <a href="#undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解</a>与<a href="#编译器配置">编译器配置</a>两节。</p>
 </blockquote>
 <p>也支持包级的默认可空性：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// 文件：test/package-info.java
 @NonNullApi // 默认将“test”包中所有类型声明为不可空
 package test;
@@ -1367,7 +1367,7 @@ package test;
 </li>
 </ul>
 <p>库的维护者还可以将 <code>@UnderMigration</code> 状态添加到类型限定符别称与类型限定符默认值：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">@Nonnull(when = When.ALWAYS)
 @TypeQualifierDefault({ElementType.METHOD, ElementType.PARAMETER})
 @UnderMigration(status = MigrationStatus.WARN)
@@ -1376,7 +1376,7 @@ public @interface NonNullApi {
 
 // 类中的类型是非空的，但是只报警告
 // 因为 `@NonNullApi` 标注了 `@UnderMigration(status = MigrationStatus.WARN)`
-@NonNullApi 
+@NonNullApi
 public class Test {}
 </code></pre>
 </div>
@@ -1400,7 +1400,7 @@ public class Test {}
 -->他们可能希望推迟错误报告直到他们完成迁移。</p>
 </li>
 <li>
-<p><code>-Xjsr305=@&lt;fq.name&gt;:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖单个注解的行为，其中 <code>&lt;fq.name&gt;</code> 是<!--
+<p><code>-Xjsr305=@&lt;fq.name&gt;:{strict|warn|ignore}</code>（自 1.1.60 起）覆盖单个注解的行为，其中 <code>&lt;fq.name&gt;</code>是<!--
 -->该注解的完整限定类名。对于不同的注解可以多次出现。这<!--
 -->对于管理特定库的迁移状态非常有用。</p>
 </li>
@@ -1672,7 +1672,7 @@ if (a is List&lt;*&gt;) // OK：不保证列表的内容
 对于每种原生类型的数组都有一个特化的类（<code>IntArray</code>、 <code>DoubleArray</code>、 <code>CharArray</code> 等等）来处理这种情况。
 它们与 <code>Array</code> 类无关，并且会编译成 Java 原生类型数组以获得最佳性能。</p>
 <p>假设有一个接受 int 数组索引的 Java 方法：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">public class JavaArrayExample {
 
     public void removeIndices(int[] indices) {
@@ -1713,7 +1713,7 @@ for (x in array) { // 不会创建迭代器
 </div>
 <h2 id="java-可变参数">Java 可变参数</h2>
 <p>Java 类有时声明一个具有可变数量参数（varargs）的方法来使用索引：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">public class JavaArrayExample {
 
     public void removeIndicesVarArg(int... indices) {
@@ -1750,8 +1750,8 @@ javaObj.removeIndicesVarArg(*array)
 而因为 <code>Any</code> 不是平台指定的，它只声明了 <code>toString()</code>、<code>hashCode()</code> 和 <code>equals()</code> 作为其成员，
 所以为了能用到 <code>java.lang.Object</code> 的其他成员，Kotlin 要用到<a href="extensions.html">扩展函数</a>。</p>
 <h3 id="waitnotify">wait()/notify()</h3>
-<p>类型 <code>Any</code> 的引用没有提供 <code>wait()</code> 与 <code>notify()</code> 方法。通常不鼓励使用它们，而建议使用 <code>java.utl.concurrent</code>。</p>
-<p>如果确实需要调用这两个方法的话，那么可以将引用转换为 <code>java.lang.Object</code>：</p>
+<p>类型 <code>Any</code> 的引用没有提供 <code>wait()</code> 与 <code>notify()</code> 方法。通常不鼓励使用它们，而建议使用 <code>java.utl.concurrent</code>。
+如果确实需要调用这两个方法的话，那么可以将引用转换为 <code>java.lang.Object</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">(foo as java.lang.Object).wait()
 </code></pre>
