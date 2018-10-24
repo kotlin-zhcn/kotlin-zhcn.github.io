@@ -599,16 +599,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 根据弹出的对话框提示进行操作。
 为新工程命名，选择已安装的 Android SDK 版本。实际上大多数选项均有默认值 ，只需要按几次“回车”键即可。</p>
 <p>命名工程:
-<img alt="Dialog 1" src="/assets/images/tutorials/kotlin-android/0-create-new-project.png"/></p>
-<p>Android Studio 3.0 在当前对话框中提供启用 Kotlin 支持的选项，勾选后可以跳过
-“配置 Kotlin 工程（Configuring Kotlin in the project）”的步骤。</p>
+<img alt="New Project" src="/assets/images/tutorials/kotlin-android/0-create-new-project.png"/></p>
+<p>Android Studio offers an option to enable Kotlin support on this screen. You can check this option and skip the
+"Configuring Kotlin in the project" step below.</p>
 <p>选择 Android 版本:</p>
-<p><img alt="Dialog 2" src="/assets/images/tutorials/kotlin-android/1-create-new-project.png"/></p>
+<p><img alt="Target Android Devices" src="/assets/images/tutorials/kotlin-android/1-create-new-project.png"/></p>
 <p>选择需要创建的 Activity 样式:</p>
-<p><img alt="Dialog 3" src="/assets/images/tutorials/kotlin-android/2-create-new-project.png"/></p>
+<p><img alt="Add an Activity to Mobile" src="/assets/images/tutorials/kotlin-android/2-create-new-project.png"/></p>
 <p>命名该 Activity:</p>
-<p><img alt="Dialog 4" src="/assets/images/tutorials/kotlin-android/3-create-new-project.png"/></p>
-<p>在 Android Studio 3.0 中，可以选择使用 Kotlin 创建 activity，因此也不需要“将Java 代码转换为 Kotlin（Converting
+<p><img alt="Customize the Activity" src="/assets/images/tutorials/kotlin-android/3-create-new-project.png"/></p>
+<p>在 Android Studio 中，可以选择使用 Kotlin 创建 activity，因此也不需要“将Java 代码转换为 Kotlin（Converting
 Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创建 activity，然后再使用自动转换工具<!--
 -->进行转换。</p>
 <p>一般而言，着手使用 Kotlin 的最便捷方式，无疑是将 Java 代码自动转换为 Kotlin。
@@ -618,28 +618,21 @@ Java code to Kotlin）”这一步骤。早期版本中则会先使用 Java 创�
 <p>打开 <code>MainActivity.java</code> 文件，使用 <strong>Convert Java File to Kotlin File</strong> 命令。使用该命令的方式有如下几种，
 强烈推荐 <a href="https://www.jetbrains.com/idea/help/navigating-to-action.html">Find Action</a>，输入相应的命令名称（见下方截图）即可。
 同样也可以通过菜单栏依次调出 <em>Code | Convert Java File to Kotlin File</em> 或使用快捷键（菜单栏入口可见）完成操作。</p>
-<p><img alt="Convert" src="/assets/images/tutorials/kotlin-android/convert-java-to-kotlin.png"/></p>
+<p><img alt="Convert Java to Kotlin file" src="/assets/images/tutorials/kotlin-android/convert-java-to-kotlin.png"/></p>
 <p>转换完成后即可看到使用 Kotlin 编写的 activity。</p>
-<p><img alt="Koltin-Activity" src="/assets/images/tutorials/kotlin-android/converted-code.png"/></p>
+<p><img alt="Converted Activity with Kotlin" src="/assets/images/tutorials/kotlin-android/converted-code.png"/></p>
 <h4 id="工程中配置-kotlin">工程中配置 Kotlin</h4>
-<table>
-<tbody>
-<tr>
-<td>在开始编辑此文件时，Android Studio 会提示当前工程还未配置 Kotlin，根据提示完成操作即可；或者可以在菜单栏中选择 Tools</td>
-<td>Kotlin</td>
-<td>Configure Kotlin 。</td>
-</tr>
-</tbody>
-</table>
-<p><img alt="Config-Kotlin" src="/assets/images/tutorials/kotlin-android/kotlin-not-configured.png"/></p>
+<p>If you start editing this file, Android Studio shows you a prompt that Kotlin is not configured, so you can configure it.
+Alternatively, you can invoke the configuration by selecting <em>Tools | Kotlin | Configure Kotlin in Project</em> from the main menu.</p>
+<p><img alt="Configure Kotlin in project" src="/assets/images/tutorials/kotlin-android/kotlin-not-configured.png"/></p>
 <p>选择配置时有如下对话框，选择已安装的最新版本即可。</p>
-<p><img alt="Config-Kotlin-Details" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project-details.png"/></p>
+<p><img alt="Choose Kotlin version" src="/assets/images/tutorials/kotlin-android/configure-kotlin-in-project-details.png"/></p>
 <p>Kotlin 配置完成后，应用程序的 build.gradle 文件会更新。
 你能看到新增了 <em>apply plugin: 'kotlin-android'</em> 及其依赖。</p>
 <p><em>（有关使用 gradle 设置的详情，请查阅 <a href="/docs/reference/using-gradle.html">Gradle使用手册</a>）</em></p>
-<p><img alt="Sync-Project-With-Gradle" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle.png"/></p>
+<p><img alt="Add kotlin-android plugin to your build.gradle" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle.png"/></p>
 <p>同步工程，在提示框中点击“立即同步（Sync Now）”或者使用 <strong>Sync Project with Gradle Files</strong>命令。</p>
-<p><img alt="Sync-Project-With-Gradle-2" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle-2.png"/></p>
+<p><img alt="Sync Project with Gradle Files" src="/assets/images/tutorials/kotlin-android/sync-project-with-gradle-2.png"/></p>
 <h3 id="构建和发布用于-android-的-kotlin-应用程序">构建和发布用于 Android 的 Kotlin 应用程序</h3>
 <p>最后构建应用程序，在虚拟机或连接的设备上运行。
 所有这些工作与 Java 并无区别。
