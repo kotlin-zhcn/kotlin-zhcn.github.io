@@ -1147,7 +1147,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>整型区间（<code>IntRange</code>、 <code>LongRange</code>、 <code>CharRange</code>）有一个额外的特性：它们可以迭代。
 编译器负责将其转换为类似 Java 的基于索引的 <em class="keyword">for</em>-循环而无额外开销：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
 for (i in 1..4) print(i)
 
@@ -1158,7 +1158,7 @@ for (i in 4..1) print(i)
 </div>
 <p>如果你想倒序迭代数字呢？也很简单。你可以使用标准库中定义的 <code>downTo()</code> 函数：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
 for (i in 4 downTo 1) print(i)
 //sampleEnd
@@ -1167,7 +1167,7 @@ for (i in 4 downTo 1) print(i)
 </div>
 <p>能否以不等于 1 的任意步长迭代数字？ 当然没问题， <code>step()</code> 函数有助于此：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
 for (i in 1..4 step 2) print(i)
 
@@ -1178,7 +1178,7 @@ for (i in 4 downTo 1 step 2) print(i)
 </div>
 <p>要创建一个不包括其结束元素的区间，可以使用 <code>until</code> 函数：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
 for (i in 1 until 10) {
      // i in [1, 10) 排除了 10

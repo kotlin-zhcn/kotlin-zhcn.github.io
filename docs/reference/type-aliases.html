@@ -1175,7 +1175,7 @@ typealias BInner = B.Inner
 
 fun foo(p: Predicate&lt;Int&gt;) = p(42)
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     val f: (Int) -&gt; Boolean = { it &gt; 0 }
     println(foo(f)) // 输出 "true"
 

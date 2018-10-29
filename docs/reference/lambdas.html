@@ -1167,7 +1167,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>为了调用 <code>fold</code>，需要传给它一个<a href="#函数类型实例化">函数类型的实例</a>作为参数，而在高阶函数调用处，（<a href="#lambda-表达式与匿名函数">下文详述的</a>）lambda 表达
 式广泛用于此目的。</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
     //sampleStart
     val items = listOf(1, 2, 3, 4, 5)
     
@@ -1267,7 +1267,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 -->第一个参数，反之亦然。例如，<code>(A, B) -&gt; C</code> 类型的值可以传给或赋值<!--
 -->给期待 <code>A.(B) -&gt; C</code> 的地方，反之亦然：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
     //sampleStart
     val repeatFun: String.(Int) -&gt; String = { times -&gt; this.repeat(times) }
     val twoParameters: (String, Int) -&gt; String = repeatFun // OK
@@ -1293,7 +1293,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 就好比该值是一个<a href="extensions.html">扩展函数</a>：<code>1.foo(2)</code>，</p>
 <p>例如：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
     //sampleStart
     val stringPlus: (String, String) -&gt; String = String::plus
     val intPlus: Int.(Int) -&gt; Int = Int::plus

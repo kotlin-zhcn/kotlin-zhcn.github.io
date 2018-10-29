@@ -1200,7 +1200,8 @@ val item = list[0] // 推断为平台类型（普通 Java 对象）
 </code></pre>
 </div>
 <p>当我们调用平台类型变量的方法时，Kotlin 不会在编译时报告可空性错误，
-但在运行时调用可能会失败，因为空指针异常或者 Kotlin 生成的阻止空值传播的断言：</p>
+但在运行时调用可能会失败，因为空指针异常或者 Kotlin 生成的<!--
+-->阻止空值传播的断言：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">item.substring(1) // 允许，如果 item == null 可能会抛出异常
 </code></pre>

@@ -1200,7 +1200,7 @@ println(e.p)
     "Hello"
 }
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     println(lazyValue)
     println(lazyValue)
 }
@@ -1225,7 +1225,7 @@ class User {
     }
 }
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     val user = User()
     user.name = "first"
     user.name = "second"
@@ -1260,7 +1260,7 @@ fun main(args: Array&lt;String&gt;) {
     val age: Int     by map
 }
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     val user = User(mapOf(
         "name" to "John Doe",
         "age"  to 25

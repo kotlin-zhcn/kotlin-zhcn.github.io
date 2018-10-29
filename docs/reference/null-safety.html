@@ -1160,7 +1160,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 <em class="keyword">null</em>：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     var a: String = "abc"
     a = null // 编译错误
@@ -1170,7 +1170,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>如果要允许为空，我们可以声明一个变量为可空字符串，写作 <code>String?</code>：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     var b: String? = "abc"
     b = null // ok
@@ -1199,7 +1199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>编译器会跟踪所执行检查的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
 同时，也支持更复杂（更智能）的条件：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val b = "Kotlin"
     if (b != null &amp;&amp; b.length &gt; 0) {
@@ -1218,7 +1218,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="安全的调用">安全的调用</h2>
 <p>你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val a = "Kotlin"
     val b: String? = null
@@ -1238,7 +1238,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>如果任意一个属性（环节）为空，这个链式调用就会返回 <em class="keyword">null</em>。</p>
 <p>如果要只对非空值执行某个操作，安全调用操作符可以与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html"><code>let</code></a> 一起使用：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val listWithNulls: List&lt;String?&gt; = listOf("Kotlin", null)
     for (item in listWithNulls) {

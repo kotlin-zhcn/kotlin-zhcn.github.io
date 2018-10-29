@@ -1179,7 +1179,7 @@ assert(widget is GoodWidget) { "Bad widget: ${widget::class.qualifiedName}" }
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun isOdd(x: Int) = x % 2 != 0
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
 //sampleStart
     val numbers = listOf(1, 2, 3)
     println(numbers.filter(::isOdd))
@@ -1193,7 +1193,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>当上下文中已知函数期望的类型时，<code>::</code> 可以用于重载函数。
 例如：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
     //sampleStart
     fun isOdd(x: Int) = x % 2 != 0
     fun isOdd(s: String) = s == "brillig" || s == "slithy" || s == "tove"
@@ -1234,7 +1234,7 @@ fun main(args: Array&lt;String&gt;) {
 
 fun isOdd(x: Int) = x % 2 != 0
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
 //sampleStart
     fun length(s: String) = s.length
     
@@ -1251,7 +1251,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">val x = 1
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     println(::x.get())
     println(::x.name) 
 }
@@ -1265,7 +1265,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">var y = 1
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     ::y.set(2)
     println(y)
 }
@@ -1273,7 +1273,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>属性引用可以用在不需要参数的函数处：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val strs = listOf("a", "bc", "def")
     println(strs.map(String::length))
@@ -1283,7 +1283,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p>要访问属于类的成员的属性，我们这样限定它：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     class A(val p: Int)
     val prop = A::p
@@ -1297,7 +1297,7 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code class="language-kotlin">val String.lastChar: Char
     get() = this[length - 1]
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     println(String::lastChar.get("abc"))
 }
 </code></pre>
@@ -1311,7 +1311,7 @@ fun main(args: Array&lt;String&gt;) {
 
 class A(val p: Int)
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     println(A::p.javaGetter) // 输出 "public final int A.getP()"
     println(A::p.javaField)  // 输出 "private final int A.p"
 }
@@ -1346,7 +1346,7 @@ fun function(factory: () -&gt; Foo) {
 <h2 id="绑定的函数与属性引用自-11-起">绑定的函数与属性引用（自 1.1 起）</h2>
 <p>你可以引用特定对象的实例方法：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numberRegex = "\\d+".toRegex()
     println(numberRegex.matches("29"))
@@ -1361,7 +1361,7 @@ fun function(factory: () -&gt; Foo) {
 这样的引用会绑定到其接收者上。
 它可以直接调用（如上例所示）或者用于任何期待一个函数类型表达式的时候：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numberRegex = "\\d+".toRegex()
     val strings = listOf("abc", "124", "a70")
@@ -1380,7 +1380,7 @@ val matches: (Regex, CharSequence) -&gt; Boolean = Regex::matches
 </div>
 <p>属性引用也可以绑定：</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val prop = "abc"::length
     println(prop.get())

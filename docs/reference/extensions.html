@@ -1344,7 +1344,7 @@ class C1 : C() {
     }
 }
 
-fun main(args: Array&lt;String&gt;) {
+fun main() {
     C().caller(D())   // 输出 "D.foo in C"
     C1().caller(D())  // 输出 "D.foo in C1" —— 分发接收者虚拟解析
     C().caller(D1())  // 输出 "D.foo in C" —— 扩展接收者静态解析
