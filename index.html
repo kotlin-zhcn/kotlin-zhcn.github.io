@@ -50,8 +50,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
+    <div class="global-header-panel banner-nav">
+        <div class="g-layout">
+<div class="global-nav banner-container">
+    <a class="banner-text" href="https://www.youtube.com/watch?v=PsaFVLr8t4E" target="_blank">
+        <div class="banner-item icon"></div>
+        <div class="banner-item title">
+            KotlinConf 2018
+        </div>
+        <div class="banner-item">
+            观看开幕主题演讲
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+</div>        </div>
+    </div>
 <header class="global-header">
-
     <div class="global-header-panel">
         <div class="g-layout">
             <a class="global-header-logo" href="/">Kotlin</a>
@@ -93,22 +107,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 
-    <div class="g-layout">
-            <a href="https://www.youtube.com/watch?v=PsaFVLr8t4E" class="banner-link" target="_blank">
+        <div class="banner-main">
+            <div class="g-layout">
                 <div class="kotlin-info">
-                    <div class="kotlin-info-description">
-                        <div class="play-video" ></div>
-                        <div>
-                            观看<br>
-                            KotlinConf 2018<br>
-                            开幕主题演讲
-                        </div>
-                    </div>
+                    <a href="https://blog.jetbrains.com/kotlin/2018/10/kotlin-1-3/" class="kotlin-info-button"></a>
                 </div>
-            </a>
+            </div>
+        </div>
 
-            <h2 class="banner-header">Kotlin 1.3 <a href="/docs/reference/whatsnew13.html" class="kotlin-whats">即将带来什么
-                </a></h2>
+    <div class="g-layout">
+            <h2 class="banner-header">Kotlin 1.3 <a href="/docs/reference/whatsnew13.html"
+                                                    class="kotlin-whats">发布了</a>
+            </h2>
             <div class="kotlin-slides">
                 <div class="slides-container">
                     <div class="slide-item slide-1">
@@ -305,284 +315,74 @@ fun onLoad() {
 
     </section>
 
+<h2 class="overview-header">Try Kotlin</h2>
 <section class="kotlin-overview-section _code-examples">
     <div class="kotlin-overview-code-example-tabs">
-        <div class="g-layout">
-            <div class="tab is_active js-tab" data-tab-id="kotlin-code-example-simplest"><div class="text">最简版</div></div>
-            <div class="tab js-tab" data-tab-id="kotlin-code-example-object-oriented"><div class="tab-text">“面向对象”的 Hello</div></div>
-            <div class="tab js-tab" data-tab-id="kotlin-code-example-android-activity"><div class="tab-text">Android Activity</div></div>
-            <div class="tab js-tab" data-tab-id="kotlin-code-example-html-builder"><div class="tab-text">HTML 构建器</div></div>
+        <div class="g-layout overview-group">
+            <div class="tab is_active js-tab" data-tab-id="kotlin-code-example-simplest">
+                <div class="text">最简版</div>
+            </div>
+            <div class="tab js-tab" data-tab-id="kotlin-code-example-object-oriented">
+                <div class="tab-text">面向对象的 Hello</div>
+            </div>
+            <div class="tab js-tab" data-tab-id="kotlin-code-example-coroutine">
+                <div class="tab-text">协程</div>
+            </div>
+            <a class="tab overview-examples" href="https://play.kotlinlang.org/byExample/overview">
+                <div class="tab-text">更多示例</div>
+                <span class="more-examples-icon"></span>
+            </a>
+
         </div>
-
-    </div>
-
-    <h2 class="section-header">Kotlin 看起来是什么样的？</h2>
-    <p class="section-description">简洁、简单、易读、易写</p>
-    <div class="section-content">
-
-        <!-- code example -->
         <div class="kotlin-overview-code-example" id="kotlin-code-example-simplest">
+            <div theme="darcula" class="sample" auto-indent="true" data-min-compiler-version="1.3">
+                package hello
 
-            <div class="code-line">
-                <div class="code"><span class="keyword">package</span> hello
-
-</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line"></div>
-                    <div class="code-legend-text">
-                        可选的包头
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="code-line">
-                <div class="code"><span class="keyword">fun</span> <span class="func-name">main</span>(<span class="var-name">args</span>: Array&lt;String&gt;) {</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line"></div>
-                    <div class="code-legend-text">
-                        包级可见的函数，接受一个字符串数组作为参数
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="code-line">
-                <div class="code">   <span class="buildin-func-name">println</span>(<span class="string-literal">"Hello World!"</span>)
-}
-
-
-</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line-marker"></div>
-                    <div class="code-legend-line" style="
-                        -webkit-transform: rotate(29deg);
-                        -ms-transform: rotate(29deg);
-                        transform: rotate(29deg);
-                        top: 70px;
-                        left: 23px;
-                        right: -12px;
-                    "></div>
-
-                    <div class="code-legend-text" style="top: 100px;">
-                        注意到了吗？<br> 分号可以省略
-                    </div>
-                </div>
-
+                fun main() {
+                println("Hello World")
+                }
             </div>
 
         </div>
-        <!--/ code example -->
 
         <!-- code example -->
         <div class="kotlin-overview-code-example is_hidden" id="kotlin-code-example-object-oriented">
-            <div class="code-line">
-                <div class="code">  </div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-                        <div style="
-                            position: absolute;
-                            width: 1px;
-                            background: #fff;
-                            top: 1px;
-                            height: 17px;
-                        "></div>
-                    </div>
-                    <div class="code-legend-text">
-                        具有主构造函数和成员函数的类
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code"><span class="keyword">class</span> <span class="class-name">Greeter</span>(<span class="keyword">val</span> <span class="var-name">name</span>: String) {</div>
-            </div>
+            <div theme="darcula" class="sample" auto-indent="true" data-min-compiler-version="1.3" args="Kotlin">
+                class Greeter(val name: String) {
+                fun greet() {
+                println("Hello, $name")
+                }
+                }
 
-            <div class="code-line">
-                <div class="code">   <span class="keyword">fun</span> <span class="func-name">greet</span>() { </div>
+                fun main(args: Array&lt;String&gt;) {
+                Greeter(args[0]).greet()
+                }
             </div>
-            <div class="code-line">
-                <div class="code"><span class="buildin-func-name">      println</span>(<span class="string-literal">&quot;Hello, <span class="string-literal-var-substitution">$<span class="var-name">name</span></span>&quot;</span>)
-   }
-}
-
-</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-
-                    </div>
-                    <div class="code-legend-text">
-                        字符串内插以减少模版代码。
-                    </div>
-                </div>
-            </div>
-
-            <div class="code-line">
-                <div class="code"><span class="keyword">fun</span> <span class="func-name">main</span>(<span class="var-name">args</span>: Array&lt;String&gt;) {
-<span class="class-name">   Greeter</span>(<span class="var-name">args</span>[<span class="number">0</span>]).greet()</div>
-            </div>
-
-            <div class="code-line">
-                <div class="code">}  </div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-                        <div style="
-                            position: absolute;
-                            width: 1px;
-                            background: #fff;
-                            bottom: 1px;
-                            height: 17px;
-                        "></div>
-                    </div>
-                    <div class="code-legend-text">
-                        请注意，创建一个对象不用 new 关键字
-                    </div>
-                </div>
-            </div>
-
-            <div class="code-line">
-                <div class="code">
-</div>
-            </div>
-
         </div>
-        <!--/ code example -->
-
         <!-- code example -->
-        <div class="kotlin-overview-code-example is_hidden" id="kotlin-code-example-android-activity">
-            <div class="code">          </div>
-            <div class="code-line">
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-                        <div style="
-                            position: absolute;
-                            width: 1px;
-                            background: #fff;
-                            top: 1px;
-                            height: 17px;
-                        "></div>
-                    </div>
-                    <div class="code-legend-text">
-                        类型安全访问视图
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code"><span class="keyword">import</span> kotlinx.android.synthetic.main.activity_main.fab
-                </div>
-            </div>
-
-            <div class="code-line">
-                <div class="code"><span class="keyword">class</span> <span class="class-name">MainActivity</span> : <span class="class-name">AppCompatActivity</span>() {</div>
-            </div>
-
-            <div class="code-line">
-                <div class="code">    <span class="keyword">override fun</span> <span class="func-name">onCreate</span>(<span class="var-name">savedInstanceState</span>: Bundle?) {
-        ……</div>
-            </div>
-            <div class="code-line">
-                <div class="code">        fab.setOnClickListener {</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-
-                    </div>
-                    <div class="code-legend-text">
-                        Lambda 表达式以简化事件处理程序
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code">            toast(<span class="string-literal">&quot;Hello!&quot;</span>)</div>
-            </div>
-            <div class="code-line">
-                <div class="code">        }     </div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-                        <div style="
-                            position: absolute;
-                            width: 1px;
-                            background: #fff;
-                            bottom: 1px;
-                            height: 17px;
-                        "></div>
-                    </div>
-                    <div class="code-legend-text">
-                        用于普通 Android API 的简洁包装
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code">    }
-}</div>
-        </div>
-        </div>
-        <!--/ code example -->
-
-
-        <!-- code example -->
-        <div class="kotlin-overview-code-example is_hidden" id="kotlin-code-example-html-builder">
-            <div class="code-line">
-                <div class="code"><span class="keyword">val</span> <span class="var-name">data</span> = <span class="buildin-func-name">mapOf</span>(<span class="number">1</span> <span class="buildin-func-name">to</span> <span class="string-literal">&quot;one&quot;</span>, <span class="number">2</span> <span class="buildin-func-name">to</span> <span class="string-literal">&quot;two&quot;</span>)
-
-createHTML().table {</div>
-            </div>
-            <div class="code-line">
-                <div class="code">    <span class="keyword">for</span> ((<span class="var-name">num</span>, <span class="var-name">string</span>) <span class="keyword">in</span> <span class="var-name">data</span>) {</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-
-                    </div>
-                    <div class="code-legend-text">
-                        遍历数据
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code">        tr {</div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-
-                    </div>
-                    <div class="code-legend-text">
-                        创建 HTML 标签的函数
-                    </div>
-                </div>
-            </div>
-            <div class="code-line">
-                <div class="code">           td { +<span class="string-literal">&quot;$</span><span class="var-name">num</span><span class="string-literal">&quot;</span> } </div>
-            </div>
-            <div class="code-line">
-                <div class="code">           td { +<span class="var-name">string</span> }
-        }
-    }
-}
-                </div>
-                <div class="code-legend align_right">
-                    <div class="code-legend-line">
-
-                    </div>
-                    <div class="code-legend-text">
-                        输出变量的值
-                    </div>
-                </div>
+        <div class="kotlin-overview-code-example is_hidden" id="kotlin-code-example-coroutine">
+            <div theme="darcula" class="sample" auto-indent="true" folded-button="false" data-min-compiler-version="1.3">
+                import kotlinx.coroutines.*
+                //sampleStart
+                suspend fun main() = coroutineScope {
+                    for(i in 0 until 10) {
+                        launch {
+                            delay(1000 - i * 10)
+                            print("❤️$i ")
+                        }
+                    }
+                }
+                //sampleEnd
             </div>
         </div>
-        <!--/ code example -->
-        <div class="more-link-wrap">
-            <a href="/docs/reference" class="more-link">更多示例参见完整语言文档</a>
-        </div>
-
     </div>
 </section>
+<div class="section-description">
+    浏览 Kotlin 代码示例<br/>并直接在<!--
+    -->浏览器中解决问题<br/>
+    <a href="https://play.kotlinlang.org" class="try-button" target="_blank">在线试用</a>
+</div>
     <section class="kotlin-overview-section _get-kotlin" id="get-kotlin">
-        <h2 class="section-header">试用 Kotlin</h2>
-
-        <div class="try-image"></div>
-        <a href="https://play.kotlinlang.org" class="try-button">在线试用</a>
-        <div class="section-description">
-            浏览 Kotlin 代码示例<br/>
-            并直接在浏览器中解决问题
-        </div>
-
         <div class="section-content">
             <div class="get-kotlin-options-list">
                 <div class="option-item _intellij-idea">
@@ -654,7 +454,7 @@ createHTML().table {</div>
                     </div>
                 </div>
             </div>
-            <p class="kotlin-version">最新版本： 1.2.71</p>
+            <p class="kotlin-version">最新版本： 1.3.0</p>
         </div>
     </section>
 
