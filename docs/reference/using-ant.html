@@ -1156,7 +1156,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 需要 Ant 1.8.2+ 版本。</p>
 <h2 id="针对-jvm-只用-kotlin-源代码">针对 JVM 只用 Kotlin 源代码</h2>
 <p>当项目由 Kotlin 专用源代码组成时，编译项目的最简单方法是使用 <em>kotlinc</em> 任务：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1164,10 +1165,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <p>其中 <code>${kotlin.lib}</code> 指向解压缩 Kotlin 独立编译器所在文件夹。</p>
 <h2 id="针对-jvm-只用-kotlin-源代码且多根">针对 JVM 只用 Kotlin 源代码且多根</h2>
 <p>如果项目由多个源代码根组成，那么使用 <em>src</em> 作为元素来定义路径：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1178,10 +1181,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <h2 id="针对-jvm-使用-kotlin-和-java-源代码">针对 JVM 使用 Kotlin 和 Java 源代码</h2>
 <p>如果项目由 Kotlin 和 Java 源代码组成，虽然可以使用 <em>kotlinc</em> 来避免任务参数的重复，但是<!--
 -->建议使用 <em>withKotlin</em> 任务：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1196,11 +1201,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <p>还可以将正在编译的模块的名称指定为 <code>moduleName</code> 属性：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;withKotlin moduleName="myModule"/&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;withKotlin moduleName="myModule"/&gt;
 </code></pre>
+</div>
 <h2 id="针对-javascript-用单个源文件夹">针对 JavaScript 用单个源文件夹</h2>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1208,8 +1217,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <h2 id="针对-javascript-用-prefix-postfix-以及-sourcemap-选项">针对 JavaScript 用 Prefix、 PostFix 以及 sourcemap 选项</h2>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;taskdef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1217,12 +1228,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <h2 id="针对-javascript-用单个源文件夹以及-metainfo-选项">针对 JavaScript 用单个源文件夹以及 metaInfo 选项</h2>
 <p>如果要将翻译结果作为 Kotlin/JavaScript 库分发，那么 <code>metaInfo</code> 选项会很有用。
 如果 <code>metaInfo</code> 设置为 <code>true</code>，则在编译期间将创建具有<!--
 -->二进制元数据的额外的 JS 文件。该文件应该与翻译<!--
 -->结果一起分发：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;project name="Ant Task Test" default="build"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;project name="Ant Task Test" default="build"&gt;
     &lt;typedef resource="org/jetbrains/kotlin/ant/antlib.xml" classpath="${kotlin.lib}/kotlin-ant.jar"/&gt;
 
     &lt;target name="build"&gt;
@@ -1231,6 +1244,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/target&gt;
 &lt;/project&gt;
 </code></pre>
+</div>
 <h2 id="参考">参考</h2>
 <p>元素和属性的完整列表如下：</p>
 <h3 id="kotlinc-和-kotlin2js-的公共属性">kotlinc 和 kotlin2js 的公共属性</h3>
@@ -1363,12 +1377,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="传递原始编译器参数">传递原始编译器参数</h3>
 <p>如需传递原始编译器参数，可以使用带 <code>value</code> 或 <code>line</code> 属性的 <code>&lt;compilerarg&gt;</code> 元素。
 可以放在 <code>&lt;kotlinc&gt;</code>、 <code>&lt;kotlin2js&gt;</code> 与 <code>&lt;withKotlin&gt;</code> 任务元素内，如下所示：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;kotlinc src="${test.data}/hello.kt" output="${temp}/hello.jar"&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;kotlinc src="${test.data}/hello.kt" output="${temp}/hello.jar"&gt;
     &lt;compilerarg value="-Xno-inline"/&gt;
     &lt;compilerarg line="-Xno-call-assertions -Xno-param-assertions"/&gt;
     &lt;compilerarg value="-Xno-optimize"/&gt;
 &lt;/kotlinc&gt;
 </code></pre>
+</div>
 <p>当运行 <code>kotlinc -help</code> 时，会显示可以使用的参数的完整列表。</p>
 
         </article>
