@@ -884,20 +884,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/basics.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">基础</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/coroutines/coroutines-guide.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
                 <span class="text">协程指南</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/basics.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基础</span>
             </a>
     </div>
 
@@ -1390,9 +1390,9 @@ compileKotlin {
 <pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 // ……
 
-val kotlinCompile: KotlinCompile by tasks
+val compileKotlin: KotlinCompile by tasks
 
-kotlinCompile.kotlinOptions.suppressWarnings = true
+compileKotlin.kotlinOptions.suppressWarnings = true
 </code></pre>
 </div>
 <p>相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCompileCommon</code>。</p>

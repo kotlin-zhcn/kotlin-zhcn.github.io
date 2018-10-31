@@ -884,20 +884,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/basics.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">基础</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/coroutines/coroutines-guide.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
                 <span class="text">协程指南</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/basics.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基础</span>
             </a>
     </div>
 
@@ -1150,14 +1150,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  */
 
 // This file was automatically generated from coroutines-guide.md by Knit tool. Do not edit.
-package kotlinx.coroutines.experimental.guide.$$1$$2
-
-import kotlinx.coroutines.experimental.*
+package kotlinx.coroutines.guide.$$1$$2
 -->
 <!--- KNIT     ../core/kotlinx-coroutines-core/test/guide/.*\.kt -->
 <!--- TEST_OUT ../core/kotlinx-coroutines-core/test/guide/test/DispatcherGuideTest.kt
 // This file was automatically generated from coroutines-guide.md by Knit tool. Do not edit.
-package kotlinx.coroutines.experimental.guide.test
+package kotlinx.coroutines.guide.test
 
 import org.junit.Test
 
@@ -1185,23 +1183,23 @@ class DispatchersGuideTest {
 <!--- END_TOC -->
 <h2 id="coroutine-context-and-dispatchers">Coroutine context and dispatchers</h2>
 <p>Coroutines always execute in some context which is represented by the value of 
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-coroutine-context/">CoroutineContext</a> 
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
 type, defined in the Kotlin standard library.</p>
-<p>The coroutine context is a set of various elements. The main elements are the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job/index.html">Job</a> of the coroutine, 
+<p>The coroutine context is a set of various elements. The main elements are the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> of the coroutine, 
 which we've seen before, and its dispatcher, which is covered in this section.</p>
 <h3 id="dispatchers-and-threads">Dispatchers and threads</h3>
-<p>Coroutine context includes a <em>coroutine dispatcher</em> (see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>) that determines what thread or threads 
+<p>Coroutine context includes a <em>coroutine dispatcher</em> (see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>) that determines what thread or threads 
 the corresponding coroutine uses for its execution. Coroutine dispatcher can confine coroutine execution 
 to a specific thread, dispatch it to a thread pool, or let it run unconfined.</p>
-<p>All coroutines builders like <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/launch.html">launch</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/async.html">async</a> accept an optional 
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines.experimental/-coroutine-context/">CoroutineContext</a> 
+<p>All coroutine builders like <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> accept an optional 
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
 parameter that can be used to explicitly specify the dispatcher for new coroutine and other context elements.</p>
 <p>Try the following example:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     launch { // context of the parent, main runBlocking coroutine
         println("main runBlocking      : I'm working in thread ${Thread.currentThread().name}")
     }
@@ -1214,6 +1212,7 @@ import kotlin.coroutines.experimental.*
     launch(newSingleThreadContext("MyOwnThread")) { // will get its own new thread
         println("newSingleThreadContext: I'm working in thread ${Thread.currentThread().name}")
     }
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1228,31 +1227,31 @@ main runBlocking      : I'm working in thread main
 </code></pre>
 <!--- TEST LINES_START_UNORDERED -->
 <p>When <code>launch { ... }</code> is used without parameters, it inherits the context (and thus dispatcher)
-from the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/index.html">CoroutineScope</a> that it is being launched from. In this case, it inherits the
+from the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> that it is being launched from. In this case, it inherits the
 context of the main <code>runBlocking</code> coroutine which runs in the <code>main</code> thread.</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> is a special dispatcher that also appears to run in the <code>main</code> thread, but it is,
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> is a special dispatcher that also appears to run in the <code>main</code> thread, but it is,
 in fact, a different mechanism that is explained later.</p>
-<p>The default dispatcher, that is used when coroutines are launched in <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-global-scope/index.html">GlobalScope</a>,
-is represented by <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-dispatchers/-default.html">Dispatchers.Default</a> and uses shared background pool of threads,
+<p>The default dispatcher, that is used when coroutines are launched in <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a>,
+is represented by <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> and uses shared background pool of threads,
 so <code>launch(Dispatchers.Default) { ... }</code> uses the same dispatcher as <code>GlobalScope.launch { ... }</code>.</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/new-single-thread-context.html">newSingleThreadContext</a> creates a new thread for the coroutine to run. 
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> creates a new thread for the coroutine to run. 
 A dedicated thread is a very expensive resource. 
-In a real application it must be either released, when no longer needed, using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-executor-coroutine-dispatcher/close.html">close</a> 
+In a real application it must be either released, when no longer needed, using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a> 
 function, or stored in a top-level variable and reused throughout the application.</p>
 <h3 id="unconfined-vs-confined-dispatcher">Unconfined vs confined dispatcher</h3>
-<p>The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> coroutine dispatcher starts coroutine in the caller thread, but only until the
+<p>The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> coroutine dispatcher starts coroutine in the caller thread, but only until the
 first suspension point. After suspension it resumes in the thread that is fully determined by the
 suspending function that was invoked. Unconfined dispatcher is appropriate when coroutine does not
 consume CPU time nor updates any shared data (like UI) that is confined to a specific thread.</p>
-<p>On the other side, by default, a dispatcher for the outer <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/index.html">CoroutineScope</a> is inherited. 
-The default dispatcher for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/run-blocking.html">runBlocking</a> coroutine, in particular,
+<p>On the other side, by default, a dispatcher for the outer <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> is inherited. 
+The default dispatcher for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> coroutine, in particular,
 is confined to the invoker thread, so inheriting it has the effect of confining execution to
 this thread with a predictable FIFO scheduling.</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     launch(Dispatchers.Unconfined) { // not confined -- will work with main thread
         println("Unconfined      : I'm working in thread ${Thread.currentThread().name}")
         delay(500)
@@ -1263,6 +1262,7 @@ import kotlin.coroutines.experimental.*
         delay(1000)
         println("main runBlocking: After delay in thread ${Thread.currentThread().name}")
     }
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1277,7 +1277,7 @@ main runBlocking: After delay in thread main
 </code></pre>
 <!--- TEST LINES_START -->
 <p>So, the coroutine that had inherited context of <code>runBlocking {...}</code> continues to execute
-in the <code>main</code> thread, while the unconfined one had resumed in the default executor thread that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/delay.html">delay</a>
+in the <code>main</code> thread, while the unconfined one had resumed in the default executor thread that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>
 function is using.</p>
 <blockquote>
 <p>Unconfined dispatcher is an advanced mechanism that can be helpful in certain corner cases where
@@ -1293,13 +1293,13 @@ threads is to print the thread name in the log file on each log statement. This 
 by logging frameworks. When using coroutines, the thread name alone does not give much of a context, so 
 <code>kotlinx.coroutines</code> includes debugging facilities to make it easier.</p>
 <p>Run the following code with <code>-Dkotlinx.coroutines.debug</code> JVM option:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
 
-fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     val a = async {
         log("I'm computing a piece of the answer")
         6
@@ -1309,6 +1309,7 @@ fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
         7
     }
     log("The answer is ${a.await() * b.await()}")
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1327,13 +1328,16 @@ The output of this code is:</p>
 <p>The <code>log</code> function prints the name of the thread in square brackets and you can see, that it is the <code>main</code>
 thread, but the identifier of the currently executing coroutine is appended to it. This identifier 
 is consecutively assigned to all created coroutines when debugging mode is turned on.</p>
-<p>You can read more about debugging facilities in the documentation for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/new-coroutine-context.html">newCoroutineContext</a> function.</p>
+<p>You can read more about debugging facilities in the documentation for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-coroutine-context.html">newCoroutineContext</a> function.</p>
 <h3 id="jumping-between-threads">Jumping between threads</h3>
 <p>Run the following code with <code>-Dkotlinx.coroutines.debug</code> JVM option (see <a href="#debugging-coroutines-and-threads">debug</a>):</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
 
-fun main(args: Array&lt;String&gt;) {
+fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+
+fun main() {
+//sampleStart
     newSingleThreadContext("Ctx1").use { ctx1 -&gt;
         newSingleThreadContext("Ctx2").use { ctx2 -&gt;
             runBlocking(ctx1) {
@@ -1345,14 +1349,15 @@ fun main(args: Array&lt;String&gt;) {
             }
         }
     }
+//sampleEnd    
 }
 </code></pre>
 </div>
 <blockquote>
 <p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-context-04.kt">here</a></p>
 </blockquote>
-<p>It demonstrates several new techniques. One is using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/run-blocking.html">runBlocking</a> with an explicitly specified context, and
-the other one is using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/with-context.html">withContext</a> function to change a context of a coroutine while still staying in the
+<p>It demonstrates several new techniques. One is using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> with an explicitly specified context, and
+the other one is using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> function to change a context of a coroutine while still staying in the
 same coroutine as you can see in the output below:</p>
 <pre><code class="code _highlighted" data-lang="text/plain">[Ctx1 @coroutine#1] Started in ctx1
 [Ctx2 @coroutine#1] Working in ctx2
@@ -1360,16 +1365,17 @@ same coroutine as you can see in the output below:</p>
 </code></pre>
 <!--- TEST -->
 <p>Note, that this example also uses <code>use</code> function from the Kotlin standard library to release threads that
-are created with <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/new-single-thread-context.html">newSingleThreadContext</a> when they are no longer needed.</p>
+are created with <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> when they are no longer needed.</p>
 <h3 id="job-in-the-context">Job in the context</h3>
-<p>The coroutine's <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job/index.html">Job</a> is part of its context. The coroutine can retrieve it from its own context 
+<p>The coroutine's <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> is part of its context. The coroutine can retrieve it from its own context 
 using <code>coroutineContext[Job]</code> expression:</p>
-<!--- INCLUDE  
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     println("My job is ${coroutineContext[Job]}")
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1380,21 +1386,21 @@ import kotlin.coroutines.experimental.*
 <pre><code>My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
 </code></pre>
 <!--- TEST lines.size == 1 && lines[0].startsWith("My job is \"coroutine#1\":BlockingCoroutine{Active}@") -->
-<p>Note, that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/is-active.html">isActive</a> in <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/index.html">CoroutineScope</a> is just a convenient shortcut for
+<p>Note, that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html">isActive</a> in <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> is just a convenient shortcut for
 <code>coroutineContext[Job]?.isActive == true</code>.</p>
 <h3 id="children-of-a-coroutine">Children of a coroutine</h3>
-<p>When a coroutine is launched in the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/index.html">CoroutineScope</a> of another coroutine,
-it inherits its context via <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> and 
-the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job/index.html">Job</a> of the new coroutine becomes
+<p>When a coroutine is launched in the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> of another coroutine,
+it inherits its context via <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> and 
+the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> of the new coroutine becomes
 a <em>child</em> of the parent coroutine's job. When the parent coroutine is cancelled, all its children
 are recursively cancelled, too.</p>
-<p>However, when <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-global-scope/index.html">GlobalScope</a> is used to launch a coroutine, it is not tied to the scope it
+<p>However, when <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> is used to launch a coroutine, it is not tied to the scope it
 was launched from and operates independently.</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     // launch a coroutine to process some kind of incoming request
     val request = launch {
         // it spawns two other jobs, one with GlobalScope
@@ -1415,6 +1421,7 @@ import kotlin.coroutines.experimental.*
     request.cancel() // cancel processing of the request
     delay(1000) // delay a second to see what happens
     println("main: Who has survived request cancellation?")
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1430,12 +1437,12 @@ main: Who has survived request cancellation?
 <!--- TEST -->
 <h3 id="parental-responsibilities">Parental responsibilities</h3>
 <p>A parent coroutine always waits for completion of all its children. Parent does not have to explicitly track
-all the children it launches and it does not have to use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job/join.html">Job.join</a> to wait for them at the end:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+all the children it launches and it does not have to use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">Job.join</a> to wait for them at the end:</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     // launch a coroutine to process some kind of incoming request
     val request = launch {
         repeat(3) { i -&gt; // launch a few children jobs
@@ -1448,6 +1455,7 @@ import kotlin.coroutines.experimental.*
     }
     request.join() // wait for completion of the request, including all its children
     println("Now processing of the request is complete")
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1466,13 +1474,16 @@ Now processing of the request is complete
 <p>Automatically assigned ids are good when coroutines log often and you just need to correlate log records
 coming from the same coroutine. However, when coroutine is tied to the processing of a specific request
 or doing some specific background task, it is better to name it explicitly for debugging purposes.
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-name/index.html">CoroutineName</a> context element serves the same function as a thread name. It'll get displayed in the thread name that
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> context element serves the same function as a thread name. It'll get displayed in the thread name that
 is executing this coroutine when <a href="#debugging-coroutines-and-threads">debugging mode</a> is turned on.</p>
 <p>The following example demonstrates this concept:</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
 
-fun main(args: Array&lt;String&gt;) = runBlocking(CoroutineName("main")) {
+fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
+
+fun main() = runBlocking(CoroutineName("main")) {
+//sampleStart
     log("Started main coroutine")
     // run two background value computations
     val v1 = async(CoroutineName("v1coroutine")) {
@@ -1486,6 +1497,7 @@ fun main(args: Array&lt;String&gt;) = runBlocking(CoroutineName("main")) {
         6
     }
     log("The answer for v1 / v2 = ${v1.await() / v2.await()}")
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1503,14 +1515,15 @@ fun main(args: Array&lt;String&gt;) = runBlocking(CoroutineName("main")) {
 <p>Sometimes we need to define multiple elements for coroutine context. We can use <code>+</code> operator for that.
 For example, we can launch a coroutine with an explicitly specified dispatcher and an explicitly specified 
 name at the same time:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     launch(Dispatchers.Default + CoroutineName("test")) {
         println("I'm working in thread ${Thread.currentThread().name}")
     }
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1527,12 +1540,9 @@ an object with a lifecycle, but that object is not a coroutine. For example, we 
 and launch various coroutines in the context of an Android activity to perform asynchronous operations to fetch 
 and update data, do animations, etc. All of these coroutines must be cancelled when activity is destroyed
 to avoid memory leaks.</p>
-<p>We manage a lifecycle of our coroutines by creating an instance of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job/index.html">Job</a> that is tied to 
-the lifecycle of our activity. A job instance is created using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-job.html">Job()</a> factory function when
+<p>We manage a lifecycle of our coroutines by creating an instance of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> that is tied to 
+the lifecycle of our activity. A job instance is created using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html">Job()</a> factory function when
 activity is created and it is cancelled when an activity is destroyed like this:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Activity : CoroutineScope {
     lateinit var job: Job
@@ -1547,9 +1557,9 @@ import kotlin.coroutines.experimental.*
     // to be continued ...
 </code></pre>
 </div>
-<p>We also implement <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/index.html">CoroutineScope</a> interface in this <code>Actvity</code> class. We only need to provide an override
-for its <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> property to specify the context for coroutines launched in its
-scope. We combine the desired dispatcher (we used <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-dispatchers/-default.html">Dispatchers.Default</a> in this example) and a job:</p>
+<p>We also implement <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> interface in this <code>Actvity</code> class. We only need to provide an override
+for its <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> property to specify the context for coroutines launched in its
+scope. We combine the desired dispatcher (we used <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> in this example) and a job:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">    // class Activity continues
     override val coroutineContext: CoroutineContext
@@ -1576,8 +1586,42 @@ specify their context. For the demo, we launch ten coroutines that delay for a d
 <p>In our main function we create activity, call our test <code>doSomething</code> function, and destroy activity after 500ms.
 This cancels all the coroutines that were launched which we can confirm by noting that it does not print 
 onto the screen anymore if we wait:</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+<!--- CLEAR -->
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlin.coroutines.*
+import kotlinx.coroutines.*
+
+class Activity : CoroutineScope {
+    lateinit var job: Job
+
+    fun create() {
+        job = Job()
+    }
+
+    fun destroy() {
+        job.cancel()
+    }
+    // to be continued ...
+
+    // class Activity continues
+    override val coroutineContext: CoroutineContext
+        get() = Dispatchers.Default + job
+    // to be continued ...
+
+    // class Activity continues
+    fun doSomething() {
+        // launch ten coroutines for a demo, each working for a different time
+        repeat(10) { i -&gt;
+            launch {
+                delay((i + 1) * 200L) // variable delay 200ms, 400ms, ... etc
+                println("Coroutine $i is done")
+            }
+        }
+    }
+} // class Activity ends
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     val activity = Activity()
     activity.create() // create an activity
     activity.doSomething() // run test function
@@ -1586,6 +1630,7 @@ onto the screen anymore if we wait:</p>
     println("Destroying activity!")
     activity.destroy() // cancels all coroutines
     delay(1000) // visually confirm that they don't work
+//sampleEnd    
 }
 </code></pre>
 </div>
@@ -1605,16 +1650,16 @@ by a single invocation of <code>job.cancel()</code> in <code>Activity.destroy()<
 <p>Sometimes it is convenient to have an ability to pass some thread-local data, but, for coroutines, which 
 are not bound to any particular thread, it is hard to achieve it manually without writing a lot of boilerplate.</p>
 <p>For <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>, 
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/java.lang.-thread-local/as-context-element.html">asContextElement</a> extension function is here for the rescue. It creates an additional context element, 
-which keep the value of the given <code>ThreadLocal</code> and restores it every time the coroutine switches its context.</p>
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> extension function is here for the rescue. It creates an additional context element, 
+which keeps the value of the given <code>ThreadLocal</code> and restores it every time the coroutine switches its context.</p>
 <p>It is easy to demonstrate it in action:</p>
-<!--- INCLUDE
-import kotlin.coroutines.experimental.*
--->
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val threadLocal = ThreadLocal&lt;String?&gt;() // declare thread-local variable
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
 
-fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
+val threadLocal = ThreadLocal&lt;String?&gt;() // declare thread-local variable
+
+fun main() = runBlocking&lt;Unit&gt; {
+//sampleStart
     threadLocal.set("main")
     println("Pre-main, current thread: ${Thread.currentThread()}, thread local value: '${threadLocal.get()}'")
     val job = launch(Dispatchers.Default + threadLocal.asContextElement(value = "launch")) {
@@ -1624,13 +1669,14 @@ fun main(args: Array&lt;String&gt;) = runBlocking&lt;Unit&gt; {
     }
     job.join()
     println("Post-main, current thread: ${Thread.currentThread()}, thread local value: '${threadLocal.get()}'")
+//sampleEnd    
 }
 </code></pre>
 </div>
 <blockquote>
 <p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-context-11.kt">here</a></p>
 </blockquote>
-<p>In this example we launch new coroutine in a background thread pool using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-dispatchers/-default.html">Dispatchers.Default</a>, so
+<p>In this example we launch new coroutine in a background thread pool using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>, so
 it works on a different threads from a thread pool, but it still has the value of thread local variable,
 that we've specified using <code>threadLocal.asContextElement(value = "launch")</code>,
 no matter on what thread the coroutine is executed.
@@ -1644,15 +1690,15 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
 <p><code>ThreadLocal</code> has first-class support and can be used with any primitive <code>kotlinx.coroutines</code> provides.
 It has one key limitation: when thread-local is mutated, a new value is not propagated to the coroutine caller 
 (as context element cannot track all <code>ThreadLocal</code> object accesses) and updated value is lost on the next suspension.
-Use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/with-context.html">withContext</a> to update the value of the thread-local in a coroutine, see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/java.lang.-thread-local/as-context-element.html">asContextElement</a> for more details.</p>
+Use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> to update the value of the thread-local in a coroutine, see <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> for more details.</p>
 <p>Alternatively, a value can be stored in a mutable box like <code>class Counter(var i: Int)</code>, which is, in turn, 
-is stored in a thread-local variable. However, in this case you are fully responsible to synchronize 
+stored in a thread-local variable. However, in this case you are fully responsible to synchronize 
 potentially concurrent modifications to the variable in this mutable box.</p>
 <p>For advanced usage, for example for integration with logging MDC, transactional contexts or any other libraries
-which internally use thread-locals for passing data, see documentation for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.experimental/-thread-context-element/index.html">ThreadContextElement</a> interface 
+which internally use thread-locals for passing data, see documentation for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> interface 
 that should be implemented.</p>
 <!--- MODULE kotlinx-coroutines-core -->
-<!--- INDEX kotlinx.coroutines.experimental -->
+<!--- INDEX kotlinx.coroutines -->
 <!--- END -->
 
         </article>
