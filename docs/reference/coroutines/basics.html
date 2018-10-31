@@ -1170,7 +1170,7 @@ class BasicsGuideTest {
 <li><a href="#bridging-blocking-and-non-blocking-worlds">桥接阻塞和非阻塞的世界</a></li>
 <li><a href="#waiting-for-a-job">等待一个任务</a></li>
 <li><a href="#structured-concurrency">结构性的并发</a></li>
-<li><a href="#scope-builder">作用域建造器</a></li>
+<li><a href="#scope-builder">作用域构建器</a></li>
 <li><a href="#extract-function-refactoring">提取函数重构</a></li>
 <li><a href="#coroutines-are-light-weight">协程是轻量级的</a></li>
 <li><a href="#global-coroutines-are-like-daemon-threads">像守护线程一样的全局协程</a></li>
@@ -1216,7 +1216,7 @@ World!
 -->函数只能在协程中使用.</p>
 <h3 id="桥接阻塞和非阻塞的世界">桥接阻塞和非阻塞的世界</h3>
 <p>第一个例子中在相似的代码中包含了 <em>非阻塞的</em> <code>delay(...)</code> 和 <em>阻塞的</em> <code>Thread.sleep(...)</code>。
-它非让容易的让我们看出来哪一个是阻塞的，哪一个是非阻塞的。
+它非常容易的让我们看出来哪一个是阻塞的，哪一个是非阻塞的。
 来一起使用明确的阻塞 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程构建器：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1282,7 +1282,7 @@ import kotlinx.coroutines.*
 <!--- CLEAR -->
 <h3 id="等待一个任务">等待一个任务</h3>
 <p>延迟一段时间来等待另一个协程开始工作并不是一个好的选择。让我们明确地<!--
--->等待(使用非阻塞的方法)一个后台<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>执行结束:</p>
+-->等待(使用非阻塞的方法)一个后台 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 执行结束:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
