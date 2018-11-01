@@ -1218,7 +1218,7 @@ main: Now I can quit.
 这里也有一个可以使 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 挂起的函数 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a><!--
 -->它合并了对 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">cancel</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 的调用。</p>
 <h3 id="取消协作">取消协作</h3>
-<p>协程的取消是 <em>协作</em> 的。一段协程代码必须合作才能被取消。
+<p>协程的取消是 <em>协作</em> 的。一段协程代码必须协作才能被取消。
 所有 <code>kotlinx.coroutines</code> 中的挂起函数都是 <em>可被取消的</em> 。它们检查协程的取消，
 并在取消时抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>。 然而，如果协程正在执行<!--
 -->计算任务，并且没有检查取消的话，那么它是不能被取消的，就如如下示例<!--
@@ -1425,7 +1425,7 @@ Exception in thread "main" kotlinx.coroutines.TimeoutCancellationException: Time
 我们之前没有在控制台上看到堆栈跟踪信息的打印。这是因为<!--
 -->在被取消的协程中 <code>CancellationException</code> 被认为是协程执行结束的正常原因。 
 然而，在这个示例中我们在 <code>main</code> 函数中正确地使用了 <code>withTimeout</code>。</p>
-<p>由于取消只是一个例外, 所有的资源都使用常用的方法来关闭。
+<p>由于取消只是一个例外，所有的资源都使用常用的方法来关闭。
 如果你需要做一些各类使用超时的特别的额外操作，可以使用类似 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html">withTimeout</a>
 的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout-or-null.html">withTimeoutOrNull</a> 函数，并把这些会超时的代码包装在 <code>try {...} catch (e: TimeoutCancellationException) {...}</code>
 代码块中，而 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout-or-null.html">withTimeoutOrNull</a> 通过返回 <code>null</code> 来进行超时操作，从而替代抛出一个异常：</p>
