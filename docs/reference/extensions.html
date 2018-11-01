@@ -1236,7 +1236,7 @@ fun C.foo(i: Int) { println("extension") }
 </div>
 <h2 id="扩展属性">扩展属性</h2>
 <p>与函数类似，Kotlin 支持扩展属性：</p>
-<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val &lt;T&gt; List&lt;T&gt;.lastIndex: Int
     get() = size - 1
 </code></pre>
@@ -1369,7 +1369,7 @@ fun main() {
 <h2 id="动机">动机</h2>
 <p>在Java中，我们将类命名为“*Utils”：<code>FileUtils</code>、<code>StringUtils</code> 等，著名的 <code>java.util.Collections</code> 也属于同一种命名方式。
 关于这些 Utils-类的不愉快的部分是代码写成这样：</p>
-<div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
+<div auto-indent="false" class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 Collections.swap(list, Collections.binarySearch(list,
     Collections.max(otherList)),
@@ -1377,13 +1377,13 @@ Collections.swap(list, Collections.binarySearch(list,
 </code></pre>
 </div>
 <p>这些类名总是碍手碍脚的，我们可以通过静态导入达到这样效果：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 swap(list, binarySearch(list, max(otherList)), max(list));
 </code></pre>
 </div>
 <p>这会变得好一点，但是我们并没有从 IDE 强大的自动补全功能中得到帮助。如果能这样就更好了：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
 list.swap(list.binarySearch(otherList.max()), list.max());
 </code></pre>

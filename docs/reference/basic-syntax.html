@@ -1257,11 +1257,13 @@ fun main() {
 <p>参见<a href="properties.html">属性与字段</a>。</p>
 <h2 id="注释">注释</h2>
 <p>正如 Java 与 JavaScript，Kotlin 支持行注释及块注释。</p>
-<pre><code class="code _highlighted" data-lang="text/x-kotlin">// 这是一个行注释
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// 这是一个行注释
 
 /* 这是一个多行的
    块注释。 */
 </code></pre>
+</div>
 <p>与 Java 不同的是，Kotlin 的块注释可以嵌套。</p>
 <p>参见<a href="kotlin-doc.html">编写 Kotlin 代码文档</a> 查看关于文档注释语法的信息。</p>
 <h2 id="使用字符串模板">使用字符串模板</h2>
@@ -1544,7 +1546,7 @@ fun main() {
         println("-1 is out of range")
     }
     if (list.size !in list.indices) {
-        println("list size is out of valid list indices range too")
+        println("list size is out of valid list indices range, too")
     }
 //sampleEnd
 }
