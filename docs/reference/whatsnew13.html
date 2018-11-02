@@ -1220,7 +1220,7 @@ fun foo() {
 }
 </code></pre>
 </div>
-<p>###标准库中的契约</p>
+<h3 id="标准库中的契约">标准库中的契约</h3>
 <p><code>stdlib（kotlin 标准库）</code>已经在利用<strong>契约</strong>这一特性，改善了上述情景中代码分析情况。这一部分的契约功能已经趋于稳定，意味着你不需要任何额外的操作就可以享用改善后的代码分析。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
@@ -1406,7 +1406,7 @@ println("x: $x, y: $y, z: $z, range: $range")
 <p>注意！ 将你的 API 标记为 <code>@JvmDefault</code> 将会对二进制兼容性有严重影响。请确保你仔细阅读了<a href="/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考页面</a>，在你的产品中使用<code>@Default</code>之前。</p>
 </blockquote>
 <h1 id="标准库">标准库</h1>
-<p>##多平台随机数</p>
+<h2 id="多平台随机数">多平台随机数</h2>
 <p>在 Kotlin 1.3 之前，没有办法在所有平台上统一来生成随机数 — 我们只能采取依赖平台的特定解决方案，比如 JVM 上的 <code>java.util.Random</code>。这个版本将会解决这个问题，通过引入 <code>kotlin.random.Random</code>，这是个支持所有平台的类：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlin.random.Random
@@ -1419,9 +1419,9 @@ fun main() {
 }
 </code></pre>
 </div>
-<h2 id="isnullorempty-和-orempty-拓展">isNullOrEmpty 和 orEmpty 拓展</h2>
-<p>某些类型的 <code>isNullOrEmpty</code> 和 <code>orEmpty</code> 拓展函数已经存在于标准库中，对于前者，如果函数接受者是 <code>null</code>或者为空将会返回 <code>true</code> ；对于后者， 如果接收者是 <code>null</code> ，将会返回一个空实例。
-Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提供了类似的拓展函数。</p>
+<h2 id="isnullorempty-与-orempty">isNullOrEmpty 与 orEmpty</h2>
+<p>某些类型的 <code>isNullOrEmpty</code> 和 <code>orEmpty</code> 扩展函数已经存在于标准库中，对于前者，如果函数接受者是 <code>null</code>或者为空将会返回 <code>true</code> ；对于后者， 如果接收者是 <code>null</code> ，将会返回一个空实例。
+Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提供了类似的扩展函数。</p>
 <h2 id="非空数组间拷贝元素">非空数组间拷贝元素</h2>
 <p>对于非空数组类型，包括无符号数组类型，函数 <code>array.copyInto(targetArray, targetOffset, startIndex, endIndex)</code> 使得数组拷贝在 Kotlin 中更加简单。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1449,7 +1449,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 }
 </code></pre>
 </div>
-<p>##ifEmpty 和 ifBlank 拓展</p>
+<h2 id="ifempty-与-ifblank">ifEmpty 与 ifBlank</h2>
 <p>Collections, maps, object arrays, char sequence 和 sequence 现在都有 <code>ifEmpty</code> 函数，用于指定一个默认值，当接收者为空时：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1467,7 +1467,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 }
 </code></pre>
 </div>
-<p>Char sequences 和 strings 还额外拥有 <code>ifBlank</code> 拓展，和  <code>ifEmpty</code> 功能类似，但是用于检查一个 string 是否全是空格。</p>
+<p>Char sequences 和 strings 还额外拥有 <code>ifBlank</code> 扩展，和  <code>ifEmpty</code> 功能类似，但是用于检查一个 string 是否全是空格。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1483,7 +1483,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 <h2 id="微小的改变">微小的改变</h2>
 <ul>
 <li><code>Boolean</code> 类型现在支持伴生对象。</li>
-<li><code>Any?.hashCode()</code>  拓展函数会在 <code>null</code> 的时候返回 0。</li>
+<li><code>Any?.hashCode()</code>  扩展函数会在 <code>null</code> 的时候返回 0。</li>
 <li><code>Char</code> 类型现在提供了 <code>MIN_VALUE</code>/<code>MAX_VALUE</code> 常量。</li>
 <li><code>SIZE_BYTES</code> 和  <code>SIZE_BITS</code> 会作为原生类型伴生对象常量。</li>
 </ul>
@@ -1503,7 +1503,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 <p>Kotlin 1.3 将继续完善 script API，引入了一些自定义脚本实验性的支持，比如添加额外属性，提供静态或者动态依赖等。</p>
 <p>更详细的细节，请参考<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scripting-support.md">KEEP-75</a>。</p>
 <h2 id="草稿文件支持">草稿文件支持</h2>
-<p>Kotlin 1.3 引入了对可运行的<strong>草稿文件</strong>支持。<strong>草稿文件</strong>是一个以 .kts 拓展名结尾的 kotlin 脚本文件，你可以在编辑器里直接运行和获取计算结果。</p>
+<p>Kotlin 1.3 引入了对可运行的<strong>草稿文件</strong>支持。<strong>草稿文件</strong>是一个以 .kts 扩展名结尾的 kotlin 脚本文件，你可以在编辑器里直接运行和获取计算结果。</p>
 <p>更多细节请关注<a href="https://www.jetbrains.com/help/idea/scratches.html">Scratches documentation</a>。</p>
 
         </article>

@@ -1156,6 +1156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>One has to remember that those definitions are given only for pure Kotlin. Compatibility of Kotlin code from the other languages perspective (e.g. from Java) is out of the scope of this document.</p>
 <h3 id="evaluation-order-of-constructor-arguments-regarding-clinit-call">Evaluation order of constructor arguments regarding <code>&lt;clinit&gt;</code> call</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-19532">KT-19532</a></p>
 <p><strong>Component</strong>: Kotlin/JVM</p>
 <p><strong>Incompatible change type</strong>: behavioral</p>
@@ -1164,9 +1165,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>&lt;1.3: old behavior (see details in the Issue)</li>
 <li>&gt;= 1.3: behavior changed,
-<code>-Xnormalize-constructor-calls=disable</code> can be used to temporarily revert to pre-1.3 behavior. Support for this flag is going to be removed in the next major release.</li>
+ <code>-Xnormalize-constructor-calls=disable</code> can be used to temporarily revert to pre-1.3 behavior. Support for this flag is going to be removed in the next major release.</li>
 </ul>
+</blockquote>
 <h3 id="missing-getter-targeted-annotations-on-annotation-constructor-parameters">Missing getter-targeted annotations on annotation constructor parameters</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-25287">KT-25287</a></p>
 <p><strong>Component</strong>: Kotlin/JVM</p>
 <p><strong>Incompatible change type</strong>: behavioral</p>
@@ -1176,7 +1179,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: getter-target annotations on annotation constructor parameters are not applied</li>
 <li>&gt;=1.3: getter-target annotations on annotation constructor parameters are properly applied and written to the generated code</li>
 </ul>
+</blockquote>
 <h3 id="missing-errors-in-class-constructors-get-annotations">Missing errors in class constructor’s <code>@get:</code> annotations</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-19628">KT-19628</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1187,7 +1192,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.x: errors reported only by tooling, the compiler still compiles such code without any warnings</li>
 <li>&gt;=1.3: errors reported by the compiler too, causing erroneous code to be rejected</li>
 </ul>
+</blockquote>
 <h3 id="nullability-assertions-on-access-to-java-types-annotated-with-notnull">Nullability assertions on access to Java types annotated with <code>@NotNull</code></h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-20830">KT-20830</a></p>
 <p><strong>Component</strong>: Kotlin/JVM</p>
 <p><strong>Incompatible change type</strong>: Behavioral</p>
@@ -1198,7 +1205,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&gt;=1.3: the compiler generates missed assertions. This can case code which was (erroneously) passing <code>null</code>s here fail faster.<br/>
 <code>-XXLanguage:-StrictJavaNullabilityAssertions</code> can be used to temporarily return to the pre-1.3 behavior. Support for this flag will be removed in the next major release.</li>
 </ul>
+</blockquote>
 <h3 id="unsound-smartcasts-on-enum-members">Unsound smartcasts on enum members</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-20772">KT-20772</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1209,7 +1218,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&gt;=1.3: smartcast will be properly applied only to the member of one enum entry. <br/>
 <code>-XXLanguage:-SoundSmartcastForEnumEntries</code> will temporarily return old behavior. Support for this flag will be removed in the next major release.</li>
 </ul>
+</blockquote>
 <h3 id="val-backing-field-reassignment-in-getter"><code>val</code> backing field reassignment in getter</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-16681">KT-16681</a></p>
 <p><strong>Components</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1220,7 +1231,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warning is reported on code which reassigns backing field of <code>val</code></li>
 <li>&gt;=1.3: deprecation warnings are elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="array-capturing-before-the-for-loop-where-it-is-iterated">Array capturing before the <code>for</code>-loop where it is iterated</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-21354">KT-21354</a></p>
 <p><strong>Component</strong>: Kotlin/JVM</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1229,10 +1242,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>&lt;1.2: described code patterns are compiled fine, but updates to local variable affect loop execution</li>
 <li>1.2.X: deprecation warning reported if a range expression in a for-loop is an array-typed local variable which is assigned in a loop body</li>
-<li>1.3.X: deprecation warnings are elevated to errors</li>
-<li>1.4: remove errors and change behavior in such cases to be consistent with other containers</li>
+<li>1.3: change behavior in such cases to be consistent with other containers</li>
 </ul>
+</blockquote>
 <h3 id="nested-classifiers-in-enum-entries">Nested classifiers in enum entries</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-16310">KT-16310</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1243,7 +1257,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on the nested classifiers</li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="data-class-overriding-copy">Data class overriding <code>copy</code></h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-19618">KT-19618</a></p>
 <p><strong>Components</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1254,7 +1270,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on data classes overriding <code>copy()</code></li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="inner-classes-inheriting-throwable-that-capture-generic-parameters-from-the-outer-class">Inner classes inheriting <code>Throwable</code> that capture generic parameters from the outer class</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-17981">KT-17981</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1265,7 +1283,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on inner classes inheriting <code>Throwable</code></li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="visibility-rules-regarding-complex-class-hierarchies-with-companion-objects">Visibility rules regarding complex class hierarchies with companion objects</h3>
+<blockquote>
 <p><strong>Issues</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-21515">KT-21515</a>, <a href="https://youtrack.jetbrains.com/issue/KT-25333">KT-25333</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1276,7 +1296,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on short names which are not going to be accessible anymore. Tooling suggests automated migration by adding full name.</li>
 <li>&gt;=1.3: deprecation warnings elevated to errors. Offending code should add full qualifiers or explicit imports</li>
 </ul>
+</blockquote>
 <h3 id="non-constant-vararg-annotation-parameters">Non-constant vararg annotation parameters</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-23153">KT-23153</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1287,7 +1309,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on such code patterns</li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="local-annotation-classes">Local annotation classes</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-23277">KT-23277</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1298,7 +1322,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings reported on local annotation classes</li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="smartcasts-on-local-delegated-properties">Smartcasts on local delegated properties</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-22517">KT-22517</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1309,7 +1335,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: smartcasts on local delegated properries are reported as deprecated (the compiler issues warnings)</li>
 <li>&gt;=1.3: deprecation warnings elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="mod-operator-convention"><code>mod</code> operator convention</h3>
+<blockquote>
 <p><strong>Issues</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-24197">KT-24197</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1320,7 +1348,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.3.X: elevate warnings to error, but still allow to resolve to <code>operator mod</code> declarations</li>
 <li>1.4.X: do not resolve calls to <code>operator mod</code> anymore</li>
 </ul>
+</blockquote>
 <h3 id="passing-single-element-to-vararg-in-named-form">Passing single element to vararg in named form</h3>
+<blockquote>
 <p><strong>Issues</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-20588">KT-20588</a>, <a href="https://youtrack.jetbrains.com/issue/KT-20589">KT-20589</a>. See also <a href="https://youtrack.jetbrains.com/issue/KT-20171">KT-20171</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1332,7 +1362,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.3.X: warnings are elevated to errors</li>
 <li>&gt;= 1.4: change semantic of assigning single element to vararg, making assignment of array equivalent to the assignment of a spread of an array</li>
 </ul>
+</blockquote>
 <h3 id="retention-of-annotations-with-target-expression">Retention of annotations with target <code>EXPRESSION</code></h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-13762">KT-13762</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1343,7 +1375,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings are reported on declarations of such annotations</li>
 <li>&gt;=1.3: warnings are elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="annotations-with-target-parameter-shouldnt-be-applicable-to-parameters-type">Annotations with target <code>PARAMETER</code> shouldn't be applicable to parameter's type</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-9580">KT-9580</a></p>
 <p><strong>Component</strong>: Core language</p>
 <p><strong>Incompatible change type</strong>: Source</p>
@@ -1354,7 +1388,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: deprecation warnings are reported on such usages</li>
 <li>&gt;=1.3: warnings are elevated to errors</li>
 </ul>
+</blockquote>
 <h3 id="arraycopyofrange-throws-an-exception-when-indices-are-out-of-bounds-instead-of-enlarging-the-returned-array"><code>Array.copyOfRange</code> throws an exception when indices are out of bounds instead of enlarging the returned array</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-19489">KT-19489</a></p>
 <p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
 <p><strong>Incompatible change type</strong>: Behavioral</p>
@@ -1364,7 +1400,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: in case <code>toIndex</code> in the invocation of <code>Array.copyOfRange</code> is greater than the array size, the missing elements in range fill be filled with <code>null</code>s, violating soundness of the Kotlin type system.</li>
 <li>&gt;=1.3: check that <code>toIndex</code> is in the array bounds, and throw exception if it isn't</li>
 </ul>
+</blockquote>
 <h3 id="progressions-of-ints-and-longs-with-a-step-of-intmin_value-and-longmin_value-are-outlawed-and-wont-be-allowed-to-be-instantiated">Progressions of ints and longs with a step of <code>Int.MIN_VALUE</code> and <code>Long.MIN_VALUE</code> are outlawed and won’t be allowed to be instantiated</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-17176">KT-17176</a></p>
 <p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
 <p><strong>Incompatible change type</strong>: Behavioral</p>
@@ -1374,7 +1412,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: it was possible to create an <code>IntProgression</code> with <code>Int.MIN_VALUE</code> step, which yields two values <code>[0, -2147483648]</code>, which is non-obvious behavior</li>
 <li>&gt;=1.3: throw <code>IllegalArgumentException</code> if the step is the minimum negative value of its integer type</li>
 </ul>
+</blockquote>
 <h3 id="check-for-index-overflow-in-operations-on-very-long-sequences">Check for index overflow in operations on very long sequences</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-16097">KT-16097</a></p>
 <p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
 <p><strong>Incompatible change type</strong>: Behavioral</p>
@@ -1384,7 +1424,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: calling such methods on very long sequences could produce negative results due to integer overflow</li>
 <li>&gt;=1.3: detect overflow in such methods and throw exception immediately</li>
 </ul>
+</blockquote>
 <h3 id="unify-split-by-an-empty-match-regex-result-across-the-platforms">Unify split by an empty match regex result across the platforms</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-21049">KT-21049</a></p>
 <p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
 <p><strong>Incompatible change type</strong>: Behavioral</p>
@@ -1394,17 +1436,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: behavior of described calls is different when comparing JS, JRE 6, JRE 7 versus JRE 8+</li>
 <li>&gt;=1.3: unify behavior across the platforms</li>
 </ul>
-<h3 id="rename-buildsequence-and-builditerator">Rename <code>buildSequence</code> and <code>buildIterator</code></h3>
-<p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-26678">KT-26678</a></p>
-<p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
-<p><strong>Incompatible change type</strong>: Binary</p>
-<p><strong>Short summary</strong>: in Kotlin 1.3, rename <code>buildSequence</code> and <code>buildIterator</code> to <code>sequence</code> and <code>iterator</code> correspondingly</p>
-<p><strong>Deprecation cycle</strong>:</p>
-<ul>
-<li>&lt;1.3: stdlib provides <code>buildSequence</code> and <code>buildIterator</code></li>
-<li>&gt;=1.3: stdlib provides equivalent <code>sequence</code> and <code>iterator</code>; old declarations are marked with <code>@Deprecated(HIDDEN)</code></li>
-</ul>
+</blockquote>
 <h3 id="discontinued-deprecated-artifacts-in-the-compiler-distribution">Discontinued deprecated artifacts in the compiler distribution</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-23799">KT-23799</a></p>
 <p><strong>Component</strong>: other</p>
 <p><strong>Incompatible change type</strong>: Binary</p>
@@ -1419,7 +1453,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>1.2.X: the artifacts were marked as deprecated, the compiler reported warning on usage of those artifacts</li>
 <li>&gt;=1.3: the artifacts are discontinued</li>
 </ul>
+</blockquote>
 <h3 id="annotations-in-stdlib">Annotations in stdlib</h3>
+<blockquote>
 <p><strong>Issue</strong>: <a href="https://youtrack.jetbrains.com/issue/KT-21784">KT-21784</a></p>
 <p><strong>Component</strong>: kotlin-stdlib (JVM)</p>
 <p><strong>Incompatible change type</strong>: Binary</p>
@@ -1429,6 +1465,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>&lt;1.3: annotations were shipped with the stdlib artifact</li>
 <li>&gt;=1.3: annotations ship in separate artifacts</li>
 </ul>
+</blockquote>
 
         </article>
     </div>
