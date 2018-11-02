@@ -212,15 +212,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </div>
     </div>
 
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/compatibility-guide-13.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin 1.3 的兼容性指南</span>
-            </a>
-    </div>
-
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1072,6 +1063,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compatibility-guide-13.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 1.3 的兼容性指南</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1145,23 +1145,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlin-13-的新特性">Kotlin 1.3 的新特性</h1>
-<h2 id="协程正式发布">协程（正式发布）</h2>
-<p>历经了漫长而充足的的测试，协程 API 终于正式发布！这意味着从 Kotlin 1.3 版本起，协程 API 将与其他正式发布的功能一样保持稳定。查看全新的<a href="coroutines-overview.html">协程概览</a>。</p>
-<p>Kotlin 1.3 introduces callable references on suspend-functions and support of Coroutines in the Reflection API.</p>
+<h2 id="协程正式发布">协程正式发布</h2>
+<p>历经了漫长而充足的的测试，协程终于正式发布了！这意味着自 Kotlin 1.3 起，协程的语言支持与 API 已<a href="evolution/components-stability.html">完全稳定</a>。参见新版<a href="coroutines-overview.html">协程概述</a>。</p>
+<p>Kotlin 1.3 引入了挂起函数的可调用引用以及在反射 API 中对协程的支持。</p>
 <h2 id="kotlinnative">Kotlin/Native</h2>
-<p>Kotlin 1.3 将继续完善对 Native 平台的支持。详情查看<a href="native-overview.html">Kotlin/Native概览</a>。</p>
+<p>Kotlin 1.3 继续改进与完善原生平台。详情请参见 <a href="native-overview.html">Kotlin/Native 概述</a>。</p>
 <h2 id="多平台项目">多平台项目</h2>
-<p>In 1.3, we've completely reworked the model of multiplatform projects in order to improve expressiveness and flexibility, and to make sharing common code easier. Also, Kotlin/Native is now supported as one of the targets!</p>
-<p>The key differences to the old model are:</p>
+<p>在 1.3 中，我们完全修改了多平台项目的模型，以提高表现力与灵活性，并使共享公共代码更加容易。此外，多平台项目现在也支持 Kotlin/Native！</p>
+<p>与旧版模型的主要区别在于：</p>
 <ul>
-<li>In the old model, common and platform-specific code needed to be placed in separate modules, linked by <code>expectedBy</code> dependencies.
-Now, common and platform-specific code is placed in different source roots of the same module, making projects easier to configure.</li>
-<li>There is now a large number of <a href="/docs/reference/building-mpp-with-gradle.html#supported-platforms">preset platform configurations</a> for different supported platforms.</li>
-<li>The <a href="/docs/reference/building-mpp-with-gradle.html#adding-dependencies">dependencies configuration</a> has been changed; dependencies are now specified separately for each source root.</li>
-<li>Source sets can now be shared between an arbitrary subset of platforms (for example, in a module that targets JS, Android and iOS, you can have a source set that is shared only between Android and iOS).</li>
-<li><a href="/docs/reference/building-mpp-with-gradle.html#publishing-a-multiplatform-library">Publishing multiplatform libraries</a> is now supported.</li>
+<li>在旧版模型中，需要将公共代码与平台相关代码分别放在独立的模块中，以 <code>expectedBy</code> 依赖项链接。
+现在，公共代码与平台相关代码放在相同模块的不同源根（source root）中，使项目更易于配置。</li>
+<li>对于不同的已支持平台，现在有大量的<a href="/docs/reference/building-mpp-with-gradle.html#supported-platforms">预设的平台配置</a>。</li>
+<li>更改了<a href="/docs/reference/building-mpp-with-gradle.html#adding-dependencies">依赖配置</a>；现在为每个源根分别指定依赖项。</li>
+<li>源集（source set）现在可以在任意平台子集之间共享（例如，在一个目标平台为 JS、Android 与 iOS 的模块中，可以有一个只在 Android 与 iOS 之间共享的源集）。</li>
+<li>现在支持<a href="/docs/reference/building-mpp-with-gradle.html#publishing-a-multiplatform-library">发布多平台库</a>了。</li>
 </ul>
-<p>For more information, please refer to the <a href="/docs/reference/multiplatform.html">Multiplatform Programming documentation</a>.</p>
+<p>更多相关信息，请参考<a href="/docs/reference/multiplatform.html">多平台程序设计文档</a>。</p>
 <h2 id="契约">契约</h2>
 <p>Kotlin 编译器会做大量的静态分析工作，为了提供警告和降低模版代码。其中最重要的功能之一就是<strong>类型智能转换</strong>—提供了基于类型检查自动转换类型的能力。</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1438,7 +1438,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 </code></pre>
 </div>
 <h2 id="associatewith">associateWith</h2>
-<p>对于一个 list 一个非常常见的场景是，希望通过把 list 的每个元素作为 key，然后和某个 value 关联起来，来构建一个 map。这可以通过 <code>associate { it to getValue(it) }</code> 函数来完成，但是现在我们引入了一个更为效率和便捷的实现方式：<code>keys.associateWith { getValue(it) }</code></p>
+<p>对于一个 list 一个非常常见的场景是，希望通过把 list 的每个元素作为 key，然后和某个 value 关联起来，来构建一个 map。这可以通过 <code>associate { it to getValue(it) }</code> 函数来完成，但是现在我们引入了一个更为效率和便捷的实现方式：<code>keys.associateWith { getValue(it) }</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
