@@ -1168,20 +1168,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
  worker id. Other workers, or non-worker concurrency primitives, such as OS threads, can send a message
  to the worker with the <code>execute</code> call.</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">   val future = execute(TransferMode.SAFE, { SomeDataForWorker() }) {
-       // data returned by the second function argument comes to the
-       // worker routine as 'input' parameter.
-       input -&gt;
-       // Here we create an instance to be returned when someone consumes result future.
-       WorkerResult(input.stringParam + " result")
-   }
+<pre><code class="language-kotlin">val future = execute(TransferMode.SAFE, { SomeDataForWorker() }) {
+   // data returned by the second function argument comes to the
+   // worker routine as 'input' parameter.
+   input -&gt;
+   // Here we create an instance to be returned when someone consumes result future.
+   WorkerResult(input.stringParam + " result")
+}
 
-   future.consume {
-      // Here we see result returned from routine above. Note that future object or
-      // id could be transferred to another worker, so we don't have to consume future
-      // in same execution context it was obtained.
-      result -&gt; println("result is $result")
-   }
+future.consume {
+  // Here we see result returned from routine above. Note that future object or
+  // id could be transferred to another worker, so we don't have to consume future
+  // in same execution context it was obtained.
+  result -&gt; println("result is $result")
+}
 </code></pre>
 </div>
 <p>The call to <code>execute</code> uses a function passed as its second parameter to produce an object subgraph

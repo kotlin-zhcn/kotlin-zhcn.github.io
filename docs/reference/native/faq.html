@@ -1154,14 +1154,26 @@ and return <code>Unit</code> as an entry point.</p>
 The current implementation includes an automated reference counter with a cycle collector to collect cyclical
 garbage.</p>
 <h3 id="q-how-do-i-create-a-shared-library">Q: How do I create a shared library?</h3>
-<p>A: Use the <code>-produce dynamic</code> compiler switch, or <code>konanArtifacts { dynamic('foo') {} }</code> in Gradle.
-It will produce a platform-specific shared object (.so on Linux, .dylib on macOS, and .dll on Windows targets) and a
+<p>A: Use the <code>-produce dynamic</code> compiler switch, or <code>compilations.main.outputKinds 'DYNAMIC'</code> in Gradle, i.e.</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">targets {
+    fromPreset(presets.iosArm64, 'mylib') {
+       compilations.main.outputKinds 'DYNAMIC'
+    }
+}
+</code></pre>
+<p>It will produce a platform-specific shared object (.so on Linux, .dylib on macOS, and .dll on Windows targets) and a
 C language header, allowing the use of all public APIs available in your Kotlin/Native program from C/C++ code.
 See <code>samples/python_extension</code> for an example of using such a shared object to provide a bridge between Python and
 Kotlin/Native.</p>
 <h3 id="q-how-do-i-create-a-static-library-or-an-object-file">Q: How do I create a static library or an object file?</h3>
-<p>A: Use the <code>-produce static</code> compiler switch, or <code>konanArtifacts { static('foo') {} }</code> in Gradle.
-It will produce a platform-specific static object (.a library format) and a C language header, allowing you to
+<p>A: Use the <code>-produce static</code> compiler switch, or <code>compilations.main.outputKinds 'STATIC'</code> in Gradle, i.e.</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">targets {
+    fromPreset(presets.iosArm64, 'mylib') {
+       compilations.main.outputKinds 'STATIC'
+    }
+}
+</code></pre>
+<p>It will produce a platform-specific static object (.a library format) and a C language header, allowing you to
 use all the public APIs available in your Kotlin/Native program from C/C++ code.</p>
 <h3 id="q-how-do-i-run-kotlinnative-behind-a-corporate-proxy">Q: How do I run Kotlin/Native behind a corporate proxy?</h3>
 <p>A: As Kotlin/Native needs to download a platform specific toolchain, you need to specify
@@ -1170,10 +1182,27 @@ or set it via the <code>JAVA_OPTS</code> environment variable.</p>
 <h3 id="q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">Q: How do I specify a custom Objective-C prefix/name for my Kotlin framework?</h3>
 <p>A: Use the <code>-module_name</code> compiler option or matching Gradle DSL statement, i.e.</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">framework("MyCustomFramework") {
-    extraOpts '-module_name', 'TheName'
+<pre><code class="language-groovy">targets {
+    fromPreset(presets.iosArm64, 'myapp') {
+       compilations.main.outputKinds 'FRAMEWORK'
+       compilations.main.extraOpts '-module_name', 'TheName'
+    }
 }
 </code></pre>
+</div>
+<h3 id="q-how-do-i-enable-bitcode-for-my-kotlin-framework">Q: How do I enable bitcode for my Kotlin framework?</h3>
+<p>A: Use either <code>-Xembed-bitcode</code> or <code>-Xembed-bitcode-marker</code> compiler option
+or matching Gradle DSL statement, i.e.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">targets {
+    fromPreset(presets.iosArm64, 'myapp') {
+       compilations.main.outputKinds 'FRAMEWORK'
+       compilations.main.extraOpts '-Xembed-bitcode' // for release binaries
+       // or '-Xembed-bitcode-marker' for debug binaries
+}
+</code></pre>
+<p>These options have nearly the same effect as clang's <code>-fembed-bitcode</code>/<code>-fembed-bitcode-marker</code>
+and swiftc's <code>-embed-bitcode</code>/<code>-embed-bitcode-marker</code>.</p>
 </div>
 <h3 id="q-why-do-i-see-invalidmutabilityexception">Q: Why do I see <code>InvalidMutabilityException</code>?</h3>
 <p>A: It likely happens, because you are trying to mutate a frozen object. An object can transfer to the
@@ -1200,9 +1229,8 @@ You can then set the `KONAN_HOME` env variable to the generated `dist` folder in
 </details>
 <details>
 <summary>For Gradle, you can use <a href="https://docs.gradle.org/current/userguide/composite_builds.html">Gradle composite builds</a> like this:</summary>
-
-```
-# Set with the path of your kotlin-native clone
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash"># Set with the path of your kotlin-native clone
 export KONAN_REPO=$PWD/../kotlin-native
 
 # Run this once since it is costly, you can remove the `clean` task if not big changes were made from the last time you did this
@@ -1210,8 +1238,8 @@ pushd $KONAN_REPO &amp;&amp; git pull &amp;&amp; ./gradlew clean dependencies:up
 
 # In your project, you set have to the konan.home property, and include as composite the shared and gradle-plugin builds
 ./gradlew check -Pkonan.home=$KONAN_REPO/dist --include-build $KONAN_REPO/shared --include-build $KONAN_REPO/tools/kotlin-native-gradle-plugin
-```
-
+</code></pre>
+</div>
 </details>
 
         </article>

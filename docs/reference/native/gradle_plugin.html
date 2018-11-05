@@ -1145,6 +1145,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlinnative-gradle-插件">Kotlin/Native Gradle 插件</h1>
+<h3 id="important-notice">IMPORTANT NOTICE</h3>
+<p>This document describes Kotlin/Native experimental Gradle plugin, which is not the plugin yet supported by IDE
+or in multiplatform projects. See MPP Gradle plugin <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html">documentation</a>
+for more information.</p>
 <h3 id="overview">Overview</h3>
 <p>You may use the Gradle plugin to build <em>Kotlin/Native</em> projects. Builds of the plugin are
 <a href="https://plugins.gradle.org/plugin/org.jetbrains.kotlin.platform.native">available</a> at the Gradle plugin portal, so you can apply it
@@ -1373,6 +1377,19 @@ metadata to publish the artifacts so this feature must be enabled (see the <a hr
 }
 </code></pre>
 </div>
+<h3 id="serialization-plugin">Serialization plugin</h3>
+<p>The plugin is shipped with a customized version of the <code>kotlinx.serialization</code> plugin. To use it you don't have to 
+add new buildscript dependencies, just apply the plugins and add a dependency on the serialization library:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">apply plugin: 'org.jetbrains.kotlin.platform.native'
+apply plugin: 'kotlinx-serialization-native'
+
+dependencies {
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime-native'
+}
+</code></pre>
+</div>
+<p>The the <a href="https://github.com/ilmat192/kotlin-native-serialization-sample">example project</a> for details.</p>
 <h3 id="dsl-example">DSL example</h3>
 <p>In this section a commented DSL is shown. 
 See also the example projects that use this plugin, e.g.
