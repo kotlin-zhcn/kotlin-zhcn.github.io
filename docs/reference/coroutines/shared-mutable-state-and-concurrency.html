@@ -1167,7 +1167,7 @@ class SharedStateGuideTest {
 <li><a href="#shared-mutable-state-and-concurrency">共享的可变状态和并发</a>
 <ul>
 <li><a href="#the-problem">问题</a></li>
-<li><a href="#volatiles-are-of-no-help">没有发挥作用的volatile</a></li>
+<li><a href="#volatiles-are-of-no-help">没有发挥作用的 volatile</a></li>
 <li><a href="#thread-safe-data-structures">线程安全的数据结构</a></li>
 <li><a href="#thread-confinement-fine-grained">以细粒度限制线程</a></li>
 <li><a href="#thread-confinement-coarse-grained">以粗粒度限制线程</a></li>
@@ -1178,13 +1178,13 @@ class SharedStateGuideTest {
 </ul>
 <!--- END_TOC -->
 <h2 id="共享的可变状态和并发">共享的可变状态和并发</h2>
-<p>协程可用多线程调度器（比如默认的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> ）并发执行。这样就可以提出<!--
--->所有常见的并发问题。主要的问题是同步访问<strong>共享的可变状态</strong>。<!--
--->协程领域对这个问题的一些解决方案类似于多线程领域中的解决方案，<!--
--->但其他解决方案则是独一无二的。</p>
+<p>协程可用多线程调度器（比如默认的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>）并发执行。这样就可以提出<!--
+-->所有常见的并发问题。主要的问题是同步访问<strong>共享的可变状态</strong>。
+协程领域对这个问题的一些解决方案类似于多线程领域中的解决方案，
+但其他解决方案则是独一无二的。</p>
 <h3 id="问题">问题</h3>
-<p>我们启动一百个协程，它们都做一千次相同的动作。<!--
--->我们同时会测量它们的完成时间，以便进一步的比较：</p>
+<p>我们启动一百个协程，它们都做一千次相同的操作。<!--
+-->我们同时会测量它们的完成时间以便进一步的比较：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">suspend fun CoroutineScope.massiveRun(action: suspend () -&gt; Unit) {
     val n = 100  // 启动的协程数量
@@ -1242,9 +1242,9 @@ Completed 100000 actions in
 Counter =
 -->
 <p>这段代码最后打印出什么结果？它不太可能打印出“Counter = 100000”，因为一千个协程<!--
--->在一百个线程中同时递增计数器而且没有做并发处理。</p>
+-->在一百个线程中同时递增计数器但没有做并发处理。</p>
 <blockquote>
-<p>注意：如果你的运行机器使用两个或者更少的cpu，那么你_总是会_看到 100000，因为<!--
+<p>注意：如果你运行程序的机器使用两个或者更少的cpu，那么你 <em>将</em> 总是会看到 100000，因为<!--
 -->线程池在这种情况下只有一个线程可运行。要重现这个问题，可以做<!--
 -->如下的变动：</p>
 </blockquote>
@@ -1267,7 +1267,7 @@ suspend fun CoroutineScope.massiveRun(action: suspend () -&gt; Unit) {
     println("Completed ${n * k} actions in $time ms")    
 }
 
-val mtContext = newFixedThreadPoolContext(2, "mtPool") // 明确地用2个线程自定义上下文
+val mtContext = newFixedThreadPoolContext(2, "mtPool") // 明确地用两个线程自定义上下文
 var counter = 0
 
 fun main() = runBlocking&lt;Unit&gt; {
@@ -1326,12 +1326,12 @@ fun main() = runBlocking&lt;Unit&gt; {
 Completed 100000 actions in
 Counter =
 -->
-<p>这段代码运行速度更慢了，但我们最后仍然没有得到 “Counter = 100000”，因为 volatile 变量保证<!--
+<p>这段代码运行速度更慢了，但我们最后仍然没有得到 “Counter = 100000”这个结果，因为 volatile 变量保证<!--
 -->可线性化（这是“原子”的技术术语）读取和写入变量，但<!--
 -->在大量动作（在我们的示例中即“递增”操作）发生时并不提供原子性。</p>
 <h3 id="线程安全的数据结构">线程安全的数据结构</h3>
-<p>一种对线程、协程都有效的常规解决方法，就是使用线程安全（也称为同步的、<!--
--->可线性化、原子）的数据结构，它为需要在共享状态上执行的相应<!--
+<p>一种对线程、协程都有效的常规解决方法，就是使用线程安全（也称为同步的、
+可线性化、原子）的数据结构，它为需要在共享状态上执行的相应<!--
 -->操作提供所有必需的同步处理。<!--
 -->在简单的计数器场景中，我们可以使用具有 <code>incrementAndGet</code> 原子操作的 <code>AtomicInteger</code> 类：</p>
 <!--- CLEAR -->
@@ -1377,8 +1377,8 @@ Counter = 100000
 -->标准数据结构以及它们的基本操作。然而，它并不容易被扩展来应对复杂<!--
 -->状态、或一些没有现成的线程安全实现的复杂操作。</p>
 <h3 id="以细粒度限制线程">以细粒度限制线程</h3>
-<p>_限制线程_是解决共享可变状态问题的一种方案：对特定共享<!--
--->状态的所有访问权都限制在单个线程中。它通常应用于UI程序中：所有UI状态都局限于<!--
+<p><em>限制线程</em> 是解决共享可变状态问题的一种方案：对特定共享<!--
+-->状态的所有访问权都限制在单个线程中。它通常应用于 UI 程序中：所有 UI 状态都局限于<!--
 -->单个事件分发线程或应用主线程中。这在协程中很容易实现，通过使用一个<!--
 -->单线程上下文：</p>
 <!--- CLEAR -->
@@ -1422,13 +1422,13 @@ fun main() = runBlocking&lt;Unit&gt; {
 Completed 100000 actions in xxx ms
 Counter = 100000
 -->
-<p>这段代码运行非常缓慢，因为它进行了_细粒度_的线程限制。每个增量操作都得使用<!--
---> <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 块从多线程 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文切换到单线程上下文。</p>
+<p>这段代码运行非常缓慢，因为它进行了 <em>细粒度</em> 的线程限制。每个增量操作都得使用
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 块从多线程 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文切换到单线程上下文。</p>
 <h3 id="以粗粒度限制线程">以粗粒度限制线程</h3>
 <p>在实践中，线程限制是在大段代码中执行的，例如：状态更新类业务逻辑中大部分<!--
--->都是限于单线程中。下面的示例演示了这种情况，<!--
--->在单线程上下文中运行每个协程。<!--
--->这里我们使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 函数来切换协程上下文为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>：</p>
+-->都是限于单线程中。下面的示例演示了这种情况，
+在单线程上下文中运行每个协程。
+这里我们使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 函数来切换协程上下文为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1453,7 +1453,7 @@ var counter = 0
 
 fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart
-    CoroutineScope(counterContext).massiveRun { // run each coroutine in the single-threaded context
+    CoroutineScope(counterContext).massiveRun { // 在单线程上下文中运行每个协程
         counter++
     }
     println("Counter = $counter")
@@ -1470,12 +1470,12 @@ Counter = 100000
 -->
 <p>这段代码运行更快而且打印出了正确的结果。</p>
 <h3 id="互斥">互斥</h3>
-<p>该问题的互斥解决方案：使用永远不会同时执行的_关键代码块_<!--
--->来保护共享状态的所有修改。在阻塞的世界中，你通常会为此目的使用 <code>synchronized</code> 或者 <code>ReentrantLock</code> 。<!--
--->在协程中的替代品叫做 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html">Mutex</a> 。它具有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/lock.html">lock</a>  和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/unlock.html">unlock</a> 方法，<!--
--->可以隔离关键的部分。关键的区别在于 <code>Mutex.lock()</code> 是一个挂起函数，它不会阻塞线程。</p>
-<p>还有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/with-lock.html">withLock</a> 扩展函数，可以方便的替代常用的<!--
---> <code>mutex.lock(); try { ... } finally { mutex.unlock() }</code> 模式：</p>
+<p>该问题的互斥解决方案：使用永远不会同时执行的 <em>关键代码块</em> 
+来保护共享状态的所有修改。在阻塞的世界中，你通常会为此目的使用 <code>synchronized</code> 或者 <code>ReentrantLock</code>。
+在协程中的替代品叫做 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/index.html">Mutex</a> 。它具有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/lock.html">lock</a>  和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/-mutex/unlock.html">unlock</a> 方法，
+可以隔离关键的部分。关键的区别在于 <code>Mutex.lock()</code> 是一个挂起函数，它不会阻塞线程。</p>
+<p>还有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.sync/with-lock.html">withLock</a> 扩展函数，可以方便的替代常用的
+<code>mutex.lock(); try { ... } finally { mutex.unlock() }</code> 模式：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1522,18 +1522,18 @@ Counter = 100000
 -->对于某些必须定期修改共享状态的场景，它是一个不错的选择，但是没有自然线程可以<!--
 -->限制此状态。</p>
 <h3 id="actors">Actors</h3>
-<p>一个 <a href="https://en.wikipedia.org/wiki/Actor_model">actor</a> 是由以下元素组成的一个实体：一个协程、它的状态受限封装在此协程中、<!--
--->以及一个与其他协程通信的_通道_。一个简单的 actor 可以简单的写成一个函数，<!--
--->但是一个拥有复杂状态的 actor 更适合由类来表示。</p>
+<p>一个 <a href="https://en.wikipedia.org/wiki/Actor_model">actor</a> 是由以下元素组成的一个实体：一个协程、它的状态受限封装在此协程中、
+以及一个与其他协程通信的 <em>通道</em> 。一个简单的 actor 可以简单的写成一个函数，
+但是一个拥有复杂状态的 actor 更适合由类来表示。</p>
 <p>有一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a> 协程构建器，它可以方便地将 actor 的邮箱通道组合到其<!--
 -->作用域中（用来接收消息）、组合发送 channel 与结果集对象，这样<!--
 -->对 actor 的单个引用就可以作为其句柄持有。</p>
-<p>使用 actor 的第一步是定义一个 actor 要处理的消息类。<!--
--->Kotlin 的 <a href="https://kotlinlang.org/docs/reference/sealed-classes.html">密封类</a> 很适合这种场景。<!--
--->我们使用 <code>IncCounter</code> 消息（用来递增计数器）和 <code>GetCounter</code> 消息（用来获取值）来定义 <code>CounterMsg</code> 密封类。<!--
--->后者需要发送回复。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-completable-deferred/index.html">CompletableDeferred</a> 通信<!--
--->原语表示未来可知（可传达）的单个值，<!--
--->因该特征它被用于此处。</p>
+<p>使用 actor 的第一步是定义一个 actor 要处理的消息类。
+Kotlin 的 <a href="https://kotlinlang.org/docs/reference/sealed-classes.html">密封类</a> 很适合这种场景。
+我们使用 <code>IncCounter</code> 消息（用来递增计数器）和 <code>GetCounter</code> 消息（用来获取值）来定义 <code>CounterMsg</code> 密封类。
+后者需要发送回复。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-completable-deferred/index.html">CompletableDeferred</a> 通信<!--
+-->原语表示未来可知（可传达）的单个值，
+因该特征它被用于此处。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 计数器 Actor 的各种类型
 sealed class CounterMsg
@@ -1555,7 +1555,7 @@ fun CoroutineScope.counterActor() = actor&lt;CounterMsg&gt; {
 }
 </code></pre>
 </div>
-<p>主函数代码很简单：</p>
+<p>main 函数代码很简单：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1602,7 +1602,7 @@ fun main() = runBlocking&lt;Unit&gt; {
     val response = CompletableDeferred&lt;Int&gt;()
     counter.send(GetCounter(response))
     println("Counter = ${response.await()}")
-    counter.close() // shutdown the actor
+    counter.close() // 关闭该actor
 //sampleEnd    
 }
 </code></pre>
@@ -1620,7 +1620,7 @@ Counter = 100000
 <p>actor 在高负载下比锁更有效，因为在这种情况下它总是有工作要做，而且根本不<!--
 -->需要切换到不同的上下文。</p>
 <blockquote>
-<p>注意， <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a> 协程构建器是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 协程构建器的双重构件。一个 actor 与它<!--
+<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a> 协程构建器是一个双重的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 协程构建器。一个 actor 与它<!--
 -->接收消息的通道相关联，而一个 producer 与它<!--
 -->发送元素的通道相关联。</p>
 </blockquote>
