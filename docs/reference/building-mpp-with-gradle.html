@@ -1271,7 +1271,7 @@ of a target may be accessed in the DSL, for example, to get the task names, depe
 }
 </code></pre>
 </div>
-<p>To modify <a href="using-gradle.html#compiler-options">the Kotlin compiler options</a> of a compilation, use the compilation's task which
+<p>To modify <a href="using-gradle.html#编译器选项">the Kotlin compiler options</a> of a compilation, use the compilation's task which
 can be found by its name:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
@@ -1693,7 +1693,7 @@ cannot be run or used as a native library.</p>
 <code>getLinkTask('executable', 'release')</code> or <code>getLinkTaskName('static', 'debug')</code>. To get the binary file, use <code>getBinary</code>, for example, 
  as <code>getBinary('executable', 'release')</code> or <code>getBinary('static', 'debug')</code>.</p>
 <h3 id="cinterop-support">CInterop support</h3>
-<p>Since Kotlin/Native provides <a href="/docs/reference/native/c_interop.html">interoperability with native languages</a>,
+<p>Since Kotlin/Native provides <a href="native/c_interop.html">interoperability with native languages</a>,
 there is a DSL allowing one to configure this feature for a specific compilation.</p>
 <p>A compilation can interact with several native libraries. Interoperability with each of them can be configured in
 the <code>cinterops</code> block of the compilation:</p>
