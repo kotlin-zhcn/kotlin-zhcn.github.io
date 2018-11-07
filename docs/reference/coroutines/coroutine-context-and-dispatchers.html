@@ -1184,7 +1184,7 @@ class DispatchersGuideTest {
 <h2 id="协程上下文与调度器">协程上下文与调度器</h2>
 <p>协程总是运行在一些以
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
-类型为代表的上下文中，它们被定义在了 Kotlin 的标准库中。</p>
+类型为代表的上下文中，它们被定义在了 Kotlin 的标准库里。</p>
 <p>协程上下文是各种不同元素的集合。其中主元素是协程中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，
 我们在前面的文档中见过它以及它的调度器，而本文将对它进行介绍。</p>
 <h3 id="调度器与线程">调度器与线程</h3>
@@ -1288,8 +1288,8 @@ main runBlocking: After delay in thread main
 <h3 id="在协程和线程上调试">在协程和线程上调试</h3>
 <p>协程可以在一个线程上挂起并恢复其它线程。
 甚至一个单线程的调度器是非常难以<!--
--->弄清楚协程何时，在哪里，正在做什么的。使用通常的方法来调试应用程序是让
-线程在每一个日志文件的日志声明中打印线程的名字。这种特性在日志框架中是<!--
+-->弄清楚协程何时，在哪里，正在做什么的。使用通常的方法来调试应用程序是让<!--
+-->线程在每一个日志文件的日志声明中打印线程的名字。这种特性在日志框架中是<!--
 -->普遍受支持的。使用协程时，单独的线程名称不会给出很多上下文，所以
 <code>kotlinx.coroutines</code> 包含了调试工具来让它更简单。</p>
 <p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码：</p>
@@ -1365,7 +1365,7 @@ fun main() {
 </code></pre>
 <!--- TEST -->
 <p>注意，在这个例子中，当我们不再需要某个在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 中创建的线程的时候，
-它使用了标准库中的 Kotlin 标准库中的 <code>use</code> 函数来释放该线程。</p>
+它使用了 Kotlin 标准库中的 <code>use</code> 函数来释放该线程。</p>
 <h3 id="上下文中的任务">上下文中的任务</h3>
 <p>协程的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 是它上下文中的一部分。协程可以在它所属的上下文中使用
 <code>coroutineContext[Job]</code> 表达式来取回它：</p>
@@ -1473,9 +1473,9 @@ Now processing of the request is complete
 <h3 id="命名协程以进行调试">命名协程以进行调试</h3>
 <p>协程日志会频繁记录的时候以及当你只是需要来自相同协程的关联日志记录，
 自动分配 id 是非常棒的。然而，当协程与执行一个明确的请求<!--
--->或与执行一些显式的后台任务有关的时候，对于调试的目的给它明确的命名是更好的。
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素可以给线程像给函数命名一样命名。它将显示线程的名字<!--
--->当协程被执行且 <a href="#debugging-coroutines-and-threads">调试模式</a> 被开启时。</p>
+-->或与执行一些显式的后台任务有关的时候，出于调试的目的给它明确的命名是更好的。
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素可以给线程像给函数命名一样命名。它在协程被执行且
+<a href="#debugging-coroutines-and-threads">调试模式</a>被开启时将显示线程的名字。</p>
 <p>下面的例子演示了这一概念：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1513,7 +1513,7 @@ fun main() = runBlocking(CoroutineName("main")) {
 <!--- TEST FLEXIBLE_THREAD -->
 <h3 id="组合上下文中的元素">组合上下文中的元素</h3>
 <p>有时我们需要在协程上下文中定义多个元素。我们可以使用 <code>+</code> 操作符来实现。
-比如说，我们可以明确的指定一个调度器来启动协程并且同时明确指定<!--
+比如说，我们可以显式地指定一个调度器来启动协程并且同时显式指定<!--
 -->一个命名：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1647,11 +1647,11 @@ Destroying activity!
 <p>你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中被单次调用了 <code>job.cancel()</code>。</p>
 <h3 id="线程局部的数据">线程局部的数据</h3>
-<p>有时能够传递一些线程局部的数据很方便，但是，对于协程来说, 它们不受<!--
+<p>有时能够传递一些线程局部的数据很方便，但是，对于协程来说，它们不受<!--
 -->任何特定线程的约束，所以很难手动的去实现它并且不写出大量的样板代码。</p>
-<p>对于 <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 扩展函数在这里拯救了一切。它创建了额外的上下文元素，
-它保留给定 <code>ThreadLocal</code> 的值，并在每次协同程序切换其上下文时恢复它。</p>
+<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 扩展函数在这里会充当救兵。它创建了额外的上下文元素，
+且保留给定 <code>ThreadLocal</code> 的值，并在每次协同程序切换其上下文时恢复它。</p>
 <p>它很容易在下面的代码中演示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1695,7 +1695,7 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
 可以存储在线程局部的变量中。然而，在这个案例中你完全有责任来进行同步<!--
 -->可能的对这个可变的域进行的并发的修改。</p>
 <p>对于高级的使用，例如，那些在内部使用线程局部传递数据的<!--
--->用于与日志记录MDC集成，以及事务上下文或任何其他库，文件中应该实现
+-->用于与日志记录 MDC 集成，以及事务上下文或任何其他库，文件中应该实现
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> 接口。</p>
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
