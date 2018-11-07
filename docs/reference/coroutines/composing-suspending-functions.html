@@ -1164,20 +1164,20 @@ class ComposingGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#composing-suspending-functions">组合挂起函数</a>
+<li><a href="#组合挂起函数">组合挂起函数</a>
 <ul>
-<li><a href="#sequential-by-default">默认顺序</a></li>
-<li><a href="#concurrent-using-async">使用异步的并发</a></li>
-<li><a href="#lazily-started-async">异步惰性启动</a></li>
-<li><a href="#async-style-functions">异步风格的函数</a></li>
-<li><a href="#structured-concurrency-with-async">使用异步的结构性并发</a></li>
+<li><a href="#默认顺序调用">默认顺序调用</a></li>
+<li><a href="#使用-async-并发">使用 async 并发</a></li>
+<li><a href="#惰性启动的-async">惰性启动的 async</a></li>
+<li><a href="#async-风格的函数">async 风格的函数</a></li>
+<li><a href="#使用-async-的结构化并发">使用 async 的结构化并发</a></li>
 </ul>
 </li>
 </ul>
 <!--- END_TOC -->
 <h2 id="组合挂起函数">组合挂起函数</h2>
 <p>本节介绍了将挂起函数组合的各种方法。</p>
-<h3 id="默认顺序">默认顺序</h3>
+<h3 id="默认顺序调用">默认顺序调用</h3>
 <p>假设我们在不同的地方定义了两个进行某种调用远程服务或者进行计算的<!--
 -->挂起函数。我们只假设它们都是有用的，但是实际上它们在这个示例中只是<!--
 -->为了该目的而延迟了一秒钟：</p>
@@ -1235,7 +1235,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 Completed in 2017 ms
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<h3 id="使用异步的并发">使用异步的并发</h3>
+<h3 id="使用-async-并发">使用 async 并发</h3>
 <p>如果 <code>doSomethingUsefulOne</code> 与 <code>doSomethingUsefulTwo</code> 之间没有依赖，并且<!--
 -->我们想更快的得到结果，让它们进行 <em>并发</em> 吗？这就是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 可以帮助我们的地方。</p>
 <p>在概念上，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 就类似于 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a>。它启动了一个单独的协程，这是一个轻量级的线程<!--
@@ -1279,7 +1279,7 @@ Completed in 1017 ms
 <!--- TEST ARBITRARY_TIME -->
 <p>这里快了两倍，因为我们使用两个协程进行并发。
 注意，使用协程进行并发总是显式的。</p>
-<h3 id="异步惰性启动">异步惰性启动</h3>
+<h3 id="惰性启动的-async">惰性启动的 async</h3>
 <p>使用一个可选的参数 <code>start</code> 并传值 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a>，可以对 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 进行惰性操作。
 只有当结果需要被 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或者如果一个 
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> 函数被调用，协程才会<!--
@@ -1329,7 +1329,7 @@ Completed in 1017 ms
 因此我们会得到顺序的行为，但这不是惰性启动的预期用例。
 当调用挂起函数计算值的时候
 <code>async(start = CoroutineStart.LAZY)</code> 用例是标准的 <code>lazy</code> 函数的替换方案。</p>
-<h3 id="异步风格的函数">异步风格的函数</h3>
+<h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
 我们给这样的函数的名称中加上
@@ -1408,10 +1408,10 @@ Completed in 1085 ms
 并且程序抛出了异常以及程序在操作的过程中被中止，将会发生什么。
 通常情况下，一个全局的异常处理者会捕获这个异常，将异常打印成日记并报告给开发者，但是反之<!--
 -->该程序将会继续执行其它操作。但是这里我们的 <code>somethingUsefulOneAsync</code> 仍然在后台执行，
-尽管如此，启动它的那次操作也会被终止。这个程序将不会进行结构性<!--
+尽管如此，启动它的那次操作也会被终止。这个程序将不会进行结构化<!--
 -->并发，如下一小节所示。</p>
-<h3 id="使用异步的结构性并发">使用异步的结构性并发</h3>
-<p>让我们使用<a href="#concurrent-using-async">使用异步的并发</a>这一小节的例子并且提取出一个函数<!--
+<h3 id="使用-async-的结构化并发">使用 async 的结构化并发</h3>
+<p>让我们使用<a href="#使用-async-的结构化并发">使用 async 的并发</a>这一小节的例子并且提取出一个函数<!--
 -->并发的调用 <code>doSomethingUsefulOne</code> 与 <code>doSomethingUsefulTwo</code> 并且返回它们两个的结果之和。
 由于 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 被定义为了 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">CoroutineScope</a> 上的扩展，我们需要将它写在<!--
 -->作用域内，并且这是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 函数所提供的：</p>

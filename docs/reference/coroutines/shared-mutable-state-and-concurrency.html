@@ -1164,20 +1164,20 @@ class SharedStateGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#shared-mutable-state-and-concurrency">共享的可变状态和并发</a>
+<li><a href="#共享的可变状态与并发">共享的可变状态与并发</a>
 <ul>
-<li><a href="#the-problem">问题</a></li>
-<li><a href="#volatiles-are-of-no-help">没有发挥作用的 volatile</a></li>
-<li><a href="#thread-safe-data-structures">线程安全的数据结构</a></li>
-<li><a href="#thread-confinement-fine-grained">以细粒度限制线程</a></li>
-<li><a href="#thread-confinement-coarse-grained">以粗粒度限制线程</a></li>
-<li><a href="#mutual-exclusion">互斥</a></li>
+<li><a href="#问题">问题</a></li>
+<li><a href="#volatile-无济于事">volatile 无济于事</a></li>
+<li><a href="#线程安全的数据结构">线程安全的数据结构</a></li>
+<li><a href="#以细粒度限制线程">以细粒度限制线程</a></li>
+<li><a href="#以粗粒度限制线程">以粗粒度限制线程</a></li>
+<li><a href="#互斥">互斥</a></li>
 <li><a href="#actors">Actors</a></li>
 </ul>
 </li>
 </ul>
 <!--- END_TOC -->
-<h2 id="共享的可变状态和并发">共享的可变状态和并发</h2>
+<h2 id="共享的可变状态与并发">共享的可变状态与并发</h2>
 <p>协程可用多线程调度器（比如默认的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>）并发执行。这样就可以提出<!--
 -->所有常见的并发问题。主要的问题是同步访问<strong>共享的可变状态</strong>。
 协程领域对这个问题的一些解决方案类似于多线程领域中的解决方案，
@@ -1287,7 +1287,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 Completed 100000 actions in
 Counter =
 -->
-<h3 id="没有发挥作用的-volatile">没有发挥作用的 volatile</h3>
+<h3 id="volatile-无济于事">volatile 无济于事</h3>
 <p>有一种常见的误解：volatile 可以解决并发问题。让我们尝试一下：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

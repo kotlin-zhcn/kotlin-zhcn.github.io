@@ -1164,16 +1164,16 @@ class BasicsGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#coroutine-basics">协程基础</a>
+<li><a href="#协程基础">协程基础</a>
 <ul>
-<li><a href="#your-first-coroutine">你的第一个协程程序</a></li>
-<li><a href="#bridging-blocking-and-non-blocking-worlds">桥接阻塞和非阻塞的世界</a></li>
-<li><a href="#waiting-for-a-job">等待一个任务</a></li>
-<li><a href="#structured-concurrency">结构性的并发</a></li>
-<li><a href="#scope-builder">作用域构建器</a></li>
-<li><a href="#extract-function-refactoring">提取函数重构</a></li>
-<li><a href="#coroutines-are-light-weight">协程是轻量级的</a></li>
-<li><a href="#global-coroutines-are-like-daemon-threads">像守护线程一样的全局协程</a></li>
+<li><a href="#你的第一个协程程序">你的第一个协程程序</a></li>
+<li><a href="#桥接阻塞与非阻塞的世界">桥接阻塞与非阻塞的世界</a></li>
+<li><a href="#等待一个任务">等待一个任务</a></li>
+<li><a href="#结构化的并发">结构化的并发</a></li>
+<li><a href="#作用域构建器">作用域构建器</a></li>
+<li><a href="#提取函数重构">提取函数重构</a></li>
+<li><a href="#协程是轻量级的">协程是轻量级的</a></li>
+<li><a href="#像守护线程一样的全局协程">像守护线程一样的全局协程</a></li>
 </ul>
 </li>
 </ul>
@@ -1214,7 +1214,7 @@ World!
 </code></pre>
 <p>这是因为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 是一个特别的 <em>挂起函数</em> ，它不会造成线程阻塞，但是 <em>挂起</em><!--
 -->函数只能在协程中使用。</p>
-<h3 id="桥接阻塞和非阻塞的世界">桥接阻塞和非阻塞的世界</h3>
+<h3 id="桥接阻塞与非阻塞的世界">桥接阻塞与非阻塞的世界</h3>
 <p>第一个例子中在相似的代码中包含了 <em>非阻塞的</em> <code>delay(...)</code> 和 <em>阻塞的</em> <code>Thread.sleep(...)</code>。
 它非常容易的让我们看出来哪一个是阻塞的，哪一个是非阻塞的。
 来一起使用显式的阻塞 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程构建器：</p>
@@ -1307,14 +1307,14 @@ World!
 -->
 <p>现在，结果仍然相同，但是主协程与后台任务的持续时间<!--
 -->没有任何关系。这样写会更好。</p>
-<h3 id="结构性的并发">结构性的并发</h3>
+<h3 id="结构化的并发">结构化的并发</h3>
 <p>这里还有一些东西我们期望的写法被使用在协程的实践中。
 当我们使用 <code>GlobalScope.launch</code> 时我们创建了一个最高优先级的协程。甚至，虽然它是轻量级的，
 但是它在运行起来的时候仍然消耗了一些内存资源。甚至如果我们失去了一个对新创建的协程的引用，
 它仍然会继续运行。如果一段代码在协程中挂起（举例来说，我们错误的<!--
 -->延迟了太长时间），如果我们启动了太多的协程，是否会导致内存溢出？
 如果我们手动引用所有的协程和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 是非常容易出错的。</p>
-<p>这有一个更好的解决办法。我们可以在你的代码中使用结构性并发。
+<p>这有一个更好的解决办法。我们可以在你的代码中使用结构化并发。
 用来代替在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动协程，就像我们使用线程时那样（线程总是全局的），
 我们可以在一个具体的作用域中启动协程并操作。</p>
 <p>在我们的例子中，我们有一个被转换成使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 的协程构建器的 <code>main</code> 函数，

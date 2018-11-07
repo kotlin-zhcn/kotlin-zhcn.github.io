@@ -1164,19 +1164,19 @@ class ExceptionsGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#exception-handling">异常处理</a>
+<li><a href="#异常处理">异常处理</a>
 <ul>
-<li><a href="#exception-propagation">异常的传递</a></li>
+<li><a href="#异常的传播">异常的传播</a></li>
 <li><a href="#coroutineexceptionhandler">CoroutineExceptionHandler</a></li>
-<li><a href="#cancellation-and-exceptions">取消与异常</a></li>
-<li><a href="#exceptions-aggregation">异常聚合</a></li>
+<li><a href="#取消与异常">取消与异常</a></li>
+<li><a href="#异常聚合">异常聚合</a></li>
 </ul>
 </li>
-<li><a href="#supervision">监督</a>
+<li><a href="#监督">监督</a>
 <ul>
-<li><a href="#supervision-job">监督任务</a></li>
-<li><a href="#supervision-scope">监督作用域</a></li>
-<li><a href="#exceptions-in-supervised-coroutines">监督协程中的异常</a></li>
+<li><a href="#监督任务">监督任务</a></li>
+<li><a href="#监督作用域">监督作用域</a></li>
+<li><a href="#监督协程中的异常">监督协程中的异常</a></li>
 </ul>
 </li>
 </ul>
@@ -1186,8 +1186,8 @@ class ExceptionsGuideTest {
 我们已经知道当协程被取消的时候会在挂起点抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>，并且它<!--
 -->在协程机制中被忽略了。但是如果一个异常在取消期间被抛出或多个子协程在同一个<!--
 -->父协程中抛出异常将会发生什么？</p>
-<h3 id="异常的传递">异常的传递</h3>
-<p>协程构建器有两种风格：自动的传递异常（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>）
+<h3 id="异常的传播">异常的传播</h3>
+<p>协程构建器有两种风格：自动的传播异常（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>）
 或者将它们暴露给用户（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>）。
 前者对待异常是不处理的，类似于 Java 的 <code>Thread.uncaughtExceptionHandler</code>，
 而后者依赖用户来最终消耗<!--
@@ -1308,7 +1308,7 @@ Parent is not cancelled
 <!--- TEST-->
 <p>如果协程遇到除 <code>CancellationException</code> 以外的异常，它将取消具有该异常的父协程。
 这种行为不能被重写，且它被用来提供一个稳定的协程层次结构来进行
-<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/composing-suspending-functions.md#structured-concurrency-with-async">结构性并发</a> 而无需依赖
+<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/composing-suspending-functions.md#structured-concurrency-with-async">结构化并发</a> 而无需依赖
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 的实现。
 且当所有的子协程被终止的时候，原本的异常被父协程所处理。</p>
 <blockquote>

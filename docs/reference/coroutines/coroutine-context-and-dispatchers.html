@@ -1164,19 +1164,19 @@ class DispatchersGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#coroutine-context-and-dispatchers">协程上下文与调度器</a>
+<li><a href="#协程上下文与调度器">协程上下文与调度器</a>
 <ul>
-<li><a href="#dispatchers-and-threads">调度器与线程</a></li>
-<li><a href="#unconfined-vs-confined-dispatcher">非受限调度器 vs 受限调度器</a></li>
-<li><a href="#debugging-coroutines-and-threads">在协程和线程上调试</a></li>
-<li><a href="#jumping-between-threads">在线程之间跳转</a></li>
-<li><a href="#job-in-the-context">上下文中的任务</a></li>
-<li><a href="#children-of-a-coroutine">子协程</a></li>
-<li><a href="#parental-responsibilities">父协程的职责</a></li>
-<li><a href="#naming-coroutines-for-debugging">命名协程以进行调试</a></li>
-<li><a href="#combining-context-elements">组合上下文中的元素</a></li>
-<li><a href="#cancellation-via-explicit-job">可取消的显式任务</a></li>
-<li><a href="#thread-local-data">线程局部的数据</a></li>
+<li><a href="#调度器与线程">调度器与线程</a></li>
+<li><a href="#非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</a></li>
+<li><a href="#调试协程与线程">调试协程与线程</a></li>
+<li><a href="#在不同线程间跳转">在不同线程间跳转</a></li>
+<li><a href="#上下文中的任务">上下文中的任务</a></li>
+<li><a href="#子协程">子协程</a></li>
+<li><a href="#父协程的职责">父协程的职责</a></li>
+<li><a href="#命名协程以用于调试">命名协程以用于调试</a></li>
+<li><a href="#组合上下文中的元素">组合上下文中的元素</a></li>
+<li><a href="#通过显式任务取消">通过显式任务取消</a></li>
+<li><a href="#线程局部数据">线程局部数据</a></li>
 </ul>
 </li>
 </ul>
@@ -1285,7 +1285,7 @@ main runBlocking: After delay in thread main
 因为某些操作必须立即在协程中执行。
 非受限调度器不应该被用在通常的代码中。</p>
 </blockquote>
-<h3 id="在协程和线程上调试">在协程和线程上调试</h3>
+<h3 id="调试协程与线程">调试协程与线程</h3>
 <p>协程可以在一个线程上挂起并恢复其它线程。
 甚至一个单线程的调度器是非常难以<!--
 -->弄清楚协程何时，在哪里，正在做什么的。使用通常的方法来调试应用程序是让<!--
@@ -1329,8 +1329,8 @@ fun main() = runBlocking&lt;Unit&gt; {
 线程，但是当前正在执行的协程的标识符被附加到它上面。当调试模式开启的时候<!--
 -->这个标识符会对已经创建的协程进行连续的签名。</p>
 <p>您可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-coroutine-context.html">newCoroutineContext</a> 函数的文档中阅读有关调试工具的更多信息。</p>
-<h3 id="在线程之间跳转">在线程之间跳转</h3>
-<p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（查看<a href="#debugging-coroutines-and-threads">debug</a>）：</p>
+<h3 id="在不同线程间跳转">在不同线程间跳转</h3>
+<p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（参见<a href="#调试协程与线程">调试</a>）：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1382,7 +1382,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-context-05.kt">这里</a>获得完整代码</p>
 </blockquote>
-<p>当它运行于<a href="#debugging-coroutines-and-threads">调试模式</a>时将处理一些任务：</p>
+<p>当它运行于<a href="#调试协程与线程">调试模式</a>时将处理一些任务：</p>
 <pre><code>My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
 </code></pre>
 <!--- TEST lines.size == 1 && lines[0].startsWith("My job is \"coroutine#1\":BlockingCoroutine{Active}@") -->
@@ -1470,12 +1470,12 @@ Coroutine 2 is done
 Now processing of the request is complete
 </code></pre>
 <!--- TEST -->
-<h3 id="命名协程以进行调试">命名协程以进行调试</h3>
+<h3 id="命名协程以用于调试">命名协程以用于调试</h3>
 <p>协程日志会频繁记录的时候以及当你只是需要来自相同协程的关联日志记录，
 自动分配 id 是非常棒的。然而，当协程与执行一个明确的请求<!--
 -->或与执行一些显式的后台任务有关的时候，出于调试的目的给它明确的命名是更好的。
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素可以给线程像给函数命名一样命名。它在协程被执行且
-<a href="#debugging-coroutines-and-threads">调试模式</a>被开启时将显示线程的名字。</p>
+<a href="#调试协程与线程">调试模式</a>被开启时将显示线程的名字。</p>
 <p>下面的例子演示了这一概念：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1534,7 +1534,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <pre><code class="code _highlighted" data-lang="text/plain">I'm working in thread DefaultDispatcher-worker-1 @test#2
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<h3 id="可取消的显式任务">可取消的显式任务</h3>
+<h3 id="通过显式任务取消">通过显式任务取消</h3>
 <p>让我们把有关上下文、子协程以及任务的知识梳理一下。假设我们的应用程序中有<!--
 -->一个在生命周期中的对象，但这个对象并不是协程。假如，我们写了一个 Android 应用程序<!--
 -->并在上下文中启动了多个协程来为 Android activity 进行异步操作来拉取<!--
@@ -1646,7 +1646,7 @@ Destroying activity!
 <!--- TEST -->
 <p>你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中被单次调用了 <code>job.cancel()</code>。</p>
-<h3 id="线程局部的数据">线程局部的数据</h3>
+<h3 id="线程局部数据">线程局部数据</h3>
 <p>有时能够传递一些线程局部的数据很方便，但是，对于协程来说，它们不受<!--
 -->任何特定线程的约束，所以很难手动的去实现它并且不写出大量的样板代码。</p>
 <p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
@@ -1680,7 +1680,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 -->它工作在线程池中的不同线程中，但它仍然具有线程局部变量的值，
 我们指定使用 <code>threadLocal.asContextElement(value = "launch")</code>，
 无论协程执行在什么线程中都是没有问题的。
-因此，输出如（<a href="#debugging-coroutines-and-threads">调试</a>）所示：</p>
+因此，输出如（<a href="#调试协程与线程">调试</a>）所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Pre-main, current thread: Thread[main @coroutine#1,5,main], thread local value: 'main'
 Launch start, current thread: Thread[DefaultDispatcher-worker-1 @coroutine#2,5,main], thread local value: 'launch'
 After yield, current thread: Thread[DefaultDispatcher-worker-2 @coroutine#2,5,main], thread local value: 'launch'

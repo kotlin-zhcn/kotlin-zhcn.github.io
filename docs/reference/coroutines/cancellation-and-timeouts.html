@@ -1164,14 +1164,14 @@ class CancellationTimeOutsGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#cancellation-and-timeouts">取消与超时</a>
+<li><a href="#取消与超时">取消与超时</a>
 <ul>
-<li><a href="#cancelling-coroutine-execution">取消协程的执行</a></li>
-<li><a href="#cancellation-is-cooperative">取消协作</a></li>
-<li><a href="#making-computation-code-cancellable">使执行计算的代码可被取消</a></li>
-<li><a href="#closing-resources-with-finally">在 finally 中释放资源</a></li>
-<li><a href="#run-non-cancellable-block">运行不能被取消的代码块</a></li>
-<li><a href="#timeout">超时</a></li>
+<li><a href="#取消协程的执行">取消协程的执行</a></li>
+<li><a href="#取消是协作的">取消是协作的</a></li>
+<li><a href="#使计算代码可取消">使计算代码可取消</a></li>
+<li><a href="#在-finally-中释放资源">在 finally 中释放资源</a></li>
+<li><a href="#运行不能取消的代码块">运行不能取消的代码块</a></li>
+<li><a href="#超时">超时</a></li>
 </ul>
 </li>
 </ul>
@@ -1217,7 +1217,7 @@ main: Now I can quit.
 <p>一旦 main 函数调用了 <code>job.cancel</code>，我们在其它的协程中就看不到任何输出，因为它被取消了。
 这里也有一个可以使 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 挂起的函数 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a>
 它合并了对 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">cancel</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 的调用。</p>
-<h3 id="取消协作">取消协作</h3>
+<h3 id="取消是协作的">取消是协作的</h3>
 <p>协程的取消是 <em>协作</em> 的。一段协程代码必须协作才能被取消。
 所有 <code>kotlinx.coroutines</code> 中的挂起函数都是 <em>可被取消的</em> 。它们检查协程的取消，
 并在取消时抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>。 然而，如果协程正在执行<!--
@@ -1262,7 +1262,7 @@ I'm sleeping 3 ...
 I'm sleeping 4 ...
 main: Now I can quit.
 -->
-<h3 id="使执行计算的代码可被取消">使执行计算的代码可被取消</h3>
+<h3 id="使计算代码可取消">使计算代码可取消</h3>
 <p>我们有两种方法来使执行计算的代码可以被取消。第一种方法是定期<!--
 -->调用挂起函数来检查取消。对于这种目的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/yield.html">yield</a> 是一个好的选择。
 另一种方法是显式的检查取消状态。让我们试试第二种方法。</p>
@@ -1304,7 +1304,7 @@ I'm sleeping 2 ...
 main: I'm tired of waiting!
 main: Now I can quit.
 -->
-<h3 id="在finally中释放资源">在finally中释放资源</h3>
+<h3 id="在-finally-中释放资源">在 finally 中释放资源</h3>
 <p>我们通常使用如下的方法处理在被取消时抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> 的可被取消<!--
 -->的挂起函数。比如说，<code>try {...} finally {...}</code> 表达式以及 Kotlin 的 <code>use</code> 函数一般在协程被取消的时候<!--
 -->执行它们的终结动作：</p>
@@ -1344,7 +1344,7 @@ I'm running finally
 main: Now I can quit.
 </code></pre>
 <!--- TEST -->
-<h3 id="运行不能被取消的代码块">运行不能被取消的代码块</h3>
+<h3 id="运行不能取消的代码块">运行不能取消的代码块</h3>
 <p>在前一个例子中任何尝试在 <code>finally</code> 块中调用挂起函数的行为都会抛出
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>，因为这里持续运行的代码是可以被取消的。通常，这并不是一个<!--
 -->问题，所有良好的关闭操作（关闭一个文件、取消一个任务、或是关闭任何一种<!--

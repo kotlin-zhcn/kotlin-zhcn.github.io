@@ -1164,18 +1164,18 @@ class ChannelsGuideTest {
 <h2 id="目录">目录</h2>
 <!--- TOC -->
 <ul>
-<li><a href="#channels-experimental">通道（试验性的）</a>
+<li><a href="#通道实验性的">通道（实验性的）</a>
 <ul>
-<li><a href="#channel-basics">通道基础</a></li>
-<li><a href="#closing-and-iteration-over-channels">关闭和迭代通道</a></li>
-<li><a href="#building-channel-producers">建造通道生产者</a></li>
-<li><a href="#pipelines">管道</a></li>
-<li><a href="#prime-numbers-with-pipeline">素数与管道</a></li>
-<li><a href="#fan-out">扇出</a></li>
-<li><a href="#fan-in">扇入</a></li>
-<li><a href="#buffered-channels">带缓冲的通道</a></li>
-<li><a href="#channels-are-fair">通道是公平的</a></li>
-<li><a href="#ticker-channels">计时器通道</a></li>
+<li><a href="#通道基础">通道基础</a></li>
+<li><a href="#关闭与迭代通道">关闭与迭代通道</a></li>
+<li><a href="#构建通道生产者">构建通道生产者</a></li>
+<li><a href="#管道">管道</a></li>
+<li><a href="#使用管道的素数">使用管道的素数</a></li>
+<li><a href="#扇出">扇出</a></li>
+<li><a href="#扇入">扇入</a></li>
+<li><a href="#带缓冲的通道">带缓冲的通道</a></li>
+<li><a href="#通道是公平的">通道是公平的</a></li>
+<li><a href="#计时器通道">计时器通道</a></li>
 </ul>
 </li>
 </ul>
@@ -1222,7 +1222,7 @@ fun main() = runBlocking {
 Done!
 </code></pre>
 <!--- TEST -->
-<h3 id="关闭和迭代通道">关闭和迭代通道</h3>
+<h3 id="关闭与迭代通道">关闭与迭代通道</h3>
 <p>和队列不同，一个通道可以通过被关闭来表明没有更多的元素将会进入通道。
 在接收者中可以定期的使用 <code>for</code> 循环来从通道中<!--
 -->接收元素。</p>
@@ -1258,7 +1258,7 @@ fun main() = runBlocking {
 25
 Done!
 -->
-<h3 id="建造通道生产者">建造通道生产者</h3>
+<h3 id="构建通道生产者">构建通道生产者</h3>
 <p>协程生成一系列元素的模式很常见。 
 这是 <em>生产者-消费者</em> 模式的一部分，并且经常能在并发的代码中看到它。
 你可以将生产者抽象成一个函数，并且使通道作为它的参数，但这与<!--
@@ -1352,10 +1352,10 @@ Done!
 -->
 <blockquote>
 <p>所有创建了协程的函数被定义在了 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的扩展上，
-所以我们可以依靠 <a href="https://kotlinlang.org/docs/reference/coroutines/composing-suspending-functions.html#structured-concurrency-with-async">结构性并发</a> 来来确保<!--
+所以我们可以依靠 <a href="https://kotlinlang.org/docs/reference/coroutines/composing-suspending-functions.html#structured-concurrency-with-async">结构化并发</a> 来来确保<!--
 -->没有常驻在我们的应用程序中的全局协程。</p>
 </blockquote>
-<h3 id="素数与管道">素数与管道</h3>
+<h3 id="使用管道的素数">使用管道的素数</h3>
 <p>让我们来展示一个极端的例子——在协程中使用一个管道来生成<!--
 -->素数。我们开启了一个数字的无限序列。</p>
 <div class="sample" data-highlight-only="" theme="idea">
