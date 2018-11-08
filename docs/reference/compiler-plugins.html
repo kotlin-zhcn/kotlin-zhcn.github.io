@@ -1385,7 +1385,7 @@ public interface TaskRunner {
 </div>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun test(context: TaskContext) {
-    val handler = TaskHandler { 
+    val runner = TaskRunner {
         // 这里的“this”是“Task”的一个实例
         
         println("$name is started")

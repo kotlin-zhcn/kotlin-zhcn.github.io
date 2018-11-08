@@ -1163,60 +1163,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>更多相关信息，请参考<a href="multiplatform.html">多平台程序设计文档</a>。</p>
 <h2 id="契约">契约</h2>
-<p>Kotlin 编译器会做大量的静态分析工作，为了提供警告和降低模版代码。其中最重要的功能之一就是<strong>类型智能转换</strong>—提供了基于类型检查自动转换类型的能力。</p>
+<p>Kotlin 编译器会做大量的静态分析工作，以提供警告并减少模版代码。其中最显著的特性之一就是智能转换——能够根据类型检测自动转换类型。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(s: String?) {
-    if (s != null) s.length // 编译器自动把 's' 转化为 'String'
+    if (s != null) s.length // 编译器自动将“s”转换为“String”
 }
 </code></pre>
 </div>
-<p>然而，一旦这些检查被提取到一个单独的函数中，类型智能转换就会失效：</p>
+<p>然而，一旦将这些检测提取到单独的函数中，所有智能转换都立即消失了：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun String?.isNotNull(): Boolean = this != null
 
 fun foo(s: String?) {
-    if (s.isNotNull()) s.length // 没有智能转化 :(
+    if (s.isNotNull()) s.length // 没有智能转换 :(
 }
 </code></pre>
 </div>
-<p>为了改善这种情景下的行为，Kotlin 1.3 引入了<strong>实验性</strong>的机制，称之为<strong>契约</strong>。</p>
-<p><strong>契约</strong>允许一个函数通过一种能让编译器理解的方式，显式的来描述它的行为。目前，支持两类常用的情景：</p>
+<p>为了改善在此类场景中的行为，Kotlin 1.3 引入了称为 <em>契约</em> 的实验性机制。</p>
+<p><em>契约</em> 让一个函数能够以编译器理解的方式显式描述其行为。目前支持两大类场景：</p>
 <ul>
-<li>通过声明函数的结果和参数的值的关系来改善类型智能分析：</li>
+<li>通过声明函数调用的结果与所传参数值之间的关系来改进智能转换分析：</li>
 </ul>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun require(condition: Boolean) {
-    // 这是一个语法格式，告诉编译器：
-    // “如果这个函数成功返回，那么将 'condition' 赋值为 true”
+    // 这是一种语法格式，告诉编译器：
+    // “如果这个函数成功返回，那么传入的‘condition’为 true”
     contract { returns() implies condition }
     if (!condition) throw IllegalArgumentException(...)
 }
 
 fun foo(s: String?) {
     require(s is String)
-    // s 在这里被智能的转化为 'String'，否则的话
-    // 'require' 将会抛出一个异常
+    // s 在这里智能转换为“String”，因为否则
+    // “require”会抛出异常
 }
 </code></pre>
 </div>
 <ul>
-<li>在存在高阶函数的情况下，可以改善变量的初始化分析：</li>
+<li>在存在高阶函数的情况下改进变量初始化的分析：</li>
 </ul>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun synchronize(lock: Any?, block: () -&gt; Unit) {
     // 告诉编译器：
-    // “这个函数将会在这里调用 'block'，而且只调用一次”
+    // “这个函数会在此时此处调用‘block’，并且刚好只调用一次”
     contract { callsInPlace(block, EXACTLY_ONCE) }
 }
 
 fun foo() {
     val x: Int
     synchronize(lock) {
-        x = 42 // 编译器知道传递给 'synchronize' 的 lambda 只会被调用一次
-               // 所以不会被重新赋值
+        x = 42 // 编译器知道传给“synchronize”的 lambda 表达式刚好
+               // 只调了一次，因此不会报重复赋值错
     }
-    println(x) // 编译器知道 lambda 肯定会被执行初始化操作
-               // 所以，'x' 在这里被认为已被初始化了
+    println(x) // 编译器知道一定会调用该 lambda 表达式而执行
+               // 初始化操作，因此可以认为“x”在这里已初始化
 }
 </code></pre>
 </div>
