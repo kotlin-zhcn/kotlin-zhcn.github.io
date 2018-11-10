@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/0_assets/styles.css">
+<link rel="stylesheet" href="/_assets/styles.css">
 
 
 <!-- Social Media tag Starts -->
@@ -42,10 +42,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>协程上下文与调度器 - Kotlin 语言中文站</title>
 
-    <script src="/0_assets/default.js"></script>
-    <script src="/0_assets/common.js"></script>
-    <link rel="stylesheet" href="/0_assets/default.css"/>
-    <link rel="stylesheet" href="/0_assets/common.css"/>
+    <script src="/_assets/default.js"></script>
+    <script src="/_assets/common.js"></script>
+    <link rel="stylesheet" href="/_assets/default.css"/>
+    <link rel="stylesheet" href="/_assets/common.css"/>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1190,7 +1190,7 @@ class DispatchersGuideTest {
 <h3 id="调度器与线程">调度器与线程</h3>
 <p>协程上下文包括了一个 <em>协程调度器</em> （请看 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>），它确定了相应的协程在执行时<!--
 -->使用一个或多个线程。协程调度器可以将协程的执行局限在<!--
--->指定的线程中，指定它运行在线程池中或让它不受限的运行。</p>
+-->指定的线程中，调度它运行在线程池中或让它不受限的运行。</p>
 <p>所有的协程建造器诸如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 接收一个可选的
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
 参数，它可以被用来显式的为一个新协程或其它上下文元素指定一个调度器。</p>
@@ -1227,13 +1227,13 @@ main runBlocking      : I'm working in thread main
 </code></pre>
 <!--- TEST LINES_START_UNORDERED -->
 <p>当调用 <code>launch { ... }</code> 时不传参数，它从启动了它的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>
-承袭了上下文（以及调度器）。在这个案例中，它从 <code>main</code> 线程中的 <code>runBlocking</code>
+中承袭了上下文（以及调度器）。在这个案例中，它从 <code>main</code> 线程中的 <code>runBlocking</code>
 主协程承袭了上下文。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 是一个特殊的调度器且似乎也运行在 <code>main</code> 线程中，但实际上，
 它是一种不同的机制，这会在后文中讲到。</p>
 <p>该默认调度器，当协程在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动的时候被使用，
 它代表 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 使用了共享的后台线程池，
-所以 <code>GlobalScope.launch { ... }</code> 也可以使用类似的调度器—— <code>launch(Dispatchers.Default) { ... }</code>。</p>
+所以 <code>GlobalScope.launch { ... }</code> 也可以使用相同的调度器—— <code>launch(Dispatchers.Default) { ... }</code>。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个新的线程。
 一个专用的线程是一种非常昂贵的资源。
 在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a> 
@@ -1242,11 +1242,11 @@ main runBlocking      : I'm working in thread main
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器在被调用的线程中启动协程，但是这只有直到程序运行到<!--
 -->第一个挂起点的时候才行。挂起后，它将在完全由该所运行的线程中恢复<!--
 -->挂起被调用的函数。非受限的调度器是合适的，当协程没有<!--
--->消耗 CPU 时间或更新共享数据（比如UI界面）它被限制在了指定的线程中。</p>
-<p>在另一种方法中，默认的，一个调度器承袭自外部的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
+-->消耗 CPU 时间或更新共享数据（比如UI界面）时它被限制在了指定的线程中。</p>
+<p>另一方面，默认的，一个调度器承袭自外部的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
 而 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程的默认调度器，特别是，
-被调用它的线程所限制的，所以承袭它有根据可预测的FIFO调度来限制该线程<!--
--->执行的效果。</p>
+被限制在调用它的线程，因此承袭它在限制有可预测的 FIFO 调度的线程的执行上<!--
+-->是非常有效果的。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1281,7 +1281,7 @@ main runBlocking: After delay in thread main
 -->中恢复。</p>
 <blockquote>
 <p>非受限的调度器是一种高级机制，可以在某些极端情况下提供帮助<!--
--->而不需要调度协程以便稍后执行，或产生不希望的副作用，
+-->而不需要调度协程以便稍后执行或产生不希望的副作用，
 因为某些操作必须立即在协程中执行。
 非受限调度器不应该被用在通常的代码中。</p>
 </blockquote>
@@ -1316,7 +1316,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-context-03.kt">这里</a>获得完整代码</p>
 </blockquote>
-<p>这里有三个协程，其中主协程是 (#1) – <code>runBlocking</code>， 
+<p>这里有三个协程，其中主协程是 (#1) —— <code>runBlocking</code>， 
 而另外两个协程计算延期的值 <code>a</code> (#2) 和 <code>b</code> (#3)。
 它们都在 <code>runBlocking</code> 上下文中执行并且被限制在了主线程内。
 这段代码的输出如下：</p>
@@ -1327,8 +1327,8 @@ fun main() = runBlocking&lt;Unit&gt; {
 <!--- TEST FLEXIBLE_THREAD -->
 <p>该 <code>log</code> 函数将线程的名字打印在了方括号中，你可以看到是 <code>main</code>
 线程，但是当前正在执行的协程的标识符被附加到它上面。当调试模式开启的时候<!--
--->这个标识符会对已经创建的协程进行连续的签名。</p>
-<p>您可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-coroutine-context.html">newCoroutineContext</a> 函数的文档中阅读有关调试工具的更多信息。</p>
+-->该标识符被连续赋值给所有已经被创建的协程。</p>
+<p>你可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-coroutine-context.html">newCoroutineContext</a> 函数的文档中阅读有关调试工具的更多信息。</p>
 <h3 id="在不同线程间跳转">在不同线程间跳转</h3>
 <p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（参见<a href="#调试协程与线程">调试</a>）：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1473,7 +1473,7 @@ Now processing of the request is complete
 <h3 id="命名协程以用于调试">命名协程以用于调试</h3>
 <p>协程日志会频繁记录的时候以及当你只是需要来自相同协程的关联日志记录，
 自动分配 id 是非常棒的。然而，当协程与执行一个明确的请求<!--
--->或与执行一些显式的后台任务有关的时候，出于调试的目的给它明确的命名是更好的。
+-->或与执行一些显式的后台任务有关的时候，出于调试的目的给它明确的命名是更好的做法。
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素可以给线程像给函数命名一样命名。它在协程被执行且
 <a href="#调试协程与线程">调试模式</a>被开启时将显示线程的名字。</p>
 <p>下面的例子演示了这一概念：</p>
@@ -1513,7 +1513,7 @@ fun main() = runBlocking(CoroutineName("main")) {
 <!--- TEST FLEXIBLE_THREAD -->
 <h3 id="组合上下文中的元素">组合上下文中的元素</h3>
 <p>有时我们需要在协程上下文中定义多个元素。我们可以使用 <code>+</code> 操作符来实现。
-比如说，我们可以显式地指定一个调度器来启动协程并且同时显式指定<!--
+比如说，我们可以显式指定一个调度器来启动协程并且同时显式指定<!--
 -->一个命名：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1557,7 +1557,7 @@ fun main() = runBlocking&lt;Unit&gt; {
     // 继续运行...
 </code></pre>
 </div>
-<p>我们也可以在 <code>Actvity</code> 类中实现 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 接口。我们只需提供一个重写的
+<p>我们也可以在 <code>Actvity</code> 类中实现 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 接口。我们只需提供一个覆盖的
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> 属性来在作用域中为协程指定<!--
 -->上下文。我们结合所需要的调度器（我们在这个例子中使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>）和任务：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1651,7 +1651,7 @@ Destroying activity!
 -->任何特定线程的约束，所以很难手动的去实现它并且不写出大量的样板代码。</p>
 <p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 扩展函数在这里会充当救兵。它创建了额外的上下文元素，
-且保留给定 <code>ThreadLocal</code> 的值，并在每次协同程序切换其上下文时恢复它。</p>
+且保留给定 <code>ThreadLocal</code> 的值，并在每次协程切换其上下文时恢复它。</p>
 <p>它很容易在下面的代码中演示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1688,15 +1688,15 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
 <p><code>ThreadLocal</code> 具有一流的支持，可以与任何原始的 <code>kotlinx.coroutines</code> 一起使用。
-它有一个关键限制：当线程局部发生突变，新值不会传播到协程调用者中
+它有一个关键限制：当线程局部发生突变，新值不会传递到协程调用者中
 （作为上下文元素不能跟踪所有的 <code>ThreadLocal</code> 对象访问）并且下次挂起时更新的值将丢失。
 在协程中使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 线程局部的值，可以查看 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 的更多细节。</p>
 <p>另外，一个值可以存储在一个可变的域中，例如 <code>class Counter(var i: Int)</code>，是的，反过来，
 可以存储在线程局部的变量中。然而，在这个案例中你完全有责任来进行同步<!--
 -->可能的对这个可变的域进行的并发的修改。</p>
 <p>对于高级的使用，例如，那些在内部使用线程局部传递数据的<!--
--->用于与日志记录 MDC 集成，以及事务上下文或任何其他库，文件中应该实现
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> 接口。</p>
+-->用于与日志记录 MDC 集成，以及事务上下文或任何其它库，请参阅应实现的
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> 接口的文档。</p>
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
 <!--- END -->
@@ -1724,7 +1724,7 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
     </div>
 
 </footer>
-    <script src="/0_assets/reference.js"></script>
+    <script src="/_assets/reference.js"></script>
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">
         <div class="search-popup__controls">

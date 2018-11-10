@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/0_assets/styles.css">
+<link rel="stylesheet" href="/_assets/styles.css">
 
 
 <!-- Social Media tag Starts -->
@@ -42,10 +42,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>基础 - Kotlin 语言中文站</title>
 
-    <script src="/0_assets/default.js"></script>
-    <script src="/0_assets/common.js"></script>
-    <link rel="stylesheet" href="/0_assets/default.css"/>
-    <link rel="stylesheet" href="/0_assets/common.css"/>
+    <script src="/_assets/default.js"></script>
+    <script src="/_assets/common.js"></script>
+    <link rel="stylesheet" href="/_assets/default.css"/>
+    <link rel="stylesheet" href="/_assets/common.css"/>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -1205,15 +1205,15 @@ World!
 <!--- TEST -->
 <p>本质上，协程是轻量级的线程。
 它们在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">CoroutineScope</a> 上下文中和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> <em>协同构建器</em> 一起被启动。
-这里我们在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一些新的协程, 存活时间是指新的<!--
+这里我们在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一些新的协程，存活时间是指新的<!--
 -->协程的存活时间被限制在了整个应用程序的存活时间之内。</p>
 <p>你可以使用一些协程操作来替换一些线程操作，比如：
 用 <code>GlobalScope.launch { ... }</code> 替换 <code>thread { ... }</code> 用 <code>delay(...)</code> 替换 <code>Thread.sleep(...)</code>。 尝试一下。</p>
 <p>如果你开始使用 <code>GlobalScope.launch</code> 来替换 <code>thread</code>，编译器将会抛出错误：</p>
 <pre><code>Error: Kotlin: Suspend functions are only allowed to be called from a coroutine or another suspend function
 </code></pre>
-<p>这是因为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 是一个特别的 <em>挂起函数</em> ，它不会造成线程阻塞，但是 <em>挂起</em><!--
--->函数只能在协程中使用。</p>
+<p>这是因为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 是一个特别的 <em>挂起函数</em> ，它不会造成线程阻塞，但是 <em>挂起</em>
+函数只能在协程中使用。</p>
 <h3 id="桥接阻塞与非阻塞的世界">桥接阻塞与非阻塞的世界</h3>
 <p>第一个例子中在相似的代码中包含了 <em>非阻塞的</em> <code>delay(...)</code> 和 <em>阻塞的</em> <code>Thread.sleep(...)</code>。
 它非常容易的让我们看出来哪一个是阻塞的，哪一个是非阻塞的。
@@ -1489,7 +1489,7 @@ I'm sleeping 2 ...
     </div>
 
 </footer>
-    <script src="/0_assets/reference.js"></script>
+    <script src="/_assets/reference.js"></script>
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">
         <div class="search-popup__controls">
