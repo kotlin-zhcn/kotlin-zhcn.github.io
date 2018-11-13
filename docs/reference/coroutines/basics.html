@@ -1215,8 +1215,8 @@ World!
 <p>这是因为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 是一个特别的 <em>挂起函数</em> ，它不会造成线程阻塞，但是 <em>挂起</em>
 函数只能在协程中使用。</p>
 <h3 id="桥接阻塞与非阻塞的世界">桥接阻塞与非阻塞的世界</h3>
-<p>第一个例子中在相似的代码中包含了 <em>非阻塞的</em> <code>delay(...)</code> 和 <em>阻塞的</em> <code>Thread.sleep(...)</code>。
-它非常容易的让我们看出来哪一个是阻塞的，哪一个是非阻塞的。
+<p>第一个例子中在同一段代码中包含了 <em>非阻塞的</em> <code>delay(...)</code> 和 <em>阻塞的</em> <code>Thread.sleep(...)</code>。
+这非常容易让我们迷惑哪一个是阻塞的，哪一个是非阻塞的。
 来一起使用显式的阻塞 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程构建器：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
