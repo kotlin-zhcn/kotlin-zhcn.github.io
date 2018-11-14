@@ -1244,7 +1244,7 @@ fun main() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // 取消一个任务并且等待它结束
     println("main: Now I can quit.")
-//sampleEnd 
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1288,7 +1288,7 @@ fun main() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // 取消该任务并等待它结束
     println("main: Now I can quit.")
-//sampleEnd  
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1327,14 +1327,14 @@ fun main() = runBlocking {
     println("main: I'm tired of waiting!")
     job.cancelAndJoin() // 取消该任务并且等待它结束
     println("main: Now I can quit.")
-//sampleEnd 
+//sampleEnd
 }
 </code></pre>
 </div>
 <blockquote>
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-04.kt">这里</a>获得完整代码</p>
 </blockquote>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a> 等待了所有的终结动作执行完毕， 
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a> 等待了所有的终结动作执行完毕，
 所以运行示例得到了下面的输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm sleeping 0 ...
 I'm sleeping 1 ...
@@ -1423,7 +1423,7 @@ Exception in thread "main" kotlinx.coroutines.TimeoutCancellationException: Time
 <!--- TEST STARTS_WITH -->
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html">withTimeout</a> 抛出了 <code>TimeoutCancellationException</code>，它是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> 的子类。
 我们之前没有在控制台上看到堆栈跟踪信息的打印。这是因为<!--
--->在被取消的协程中 <code>CancellationException</code> 被认为是协程执行结束的正常原因。 
+-->在被取消的协程中 <code>CancellationException</code> 被认为是协程执行结束的正常原因。
 然而，在这个示例中我们在 <code>main</code> 函数中正确地使用了 <code>withTimeout</code>。</p>
 <p>由于取消只是一个例外，所有的资源都使用常用的方法来关闭。
 如果你需要做一些各类使用超时的特别的额外操作，可以使用类似 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html">withTimeout</a>

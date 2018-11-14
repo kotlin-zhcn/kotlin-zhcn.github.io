@@ -621,7 +621,7 @@ abstract class PumpModule {
     abstract fun providePump(pump: Thermosiphon): Pump
 }
 
-@Module(includes = arrayOf(PumpModule::class))
+@Module(includes = [PumpModule::class])
 class DripCoffeeModule {
     @Provides @Singleton
     fun provideHeater(): Heater = ElectricHeater()
@@ -629,12 +629,12 @@ class DripCoffeeModule {
 </code></pre>
 </div>
 <p><code>@Module</code>-注解的类定义如何提供不同对象。
-需要注意的是，作为多参数传递注解参数时，需要显示的使用 <code>arrayOf</code> 进行包装，比如上文示例中的 <code>@Module(includes = arrayOf(PumpModule::class))</code>。</p>
+需要注意的是，作为多参数传递注解参数时，需要显示的使用<a href="/docs/reference/annotations.html#数组作为注解参数">数组字面值</a> <code>[...]</code> 进行包装，如上文示例中的 <code>@Module(includes = [PumpModule::class])</code>。</p>
 <p>使用 <code>@Component</code> 为类型生成依赖注入的实现。
 自动生成类文件的类名带有 Dagger 前缀，比如下文示例 <code>DaggerCoffeeShop</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Singleton
-@Component(modules = arrayOf(DripCoffeeModule::class))
+@Component(modules = [DripCoffeeModule::class])
 interface CoffeeShop {
     fun maker(): CoffeeMaker
 }
@@ -653,7 +653,7 @@ fun main(args: Array&lt;String&gt;) {
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
   ...
-  annotationProcessor "com.google.dagger:dagger-compiler:$dagger-version"
+  annotationProcessor "com.google.dagger:dagger-compiler:$dagger_version"
 }
 </code></pre>
 </div>
@@ -662,7 +662,7 @@ fun main(args: Array&lt;String&gt;) {
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 dependencies {
     ...
-    kapt "com.google.dagger:dagger-compiler:$dagger-version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
 </code></pre>
 </div>
@@ -682,8 +682,8 @@ dependencies {
 
 dependencies {
     ...
-    compile "com.jakewharton:butterknife:$butterknife-version"
-    kapt "com.jakewharton:butterknife-compiler:$butterknife-version"
+    compile "com.jakewharton:butterknife:$butterknife_version"
+    kapt "com.jakewharton:butterknife-compiler:$butterknife_version"
 }
 </code></pre>
 </div>
@@ -870,7 +870,7 @@ data class User(@PrimaryKey var id: Long = 0, @Column var name: String? = null)
 
 dependencies {
     ...
-    kapt "frankiesardo:auto-parcel:$latest-version"
+    kapt "frankiesardo:auto-parcel:$latest_version"
 }
 </code></pre>
 </div>

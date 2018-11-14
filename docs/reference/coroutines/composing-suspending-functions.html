@@ -1332,8 +1332,8 @@ Completed in 1017 ms
 <h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
-我们给这样的函数的名称中加上
-"Async" 后缀来突出表明：事实上，它们只做异步计算并且需要<!--
+我们给这样的函数的名称中加上<!--
+-->“Async”后缀来突出表明：事实上，它们只做异步计算并且需要<!--
 -->使用延期的值来获得结果。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// somethingUsefulOneAsync 函数的返回值类型是 Deferred&lt;Int&gt;
@@ -1347,7 +1347,7 @@ fun somethingUsefulTwoAsync() = GlobalScope.async {
 }
 </code></pre>
 </div>
-<p>注意，这些 <code>xxxAsync</code> 函数 <strong>不是</strong> <em>挂起</em> 函数。它们可以在任何地方被使用。
+<p>注意，这些 <code>xxxAsync</code> 函数<strong>不是</strong> <em>挂起</em> 函数。它们可以在任何地方被使用。
 然而，它们总是在调用它们的代码中意味着<!--
 -->异步（这里的意思是 <em>并发</em> ）执行。</p>
 <p>下面的例子展示了它们在协程的外面是如何使用的：</p>
@@ -1401,7 +1401,7 @@ Completed in 1085 ms
 -->
 <blockquote>
 <p>这种带有异步函数的编程风格仅供参考，因为这在其它编程语言中<!--
--->是一种受欢迎的风格。在 Kotlin 的协程中使用这种风格是 <strong>强烈不推荐</strong> 的，
+-->是一种受欢迎的风格。在 Kotlin 的协程中使用这种风格是<strong>强烈不推荐</strong>的，
 原因如下所述。</p>
 </blockquote>
 <p>考虑一下如果 <code>val one = somethingUsefulOneAsync()</code> 这一行和 <code>one.await()</code> 表达式这里在代码中有逻辑错误，
