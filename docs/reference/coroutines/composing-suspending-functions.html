@@ -1364,7 +1364,7 @@ fun main() {
         val one = somethingUsefulOneAsync()
         val two = somethingUsefulTwoAsync()
         // 但是等待结果必须调用其它的挂起或者阻塞
-        // 当我们等待结果的时候，这里我们使用 `runBlocking { ... }` 来阻塞主线程
+        // 当我们等待结果的时候，这里我们使用 `runBlocking { …… }` 来阻塞主线程
         runBlocking {
             println("The answer is ${one.await() + two.await()}")
         }

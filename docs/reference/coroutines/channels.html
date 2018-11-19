@@ -1375,7 +1375,7 @@ Done!
 </div>
 <p>现在我们开启了一个从2开始的数字流管道，从当前的通道中取一个素数， 
 并为每一个我们发现的素数启动一个管道阶段：</p>
-<pre><code>numbersFrom(2) -&gt; filter(2) -&gt; filter(3) -&gt; filter(5) -&gt; filter(7) ... 
+<pre><code>numbersFrom(2) -&gt; filter(2) -&gt; filter(3) -&gt; filter(5) -&gt; filter(7) ……
 </code></pre>
 <p>下面的例子打印了前十个素数， 
 在主线程的上下文中运行整个管道。直到所有的协程在<!--
@@ -1588,7 +1588,7 @@ fun main() = runBlocking&lt;Unit&gt; {
             channel.send(it) // 将在缓冲区被占满时挂起
         }
     }
-    // 没有接收到东西...只是等待....
+    // 没有接收到东西……只是等待……
     delay(1000)
     sender.cancel() // 取消发送者协程
 //sampleEnd    

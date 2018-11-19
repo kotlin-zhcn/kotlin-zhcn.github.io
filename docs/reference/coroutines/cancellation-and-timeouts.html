@@ -1306,7 +1306,7 @@ main: Now I can quit.
 -->
 <h3 id="在-finally-中释放资源">在 finally 中释放资源</h3>
 <p>我们通常使用如下的方法处理在被取消时抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> 的可被取消<!--
--->的挂起函数。比如说，<code>try {...} finally {...}</code> 表达式以及 Kotlin 的 <code>use</code> 函数一般在协程被取消的时候<!--
+-->的挂起函数。比如说，<code>try {……} finally {……}</code> 表达式以及 Kotlin 的 <code>use</code> 函数一般在协程被取消的时候<!--
 -->执行它们的终结动作：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1350,7 +1350,7 @@ main: Now I can quit.
 -->问题，所有良好的关闭操作（关闭一个文件、取消一个任务、或是关闭任何一种<!--
 -->通信通道）通常都是非阻塞的，并且不会调用任何挂起函数。然而，在<!--
 -->真实的案例中，当你需要挂起一个被取消的协程，你可以将相应的代码包装在
-<code>withContext(NonCancellable) {...}</code> 中，并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 函数以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-non-cancellable.html">NonCancellable</a> 上下文，见如下示例所示：</p>
+<code>withContext(NonCancellable) {……}</code> 中，并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 函数以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-non-cancellable.html">NonCancellable</a> 上下文，见如下示例所示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 

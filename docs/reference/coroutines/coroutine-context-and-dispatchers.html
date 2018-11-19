@@ -1226,14 +1226,14 @@ newSingleThreadContext: I'm working in thread MyOwnThread
 main runBlocking      : I'm working in thread main
 </code></pre>
 <!--- TEST LINES_START_UNORDERED -->
-<p>当调用 <code>launch { ... }</code> 时不传参数，它从启动了它的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>
+<p>当调用 <code>launch { …… }</code> 时不传参数，它从启动了它的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>
 中承袭了上下文（以及调度器）。在这个案例中，它从 <code>main</code> 线程中的 <code>runBlocking</code>
 主协程承袭了上下文。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 是一个特殊的调度器且似乎也运行在 <code>main</code> 线程中，但实际上，
 它是一种不同的机制，这会在后文中讲到。</p>
 <p>该默认调度器，当协程在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动的时候被使用，
 它代表 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 使用了共享的后台线程池，
-所以 <code>GlobalScope.launch { ... }</code> 也可以使用相同的调度器—— <code>launch(Dispatchers.Default) { ... }</code>。</p>
+所以 <code>GlobalScope.launch { …… }</code> 也可以使用相同的调度器—— <code>launch(Dispatchers.Default) { …… }</code>。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个新的线程。
 一个专用的线程是一种非常昂贵的资源。
 在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a> 
@@ -1276,7 +1276,7 @@ Unconfined      : After delay in thread kotlinx.coroutines.DefaultExecutor
 main runBlocking: After delay in thread main
 </code></pre>
 <!--- TEST LINES_START -->
-<p>因此，该协程从 <code>runBlocking {...}</code> 协程中承袭了上下文并<!--
+<p>因此，该协程从 <code>runBlocking {……}</code> 协程中承袭了上下文并<!--
 -->在主线程中执行，同时使用非受限调度器的协程从被执行 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 函数的默认执行者线程<!--
 -->中恢复。</p>
 <blockquote>
@@ -1554,7 +1554,7 @@ fun main() = runBlocking&lt;Unit&gt; {
     fun destroy() {
         job.cancel()
     }
-    // 继续运行...
+    // 继续运行……
 </code></pre>
 </div>
 <p>我们也可以在 <code>Actvity</code> 类中实现 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 接口。我们只需提供一个覆盖的
@@ -1564,7 +1564,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <pre><code class="language-kotlin">    // 在 Activity 类中
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default + job
-    // 继续运行...
+    // 继续运行……
 </code></pre>
 </div>
 <p>现在，在这个 <code>Activity</code> 的作用域中启动协程，且没有明确<!--
@@ -1601,12 +1601,12 @@ class Activity : CoroutineScope {
     fun destroy() {
         job.cancel()
     }
-    // 继续运行...
+    // 继续运行……
 
     // Activity 类继续
     override val coroutineContext: CoroutineContext
         get() = Dispatchers.Default + job
-    // 继续运行...
+    // 继续运行……
 
     // Activity 类继续
     fun doSomething() {
