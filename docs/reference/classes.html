@@ -1327,8 +1327,8 @@ class Derived(p: Int) : Base(p)
 </code></pre>
 </div>
 <h3 id="覆盖方法">覆盖方法</h3>
-<p>我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 需要显式<!--
--->标注可覆盖的成员（我们称之为<em>开放</em>）以及覆盖后的成员：</p>
+<p>我们之前提到过，Kotlin 力求清晰显式。与 Java 不同，Kotlin 对于<!--
+-->可覆盖的成员（我们称之为<em>开放</em>）以及覆盖后的成员需要显式修饰符：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class Base {
     open fun v() { ... }
@@ -1339,9 +1339,9 @@ class Derived() : Base() {
 }
 </code></pre>
 </div>
-<p>Derived.v() 函数上必须加上 <strong>override</strong>标注。如果没写，编译器将会报错。
-如果函数没有标注 <strong>open</strong> 如 <code>Base.nv()</code>，则子类中不允许定义相同签名的函数，
-不论加不加 <strong>override</strong>。在一个 <strong>final</strong> 类中（没有用 <strong>open</strong> 标注的类），开放成员是禁止的。</p>
+<p>Derived.v() 函数上必须加上 <em class="keyword">override</em> 修饰符。如果没写，编译器将会报错。
+如果函数没有标注 <em class="keyword">open</em> 如 <code>Base.nv()</code>，那么子类中不允许定义相同签名的函数，
+不论加不加 <strong>override</strong>。将 <em class="keyword">open</em> 修饰符添加到 final 类（即没有 <em class="keyword">open</em> 的类）的成员上不起作用。</p>
 <p>标记为 <em class="keyword">override</em> 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 <em class="keyword">final</em> 关键字：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class AnotherDerived() : Base() {

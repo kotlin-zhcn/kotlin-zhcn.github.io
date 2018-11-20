@@ -586,7 +586,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2018-01-09
+                            2018-11-20
                         </td>
                     </tr>
             </table>
@@ -609,14 +609,17 @@ provide some additional common functionality to that of the standard library.</p
 <p>An ideal scenario for interop is to call C functions as if we were calling Kotlin functions, that is, following the same signature and conventions. And that is precisely what the 
 <code>cinterop</code> tool provides us with. It takes a C library and generates the corresponding Kotlin bindings for it, which then allow us
 to use the library as if it were Kotlin code.</p>
-<p>In order to generate these bindings, we need to create a library definition file (<code>def</code>) that contains some information about the headers we need to generate. In our case we want to use the famous <code>libcurl</code> library
+<p>In order to generate these bindings, we need to create a library definition <code>.def</code> file that contains some information about the headers we need to generate. In our case we want to use the famous <code>libcurl</code> library
 to make some HTTP calls, so we'll create a file named <code>libcurl.def</code> with the following contents</p>
-<pre><code>headers = curl/curl.h
+<div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
+<pre><code class="language-c">headers = curl/curl.h
 headerFilter = curl/*
+
 compilerOpts.linux = -I/usr/include -I/usr/include/x86_64-linux-gnu
 linkerOpts.osx = -L/opt/local/lib -L/usr/local/opt/curl/lib -lcurl
 linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -lcurl
 </code></pre>
+</div>
 <p>A few things are going on in that file so let's see them one by one. The first entry is <code>headers</code> which is the list of header files that we want to generate 
 Kotlin stubs for. We can add multiple files to this entry, separating each one with <code>\</code> on a new line. In our case we only want <code>curl.h</code>. The files we reference
 need to be relative to the folder where the definition file is, or be available on the system path (in our case it would be <code>/usr/include/curl</code>).</p>
@@ -624,19 +627,28 @@ need to be relative to the folder where the definition file is, or be available 
 all the headers are also included. Sometimes this may not be needed, and we can use this parameter, <a href="https://en.wikipedia.org/wiki/Glob_(programming)">using glob patterns</a>, to fine tune things. 
 Note, that <code>headerFilter</code> is an optional argument and mostly only used when the library we're using is being installed as a system library and we do not want to fetch external dependencies 
 (such as system <code>stdint.h</code> header) into our interop library. It may be important for both optimising library size and fixing potential conflicts between system and the Kotlin/Native provided compilation environment.</p>
-<p>The third and fourth lines are about providing linker options, which can vary based on different target platforms. In our cause we are defining it for macOS and Linux. 
-Compiler options can also be specific, albeit in this case it is not necessary.</p>
+<p>The next lines are about providing linker and compiler options, which can vary based on different target platforms. In our cause, we are defining it for macOS (the <code>.osx</code> suffix) and Linux (the <code>.linux</code> suffix).
+Parameters without suffix is also possible (e.g. <code>linkerOpts=</code>) and will be applied to all platforms.</p>
 <p>The convention that is followed is that each library gets its own definition file, usually named the same as the library. For more information on all
-the options available to <code>cinterop</code>, see <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">README available on GitHub</a></p>
+the options available to <code>cinterop</code>, see <a href="/docs/reference/native/c_interop.html">the Interop documentation</a></p>
 <p>Once we have the definition file ready, we can invoke <code>cinterop</code> and have it generate the bindings for us</p>
 <pre><code>cinterop -def libcurl.def -o build/c_interop/libcurl
 </code></pre>
 <p>The output should be a Kotlin compiled library (extension <code>.klib</code>). We're also instructing <code>cinterop</code>
 to output the contents to the folder <code>build/c_interop/libcurl</code> which we'll later use as input by <code>kotlinc-native</code>. It's important this folder is created
-beforehand as <code>cinterop</code> needs an existing folder. The <em>c_interop</em> is a convention that is followed for libraries that are for interop.</p>
+beforehand as <code>cinterop</code> needs an existing folder. The <code>c_interop</code> is a convention that is followed for libraries that are for interop.</p>
+<h3 id="curl-on-windows">curl on Windows</h3>
+<p>You should have the <code>curl</code> library binaries on Windows to make the sample work.
+You may build <code>curl</code> from <a href="https://curl.haxx.se/download.html">sources</a> on Windows (you'll need Visual Studio or Windows SDK Commandline tools), for more
+details, see the <a href="https://jonnyzzz.com/blog/2018/10/29/kn-libcurl-windows/">related blog post</a>.
+Alternatively, you may also consider a <a href="https://www.msys2.org/">MinGW/MSYS2</a> <code>curl</code> binary.</p>
+<p>You will need to provide the <code>curl</code> sources path to the <code>cinterop</code> tool call: <code>-compilerOpts -I&lt;curl include directory&gt;</code> and a linker option
+to the <code>kotlinc-native</code> call:  <code>-linker-options "&lt;curl binary directory&gt;\libcurl.lib"</code>.
+Note. On Windows, you always link with a <code>.lib</code> file, no matter if use <em>static</em> or <em>dynamic</em> library. For the <em>dynamic</em> linking,
+the <code>.lib</code> file is normally generated by the toolchain, and it uses the <code>.dll</code> inside</p>
 <h2 id="consuming-the-kotlin-api">Consuming the Kotlin API</h2>
 <p>Now that we have our library and Kotlin stubs, we can consume them from our application. To keep things simple, in this tutorial we're going to convert one of the simplest 
-libcurl examples over to Kotlin.</p>
+<code>libcurl</code> examples over to Kotlin.</p>
 <p>The code in question is from the <a href="https://curl.haxx.se/libcurl/c/simple.html">simple</a> example (comments removed for brevity)</p>
 <div class="sample" mode="c" theme="idea">
 <pre><code class="language-c">#include &lt;stdio.h&gt;
