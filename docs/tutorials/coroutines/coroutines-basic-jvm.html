@@ -674,7 +674,7 @@ fun main(args: Array&lt;String&gt;) {
     println("Start")
 
     // Start a coroutine
-    launch {
+    GlobalScope.launch {
         delay(1000)
         println("Hello")
     }
