@@ -1267,6 +1267,9 @@ Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elem
 </code></pre>
 </div>
 <p>标注类型参数适用于针对 Java 8 或更高版本环境，并且要求可空性注解支持 <code>TYPE_USE</code> 目标（<code>org.jetbrains.annotations</code> 15 或以上版本支持）。</p>
+<blockquote class="note">
+<p>注：由于当前的技术限制，IDE 无法正确识别用作依赖的已编译 Java 库中类型参数上的这些注解。</p>
+</blockquote>
 <h3 id="jsr-305-支持">JSR-305 支持</h3>
 <p>已支持 <a href="https://jcp.org/en/jsr/detail?id=305">JSR-305</a> 中定义的 <a href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a>
 注解来表示 Java 类型的可空性。</p>

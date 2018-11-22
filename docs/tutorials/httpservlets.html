@@ -615,7 +615,7 @@ The main dependency required for using HTTP servlets is the JavaEE API:</p>
 <h3 id="创建一个-home-controller">创建一个 Home Controller</h3>
 <p>一旦我们在构建脚本中定义了正确的依赖，现在就可以创建一个控制器</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">@WebServlet(name = "Hello", value = "/hello")
+<pre><code class="language-kotlin">@WebServlet(name = "Hello", value = ["/hello"])
 class HomeController : HttpServlet() {
     override fun doGet(req: HttpServletRequest, res: HttpServletResponse) {
         res.writer.write("Hello, World!")

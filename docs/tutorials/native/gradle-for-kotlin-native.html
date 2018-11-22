@@ -612,7 +612,8 @@ combine it with a script file (i.e. bash or bat file), it is more recommendable 
   id 'org.jetbrains.kotlin.konan' version '0.9.1'
 }
 
-konan.targets = [ 'macos_x64' ]
+// optinally specify the target (e.g. for iOS)
+// konan.targets = [ 'macos_x64' ]
 
 konanArtifacts {
   program("app") {
@@ -621,7 +622,7 @@ konanArtifacts {
 }
 </code></pre>
 </div>
-<p>The <code>buildscript</code> section defines the repositories and dependencies required for the Gradle plugin for Kotlin/Native which is <code>konan</code>. Then come the actual parameters for compiling:</p>
+<p>The <code>plugins</code> block enables the Gradle plugin for Kotlin/Native which is <code>konan</code>. Then come the actual parameters for compiling:</p>
 <ol>
 <li>
 <p>The <code>konan.targets</code> can contain one or more target platforms.</p>
@@ -657,8 +658,6 @@ we passed to the the parameter <code>program</code> in the build script.</p>
 <pre><code class="language-groovy">plugins {
   id 'org.jetbrains.kotlin.konan' version '0.9.1'
 }
-
-konan.targets = [ 'macos_x64' ]
 
 konanArtifacts {
     library('utils') {
