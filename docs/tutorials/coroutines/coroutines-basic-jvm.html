@@ -707,7 +707,7 @@ The thread is returned to the pool while the coroutine is waiting, and when the 
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val c = AtomicLong()
 
-for (i in 1..1_000_000)
+for (i in 1..1_000_000L)
     thread(start = true) {
         c.addAndGet(i)
     }
@@ -720,8 +720,8 @@ println(c.get())
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val c = AtomicLong()
 
-for (i in 1..1_000_000)
-    launch {
+for (i in 1..1_000_000L)
+    GlobalScope.launch {
         c.addAndGet(i)
     }
 
@@ -735,7 +735,7 @@ println(c.get())
 <p>Let's create a million coroutines again, keeping their <code>Deferred</code> objects. Now there's no need in the atomic counter, as we can just return the numbers to be added from our coroutines:</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val deferred = (1..1_000_000).map { n -&gt;
-    async {
+    GlobalScope.async {
         n
     }
 }
@@ -762,7 +762,7 @@ println(c.get())
 <p>Let's also make sure that our coroutines actually run in parallel. If we add a 1-second <code>delay()</code> to each of the <code>async</code>'s, the resulting program won't run for 1'000'000 seconds (over 11,5 days):</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val deferred = (1..1_000_000).map { n -&gt;
-    async {
+    GlobalScope.async {
         delay(1000)
         n
     }
@@ -793,7 +793,7 @@ println(c.get())
 </div>
 <p>Now when we call <code>workload()</code> from a coroutine, the compiler knows that it may suspend and will prepare accordingly:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">async {
+<pre><code class="language-kotlin">GlobalScope.async {
     workload(n)
 }
 </code></pre>

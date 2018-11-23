@@ -1144,7 +1144,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="属性和字段">属性和字段</h1>
+<h1 id="属性与字段">属性与字段</h1>
 <h2 id="声明属性">声明属性</h2>
 <p>Kotlin的类可以有属性。
 属性可以用关键字<em class="keyword">var</em> 声明为可变的，否则使用只读关键字<em class="keyword">val</em>。</p>
@@ -1191,13 +1191,14 @@ var initialized = 1 // 类型 Int、默认 getter 和 setter
 val inferredType = 1 // 类型 Int 、默认 getter
 </code></pre>
 </div>
-<p>我们可以编写自定义的访问器，非常像普通函数，刚好在属性声明内部。这里有一个自定义 getter 的例子:</p>
+<p>我们可以为属性定义自定义的访问器。如果我们定义了一个自定义的 getter，那么每次访问该属性时都会调用它
+（这让我们可以实现计算出的属性）。以下是一个自定义 getter 的示例：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val isEmpty: Boolean
     get() = this.size == 0
 </code></pre>
 </div>
-<p>一个自定义的 setter 的例子:</p>
+<p>如果我们定义了一个自定义的 setter，那么每次给属性赋值时都会调用它。一个自定义的 setter 如下所示：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">var stringRepresentation: String
     get() = this.toString()

@@ -589,7 +589,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>在日常 Android 开发中，流行着数以千计的框架帮助我们提升开发效率。
 使用 Kotlin 开发时仍然可以沿用这些框架，而且和使用 Java 同样简单。
 本章教程将提供相关示例并重点介绍配置的差异。</p>
-<p>教程以 <a href="android-frameworks.html#dagger">Dagger</a>、 <a href="android-frameworks.html#butterknife">Butterknife</a>、 <a href="android-frameworks.html#data-binding">Data Binding</a>、 <a href="android-frameworks.html#auto-parcel">Auto-parcel</a> 以及 <a href="android-frameworks.html#dbflow">DBFlow</a> 为例（其它框架配置基本类似）。
+<p>教程以 <a href="android-frameworks.html#dagger">Dagger</a>、 <a href="android-frameworks.html#butterknife">Butterknife</a>、 <a href="android-frameworks.html#data-binding">Data Binding</a> 以及 <a href="android-frameworks.html#dbflow">DBFlow</a> 为例（其它框架配置基本类似）。
 以上框架均基于注解处理方式工作：通过对代码注解自动生成模板代码。
 注解有助于减少冗余代码，让代码清晰可读，想要了解运行时的代码，可以直接阅读自动生成的源代码。
 但所有生成的代码均为 Java 代码而非 Kotlin。</p>
@@ -862,48 +862,6 @@ data class User(@PrimaryKey var id: Long = 0, @Column var name: String? = null)
 <p>该扩展可以通过类似 C# 中的 LINQ 语法方式编写查询语句，使用 lambda 表达式可以编写更简单的异步计算代码。
 详见<a href="https://agrosner.gitbooks.io/dbflow/content/KotlinSupport.html">此处</a>。</p>
 <p>查看完整<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dbflow">示例程序</a>。</p>
-<h3 id="auto-parcel">Auto-Parcel</h3>
-<p><a href="https://github.com/frankiesardo/auto-parcel">Auto-Parcel</a> 使用 <code>@AutoValue</code> 的注解为类文件自动生成 <code>Parcelable</code> 对应方法和值。</p>
-<p>同样的，gradle 文件中也需要使用 <code>kapt</code> 作为注解处理器来处理 Kotlin 文件：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
-
-dependencies {
-    ...
-    kapt "frankiesardo:auto-parcel:$latest_version"
-}
-</code></pre>
-</div>
-<p>点击<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-auto-parcel">这里</a>查看<a href="https://github.com/frankiesardo/auto-parcel/tree/master/sample">完整示例代码</a>。</p>
-<p>对 Kotlin 类文件添加 <code>@AutoValue</code> 注解。
-下方的示例展示转换后的 <a href="https://github.com/frankiesardo/auto-parcel/blob/master/sample/src/main/java/model2/Address.java"><code>Address</code></a> 类以及自动生成相应的 <code>Parceable</code> 实现：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">@AutoValue
-abstract class Address : Parcelable {
-    abstract fun coordinates(): DoubleArray
-    abstract fun cityName(): String
-
-    companion object {
-        fun create(coordinates: DoubleArray, cityName: String): Address {
-            return builder().coordinates(coordinates).cityName(cityName).build()
-        }
-        
-        fun builder(): Builder = `$AutoValue_Address`.Builder()
-    }
-    
-    @AutoValue.Builder
-    interface Builder {
-        fun coordinates(x: DoubleArray): Builder
-        fun cityName(x: String): Builder
-        fun build(): Address
-    }
-}
-</code></pre>
-</div>
-<p>由于 Kotlin 中没有 <code>static</code> 方法，因此相应的方法会在 <a href="/docs/reference/object-declarations.html#伴生对象"><code>companion object</code></a>中生成。
-如果仍然需要从 Java 中调用这些方法，需要添加<a href="/docs/reference/java-to-kotlin-interop.html#静态方法"><code>@JvmStatic</code></a>注解。</p>
-<p>如果调用 Java 的类或方法恰好在 Kotlin 中是保留字，可以使用反引号(`)作为<a href="/docs/reference/java-interop.html#将-kotlin-中是关键字的-java-标识符进行转义">转义字符</a>，比如调用上例中生成类的`<code>$AutoValue_Address</code>`。</p>
-<p>以上所有经过转换的代码与原生 Java 代码非常相似。</p>
 
         </article>
     </div>
