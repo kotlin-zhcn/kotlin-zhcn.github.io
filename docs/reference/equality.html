@@ -1158,8 +1158,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>也就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 是否与 <code>null</code> 引用相等。</p>
 <p>请注意，当与 <code>null</code> 显式比较时完全没必要优化你的代码：<code>a == null</code> 会被自动转换为 <code>a=== null</code>。</p>
+<p>结构相等与 <code>Comparable&lt;……&gt;</code> 接口定义的比较无关，因此只有自定义的 <code>equals(Any?)</code> 实现可能会影响该操作符的行为。</p>
 <h2 id="浮点数相等性">浮点数相等性</h2>
-<p>当相等性检测的两个操作数都是静态已知的（可空或非空的）<code>Float</code> 或 <code>Double</code> 类型时，该检测遵循 IEEE 754 
+<p>当相等性检测的两个操作数都是静态已知的（可空或非空的）<code>Float</code> 或 <code>Double</code> 类型时，该检测遵循 IEEE 754
 浮点数运算标准。</p>
 <p>否则会使用不符合该标准的结构相等性检测，这会导致 <code>NaN</code> 等于其自身，而 <code>-0.0</code> 不等于 <code>0.0</code>。</p>
 <p>参见：<a href="basic-types.html#浮点数比较">浮点数比较</a>。</p>
