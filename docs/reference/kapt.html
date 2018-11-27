@@ -1153,19 +1153,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>关于如何将 <em>kapt</em> 插件应用于 Gradle/Maven 构建中，请阅读下文。</p>
 <h2 id="在-gradle-中使用">在 Gradle 中使用</h2>
 <p>应用 <code>kotlin-kapt</code> Gradle 插件：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 </code></pre>
 </div>
 <p>或者，你可以使用插件 DSL 应用它：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
     id "org.jetbrains.kotlin.kapt" version "1.3.10"
 }
 </code></pre>
 </div>
 <p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
     kapt 'groupId:artifactId:版本'
 }
@@ -1175,7 +1175,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
 <h2 id="注解处理器参数">注解处理器参数</h2>
 <p>使用 <code>arguments {}</code> 块将参数传给注解处理器：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kapt {
     arguments {
         arg("key", "value")
@@ -1186,7 +1186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="java-编译器选项">Java 编译器选项</h2>
 <p>Kapt 使用 Java 编译器来运行注解处理器。
 以下是将任意选项传给 javac 的方式：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kapt {
     javacOptions {
         // 增加注解处理器的最大错误次数
@@ -1198,7 +1198,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <h2 id="非存在类型校正">非存在类型校正</h2>
 <p>一些注解处理器（如 <code>AutoFactory</code>）依赖于声明签名中的精确类型。默认情况下，Kapt 将每个未知类型（包括生成的类的类型）替换为 <code>NonExistentClass</code>，但你可以更改此行为。将额外标志添加到 <code>build.gradle</code> 文件以启用在存根（stub）中推断出的错误类型：</p>
-<div class="sample" data-highlight-only="" theme="idea">
+<div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kapt {
     correctErrorTypes = true
 }
@@ -1206,7 +1206,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <h2 id="在-maven-中使用">在 Maven 中使用</h2>
 <p>在 <code>compile</code> 之前在 kotlin-maven-plugin 中添加 <code>kapt</code> 目标的执行：</p>
-<pre><code class="code _highlighted" data-lang="application/xml">&lt;execution&gt;
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;execution&gt;
     &lt;id&gt;kapt&lt;/id&gt;
     &lt;goals&gt;
         &lt;goal&gt;kapt&lt;/goal&gt;
@@ -1227,14 +1228,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     &lt;/configuration&gt;
 &lt;/execution&gt;
 </code></pre>
+</div>
 <p>你可以在
 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/maven/dagger-maven-example">Kotlin 示例版本库</a> 中找到一个显示使用 Kotlin、Maven 和 Dagger 的完整示例项目。</p>
 <p>请注意，IntelliJ IDEA 自身的构建系统目前还不支持 kapt。当你想要重新运行注解处理时，请从“Maven Projects”工具栏启动构建。</p>
 <h2 id="在命令行中使用">在命令行中使用</h2>
 <p>Kapt 编译器插件已随 Kotlin 编译器的二进制发行版分发。</p>
 <p>可以使用 kotlinc 选项 <code>Xplugin</code> 提供该 JAR 文件的路径来附加该插件：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">-Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash">-Xplugin=$KOTLIN_HOME/lib/kotlin-annotation-processing.jar
 </code></pre>
+</div>
 <p>以下是可用选项的列表：</p>
 <ul>
 <li><code>sources</code>（<em>必需</em>）：所生成文件的输出路径。</li>
@@ -1257,7 +1261,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>插件选项格式为：<code>-P plugin:&lt;plugin id&gt;:&lt;key&gt;=&lt;value&gt;</code>。选项可以重复。</p>
 <p>一个示例：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">-P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash">-P plugin:org.jetbrains.kotlin.kapt3:sources=build/kapt/sources
 -P plugin:org.jetbrains.kotlin.kapt3:classes=build/kapt/classes
 -P plugin:org.jetbrains.kotlin.kapt3:stubs=build/kapt/stubs
 
@@ -1266,6 +1271,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 -P plugin:org.jetbrains.kotlin.kapt3:correctErrorTypes=true
 </code></pre>
+</div>
 <h2 id="生成-kotlin-代码">生成 Kotlin 代码</h2>
 <p>Kapt 可生成 Kotlin 代码。是将生成的 Kotlin 源文件写入<code>processingEnv.options["kapt.kotlin.generated"]</code> 所指定的目录，这些文件会与主源代码一起编译。</p>
 <p>可以在 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/kotlin-code-generation">kotlin-examples</a> Github 版本库中找到完整的示例。</p>
