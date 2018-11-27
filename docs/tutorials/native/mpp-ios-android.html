@@ -659,8 +659,9 @@ use the <em>Gradle</em> tool window and click the refresh action from the contex
 <p>At this point, we should be able to compile and run the Android application</p>
 <h1 id="creating-the-shared-module">Creating the Shared Module</h1>
 <p>The goal of the tutorial is to demonstrate Kotlin code re-use between Android and iOS. Let's start
-by creating the <code>SharedCode</code> project with the code we will share between platforms. 
-We will create several new files in our project.</p>
+by creating the <code>SharedCode</code> sub-project in our Gradle project. The source code from the <code>SharedCode</code>
+project will be shared between platforms.
+We will create several new files in our project to implement that.</p>
 <h2 id="adding-kotlin-sources">Adding Kotlin Sources</h2>
 <p>The idea is to make every platform show similar text: <code>Kotlin Rocks on Android</code> and 
 <code>Kotlin Rocks on iOS</code>, depending on the platform. We will reuse the way we generate the message. 

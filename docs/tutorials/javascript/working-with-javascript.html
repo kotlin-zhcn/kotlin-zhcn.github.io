@@ -666,7 +666,7 @@ fun printHello() {
 when we want to use a library such as jQuery? Kotlin does not have its own "header" files for all the different libraries available on the JavaScript ecosystem
 however, TypeScript does. The <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">Definitely Typed repository</a>  provides us with a very large selection of header files.</p>
 <p>Using the tool <code>ts2kt</code> (TypeScript to Kotlin) we can convert any <code>d.ts</code> files to Kotlin. To install the tool we can use <code>npm</code></p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">npm install ts2kt
+<pre><code class="code _highlighted" data-lang="text/x-sh">npm -g install ts2kt
 </code></pre>
 <p>To convert a file we simply provide the input file, and optionally an output directory. The command below will convert the file <code>jquery.d.ts</code> in the current folder, which we've previously
  downloaded from the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types/jquery/jquery.d.ts">Definitely Typed repository</a> to the output folder <code>headers</code>:</p>
