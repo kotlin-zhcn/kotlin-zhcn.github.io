@@ -1260,7 +1260,7 @@ Done!
 -->
 <h3 id="构建通道生产者">构建通道生产者</h3>
 <p>协程生成一系列元素的模式很常见。 
-这是 <em>生产者-消费者</em> 模式的一部分，并且经常能在并发的代码中看到它。
+这是 <em>生产者——消费者</em> 模式的一部分，并且经常能在并发的代码中看到它。
 你可以将生产者抽象成一个函数，并且使通道作为它的参数，但这与<!--
 -->必须从函数中返回结果的常识相违悖。</p>
 <p>这里有一个名为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 的便捷的协程构建器，可以很容易的在生产者端正确工作，
@@ -1374,7 +1374,7 @@ Done!
 </code></pre>
 </div>
 <p>现在我们开启了一个从2开始的数字流管道，从当前的通道中取一个素数， 
-并为每一个我们发现的素数启动一个管道阶段：</p>
+并为每一个我们发现的素数启动一个流水线阶段：</p>
 <pre><code>numbersFrom(2) -&gt; filter(2) -&gt; filter(3) -&gt; filter(5) -&gt; filter(7) ……
 </code></pre>
 <p>下面的例子打印了前十个素数， 
@@ -1430,10 +1430,10 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 <p>注意，你可以在标准库中使用
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/build-iterator.html"><code>buildIterator</code></a>
 协程构建器来构建一个相似的管道。 
-使用 <code>produce</code> 替换 <code>buildIterator</code>、<code>send</code> 替换 <code>yield</code>、<code>receive</code> 替换 <code>next</code>、
-<code>ReceiveChannel</code> 替换 <code>Iterator</code> 来摆脱协程作用域，你将不再需要 <code>runBlocking</code>。
+使用 <code>buildIterator</code> 替换 <code>produce</code>、<code>yield</code> 替换 <code>send</code>、<code>next</code> 替换 <code>receive</code>、
+<code>Iterator</code> 替换 <code>ReceiveChannel</code> 来摆脱协程作用域，你将不再需要 <code>runBlocking</code>。
 然而，如上所示，如果你在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文中运行它，使用通道的管道的好处在于<!--
--->它可以充分利用多核心CPU。</p>
+-->它可以充分利用多核心 CPU。</p>
 <p>不过，这是一种非常不切实际的寻找素数的方法。在实践中，管道调用了另外的一些<!--
 -->挂起中的调用（就像异步调用远程服务）并且这些管道不能<!--
 -->内置使用 <code>buildSequence</code>/<code>buildIterator</code>，因为它们不被允许随意的挂起，不像

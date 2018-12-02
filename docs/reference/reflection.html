@@ -1223,7 +1223,7 @@ fun main() {
 -->没有接收者（它会有一个接受接收者对象的额外参数）。如需改为<!--
 -->带有接收者的函数类型，请明确指定其类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val isEmptyStringList: List&lt;String&gt;.() -&gt; Boolean = List::isEmpty 
+<pre><code class="language-kotlin">val isEmptyStringList: List&lt;String&gt;.() -&gt; Boolean = List&lt;String&gt;::isEmpty 
 </code></pre>
 </div>
 <h3 id="示例函数组合">示例：函数组合</h3>

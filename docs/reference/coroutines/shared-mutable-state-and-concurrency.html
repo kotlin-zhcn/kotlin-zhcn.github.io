@@ -1522,14 +1522,14 @@ Counter = 100000
 -->对于某些必须定期修改共享状态的场景，它是一个不错的选择，但是没有自然线程可以<!--
 -->限制此状态。</p>
 <h3 id="actors">Actors</h3>
-<p>一个 <a href="https://en.wikipedia.org/wiki/Actor_model">actor</a> 是由以下元素组成的一个实体：一个协程、它的状态受限封装在此协程中、
-以及一个与其他协程通信的 <em>通道</em> 。一个简单的 actor 可以简单的写成一个函数，
+<p>一个 <a href="https://en.wikipedia.org/wiki/Actor_model">actor</a> 是由协程、被限制并封装到该协程中的状态<!--
+-->以及一个与其它协程通信的 <em>通道</em> 组合而成的一个实体。一个简单的 actor 可以简单的写成一个函数，
 但是一个拥有复杂状态的 actor 更适合由类来表示。</p>
 <p>有一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a> 协程构建器，它可以方便地将 actor 的邮箱通道组合到其<!--
 -->作用域中（用来接收消息）、组合发送 channel 与结果集对象，这样<!--
 -->对 actor 的单个引用就可以作为其句柄持有。</p>
 <p>使用 actor 的第一步是定义一个 actor 要处理的消息类。
-Kotlin 的 <a href="https://kotlinlang.org/docs/reference/sealed-classes.html">密封类</a> 很适合这种场景。
+Kotlin 的<a href="https://kotlinlang.org/docs/reference/sealed-classes.html">密封类</a>很适合这种场景。
 我们使用 <code>IncCounter</code> 消息（用来递增计数器）和 <code>GetCounter</code> 消息（用来获取值）来定义 <code>CounterMsg</code> 密封类。
 后者需要发送回复。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-completable-deferred/index.html">CompletableDeferred</a> 通信<!--
 -->原语表示未来可知（可传达）的单个值，
@@ -1598,7 +1598,7 @@ fun main() = runBlocking&lt;Unit&gt; {
     GlobalScope.massiveRun {
         counter.send(IncCounter)
     }
-    // 发送一条消息从一个 actor 中获取计数值 
+    // 发送一条消息以用来从一个 actor 中获取计数值 
     val response = CompletableDeferred&lt;Int&gt;()
     counter.send(GetCounter(response))
     println("Counter = ${response.await()}")

@@ -1428,7 +1428,7 @@ Kotlin 1.1 中被弃用。</p>
 </tr>
 </tbody>
 </table>
-<p>这些操作符只使用函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html"><code>equals(other: Any?): Boolean</code></a>，可以重载它来提供自定义的相等性检测实现。不会调用任何其他同名函数（如 <code>equals(other: Foo)</code>）。</p>
+<p>这些操作符只使用函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html"><code>equals(other: Any?): Boolean</code></a>，可以覆盖它来提供自定义的相等性检测实现。不会调用任何其他同名函数（如 <code>equals(other: Foo)</code>）。</p>
 <p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定。</p>
 <p>这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值。
 <code>null == null</code>  总是 true，对于非空的 <code>x</code>，<code>x == null</code> 总是 false 而不会调用 <code>x.equals()</code>。</p>

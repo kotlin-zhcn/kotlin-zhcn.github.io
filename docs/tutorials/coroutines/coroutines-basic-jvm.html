@@ -592,12 +592,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>In IntelliJ IDEA go to <em>File -&gt; New &gt; Project…</em>:</p>
 <p><img src="/assets/images/tutorials/coroutines-basic-jvm/new_gradle_project_jvm.png"/></p>
 <p>Then follow the wizard steps. You'll have a <code>build.gradle</code> file created with Kotlin configured according to <a href="/docs/reference/using-gradle.html">this document</a>.
-Make sure it's configured for Kotlin 1.1 or higher.</p>
+Make sure it's configured for Kotlin 1.3 or higher.</p>
 <p>Since we'll be using the <a href="https://github.com/Kotlin/kotlinx.coroutines"><code>kotlinx.coroutines</code></a>, let's add its recent version to our dependencies:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
     ...
-    compile "org.jetbrains.kotlinx:kotlinx-coroutines-core:0.26"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
 }
 </code></pre>
 </div>
@@ -613,7 +613,7 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
 <p>In IntelliJ IDEA go to <em>File -&gt; New &gt; Project…</em> and check the <em>Create from archetype</em> box:</p>
 <p><img src="/assets/images/tutorials/coroutines-basic-jvm/new_mvn_project_jvm.png"/></p>
 <p>Then follow the wizard steps. You'll have a <code>pom.xml</code>  file created with Kotlin configured according to <a href="/docs/reference/using-maven.html">this document</a>.
-Make sure it's configured for Kotlin 1.1 or higher.</p>
+Make sure it's configured for Kotlin 1.3 or higher.</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
@@ -634,7 +634,7 @@ Make sure it's configured for Kotlin 1.1 or higher.</p>
     &lt;dependency&gt;
         &lt;groupId&gt;org.jetbrains.kotlinx&lt;/groupId&gt;
         &lt;artifactId&gt;kotlinx-coroutines-core&lt;/artifactId&gt;
-        &lt;version&gt;0.26&lt;/version&gt;
+        &lt;version&gt;1.0.1&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;
 </code></pre>
