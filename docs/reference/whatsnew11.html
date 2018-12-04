@@ -1191,16 +1191,16 @@ launch(UI) {
 
 fun main(args: Array&lt;String&gt;) {
 //sampleStart
-  val seq = buildSequence {
+    val seq = buildSequence {
       for (i in 1..5) {
           // 产生一个 i 的平方
           yield(i * i)
       }
       // 产生一个区间
       yieldAll(26..28)
-  }
-  
-  // 输出该序列
+    }
+
+    // 输出该序列
   println(seq.toList())
 //sampleEnd
 }
@@ -1297,15 +1297,15 @@ fun main(args: Array&lt;String&gt;) {
 <div auto-indent="false" class="sample" data-min-compiler-version="1.1" indent="2" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
-  val map = mapOf(1 to "one", 2 to "two")
-  // 之前
-  println(map.mapValues { entry -&gt;
+    val map = mapOf(1 to "one", 2 to "two")
+    // 之前
+    println(map.mapValues { entry -&gt;
       val (key, value) = entry
       "$key -&gt; $value!"
-  })
-  // 现在
-  println(map.mapValues { (key, value) -&gt; "$key -&gt; $value!" })
-//sampleEnd    
+    })
+    // 现在
+    println(map.mapValues { (key, value) -&gt; "$key -&gt; $value!" })
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1318,7 +1318,7 @@ fun main(args: Array&lt;String&gt;) {
 
 //sampleStart
     map.forEach { _, value -&gt; println("$value!") }
-//sampleEnd    
+//sampleEnd
 }
 </code></pre>
 </div>
@@ -1358,11 +1358,10 @@ fun main(args: Array&lt;String&gt;) {
 <p>对于没有自定义访问器、或者将 getter 定义为表达式主体的属性，现在可以省略属性的类型：</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">//sampleStart
-data class Person(val name: String, val age: Int) {
+    data class Person(val name: String, val age: Int) {
     val isAdult get() = age &gt;= 20 // 属性类型推断为 “Boolean”
 }
 //sampleEnd
-
 fun main(args: Array&lt;String&gt;) {
     val akari = Person("Akari", 26)
     println("$akari.isAdult = ${akari.isAdult}")
@@ -1647,7 +1646,6 @@ fun main(args: Array&lt;String&gt;) {
 如果该映射是用 <code>withDefault</code> 生成的，这个函数将返回默认值，而不是抛异常。</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-
 //sampleStart    
     val map = mapOf("key" to 42)
     // 返回不可空 Int 值 42

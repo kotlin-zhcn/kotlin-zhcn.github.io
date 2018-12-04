@@ -1255,18 +1255,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>这包括指向特定实例成员的<a href="reflection.html#绑定的函数与属性引用自-11-起">绑定的可调用引用</a>：<code>foo::toString</code>。</p>
 </li>
-<li>
-<p>使用实现函数类型接口的自定义类的实例：</p>
+<li>使用实现函数类型接口的自定义类的实例：</li>
+</ul>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">  class IntTransformer: (Int) -&gt; Int {
-      override operator fun invoke(x: Int): Int = TODO()
-  }
-    
-  val intFunction: (Int) -&gt; Int = IntTransformer() 
+<pre><code class="language-kotlin">class IntTransformer: (Int) -&gt; Int {
+    override operator fun invoke(x: Int): Int = TODO()
+}
+
+val intFunction: (Int) -&gt; Int = IntTransformer()
 </code></pre>
 </div>
-</li>
-</ul>
 <p>如果有足够信息，编译器可以推断变量的函数类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val a = { i: Int -&gt; i + 1 } // 推断出的类型是 (Int) -&gt; Int

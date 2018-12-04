@@ -1284,12 +1284,12 @@ val max = if (a &gt; b) a else b
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-for (i in 1..3) {
-    println(i)
-}
-for (i in 6 downTo 0 step 2) {
-    println(i)
-}
+    for (i in 1..3) {
+        println(i)
+    }
+    for (i in 6 downTo 0 step 2) {
+        println(i)
+    }
 //sampleEnd
 }
 </code></pre>
@@ -1300,9 +1300,9 @@ for (i in 6 downTo 0 step 2) {
 <pre><code class="language-kotlin">fun main() {
 val array = arrayOf("a", "b", "c")
 //sampleStart
-for (i in array.indices) {
-    println(array[i])
-}
+    for (i in array.indices) {
+        println(array[i])
+    }
 //sampleEnd
 }
 </code></pre>
@@ -1310,11 +1310,11 @@ for (i in array.indices) {
 <p>或者你可以用库函数 <code>withIndex</code>：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
-val array = arrayOf("a", "b", "c")
+    val array = arrayOf("a", "b", "c")
 //sampleStart
-for ((index, value) in array.withIndex()) {
-    println("the element at $index is $value")
-}
+    for ((index, value) in array.withIndex()) {
+        println("the element at $index is $value")
+    }
 //sampleEnd
 }
 </code></pre>
