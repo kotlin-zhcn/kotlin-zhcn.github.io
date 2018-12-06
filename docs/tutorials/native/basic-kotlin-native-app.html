@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/basic-kotlin-native-app.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to compile our first Kotlin/Native application">
+    <meta property="og:description" content="看看如何编译我们的第一个 Kotlin/Native 应用程序">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to compile our first Kotlin/Native application">
+    <meta name="twitter:description" content="看看如何编译我们的第一个 Kotlin/Native 应用程序">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>A Basic Kotlin/Native Application - Kotlin 语言中文站</title>
+    <title>基本 Kotlin/Native 应用程序 - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -578,7 +578,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                A Basic Kotlin/Native Application
+                基本 Kotlin/Native 应用程序
             </h1>
             <table>
                     <tr>
@@ -590,57 +590,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to compile our first Kotlin/Native application
+                看看如何编译我们的第一个 Kotlin/Native 应用程序
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll see how to</p>
+<p>在本教程中我们将会学习到：</p>
 <ul>
-<li><a href="#obtaining-the-compiler">Obtain the Kotlin/Native compiler</a></li>
-<li><a href="#creating-hello-kotlin">Write the application</a></li>
-<li><a href="#compiling-and-examining-output">Compile and examine output</a></li>
-<li><a href="#running-the-application">Run the application</a></li>
+<li><a href="#obtaining-the-compiler">获取 Kotlin/Native 编译器</a></li>
+<li><a href="#creating-hello-kotlin">编写应用程序</a></li>
+<li><a href="#compiling-and-examining-output">编译和测试输出</a></li>
+<li><a href="#running-the-application">运行应用程序</a></li>
 </ul>
-<h2 id="obtaining-the-compiler">Obtaining the compiler</h2>
-<p>Kotlin/Native is available for macOS, Linux and Windows. Depending on the operating system we're working on, we'll need to download
-the correct compiler. While cross-platform compilation is possible (i.e. using one platform to compile for another), in this first tutorial
-we're going to compile for the same operating system we're running on. In our case this will be macOS.</p>
-<p>We can obtain the latest version of the compiler from the <a href="https://github.com/JetBrains/kotlin-native/releases">GitHub releases page</a>.</p>
-<p>Once downloaded, we can uncompress it in any folder, e.g. ~/kotlin-native. For convenience it's useful to add the <code>bin</code> folder to the system path so that we can invoke the 
-compiler from any location. (If we uncompressed to ~/kotlin-native, this would be ~/kotlin-native/bin)</p>
-<p>While the output by the compiler does not have any dependencies, the compiler itself does require Java 8, which should be on the system. If we're using macOS, we also need the macOS SDK which can be installed by installing Xcode.</p>
-<h2 id="creating-hello-kotlin">Creating Hello Kotlin</h2>
-<p>Our first application is going to simply print some text on the standard output. In our case, this will be "Hello Kotlin/Native"</p>
-<p>We can open up our favorite IDE or editor and write the following code in a file named <code>hello.kt</code></p>
+<h2 id="获取编译器">获取编译器</h2>
+<p>Kotlin/Native 是可以运行在 macOS， Linux 和 Windows 上的。 由于我们是工作在不同的操作系统上，因此需要正确地下载
+对应的编译器。 虽然跨平台交叉编译是可行的（例如使用一个系统编译成另一个系统的可执行文件），在第一次的教程当中
+我们将会编译出与当前运行的操作系统一致的结果。本例中使用的将会是 macOS。</p>
+<p>我们可以从 <a href="https://github.com/JetBrains/kotlin-native/releases">GitHub releases page</a> 获取到最新版的编译器。</p>
+<p>一旦下载完成，我们可以把它解压到任意文件夹中，例如放在 ~/kotlin-native 这个路径里。为了方便起见， 把 <code>bin</code> 文件夹放到系统的环境变量中是非常有用的， 这样我们就可以在任意地方调用 
+编译器。 （如果我们把文件解压到 ~/kotlin-native ，那么路径应该是 ~/kotlin-native/bin ）</p>
+<p>虽然编译器的输出不需要任何依赖，但是编译器本身是需要 Java 8 的，这也就意味着操作系统中应该要有对应的环境。如果我们使用的是 macOS，那么我们就需要通过安装 Xcode 来安装 macOS SDK。</p>
+<h2 id="创建-hello-kotlin">创建 Hello Kotlin</h2>
+<p>我们的第一个应用程序将会是简单的输出一些文本。本例中，这些文本将会是“Hello Kotlin/Native”。</p>
+<p>我们可以打开自己喜欢的 IDE 或者编辑器，编写如下代码并把文件命名为： <code>hello.kt</code></p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello Kotlin/Native!")
 }
 </code></pre>
 </div>
-<h2 id="compiling-and-examining-output">Compiling and examining output</h2>
-<p>The Kotlin compiler uses a technology known as <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> to target multiple platforms. LLVM requires as input what's known as intermediate representation or IR. This IR is
-represented by a bitcode file, which is a bitstream file format.</p>
+<h2 id="编译和测试输出">编译和测试输出</h2>
+<p>Kotlin 编译器使用的是一种叫 <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> 的技术来支持多个平台。 LLVM 需要中介码（或者被称为 IR ）作为输入。 IR 
+是一种字节码的代表，该文件是比特流文件格式。</p>
 <p><img alt="Compiler Diagram" src="/assets/images/tutorials/native/basic-kotlin-native/llvm-diagram.png"/></p>
-<p>We now need to compile our application, which is done using the compiler downloaded in the first step. If we have the <code>bin</code> folder
-correctly added to the path, we should be able to invoke the compiler using</p>
+<p>我们现在需要使用之前下载好的编辑器来进行编译工作。如果我们正确的把 <code>bin</code> 文件夹
+添加到环境变量中， 那么我们应该可以直接使用如下命令来调用编译器：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native hello.kt
 </code></pre>
-<p>which is telling the compiler to compile the source code <code>hello.kt</code>.</p>
-<p>The first time the compiler runs, it downloads a list of necessary requirements, thus first run does take longer. If everything runs correctly, the output 
-should be <code>program.kexe</code></p>
-<p>The file is the actual binary produced for our target platform. The compiler provides us with a series of options, one of these
-being the ability to specify the output filename. In order to do this, we can use the -output (or -o) option</p>
+<p>这是告诉编译器来编译 <code>hello.kt</code> 文件中的源码。</p>
+<p>编译器第一次运行的时候会下载一些相关的依赖，因此第一次编译的时候会花费较长的时间。如果所有的步骤都正确执行了，那么输出的文件
+应该会是 <code>program.kexe</code>。</p>
+<p>该文件是针对我们目标平台所实际生成的二进制文件。 编译器为我们提供了一系列的选项，其中一个
+是用来定义输出的文件名。为了实现这个效果，我们可以使用 -output (or -o) 选项，如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native -o first hello.kt
 </code></pre>
-<p>which would produce <code>first.kexe</code></p>
-<p>The extension cannot be set and is determined based on the target platform, but we can of course rename the executable to anything we like, using 
-the usual system commands to rename files.</p>
-<h2 id="running-the-application">Running the application</h2>
-<p>To run the application, we can merely invoke it</p>
+<p>这样生成的文件就应该是： <code>first.kexe</code>。</p>
+<p>后缀名是无法进行修改的，因为这取决于目标平台，但是我们仍然可以使用
+常用的系统命令来把这些可执行文件重命名为任何喜欢的名字。</p>
+<h2 id="运行应用程序">运行应用程序</h2>
+<p>为了运行程序，我们可以这样进行调用：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">./program.kexe
 </code></pre>
-<p>It's important to understand that this is now a native application, and no runtime or virtual machine is required. The output should be</p>
+<p>有个非常重要的事情需要明白，那就是这是一个原生的应用程序，不需要额外的运行环境或者虚拟机来支持，输出的内容如下：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">Hello Kotlin/Native!
 </code></pre>
 
