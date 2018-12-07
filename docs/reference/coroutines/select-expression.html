@@ -1161,7 +1161,7 @@ import org.junit.Test
 
 class SelectGuideTest {
 -->
-<h2 id="目录">目录</h2>
+<p><strong>目录</strong></p>
 <!--- TOC -->
 <ul>
 <li><a href="#select 表达式实验性的">select 表达式（实验性的）</a>
@@ -1187,7 +1187,7 @@ class SelectGuideTest {
 <p>我们现在有两个字符串生产者：<code>fizz</code> 和 <code>buzz</code> 。其中 <code>fizz</code> 每300毫秒生成一个 “Fizz” 字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.fizz() = produce&lt;String&gt; {
-    while (true) { // 每300毫秒发送一个 "Fizz" 
+    while (true) { // 每300毫秒发送一个 "Fizz"
         delay(300)
         send("Fizz")
     }
@@ -1197,7 +1197,7 @@ class SelectGuideTest {
 <p>接着 <code>buzz</code> 每500毫秒生成一个 “Buzz!” 字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.buzz() = produce&lt;String&gt; {
-    while (true) { // 每500毫秒发送一个 "Buzz!" 
+    while (true) { // 每500毫秒发送一个 "Buzz!"
         delay(500)
         send("Buzz!")
     }
@@ -1228,21 +1228,21 @@ import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.selects.*
 
 fun CoroutineScope.fizz() = produce&lt;String&gt; {
-    while (true) { // 每300毫秒发送一个 "Fizz" 
+    while (true) { // 每300毫秒发送一个 "Fizz"
         delay(300)
         send("Fizz")
     }
 }
 
 fun CoroutineScope.buzz() = produce&lt;String&gt; {
-    while (true) { // 每500毫秒发送一个 "Buzz!" 
+    while (true) { // 每500毫秒发送一个 "Buzz!"
         delay(500)
         send("Buzz!")
     }
 }
 
 suspend fun selectFizzBuzz(fizz: ReceiveChannel&lt;String&gt;, buzz: ReceiveChannel&lt;String&gt;) {
-    select&lt;Unit&gt; { // &lt;Unit&gt; 意味着该 select 表达式不返回任何结果 
+    select&lt;Unit&gt; { // &lt;Unit&gt; 意味着该 select 表达式不返回任何结果
         fizz.onReceive { value -&gt;  // 这是第一个 select 子句
             println("fizz -&gt; '$value'")
         }
@@ -1372,7 +1372,7 @@ Channel 'a' is closed
         delay(100) // 延迟100毫秒
         select&lt;Unit&gt; {
             onSend(num) {} // 发送到主通道
-            side.onSend(num) {} // 或者发送到 side 通道     
+            side.onSend(num) {} // 或者发送到 side 通道
         }
     }
 }

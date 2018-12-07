@@ -1161,7 +1161,7 @@ import org.junit.Test
 
 class ExceptionsGuideTest {
 -->
-<h2 id="目录">目录</h2>
+<p><strong>目录</strong></p>
 <!--- TOC -->
 <ul>
 <li><a href="#异常处理">异常处理</a>
@@ -1191,7 +1191,7 @@ class ExceptionsGuideTest {
 或者将它们暴露给用户（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>）。
 前者对待异常是不处理的，类似于 Java 的 <code>Thread.uncaughtExceptionHandler</code>，
 而后者依赖用户来最终消耗<!--
--->异常，比如说，通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 
+-->异常，比如说，通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a>
 （<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 在<a href="https://www.kotlincn.net/docs/reference/coroutines/channels.html">通道</a>中介绍过）。</p>
 <p>可以通过一个在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中创建新协程的简单示例来进行演示：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1238,7 +1238,7 @@ Caught ArithmeticException
 <a href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setDefaultUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.defaultUncaughtExceptionHandler</code></a> 
 一样，在没有更多的指定的异常处理者被注册的时候被使用。
 在 Android 中， <code>uncaughtExceptionPreHandler</code> 被设置在全局协程异常处理者中。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 仅在预计不会由用户处理的异常上调用， 
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 仅在预计不会由用户处理的异常上调用，
 所以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 构建器中注册它没有任何效果。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1410,7 +1410,7 @@ fun main() = runBlocking {
 </code></pre>
 <!--- TEST-->
 <blockquote>
-<p>注意，这个机制当前只能在 Java 1.7 以上的版本中使用。 
+<p>注意，这个机制当前只能在 Java 1.7 以上的版本中使用。
 在 JS 和原生环境下暂时会受到限制，但将来会被修复。</p>
 </blockquote>
 <p>取消异常是透明的并且会在默认情况下解包：</p>

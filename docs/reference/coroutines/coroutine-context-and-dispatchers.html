@@ -1161,7 +1161,7 @@ import org.junit.Test
 
 class DispatchersGuideTest {
 -->
-<h2 id="目录">目录</h2>
+<p><strong>目录</strong></p>
 <!--- TOC -->
 <ul>
 <li><a href="#协程上下文与调度器">协程上下文与调度器</a>
@@ -1236,7 +1236,7 @@ main runBlocking      : I'm working in thread main
 所以 <code>GlobalScope.launch { …… }</code> 也可以使用相同的调度器—— <code>launch(Dispatchers.Default) { …… }</code>。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个新的线程。
 一个专用的线程是一种非常昂贵的资源。
-在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a> 
+在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a>
 函数，或存储在一个顶级变量中使它在整个应用程序中被重用。</p>
 <h3 id="非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</h3>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器在被调用的线程中启动协程，但是这只有直到程序运行到<!--
@@ -1316,7 +1316,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-context-03.kt">这里</a>获得完整代码</p>
 </blockquote>
-<p>这里有三个协程，其中主协程是 (#1) —— <code>runBlocking</code>， 
+<p>这里有三个协程，其中主协程是 (#1) —— <code>runBlocking</code>，
 而另外两个协程计算延期的值 <code>a</code> (#2) 和 <code>b</code> (#3)。
 它们都在 <code>runBlocking</code> 上下文中执行并且被限制在了主线程内。
 这段代码的输出如下：</p>

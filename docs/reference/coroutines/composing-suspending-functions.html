@@ -1161,7 +1161,7 @@ import org.junit.Test
 
 class ComposingGuideTest {
 -->
-<h2 id="目录">目录</h2>
+<p><strong>目录</strong></p>
 <!--- TOC -->
 <ul>
 <li><a href="#组合挂起函数">组合挂起函数</a>
@@ -1193,7 +1193,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 </code></pre>
 </div>
-<p>如果需要按 <em>顺序</em> 调用它们，我们接下来会做什么–首先调用 <code>doSomethingUsefulOne</code> <em>接下来</em> 
+<p>如果需要按 <em>顺序</em> 调用它们，我们接下来会做什么–首先调用 <code>doSomethingUsefulOne</code> <em>接下来</em>
 调用 <code>doSomethingUsefulTwo</code> 并且计算它们结果的和吗？
 实际上，如果我们要根据第一个函数的结果来决定是否我们需要<!--
 -->调用第二个函数或者决定如何调用它时，我们就会这样做。</p>
@@ -1281,7 +1281,7 @@ Completed in 1017 ms
 注意，使用协程进行并发总是显式的。</p>
 <h3 id="惰性启动的-async">惰性启动的 async</h3>
 <p>使用一个可选的参数 <code>start</code> 并传值 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a>，可以对 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 进行惰性操作。
-只有当结果需要被 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或者如果一个 
+只有当结果需要被 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或者如果一个
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> 函数被调用，协程才会<!--
 -->被启动。运行下面的示例：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1357,7 +1357,7 @@ fun somethingUsefulTwoAsync() = GlobalScope.async {
 import kotlin.system.*
 
 //sampleStart
-// 注意，在这个示例中我们在 `main` 函数的右边没有加上 `runBlocking` 
+// 注意，在这个示例中我们在 `main` 函数的右边没有加上 `runBlocking`
 fun main() {
     val time = measureTimeMillis {
         // 我们可以在协程外面启动异步执行
