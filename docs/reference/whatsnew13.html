@@ -1312,22 +1312,24 @@ fun main() {
 </code></pre>
 </div>
 <h2 id="更多元的函数">更多元的函数</h2>
-<p>在 Kotlin 中，函数类型用来表示带有许多参数的泛型类：<code>Function0&lt;R&gt;</code>, <code>Function1&lt;P0, R&gt;</code>, <code>Function2&lt;P0, P1, R&gt;</code>,… 这种方式有着列表是有限的问题，最多支持到 <code>Function22</code>。</p>
-<p>Kotlin 1.3 放宽了限制，并且增加了函数更多元的支持：</p>
+<p>在 Kotlin 中用带有不同数量参数的泛型类来表示函数类型：<code>Function0&lt;R&gt;</code>、 <code>Function1&lt;P0, R&gt;</code>、 <code>Function2&lt;P0, P1, R&gt;</code>……这种方式有一个问题是这个列表是有限的，目前只到 <code>Function22</code>。</p>
+<p>Kotlin 1.3 放宽了这一限制，并添加了对具有更多元数（参数个数）的函数的支持：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun trueEnterpriseComesToKotlin(block: (Any, Any, ... /* 42 more */, Any) -&gt; Any) {
-    block(Any(), Any(), ..., Any())
+<pre><code class="language-kotlin">fun trueEnterpriseComesToKotlin(block: (Any, Any, …… /* 42 个 */, Any) -&gt; Any) {
+    block(Any(), Any(), ……, Any())
 }
 </code></pre>
 </div>
-<h2 id="渐进式模式">渐进式模式</h2>
-<p>Kotlin 非常注重代码的稳定性和向后兼容性：Kotlin 的兼容策略为 “打破构建的变化”（既一个变化使得之前能够编译成功的代码，编译失败）只能在大版本中被引入（例如 1.2，1.3等）。</p>
-<p>为了保证了代码安全和正确，我们相信，可以缩短许多用户修复编译器严峻问题的周期。所以，Kotlin 1.3 引入了<em>渐进式</em> 编译器模式，找个模式可以通过向编译器传递 <code>-progressive</code> 来开启。</p>
-<p>在渐进式模式中，一些语法上的问题能够及时的得到修复。所有的修复手段都包含两条重要的属性：</p>
-<p>— 保留源码对旧的编译器的兼容性支持，意味着所有对于<strong>渐进式</strong>编译器能编译的代码，也将能被<strong>非渐进式</strong>编译器编译。
-— 在某些场景，只会让代码更<em>安全</em> — 例如，一些不健壮的智能转换将会被禁止，自动生成的代码将会变的更加稳定、可预测，等。</p>
-<p>开启渐进式模式可能需要你重新某些代码，但不会太多 — 所有的开启渐进式需要修改都是精挑细选、仔细琢磨后的，而且提供工具迁移帮助。
-我们期望对于那些一直保持最新代码版本的人，渐进式模式将会是一个非常棒的选择。</p>
+<h2 id="渐进模式">渐进模式</h2>
+<p>Kotlin 非常注重代码的稳定性与向后兼容性：Kotlin 兼容性策略提到“破坏性变更”（例如，会使以前编译正常的代码现在不能通过编译的变更）只能在主版本（1.2、1.3 等）中引入。</p>
+<p>我们相信很多用户可以使用更快的周期，其中关键的编译器修复会即时生效，从而使代码更安全、更正确。因此 Kotlin 1.3 引入了<em>渐进</em>编译器模式，可以通过将参数 <code>-progressive</code> 传给编译器来启用。</p>
+<p>在渐进模式下，语言语义中的一些修复可以即时生效。所有这些修复都有以下两个重要特征：</p>
+<ul>
+<li>保留了源代码与旧版编译器的向后兼容性，这意味着可以通过非渐进式编译器编译所有可由渐进式编译器编译的代码。</li>
+<li>只是在某种意义上使代码<em>更安全</em>——例如，可以禁用某些不安全的智能转换，可以将所生成代码的行为更改为更可预测、更稳定，等等。</li>
+</ul>
+<p>启用渐进模式可能需要重写一些代码，但不会太多——所有在渐进模式启用的修复都已经过精心挑选、通过审核并提供迁移辅助工具。
+我们希望对于任何积极维护、即将快速更新到最新语言版本的代码库来说，渐进模式都是一个不错的选择。</p>
 <h2 id="内联类">内联类</h2>
 <blockquote class="note">
 <p>内联类从 Kotlin 1.3 开始支持，而且现阶段是<strong>实验性</strong>的。更多详情请看<a href="inline-classes.html#experimental-status-of-inline-classes">这里</a>。</p>
