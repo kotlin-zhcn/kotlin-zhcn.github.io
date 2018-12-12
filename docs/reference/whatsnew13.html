@@ -1332,53 +1332,53 @@ fun main() {
 我们希望对于任何积极维护、即将快速更新到最新语言版本的代码库来说，渐进模式都是一个不错的选择。</p>
 <h2 id="内联类">内联类</h2>
 <blockquote class="note">
-<p>内联类从 Kotlin 1.3 开始支持，而且现阶段是<strong>实验性</strong>的。更多详情请看<a href="inline-classes.html#experimental-status-of-inline-classes">这里</a>。</p>
+<p>内联类在 Kotlin 1.3 起才可用，并且目前是<strong>实验性</strong>的。详见其<a href="inline-classes.html#experimental-status-of-inline-classes">参考文档</a>。</p>
 </blockquote>
-<p>Kotlin 1.3 引入了一种新的声明方式 — <code>内联类</code>。内联类可视为常规类的限制版，值得一提的是，内联类必须有一个确切的属性：</p>
+<p>Kotlin 1.3 引入了一种新的声明方式——<code>inline class</code>。内联类可以看作是普通类的受限版，尤其是内联类必须有且只有一个属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline class Name(val s: String)
 </code></pre>
 </div>
-<p>Kotlin 编译器将会利用这个限制，积极的提升内联类在运行时的表现，并且使用底层的属性值来替换内联类的实例，用于省略构造方法调用，减小 GC 压力，开启其他优化操作：</p>
+<p>Kotlin 编译器会使用此限制来积极优化内联类的运行时表示，并使用底层属性的值替换内联类的实例，其中可能会移除构造函数调用、GC 压力，以及启用其他优化：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">inline class Name(val s: String)
 //sampleStart
 fun main() {
-    // 下一行不会调用构造方法
-    // 而且在运行时，'name' 只会包含字符串 "Kotlin"
+    // 下一行不会调用构造函数，并且
+    // 在运行时，“name”只包含字符串 "Kotlin"
     val name = Name("Kotlin")
     println(name.s) 
 }
 //sampleEnd
 </code></pre>
 </div>
-<p>点击<a href="inline-classes.html">这里</a>查看内联类更多细节。</p>
+<p>详见内联类的<a href="inline-classes.html">参考文档</a>。</p>
 <h2 id="无符号整型">无符号整型</h2>
 <blockquote class="note">
-<p>无符号整型从 Kotlin 1.3 开始支持，而且现阶段是<strong>实验性</strong>的。更多详情请看<a href="basic-types.html#无符号整型的实验性状态">这里</a>。</p>
+<p>无符号整数仅在 Kotlin 1.3 起才可用，并且目前是<strong>实验性</strong>的。详见其<a href="basic-types.html#无符号整型的实验性状态">参考文档</a>。</p>
 </blockquote>
 <p>Kotlin 1.3 引入了无符号整型类型：</p>
 <ul>
-<li><code>kotlin.UByte</code>: an unsigned 8-bit integer, ranges from 0 to 255</li>
-<li><code>kotlin.UShort</code>: an unsigned 16-bit integer, ranges from 0 to 65535</li>
-<li><code>kotlin.UInt</code>: an unsigned 32-bit integer, ranges from 0 to 2^32 - 1</li>
-<li><code>kotlin.ULong</code>: an unsigned 64-bit integer, ranges from 0 to 2^64 - 1</li>
+<li><code>kotlin.UByte</code>: 无符号 8 比特整数，范围是 0 到 255</li>
+<li><code>kotlin.UShort</code>: 无符号 16 比特整数，范围是 0 到 65535</li>
+<li><code>kotlin.UInt</code>: 无符号 32 比特整数，范围是 0 到 2^32 - 1</li>
+<li><code>kotlin.ULong</code>: 无符号 64 比特整数，范围是 0 到 2^64 - 1</li>
 </ul>
-<p>无符号类型也支持大多数有符号类型的功能：</p>
+<p>无符号类型也支持其对应有符号类型的大多数操作：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-// 你可以使用字面前缀定义无符号类型：
+// 可以使用字面值后缀定义无符号类型：
 val uint = 42u 
 val ulong = 42uL
 val ubyte: UByte = 255u
 
-// 你可以把有符号类型通过标准库向无符号类型转换，反之亦然：
+// 通过标准库扩展可以将有符号类型转换为无符号类型，反之亦然：
 val int = uint.toInt()
 val byte = ubyte.toByte()
 val ulong2 = byte.toULong()
 
-// 无符号类型支持同义操作符：
+// 无符号类型支持类似的操作符：
 val x = 20u + 22u
 val y = 1u shl 8
 val z = "128".toUByte()
@@ -1389,7 +1389,7 @@ println("x: $x, y: $y, z: $z, range: $range")
 }
 </code></pre>
 </div>
-<p>点击<a href="basic-types.html#无符号整型">这里</a>查看无符号整型更多细节。</p>
+<p>详见其<a href="basic-types.html#无符号整型">参考文档</a>。</p>
 <h2 id="jvmdefault">@JvmDefault</h2>
 <blockquote class="note">
 <p><code>@JvmDefault</code> 从 Kotlin 1.3 开始支持，而且现阶段是<strong>实验性</strong>的。更多详情请看<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">这里</a>。</p>

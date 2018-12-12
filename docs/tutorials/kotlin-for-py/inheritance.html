@@ -1,0 +1,1096 @@
+<html>
+<head>
+<meta charset="utf-8">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5W8DZRW');</script>
+<!-- End Google Tag Manager -->
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" sizes="72x72"
+      href="/assets/images/apple-touch-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="114x114"
+      href="/assets/images/apple-touch-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="144x144"
+      href="/assets/images/apple-touch-icon-144x144.png"/>
+<link rel="stylesheet" href="/_assets/styles.css">
+
+
+<!-- Social Media tag Starts -->
+<!-- Place this data between the <head> tags of your website -->
+<!-- Open Graph data -->
+<meta property="og:title" content=""/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/kotlin-for-py/inheritance.html"/>
+<meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
+    <meta property="og:description" content="">
+<meta property="og:site_name" content="Kotlin"/>
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kotlin">
+<meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+<meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
+<!-- Social Media tag Ends -->
+
+    <title>Inheritance - Kotlin 语言中文站</title>
+
+    <script src="/_assets/default.js"></script>
+    <script src="/_assets/common.js"></script>
+    <link rel="stylesheet" href="/_assets/default.css"/>
+    <link rel="stylesheet" href="/_assets/common.css"/>
+</head>
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="global-layout">
+
+<header class="global-header">
+    <div class="global-header-panel">
+        <div class="g-layout">
+            <a class="global-header-logo" href="/">Kotlin</a>
+<nav class="global-nav">
+    <div class="nav-links">
+            <a href="https://www.kotliner.cn/" class="nav-item">
+                博客
+            </a>
+            <a href="https://discuss.kotliner.cn/" class="nav-item">
+                论坛
+            </a>
+            <a href="/docs/reference/" class="nav-item">
+                学习
+            </a>
+            <a href="/community/" class="nav-item">
+                社区
+            </a>
+            <a href="https://play.kotlinlang.org" class="nav-item">
+                在线试用
+            </a>
+    </div>
+
+    <div class="search-button">
+        <div class="icon"></div>
+    </div>
+</nav>        </div>
+    </div>
+
+
+    <div class="g-layout">
+    </div>
+</header>
+    <div class="g-layout global-content">
+        <nav class="docs-nav">
+                <div class="nav-item-wrap">
+                        <a href="/docs/reference/" class="nav-item">
+                            <span class="nav-item-text">
+                                参考
+                            </span>
+                        </a>
+                </div>
+                <div class="nav-item-wrap">
+                        <a href="/docs/tutorials/" class="nav-item is_active">
+                            <span class="nav-item-text">
+                                教程
+                            </span>
+                        </a>
+                </div>
+                <div class="nav-item-wrap">
+                        <a href="/docs/books.html" class="nav-item">
+                            <span class="nav-item-text">
+                                书籍
+                            </span>
+                        </a>
+                </div>
+                <div class="nav-item-wrap">
+                        <a href="/docs/resources.html" class="nav-item">
+                            <span class="nav-item-text">
+                                更多资源
+                            </span>
+                        </a>
+                </div>
+        </nav>
+
+    <div class="g-grid">
+        <aside class="g-3">
+            <div class="js-side-tree-nav">
+                    <nav class="side-tree-nav">
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="开始">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">开始</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/getting-started.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 IntelliJ IDEA 入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/getting-started-eclipse.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 Eclipse 入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/command-line.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用命令行编译器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/build-tools.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用构建工具</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/koans.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">心印</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="Android">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">Android</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-android.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Android 开发入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/android-plugin.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin Android 扩展</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/android-frameworks.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Android 框架</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="Java 互操作">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">Java 互操作</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/mixing-java-kotlin-intellij.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在一个项目中混用 Java 与 Kotlin</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="JavaScript">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">JavaScript</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 转 JavaScript</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 Gradle 入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/getting-started-idea/getting-started-with-intellij-idea.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 IntelliJ IDEA 入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">以 Maven 入门</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/getting-started-command-line/command-line-library-js.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用命令行编译器创建 Kotlin JavaScript 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/working-with-modules/working-with-modules.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 与 JavaScript 模块合用</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/working-with-javascript.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 JavaScript 合用</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/javascript/debugging-javascript/debugging-javascript.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在浏览器中调试 Kotlin</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="多平台项目">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">多平台项目</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mpp-ios-android.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">iOS 与 Android</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/multiplatform-library.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台库</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="原生">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">原生</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/basic-kotlin-native-app.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基本 Kotlin/Native 应用程序</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/interop-with-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 C 语言库互操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">映射来自 C 语言的原始数据类型</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mapping-struct-union-types-from-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">映射来自 C 语言的结构与联合类型</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mapping-function-pointers-from-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">映射来自 C 语言的函数指针</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mapping-strings-from-c.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">映射来自 C 语言的字符串</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/working-with-klib.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">针对多平台</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/dynamic-libraries.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin/Native 开发动态库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/apple-framework.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin/Native 开发 Apple 框架</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Gradle 用于 Kotlin/Native</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/mpp-ios-android.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台项目：iOS 与 Android</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="协程">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">协程</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/coroutines/async-programming.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">异步程序设计</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/coroutines/coroutines-basic-jvm.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">JVM 平台的 Kotlin 协程简介</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="Web 开发">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">Web 开发</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/httpservlets.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">用 Http Servlets 创建 web 应用</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/spring-boot-restful.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">用  Spring Boot 创建 RESTful Web 服务</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="工具">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">工具</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-and-ci.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">TeamCity 配置 Kotlin</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="教学">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">教学</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/edu-tools-learner.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">通过 EduTools 插件学习 Kotlin</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/edu-tools-educator.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">通过 EduTools 插件讲授 Kotlin</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="迁移自 Python">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">迁移自 Python</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/introduction.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Introduction</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/hello-world.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Hello World</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/compiling-and-running.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Compiling and running</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/declaring-variables.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Declaring variables</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/primitive-data-types-and-their-limitations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Primitive data types and their limitations</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/strings.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Strings</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/conditionals.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Conditionals</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/collections.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Collections</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/loops.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Loops</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Functions</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Classes</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/exceptions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Exceptions</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/null-safety.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Null safety</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/functional-programming.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Functional programming</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/packages-and-imports.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Packages and imports</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/visibility-modifiers.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Visibility modifiers</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Inheritance</div>
+            </div>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/objects-and-companion-objects.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Objects and companion objects</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/generics.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Generics</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/extension-functionsproperties.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Extension functions/properties</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/member-references-and-reflection.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Member references and reflection</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/annotations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Annotations</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/file-io.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">File I/O</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/scoped-resource-usage.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Scoped resource usage</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/kotlin-for-py/documentation.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Documentation</span>
+            </a>
+    </div>
+
+    </div>
+
+    </nav>
+
+            </div>
+        </aside>
+
+        <article role="main" class="page-content g-9">
+<a href="https://github.com/hltj/kotlin-for-python-developers-cn/edit/master/README.md"
+   class="page-link-to-github"
+   target="_blank"
+   title="在 GitHub 上编辑本页">
+        <i class="github-icon"></i>
+        <span class="text">编辑本页</span>
+</a>
+            <h1>
+                Inheritance
+            </h1>
+            <table>
+            </table>
+            
+<p><em>This material was written by <a href="https://eldhuset.net/">Aasmund Eldhuset</a>; it is owned by <a href="https://www.khanacademy.org/">Khan Academy</a> and is licensed for use under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US</a>. Please note that this is not a part of Khan Academy's official product offering.</em></p>
+<hr/>
+<h2 id="subclassing">Subclassing</h2>
+<p>Kotlin supports single-parent class inheritance - so each class (except the root class <code>Any</code>) has got exactly one parent class, called a <em>superclass</em>. Kotlin wants you to think through your class design to make sure that it's actually safe to <em>subclass</em> it, so classes are <em>closed</em> by default and can't be inherited from unless you explicitly declare the class to be <em>open</em> or <em>abstract</em>. You can then subclass from that class by declaring a new class which mentions its parent class after a colon:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class MotorVehicle
+class Car : MotorVehicle()
+</code></pre>
+</div>
+<p>Classes that don't declare a superclass implicitly inherit from <code>Any</code>. The subclass must invoke one of the constructors of the base class, passing either parameters from its own constructor or constant values:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class MotorVehicle(val maxSpeed: Double, val horsepowers: Int)
+class Car(
+    val seatCount: Int,
+    maxSpeed: Double
+) : MotorVehicle(maxSpeed, 100)
+</code></pre>
+</div>
+<p>The subclass <em>inherits</em> all members that exist in its superclass - both those that are directly defined in the superclass and the ones that the superclass itself has inherited. In this example, <code>Car</code> contains the following members:</p>
+<ul>
+<li><code>seatCount</code>, which is <code>Car</code>'s own property</li>
+<li><code>maxSpeed</code> and <code>horsepowers</code>, which are inherited from <code>MotorVehicle</code></li>
+<li><code>toString()</code>, <code>equals()</code>, and <code>hashCode()</code>, which are inherited from <code>Any</code></li>
+</ul>
+<p>Note that the terms "subclass" and "superclass" can span multiple levels of inheritance - <code>Car</code> is a subclass of <code>Any</code>, and <code>Any</code> is the superclass of everything. If we want to restrict ourselves to one level of inheritance, we will say "direct subclass" or "direct superclass".</p>
+<p>Note that we do not use <code>val</code> in front of <code>maxSpeed</code> in <code>Car</code> - doing so would have introduced a distinct property in <code>Car</code> that would have <em>shadowed</em> the one inherited from <code>MotorVehicle</code>. As written, it's just a constructor parameter that we pass on to the superconstructor.</p>
+<p><code>private</code> members (and <code>internal</code> members from superclasses in other modules) are also inherited, but are not directly accessible: if the superclass contains a private property <code>foo</code> that is referenced by a public function <code>bar()</code>, instances of the subclass will contain a <code>foo</code>; they can't use it directly, but they are allowed to call <code>bar()</code>.</p>
+<p>When an instance of a subclass is constructed, the superclass "part" is constructed first (via the superclass constructor). This means that during execution of the constructor of an open class, it could be that the object being constructed is an instance of a subclass, in which case the subclass-specific properties have not been initialized yet. For that reason, calling an open function from a constructor is risky: it might be overridden in the subclass, and if it is accessing subclass-specific properties, those won't be initialized yet.</p>
+<h2 id="overriding">Overriding</h2>
+<p>If a member function or property is declared as <code>open</code>, subclasses may <em>override</em> it by providing a new implementation. Let's say that <code>MotorVehicle</code> declares this function:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open fun drive() =
+    "$horsepowers HP motor vehicle driving at $maxSpeed MPH"
+</code></pre>
+</div>
+<p>If <code>Car</code> does nothing, it will inherit this function as-is, and it will return a message with the car's horsepowers and max speed. If we want a car-specific message, <code>Car</code> can override the function by redeclaring it with the <code>override</code> keyword:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">override fun drive() =
+   "$seatCount-seat car driving at $maxSpeed MPH"
+</code></pre>
+</div>
+<p>The signature of the overriding function must exactly match the overridden one, except that the return type in the overriding function may be a subtype of the return type of the overridden function.</p>
+<p>If what the overriding function wants to do is an extension of what the overridden function did, you can call the overridden function via <code>super</code> (either before, after, or between other code):</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">override fun drive() =
+    super.drive() + " with $seatCount seats"
+</code></pre>
+</div>
+<h2 id="interfaces">Interfaces</h2>
+<p>The single-parent rule often becomes too limiting, as you'll often find commonalities between classes in different branches of a class hierarchy. These commonalities can be expressed in <em>interfaces</em>.</p>
+<p>An interface is essentially a contract that a class may choose to sign; if it does, the class is obliged to provide implementations of the properties and functions of the interface. However, an interface may (but typically doesn't) provide a default implementation of some or all of its properties and functions. If a property or function has a default implementation, the class may choose to override it, but it doesn't have to. Here's an interface without any default implementations:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface Driveable {
+    val maxSpeed: Double
+    fun drive(): String
+}
+</code></pre>
+</div>
+<p>We can choose to let <code>MotorVehicle</code> implement that interface, since it's got the required members - but now we need to mark those members with <code>override</code>, and we can remove <code>open</code> since an overridden function is implicitly open:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class MotorVehicle(
+    override val maxSpeed: Double,
+    val wheelCount: Int
+) : Driveable {
+    override fun drive() = "Wroom!"
+}
+</code></pre>
+</div>
+<p>If we were to introduce another class <code>Bicycle</code>, which should be neither a subclass nor a superclass of <code>MotorVehicle</code>, we could still make it implement <code>Driveable</code>, as long as we declare <code>maxSpeed</code> and <code>drive</code> in <code>Bicycle</code>.</p>
+<p>Subclasses of a class that implements an interface (in this case, <code>Car</code>) are also considered to be implementing the interface.</p>
+<p>A symbol that is declared inside an interface normally should be public. The only other legal visibility modifier is <code>private</code>, which can only be used if the function body is supplied - that function may then be called by each class that implements the interface, but not by anyone else.</p>
+<p>As for why you would want to create an interface, other than as a reminder to have your classes implement certain members, see the section on <a href="inheritance.html#polymorphism">polymorphism</a>.</p>
+<h2 id="abstract-classes">Abstract classes</h2>
+<p>Some superclasses are very useful as a grouping mechanism for related classes and for providing shared functions, but are so general that they're not useful on their own. <code>MotorVehicle</code> seems to fit this description. Such a class should be declared <em>abstract</em>, which will prevent the class from being instantiated directly:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">abstract class MotorVehicle(val maxSpeed: Double, val wheelCount: Int)
+</code></pre>
+</div>
+<p>Now, you can no longer say <code>val mv = MotorVehicle(100, 4)</code>.</p>
+<p>Abstract classes are implicitly open, since they are useless if they don't have any concrete subclasses.</p>
+<p>When an abstract class implements one or more interfaces, it is not required to provide definitions of the members of its interfaces (but it can if it wants to). It must still <em>declare</em> such members, using <code>abstract override</code> and not providing any body for the function or property:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">abstract override val foo: String
+abstract override fun bar(): Int
+</code></pre>
+</div>
+<p>Being abstract is the only way to "escape" from having to implement the members of your interfaces, by offloading the work onto your subclasses - if a subclass wants to be concrete, it must implement all the "missing" members.</p>
+<h2 id="polymorphism">Polymorphism</h2>
+<p>Polymorphism is the ability to treat objects with similar traits in a common way. In Python, this is achieved via <em>ducktyping</em>: if <code>x</code> refers to some object, you can call <code>x.quack()</code> as long as the object happens to have the function <code>quack()</code> - nothing else needs to be known (or rather, assumed) about the object. That's very flexible, but also risky: if <code>x</code> is a parameter, every caller of your function must be aware that the object they pass to it must have <code>quack()</code>, and if someone gets it wrong, the program blows up at runtime.</p>
+<p>In Kotlin, polymorphism is achieved via the class hierarchy, in such a way that it is impossible to run into a situation where a property or function is missing. The basic rule is that a variable/property/parameter whose declared type is <code>A</code> may refer to an instance of a class <code>B</code> if and only if <code>B</code> is a subtype of <code>A</code>. This means that either, <code>A</code> must be a class and <code>B</code> must be a subclass of <code>A</code>, or that <code>A</code> must be an interface and <code>B</code> must be a class that implements that interface or be a subclass of a class that does. With our classes and interfaces from the previous sections, we can define these functions:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun boast(mv: MotorVehicle) =
+    "My ${mv.wheelCount} wheel vehicle can drive at ${mv.maxSpeed} MPH!"
+
+fun ride(d: Driveable) =
+    "I'm riding my ${d.drive()}"
+</code></pre>
+</div>
+<p>and call them like this:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val car = Car(4, 120)
+boast(car)
+ride(car)
+</code></pre>
+</div>
+<p>We're allowed to pass a <code>Car</code> to <code>boast()</code> because <code>Car</code> is a subclass of <code>MotorVehicle</code>. We're allowed to pass a <code>Car</code> to <code>ride()</code> because <code>Car</code> implements <code>Driveable</code> (thanks to being a subclass <code>MotorVehicle</code>). Inside <code>boast()</code>, we're only allowed to access the members of the declared parameter type <code>MotorVehicle</code>, even if we're in a situation where we know that it's really a <code>Car</code> (because there could be other callers that pass a non-<code>Car</code>). Inside <code>ride()</code>, we're only allowed to access the members of the declared parameter type <code>Driveable</code>. This ensures that every member lookup is safe - the compiler only allows you to pass objects that are guaranteed to have the necessary members. The downside is that you will sometimes be forced to declare "unnecessary" interfaces or wrapper classes in order to make a function accept instances of different classes.</p>
+<p>With collections and functions, polymorphism becomes more complicated - see the section on <a href="generics.html">generics</a>.</p>
+<h2 id="casting-and-type-testing">Casting and type testing</h2>
+<p>When you take an interface or an open class as a parameter, you generally don't know the real type of the parameter at runtime, since it could be an instance of a subclass or of any class that implements the interface. It is possible to check what the exact type is, but like in Python, you should generally avoid it and instead design your class hierarchy such that you can do what you need by proper overriding of functions or properties.</p>
+<p>If there's no nice way around it, and you need to take special actions based on what type something is or to access functions/properties that only exist on some classes, you can use <code>is</code> to check if the real type of an object is a particular class or a subclass thereof (or an implementor of an interface). When this is used as the condition in an <code>if</code>, the compiler will let you perform type-specific operations on the object inside the <code>if</code> body:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(x: Any) {
+    if (x is Person) {
+        println("${x.name}") // This wouldn't compile outside the if
+    }
+}
+</code></pre>
+</div>
+<p>If you want to check for <em>not</em> being an instance of a type, use <code>!is</code>. Note that <code>null</code> is never an instance of any non-nullable type, but it is always an "instance" of any nullable type (even though it technically isn't an instance, but an absence of any instance).</p>
+<p>The compiler will not let you perform checks that can't possibly succeed because the declared type of the variable is a class that is on an unrelated branch of the class hierarchy from the class you're checking against - if the declared type of <code>x</code> is <code>MotorVehicle</code>, you can't check if <code>x</code> is a <code>Person</code>. If the right-hand side of <code>is</code> is an interface, Kotlin will allow the type of the left-hand side to be any interface or open class, because it could be that some subclass thereof implements the interface.</p>
+<p>If your code is too clever for the compiler, and you know without the help of <code>is</code> that <code>x</code> is an instance of <code>Person</code> but the compiler doesn't, you can <em>cast</em> your value with <code>as</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val p = x as Person
+</code></pre>
+</div>
+<p>This will raise a <code>ClassCastException</code> if the object is not actually an instance of <code>Person</code> or any of its subclasses. If you're not sure what <code>x</code> is, but you're happy to get null if it's not a <code>Person</code>, you can use <code>as?</code>, which will return null if the cast fails. Note that the resulting type is <code>Person?</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val p = x as? Person
+</code></pre>
+</div>
+<p>You can also use <code>as</code> to cast to a nullable type. The difference between this and the previous <code>as?</code> cast is that this one will fail if <code>x</code> is a non-null instance of another type than <code>Person</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val p = x as Person?
+</code></pre>
+</div>
+<h2 id="delegation">Delegation</h2>
+<p>If you find that an interface that you want a class to implement is already implemented by one of the properties of the class, you can <em>delegate</em> the implementation of that interface to that property with <code>by</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">interface PowerSource {
+    val horsepowers: Int
+}
+
+class Engine(override val horsepowers: Int) : PowerSource
+
+open class MotorVehicle(val engine: Engine): PowerSource by engine
+</code></pre>
+</div>
+<p>This will automatically implement all the interface members of <code>PowerSource</code> in <code>MotorVehicle</code> by invoking the same member on <code>engine</code>. This only works for properties that are declared in the constructor.</p>
+<h2 id="delegated-properties">Delegated properties</h2>
+<p>Let's say that you're writing a simple ORM. Your database library represents a row as instances of a class <code>Entity</code>, with functions like <code>getString("name")</code> and <code>getLong("age")</code> for getting typed values from the given columns. We could create a typed wrapper class like this:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">abstract class DbModel(val entity: Entity)
+
+class Person(val entity: Entity) : DbModel(entity) {
+    val name = entity.getString("name")
+    val age = entity.getLong("age")
+}
+</code></pre>
+</div>
+<p>That was easy, but maybe we'd want to do lazy-loading so that we won't spend time on extracting the fields that won't be used (especially if some of them contain a lot of data in a format that it is time-consuming to parse), and maybe we'd like support for default values. While we could implement that logic in a <code>get()</code> block, it would need to be duplicated in every property. Alternatively, we could implement the logic in a separate <code>StringProperty</code> class (note that this simple example is not thread-safe):</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class StringProperty(
+    private val model: DbModel,
+    private val fieldName: String,
+    private val defaultValue: String? = null
+) {
+    private var _value: String? = defaultValue
+    private var loaded = false
+    val value: String?
+        get() {
+            // Warning: This is not thread-safe!
+            if (loaded) return _value
+            if (model.entity.contains(fieldName)) {
+                _value = model.entity.getString(fieldName)
+            }
+            loaded = true
+            return _value
+        }
+}
+
+// In Person
+val name = StringProperty(this, "name", "Unknown Name")
+</code></pre>
+</div>
+<p>Unfortunately, using this would require us to type <code>p.name.value</code> every time we wanted to use the property. We could do the following, but that's also not great since it introduces an extra property:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// In Person
+private val _name = StringProperty(this, "name", "Unknown Name")
+val name get() = _name.value
+</code></pre>
+</div>
+<p>The solution is a <em>delegated property</em>, which allows you to specify the behavior of getting and setting a property (somewhat similar to implementing <code>__getattribute__()</code> and <code>__setattribute__()</code> in Python, but for one property at a time).</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class DelegatedStringProperty(
+    private val fieldName: String,
+    private val defaultValue: String? = null
+) {
+    private var _value: String? = null
+    private var loaded = false
+    operator fun getValue(thisRef: DbModel, property: KProperty&lt;*&gt;): String? {
+        if (loaded) return _value
+        if (thisRef.entity.contains(fieldName)) {
+            _value = thisRef.entity.getString(fieldName)
+        }
+        loaded = true
+        return _value
+    }
+}
+</code></pre>
+</div>
+<p>The delegated property can be used like this to declare a property in <code>Person</code> - note the use of <code>by</code> instead of <code>=</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val name by DelegatedStringProperty(this, "name", "Unknown Name")
+</code></pre>
+</div>
+<p>Now, whenever anyone reads <code>p.name</code>, <code>getValue()</code> will be invoked with <code>p</code> as <code>thisRef</code> and metadata about the <code>name</code> property as <code>property</code>. Since <code>thisRef</code> is a <code>DbModel</code>, this delegated property can only be used inside <code>DbModel</code> and its subclasses.</p>
+<p>A nice built-in delegated property is <code>lazy</code>, which is a properly threadsafe implementation of the lazy loading pattern. The supplied lambda expression will only be evaluated once, the first time the property is accessed.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val name: String? by lazy {
+    if (thisRef.entity.contains(fieldName)) {
+        thisRef.entity.getString(fieldName)
+    } else null
+}
+</code></pre>
+</div>
+<h2 id="sealed-classes">Sealed classes</h2>
+<p>If you want to restrict the set of subclasses of a base class, you can declare the base class to be <code>sealed</code> (which also makes it abstract), in which case you can only declare subclasses in the same file. The compiler then knows the complete set of possible subclasses, which will let you do exhaustive <code>when</code> expression for all the possible subtypes without the need for an <code>else</code> clause (and if you add another subclass in the future and forget to update the <code>when</code>, the compiler will let you know).</p>
+<hr/>
+<table>
+<tbody>
+<tr>
+<td><a href="visibility-modifiers.html">← Previous: Visibility modifiers</a></td>
+<td><a href="objects-and-companion-objects.html">Next: Objects and companion objects →</a></td>
+</tr>
+</tbody>
+</table>
+
+        </article>
+    </div>
+    </div>
+
+</div>
+
+<footer role="contentinfo" class="global-footer">
+
+    <div class="global-footer-terms">
+        <div class="g-layout">
+
+            <div class="terms-copyright">
+                采用 <a href="https://github.com/JetBrains/kotlin-web-site/blob/master/LICENSE">Apache 2 许可协议</a>
+            </div>
+
+            <div class="terms-sponsor">
+            由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains" target="_blank">JetBrains</a> 赞助及开发；
+            由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> <a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+            </div>
+        </div>
+    </div>
+
+</footer>
+    <script src="/_assets/tutorial.js"></script>
+<div class="search-popup _hidden" tabindex="1000">
+    <div class="search-popup__content">
+        <div class="search-popup__controls">
+            <div class="search-popup__input"></div>
+            <div class="search-popup__close">
+                <div class="search-popup__close-icon-wrapper">
+                    <div class="search-popup__close-icon"></div>
+                </div>
+                <div class="search-popup__close-text">esc</div>
+            </div>
+        </div>
+        <div class="search-popup__results"></div>
+    </div>
+</div></body>
+</html>
