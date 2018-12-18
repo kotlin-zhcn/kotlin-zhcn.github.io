@@ -1494,7 +1494,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <!--- TEST -->
 <h3 id="在延迟值通道上切换">在延迟值通道上切换</h3>
 <p>我们现在来编写一个通道生产者函数，它消费一个产生延迟字符串的通道，并等待每个接收的<!--
--->延迟值，但它只运行在在下一个延迟值到达或者通道关闭之前。此示例将
+-->延迟值，但它只在下一个延迟值到达或者通道关闭之前处于运行状态。此示例将
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive-or-null.html">onReceiveOrNull</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句放在同一个 <code>select</code> 中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.switchMapDeferreds(input: ReceiveChannel&lt;Deferred&lt;String&gt;&gt;) = produce&lt;String&gt; {

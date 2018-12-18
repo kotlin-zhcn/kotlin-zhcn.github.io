@@ -1326,14 +1326,11 @@ fun main() = runBlocking {
 //sampleEnd
 }
 
-fun CoroutineScope.produceSquares(): ReceiveChannel&lt;Int&gt; = produce {
-    for (x in 1..5) send(x * x)
-}
-
 fun CoroutineScope.produceNumbers() = produce&lt;Int&gt; {
     var x = 1
     while (true) send(x++) // 从1开始的无限的整数流
 }
+
 fun CoroutineScope.square(numbers: ReceiveChannel&lt;Int&gt;): ReceiveChannel&lt;Int&gt; = produce {
     for (x in numbers) send(x * x)
 }

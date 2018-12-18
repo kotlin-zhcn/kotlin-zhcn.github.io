@@ -1392,40 +1392,40 @@ println("x: $x, y: $y, z: $z, range: $range")
 <p>详见其<a href="basic-types.html#无符号整型">参考文档</a>。</p>
 <h2 id="jvmdefault">@JvmDefault</h2>
 <blockquote class="note">
-<p><code>@JvmDefault</code> 从 Kotlin 1.3 开始支持，而且现阶段是<strong>实验性</strong>的。更多详情请看<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">这里</a>。</p>
+<p><code>@JvmDefault</code> 仅在 Kotlin 1.3 起才可用，并且目前是<strong>实验性</strong>的。详见其<a href="/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考文档页</a>。</p>
 </blockquote>
-<p>Kotlin 兼容很多 Java 版本，包含接口中不允许方法默认实现的 Java6 和 Java7 。方便起见，Kotlin 编译器可以解决这个问题，但是这个解决方案将不会和 Java8 中的  <code>default</code>  方法兼容。</p>
-<p>对于和 Java 的交互，这可能是个问题，所以 Kotlin 1.3 引入了 <code>@JvmDefalut</code> 注解。被该注解标记的方法将会被 JVM 编译为 <code>default</code> 方法。</p>
+<p>Kotlin 兼容很多 Java 版本，其中包括不支持默认方法的 Java 6 与 Java 7。为了方便起见，Kotlin 编译器可以变通突破这个限制，不过这个变通方法与 Java 8 引入的 <code>default</code> 方法并不兼容。</p>
+<p>这可能会是 Java 互操作性的一个问题，因此 Kotlin 1.3 引入了 <code>@JvmDefault</code> 注解。以此注解标注的方法会生成为 JVM 平台的 <code>default</code> 方法：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Foo {
-    // 将会被编译为默认方法
+    // 会生成为“default”方法
     @JvmDefault
     fun foo(): Int = 42
 }
 </code></pre>
 </div>
 <blockquote class="note">
-<p>注意！ 将你的 API 标记为 <code>@JvmDefault</code> 将会对二进制兼容性有严重影响。请确保你仔细阅读了<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考页面</a>，在你的产品中使用<code>@Default</code>之前。</p>
+<p>警告！以 <code>@JvmDefault</code> 注解标注的 API 会对二进制兼容性产生严重影响。在生产中使用 <code>@JvmDefault</code> 之前，请务必仔细阅读其<a href="/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考文档页</a>。</p>
 </blockquote>
 <h1 id="标准库">标准库</h1>
-<h2 id="多平台随机数">多平台随机数</h2>
-<p>在 Kotlin 1.3 之前，没有办法在所有平台上统一来生成随机数 — 我们只能采取依赖平台的特定解决方案，比如 JVM 上的 <code>java.util.Random</code>。这个版本将会解决这个问题，通过引入 <code>kotlin.random.Random</code>，这是个支持所有平台的类：</p>
+<h2 id="多平台-random">多平台 <code>Random</code></h2>
+<p>在 Kotlin 1.3 之前没有在所有平台生成随机数的统一方式——我们不得不借助平台相关的解决方案，如 JVM 平台的 <code>java.util.Random</code>。这个版本通过引入在所有平台都可用的 <code>kotlin.random.Random</code> 类来解决这一问题。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlin.random.Random
 
 fun main() {
 //sampleStart
-    val number = Random.nextInt(42)  // 数字区间 [0, limit)
+    val number = Random.nextInt(42)  // 数字在区间 [0, 上限) 内
     println(number)
 //sampleEnd
 }
 </code></pre>
 </div>
-<h2 id="isnullorempty-与-orempty">isNullOrEmpty 与 orEmpty</h2>
-<p>某些类型的 <code>isNullOrEmpty</code> 和 <code>orEmpty</code> 扩展函数已经存在于标准库中，对于前者，如果函数接受者是 <code>null</code>或者为空将会返回 <code>true</code> ；对于后者， 如果接收者是 <code>null</code> ，将会返回一个空实例。
-Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提供了类似的扩展函数。</p>
-<h2 id="非空数组间拷贝元素">非空数组间拷贝元素</h2>
-<p>对于非空数组类型，包括无符号数组类型，函数 <code>array.copyInto(targetArray, targetOffset, startIndex, endIndex)</code> 使得数组拷贝在 Kotlin 中更加简单。</p>
+<h2 id="isnullorempty-与-orempty-扩展">isNullOrEmpty 与 orEmpty 扩展</h2>
+<p>一些类型的 <code>isNullOrEmpty</code> 与 <code>orEmpty</code> 扩展已经存在于标准库中。如果接收者是 <code>null</code> 或空容器，第一个函数返回 <code>true</code>；而如果接收者是 <code>null</code>，第二个函数回退为空容器实例。
+Kotlin 1.3 为集合、映射以及对象数组提供了类似的扩展。</p>
+<h2 id="在两个现有数组间复制元素">在两个现有数组间复制元素</h2>
+<p>为包括无符号整型数组在内的现有数组类型新增的函数 <code>array.copyInto(targetArray, targetOffset, startIndex, endIndex)</code> 使在纯 Kotlin 中实现基于数组的容器更容易。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1440,7 +1440,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 </code></pre>
 </div>
 <h2 id="associatewith">associateWith</h2>
-<p>对于一个 list 一个非常常见的场景是，希望通过把 list 的每个元素作为 key，然后和某个 value 关联起来，来构建一个 map。这可以通过 <code>associate { it to getValue(it) }</code> 函数来完成，但是现在我们引入了一个更为效率和便捷的实现方式：<code>keys.associateWith { getValue(it) }</code>。</p>
+<p>一个很常见的情况是，有一个键的列表，希望通过将其中的每个键与某个值相关联来构建映射。以前可以通过 <code>associate { it to getValue(it) }</code> 函数来实现，不过现在我们引入了一种更高效、更易读的替代方式：<code>keys.associateWith { getValue(it) }</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1451,8 +1451,8 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 }
 </code></pre>
 </div>
-<h2 id="ifempty-与-ifblank">ifEmpty 与 ifBlank</h2>
-<p>Collections, maps, object arrays, char sequence 和 sequence 现在都有 <code>ifEmpty</code> 函数，用于指定一个默认值，当接收者为空时：</p>
+<h2 id="ifempty-与-ifblank-函数">ifEmpty 与 ifBlank 函数</h2>
+<p>集合、映射、对象数组、字符序列以及序列现在都有一个 <code>ifEmpty</code> 函数，它可以指定一个备用值，当接收者为空容器时以该值代替接收者使用：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1469,7 +1469,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 }
 </code></pre>
 </div>
-<p>Char sequences 和 strings 还额外拥有 <code>ifBlank</code> 扩展，和  <code>ifEmpty</code> 功能类似，但是用于检查一个 string 是否全是空格。</p>
+<p>此外，字符序列与字符串还有一个 <code>ifBlank</code> 扩展，它与 <code>ifEmpty</code> 类似，只是会检测字符串是否全部都是空白符而不只是空串。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1494,7 +1494,7 @@ Kotlin 1.3 为 <code>collections</code>、<code>maps</code> 和对象数组提�
 <p>Kotlin 1.3 在 IDE 中引入了代码<a href="coding-conventions.html">推荐风格</a>支持。具体迁移指南查看<a href="code-style-migration-guide.html">这里</a>。</p>
 <h2 id="kotlinxserialization">kotlinx.serialization</h2>
 <p><a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 是一个提供支持多平台的序列化/反序列化的库。之前作为一个独立的库，从 Kotlin 1.3 起，它将会和其他编译器插件一样，包含在 Kotlin 编译器发行版中。主要区别在于，你不在需要自行关注 IDE 的序列化插件和 Kotlin IDE 插件的兼容性问题：因为 Kotlin IDE 插件已经支持序列化！</p>
-<p>具体详情查看<a href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/eap13.md">这里</a>。</p>
+<p>详见<a href="https://github.com/Kotlin/kotlinx.serialization#current-project-status">这里</a>。</p>
 <blockquote class="note">
 <p>值得注意的是，即便 kotlinx.serialization  包含在 Kotlin 编译器发行版中，它仍是一个<strong>实验性</strong>功能。</p>
 </blockquote>
