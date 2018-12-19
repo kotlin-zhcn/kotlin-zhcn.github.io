@@ -1194,6 +1194,7 @@ val item = rwList.firstOrNull()
 </code></pre>
 </div>
 <p>…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。</p>
+<p>非常值得注意的是，对只读集合返回修改后的集合的操作（例如 <code>+</code>、 <code>filter</code>、 <code>drop</code> 等）并不会以原子方式创建其结果，因此如果没有合适的同步机制，在不同的线程中使用其结果是不安全的。</p>
 <p>Map 遵循同样模式。它们可以容易地实例化与访问，像这样：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
