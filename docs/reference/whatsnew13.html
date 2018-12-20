@@ -1481,32 +1481,32 @@ Kotlin 1.3 为集合、映射以及对象数组提供了类似的扩展。</p>
 </code></pre>
 </div>
 <h2 id="反射中的密封类">反射中的密封类</h2>
-<p>我们向 <code>kotlin-reflect</code> 添加了一个新的 API ： <code>KClass.sealedSubclasses</code>，用于列出所有密封类的子类型。</p>
-<h2 id="微小的改变">微小的改变</h2>
+<p>我们在 <code>kotlin-reflect</code> 中添加了一个新的 API，可以列出密封（<code>sealed</code>）类的所有直接子类型，即 <code>KClass.sealedSubclasses</code>。</p>
+<h2 id="小改动">小改动</h2>
 <ul>
-<li><code>Boolean</code> 类型现在支持伴生对象。</li>
-<li><code>Any?.hashCode()</code>  扩展函数会在 <code>null</code> 的时候返回 0。</li>
-<li><code>Char</code> 类型现在提供了 <code>MIN_VALUE</code>/<code>MAX_VALUE</code> 常量。</li>
-<li><code>SIZE_BYTES</code> 和  <code>SIZE_BITS</code> 会作为原生类型伴生对象常量。</li>
+<li><code>Boolean</code> 类型现在有伴生对象了。</li>
+<li><code>Any?.hashCode()</code> 扩展函数对 <code>null</code> 返回 0。</li>
+<li><code>Char</code> 现在提供了 <code>MIN_VALUE</code>/<code>MAX_VALUE</code> 常量。</li>
+<li>原生类型伴生对象中的常量 <code>SIZE_BYTES</code> 与  <code>SIZE_BITS</code>。</li>
 </ul>
 <h1 id="工具">工具</h1>
 <h2 id="ide-中的代码风格支持">IDE 中的代码风格支持</h2>
-<p>Kotlin 1.3 在 IDE 中引入了代码<a href="coding-conventions.html">推荐风格</a>支持。具体迁移指南查看<a href="code-style-migration-guide.html">这里</a>。</p>
+<p>Kotlin 1.3 在 IDE 中引入了对<a href="coding-conventions.html">推荐代码风格</a>的支持。其迁移指南参见<a href="code-style-migration-guide.html">这里</a>。</p>
 <h2 id="kotlinxserialization">kotlinx.serialization</h2>
-<p><a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 是一个提供支持多平台的序列化/反序列化的库。之前作为一个独立的库，从 Kotlin 1.3 起，它将会和其他编译器插件一样，包含在 Kotlin 编译器发行版中。主要区别在于，你不在需要自行关注 IDE 的序列化插件和 Kotlin IDE 插件的兼容性问题：因为 Kotlin IDE 插件已经支持序列化！</p>
+<p><a href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 是一个在 Kotlin 中为（反）序列化对象提供多平台支持的库。以前，它是一个独立项目，不过自 Kotlin 1.3 起，它与其他编译器插件一样随 Kotlin 编译器发行版一起发行。其主要区别在于，无需人为关注序列化 IDE 插件与正在使用的 Kotlin IDE 插件是否兼容了：现在 Kotlin IDE 插件已经包含了序列化支持！</p>
 <p>详见<a href="https://github.com/Kotlin/kotlinx.serialization#current-project-status">这里</a>。</p>
 <blockquote class="note">
-<p>值得注意的是，即便 kotlinx.serialization  包含在 Kotlin 编译器发行版中，它仍是一个<strong>实验性</strong>功能。</p>
+<p>请注意，尽管 kotlinx.serialization 现在随 Kotlin 编译器发行版一起发行，但它仍是一个<strong>实验性的</strong>特性。</p>
 </blockquote>
 <h2 id="脚本更新">脚本更新</h2>
 <blockquote class="note">
-<p>注意，脚本是个<strong>实验性</strong>功能，对于现有的 API, 并没有任何兼容性的保障。</p>
+<p>请注意，脚本支持是一项<strong>实验性的</strong>特性，这意味着不会对 API 提供兼容性保证。</p>
 </blockquote>
-<p>Kotlin 1.3 将继续完善 script API，引入了一些自定义脚本实验性的支持，比如添加额外属性，提供静态或者动态依赖等。</p>
-<p>更详细的细节，请参考<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scripting-support.md">KEEP-75</a>。</p>
+<p>Kotlin 1.3 继续发展与改进脚本 API，为脚本定制引入了一些实验性支持，例如添加外部属性、提供静态或动态依赖等等。</p>
+<p>关于其他细节，请参考 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/scripting-support.md">KEEP-75</a>。</p>
 <h2 id="草稿文件支持">草稿文件支持</h2>
-<p>Kotlin 1.3 引入了对可运行的<strong>草稿文件</strong>支持。<strong>草稿文件</strong>是一个以 .kts 扩展名结尾的 kotlin 脚本文件，你可以在编辑器里直接运行和获取计算结果。</p>
-<p>更多细节请关注<a href="https://www.jetbrains.com/help/idea/scratches.html">Scratches documentation</a>。</p>
+<p>Kotlin 1.3 引入了对可运行的<em>草稿文件（scratch files）</em>的支持。<em>草稿文件</em>是一个扩展名为 .kts 的 kotlin 脚本文件，可以在编辑器中直接运行并获取求值结果。</p>
+<p>更多细节请参考通用<a href="https://www.jetbrains.com/help/idea/scratches.html">草稿文件文档</a>。</p>
 
         </article>
     </div>
