@@ -1144,26 +1144,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="inline-classes">Inline classes</h1>
+<h1 id="内联类">内联类</h1>
 <blockquote class="note">
-<p>Inline classes are available only since Kotlin 1.3 and currently are <em>experimental</em>. See details <a href="#experimental-status-of-inline-classes">below</a></p>
+<p>内联类仅在 Kotlin 1.3 之后版本可用，目前还是<em>实验性的</em>。关于详情请参见<a href="#experimental-status-of-inline-classes">下文</a></p>
 </blockquote>
-<p>Sometimes it is necessary for business logic to create a wrapper around some type. However, it introduces runtime overhead due to additional heap allocations. Moreover, if the wrapped type is primitive, performance hit is terrible, because primitive types are usually heavily optimized by the runtime, while their wrappers don't get any special treatment.</p>
-<p>To solve such issues, Kotlin introduces a special kind of class called an <code>inline class</code>, which is declared by placing an <code>inline</code> modifier before the name of the class:</p>
+<p>有时候，业务逻辑需要围绕某种类型创建包装器。然而，由于额外的堆内存分配问题，它会引入运行时的性能开销。此外，如果被包装的类型是原生类型，性能的损失是很糟糕的，因为原生类型通常在运行时就进行了大量优化，然而他们的包装器却没有得到任何特殊的处理。</p>
+<p>为了解决这类问题，Kotlin 引入了一种被称为 <code>内联类</code> 的特殊类，它通过在类的前面定义一个 <code>inline</code> 修饰符来声明：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline class Password(val value: String)
 </code></pre>
 </div>
-<p>An inline class must have a single property initialized in the primary constructor. At runtime, instances of the inline class will be represented using this single property (see details about runtime representation <a href="#representation">below</a>):</p>
+<p>内联类必须含有唯一的一个属性在主构造函数中初始化。在运行时，将使用这个唯一属性来表示内联类的实例（关于运行时的内部表达请参阅<a href="#representation">下文</a>）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// No actual instantiation of class 'Password' happens
-// At runtime 'securePassword' contains just 'String'
+<pre><code class="language-kotlin">// 不存在 'Password' 类的真实实例对象
+// 在运行时，'securePassword' 仅仅包含 'String'
 val securePassword = Password("Don't try this in production") 
 </code></pre>
 </div>
-<p>This is the main feature of inline classes, which inspired the name "inline": data of the class is "inlined" into its usages (similar to how content of <a href="inline-functions.html">inline functions</a> is inlined to call sites).</p>
-<h2 id="members">Members</h2>
-<p>Inline classes support some functionality of regular classes. In particular, they are allowed to declare properties and functions:</p>
+<p>这就是内联类的主要特性，它灵感来源于 “inline” 这个名称：类的数据被 “内联”到该类使用的地方（类似于<a href="inline-functions.html">内联函数</a>中的代码被内联到该函数调用的地方）。</p>
+<h2 id="成员">成员</h2>
+<p>内联类支持普通类中的一些功能。特别是，内联类可以声明属性与函数：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">inline class Name(val s: String) {
     val length: Int
@@ -1176,23 +1176,23 @@ val securePassword = Password("Don't try this in production")
 
 fun main() {
     val name = Name("Kotlin")
-    name.greet() // method `greet` is called as a static method
-    println(name.length) // property getter is called as a static method
+    name.greet() // `greet` 方法会作为一个静态方法被调用
+    println(name.length) // 属性的 get 方法会作为一个静态方法被调用
 }
 </code></pre>
 </div>
-<p>However, there are some restrictions for inline class members:</p>
+<p>然而，内联类的成员也有一些限制：</p>
 <ul>
-<li>inline classes cannot have <em class="keyword">init</em> blocks</li>
-<li>inline classes cannot have <em class="keyword">inner</em> classes</li>
-<li>inline class properties cannot have <a href="properties.html#幕后字段">backing fields</a>
+<li>内联类不能含有 <em class="keyword">init</em> 代码块</li>
+<li>内联类不能含有 <em class="keyword">inner</em> 类</li>
+<li>内联类不能含有<a href="properties.html#幕后字段">幕后字段</a>
 <ul>
-<li>it follows that inline classes can only have simple computable properties (no lateinit/delegated properties)</li>
+<li>因此，内联类只能含有简单的计算属性（不能含有延迟初始化/委托属性）</li>
 </ul>
 </li>
 </ul>
-<h2 id="inheritance">Inheritance</h2>
-<p>Inline classes are allowed to inherit from interfaces:</p>
+<h2 id="继承">继承</h2>
+<p>内联类允许去继承接口</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">interface Printable {
     fun prettyPrint(): String
@@ -1204,14 +1204,14 @@ inline class Name(val s: String) : Printable {
 
 fun main() {
     val name = Name("Kotlin")
-    println(name.prettyPrint()) // Still called as a static method
+    println(name.prettyPrint()) // 仍然会作为一个静态方法被调用
 }
 </code></pre>
 </div>
-<p>It is forbidden for inline classes to participate in a class hierarchy. This means that inline classes cannot extend other classes and must be <em class="keyword">final</em>.</p>
-<h2 id="representation">Representation</h2>
-<p>In generated code, the Kotlin compiler keeps a <em>wrapper</em> for each inline class. Inline class instances can be represented at runtime either as wrappers or as the underlying type. This is similar to how <code>Int</code> can be <a href="basic-types.html#表示方式">represented</a> either as a primitive <code>int</code> or as the wrapper <code>Integer</code>.</p>
-<p>The Kotlin compiler will prefer using underlying types instead of wrappers to produce the most performant and optimized code. However, sometimes it is necessary to keep wrappers around. As a rule of thumb, inline classes are boxed whenever they are used as another type.</p>
+<p>禁止内联类参与到类的继承关系结构中。这就意味着内联类不能继承其他的类而且必须是 <em class="keyword">final</em>。</p>
+<h2 id="表示方式">表示方式</h2>
+<p>在生成的代码中，Kotlin 编译器为每个内联类保留一个包装器。内联类的实例可以在运行时表示为包装器或者基础类型。这就类似于 <code>Int</code> 可以<a href="basic-types.html#表示方式">表示</a>为原生类型 <code>int</code> 或者包装器 <code>Integer</code>。</p>
+<p>为了生成性能最优的代码，Kotlin 编译更倾向于使用基础类型而不是包装器。 然而，有时候使用包装器是必要的。一般来说，只要将内联类用作另一种类型，它们就会被装箱。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface I
 
@@ -1227,38 +1227,38 @@ fun &lt;T&gt; id(x: T): T = x
 fun main() {
     val f = Foo(42) 
     
-    asInline(f)    // unboxed: used as Foo itself
-    asGeneric(f)   // boxed: used as generic type T
-    asInterface(f) // boxed: used as type I
-    asNullable(f)  // boxed: used as Foo?, which is different from Foo
+    asInline(f)    // 拆箱操作: 用作 Foo 本身
+    asGeneric(f)   // 装箱操作: 用作泛型类型 T
+    asInterface(f) // 装箱操作: 用作类型 I
+    asNullable(f)  // 装箱操作: 用作不同于 Foo 的可空类型 Foo?
     
-    // below, 'f' first is boxed (while being passed to 'id') and then unboxed (when returned from 'id') 
-    // In the end, 'c' contains unboxed representation (just '42'), as 'f' 
+    // 在下面这里例子中，'f' 首先会被装箱（当它作为参数传递给 'id' 函数时）然后又被拆箱（当它从'id'函数中被返回时）
+    // 最后， 'c' 中就包含了被拆箱后的内部表达(也就是 '42')， 和 'f' 一样 
     val c = id(f)  
 }
 </code></pre>
 </div>
-<p>Because inline classes may be represented both as the underlying value and as a wrapper, <a href="equality.html#引用相等">referential equality</a> is pointless for them and is therefore prohibited.</p>
-<h3 id="mangling">Mangling</h3>
-<p>Since inline classes are compiled to their underlying type, it may lead to various obscure errors, for example unexpected platform signature clashes:</p>
+<p>因为内联类既可以表示为基础类型有可以表示为包装器，<a href="equality.html#引用相等">引用相等</a>对于内联类而言毫无意义，因此这也是被禁止的。</p>
+<h3 id="名字修饰">名字修饰</h3>
+<p>由于内联类被编译为其基础类型，因此可能会导致各种模糊的错误，例如意想不到的平台签名冲突：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline class UInt(val x: Int)
 
-// Represented as 'public final void compute(int x)' on the JVM
+// 在 JVM 平台上被表示为'public final void compute(int x)'
 fun compute(x: Int) { }
 
-// Also represented as 'public final void compute(int x)' on the JVM!
+// 同理，在 JVM 平台上也被表示为'public final void compute(int x)'！
 fun compute(x: UInt) { }
 </code></pre>
 </div>
-<p>To mitigate such issues, functions using inline classes are <em>mangled</em> by adding some stable hashcode to the function name. Therefore, <code>fun compute(x: UInt)</code> will be represented as <code>public final void compute-&lt;hashcode&gt;(int x)</code>, which solves the clash problem.</p>
+<p>为了缓解这种问题，一般会通过在函数名后面拼接一些稳定的哈希码来重命名函数。 因此，<code>fun compute(x: UInt)</code> 将会被表示为 <code>public final void compute-&lt;hashcode&gt;(int x)</code>，以此来解决冲突的问题。</p>
 <blockquote class="note">
-<p>Note that <code>-</code> is an <em>invalid</em> symbol in Java, meaning that it's impossible to call functions which accept inline classes from Java.</p>
+<p>请注意在 Java 中 <code>-</code> 是一个 <em>无效的</em> 符号，也就是说在 Java 中不能调用使用内联类作为形参的函数。</p>
 </blockquote>
-<h2 id="inline-classes-vs-type-aliases">Inline classes vs type aliases</h2>
-<p>At first sight, inline classes may appear to be very similar to <a href="type-aliases.html">type aliases</a>. Indeed, both seem to introduce a new type and both will be represented as the underlying type at runtime.</p>
-<p>However, the crucial difference is that type aliases are <em>assignment-compatible</em> with their underlying type (and with other type aliases with the same underlying type), while inline classes are not.</p>
-<p>In other words, inline classes introduce a truly <em>new</em> type, contrary to type aliases which only introduce an alternative name (alias) for an existing type:</p>
+<h2 id="内联类与类型别名">内联类与类型别名</h2>
+<p>初看起来，内联类似乎与<a href="type-aliases.html">类型别名</a>非常相似。实际上，两者似乎都引入了一种新的类型，并且都在运行时表示为基础类型。</p>
+<p>然而，关键的区别在于类型别名与其基础类型(以及具有相同基础类型的其他类型别名)是 <em>赋值兼容</em> 的，而内联类却不是这样。</p>
+<p>换句话说，内联类引入了一个真实的新类型，与类型别名正好相反，类型别名仅仅是为现有的类型取了个新的替代名称(别名)：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">typealias NameTypeAlias = String
 inline class NameInlineClass(val s: String)
@@ -1272,19 +1272,19 @@ fun main() {
     val nameInlineClass: NameInlineClass = NameInlineClass("")
     val string: String = ""
 
-    acceptString(nameAlias) // OK: pass alias instead of underlying type
-    acceptString(nameInlineClass) // Not OK: can't pass inline class instead of underlying type
+    acceptString(nameAlias) // 正确: 传递别名类型的实参替代函数中基础类型的形参
+    acceptString(nameInlineClass) // 错误: 不能传递内联类的实参替代函数中基础类型的形参
 
     // And vice versa:
-    acceptNameTypeAlias("") // OK: pass underlying type instead of alias
-    acceptNameInlineClass("") // Not OK: can't pass underlying type instead of inline class
+    acceptNameTypeAlias("") // 正确: 传递基础类型的实参替代函数中别名类型的形参
+    acceptNameInlineClass("") // 错误: 不能传递基础类型的实参替代函数中内联类类型的形参
 }
 </code></pre>
 </div>
-<h2 id="experimental-status-of-inline-classes">Experimental status of inline classes</h2>
-<p>The design of inline classes is experimental, meaning that this feature is <em>moving fast</em> and no compatibility guarantees are given. When using inline classes in Kotlin 1.3+, a warning will be reported, indicating that this feature is experimental.</p>
-<p>To remove the warning you have to opt in to the usage of experimental features by passing the argument <code>-XXLanguage:+InlineClasses</code> to <code>kotlinc</code>.</p>
-<h3 id="enabling-inline-classes-in-gradle">Enabling inline classes in Gradle:</h3>
+<h2 id="内联类的实验性状态">内联类的实验性状态</h2>
+<p>内联类的设计目前是实验性的，这就是说此特性是正在 <em>快速变化</em>的，并且不保证其兼容性。在 Kotlin 1.3+ 中使用内联类时，将会得到一个警告，来表明此特性还是实验性的。</p>
+<p>要想移除警告，你必须通过对 <code>kotlinc</code> 指定 <code>-XXLanguage:+InlineClasses</code>参数来选择使用该实验性的特性。</p>
+<h3 id="在-gradle-中启用内联类">在 Gradle 中启用内联类：</h3>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">
 compileKotlin {
@@ -1292,8 +1292,8 @@ compileKotlin {
 }
 </code></pre>
 </div>
-<p>See <a href="using-gradle.html#编译器选项">Compiler options in Gradle</a> for details. For <a href="whatsnew13.html#多平台项目">Multiplatform Projects</a> settings, see <a href="building-mpp-with-gradle.html#language-settings">building Multiplatform Projects with Gradle</a> section.</p>
-<h3 id="enabling-inline-classes-in-maven">Enabling inline classes in Maven</h3>
+<p>关于详细信息，请参见<a href="using-gradle.html#编译器选项">编译器选项</a>。关于<a href="whatsnew13.html#多平台项目">多平台项目</a>的设置，请参见<a href="building-mpp-with-gradle.html#language-settings">使用 Gradle 构建多平台项目</a>章节。</p>
+<h3 id="在-maven-中启用内联类">在 Maven 中启用内联类</h3>
 <div class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;configuration&gt;
     &lt;args&gt;
@@ -1302,9 +1302,9 @@ compileKotlin {
 &lt;/configuration&gt;
 </code></pre>
 </div>
-<p>See <a href="using-maven.html#指定编译器选项">Compiler options in Maven</a> for details.</p>
-<h2 id="further-discussion">Further discussion</h2>
-<p>See this <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-classes.md">language proposal for inline classes</a> for other technical details and discussion.</p>
+<p>关于详细信息，请参见<a href="using-maven.html#指定编译器选项">指定编译器选项</a>。</p>
+<h2 id="进一步讨论">进一步讨论</h2>
+<p>关于其他技术详细信息和讨论，请参见<a href="https://github.com/Kotlin/KEEP/blob/master/proposals/inline-classes.md">内联类的语言提议</a></p>
 
         </article>
     </div>
