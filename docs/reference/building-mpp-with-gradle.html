@@ -1661,9 +1661,9 @@ unambiguous dependencies on its separate target modules, as if it had no experim
 <h2 id="using-kotlinnative-targets">Using Kotlin/Native Targets</h2>
 <p>It is important to note that some of the <a href="#supported-platforms">Kotlin/Native targets</a> may only be built with an appropriate host machine:</p>
 <ul>
-<li>Linux targets may only be built on a Linux host;</li>
+<li>Linux targets require a Linux host;</li>
 <li>Windows targets require a Windows host;</li>
-<li>macOS and iOS targets can only be built on a macOS host;</li>
+<li>macOS and iOS targets require a macOS host;</li>
 <li>Android Native targets require a Linux or macOS host;</li>
 </ul>
 <p>A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up
