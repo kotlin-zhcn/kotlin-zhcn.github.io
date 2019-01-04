@@ -1319,7 +1319,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>现在写绑定到 <code>this</code> 成员的可调用引用可以无需显式接收者，即 <code>::foo</code> 取代
  <code>this::foo</code>。这也使在引用外部接收者的成员的 lambda 表达式中使用可调用引用更加方便<!--
 -->。</p>
-<h3 id="阻断性变更try-块后可靠智能转换">阻断性变更：try 块后可靠智能转换</h3>
+<h3 id="破坏性变更try-块后可靠智能转换">破坏性变更：try 块后可靠智能转换</h3>
 <p>Kotlin 以前将 <code>try</code> 块中的赋值语句用于块后的智能转换，这可能会破坏类型安全与空安全<!--
 -->并引发运行时故障。这个版本修复了该问题，使智能转换更加严格，但可能会破坏一些<!--
 -->依靠这种智能转换的代码。</p>
@@ -1487,13 +1487,13 @@ fun main(args: Array&lt;String&gt;) {
 <p>在 Kotlin 1.2 之前，针对 JVM 1.6 的接口成员覆盖 Java 默认方法会产生一个关于<!--
 -->超类型调用的警告：<code>Super calls to Java default methods are deprecated in JVM target 1.6. Recompile with '-jvm-target 1.8'</code>（“针对 JVM 1.6 的 Java 默认方法的超类型调用已弃用，请使用‘-jvm-target 1.8’重新编译”）。
 在 Kotlin 1.2 中，这是一个**错误 **，因此这样的代码都需要针对 JVM 1.8 编译。</p>
-<h3 id="阻断性变更平台类型-xequalsnull-的一致行为">阻断性变更：平台类型 x.equals(null) 的一致行为</h3>
+<h3 id="破坏性变更平台类型-xequalsnull-的一致行为">破坏性变更：平台类型 x.equals(null) 的一致行为</h3>
 <p>在映射到 Java 原生类型
 （<code>Int!</code>、 <code>Boolean!</code>、 <code>Short!</code>、 <code>Long!</code>、 <code>Float!</code>、 <code>Double!</code>、 <code>Char!</code>）的平台类型上调用 <code>x.equals(null)</code>，当 <code>x</code> 为 <code>null</code> 时错误地返回了 <code>true</code>。
 自 Kotlin 1.2 起，在平台类型的空值上调用 <code>x.equals(……)</code> 都会<strong>抛出 NPE</strong>
 （但 <code>x == ...</code> 不会）。</p>
 <p>要返回到 1.2 之前的行为，请将标志 <code>-Xno-exception-on-explicit-equals-for-boxed-null</code> 传给编译器。</p>
-<h3 id="阻断性变更修正平台-null-透过内联扩展接收者逃逸">阻断性变更：修正平台 null 透过内联扩展接收者逃逸</h3>
+<h3 id="破坏性变更修正平台-null-透过内联扩展接收者逃逸">破坏性变更：修正平台 null 透过内联扩展接收者逃逸</h3>
 <p>在平台类型的空值上调用内联扩展函数并没有检测接收者是否为 null，
 因而允许 null 逃逸到其他代码中。Kotlin 1.2 在调用处强制执行这项检测，
 如果接收者为空就抛出异常。</p>
