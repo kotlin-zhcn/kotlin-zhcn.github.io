@@ -1180,12 +1180,12 @@ use all the public APIs available in your Kotlin/Native program from C/C++ code.
 <code>-Dhttp.proxyHost=xxx -Dhttp.proxyPort=xxx</code> as the compiler's or <code>gradlew</code> arguments,
 or set it via the <code>JAVA_OPTS</code> environment variable.</p>
 <h3 id="q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">Q: How do I specify a custom Objective-C prefix/name for my Kotlin framework?</h3>
-<p>A: Use the <code>-module_name</code> compiler option or matching Gradle DSL statement, i.e.</p>
+<p>A: Use the <code>-module-name</code> compiler option or matching Gradle DSL statement, i.e.</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">targets {
     fromPreset(presets.iosArm64, 'myapp') {
        compilations.main.outputKinds 'FRAMEWORK'
-       compilations.main.extraOpts '-module_name', 'TheName'
+       compilations.main.extraOpts '-module-name', 'TheName'
     }
 }
 </code></pre>
