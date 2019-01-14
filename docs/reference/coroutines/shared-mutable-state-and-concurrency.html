@@ -1533,7 +1533,7 @@ Kotlin 的<a href="https://kotlinlang.org/docs/reference/sealed-classes.html">�
 我们使用 <code>IncCounter</code> 消息（用来递增计数器）和 <code>GetCounter</code> 消息（用来获取值）来定义 <code>CounterMsg</code> 密封类。
 后者需要发送回复。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-completable-deferred/index.html">CompletableDeferred</a> 通信<!--
 -->原语表示未来可知（可传达）的单个值，
-因该特征它被用于此处。</p>
+这里被用于此目的。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 计数器 Actor 的各种类型
 sealed class CounterMsg
