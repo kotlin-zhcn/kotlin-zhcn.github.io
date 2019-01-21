@@ -1379,10 +1379,11 @@ Task from nested launch
 Coroutine scope is over
 -->
 <h3 id="提取函数重构">提取函数重构</h3>
-<p>让我们在 <code>launch { …… }</code> 中提取代码块并分离到另一个函数中。当你<!--
--->在这段代码上展示“提取函数”函数的时候，你得到了一个新的函数并用 <code>suspend</code> 修饰。
-这是你的第一个 <em>挂起函数</em> 。挂起函数可以像一个普通的函数一样使用内部协程，但是它们拥有一些额外的特性，反过来说，
-使用其它的挂起函数，比如这个示例中的 <code>delay</code>，可以使协程暂停执行。</p>
+<p>我们来将  <code>launch { …… }</code> 内部的代码块提取到独立的函数中。当你<!--
+-->对这段代码执行“提取函数”重构时，你会得到一个带有 <code>suspend</code> 修饰符的新函数。
+那是你的第一个<em>挂起函数</em>。在协程内部可以像普通函数一样使用挂起函数，
+不过其额外特性是，同样<!--
+-->可以使用其他挂起函数（如本例中的 <code>delay</code>）来<em>挂起</em>协程的执行。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1391,7 +1392,7 @@ fun main() = runBlocking {
     println("Hello,")
 }
 
-// 你的第一个挂起函数
+// 这是你的第一个挂起函数
 suspend fun doWorld() {
     delay(1000L)
     println("World!")
@@ -1405,15 +1406,15 @@ suspend fun doWorld() {
 Hello,
 World!
 -->
-<p>但是如果提取函数包含了一个调用当前作用域的协程构建器？
-在这个示例中仅仅使用 <code>suspend</code> 来修饰提取出来的函数是不够的。在 <code>CoroutineScope</code> 调用 <code>doWorld</code> 方法<!--
--->是一种解决方案，但它并非总是适用，因为它不会使API看起来更清晰。
-惯用的解决方法是使 <code>CoroutineScope</code> 在一个类中作为一个属性并包含一个目标函数，
-或者使它外部的类实现 <code>CoroutineScope</code> 接口。
-作为最后的手段，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope(coroutineContext)</a> 也是可以使用的，但是这样的结构是不安全的，
-因为你将无法在这个作用域内控制方法的执行。只有私有的API可以使用这样的写法。</p>
-<h3 id="协程是轻量级的">协程是轻量级的</h3>
-<p>运行下面的代码:</p>
+<p>但是如果提取出的函数包含一个在当前作用域中调用的协程构建器的话，改怎么办？
+在这种情况下，所提取函数上只有 <code>suspend</code> 修饰符是不够的。为 <code>CoroutineScope</code> 写一个 <code>doWorld</code> 扩展<!--
+-->方法是其中一种解决方案，但这可能并非总是适用，因为它并没有使 API 更加清晰。
+惯用的解决方案是要么显式将 <code>CoroutineScope</code> 作为包含该函数的类的一个字段，
+要么当外部类实现了 <code>CoroutineScope</code> 时隐式取得。
+作为最后的手段，可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope(coroutineContext)</a>，不过这种方法结构上不安全，
+因为你不能再控制该方法执行的作用域。只有私有 API 才能使用这个构建器。</p>
+<h3 id="协程很轻量">协程很轻量</h3>
+<p>运行以下代码：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1431,11 +1432,11 @@ fun main() = runBlocking {
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-basic-06.kt">这里</a>来获得完整代码</p>
 </blockquote>
 <!--- TEST lines.size == 1 && lines[0] == ".".repeat(100_000) -->
-<p>它启动了100,000个协程，并且每秒钟每个协程打印一个点。
-现在，尝试使用线程来这么做。将会发生什么？（大多数情况下你的代码将会抛出内存溢出错误）</p>
-<h3 id="像守护线程一样的全局协程">像守护线程一样的全局协程</h3>
-<p>下面的代码在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一个长时间运行的协程，它在1秒内打印了“I'm sleeping”两次<!--
--->并且延迟一段时间后在main函数中返回：</p>
+<p>它启动了10 万个协程，并且在一秒钟后，每个协程都输出一个点。
+现在，尝试使用线程来实现。会发生什么？（很可能你的代码会产生某种内存不足的错误）</p>
+<h3 id="全局协程像守护线程">全局协程像守护线程</h3>
+<p>以下代码在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一个长期运行的协程，该协程每秒输出“I'm sleeping”两次，之后<!--
+-->在主函数中延迟一段时间后返回。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1447,7 +1448,7 @@ fun main() = runBlocking {
             delay(500L)
         }
     }
-    delay(1300L) // 在延迟之后结束程序
+    delay(1300L) // 在延迟后退出
 //sampleEnd
 }
 </code></pre>
@@ -1455,13 +1456,13 @@ fun main() = runBlocking {
 <blockquote>
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-basic-07.kt">这里</a>来获取完整代码</p>
 </blockquote>
-<p>你可以运行这个程序并在命令行中看到它打印出了如下三行：</p>
+<p>你可以运行这个程序并看到它输出了以下三行后终止：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm sleeping 0 ...
 I'm sleeping 1 ...
 I'm sleeping 2 ...
 </code></pre>
 <!--- TEST -->
-<p>在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动的活动中的协程就像守护线程一样，不能使它们所在的进程保活。</p>
+<p>在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动的活动协程并不会使进程保活。它们就像守护线程。</p>
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
 <!--- END -->
