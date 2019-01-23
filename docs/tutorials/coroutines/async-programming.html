@@ -881,7 +881,7 @@ fun preparePostAsync(callback: (Token) -&gt; Unit) {
 </ul>
 <p>回调在诸如 JavaScript 之类的事件循环体系结构中非常常见，但即使在那里，通常人们已经转而使用其他方法，例如 promises 或响应式扩展。</p>
 <h2 id="futurespromises-等等">Futures，Promises 等等</h2>
-<p>futures 或 promises 背后的想法（这也可能会根据语言/平台而有不同饿的术语），是当我们发起调用的时候，我们承诺<!--
+<p>futures 或 promises 背后的想法（这也可能会根据语言/平台而有不同的术语），是当我们发起调用的时候，我们承诺<!--
 -->在某些时候它将返回一个名为 Promise 的可被操作的对象。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun postItem(item: Item) {
@@ -911,7 +911,7 @@ fun preparePostAsync(): Promise&lt;Token&gt; {
 </ul>
 <h2 id="响应式扩展">响应式扩展</h2>
 <p><a href="https://en.wikipedia.org/wiki/Erik_Meijer_(computer_scientist)">Erik Meijer</a> 介绍了 C# 中的响应式扩展（Rx）。虽然它在 .NET 平台上是毫无疑义的，
-但是在 Netflix 将它移植到 Java 并取名为 RxJava 之前它绝对不是主流。从那时起，响应式被移植到各种平台，包括 JavaScript（RxJS）。</p>
+但是在 Netflix 将它移植到 Java 并取名为 RxJava 之前绝对不是主流。从那时起，响应式被移植到各种平台，包括 JavaScript（RxJS）。</p>
 <p>Rx 背后的想法是走向所谓的“可观察流”，我们现在将数据视为流（无限量的数据），并且可以观察到这些流。 实际上，Rx 很简单，
 <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer Pattern</a> 带有一系列扩展，允许我们对数据进行操作。</p>
 <p>在方法上它与 Futures 非常相似，但是人们可以将 Future 视为一个离散元素，而 Rx 返回一个流。然而，与前面类似，它还介绍了<!--
@@ -947,9 +947,9 @@ suspend fun preparePost(): Token {
 <ul>
 <li>该函数的签名保持完全相同。唯一的不同是它被添加了 <code>suspend</code> 修饰符。但是返回类型依然是我们想要的<!--
 -->类型。</li>
-<li>编写这段代码代码就好像我们正在编写同步代码，自上而下，不需要任何特殊语法，除了使用一个名为 <code>launch</code> 的函数，它实质上启动了
-该协程（在其他教程中介绍）。</li>
-<li>编程模型和 API 保持不变。 我们可以继续使用循环，异常处理等，而且不需要学习一整套新的 API。</li>
+<li>编写这段代码代码就好像我们正在编写同步代码，自上而下，不需要任何特殊语法，除了使用一个名为 <code>launch</code> 的函数，它实质上启动了<!--
+-->该协程（在其他教程中介绍）。</li>
+<li>编程模型和 API 保持不变。我们可以继续使用循环，异常处理等，而且不需要学习一整套新的 API。</li>
 <li>它与平台无关。无论我们是针对 JVM，JavaScript 还是其他任何平台，我们编写的代码都是相同的。编译器负责将其适应每个平台。</li>
 </ul>
 <p>协程并不是一个新的概念，它并不是 Kotlin 发明的。它们已经存在了几十年，并且在 Go 等其他一些编程语言中很受欢迎。但重要的是要注意<!--

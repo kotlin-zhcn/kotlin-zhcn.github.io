@@ -1194,10 +1194,10 @@ class SelectGuideTest {
 }
 </code></pre>
 </div>
-<p>接着 <code>buzz</code> 每500毫秒生成一个 “Buzz!” 字符串：</p>
+<p>接着 <code>buzz</code> 每 500 毫秒生成一个 “Buzz!” 字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.buzz() = produce&lt;String&gt; {
-    while (true) { // 每500毫秒发送一个 "Buzz!"
+    while (true) { // 每 500 毫秒发送一个 "Buzz!"
         delay(500)
         send("Buzz!")
     }
@@ -1228,14 +1228,14 @@ import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.selects.*
 
 fun CoroutineScope.fizz() = produce&lt;String&gt; {
-    while (true) { // 每300毫秒发送一个 "Fizz"
+    while (true) { // 每 300 毫秒发送一个 "Fizz"
         delay(300)
         send("Fizz")
     }
 }
 
 fun CoroutineScope.buzz() = produce&lt;String&gt; {
-    while (true) { // 每500毫秒发送一个 "Buzz!"
+    while (true) { // 每 500 毫秒发送一个 "Buzz!"
         delay(500)
         send("Buzz!")
     }
@@ -1300,8 +1300,8 @@ buzz -&gt; 'Buzz!'
     }
 </code></pre>
 </div>
-<p>现在有一个生成四次 “Hello” 字符串的 <code>a</code> 通道，
-和一个生成四次 “World” 字符串的 <code>b</code> 通道，我们在这两个通道上使用它：</p>
+<p>现在有一个生成四次“Hello”字符串的 <code>a</code> 通道，
+和一个生成四次“World”字符串的 <code>b</code> 通道，我们在这两个通道上使用它：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1368,8 +1368,8 @@ Channel 'a' is closed
 -->消费者无法跟上它时，它会将值发送到 <code>side</code> 通道上：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.produceNumbers(side: SendChannel&lt;Int&gt;) = produce&lt;Int&gt; {
-    for (num in 1..10) { // 生产从 1 到 10 的10个数值
-        delay(100) // 延迟100毫秒
+    for (num in 1..10) { // 生产从 1 到 10 的 10 个数值
+        delay(100) // 延迟 100 毫秒
         select&lt;Unit&gt; {
             onSend(num) {} // 发送到主通道
             side.onSend(num) {} // 或者发送到 side 通道
@@ -1386,8 +1386,8 @@ import kotlinx.coroutines.channels.*
 import kotlinx.coroutines.selects.*
 
 fun CoroutineScope.produceNumbers(side: SendChannel&lt;Int&gt;) = produce&lt;Int&gt; {
-    for (num in 1..10) { // 生产从 1 到 10 的10个数值
-        delay(100) // 延迟100毫秒
+    for (num in 1..10) { // 生产从 1 到 10 的 10 个数值
+        delay(100) // 延迟 100 毫秒
         select&lt;Unit&gt; {
             onSend(num) {} // 发送到主通道
             side.onSend(num) {} // 或者发送到 side 通道

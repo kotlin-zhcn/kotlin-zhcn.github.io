@@ -1432,7 +1432,7 @@ fun main() = runBlocking {
 <p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-basic-06.kt">这里</a>来获得完整代码</p>
 </blockquote>
 <!--- TEST lines.size == 1 && lines[0] == ".".repeat(100_000) -->
-<p>它启动了10 万个协程，并且在一秒钟后，每个协程都输出一个点。
+<p>它启动了 10 万个协程，并且在一秒钟后，每个协程都输出一个点。
 现在，尝试使用线程来实现。会发生什么？（很可能你的代码会产生某种内存不足的错误）</p>
 <h3 id="全局协程像守护线程">全局协程像守护线程</h3>
 <p>以下代码在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一个长期运行的协程，该协程每秒输出“I'm sleeping”两次，之后<!--
