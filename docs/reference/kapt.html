@@ -1153,23 +1153,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>关于如何将 <em>kapt</em> 插件应用于 Gradle/Maven 构建中，请阅读下文。</p>
 <h2 id="在-gradle-中使用">在 Gradle 中使用</h2>
 <p>应用 <code>kotlin-kapt</code> Gradle 插件：</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">plugins {
+    id "org.jetbrains.kotlin.kapt" version "1.3.20"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">plugins {
+    kotlin("kapt") version "1.3.20"
+}
+</code></pre>
+</div>
+</div>
+<p>Alternatively, you can use the <code>apply plugin</code> syntax:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 </code></pre>
 </div>
-<p>或者，你可以使用插件 DSL 应用它：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">plugins {
-    id "org.jetbrains.kotlin.kapt" version "1.3.11"
-}
-</code></pre>
-</div>
 <p>然后在 <code>dependencies</code> 块中使用 <code>kapt</code> 配置添加相应的依赖项：</p>
-<div class="sample" mode="groovy" theme="idea">
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
     kapt 'groupId:artifactId:版本'
 }
 </code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">dependencies {
+    kapt("groupId:artifactId:version")
+}
+</code></pre>
+</div>
 </div>
 <p>如果你以前使用 <a href="https://developer.android.com/studio/build/gradle-plugin-3-0-0-migration.html#annotationProcessor_config">Android 支持</a>作为注解处理器，那么以 <code>kapt</code> 取代 <code>annotationProcessor</code> 配置的使用。如果你的项目包含 Java 类，<code>kapt</code> 也会顾全到它们。</p>
 <p>如果为 <code>androidTest</code> 或 <code>test</code> 源代码使用注解处理器，那么相应的 <code>kapt</code> 配置名为 <code>kaptAndroidTest</code> 和 <code>kaptTest</code>。请注意 <code>kaptAndroidTest</code> 和 <code>kaptTest</code> 扩展了 <code>kapt</code>，所以你可以只提供 <code>kapt</code> 依赖而它对生产和测试源代码都可用。</p>
@@ -1180,6 +1200,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     arguments {
         arg("key", "value")
     }
+}
+</code></pre>
+</div>
+<h2 id="gradle-build-cache-support-since-1220">Gradle Build Cache Support (since 1.2.20)</h2>
+<p>The kapt annotation processing tasks are not <a href="https://guides.gradle.org/using-build-cache/">cached in Gradle</a> by default. Annotation processors run arbitrary code that may not necessarily transform the task inputs into the outputs, might access and modify the files that are not tracked by Gradle etc. To enable caching for kapt anyway, add the following lines to the build script:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kapt {
+    useBuildCache = true
 }
 </code></pre>
 </div>
