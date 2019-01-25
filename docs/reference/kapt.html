@@ -1169,7 +1169,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 </div>
-<p>Alternatively, you can use the <code>apply plugin</code> syntax:</p>
+<p>或者使用 <code>apply plugin</code> 语法：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
 </code></pre>
@@ -1186,7 +1186,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">dependencies {
-    kapt("groupId:artifactId:version")
+    kapt("groupId:artifactId:版本")
 }
 </code></pre>
 </div>
@@ -1203,8 +1203,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<h2 id="gradle-build-cache-support-since-1220">Gradle Build Cache Support (since 1.2.20)</h2>
-<p>The kapt annotation processing tasks are not <a href="https://guides.gradle.org/using-build-cache/">cached in Gradle</a> by default. Annotation processors run arbitrary code that may not necessarily transform the task inputs into the outputs, might access and modify the files that are not tracked by Gradle etc. To enable caching for kapt anyway, add the following lines to the build script:</p>
+<h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
+<p>默认情况下，kapt 注解处理任务不会<a href="https://guides.gradle.org/using-build-cache/">在 Gradle 中缓存</a>。注解处理器所运行的任意代码可能不一定将输入转换为输出、可能访问与修改 Gradle 未跟踪的文件等。如需还要为 kapt 启用缓存，请将以下几行添加到构建脚本中：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kapt {
     useBuildCache = true

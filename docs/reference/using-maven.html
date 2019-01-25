@@ -1166,7 +1166,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 &lt;/dependencies&gt;
 </code></pre>
 </div>
-<p>如果你是针对 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，
+<p>如果是面向 JDK 7 或 JDK 8，那么可以使用扩展版本的 Kotlin 标准库，
 其中包含为新版 JDK 所增 API 而加的额外的扩展函数。使用 <code>kotlin-stdlib-jdk7</code>
 或 <code>kotlin-stdlib-jdk8</code> 取代 <code>kotlin-stdlib</code>，这取决于你的 JDK 版本（对于 Kotlin 1.1.x 用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>，因为相应的 <code>jdk</code> 构件在 1.2.0 才引入）。</p>
 <p>如果你的项目使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a> 或者测试设施，那么你还需要添加相应的依赖项。
@@ -1341,7 +1341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>这个独立的 jar 文件可以直接传给 JRE 来运行应用程序：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 </code></pre>
-<h2 id="针对-javascript">针对 JavaScript</h2>
+<h2 id="面向-javascript">面向 JavaScript</h2>
 <p>为了编译 JavaScript 代码，需要使用 <code>js</code> 和 <code>test-js</code> 目标来执行 <code>compile</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;plugin&gt;

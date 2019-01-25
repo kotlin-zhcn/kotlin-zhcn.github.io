@@ -1158,7 +1158,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li>一个<em>公共</em>模块包含平台无关代码，以及无实现的依赖平台的 API 声明。</li>
 <li><em>平台</em>模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。</li>
-<li>常规模块针对指定的平台，既可以是平台模块的依赖，也可以依赖平台模块。</li>
+<li>常规模块面向指定的平台，既可以是平台模块的依赖，也可以依赖平台模块。</li>
 </ul>
 <p>当你为指定平台编译多平台项目时，既会生成公共代码也会生成平台相关代码。</p>
 <p>多平台项目支持的一个主要特点是可以通过<strong>预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
@@ -1484,9 +1484,9 @@ fun main(args: Array&lt;String&gt;) {
 <p>“人工”解决办法是将具有控制流的子表达式的值存储在变量中，而不是<!--
 -->直接在调用参数内对其求值。这与 <code>-Xnormalize-constructor-calls=enable</code> 类似。</p>
 <h3 id="java-默认方法调用">Java 默认方法调用</h3>
-<p>在 Kotlin 1.2 之前，针对 JVM 1.6 的接口成员覆盖 Java 默认方法会产生一个关于<!--
--->超类型调用的警告：<code>Super calls to Java default methods are deprecated in JVM target 1.6. Recompile with '-jvm-target 1.8'</code>（“针对 JVM 1.6 的 Java 默认方法的超类型调用已弃用，请使用‘-jvm-target 1.8’重新编译”）。
-在 Kotlin 1.2 中，这是一个**错误 **，因此这样的代码都需要针对 JVM 1.8 编译。</p>
+<p>在 Kotlin 1.2 之前，面向 JVM 1.6 的接口成员覆盖 Java 默认方法会产生一个关于<!--
+-->超类型调用的警告：<code>Super calls to Java default methods are deprecated in JVM target 1.6. Recompile with '-jvm-target 1.8'</code>（“面向 JVM 1.6 的 Java 默认方法的超类型调用已弃用，请使用‘-jvm-target 1.8’重新编译”）。
+在 Kotlin 1.2 中，这是一个**错误 **，因此这样的代码都需要面向 JVM 1.8 编译。</p>
 <h3 id="破坏性变更平台类型-xequalsnull-的一致行为">破坏性变更：平台类型 x.equals(null) 的一致行为</h3>
 <p>在映射到 Java 原生类型
 （<code>Int!</code>、 <code>Boolean!</code>、 <code>Short!</code>、 <code>Long!</code>、 <code>Float!</code>、 <code>Double!</code>、 <code>Char!</code>）的平台类型上调用 <code>x.equals(null)</code>，当 <code>x</code> 为 <code>null</code> 时错误地返回了 <code>true</code>。
