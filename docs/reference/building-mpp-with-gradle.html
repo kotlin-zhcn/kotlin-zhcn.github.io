@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Building Multiplatform Projects with Gradle - Kotlin 语言中文站</title>
+    <title>使用 Gradle 构建多平台项目 - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -1144,59 +1144,59 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="building-multiplatform-projects-with-gradle">Building Multiplatform Projects with Gradle</h1>
+<h1 id="使用-gradle-构建多平台项目">使用 Gradle 构建多平台项目</h1>
 <blockquote class="note">
-<p>Multiplatform projects are an experimental feature in Kotlin 1.2 and 1.3. All of the language
-and tooling features described in this document are subject to change in future Kotlin versions.</p>
+<p>多平台项目是 Kotlin 1.2 与 Kotlin 1.3 中的一个实验性特性。本文档中描述的所有语言<!--
+-->与工具特性在未来的 Kotlin 版本中都可能会有所变化。</p>
 </blockquote>
-<p>This document explains the structure of <a href="multiplatform.html">Kotlin multiplatform projects</a> and describes how
-those are configured and built using Gradle.</p>
-<h2 id="table-of-contents">Table of Contents</h2>
+<p>本文档解释了 <a href="multiplatform.html">Kotlin 多平台项目</a>的结构，并描述了如何<!--
+-->使用 Gradle 配置与构建这些项目。</p>
+<h2 id="目录">目录</h2>
 <ul>
-<li><a href="#project-structure">Project Structure</a></li>
-<li><a href="#setting-up-a-multiplatform-project">Setting up a Multiplatform Project</a></li>
-<li><a href="#gradle-plugin">Gradle Plugin</a></li>
-<li><a href="#setting-up-targets">Setting up Targets</a>
+<li><a href="#项目结构">项目结构</a></li>
+<li><a href="#搭建一个多平台项目">搭建一个多平台项目</a></li>
+<li><a href="#gradle-插件">Gradle 插件</a></li>
+<li><a href="#设置目标平台">设置目标平台</a>
 <ul>
-<li><a href="#supported-platforms">Supported platforms</a></li>
-<li><a href="#configuring-compilations">Configuring compilations</a></li>
+<li><a href="#已支持平台">已支持平台</a></li>
+<li><a href="#配置-compilations">配置 compilations</a></li>
 </ul>
 </li>
-<li><a href="#configuring-source-sets">Configuring Source Sets</a>
+<li><a href="#配置源集">配置源集</a>
 <ul>
-<li><a href="#connecting-source-sets">Connecting source sets</a></li>
-<li><a href="#adding-dependencies">Adding dependencies</a></li>
-<li><a href="#language-settings">Language settings</a></li>
+<li><a href="#关联源集">关联源集</a></li>
+<li><a href="#添加依赖">添加依赖</a></li>
+<li><a href="#语言设置">语言设置</a></li>
 </ul>
 </li>
-<li><a href="#default-project-layout">Default Project Layout</a></li>
-<li><a href="#running-tests">Running Tests</a></li>
-<li><a href="#publishing-a-multiplatform-library">Publishing a Multiplatform Library</a></li>
-<li><a href="#android-support">Android Support</a>
+<li><a href="#默认项目布局">默认项目布局</a></li>
+<li><a href="#运行测试">运行测试</a></li>
+<li><a href="#发布多平台库">发布多平台库</a></li>
+<li><a href="#android-支持"> Android 支持</a>
 <ul>
-<li><a href="#publishing-android-libraries">Publishing Android libraries</a></li>
+<li><a href="#发布-android-库">发布 Android 库</a></li>
 </ul>
 </li>
-<li><a href="#using-kotlinnative-targets">Using Kotlin/Native Targets</a>
+<li><a href="#使用-kotlinnative-目标平台">使用 Kotlin/Native 目标平台</a>
 <ul>
-<li><a href="#building-final-native-binaries">Building final native binaries</a></li>
+<li><a href="#构建最终原生二进制文件">构建最终原生二进制文件</a></li>
 </ul>
 </li>
 </ul>
-<h2 id="project-structure">Project Structure</h2>
+<h2 id="项目结构">项目结构</h2>
 <p>The layout of a Kotlin multiplatform project is constructed out of the following building blocks:</p>
 <ul>
 <li>
-<p>A <a href="#setting-up-targets">target</a> is a part of the build that is responsible for building, testing,
+<p>A <a href="#设置目标平台">target</a> is a part of the build that is responsible for building, testing,
 and packaging a complete piece of software for one of the platforms. Therefore, a multiplatform project usually contains
 multiple targets.</p>
 </li>
 <li>
 <p>Building each target involves compiling Kotlin sources once or multiple times. In other words, a target may have one or
-more <a href="#configuring-compilations">compilations</a>. For example, one compilation for production sources, the other for tests.</p>
+more <a href="#配置-compilations">compilations</a>. For example, one compilation for production sources, the other for tests.</p>
 </li>
 <li>
-<p>The Kotlin sources are arranged into <a href="#configuring-source-sets">source sets</a>. In addition to Kotlin source files and
+<p>The Kotlin sources are arranged into <a href="#配置源集">source sets</a>. In addition to Kotlin source files and
 resources, each source set may have its own dependencies. Source sets form a hierarchy that is built with
 the <em>"depends on"</em> relation. A source set by itself is platform agnostic, but it may contain platform-specific code and
 dependencies if it's only compiled for a single platform.</p>
@@ -1209,7 +1209,7 @@ compilation. The default source set is also used for directing other source sets
 <p><img alt="Project structure" src="/assets/images/reference/building-mpp-with-gradle/mpp-structure-default-jvm-js.png"/></p>
 <p>Here, the two targets, <code>jvm</code> and <code>js</code>, each compile the production and test sources, and some of the sources are shared.
 This layout is achieved by just creating the two targets, with no additional configuration for the compilations and
-source sets: those are <a href="#default-project-layout">created by default</a> for these targets.</p>
+source sets: those are <a href="#默认项目布局">created by default</a> for these targets.</p>
 <p>In the example above, the production sources for the JVM target are compiled by its <code>main</code> compilation and therefore
 include the sources and dependencies from the source sets <code>jvmMain</code> and <code>commonMain</code> (due to the <em>depends on</em> relation):</p>
 <p><img alt="Source sets and compilation" src="/assets/images/reference/building-mpp-with-gradle/mpp-one-compilation.png"/></p>
@@ -1217,11 +1217,11 @@ include the sources and dependencies from the source sets <code>jvmMain</code> a
 expected API in the shared <code>commonMain</code> sources. This is how the code is shared between the platforms in a flexible way
 with platform-specific implementations where needed.</p>
 <p>In further sections, these concepts are described in more detail along with the DSL to configure them in a project.</p>
-<h2 id="setting-up-a-multiplatform-project">Setting up a Multiplatform Project</h2>
+<h2 id="搭建一个多平台项目">搭建一个多平台项目</h2>
 <p>You can create a new multiplatform project in the IDE by selecting one of the multiplatform project templates in the 
 New Project dialog under the "Kotlin" section.</p>
 <p>For example, if you choose "Kotlin (Multiplatform Library)", a library project is created that has three
-<a href="#setting-up-targets">targets</a>, one for the JVM, one for JS, and one for the Native platform that you are using.
+<a href="#设置目标平台">targets</a>, one for the JVM, one for JS, and one for the Native platform that you are using.
 These are configured in the <code>build.gradle</code>
 script in the following way:</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -1265,8 +1265,8 @@ kotlin {
 </div>
 </div>
 <p>The three targets are created with the preset functions <code>jvm()</code>, <code>js()</code>, and <code>mingwX64()</code> that provide some
-<a href="#default-project-layout">default configuration</a>. There are presets for each of the <a href="#supported-platforms">supported platforms</a>.</p>
-<p>The <a href="#configuring-source-sets">source sets</a> and their <a href="#adding-dependencies">dependencies</a> are then configured as follows:</p>
+<a href="#默认项目布局">default configuration</a>. There are presets for each of the <a href="#已支持平台">supported platforms</a>.</p>
+<p>The <a href="#配置源集">source sets</a> and their <a href="#添加依赖">dependencies</a> are then configured as follows:</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins { /* ... */ }
@@ -1354,11 +1354,11 @@ kotlin {
 </code></pre>
 </div>
 </div>
-<p>These are the <a href="#default-project-layout">default source set names</a> for the production and test sources for the targets
+<p>These are the <a href="#默认项目布局">default source set names</a> for the production and test sources for the targets
 configured above. The source sets <code>commonMain</code> and <code>commonTest</code> are included into production and test compilations, respectively, of all targets.
 Note that the dependencies for common source sets <code>commonMain</code> and <code>commonTest</code> are the common artifacts, and the 
 platform libraries go to the source sets of the specific targets.</p>
-<h2 id="gradle-plugin">Gradle Plugin</h2>
+<h2 id="gradle-插件">Gradle 插件</h2>
 <p>Kotlin Multiplatform projects require Gradle version 4.7 and above, older Gradle versions are not supported.</p>
 <p>To setup a multiplatform project from scratch in a Gradle project, first apply the
 <code>kotlin-multiplatform</code> plugin to the project by adding the following to the
@@ -1381,12 +1381,12 @@ beginning of the <code>build.gradle</code> file:</p>
 </div>
 <p>This creates the <code>kotlin</code> extension at the top level. You can then access it in the build script for:</p>
 <ul>
-<li><a href="#setting-up-targets">setting up the targets</a> for multiple platforms (no targets are created by default);</li>
-<li><a href="#configuring-source-sets">configuring the source sets</a> and their <a href="#adding-dependencies">dependencies</a>;</li>
+<li><a href="#设置目标平台">setting up the targets</a> for multiple platforms (no targets are created by default);</li>
+<li><a href="#配置源集">configuring the source sets</a> and their <a href="#添加依赖">dependencies</a>;</li>
 </ul>
-<h2 id="setting-up-targets">Setting up Targets</h2>
+<h2 id="设置目标平台">设置目标平台</h2>
 <p>A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
-one of the <a href="#supported-platforms">supported platforms</a>.</p>
+one of the <a href="#已支持平台">supported platforms</a>.</p>
 <p>All of the targets may share some of the sources and may have platform-specific sources as well.</p>
 <p>As the platforms are different, targets are built in different ways as well and have various platform-specific
 settings. The Gradle plugin bundles a number of presets for the supported platforms.</p>
@@ -1464,7 +1464,7 @@ kotlin {
 </code></pre>
 </div>
 </div>
-<h3 id="supported-platforms">Supported platforms</h3>
+<h3 id="已支持平台">已支持平台</h3>
 <p>There are target presets that one can apply using the preset functions, as shown above, for the
 following target platforms:</p>
 <ul>
@@ -1475,7 +1475,7 @@ following target platforms:</p>
  plugins should be applied before the target is created;</p>
 </li>
 <li>
-<p>Kotlin/Native target presets (see the <a href="#using-kotlinnative-targets">notes</a> below):</p>
+<p>Kotlin/Native target presets (see the <a href="#使用-kotlinnative-目标平台">notes</a> below):</p>
 <ul>
 <li><code>androidNativeArm32</code> and <code>androidNativeArm64</code> for Android NDK;</li>
 <li><code>iosArm32</code>, <code>iosArm64</code>, <code>iosX64</code> for iOS;</li>
@@ -1484,14 +1484,14 @@ following target platforms:</p>
 <li><code>mingwX64</code> for Windows;</li>
 <li><code>wasm32</code> for WebAssembly.</li>
 </ul>
-<p>Note that some of the Kotlin/Native targets require an <a href="#using-kotlinnative-targets">appropriate host machine</a> to build on.</p>
+<p>Note that some of the Kotlin/Native targets require an <a href="#使用-kotlinnative-目标平台">appropriate host machine</a> to build on.</p>
 </li>
 </ul>
 <p>Some targets may require additional configuration. For Android and iOS examples, see
 the <a href="/docs/tutorials/native/mpp-ios-android.html">Multiplatform Project: iOS and Android</a> tutorial.</p>
-<h3 id="configuring-compilations">Configuring compilations</h3>
+<h3 id="配置-compilations">配置 compilations</h3>
 <p>Building a target requires compiling Kotlin once or multiple times. Each Kotlin compilation of a target may serve a
-different purpose (e.g. production code, tests) and incorporate different <a href="#configuring-source-sets">source sets</a>.
+different purpose (e.g. production code, tests) and incorporate different <a href="#配置源集">source sets</a>.
 The compilations of a target may be accessed in the DSL, for example, to get the tasks, configure
 <a href="using-gradle.html#编译器选项">the Kotlin compiler options</a> or get the dependency files and compilation outputs:</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -1549,7 +1549,7 @@ The compilations of a target may be accessed in the DSL, for example, to get the
 </code></pre>
 </div>
 </div>
-<p>Each compilation is accompanied by a default <a href="#configuring-source-sets">source set</a>, which is created automatically
+<p>Each compilation is accompanied by a default <a href="#配置源集">source set</a>, which is created automatically
 and should be used for sources and dependencies that are specific to that compilation. The default source set for a
 compilation <code>foo</code> of a target <code>bar</code> has the name <code>barFoo</code>. It can also be accessed from a compilation using
 <code>defaultSourceSet</code>:</p>
@@ -1664,15 +1664,15 @@ of a <code>jvm()</code> target:</p>
 </div>
 <p>Also note that the default source set of a custom compilation depends on neither <code>commonMain</code> nor <code>commonTest</code> by
 default.</p>
-<h2 id="configuring-source-sets">Configuring Source Sets</h2>
-<p>A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings, 
-which may take part in Kotlin compilations of one or more <a href="#setting-up-targets">targets</a>.</p>
+<h2 id="配置源集">配置源集</h2>
+<p>A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings,
+which may take part in Kotlin compilations of one or more <a href="#设置目标平台">targets</a>.</p>
 <p>A source set is not bound to be platform-specific or "shared"; what it's allowed to content depends on its usage:
 a source set added to multiple compilations is limited to the common language features and dependencies, while a source
 set that is only used by a single target can have platform-specific dependencies, and it's code may use language
 features specific to that target's platform.</p>
 <p>Some source sets are created and configured by default: <code>commonMain</code>, <code>commonTest</code>, and the default source sets for the
- compilations. See <a href="#default-project-layout">Default Project Layout</a>.</p>
+ compilations. See <a href="#默认项目布局">默认项目布局</a>.</p>
 <p>The source sets are configured within a <code>sourceSets { ... }</code> block of the <code>kotlin { ... }</code> extension:</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
@@ -1697,9 +1697,9 @@ features specific to that target's platform.</p>
 </div>
 </div>
 <blockquote class="note">
-<p>Note: creating a source set does not link it to any target. Some source sets are <a href="#default-project-layout">predefined</a> 
+<p>Note: creating a source set does not link it to any target. Some source sets are <a href="#默认项目布局">predefined</a>
 and thus compiled by default. However, custom source sets always need to be explicitly directed to the compilations. 
-See: <a href="#connecting-source-sets">Connecting source sets</a>.</p>
+See: <a href="#关联源集">关联源集</a>.</p>
 </blockquote>
 <p>The source set names are case-sensitive. When referring to a default source set by its name, make sure the name prefix
 matches a target's name, for example, a source set <code>iosX64Main</code> for a target <code>iosX64</code>.</p>
@@ -1734,7 +1734,7 @@ directories and resources to a source set, use its <code>kotlin</code> and <code
 </code></pre>
 </div>
 </div>
-<h3 id="connecting-source-sets">Connecting source sets</h3>
+<h3 id="关联源集">关联源集</h3>
 <p>Kotlin source sets may be connected with the <em>'depends on'</em> relation, so that if a source set <code>foo</code>  depends on a
 source set <code>bar</code> then:</p>
 <ul>
@@ -1743,7 +1743,7 @@ source set <code>bar</code> then:</p>
 into the same target binary form, such as JVM class files or JS code;</p>
 </li>
 <li>
-<p>sources of <code>foo</code> 'see' the declarations of <code>bar</code>, including the <code>internal</code> ones, and the <a href="#adding-dependencies">dependencies</a> of <code>bar</code>, even those
+<p>sources of <code>foo</code> 'see' the declarations of <code>bar</code>, including the <code>internal</code> ones, and the <a href="#添加依赖">dependencies</a> of <code>bar</code>, even those
  specified as <code>implementation</code> dependencies;</p>
 </li>
 <li>
@@ -1753,7 +1753,7 @@ into the same target binary form, such as JVM class files or JS code;</p>
 <p>the resources of <code>bar</code> are always processed and copied along with the resources of <code>foo</code>;</p>
 </li>
 <li>
-<p>the <a href="#language-settings">language settings</a> of <code>foo</code> and <code>bar</code> should be consistent;</p>
+<p>the <a href="#语言设置">语言设置</a> of <code>foo</code> and <code>bar</code> should be consistent;</p>
 </li>
 </ul>
 <p>Circular source set dependencies are prohibited.</p>
@@ -1786,7 +1786,7 @@ into the same target binary form, such as JVM class files or JS code;</p>
 </code></pre>
 </div>
 </div>
-<p>Custom source sets created in addition to the <a href="#default-project-layout">default ones</a> should be explicitly included into
+<p>Custom source sets created in addition to the <a href="#默认项目布局">default ones</a> should be explicitly included into
  the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part 
  in compilations. 
 Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(commonTest)</code> statement, and some of the default platform-specific
@@ -1846,7 +1846,7 @@ Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(co
 </code></pre>
 </div>
 </div>
-<h3 id="adding-dependencies">Adding Dependencies</h3>
+<h3 id="添加依赖">添加依赖</h3>
 <p>To add a dependency to a source set, use a <code>dependencies { ... }</code> block of the source sets DSL. Four kinds of dependencies
 are supported:</p>
 <ul>
@@ -1976,7 +1976,7 @@ pattern <code>&lt;sourceSetName&gt;&lt;DependencyKind&gt;</code>:</p>
 in the source sets dependency DSL. You can, however, add them within the top-level dependency block, as shown above.</p>
 <p>A dependency on a Kotlin module like <code>kotlin-stdlib</code> or <code>kotlin-reflect</code> may be added with the notation <code>kotlin("stdlib")</code>,
 which is a shorthand for <code>"org.jetbrains.kotlin:kotlin-stdlib"</code>.</p>
-<h3 id="language-settings">Language settings</h3>
+<h3 id="语言设置">语言设置</h3>
 <p>The language settings for a source set can be specified as follows:</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
@@ -2031,7 +2031,7 @@ sources participating in the compilation.</p>
 <li><code>foo</code> should use all experimental annotations that <code>bar</code> uses;</li>
 <li><code>apiVersion</code>, bugfix language features, and <code>progressiveMode</code> can be set arbitrarily;</li>
 </ul>
-<h2 id="default-project-layout">Default Project Layout</h2>
+<h2 id="默认项目布局">默认项目布局</h2>
 <p>By default, each project contains two source sets, <code>commonMain</code> and <code>commonTest</code>, where one can place all the code that should be 
 shared between all of the target platforms. These source sets are added to each production and test compilation, respectively.</p>
 <p>Then, once a target is added, default compilations are created for it:</p>
@@ -2049,13 +2049,13 @@ targets <code>jvm6</code> (JVM) and <code>nodeJs</code> (JS) will have source se
 If the Android target has a name <code>foo</code>, the Android source set <code>bar</code> gets a Kotlin source set counterpart <code>fooBar</code>.
 The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories <code>src/bar/java</code>,
 <code>src/bar/kotlin</code>, and <code>src/fooBar/kotlin</code>. Java sources are only read from the first of these directories.</p>
-<h2 id="running-tests">Running Tests</h2>
+<h2 id="运行测试">运行测试</h2>
 <p>Running tests in a Gradle build is currently supported by default for JVM, Android, Linux, Windows and macOS; 
 JS and other Kotlin/Native targets
 need to be manually configured to run the tests with an appropriate environment, an emulator or a test framework.</p>
 <p>A test task is created under the name <code>&lt;targetName&gt;Test</code> for each target that is suitable for testing. Run the <code>check</code> task to run 
 the tests for all targets.</p>
-<p>As the <code>commonTest</code> <a href="#default-project-layout">default source set</a> is added to all test compilations, tests and test tools that are needed
+<p>As the <code>commonTest</code> <a href="#默认项目布局">default source set</a> is added to all test compilations, tests and test tools that are needed
 on all target platforms may be placed there.</p>
 <p>The <a href="https://kotlinlang.org/api/latest/kotlin.test/index.html"><code>kotlin.test</code> API</a> is availble for multiplatform tests.
 Add the <code>kotlin-test-common</code> and <code>kotlin-test-annotations-common</code> dependencies to <code>commonTest</code> to use the assertion
@@ -2066,7 +2066,7 @@ annotations mapping.</p>
 <p>For Kotlin/JS targets, add <code>kotlin-test-js</code> as a test dependency. At this point, test tasks for Kotlin/JS are created 
 but do not run tests by default; they should be manually configured to run the tests with a JavaScript test framework.</p>
 <p>Kotlin/Native targets do not require additional test dependencies, and the <code>kotlin.test</code> API implementations are built-in.</p>
-<h2 id="publishing-a-multiplatform-library">Publishing a Multiplatform Library</h2>
+<h2 id="发布多平台库">发布多平台库</h2>
 <blockquote class="note">
 <p>The set of target platforms is defined by a multiplatform library author, and they should provide all of the platform-specific implementations for the library. 
 Adding new targets for a multiplatform library at the consumer's side is not supported.</p>
@@ -2091,7 +2091,7 @@ version = "0.0.1"
 </code></pre>
 </div>
 <p>Android library targets, however, don't have any artifacts published by default and need an additional step to configure
-publishing, see <a href="#publishing-android-libraries">Publishing Android libraries</a>.</p>
+publishing, see <a href="#发布-android-库">发布 Android 库</a>.</p>
 <p>The default artifact IDs follow the pattern <code>&lt;projectName&gt;-&lt;targetNameToLowerCase&gt;</code>, for example <code>sample-lib-nodejs</code>
 for a target named <code>nodeJs</code> in a project <code>sample-lib</code>.</p>
 <p>By default, a sources JAR is added to each publication in addition to its main artifact. The sources JAR contains the
@@ -2329,7 +2329,7 @@ configurations {
 single dependency with unambiguous dependencies on its separate target modules, as if it had no experimental
 Gradle metadata. This way, the dependency will also be published in the specified way, so the consumers won't encounter
 any ambiguity.</p>
-<h2 id="android-support">Android Support</h2>
+<h2 id="android-支持">Android 支持</h2>
 <p>Kotlin Multiplatform projects support the Android platform by providing the <code>android</code> preset.
 Creating an Android target requires that one of the Android Gradle plugins, like <code>com.android.application</code> or
 <code>com.android.library</code> is manually applied to the project. Only one Android target may be created per Gradle subproject:</p>
@@ -2390,9 +2390,9 @@ dependencies {
 }
 </code></pre>
 </div>
-<h3 id="publishing-android-libraries">Publishing Android libraries</h3>
+<h3 id="发布-android-库">发布 Android 库</h3>
 <p>To publish an Android library as a part of a multiplatform library, one needs to
-<a href="#publishing-a-multiplatform-library">setup publishing for the library</a> and provide additional configuration for the
+<a href="#发布多平台库">setup publishing for the library</a> and provide additional configuration for the
 Android library target.</p>
 <p>By default, no artifacts of an Android library are published. To publish artifacts produced by a set of
 <a href="https://developer.android.com/studio/build/build-variants">Android variants</a>, specify the variant names in the Android
@@ -2452,8 +2452,8 @@ type is still published with no classifier). This mode is disabled by default an
 </div>
 <p>It is not recommended to publish variants grouped by the product flavor in case they have different dependencies, as
 those will be merged into one dependencies list.</p>
-<h2 id="using-kotlinnative-targets">Using Kotlin/Native Targets</h2>
-<p>It is important to note that some of the <a href="#supported-platforms">Kotlin/Native targets</a> may only be built with an appropriate host machine:</p>
+<h2 id="使用-kotlinnative-目标平台">使用 Kotlin/Native 目标平台</h2>
+<p>It is important to note that some of the <a href="#已支持平台">Kotlin/Native targets</a> may only be built with an appropriate host machine:</p>
 <ul>
 <li>Linux targets may only be built on a Linux host;</li>
 <li>Windows targets require a Windows host;</li>
@@ -2462,7 +2462,7 @@ those will be merged into one dependencies list.</p>
 </ul>
 <p>A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up
 builds and publishing from different hosts as required by the library target platforms.</p>
-<h3 id="building-final-native-binaries">Building final native binaries</h3>
+<h3 id="构建最终原生二进制文件">构建最终原生二进制文件</h3>
 <p>By default, a Kotlin/Native target is compiled down to a <code>*.klib</code> library artifact, which can be consumed by Kotlin/Native itself as a
 dependency but cannot be executed or used as a native library. To declare final native binaries like executables or shared libraries a <code>binaries</code>
 property of a native target is used. This property represents a collection of native binaries built for this target in addition to the
