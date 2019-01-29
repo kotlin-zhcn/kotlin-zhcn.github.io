@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/multiplatform-library.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/quick-run.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="Sharing Kotlin library between JVM, JS and Native worlds">
+    <meta property="og:description" content="This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="Sharing Kotlin library between JVM, JS and Native worlds">
+    <meta name="twitter:description" content="This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Multiplatform Kotlin library - Kotlin 语言中文站</title>
+    <title>Running Code Snippets  - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -160,12 +160,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/quick-run.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">运行代码片段</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">运行代码片段</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -344,10 +342,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">多平台库</div>
-            </div>
+            <a href="/docs/tutorials/multiplatform-library.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台库</span>
+            </a>
     </div>
 
     </div>
@@ -814,7 +814,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/multiplatform-library.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/quick-run.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -822,7 +822,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Multiplatform Kotlin library
+                Running Code Snippets 
             </h1>
             <table>
                     <tr>
@@ -830,245 +830,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2018-10-04
+                            2018-12-24
                         </td>
                     </tr>
             </table>
-                Sharing Kotlin library between JVM, JS and Native worlds
+                This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.
                 <br/>
                 <br/>
             
-<p>In this tutorial, we will build a small library available from the worlds of JVM, JS, and Native. 
-You will learn step-by-step how to create a multiplatform library which can be used from any other common code (e.g., one shared with Android and iOS), 
-and how to write tests which will be executed on all platforms and use an efficient implementation provided by the concrete platform.</p>
-<h1 id="what-are-we-building">What are we building?</h1>
-<p>Our goal is to build a small multiplatform library to demonstrate the ability to share the code between the platforms and its benefits.
-In order to have a small implementation to focus on the multiplatform machinery, we will write a library which
-converts raw data (strings and byte arrays) to the <a href="https://en.wikipedia.org/wiki/Base64">Base64</a> format which can be used on JVM, JS, and any available K/N platform.
-On JVM implementation will be using <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html"><code>java.util.Base64</code></a> which is known to be extremely efficient 
-because JVM is aware of this particular class and compiles it in a special way.
-On JS we will be using the native <a href="https://nodejs.org/docs/latest/api/buffer.html">Buffer</a> API and on Kotlin/Native we will write our own implementation.
-We will cover this functionality with common tests and then publish the resulting library to Maven.</p>
-<h1 id="setting-up-the-local-environment">Setting up the local environment</h1>
-<p>We will be using IntelliJ IDEA Community Edition for this tutorial, though using Ultimate edition is possible as well. The Kotlin plugin 1.3.x or higher should be installed in the IDE. 
-This can be verified via the <em>Language &amp; Frameworks | Kotlin Updates</em> section in the <em>Settings</em> (or <em>Preferences</em>) of the IDE.
-Native part of this project is written using Mac OS X, but don't worry if you are using another platform, the platform affects only directory names in this particular tutorial.</p>
-<h1 id="creating-a-project">Creating a project</h1>
-<p>We will be using IntelliJ IDEA Community Edition for the example. You need to make sure you have the latest version of the Kotlin plugin installed, 1.3.x or newer.
-We select <em>File | New | Project</em>, select <em>Kotlin | Kotlin (Multiplatform Library)</em> and configure the project in the way we want.</p>
-<p><img alt="Wizard" src="/assets/images/tutorials/multiplatform/wizard.png"/></p>
-<p>A multiplatform sample library is now created and imported into IntelliJ IDEA. Let's go to any <code>.kt</code> file and rename the package with the IntelliJ IDEA action <em>Refactor | Rename</em> action to <code>org.jetbrains.base64</code>
-Let's just check everything is right with the project so far, the project structure should be:</p>
-<pre><code>└── src
-    ├── commonMain
-    │   └── kotlin
-    ├── commonTest
-    │   └── kotlin
-    ├── jsMain
-    │   └── kotlin
-    ├── jsTest
-    │   └── kotlin
-    ├── jvmMain
-    │   └── kotlin
-    ├── jvmTest
-    │   └── kotlin
-    ├── macosMain
-    │   └── kotlin
-    └── macosTest
-        └── kotlin
-</code></pre>
-<p>And the <code>kotlin</code> folder should contain an <code>org.jetbrains.base64</code> subfolder.</p>
-<h1 id="common-part">Common part</h1>
-<p>Now we need to define the classes and interfaces we want to implement. Create the file <code>Base64.kt</code> in the <code>commonMain/kotlin/jetbrains/base64</code> folder.
-Core primitive will be the <code>Base64Encoder</code> interface which knows how to convert bytes to bytes in <code>Base64</code> format:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">interface Base64Encoder {
-    fun encode(src: ByteArray): ByteArray
-}
-</code></pre>
-</div>
-<p>But the common code should somehow get an instance of this interface, for that purpose we define the factory object <code>Base64Factory</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">expect object Base64Factory {
-    fun createEncoder(): Base64Encoder
-}
-</code></pre>
-</div>
-<p>Our factory is marked with the <code>expect</code> keyword. <code>expect</code> is a mechanism to define a requirement, which every platform should provide in order for the common part to work properly.
-So on each platform we should provide the <code>actual</code> <code>Base64Factory</code> which knows how to create the platform-specific encoder.
-You can read more about platform specific declarations <a href="/docs/reference/platform-specific-declarations.html">here</a>.</p>
-<h1 id="platform-specific-implementations">Platform-specific implementations</h1>
-<p>Now it is time to provide an <code>actual</code> implementation of <code>Base64Factory</code> for every platform.</p>
-<h2 id="jvm">JVM</h2>
-<p>We are starting with an implementation for the JVM. Let's create a file <code>Base64.kt</code> in <code>jvmMain/kotlin/jetbrains/base64</code> folder and provide a simple implementation, which delegates to <code>java.util.Base64</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">actual object Base64Factory {
-    actual fun createEncoder(): Base64Encoder = JvmBase64Encoder
-}
-
-object JvmBase64Encoder : Base64Encoder {
-    override fun encode(src: ByteArray): ByteArray = Base64.getEncoder().encode(src)
-}
-
-</code></pre>
-</div>
-<p>Pretty simple, isn't it? We have provided a platform-specific implementation, but used a straightforward delegation to an implementation someone else has written!</p>
-<h2 id="js">JS</h2>
-<p>Our JS implementation will be very similar to the JVM one. We create a file <code>Base64.kt</code> in <code>jsMain/kotlin/jetbrains/base64</code> and provide an implementation 
-which delegates to NodeJS <code>Buffer</code> API:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">actual object Base64Factory {
-    actual fun createEncoder(): Base64Encoder = JsBase64Encoder
-}
-
-object JsBase64Encoder : Base64Encoder {
-    override fun encode(src: ByteArray): ByteArray {
-        val buffer = js("Buffer").from(src)
-        val string = buffer.toString("base64") as String
-        return ByteArray(string.length) { string[it].toByte() }
-    }
-}
-</code></pre>
-</div>
-<h2 id="native">Native</h2>
-<p>On the generic Native platform we don't have the luxury to use someone else's implementation, so we will have to write one ourselves. I won't explain the implementation details here,
-but it's pretty straightforward and follows Base64 format description without any optimizations:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">private val BASE64_ALPHABET: String = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
-private val BASE64_MASK: Byte = 0x3f
-private val BASE64_PAD: Char = '='
-private val BASE64_INVERSE_ALPHABET = IntArray(256) {
-    BASE64_ALPHABET.indexOf(it.toChar())
-}
-
-private fun Int.toBase64(): Char = BASE64_ALPHABET[this]
-
-actual object Base64Factory {
-    actual fun createEncoder(): Base64Encoder = NativeBase64Encoder
-}
-
-object NativeBase64Encoder : Base64Encoder {
-    override fun encode(src: ByteArray): ByteArray {
-            fun ByteArray.getOrZero(index: Int): Int = if (index &gt;= size) 0 else get(index).toInt()
-            // 4n / 3 is expected Base64 payload
-            val result = ArrayList&lt;Byte&gt;(4 * src.size / 3) 
-            var index = 0
-            while (index &lt; src.size) {
-                val symbolsLeft = src.size - index
-                val padSize = if (symbolsLeft &gt;= 3) 0 else (3 - symbolsLeft) * 8 / 6
-                val chunk = (src.getOrZero(index) shl 16) or (src.getOrZero(index + 1) shl 8) or src.getOrZero(index + 2)
-                index += 3
-        
-                for (i in 3 downTo padSize) {
-                val char = (chunk shr (6 * i)) and BASE64_MASK.toInt()
-                    result.add(char.toBase64().toByte())
-                }
-                // Fill the pad with '='
-                repeat(padSize) { result.add(BASE64_PAD.toByte()) }
-            }
-    
-            return result.toByteArray()
-        }
-    }
-</code></pre>
-</div>
-<p>Now we have implementations on all the platforms and it is time to move to testing of our library.</p>
-<h1 id="testing">Testing</h1>
-<p>To make the library complete we should write some tests, but we have three independent implementations and it is a waste of time to write duplicate tests for each one.
-The good thing about common code is that it can be covered with common tests, which later are compiled and executed on <em>every</em> platform.
-All the bits for testing are already generated by the project Wizard.</p>
-<p>Let's create the class <code>Base64Test</code> in <code>commonTest/kotlin/jetbrains/base64</code> folder and write the basic tests for Base64.</p>
-<p>But as you remember, our API converts byte arrays to byte arrays in a different format and it is not easy to test byte arrays.
-So before we start writing a test, let's add the method <code>encodeToString</code> with a default implementation to our <code>Base64Encoder</code> interface:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">interface Base64Encoder {
-    fun encode(src: ByteArray): ByteArray
-
-    fun encodeToString(src: ByteArray): String {
-        val encoded = encode(src)
-        return buildString(encoded.size) {
-            encoded.forEach { append(it.toChar()) }
-        }
-    }
-}
-</code></pre>
-</div>
-<p>Notice that the implementation on <em>every</em> platform can encode byte arrays to a string. If we want we can provide a more efficient implementation for this method, 
-for example, let's specialize it on the JVM:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">object JvmBase64Encoder : Base64Encoder {
-    override fun encode(src: ByteArray): ByteArray = Base64.getEncoder().encode(src)
-    override fun encodeToString(src: ByteArray): String = Base64.getEncoder().encodeToString(src)
-}
-</code></pre>
-</div>
-<p>Default implementations with optional more specialized overrides is another bonus of the multiplatform library. Now, when we have a string-based API, we can cover it with basic tests:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">class Base64Test {
-    @Test
-    fun testEncodeToString() {
-        checkEncodeToString("Kotlin is awesome", "S290bGluIGlzIGF3ZXNvbWU=")
-    }
-
-    @Test
-    fun testPaddedStrings() {
-        checkEncodeToString("", "")
-        checkEncodeToString("1", "MQ==")
-        checkEncodeToString("22", "MjI=")
-        checkEncodeToString("333", "MzMz")
-        checkEncodeToString("4444", "NDQ0NA==")
-    }
-
-    private fun checkEncodeToString(input: String, expectedOutput: String) {
-        assertEquals(expectedOutput, Base64Factory.createEncoder().encodeToString(input.asciiToByteArray()))
-    }
-
-    private fun String.asciiToByteArray() = ByteArray(length) {
-        get(it).toByte()
-    }
-}
-</code></pre>
-</div>
-<p>Execute <code>./gradlew check</code> and you will see that the tests are run three times, on JVM, on JS, and on Native!</p>
-<p>If we want, we can add tests to a specific platform, then it will be executed only as part of these platform tests.
-For example, we can add UTF-16 tests on JVM. Just follow the same steps as before, but create file in <code>jvmTest/kotlin/jetbrains/base64</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">class Base64JvmTest {
-    @Test
-    fun testNonAsciiString() {
-        val utf8String = "Gödel"
-        val actual = Base64Factory.createEncoder().encodeToString(utf8String.toByteArray())
-        assertEquals("R8O2ZGVs", actual)
-    }
-}
-</code></pre>
-</div>
-<p>This test will be automatically executed on the JVM target in addition to the common part.</p>
-<h2 id="publishing-library-to-maven">Publishing library to Maven</h2>
-<p>Our first multiplatform library is almost ready. The last step is to publish it, so other projects can then depend on our library.
-To make the publishing mechanism work, you should enable the experimental Gradle feature in <code>settings.gradle</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="groovy" theme="idea">
-<pre><code class="language-groovy">enableFeaturePreview('GRADLE_METADATA')
-</code></pre>
-</div>
-<p>Now the classic <code>maven-publish</code> Gradle <a href="https://docs.gradle.org/current/userguide/publishing_maven.html">plugin</a> can be used.
-Don't forget to specify the group and version of your library along with the plugin in <code>build.gradle</code>:</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="groovy" theme="idea">
-<pre><code class="language-groovy">apply plugin: 'maven-publish'
-group 'org.jetbrains.base64'
-version '1.0.0'
-</code></pre>
-</div>
-<p>Now check it with the command <code>./gradlew publishToMavenLocal</code> and you should see a successful build. 
-That's it, our library is now successfully published and any Kotlin project can depend on it, whether it is another common library, JVM, JS, or Native application.</p>
-<h1 id="summary">Summary</h1>
-<p>In this tutorial we have:</p>
+<p>Sometimes you may need to quickly write and execute some code outside of a project or an application. This may be useful, for example, when learning Kotlin or evaluating expressions. Let's have a look through two handy ways to quickly run Kotlin code:</p>
 <ul>
-<li>Created a multiplatform library with platform-specific implementations.</li>
-<li>Provided default implementation for common part and specialized it on JVM.</li>
-<li>Written common tests which are executed on every platform.</li>
-<li>Published the final library to Maven repository.</li>
+<li><a href="#using-scratches">Scratches</a> let you write and run code in a temporary file outside your project in IDE.</li>
+<li><a href="#running-in-repl">REPL</a> (<em>Read-Eval-Print-Loop</em>) runs code interactively in a console.</li>
 </ul>
+<h2 id="using-scratches">Using Scratches</h2>
+<blockquote class="note">
+<p>Currently, scratches are supported only in Kotlin/JVM projects.</p>
+</blockquote>
+<p>Kotlin plugin for IntelliJ IDEA supports <a href="https://www.jetbrains.com/help/idea/scratches.html">scratches</a>. Scratches let you create code drafts in the same IDE window with your project and run them on the fly. Scratches are not tied to projects; you can access and run all your scratches from any IntelliJ IDEA window on your OS.</p>
+<p>To create a Kotlin scratch, click <strong>File | New | Scratch file</strong> and select the <strong>Kotlin</strong> type.</p>
+<p>In your scratch, you can write any valid Kotlin code, including new functions and classes. Syntax highlighting, auto-completion, and other code editing features of IntelliJ IDEA are supported in scratches.</p>
+<p>Write your code in the scratch and click <strong>Run</strong>. The execution results will appear opposite the lines of your code.</p>
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-run.gif" src="/assets/images/tutorials/quick-run/scratch-run.png"/>
+</div>
+<p>To use classes or functions from a project in the scratch, import them into the scratch file as usual with the <code>import</code> statement. Then write your code and run it with the appropriate module selected in <strong>Use classpath of module</strong> list. To rebuild the module automatically before running the scratch, select <strong>Make before Run</strong>.</p>
+<p><img alt="Scratch select module" src="/assets/images/tutorials/quick-run/scratch-select-module.png"/></p>
+<p>To evaluate each particular expression in a scratch, run it with <strong>Use REPL</strong> selected. The scratch will be executed the same way as in <a href="#running-in-repl">REPL</a>: the code will run subsequently, providing results of each call. You can later refer to the results by the names <code>res*</code> that are shown in the corresponding lines.</p>
+<p><img alt="Scratch REPL" src="/assets/images/tutorials/quick-run/scratch-repl.png"/></p>
+<h2 id="running-in-repl">Running in REPL</h2>
+<p><em>REPL</em> (<em>Read-Eval-Print-Loop</em>) is a tool for running Kotlin code interactively. REPL lets you evaluate expressions and code chunks without creating projects or even functions if you don't need them.</p>
+<p>To run REPL in IntelliJ IDEA, open <strong>Tools | Kotlin | Kotlin REPL</strong>.</p>
+<p>To run REPL in the OS command line, open <strong>/bin/kotlinc-jvm</strong> from the directory of standalone Kotlin compiler.</p>
+<p>The REPL command line interface opens. You can enter any valid Kotlin code and see the result. Results are printed as variables with auto-generated names like <code>res*</code>. You can later use such variables in the code you run in REPL.</p>
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-run.gif" src="/assets/images/tutorials/quick-run/repl-run.png"/>
+</div>
+<p>REPL supports multiple line input as well. The result of a multiple line input is the value of its last expression.</p>
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-multi-line.gif" src="/assets/images/tutorials/quick-run/repl-multi-line.png"/>
+</div>
 
         </article>
     </div>
