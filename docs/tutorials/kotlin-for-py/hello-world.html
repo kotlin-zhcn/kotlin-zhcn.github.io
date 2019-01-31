@@ -829,50 +829,50 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <p><em>本资料的作者是 <a href="https://eldhuset.net/">Aasmund Eldhuset</a>；其所有权属于<a href="https://www.khanacademy.org/">可汗学院（Khan Academy）</a>，授权许可为 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US（署名-非商业-相同方式共享）</a>。请注意，这并不是可汗学院官方产品的一部分。中文版由<a href="https://hltj.me/">灰蓝天际</a>译，遵循相同授权方式。</em></p>
 <hr/>
-<p>Let's get straight to the point - type this into a file with the extension <code>.kt</code>:</p>
+<p>开门见山，将以下信息键入到一个扩展名为 <code>.kt</code> 的文件中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello World!")
 }
 </code></pre>
 </div>
-<p>Only imports and declarations can exist at the top level of a Kotlin file. Therefore, "running" an individual file only makes sense if it contains an <em>entry point</em>, which must be a function called <code>main</code> with one argument called <code>args</code> of the type "array of strings". <code>args</code> will contain the command-line arguments that the program is invoked with, similarly to <code>sys.argv</code> in Python; it can be omitted if your program does not need to accept command-line arguments and you are using Kotlin 1.3:</p>
+<p>Kotlin 文件的顶层只能有导入与声明。因此“运行”单个文件只有在其中包含<em>入口点</em>时才有意义，该<em>入口点</em>必须是名为 <code>main</code> 的函数，该函数有一个名为 <code>args</code>、类型为“字符串数组”的参数。<code>args</code> 会包含调用程序的命令行参数，类似于 Python 中的 <code>sys.argv</code>；如果程序并不需要接受命令行参数并且使用的是 Kotlin 1.3，那么可以省略该参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main() {
     println("Hello World!")
 }
 </code></pre>
 </div>
-<p>The function body is delimited by curly braces - indentation is generally not significant in Kotlin, but you should of course indent your code properly for the benefit of human readers.</p>
-<p>Comments are initiated with <code>//</code> and last until the end of the line. Block comments start with <code>/*</code> and end with <code>*/</code>.</p>
-<p>Like in Python, statements may be terminated by a semicolon, but it's discouraged. There is no line continuation character; instead, a line is automatically joined with one or more of the subsequent lines if that's the only way to make the code parse correctly. In practice, that means that a statement continues on the next line if we're inside an open parenthesis (like in Python), or if the line ends with a "dangling operator" (unlike in Python) or the following line doesn't parse unless it's joined to the previous one (also unlike in Python). Note that this is pretty much <a href="https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi#2846298">the opposite of JavaScript</a>, which generally will keep joining lines as long as the resulting code still parses. Thus, the following is two expressions in Kotlin and in Python (because <code>+</code> can be unary, so the second line parses on its own), but one in JavaScript:</p>
+<p>函数体由花括号分隔——缩进在 Kotlin 中通常不重要<sup id="fnref:1"><a class="footnote" href="#fn:1">1</a></sup>，但是为了肉眼可读性理应正确缩进代码。</p>
+<p>注释以 <code>//</code> 开始一直到行尾。块注释以 <code>/*</code> 开头、以 <code>*/</code> 结尾。</p>
+<p>与 Python 类似，Kotlin 中语句也能以分号结尾，但是并不鼓励这么用。Kotlin 中没有续行符；如果行合并是使代码正确解析的唯一方式，那么该行会自动与一到多个后续行相连。在实际使用中，这意味着如果当前行的左圆括号未配对（与 Python 类似），或者当前行以“悬空操作符”结尾（与 Python 不同），或者后续行如果不与当前行相连就无法解析（与 Python 不同）。请注意，这几乎<a href="https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi#2846298">与 JavaScript 相反</a>，在 JavaScript 中只要代码仍能解析，它通常会继续连接尽量多的行。因此，以下代码在 Kotlin 与 Python 中是两个表达式（因为 <code>+</code> 可以是一元操作符，所以第二行能够独立解析），但是在 JavaScript 中是一个表达式：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">1 + 2
 + 3
 </code></pre>
 </div>
-<p>This is one expression in both Kotlin (because the first line doesn't parse on its own) and JavaScript, and doesn't parse in Python:</p>
+<p>这段代码在 Kotlin（因为第一行不能独立解析）与 JavaScript 中都是一个表达式，而在 Python 中不能解析：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">1 + 2 +
 3
 </code></pre>
 </div>
-<p>So is the following. The difference between <code>+</code> and <code>.</code> is that <code>+</code> can be a unary operator, but <code>.</code> can't, so the only way to get the second line to parse is to join it with the preceding line:</p>
+<p>以下这段代码也一样，<code>+</code> 与 <code>.</code> 之间的区别在于 <code>+</code> 可以是一元操作符，但 <code>.</code> 不可以，因此解析第二行的唯一方式是将其与前一行相连：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">x.foo()
  .bar()
 </code></pre>
 </div>
-<p>This is one expression in all three languages:</p>
+<p>这段代码在三门语言中都是一个表达式：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">(1 + 2
  + 3)
 </code></pre>
 </div>
-<p>Don't split lines if the resulting two lines are also grammatically valid on their own (even if it results in a compilation error that is not directly related to the grammar of Kotlin). The following does not actually return the result of <code>foo()</code> - it returns a special value called <code>Unit</code>, which we'll cover later, and <code>foo()</code> is never called.</p>
+<p>如果将一行拆分为两行后各自作为独立行语法上都有效（即使导致与 Kotlin 语法没有直接关系的编译错误），就不要拆分该行。以下代码实际上并不会返回 <code>foo()</code> 的结果——它返回一个称为 <code>Unit</code> 的特殊值（稍后我们会介绍它），并且永远不会调用 <code>foo()</code>。</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">return    // Empty return statement
-    foo() // Separate, unreachable statement
+<pre><code class="language-kotlin">return    // 空 return 语句
+    foo() // 独立的，不可达语句
 </code></pre>
 </div>
 <hr/>
@@ -884,6 +884,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 </tbody>
 </table>
+<div class="footnotes">
+<ol>
+<li id="fn:1">
+<p>译者注：这里是指语法，实际开发中应该遵循 <a href="https://www.kotlincn.net/docs/reference/coding-conventions.html">Kotlin 的编码规范</a>。 <a class="reversefootnote" href="#fnref:1">↩</a></p>
+</li>
+</ol>
+</div>
 
         </article>
     </div>
