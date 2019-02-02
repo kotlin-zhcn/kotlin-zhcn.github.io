@@ -1239,14 +1239,14 @@ main runBlocking      : I'm working in thread main
 在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a>
 函数，或存储在一个顶级变量中使它在整个应用程序中被重用。</p>
 <h3 id="非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</h3>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器在被调用的线程中启动协程，但是这只有直到程序运行到<!--
--->第一个挂起点的时候才行。挂起后，它将在完全由该所运行的线程中恢复<!--
--->挂起被调用的函数。非受限的调度器是合适的，当协程没有<!--
--->消耗 CPU 时间或更新共享数据（比如UI界面）时它被限制在了指定的线程中。</p>
-<p>另一方面，默认的，一个调度器承袭自外部的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
-而 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程的默认调度器，特别是，
-被限制在调用它的线程，因此承袭它在限制有可预测的 FIFO 调度的线程的执行上<!--
--->是非常有效果的。</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器会在程序运行到第一个挂起点时，在调用者线程中启动<!--
+-->。挂起后，它将在挂起函数执行的线程中恢复，恢复的线程完全取决于该<!--
+-->挂起函数在哪个线程执行。非受限调度器适合协程不<!--
+-->消耗 CPU 时间也不更新任何限于特定线程的共享数据（如 UI）的情境。</p>
+<p>另一方面，协程调度器默认承袭外部的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的调度器。
+特别是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 的默认协程调度器<!--
+-->仅限于调用者线程，因此承袭它将会把执行限制在该线程中，
+并具有可预测的 FIFO 调度的效果。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1286,11 +1286,11 @@ main runBlocking: After delay in thread main
 非受限调度器不应该被用在通常的代码中。</p>
 </blockquote>
 <h3 id="调试协程与线程">调试协程与线程</h3>
-<p>协程可以在一个线程上挂起并恢复其它线程。
-甚至一个单线程的调度器是非常难以<!--
--->弄清楚协程何时，在哪里，正在做什么的。使用通常的方法来调试应用程序是让<!--
+<p>协程可以在一个线程上挂起并在其它线程上恢复。
+甚至一个单线程的调度器也是难以<!--
+-->弄清楚协程在何时何地正在做什么事情。使用通常调试应用程序的方法是让<!--
 -->线程在每一个日志文件的日志声明中打印线程的名字。这种特性在日志框架中是<!--
--->普遍受支持的。使用协程时，单独的线程名称不会给出很多上下文，所以
+-->普遍受支持的。但是在使用协程时，单独的线程名称不会给出很多协程上下文信息，所以
 <code>kotlinx.coroutines</code> 包含了调试工具来让它更简单。</p>
 <p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

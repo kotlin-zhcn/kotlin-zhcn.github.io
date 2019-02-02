@@ -1419,7 +1419,7 @@ Completed in 1085 ms
 <pre><code class="language-kotlin">suspend fun concurrentSum(): Int = coroutineScope {
     val one = async { doSomethingUsefulOne() }
     val two = async { doSomethingUsefulTwo() }
-     one.await() + two.await()
+    one.await() + two.await()
 }
 </code></pre>
 </div>
@@ -1431,18 +1431,18 @@ Completed in 1085 ms
 import kotlin.system.*
 
 fun main() = runBlocking&lt;Unit&gt; {
-//sampleStart
+    //sampleStart
     val time = measureTimeMillis {
         println("The answer is ${concurrentSum()}")
     }
     println("Completed in $time ms")
-//sampleEnd    
+    //sampleEnd    
 }
 
 suspend fun concurrentSum(): Int = coroutineScope {
     val one = async { doSomethingUsefulOne() }
     val two = async { doSomethingUsefulTwo() }
-     one.await() + two.await()
+    one.await() + two.await()
 }
 
 suspend fun doSomethingUsefulOne(): Int {
@@ -1490,7 +1490,7 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
         println("Second child throws an exception")
         throw ArithmeticException()
     }
-        one.await() + two.await()
+    one.await() + two.await()
 }
 </code></pre>
 </div>
