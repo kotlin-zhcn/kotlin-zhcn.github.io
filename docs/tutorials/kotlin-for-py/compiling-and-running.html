@@ -829,13 +829,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <p><em>本资料英文原文的作者是 <a href="https://eldhuset.net/">Aasmund Eldhuset</a>；其所有权属于<a href="https://www.khanacademy.org/">可汗学院（Khan Academy）</a>，授权许可为 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US（署名-非商业-相同方式共享）</a>。请注意，这并不是可汗学院官方产品的一部分。中文版由<a href="https://hltj.me/">灰蓝天际</a>译，遵循相同授权方式。</em></p>
 <hr/>
-<p>The author strongly recommends that you use an IDE with Kotlin support, as the static typing allows an IDE to do reliable navigation and code completion. I recommend <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>, which is built by the same company that created Kotlin. The Community Edition is free; see <a href="https://kotlinlang.org/docs/tutorials/getting-started.html">instructions for getting started</a> (it comes bundled with Kotlin, and you can run your program from the IDE).</p>
-<p>If you insist on using a plain editor and the command line, see <a href="https://kotlinlang.org/docs/tutorials/command-line.html">these instructions instead</a>. In short, you need to <em>compile</em> your Kotlin code before running it. Assuming that your Kotlin file is called <code>program.kt</code>:</p>
+<p>作者强烈建议使用支持 Kotlin 的 IDE，因为静态类型让 IDE 能够进行可靠的导航与代码补全。我推荐 <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>，它与 Kotlin 都是同一家公司出品的。其社区版免费；参见<a href="https://www.kotlincn.net/docs/tutorials/getting-started.html">引入指引</a>（其中预置了 Kotlin，可以在 IDE 中运行程序）。</p>
+<p>如果你坚持使用普通编辑器与命令行，请参见<a href="https://www.kotlincn.net/docs/tutorials/command-line.html">这些指引</a>。 简而言之，在运行之前需要<em>编译</em> Kotlin 代码。假设你的 Kotlin 文件名为 <code>program.kt</code>：</p>
 <div class="sample" mode="bash" theme="idea">
 <pre><code class="language-bash">kotlinc program.kt -include-runtime -d program.jar
 </code></pre>
 </div>
-<p>By default, Kotlin compiles down to Java (so you have the entire Java Standard Library available to you, and interacting with Java libraries is a breeze), so you now have a Java Archive (<code>program.jar</code>) which includes the Java libraries that are necessary to support the Kotlin features (thanks to <code>-include-runtime</code>), and you can run it using an out-of-the-box Java runtime:</p>
+<p>默认情况下，Kotlin 编译为 Java<sup id="fnref:2"><a class="footnote" href="#fn:2">1</a></sup>（因此可以使用整个 Java 标准库并且与 Java 库交互也易如反掌），于是现在有了一个 Java 归档文件（<code>program.jar</code>），其中包含了支持 Kotlin 特性所必需的 Java 库（多亏了 <code>-include-runtime</code>），之后就可以使用开箱即用的 Java 来运行了：</p>
 <div class="sample" mode="bash" theme="idea">
 <pre><code class="language-bash">java -jar program.jar
 </code></pre>
@@ -849,6 +849,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 </tbody>
 </table>
+<div class="footnotes">
+<ol>
+<li id="fn:2">
+<p>译者注：实际上是 Java 字节码 <a class="reversefootnote" href="#fnref:2">↩</a></p>
+</li>
+</ol>
+</div>
 
         </article>
     </div>

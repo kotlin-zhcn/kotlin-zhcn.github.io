@@ -982,7 +982,7 @@ val anne = Person("Anne")
 lisa marry anne // Prints "Lisa and Anne are getting married!"
 </code></pre>
 </div>
-<p>All infix functions have the same <a href="https://kotlinlang.org/docs/reference/grammar.html#precedence">precedence</a> (which is shared with all the built-in infix functions, such as the bitwise functions <code>and</code>, <code>or</code>, <code>inv</code>, etc.): lower than the arithmetic operators and the <code>..</code> range operator, but higher than the Elvis operator <code>?:</code>, comparisons, logic operators, and assignments.</p>
+<p>All infix functions have the same <a href="https://www.kotlincn.net/docs/reference/grammar.html#precedence">precedence</a> (which is shared with all the built-in infix functions, such as the bitwise functions <code>and</code>, <code>or</code>, <code>inv</code>, etc.): lower than the arithmetic operators and the <code>..</code> range operator, but higher than the Elvis operator <code>?:</code>, comparisons, logic operators, and assignments.</p>
 <h2 id="操作符">操作符</h2>
 <p>Most of the operators that are recognized by Kotlin's syntax have predefined textual names and are available for implementation in your classes, just like you can do with Python's double-underscore operator names. For example, the binary <code>+</code> operator is called <code>plus</code>. Similarly to the infix example, if you do this inside a <code>Person</code> class that has got a <code>name</code> property:</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -998,7 +998,7 @@ lisa marry anne // Prints "Lisa and Anne are getting married!"
 </div>
 <p>A particularly interesting operator is the function-call parenthesis pair, whose function name is <code>invoke</code> - if you implement this, you'll be able to call instances of your class as if they were functions. You can even overload it in order to provide different function signatures.</p>
 <p><code>operator</code> can also be used for certain other predefined functions in order to create fancy effects, such as <a href="inheritance.html#属性委托">属性委托</a>.</p>
-<p>Since the available operators are hardcoded into the formal Kotlin syntax, you can not invent new operators, and overriding an operator does not affect its <a href="https://kotlinlang.org/docs/reference/grammar.html#precedence">precedence</a>.</p>
+<p>Since the available operators are hardcoded into the formal Kotlin syntax, you can not invent new operators, and overriding an operator does not affect its <a href="https://www.kotlincn.net/docs/reference/grammar.html#precedence">precedence</a>.</p>
 <h2 id="枚举类">枚举类</h2>
 <p>Whenever you want a variable that can only take on a limited number of values where the only feature of each value is that it's distinct from all the other values, you can create an <em>enum class</em>:</p>
 <div class="sample" data-highlight-only="" theme="idea">

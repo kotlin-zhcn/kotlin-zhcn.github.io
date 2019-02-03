@@ -1005,7 +1005,7 @@ def init_math(math):
 t = tree("root", init_root)
 </code></pre>
 </div>
-<p>The official docs also have a very cool example with a <a href="https://kotlinlang.org/docs/reference/type-safe-builders.html"> DSL for constructing HTML documents</a>.</p>
+<p>The official docs also have a very cool example with a <a href="https://www.kotlincn.net/docs/reference/type-safe-builders.html"> DSL for constructing HTML documents</a>.</p>
 <h2 id="内联函数">内联函数</h2>
 <p>There's a little bit of runtime overhead associated with lambda functions: they are really objects, so they must be instantiated, and (like other functions) calling them takes a little bit of time too. If we use the <code>inline</code> keyword on a function, we tell the compiler to <em>inline</em> both the function and its lambda parameters (if any) - that is, the compiler will copy the code of the function (and its lambda parameters) into <em>every</em> callsite, thus eliminating the overhead of both the lambda instantiation and the calling of the function and the lambdas. This will happen unconditionally, unlike in C and C++, where <code>inline</code> is more of a hint to the compiler. This will cause the size of the compiled code to grow, but it may be worth it for certain small but frequently-called functions.</p>
 <div class="sample" data-highlight-only="" theme="idea">
