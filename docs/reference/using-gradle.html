@@ -1537,7 +1537,7 @@ compileKotlin.kotlinOptions.suppressWarnings = true
 <p>也可以在项目中配置所有 Kotlin 编译任务：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile::class.java).all {
+<pre><code class="language-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions { …… }
 }
 </code></pre>
@@ -1545,7 +1545,9 @@ compileKotlin.kotlinOptions.suppressWarnings = true
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">tasks.withType&lt;KotlinCompile&gt; {
+<pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+tasks.withType&lt;KotlinCompile&gt; {
     kotlinOptions.suppressWarnings = true
 }
 </code></pre>

@@ -1173,19 +1173,20 @@ else {
 </div>
 <p>编译器足够聪明，能够知道如果反向检查导致返回那么该转换是安全的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    if (x !is String) return
-    print(x.length) // x 自动转换为字符串
+<pre><code class="language-kotlin">if (x !is String) return
+
+print(x.length) // x 自动转换为字符串
 </code></pre>
 </div>
 <p>或者在 <code>&amp;&amp;</code> 和 <code>||</code> 的右侧：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    // `||` 右侧的 x 自动转换为字符串
-    if (x !is String || x.length == 0) return
+<pre><code class="language-kotlin">// `||` 右侧的 x 自动转换为字符串
+if (x !is String || x.length == 0) return
 
-    // `&amp;&amp;` 右侧的 x 自动转换为字符串
-    if (x is String &amp;&amp; x.length &gt; 0) {
-        print(x.length) // x 自动转换为字符串
-    }
+// `&amp;&amp;` 右侧的 x 自动转换为字符串
+if (x is String &amp;&amp; x.length &gt; 0) {
+    print(x.length) // x 自动转换为字符串
+}
 </code></pre>
 </div>
 <p>这些 <em>智能转换</em> 用于 <a href="control-flow.html#when-表达式"><em class="keyword">when</em>-表达式</a>
