@@ -1210,7 +1210,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-    val b = "Kotlin"
+    val b: String? = "Kotlin"
     if (b != null &amp;&amp; b.length &gt; 0) {
         print("String of length ${b.length}")
     } else {
@@ -1232,7 +1232,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     val a = "Kotlin"
     val b: String? = null
     println(b?.length)
-    println(a?.length)
+    println(a?.length) // 无需安全调用
 //sampleEnd
 }
 </code></pre>
