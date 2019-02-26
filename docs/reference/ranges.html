@@ -1224,21 +1224,18 @@ for (i in 1 until 10) {
 <h3 id="rangeto"><code>rangeTo()</code></h3>
 <p>整型类型的 <code>rangeTo()</code> 操作符只是调用 <code>*Range</code> 类的构造函数，例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class Int {
+<pre><code class="language-kotlin">
+class Int {
     //……
     operator fun rangeTo(other: Long): LongRange = LongRange(this, other)
     //……
     operator fun rangeTo(other: Int): IntRange = IntRange(this, other)
     //……
 }
+
 </code></pre>
 </div>
-<p>浮点数（<code>Double</code>、 <code>Float</code>）未定义它们的 <code>rangeTo</code> 操作符，而使用标准库提供的泛型 <code>Comparable</code> 类型的操作符：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    public operator fun &lt;T: Comparable&lt;T&gt;&gt; T.rangeTo(that: T): ClosedRange&lt;T&gt;
-</code></pre>
-</div>
-<p>该函数返回的区间不能用于迭代。</p>
+<p>浮点数（<code>Double</code>、<code>Float</code>）的 <code>rangeTo</code> 操作符返回一个<a href="/docs/reference/basic-types.html#浮点数比较">遵循 IEEE-754 标准</a>的区间，用于比较一个数字是否在指定区间内。该函数返回的区间并不是数列，不能用于迭代遍历。</p>
 <h3 id="downto"><code>downTo()</code></h3>
 <p>扩展函数 <code>downTo()</code> 是为任何整型类型对定义的，这里有两个例子：</p>
 <div class="sample" data-highlight-only="" theme="idea">
