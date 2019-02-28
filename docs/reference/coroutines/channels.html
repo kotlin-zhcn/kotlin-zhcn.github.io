@@ -1617,7 +1617,7 @@ import kotlinx.coroutines.channels.*
 data class Ball(var hits: Int)
 
 fun main() = runBlocking {
-    val table = Channel&lt;Ball&gt;() // 一个共享的table（桌子）
+    val table = Channel&lt;Ball&gt;() // 一个共享的 table（桌子）
     launch { player("ping", table) }
     launch { player("pong", table) }
     table.send(Ball(0)) // 乒乓球
@@ -1667,7 +1667,7 @@ fun main() = runBlocking&lt;Unit&gt; {
     var nextElement = withTimeoutOrNull(1) { tickerChannel.receive() }
     println("Initial element is available immediately: $nextElement") // 初始尚未经过的延迟
 
-    nextElement = withTimeoutOrNull(50) { tickerChannel.receive() } // 所有随后到来的元素都经过了100浩渺的延迟
+    nextElement = withTimeoutOrNull(50) { tickerChannel.receive() } // 所有随后到来的元素都经过了 100 毫秒的延迟
     println("Next element is not ready in 50 ms: $nextElement")
 
     nextElement = withTimeoutOrNull(60) { tickerChannel.receive() }
