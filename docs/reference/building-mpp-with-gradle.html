@@ -1218,12 +1218,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 按需使用平台相关实现的方式。</p>
 <p>在后续部分，会详细描述这些概念以及将其配置到项目中的 DSL。</p>
 <h2 id="搭建一个多平台项目">搭建一个多平台项目</h2>
-<p>You can create a new multiplatform project in the IDE by selecting one of the multiplatform project templates in the 
-New Project dialog under the "Kotlin" section.</p>
-<p>For example, if you choose "Kotlin (Multiplatform Library)", a library project is created that has three
-<a href="#设置目标">targets</a>, one for the JVM, one for JS, and one for the Native platform that you are using.
-These are configured in the <code>build.gradle</code>
-script in the following way:</p>
+<p>您可以在 IDE 的 New Project - Kotlin 对话框下选择一个多平台项目模板<!--
+-->来创建一个多平台项目。</p>
+<p>例如，如果您选择了 "Kotlin (Multiplatform Library)"，将创建一个包含三个<!--
+--><a href="#设置目标">设置目标</a>的库项目，其中一个用于 JVM，一个用于 JS，还有一个用于您正在使用的原生平台。
+这些是在 <code>build.gradle</code> <!--
+-->脚本中以下列方式配置的：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1235,11 +1235,11 @@ repositories {
 }
 
 kotlin {
-    jvm() // Creates a JVM target with the default name 'jvm'
-    js()  // JS target named 'js'
-    mingwX64("mingw") // Windows (MinGW X64) target named 'mingw'
+    jvm() // 使用默认名称 “jvm” 创建一个 JVM 目标
+    js()  // 使用名称 “js” 创建一个 JS 目标
+    mingwX64("mingw") // 使用名称 “mingw” 创建一个 Windows (MinGW X64) 目标
     
-    sourceSets { /* ... */ }
+    sourceSets { /* …… */ }
 }
 </code></pre>
 </div>
@@ -1255,24 +1255,24 @@ repositories {
 }
 
 kotlin {
-    jvm() // Creates a JVM target with the default name 'jvm'
-    js()  // JS target named 'js'
-    mingwX64("mingw") // Windows (MinGW X64) target named 'mingw'
+    jvm() // 使用默认名称 “jvm” 创建一个 JVM 目标
+    js()  // 使用名称 “js” 创建一个 JS 目标
+    mingwX64("mingw") // 使用名称 “mingw” 创建一个 Windows (MinGW X64) 目标
 
-    sourceSets { /* ... */ }
+    sourceSets { /* …… */ }
 }
 </code></pre>
 </div>
 </div>
-<p>The three targets are created with the preset functions <code>jvm()</code>, <code>js()</code>, and <code>mingwX64()</code> that provide some
-<a href="#默认项目布局">default configuration</a>. There are presets for each of the <a href="#已支持平台">supported platforms</a>.</p>
-<p>The <a href="#配置源集">source sets</a> and their <a href="#添加依赖">dependencies</a> are then configured as follows:</p>
+<p>这三个目标是通过预设函数 <code>jvm()</code>、<code>js()</code> 与 <code>mingwX64()</code> 创建的，它们提供了一些<!--
+--><a href="#默认项目布局">默认项目布局</a>。每个<a href="#已支持平台">已支持平台</a>都有预设的函数。</p>
+<p>然后配置<a href="#配置源集">源集</a>及其<a href="#添加依赖">依赖</a>，如下所示：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">plugins { /* ... */ }
+<pre><code class="language-groovy">plugins { /* …… */ }
 
 kotlin {
-    /* Targets declarations omitted */
+    /* 省略目标声明 */
 
     sourceSets {
         commonMain {
@@ -1287,25 +1287,25 @@ kotlin {
             }
         }
 
-        // Default source set for JVM-specific sources and dependencies.
-        // Alternatively, jvmMain { ... } would work as well:
+        // 仅用于 JVM 的源码及其依赖的默认源集
+        // 或者使用 jvmMain { …… }
         jvm().compilations.main.defaultSourceSet {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
             }
         }
-        // JVM-specific tests and their dependencies:
+        // 仅用于 JVM 的测试及其依赖
         jvm().compilations.test.defaultSourceSet {
             dependencies {
                 implementation kotlin('test-junit')
             }
         }
 
-        js().compilations.main.defaultSourceSet  { /* ... */ }
-        js().compilations.test.defaultSourceSet { /* ... */ }
+        js().compilations.main.defaultSourceSet  { /* …… */ }
+        js().compilations.test.defaultSourceSet { /* …… */ }
 
-        mingwX64('mingw').compilations.main.defaultSourceSet { /* ... */ }
-        mingwX64('mingw').compilations.test.defaultSourceSet { /* ... */ }
+        mingwX64('mingw').compilations.main.defaultSourceSet { /* …… */ }
+        mingwX64('mingw').compilations.test.defaultSourceSet { /* …… */ }
     }
 }
 </code></pre>
@@ -1313,10 +1313,10 @@ kotlin {
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">plugins { /* ... */ }
+<pre><code class="language-kotlin">plugins { /* …… */ }
 
 kotlin {
-    /* Targets declarations omitted */
+    /* 省略目标声明 */
 
     sourceSets {
         val commonMain by getting {
@@ -1331,33 +1331,33 @@ kotlin {
             }
         }
 
-        // Default source set for JVM-specific sources and dependencies:
+        // 仅用于 JVM 的源码及其依赖的默认源集
         jvm().compilations["main"].defaultSourceSet {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
             }
         }
-        // JVM-specific tests and their dependencies:
+        // 仅用于 JVM 的测试及其依赖
         jvm().compilations["test"].defaultSourceSet {
             dependencies {
                 implementation(kotlin("test-junit"))
             }
         }
 
-        js().compilations["main"].defaultSourceSet  { /* ... */ }
-        js().compilations["test"].defaultSourceSet { /* ... */ }
+        js().compilations["main"].defaultSourceSet  { /* …… */ }
+        js().compilations["test"].defaultSourceSet { /* …… */ }
 
-        mingwX64("mingw").compilations["main"].defaultSourceSet { /* ... */ }
-        mingwX64("mingw").compilations["test"].defaultSourceSet { /* ... */ }
+        mingwX64("mingw").compilations["main"].defaultSourceSet { /* …… */ }
+        mingwX64("mingw").compilations["test"].defaultSourceSet { /* …… */ }
     }
 }
 </code></pre>
 </div>
 </div>
-<p>These are the <a href="#默认项目布局">default source set names</a> for the production and test sources for the targets
-configured above. The source sets <code>commonMain</code> and <code>commonTest</code> are included into production and test compilations, respectively, of all targets.
-Note that the dependencies for common source sets <code>commonMain</code> and <code>commonTest</code> are the common artifacts, and the 
-platform libraries go to the source sets of the specific targets.</p>
+<p>这些在上面配置的目标的生产与测试的源码<!--
+-->都有各自的<a href="#默认项目布局">默认源集名称</a>。源集 <code>commonMain</code> 与 <code>commonTest</code> 将被分别包含在所有目标的生产与测试编译项中。
+需要注意的是，公共源集 <code>commonMain</code> 与 <code>commonTest</code> 的依赖使用的都是公共构件，而<!--
+-->平台库将转到特定目标的源集。</p>
 <h2 id="gradle-插件">Gradle 插件</h2>
 <p>Kotlin Multiplatform projects require Gradle version 4.7 and above, older Gradle versions are not supported.</p>
 <p>To setup a multiplatform project from scratch in a Gradle project, first apply the
@@ -1667,9 +1667,9 @@ default.</p>
 <h2 id="配置源集">配置源集</h2>
 <p>A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings,
 which may take part in Kotlin compilations of one or more <a href="#设置目标">targets</a>.</p>
-<p>A source set is not bound to be platform-specific or "shared"; what it's allowed to content depends on its usage:
+<p>A source set is not bound to be platform-specific or "shared"; what it's allowed to contain depends on its usage:
 a source set added to multiple compilations is limited to the common language features and dependencies, while a source
-set that is only used by a single target can have platform-specific dependencies, and it's code may use language
+set that is only used by a single target can have platform-specific dependencies, and its code may use language
 features specific to that target's platform.</p>
 <p>Some source sets are created and configured by default: <code>commonMain</code>, <code>commonTest</code>, and the default source sets for the
  compilations. See <a href="#默认项目布局">默认项目布局</a>.</p>
