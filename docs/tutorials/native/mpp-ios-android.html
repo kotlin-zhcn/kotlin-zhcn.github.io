@@ -1110,7 +1110,7 @@ The frameworks are in the following paths:</p>
 SharedCode/build/bin/iOS/main/release/framework/SharedCode.framework
 </code></pre>
 <p>We use the condition in the Gradle script to select the target platform for the framework.
-It is either <code>iOS arm64</code> or <code>iOS x86_64</code> depending in environment variables.</p>
+It is either <code>iOS arm64</code> or <code>iOS x86_64</code> depending on environment variables.</p>
 <h2 id="tuning-the-gradle-build-script">Tuning the Gradle Build Script</h2>
 <p>We need to supply the right Framework out of those four depending on the selected target in the Xcode
 project. It depends on the target configuration selected in Xcode. Also,
