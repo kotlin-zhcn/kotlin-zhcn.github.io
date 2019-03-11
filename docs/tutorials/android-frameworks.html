@@ -916,7 +916,7 @@ dependencies {
 以及转换后的 <a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-dagger">Android 示例代码</a>。</p>
 <h3 id="butterknife">ButterKnife</h3>
 <p><a href="http://jakewharton.github.io/butterknife/">ButterKnife</a>可以直接将view和变量进行绑定从而免去调用<code>findViewById</code>。</p>
-<p>另外，<a href="https://kotlinlang.org/docs/tutorials/android-plugin.html">Kotlin Android 扩展</a>插件（Android Studio 内置)具有同样的效果：使用简洁明了的代码替换<code>findViewByid</code>。
+<p>另外，<a href="https://www.kotlincn.net/docs/tutorials/android-plugin.html">Kotlin Android 扩展</a>插件（Android Studio 内置)具有同样的效果：使用简洁明了的代码替换<code>findViewByid</code>。
 除非现在你正在使用 ButterKnife 而且没有迁移计划，那么前者非常值得尝试。</p>
 <p>在 Kotlin 中使用 <code>ButterKnife</code> 与 Java 中完全一致。
 在 Gradle 构建脚本的修改如下，后面将重点介绍代码部分的差异。</p>
@@ -1054,7 +1054,7 @@ dependencies {
 button.setOnClickListener { presenter.onSaveClick(task) }
 </code></pre>
 </div>
-<p>最后一行中 <code>button</code> 由 <code>id</code> 使用 <a href="https://kotlinlang.org/docs/tutorials/android-plugin.html">Kotlin Android 扩展</a>插件所引用。
+<p>最后一行中 <code>button</code> 由 <code>id</code> 使用 <a href="https://www.kotlincn.net/docs/tutorials/android-plugin.html">Kotlin Android 扩展</a>插件所引用。
 使用该插件作为替代方案，既允许在代码中保持绑定逻辑，同时又具有简洁的语法。</p>
 <p>查看<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-databinding">完整示例</a>。</p>
 <h3 id="dbflow">DBFlow</h3>

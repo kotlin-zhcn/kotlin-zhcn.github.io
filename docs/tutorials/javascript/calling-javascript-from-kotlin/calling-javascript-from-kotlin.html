@@ -914,7 +914,7 @@ us to invoke <code>Datatable()</code> on a DOM table element.</p>
 </div>
 <p>and we'd get an unresolved reference</p>
 <p><img alt="Unresolved Reference" src="/assets/images/tutorials/javascript/calling-javascript-from-kotlin/unresolved-reference.png"/></p>
-<p>In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a href="https://kotlinlang.org/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
+<p>In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a href="https://www.kotlincn.net/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#table").asDynamic().DataTable()

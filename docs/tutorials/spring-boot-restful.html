@@ -854,7 +854,7 @@ and the project layout structure, as well as the initialization code.</p>
 <p>Note that all classes in this tutorial are in the <code>org.jetbrains.kotlin.demo</code> package.</p>
 <h3 id="defining-the-project-and-dependencies">Defining the project and dependencies</h3>
 <p>In this tutorial we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
-<p>The Gradle file is pretty much standard for Spring Boot. The only differences are the structure layout for source folders for Kotlin, the required Kotlin dependencies and the <a href="https://kotlinlang.org/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a> Gradle plugin (CGLIB proxies used for example for <code>@Configuration</code> and <code>@Bean</code> processing require <code>open</code> classes).</p>
+<p>The Gradle file is pretty much standard for Spring Boot. The only differences are the structure layout for source folders for Kotlin, the required Kotlin dependencies and the <a href="https://www.kotlincn.net/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a> Gradle plugin (CGLIB proxies used for example for <code>@Configuration</code> and <code>@Bean</code> processing require <code>open</code> classes).</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">buildscript {
     ext.kotlin_version = '1.3.21' // Required for Kotlin integration
@@ -864,13 +864,13 @@ and the project layout structure, as well as the initialization code.</p>
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
-        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://www.kotlincn.net/docs/reference/compiler-plugins.html#spring-support
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
     }
 }
 
 apply plugin: 'kotlin' // Required for Kotlin integration
-apply plugin: "kotlin-spring" // https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support
+apply plugin: "kotlin-spring" // https://www.kotlincn.net/docs/reference/compiler-plugins.html#spring-support
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
