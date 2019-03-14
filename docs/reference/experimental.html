@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/collections.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/experimental.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>集合：List、Set、Map - Kotlin 语言中文站</title>
+    <title>Experimental API Markers - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -527,10 +527,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">集合</div>
-            </div>
+            <a href="/docs/reference/collections.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">集合</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -633,12 +635,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">实验性 API 标记</div>
+            </div>
     </div>
 
     </div>
@@ -1154,7 +1154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/collections.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/experimental.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1162,64 +1162,179 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="集合listsetmap">集合：List、Set、Map</h1>
-<p>与大多数语言不同，Kotlin 区分可变集合与不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 以及设计良好的 API。</p>
-<p>预先了解一个可变集合的只读 <em>视图</em> 与一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。</p>
-<p>Kotlin 的 <code>List&lt;out T&gt;</code> 类型是一个提供只读操作如 <code>size</code>、<code>get</code>等的接口。与 Java 类似，它继承自 <code>Collection&lt;T&gt;</code> 进而继承自 <code>Iterable&lt;T&gt;</code>。改变 list 的方法是由 <code>MutableList&lt;T&gt;</code> 加入的。这一模式同样适用于 <code>Set&lt;out T&gt;/MutableSet&lt;T&gt;</code> 及 <code>Map&lt;K, out V&gt;/MutableMap&lt;K, V&gt;</code>。</p>
-<p>我们可以看下 list 及 set 类型的基本用法：</p>
+<h1 id="experimental-api-markers">Experimental API Markers</h1>
+<blockquote>
+<p>The annotations for marking and using experimental APIs (<code>@Experimental</code> and <code>@UseExperimental</code>) are <em>experimental</em> in Kotlin 1.3. See details <a href="#experimental-status-of-experimental-api-markers">below</a>.</p>
+</blockquote>
+<p>The Kotlin standard library provides developers with a mechanism for creating and using <em>experimental</em> APIs. This mechanism lets library authors inform users that certain components of their API, such as classes or functions, are unstable and are likely to change in the future. Such changes may require rewriting and recompiling the client code. To prevent potential compatibility issues, the compiler warns users of the experimental status of such APIs and may require them to give their explicit consent to use the API.</p>
+<h2 id="using-experimental-apis">Using experimental APIs</h2>
+<p>If a class or a function from a library is marked by its author as experimental, using it in your code will produce warnings or compilation errors unless you explicitly accept their experimental status. 
+There are several ways to accept the experimental status of API elements; all of them are applicable without technical limitations. You are free to choose the way that you find best for your situation.</p>
+<h3 id="propagating-use">Propagating use</h3>
+<p>When you use an experimental API in the code intended for third-party use (a library), you can mark your API as experimental as well. To do this, annotate your declaration with the <em>experimental marker annotation</em> of the API used in its body. This enables you to use the API elements annotated with this marker.</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val numbers: MutableList&lt;Int&gt; = mutableListOf(1, 2, 3)
-val readOnlyView: List&lt;Int&gt; = numbers
-println(numbers)        // 输出 "[1, 2, 3]"
-numbers.add(4)
-println(readOnlyView)   // 输出 "[1, 2, 3, 4]"
-readOnlyView.clear()    // -&gt; 不能编译
+<pre><code class="language-kotlin">// library code
+@Experimental
+@Retention(AnnotationRetention.BINARY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+annotation class ExperimentalDateTime            // Experimental API marker
 
-val strings = hashSetOf("a", "b", "c", "c")
-assert(strings.size == 3)
+@ExperimentalDateTime                            
+class DateProvider                              // Experimental class
 </code></pre>
 </div>
-<p>Kotlin 没有专门的语法结构创建 list 或 set。 要用标准库的方法，如
-<code>listOf()</code>、 <code>mutableListOf()</code>、 <code>setOf()</code>、 <code>mutableSetOf()</code>。
-在非性能关键代码中创建 map 可以用一个简单的<a href="idioms.html#只读-map">惯用法</a>来完成：<code>mapOf(a to b, c to d)</code>。</p>
-<p>注意上面的 <code>readOnlyView</code> 变量（译者注：与对应可变集合变量 <code>numbers</code>）指向相同的底层 list 并会随之改变。 如果一个 list 只存在只读引用，我们可以考虑该集合完全不可变。创建一个这样的集合的一个简单方式如下：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val items = listOf(1, 2, 3)
-</code></pre>
-</div>
-<p>目前 <code>listOf</code> 方法是使用 array list 实现的，但是未来可以利用它们知道自己不能变的事实，返回更节约内存的完全不可变的集合类型。</p>
-<p>注意这些类型是<a href="generics.html#型变">协变的</a>。这意味着，你可以把一个 <code>List&lt;Rectangle&gt;</code> 赋值给 <code>List&lt;Shape&gt;</code> 假定 <code>Rectangle</code> 继承自 <code>Shape</code>（集合类型与元素类型具有相同的继承关系）。对于可变集合类型这是不允许的，因为这将导致运行时故障：你可能向 <code>List&lt;Shape&gt;</code> 中添加一个 <code>Circle</code>，而在程序的其他地方创建了一个其中含有 <code>Circle</code> 的 List<rectangle>`。</rectangle></p>
-<p>有时你想给调用者返回一个集合在某个特定时间的一个快照, 一个保证不会变的：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class Controller {
-    private val _items = mutableListOf&lt;String&gt;()
-    val items: List&lt;String&gt; get() = _items.toList()
+<pre><code class="language-kotlin">// client code
+fun getYear(): Int {  
+    val dateProvider: DateProvider // error: DateProvider is experimental
+    // ...
+}
+
+@ExperimentalDateTime
+fun getDate(): Date {  
+    val dateProvider: DateProvider // OK: the function is marked as experimental
+    // ...
+}
+
+fun displayDate() {
+    println(getDate()) // error: getDate() is experimental, acceptance is required
 }
 </code></pre>
 </div>
-<p>这个 <code>toList</code> 扩展方法只是复制列表项，因此返回的 list 保证永远不会改变。</p>
-<p>List 与 set 有很多有用的扩展方法值得熟悉：</p>
+<p>As you can see in this example, the annotated function appears to be a part of the <code>@ExperimentalDateTime</code> experimental API. So, the described way of acceptance propagates the experimental status to the code that uses an experimental API; its clients will be required to accept it as well.
+To use multiple experimental APIs, annotate the declaration with all their markers.</p>
+<h3 id="non-propagating-use">Non-propagating use</h3>
+<p>In modules that don't provide their own API, such as application modules, you can use experimental APIs without propagating the experimental status to your code. In this case, mark your code with the <a href="/api/latest/jvm/stdlib/kotlin/-use-experimental/index.html">@UseExperimental(Marker::class)</a> annotation specifying the marker annotation of the experimental API:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val items = listOf(1, 2, 3, 4)
-items.first() == 1
-items.last() == 4
-items.filter { it % 2 == 0 }   // 返回 [2, 4]
+<pre><code class="language-kotlin">// library code
+@Experimental
+@Retention(AnnotationRetention.BINARY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+annotation class ExperimentalDateTime            // Experimental API marker
 
-val rwList = mutableListOf(1, 2, 3)
-rwList.requireNoNulls()        // 返回 [1, 2, 3]
-if (rwList.none { it &gt; 6 }) println("No items above 6")  // 输出“No items above 6”
-val item = rwList.firstOrNull()
+@ExperimentalDateTime                            
+class DateProvider                              // Experimental class
 </code></pre>
 </div>
-<p>…… 以及所有你所期望的实用工具，例如 sort、zip、fold、reduce 等等。</p>
-<p>非常值得注意的是，对只读集合返回修改后的集合的操作（例如 <code>+</code>、 <code>filter</code>、 <code>drop</code> 等）并不会以原子方式创建其结果，因此如果没有合适的同步机制，在不同的线程中使用其结果是不安全的。</p>
-<p>Map 遵循同样模式。它们可以容易地实例化与访问，像这样：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val readWriteMap = hashMapOf("foo" to 1, "bar" to 2)
-println(readWriteMap["foo"])  // 输出“1”
-val snapshot: Map&lt;String, Int&gt; = HashMap(readWriteMap)
+<pre><code class="language-kotlin">//client code
+@UseExperimental(ExperimentalDateTime::class)
+fun getDate(): Date {              // uses DateProvider; doesn't expose the experimental status
+    val dateProvider: DateProvider
+    // ...
+}
+
+fun displayDate() {
+    println(getDate())                     // OK: getDate() is not experimental
+}
 </code></pre>
 </div>
+<p>When somebody calls the function <code>getDate()</code>, they won't be informed about the experimental API used in its body.</p>
+<p>To use an experimental API in all functions and classes in a file, add the file-level annotation <code>@file:UseExperimental</code> to the top of the file before the package specification and imports.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin"> //client code
+ @file:UseExperimental(ExperimentalDateTime::class)
+</code></pre>
+</div>
+<h3 id="module-wide-use">Module-wide use</h3>
+<p>If you don't want to annotate every usage of experimental APIs in your code, you can accept the experimental status for your whole module. Module-wide use of experimental APIs can be propagating and non-propagating as well:</p>
+<ul>
+<li>To accept the experimental status without propagation, compile the module with the argument <code>Xuse-experimental</code>, specifying the fully qualified name of the experimental API marker you use: <code>-Xuse-experimental=org.mylibrary.ExperimentalMarker</code>. Compiling with this argument has the same effect as if every declaration in the module had the annotation<code>@UseExperimental(ExperimentalMarker::class)</code>.</li>
+<li>To accept and propagate the experimental status to your whole module, compile the module with the argument <code>-Xexperimental=org.mylibrary.ExperimentalMarker</code>. In this case, <em>every declaration</em> in the module becomes experimental. The use of the module requires the acceptance of its experimental status as well.</li>
+</ul>
+<p>If you build your module with Gradle, you can add arguments like this:</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">compileKotlin {
+    kotlinOptions {
+        freeCompilerArgs += "-Xuse-experimental=org.mylibrary.ExperimentalMarker"
+    }
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">tasks.withType&lt;KotlinCompile&gt;().all {
+    kotlinOptions.freeCompilerArgs += "-Xuse-experimental=org.mylibrary.ExperimentalMarker"
+}
+</code></pre>
+</div>
+</div>
+<p>For Maven, it would be:</p>
+<div class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+            &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;${kotlin.version}&lt;/version&gt;
+            &lt;executions&gt;...&lt;/executions&gt;
+            &lt;configuration&gt;
+                &lt;args&gt;
+                    &lt;arg&gt;-Xuse-experimental=org.mylibrary.ExperimentalMarker&lt;/arg&gt;                    
+                &lt;/args&gt;
+            &lt;/configuration&gt;
+        &lt;/plugin&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
+</code></pre>
+</div>
+<p>To accept the usage of multiple experimental APIs on the module level, add one of the described arguments for each experimental API marker used in your module.</p>
+<h2 id="marking-experimental-api">Marking experimental API</h2>
+<h3 id="creating-marker-annotations">Creating marker annotations</h3>
+<p>If you want to declare your module's API as experimental, create an annotation class to use as its <em>experimental marker</em>. This class must be annotated with <a href="/api/latest/jvm/stdlib/kotlin/-experimental/index.html">@Experimental</a>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Experimental
+@Retention(AnnotationRetention.BINARY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+annotation class ExperimentalDateTime
+</code></pre>
+</div>
+<p>Experimental marker annotations must meet several requirements:</p>
+<ul>
+<li><code>BINARY</code> <a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-retention/index.html">retention</a></li>
+<li>No <code>EXPRESSION</code> and <code>FILE</code> among <a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/index.html">targets</a></li>
+<li>No parameters.</li>
+</ul>
+<p>A marker annotation can have one of two severity <a href="/api/latest/jvm/stdlib/kotlin/-experimental/-level/index.html">levels</a> of informing about experimental API usage:</p>
+<ul>
+<li><code>Experimental.Level.ERROR</code>. Acceptance is mandatory. Otherwise, the code that uses marked API won't compile. This level is used by default.</li>
+<li><code>Experimental.Level.WARNING</code>. Acceptance is not mandatory, but advisable. Without it, the compiler raises a warning.
+To set the desired level, specify the <code>level</code> parameter of the <code>@Experimental</code> annotation.</li>
+</ul>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Experimental(level = Experimental.Level.WARNING)
+@Retention(AnnotationRetention.BINARY)
+@Target(AnnotationTarget.CLASS, AnnotationTarget.FUNCTION)
+annotation class ExperimentalDateTime
+</code></pre>
+</div>
+<p>If you publish several features in the experimental state, declare a marker for each. Separate markers make the use of experimental features safer for your clients: they'll be able to use only the features that they explicitly accept. This also lets you graduate the features to stable independently.</p>
+<h3 id="marking-api-elements">Marking API elements</h3>
+<p>To mark an API element as experimental, annotate its declaration with your experimental marker annotation:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@ExperimentalDateTime
+class DateProvider
+
+@ExperimentalDateTime
+fun getTime(): Time {}
+</code></pre>
+</div>
+<h3 id="module-wide-markers">Module-wide markers</h3>
+<p>If you consider all the APIs of your module experimental, you can mark the entire module as such with the compiler argument <code>-Xexperimental</code> as described in <a href="#module-wide-use">Module-wide use</a>.</p>
+<h2 id="graduation-of-experimental-api">Graduation of experimental API</h2>
+<p>Once your experimental API graduates and is released in its final state, remove its marker annotation from declarations so that the clients can use it without restriction. However, you should leave the marker classes in modules so that the existing client code remains compatible. To let the API users update their modules accordingly (remove the markers from their code and recompile), mark the annotations as <a href="/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a> and provide the explanation in its message.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Deprecated("This experimental API marker is not used anymore. Remove its usages from your code.")
+@Experimental
+annotation class ExperimentalDateTime
+</code></pre>
+</div>
+<h2 id="experimental-status-of-experimental-api-markers">Experimental status of experimental API markers</h2>
+<p>The described mechanism for marking and using experimental APIs is itself experimental in Kotlin 1.3. This means that in future releases it may be changed in ways that make it incompatible. To make the users of annotations <code>@Experimental</code> and <code>UseExperimental</code> aware of their experimental status, the compiler raises warnings when compiling the code with these annotations:</p>
+<p><code>This class can only be used with the compiler argument '-Xuse-experimental=kotlin.Experimental'</code></p>
+<p>To remove the warnings, add the compiler argument <code>-Xuse-experimental=kotlin.Experimental</code>.</p>
 
         </article>
     </div>

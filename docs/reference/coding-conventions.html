@@ -615,11 +615,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/scope-functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">作用域函数</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/type-safe-builders.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
                 <span class="text">类型安全的构建器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/experimental.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">实验性 API 标记</span>
             </a>
     </div>
 
@@ -1847,75 +1865,8 @@ val a = """if(a &gt; 1) {
 </code></pre>
 </div>
 <h3 id="使用作用域函数-applywithrunalsolet">使用作用域函数 apply/with/run/also/let</h3>
-<p>Kotlin 提供了一系列用来在给定对象上下文中执行代码块的函数。要选择正确的<!--
--->函数，请考虑以下几点：</p>
-<ul>
-<li>是否在块中的多个对象上调用方法，或者将上下文对象的实例作为<!--
--->参数传递？如果是，那么使用以 <code>it</code> 而不是 <code>this</code> 形式访问上下文对象的函数之一
-（ <code>also</code> 或 <code>let</code> ）。如果在代码块中根本没有用到接收者，那么使用 <code>also</code>。</li>
-</ul>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 上下文对象是“it”
-class Baz {
-    var currentBar: Bar?
-    val observable: Observable
-
-    val foo = createBar().also {
-        currentBar = it                    // 访问 Baz 的属性
-        observable.registerCallback(it)    // 将上下文对象作为参数传递
-    }
-}
-
-// 代码块中未使用接收者
-val foo = createBar().also {
-    LOG.info("Bar created")
-}
-
-// 上下文对象是“this”
-class Baz {
-    val foo: Bar = createBar().apply {
-        color = RED    // 只访问 Bar 的属性
-        text = "Foo"
-    }
-}
-</code></pre>
-</div>
-<ul>
-<li>调用的结果是什么？如果结果需是该上下文对象，那么使用 <code>apply</code> 或 <code>also</code>。
-如果需要从代码块中返回一个值，那么使用 <code>with</code>、<code>let</code> 或者 <code>run</code></li>
-</ul>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 返回值是上下文对象
-class Baz {
-    val foo: Bar = createBar().apply {
-        color = RED    // 只访问 Bar 的属性
-        text = "Foo"
-    }
-}
-
-
-// 返回值是代码块的结果
-class Baz {
-    val foo: Bar = createNetworkConnection().let {
-        loadBar()
-    }
-}
-</code></pre>
-</div>
-<ul>
-<li>上下文对象是否可空，或者是否作为调用链的结果求值而来的？如果是，那么使用 <code>apply</code>、<code>let</code> 或者 <code>run</code>。
-否则，使用 <code>with</code> 或者 <code>also</code>。</li>
-</ul>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 上下文对象可空
-person.email?.let { sendEmail(it) }
-
-// 上下文对象非空且可直接访问
-with(person) {
-    println("First name: $firstName, last name: $lastName")
-}
-</code></pre>
-</div>
+<p>Kotlin 提供了一系列用来在给定对象上下文中执行代码块的函数：<code>let</code>、 <code>run</code>、 <code>with</code>、 <code>apply</code> 以及 <code>also</code>。
+关于不同情况下选择正确作用域函数的准则，请参考<a href="scope-functions.html">作用域函数</a>。</p>
 <h2 id="库的编码规范">库的编码规范</h2>
 <p>在编写库时，建议遵循一组额外的规则以确保 API 的稳定性：</p>
 <ul>
