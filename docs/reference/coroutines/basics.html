@@ -1424,7 +1424,7 @@ suspend fun doWorld() {
 Hello,
 World!
 -->
-<p>但是如果提取出的函数包含一个在当前作用域中调用的协程构建器的话，改怎么办？
+<p>但是如果提取出的函数包含一个在当前作用域中调用的协程构建器的话，该怎么办？
 在这种情况下，所提取函数上只有 <code>suspend</code> 修饰符是不够的。为 <code>CoroutineScope</code> 写一个 <code>doWorld</code> 扩展<!--
 -->方法是其中一种解决方案，但这可能并非总是适用，因为它并没有使 API 更加清晰。
 惯用的解决方案是要么显式将 <code>CoroutineScope</code> 作为包含该函数的类的一个字段，
@@ -1513,7 +1513,7 @@ I'm sleeping 2 ...
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> <a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
 

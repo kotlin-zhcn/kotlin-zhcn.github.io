@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Scope Functions - Kotlin 语言中文站</title>
+    <title>作用域函数 - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -1162,7 +1162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="scope-functions">Scope Functions</h1>
+<h1 id="作用域函数">作用域函数</h1>
 <p>The Kotlin standard library contains several functions whose sole purpose is to execute a block of code within the context of an object. When you call such a function on an object with a <a href="lambdas.html">lambda expression</a> provided, it forms a temporary scope. In this scope, you can access the object without its name. Such functions are called <em>scope functions</em>. There are five of them: <code>let</code>, <code>run</code>, <code>with</code>, <code>apply</code>, and <code>also</code>.</p>
 <p>Basically, these functions do the same: execute a block of code on an object. What's different is how this object becomes available inside the block and what is the result of the whole expression.</p>
 <p>Here's a typical usage of a scope function:</p>
@@ -1204,13 +1204,13 @@ fun main() {
 </div>
 <p>The scope functions do not introduce any new technical capabilities, but they can make your code more concise and readable.</p>
 <p>Due to the similar nature of scope functions, choosing the right one for your case can be a bit tricky. The choice mainly depends on your intent and the consistency of use in your project. Below we'll provide detailed descriptions of the distinctions between scope functions and the conventions on their usage.</p>
-<h2 id="distinctions">Distinctions</h2>
+<h2 id="区别">区别</h2>
 <p>Because the scope functions are all quite similar in nature, it's important to understand the differences between them. There are two main differences between each scope function:</p>
 <ul>
 <li>The way to refer to the context object</li>
 <li>The return value.</li>
 </ul>
-<h3 id="context-object-this-or-it">Context object: <code>this</code> or <code>it</code></h3>
+<h3 id="上下文对象this-还是-it">上下文对象：<code>this</code> 还是 <code>it</code></h3>
 <p>Inside the lambda of a scope function, the context object is available by a short reference instead of its actual name. Each scope function uses one of two ways to access the context object: as a lambda <a href="lambdas.html#function-literals-with-receiver">receiver</a> (<code>this</code>) or as a lambda argument (<code>it</code>). Both provide the same capabilities, so we'll describe the pros and cons of each for different cases and provide recommendations on their use.</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1286,14 +1286,14 @@ fun main() {
 }
 </code></pre>
 </div>
-<h3 id="return-value">Return value</h3>
+<h3 id="返回值">返回值</h3>
 <p>The scope functions differ by the result they return:</p>
 <ul>
 <li><code>apply</code> and <code>also</code> return the context object.</li>
 <li><code>let</code>, <code>run</code>, and <code>with</code> return the lambda result.</li>
 </ul>
 <p>These two options let you choose the proper function depending on what you do next in your code.</p>
-<h4 id="context-object">Context object</h4>
+<h4 id="上下文对象">上下文对象</h4>
 <p>The return value of <code>apply</code> and <code>also</code> is the context object itself. Hence, they can be included into call chains as <em>side steps</em>: you can continue chaining function calls on the same object after them.</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1333,30 +1333,28 @@ fun main() {
 }
 </code></pre>
 </div>
-<h4 id="lambda-result">Lambda result</h4>
+<h4 id="lambda-表达式结果">Lambda 表达式结果</h4>
 <p><code>let</code>, <code>run</code>, and <code>with</code> return the lambda result. So, you can use them when assigning the result to a variable, chaining operations on the result, and so on.</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = mutableListOf("one", "two", "three")
-    val resultSize = numbers.run { 
+    val countEndsWithE = numbers.run { 
         add("four")
         add("five")
-        filter { it.endsWith("e") }.size        
+        count { it.endsWith("e") }
     }
-    println("There are $resultSize elements that end with e.")
+    println("There are $countEndsWithE elements that end with e.")
 //sampleEnd
 }
 </code></pre>
 </div>
 <p>Additionally, you can ignore the return value and use a scope function to create a temporary scope for variables.</p>
 <div class="sample" theme="idea">
-<pre><code class="language-kotlin">data class Person(var name: String, var age: Int, var city: String)
-
-fun main() {
+<pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = mutableListOf("one", "two", "three")
-    numbers.run {
+    with(numbers) {
         val firstItem = first()
         val lastItem = last()        
         println("First item: $firstItem, last item: $lastItem")
@@ -1365,7 +1363,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<h2 id="functions">Functions</h2>
+<h2 id="几个函数">几个函数</h2>
 <p>To help you choose the right scope function for your case, we'll describe them in detail and provide usage recommendations. Technically, functions are interchangeable in many cases, so the examples show the conventions that define the common usage style.</p>
 <h3 id="let"><code>let</code></h3>
 <p><strong>The context object</strong> is available as an argument (<code>it</code>). <strong>The return value</strong> is the lambda result.</p>
@@ -1482,7 +1480,7 @@ fun main() {
         query(prepareRequest() + " to port $port")
     }
     
-    // this is shorter than the same written with let() function:
+    // the same code written with let() function:
     val letResult = service.let {
         it.port = 8080
         it.query(it.prepareRequest() + " to port ${it.port}")
@@ -1497,15 +1495,17 @@ fun main() {
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-    val numbers = mutableListOf("one", "two", "three")
-    val numbers2 = mutableListOf("four", "five")
-
-    val resultSize = run {
-        println("run called without receiver.")
-        for (str in numbers2) numbers.add(str)
-        numbers.size
+    val hexNumberRegex = run {
+        val digits = "0-9"
+        val hexDigits = "A-Fa-f"
+        val sign = "+-"
+        
+        Regex("[$sign]?[$digits$hexDigits]+")
     }
-    println("The list size is $resultSize")
+    
+    for (match in hexNumberRegex.findAll("+1234 -FFFF not-a-number")) {
+        println(match.value)
+    }
 //sampleEnd
 }
 </code></pre>
@@ -1542,7 +1542,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<h2 id="function-selection">Function selection</h2>
+<h2 id="函数选择">函数选择</h2>
 <p>To help you choose the right scope function for your purpose, we provide the table of key differences between them.</p>
 <table>
 <thead>
@@ -1604,7 +1604,7 @@ fun main() {
 </ul>
 <p>The use cases of different functions overlap, so that you can choose the functions based on the specific conventions used in your project or team.</p>
 <p>Although the scope functions are a way of making the code more concise, avoid overusing them: it can decrease your code readability and lead to errors. Avoid nesting scope functions and be careful when chaining them: it's easy to get confused about the current context object and the value of <code>this</code> or <code>it</code>.</p>
-<h2 id="takeif-and-takeunless"><code>takeIf</code> and <code>takeUnless</code></h2>
+<h2 id="takeif-与-takeunless"><code>takeIf</code> 与 <code>takeUnless</code></h2>
 <p>In addition to scope functions, the standard library contains the functions <code>takeIf</code> and <code>takeUnless</code>. These functions let you embed checks of the object state in call chains.</p>
 <p>When called on an object with a predicate provided, <code>takeIf</code> returns this object if it matches the predicate. Otherwise, it returns <code>null</code>. So, <code>takeIf</code> is a filtering function for a single object. In turn, <code>takeUnless</code> returns the object if it doesn't match the predicate and <code>null</code> if it does. The object is available as a lambda argument (<code>it</code>).</p>
 <div class="sample" theme="idea">
@@ -1650,7 +1650,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>This how the same function looks without the standard library functions:</p>
+<p>This is how the same function looks without the standard library functions:</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1697,7 +1697,7 @@ fun main() {
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> <a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
 

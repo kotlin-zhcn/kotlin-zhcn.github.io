@@ -1402,6 +1402,7 @@ sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt
 }
 </code></pre>
 </div>
+<p>所传递的类型必须同时满足 <code>where</code> 子句的所有条件。在上述示例中，类型 <code>T</code> 必须<em>既</em>实现了 <code>CharSequence</code> <em>也</em>实现了 <code>Comparable</code>。</p>
 <h2 id="类型擦除">类型擦除</h2>
 <p>Kotlin 为泛型声明用法执行的类型安全检测仅在编译期进行。
 运行时泛型类型的实例不保留关于其类型实参的任何信息。
@@ -1447,7 +1448,7 @@ sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> <a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
 

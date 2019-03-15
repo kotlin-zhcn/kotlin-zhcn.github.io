@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Experimental API Markers - Kotlin 语言中文站</title>
+    <title>实验性 API 标记 - Kotlin 语言中文站</title>
 
     <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
@@ -1162,15 +1162,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="experimental-api-markers">Experimental API Markers</h1>
-<blockquote>
+<h1 id="实验性-api-标记">实验性 API 标记</h1>
+<blockquote class="note">
 <p>The annotations for marking and using experimental APIs (<code>@Experimental</code> and <code>@UseExperimental</code>) are <em>experimental</em> in Kotlin 1.3. See details <a href="#experimental-status-of-experimental-api-markers">below</a>.</p>
 </blockquote>
 <p>The Kotlin standard library provides developers with a mechanism for creating and using <em>experimental</em> APIs. This mechanism lets library authors inform users that certain components of their API, such as classes or functions, are unstable and are likely to change in the future. Such changes may require rewriting and recompiling the client code. To prevent potential compatibility issues, the compiler warns users of the experimental status of such APIs and may require them to give their explicit consent to use the API.</p>
-<h2 id="using-experimental-apis">Using experimental APIs</h2>
+<h2 id="使用实验性-api">使用实验性 API</h2>
 <p>If a class or a function from a library is marked by its author as experimental, using it in your code will produce warnings or compilation errors unless you explicitly accept their experimental status. 
 There are several ways to accept the experimental status of API elements; all of them are applicable without technical limitations. You are free to choose the way that you find best for your situation.</p>
-<h3 id="propagating-use">Propagating use</h3>
+<h3 id="传播使用">传播使用</h3>
 <p>When you use an experimental API in the code intended for third-party use (a library), you can mark your API as experimental as well. To do this, annotate your declaration with the <em>experimental marker annotation</em> of the API used in its body. This enables you to use the API elements annotated with this marker.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// library code
@@ -1203,7 +1203,7 @@ fun displayDate() {
 </div>
 <p>As you can see in this example, the annotated function appears to be a part of the <code>@ExperimentalDateTime</code> experimental API. So, the described way of acceptance propagates the experimental status to the code that uses an experimental API; its clients will be required to accept it as well.
 To use multiple experimental APIs, annotate the declaration with all their markers.</p>
-<h3 id="non-propagating-use">Non-propagating use</h3>
+<h3 id="非传播使用">非传播使用</h3>
 <p>In modules that don't provide their own API, such as application modules, you can use experimental APIs without propagating the experimental status to your code. In this case, mark your code with the <a href="/api/latest/jvm/stdlib/kotlin/-use-experimental/index.html">@UseExperimental(Marker::class)</a> annotation specifying the marker annotation of the experimental API:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// library code
@@ -1236,10 +1236,10 @@ fun displayDate() {
  @file:UseExperimental(ExperimentalDateTime::class)
 </code></pre>
 </div>
-<h3 id="module-wide-use">Module-wide use</h3>
+<h3 id="模块级使用">模块级使用</h3>
 <p>If you don't want to annotate every usage of experimental APIs in your code, you can accept the experimental status for your whole module. Module-wide use of experimental APIs can be propagating and non-propagating as well:</p>
 <ul>
-<li>To accept the experimental status without propagation, compile the module with the argument <code>Xuse-experimental</code>, specifying the fully qualified name of the experimental API marker you use: <code>-Xuse-experimental=org.mylibrary.ExperimentalMarker</code>. Compiling with this argument has the same effect as if every declaration in the module had the annotation<code>@UseExperimental(ExperimentalMarker::class)</code>.</li>
+<li>To accept the experimental status without propagation, compile the module with the argument <code>-Xuse-experimental</code>, specifying the fully qualified name of the experimental API marker you use: <code>-Xuse-experimental=org.mylibrary.ExperimentalMarker</code>. Compiling with this argument has the same effect as if every declaration in the module had the annotation<code>@UseExperimental(ExperimentalMarker::class)</code>.</li>
 <li>To accept and propagate the experimental status to your whole module, compile the module with the argument <code>-Xexperimental=org.mylibrary.ExperimentalMarker</code>. In this case, <em>every declaration</em> in the module becomes experimental. The use of the module requires the acceptance of its experimental status as well.</li>
 </ul>
 <p>If you build your module with Gradle, you can add arguments like this:</p>
@@ -1281,8 +1281,8 @@ fun displayDate() {
 </code></pre>
 </div>
 <p>To accept the usage of multiple experimental APIs on the module level, add one of the described arguments for each experimental API marker used in your module.</p>
-<h2 id="marking-experimental-api">Marking experimental API</h2>
-<h3 id="creating-marker-annotations">Creating marker annotations</h3>
+<h2 id="标记实验性-api">标记实验性 API</h2>
+<h3 id="创建标记注解">创建标记注解</h3>
 <p>If you want to declare your module's API as experimental, create an annotation class to use as its <em>experimental marker</em>. This class must be annotated with <a href="/api/latest/jvm/stdlib/kotlin/-experimental/index.html">@Experimental</a>:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Experimental
@@ -1311,7 +1311,7 @@ annotation class ExperimentalDateTime
 </code></pre>
 </div>
 <p>If you publish several features in the experimental state, declare a marker for each. Separate markers make the use of experimental features safer for your clients: they'll be able to use only the features that they explicitly accept. This also lets you graduate the features to stable independently.</p>
-<h3 id="marking-api-elements">Marking API elements</h3>
+<h3 id="标记-api-元素">标记 API 元素</h3>
 <p>To mark an API element as experimental, annotate its declaration with your experimental marker annotation:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@ExperimentalDateTime
@@ -1321,9 +1321,9 @@ class DateProvider
 fun getTime(): Time {}
 </code></pre>
 </div>
-<h3 id="module-wide-markers">Module-wide markers</h3>
+<h3 id="模块级标记">模块级标记</h3>
 <p>If you consider all the APIs of your module experimental, you can mark the entire module as such with the compiler argument <code>-Xexperimental</code> as described in <a href="#module-wide-use">Module-wide use</a>.</p>
-<h2 id="graduation-of-experimental-api">Graduation of experimental API</h2>
+<h2 id="实验性-api-转正">实验性 API 转正</h2>
 <p>Once your experimental API graduates and is released in its final state, remove its marker annotation from declarations so that the clients can use it without restriction. However, you should leave the marker classes in modules so that the existing client code remains compatible. To let the API users update their modules accordingly (remove the markers from their code and recompile), mark the annotations as <a href="/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a> and provide the explanation in its message.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Deprecated("This experimental API marker is not used anymore. Remove its usages from your code.")
@@ -1331,7 +1331,7 @@ fun getTime(): Time {}
 annotation class ExperimentalDateTime
 </code></pre>
 </div>
-<h2 id="experimental-status-of-experimental-api-markers">Experimental status of experimental API markers</h2>
+<h2 id="实验性-api-标记的实验性状态">实验性 API 标记的实验性状态</h2>
 <p>The described mechanism for marking and using experimental APIs is itself experimental in Kotlin 1.3. This means that in future releases it may be changed in ways that make it incompatible. To make the users of annotations <code>@Experimental</code> and <code>UseExperimental</code> aware of their experimental status, the compiler raises warnings when compiling the code with these annotations:</p>
 <p><code>This class can only be used with the compiler argument '-Xuse-experimental=kotlin.Experimental'</code></p>
 <p>To remove the warnings, add the compiler argument <code>-Xuse-experimental=kotlin.Experimental</code>.</p>
@@ -1364,7 +1364,7 @@ annotation class ExperimentalDateTime
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> <a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
 
