@@ -1236,9 +1236,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 按需使用平台相关实现的方式。</p>
 <p>在后续部分，会详细描述这些概念以及将其配置到项目中的 DSL。</p>
 <h2 id="搭建一个多平台项目">搭建一个多平台项目</h2>
-<p>您可以在 IDE 的 New Project - Kotlin 对话框下选择一个多平台项目模板<!--
+<p>可以在 IDE 的 New Project - Kotlin 对话框下选择一个多平台项目模板<!--
 -->来创建一个多平台项目。</p>
-<p>例如，如果您选择了 "Kotlin (Multiplatform Library)"，将创建一个包含三个<!--
+<p>例如，如果选择了“Kotlin (Multiplatform Library)”，会创建一个包含三个<!--
 --><a href="#设置目标">设置目标</a>的库项目，其中一个用于 JVM，一个用于 JS，还有一个用于您正在使用的原生平台。
 这些是在 <code>build.gradle</code> <!--
 -->脚本中以下列方式配置的：</p>
@@ -1377,10 +1377,10 @@ kotlin {
 需要注意的是，公共源集 <code>commonMain</code> 与 <code>commonTest</code> 的依赖使用的都是公共构件，而<!--
 -->平台库将转到特定目标的源集。</p>
 <h2 id="gradle-插件">Gradle 插件</h2>
-<p>Kotlin Multiplatform projects require Gradle version 4.7 and above, older Gradle versions are not supported.</p>
-<p>To setup a multiplatform project from scratch in a Gradle project, first apply the
-<code>kotlin-multiplatform</code> plugin to the project by adding the following to the
-beginning of the <code>build.gradle</code> file:</p>
+<p>Kotlin 多平台项目需要 Gradle 4.7 及以上版本，不支持旧版本的 Gradle。</p>
+<p>如需在 Gradle 项目中从头开始设置多平台项目，首先要将
+<code>kotlin-multiplatform</code> 插件应用到项目中，即在
+<code>build.gradle</code> 文件的开头添加以下内容：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1397,10 +1397,10 @@ beginning of the <code>build.gradle</code> file:</p>
 </code></pre>
 </div>
 </div>
-<p>This creates the <code>kotlin</code> extension at the top level. You can then access it in the build script for:</p>
+<p>这会在顶层创建 <code>kotlin</code> 扩展。然后可以在构建脚本中访问该扩展，来：</p>
 <ul>
-<li><a href="#设置目标">setting up the targets</a> for multiple platforms (no targets are created by default);</li>
-<li><a href="#配置源集">configuring the source sets</a> and their <a href="#添加依赖">dependencies</a>;</li>
+<li>为多个平台<a href="#设置目标">设置目标</a>（默认不会创建目标）；</li>
+<li><a href="#配置源集">配置源集</a>及其<a href="#添加依赖">依赖</a>；</li>
 </ul>
 <h2 id="设置目标">设置目标</h2>
 <p>A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
