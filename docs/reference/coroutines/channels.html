@@ -42,9 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>通道 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/default.js"></script>
     <script src="/_assets/common.js"></script>
-    <link rel="stylesheet" href="/_assets/default.css"/>
     <link rel="stylesheet" href="/_assets/common.css"/>
 </head>
 <body>
@@ -1443,15 +1441,15 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 </code></pre>
 <!--- TEST -->
 <p>注意，你可以在标准库中使用
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/build-iterator.html"><code>buildIterator</code></a>
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/iterator.html"><code>iterator</code></a>
 协程构建器来构建一个相似的管道。
-使用 <code>buildIterator</code> 替换 <code>produce</code>、<code>yield</code> 替换 <code>send</code>、<code>next</code> 替换 <code>receive</code>、
+使用 <code>iterator</code> 替换 <code>produce</code>、<code>yield</code> 替换 <code>send</code>、<code>next</code> 替换 <code>receive</code>、
 <code>Iterator</code> 替换 <code>ReceiveChannel</code> 来摆脱协程作用域，你将不再需要 <code>runBlocking</code>。
 然而，如上所示，如果你在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文中运行它，使用通道的管道的好处在于<!--
 -->它可以充分利用多核心 CPU。</p>
 <p>不过，这是一种非常不切实际的寻找素数的方法。在实践中，管道调用了另外的一些<!--
 -->挂起中的调用（就像异步调用远程服务）并且这些管道不能<!--
--->内置使用 <code>buildSequence</code>/<code>buildIterator</code>，因为它们不被允许随意的挂起，不像
+-->内置使用 <code>sequence</code>/<code>iterator</code>，因为它们不被允许随意的挂起，不像
 <code>produce</code> 是完全异步的。</p>
 <h3 id="扇出">扇出</h3>
 <p>多个协程也许会接收相同的管道，在它们之间进行分布式工作。
@@ -1765,6 +1763,7 @@ Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
 
 </footer>
     <script src="/_assets/reference.js"></script>
+    <link rel="stylesheet" href="/_assets/reference.css">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">
         <div class="search-popup__controls">
