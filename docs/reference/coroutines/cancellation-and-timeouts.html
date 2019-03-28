@@ -1168,8 +1168,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 // This file was automatically generated from coroutines-guide.md by Knit tool. Do not edit.
 package kotlinx.coroutines.guide.$$1$$2
 -->
-<!--- KNIT     ../core/kotlinx-coroutines-core/test/guide/.*\.kt -->
-<!--- TEST_OUT ../core/kotlinx-coroutines-core/test/guide/test/CancellationTimeOutsGuideTest.kt
+<!--- KNIT     ../kotlinx-coroutines-core/jvm/test/guide/.*\.kt -->
+<!--- TEST_OUT ../kotlinx-coroutines-core/jvm/test/guide/test/CancellationTimeOutsGuideTest.kt
 // This file was automatically generated from coroutines-guide.md by Knit tool. Do not edit.
 package kotlinx.coroutines.guide.test
 
@@ -1220,7 +1220,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-01.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-01.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p>程序执行后的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm sleeping 0 ...
@@ -1265,7 +1265,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-02.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-02.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p>运行示例代码，并且我们可以看到它连续打印出了“I'm sleeping” ，甚至在调用取消后，
 任务仍然执行了五次循环迭代并运行到了它结束为止。</p>
@@ -1309,7 +1309,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-03.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-03.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p>你可以看到，现在循环被取消了。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html">isActive</a> 是一个可以被使用在
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 中的扩展属性。</p>
@@ -1348,7 +1348,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-04.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-04.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a> 等待了所有的终结动作执行完毕，
 所以运行示例得到了下面的输出：</p>
@@ -1395,7 +1395,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-05.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-05.kt">这里</a>获得完整代码</p>
 </blockquote>
 <!--- TEST
 I'm sleeping 0 ...
@@ -1428,7 +1428,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-06.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-06.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p>运行后得到如下输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm sleeping 0 ...
@@ -1463,7 +1463,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/core/kotlinx-coroutines-core/test/guide/example-cancel-07.kt">这里</a>获得完整代码</p>
+<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-07.kt">这里</a>获得完整代码</p>
 </blockquote>
 <p>运行这段代码时不再抛出异常：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm sleeping 0 ...
