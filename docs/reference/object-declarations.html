@@ -1223,7 +1223,7 @@ val ab: A = object : A(1), B {
 </code></pre>
 </div>
 <p>就像 Java 匿名内部类一样，对象表达式中的代码可以访问来自包含它的作用域的变量。
-（与 Java 不同的是，这不仅限于 final 变量。）</p>
+（与 Java 不同的是，这不仅限于 final 或实际相当于 final 的变量。）</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun countClicks(window: JComponent) {
     var clickCount = 0

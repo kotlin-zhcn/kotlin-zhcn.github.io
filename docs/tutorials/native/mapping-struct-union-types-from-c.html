@@ -931,7 +931,7 @@ Kotlin provides us with an API to deal with both types easily, let's try it and 
 <h3 id="creating-a-cvaluet">Creating a <code>CValue&lt;T&gt;</code></h3>
 <p><code>CValue&lt;T&gt;</code> type is used to pass by-value parameters to a C function call.
 We use <code>cValue</code> function to create <code>CValue&lt;T&gt;</code> object instance. The function requires a
-<a href="../../reference/lambdas.html#function-literals-with-receiver">lambda function with a receiver</a> 
+<a href="../../reference/lambdas.html#带有接收者的函数字面值">lambda function with a receiver</a>
 to initialize the underlying C type in-place. The function is declared as follows:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun &lt;reified T : CStructVar&gt; cValue(initialize: T.() -&gt; Unit): CValue&lt;T&gt;
