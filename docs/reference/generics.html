@@ -1273,7 +1273,7 @@ fun demo(strs: Source&lt;String&gt;) {
 <code>C&lt;Derived&gt;</code>的超类。</p>
 <p>简而言之，他们说类 <code>C</code> 是在参数 <code>T</code> 上是<strong>协变的</strong>，或者说 <code>T</code> 是一个<strong>协变的</strong>类型参数。
 你可以认为 <code>C</code> 是 <code>T</code> 的<strong>生产者</strong>，而不是 <code>T</code> 的<strong>消费者</strong>。</p>
-<p><strong>out</strong>修饰符称为<strong>型变注解</strong>，并且由于它在类型参数声明处提供，所以我们讲<strong>声明处型变</strong>。
+<p><strong>out</strong>修饰符称为<strong>型变注解</strong>，并且由于它在类型参数声明处提供，所以我们称之为<strong>声明处型变</strong>。
 这与 Java 的<strong>使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
 <p>另外除了 <strong>out</strong>，Kotlin 又补充了一个型变注释：<strong>in</strong>。它使得一个类型参数<strong>逆变</strong>：只可以被消费而不可以<!--
 -->被生产。逆变类型的一个很好的例子是 <code>Comparable</code>：</p>
