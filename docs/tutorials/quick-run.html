@@ -838,10 +838,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <p>Sometimes you may need to quickly write and execute some code outside of a project or an application. This may be useful, for example, when learning Kotlin or evaluating expressions. Let's have a look through two handy ways to quickly run Kotlin code:</p>
 <ul>
-<li><a href="#using-scratches">Scratches</a> let you write and run code in a temporary file outside your project in IDE.</li>
-<li><a href="#running-in-repl">REPL</a> (<em>Read-Eval-Print-Loop</em>) runs code interactively in a console.</li>
+<li><a href="#scratches">Scratches</a> let you write and run code in a temporary file outside your project in IDE.</li>
+<li><a href="#repl">REPL</a> (<em>Read-Eval-Print-Loop</em>) runs code interactively in a console.</li>
 </ul>
-<h2 id="using-scratches">Using Scratches</h2>
+<h2 id="scratches">Scratches</h2>
 <blockquote class="note">
 <p>Currently, scratches are supported only in Kotlin/JVM projects.</p>
 </blockquote>
@@ -852,11 +852,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-run.gif" src="/assets/images/tutorials/quick-run/scratch-run.png"/>
 </div>
+<h3 id="interactive-mode">Interactive mode</h3>
+<p>IntelliJ IDEA can run your scratches automatically. To get the execution results once you stop typing for a short time, switch on the <strong>Interactive mode</strong>.</p>
+<div style="display: flex; align-items: center; margin-bottom: 10px;">
+<img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-interactive.gif" src="/assets/images/tutorials/quick-run/scratch-interactive.png"/>
+</div>
+<h3 id="using-modules">Using modules</h3>
 <p>To use classes or functions from a project in the scratch, import them into the scratch file as usual with the <code>import</code> statement. Then write your code and run it with the appropriate module selected in <strong>Use classpath of module</strong> list. To rebuild the module automatically before running the scratch, select <strong>Make before Run</strong>.</p>
 <p><img alt="Scratch select module" src="/assets/images/tutorials/quick-run/scratch-select-module.png"/></p>
-<p>To evaluate each particular expression in a scratch, run it with <strong>Use REPL</strong> selected. The scratch will be executed the same way as in <a href="#running-in-repl">REPL</a>: the code will run subsequently, providing results of each call. You can later refer to the results by the names <code>res*</code> that are shown in the corresponding lines.</p>
+<h3 id="running-as-repl">Running as REPL</h3>
+<p>To evaluate each particular expression in a scratch, run it with <strong>Use REPL</strong> selected. The scratch will be executed the same way as in <a href="#repl">REPL</a>: the code lines will run subsequently, providing results of each call. You can later refer to the results by the names <code>res*</code> shown in the corresponding lines.</p>
 <p><img alt="Scratch REPL" src="/assets/images/tutorials/quick-run/scratch-repl.png"/></p>
-<h2 id="running-in-repl">Running in REPL</h2>
+<h2 id="repl">REPL</h2>
 <p><em>REPL</em> (<em>Read-Eval-Print-Loop</em>) is a tool for running Kotlin code interactively. REPL lets you evaluate expressions and code chunks without creating projects or even functions if you don't need them.</p>
 <p>To run REPL in IntelliJ IDEA, open <strong>Tools | Kotlin | Kotlin REPL</strong>.</p>
 <p>To run REPL in the OS command line, open <strong>/bin/kotlinc-jvm</strong> from the directory of standalone Kotlin compiler.</p>
