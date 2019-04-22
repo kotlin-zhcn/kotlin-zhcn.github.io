@@ -1192,8 +1192,8 @@ finally {
 -->到调用处。</p>
 <p>内联可能导致生成的代码增加；不过如果我们使用得当（即避免内联过大函数），性能上会有所提升，尤其是在循环中的“超多态（megamorphic）”调用处。</p>
 <h2 id="禁用内联">禁用内联</h2>
-<p>如果你只想被（作为参数）传给一个内联函数的 lamda 表达式中只有一些被内联，你可以用 <code>noinline</code> 修饰符标记<!--
--->一些函数参数：</p>
+<p>如果希望只内联一部分传给内联函数的 lambda 表达式参数，那么可以用 <code>noinline</code> 修饰符标记<!--
+-->不希望内联的函数参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline fun foo(inlined: () -&gt; Unit, noinline notInlined: () -&gt; Unit) { …… }
 </code></pre>

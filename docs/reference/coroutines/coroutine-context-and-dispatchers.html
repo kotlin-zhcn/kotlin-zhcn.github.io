@@ -1233,7 +1233,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-01.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>它执行后得到了如下输出（也许顺序会有所不同）：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Unconfined            : I'm working in thread main
@@ -1250,7 +1250,7 @@ main runBlocking      : I'm working in thread main
 <p>该默认调度器，当协程在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动的时候被使用，
 它代表 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 使用了共享的后台线程池，
 所以 <code>GlobalScope.launch { …… }</code> 也可以使用相同的调度器—— <code>launch(Dispatchers.Default) { …… }</code>。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个新的线程。
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个线程。
 一个专用的线程是一种非常昂贵的资源。
 在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a>
 函数，或存储在一个顶级变量中使它在整个应用程序中被重用。</p>
@@ -1283,7 +1283,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-02.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>执行后的输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Unconfined      : I'm working in thread main
@@ -1330,7 +1330,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-03.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这里有三个协程，其中主协程是 (#1) —— <code>runBlocking</code>，
 而另外两个协程计算延期的值 <code>a</code> (#2) 和 <code>b</code> (#3)。
@@ -1370,7 +1370,7 @@ fun main() {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-04.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>它演示了一些新技术。其中一个使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 来显式指定了一个上下文，并且<!--
 -->另一个使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 函数来改变协程的上下文，而仍然驻留在相同的<!--
@@ -1396,7 +1396,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>当它运行于<a href="#调试协程与线程">调试模式</a>时将处理一些任务：</p>
 <pre><code>My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
@@ -1442,7 +1442,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-06.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">job1: I run in GlobalScope and execute independently!
@@ -1476,7 +1476,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-07.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>结果如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">request: I'm done and I don't explicitly join my children that are still active
@@ -1518,7 +1518,7 @@ fun main() = runBlocking(CoroutineName("main")) {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-08.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>程序执行使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">[main @main#1] Started main coroutine
@@ -1544,7 +1544,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-09.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-09.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm working in thread DefaultDispatcher-worker-1 @test#2
@@ -1572,7 +1572,7 @@ factory functions. The former creates a general-purpose scope, while the latter 
     // 继续运行……
 </code></pre>
 </div>
-<p>Alternatively, we can implement <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> interface in this <code>Actvity</code> class. The best way to do it is
+<p>Alternatively, we can implement <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> interface in this <code>Activity</code> class. The best way to do it is
 to use delegation with default factory functions.
 We also can combine the desired dispatcher (we used <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> in this example) with the scope:</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1637,7 +1637,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-10.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-10.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这个示例的输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Launched coroutines
@@ -1676,7 +1676,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-11.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-11.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>在这个例子中我们使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 在后台线程池中启动了一个新的协程，所以<!--
 -->它工作在线程池中的不同线程中，但它仍然具有线程局部变量的值，

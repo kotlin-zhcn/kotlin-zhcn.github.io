@@ -1244,7 +1244,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-01.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>它的打印输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">The answer is 42
@@ -1286,7 +1286,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-02.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>它的打印输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">The answer is 42
@@ -1330,7 +1330,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-03.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>它的打印输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">The answer is 42
@@ -1340,11 +1340,11 @@ Completed in 1017 ms
 <p>因此，在先前的例子中这里定义的两个协程没有被执行，但是控制权在于<!--
 -->程序员准确的在开始执行时调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>。我们首先
 调用 <code>one</code>，然后调用 <code>two</code>，接下来等待这个协程执行完毕。</p>
-<p>注意，如果我们在 <code>println</code> 中调用了 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 并且在这个协程中省略调用了
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>，接下来 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 会开始执行协程并且等待协程执行结束，
-因此我们会得到顺序的行为，但这不是惰性启动的预期用例。
-当调用挂起函数计算值的时候
-<code>async(start = CoroutineStart.LAZY)</code> 用例是标准的 <code>lazy</code> 函数的替换方案。</p>
+<p>Note that if we have called <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> in <code>println</code> and omitted <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> on individual
+coroutines, then we would have got the sequential behaviour as <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> starts the coroutine 
+execution and waits for the execution to finish, which is not the intended use-case for laziness. 
+The use-case for <code>async(start = CoroutineStart.LAZY)</code> is a replacement for the 
+standard <code>lazy</code> function in cases when computation of the value involves suspending functions.</p>
 <h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
@@ -1409,7 +1409,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-04.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
 The answer is 42
@@ -1473,7 +1473,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>从上面的 main 函数的输出可以看出，我们仍然可以同时执行这两个操作：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">The answer is 42
@@ -1511,7 +1511,7 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击这里<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>注意，当第一个子协程失败的时候第一个 <code>async</code> 是如何等待父线程被取消的：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Second child throws an exception

@@ -1162,7 +1162,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="编译器插件">编译器插件</h1>
 <h2 id="全开放编译器插件">全开放编译器插件</h2>
-<p>Kotlin 有类及其默认为 <code>final</code> 的成员，这使得像 Spring AOP 这样需要类为 <code>open</code> 的框架与库用起来很不方便。这个 <em>all-open</em> 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 <code>open</code> 关键字打开。</p>
+<p>Kotlin 的类及其成员默认是 <code>final</code> 的，这使得像 Spring AOP 这样需要类为 <code>open</code> 的框架与库用起来很不方便。这个 <em>all-open</em> 编译器插件会适配 Kotlin 以满足那些框架的需求，并使用指定的注解标注类而其成员无需显式使用 <code>open</code> 关键字打开。</p>
 <p>例如，当你使用 Spring 时，你不需要打开所有的类，而只需要使用特定的注解标注，如 <code>@Configuration</code> 或 <code>@Service</code>。<em>All-open</em> 允许指定这些注解。</p>
 <p>我们为全开放插件提供 Gradle 与 Maven 支持并有完整的 IDE 集成。</p>
 <p>注意：对于 Spring，你可以使用 <code>kotlin-spring</code> 编译器插件（<a href="compiler-plugins.html#spring-支持">见下文</a>）。</p>

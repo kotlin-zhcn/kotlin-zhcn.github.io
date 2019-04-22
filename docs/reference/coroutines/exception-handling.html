@@ -1209,7 +1209,7 @@ class ExceptionsGuideTest {
 而后者依赖用户来最终消耗<!--
 -->异常，比如说，通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a>
 （<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 以及 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 在<a href="https://www.kotlincn.net/docs/reference/coroutines/channels.html">通道</a>中介绍过）。</p>
-<p>可以通过一个在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中创建新协程的简单示例来进行演示：</p>
+<p>可以通过一个在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中创建协程的简单示例来进行演示：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1234,7 +1234,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-01.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下（<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/coroutine-context-and-dispatchers.md#debugging-coroutines-and-threads">调试</a>）：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Throwing exception from launch
@@ -1276,7 +1276,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-02.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Caught java.lang.AssertionError
@@ -1314,7 +1314,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-03.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Cancelling child
@@ -1365,7 +1365,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-04.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Second child throws an exception
@@ -1416,7 +1416,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-05.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <blockquote>
 <p>注意：上面的代码将只在 JDK7 以上支持 <code>suppressed</code> 异常的环境中才能正确工作。</p>
@@ -1460,7 +1460,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-06.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Rethrowing CancellationException with original cause
@@ -1511,7 +1511,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-01.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">First child is failing
@@ -1551,7 +1551,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-02.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Child is sleeping
@@ -1584,7 +1584,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以点击<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-03.kt">这里</a>获得完整代码</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Scope is completing
