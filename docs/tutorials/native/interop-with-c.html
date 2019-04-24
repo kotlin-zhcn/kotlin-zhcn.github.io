@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/interop-with-c.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to interop with C libraries">
+    <meta property="og:description" content="来看看如何调用 C 语言库">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to interop with C libraries">
+    <meta name="twitter:description" content="来看看如何调用 C 语言库">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Interop with C Libraries - Kotlin 语言中文站</title>
+    <title>与 C 语言库互操作 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -820,7 +820,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Interop with C Libraries
+                与 C 语言库互操作
             </h1>
             <table>
                     <tr>
@@ -832,27 +832,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to interop with C libraries
+                来看看如何调用 C 语言库
                 <br/>
                 <br/>
             
-<p>When writing native applications, oftentimes we need to access certain functionality that is not included in the Kotlin standard library, 
-such as making HTTP requests, reading and writing from disk, etc.</p>
-<p>Kotlin/Native provides us with the ability to consume standard C libraries, opening up an entire ecosystem of functionality that exists 
-for pretty much anything we could need. In fact, Kotlin/Native already ships with a set of prebuilt <a href="https://github.com/JetBrains/kotlin-native/blob/master/PLATFORM_LIBS.md">platform libraries</a> which 
-provide some additional common functionality to that of the standard library.</p>
-<p>In this tutorial however, we'll see how to use some specific libraries, such as <code>libcurl</code>. We'll learn to</p>
+<p>当编写一个原生应用程序时，我们时常需要访问某些没有被包含在 Kotlin 标准库中的函数，<!--
+-->例如发起 HTTP 请求，读写磁盘等等。</p>
+<p>Kotlin/Native 给我们提供了操作 C 语言标准库的能力，这样就开放了存在于整个生态系统中<!--
+-->几乎所有我们需要的功能。事实上，Kotlin/Native 已经预装了一套预制的<a href="https://github.com/JetBrains/kotlin-native/blob/master/PLATFORM_LIBS.md">多平台库</a><!--
+-->来提供一些标准库不包含的通用功能。</p>
+<p>然而在本教程中，我们将看到如何使用一些诸如 <code>libcurl</code> 这样的具体的库。我们将学到</p>
 <ul>
-<li><a href="#generating-bindings">Create Kotlin Bindings</a></li>
-<li><a href="#consuming-the-kotlin-api">Consume a generated Kotlin API</a></li>
-<li><a href="#compiling-and-linking-the-library">Link the library into the application</a></li>
+<li><a href="#生成绑定">创建 Kotlin 绑定器</a></li>
+<li><a href="#消费生成的-kotlin-api">消费生成的 Kotlin API</a></li>
+<li><a href="#在应用程序中连接库">在应用程序中连接库</a></li>
 </ul>
-<h2 id="generating-bindings">Generating Bindings</h2>
-<p>An ideal scenario for interop is to call C functions as if we were calling Kotlin functions, that is, following the same signature and conventions. And that is precisely what the 
-<code>cinterop</code> tool provides us with. It takes a C library and generates the corresponding Kotlin bindings for it, which then allow us
-to use the library as if it were Kotlin code.</p>
-<p>In order to generate these bindings, we need to create a library definition <code>.def</code> file that contains some information about the headers we need to generate. In our case we want to use the famous <code>libcurl</code> library
-to make some HTTP calls, so we'll create a file named <code>libcurl.def</code> with the following contents</p>
+<h2 id="生成绑定">生成绑定</h2>
+<p>互操作的理想方案是当我们在调用 C 函数的时候就像在调用 Kotlin 函数一样，也就是说，遵循相同的签名惯例。而这恰恰是
+<code>cinterop</code> 工具提供给我们的功能。它需要一个 C 库并为它生成一个相应的 Kotlin 绑定，然后允许我们像<!--
+-->使用 Kotlin 代码一样使用该库。</p>
+<p>为了生成这些绑定，我们需要创建一个库定义 <code>.def</code> 文件，其中包含一些我们需要生成的头信息。在我们的案例中，我们想使用著名 <code>libcurl</code>
+库来发起一些 HTTP 调用，所以我们将创建一个名为 <code>libcurl.def</code> 的文件，其中包含以下内容</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">headers = curl/curl.h
 headerFilter = curl/*
@@ -862,33 +862,33 @@ linkerOpts.osx = -L/opt/local/lib -L/usr/local/opt/curl/lib -lcurl
 linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -lcurl
 </code></pre>
 </div>
-<p>A few things are going on in that file so let's see them one by one. The first entry is <code>headers</code> which is the list of header files that we want to generate 
-Kotlin stubs for. We can add multiple files to this entry, separating each one with <code>\</code> on a new line. In our case we only want <code>curl.h</code>. The files we reference
-need to be relative to the folder where the definition file is, or be available on the system path (in our case it would be <code>/usr/include/curl</code>).</p>
-<p>The second line is the <code>headerFilter</code>. This is used to denote what exactly we want included. In C, when one file references another file with the <code>#include</code> directive, 
-all the headers are also included. Sometimes this may not be needed, and we can use this parameter, <a href="https://en.wikipedia.org/wiki/Glob_(programming)">using glob patterns</a>, to fine tune things. 
-Note, that <code>headerFilter</code> is an optional argument and mostly only used when the library we're using is being installed as a system library and we do not want to fetch external dependencies 
-(such as system <code>stdint.h</code> header) into our interop library. It may be important for both optimising library size and fixing potential conflicts between system and the Kotlin/Native provided compilation environment.</p>
-<p>The next lines are about providing linker and compiler options, which can vary based on different target platforms. In our cause, we are defining it for macOS (the <code>.osx</code> suffix) and Linux (the <code>.linux</code> suffix).
-Parameters without suffix is also possible (e.g. <code>linkerOpts=</code>) and will be applied to all platforms.</p>
-<p>The convention that is followed is that each library gets its own definition file, usually named the same as the library. For more information on all
-the options available to <code>cinterop</code>, see <a href="/docs/reference/native/c_interop.html">the Interop documentation</a></p>
-<p>Once we have the definition file ready, we can invoke <code>cinterop</code> and have it generate the bindings for us</p>
+<p>该文件中正在进行一些操作，让我们逐一查看它们。第一个条目是 <code>headers</code>，它是我们想要生成的头文件列表
+Kotlin 存根。我们可以在此条目中添加多个文件，在每个新行上使用 <code>\</code> 进行分隔。在我们的案例中我们仅仅想要 <code>curl.h</code>。我们引用的文件<!--
+-->需要相对于定义文件所在的文件夹，或者在系统路径上可用（在我们的例子中是 <code>/usr/include/curl</code>）。</p>
+<p>第二行是 <code>headerFilter</code>。这用于表示我们想要包含的内容。在 C 语言中，当一个文件使用 <code>#include</code> 指令引用另一个文件时，<!--
+-->所有的头都将被应用。有时这也许是不需要的，我们可以使用这个参数，<a href="https://en.wikipedia.org/wiki/Glob_(programming)">使用 glob 模式</a>，来进行微调。<!--
+-->注意，这个 <code>headerFilter</code> 是一个可选参数，并且主要仅在我们正在使用的库作为系统库安装时才使用，我们不想获取外部依赖项<!--
+-->（比如系统 <code>stdint.h</code> 头）进入我们的互操作库。对于优化库大小和修复系统与 Kotlin/Native 提供的编译环境之间的潜在冲突可能都很重要。</p>
+<p>接下来的几行是关于提供链接器和编译器选项，可以根据不同的目标平台而有所不同。在我们的例子中，我们定义平台为 macOS（<code>.osx</code> 后缀）和 Linux（<code>.linux</code> 后缀）。<!--
+-->参数中没有后缀也是可行的（例如 <code>linkerOpts=</code>）并将适用于所有平台。</p>
+<p>惯例是每个库都有自己的定义文件，经常被命名为与库中的相同。关于所有 <code>cinterop</code>
+的配置的更多信息，请查看<a href="/docs/reference/native/c_interop.html">互操作文档</a></p>
+<p>一旦我们准备好了定义文件，我们就可以调用 <code>cinterop</code> 并让它为我们生成绑定</p>
 <pre><code>cinterop -def libcurl.def -o build/c_interop/libcurl
 </code></pre>
-<p>The output should be a Kotlin compiled library (extension <code>.klib</code>). We're also instructing <code>cinterop</code>
-to output the contents to the folder <code>build/c_interop/libcurl</code> which we'll later use as input by <code>kotlinc-native</code>. It's important this folder is created
-beforehand as <code>cinterop</code> needs an existing folder. The <code>c_interop</code> is a convention that is followed for libraries that are for interop.</p>
-<h3 id="curl-on-windows">curl on Windows</h3>
-<p>You should have the <code>curl</code> library binaries on Windows to make the sample work.
-You may build <code>curl</code> from <a href="https://curl.haxx.se/download.html">sources</a> on Windows (you'll need Visual Studio or Windows SDK Commandline tools), for more
-details, see the <a href="https://jonnyzzz.com/blog/2018/10/29/kn-libcurl-windows/">related blog post</a>.
-Alternatively, you may also consider a <a href="https://www.msys2.org/">MinGW/MSYS2</a> <code>curl</code> binary.</p>
-<p>You will need to provide the <code>curl</code> sources path to the <code>cinterop</code> tool call: <code>-compilerOpts -I&lt;curl include directory&gt;</code> and a linker option
-to the <code>kotlinc-native</code> call:  <code>-linker-options "&lt;curl binary directory&gt;\libcurl.lib"</code>.
-Note. On Windows, you always link with a <code>.lib</code> file, no matter if use <em>static</em> or <em>dynamic</em> library. For the <em>dynamic</em> linking,
-the <code>.lib</code> file is normally generated by the toolchain, and it uses the <code>.dll</code> inside</p>
-<h2 id="consuming-the-kotlin-api">Consuming the Kotlin API</h2>
+<p>输出应该是 Kotlin 编译的库（扩展 <code>.klib</code>）。我们也指示 <code>cinterop</code>
+将内容输出到 <code>build/c_interop/libcurl</code> 文件夹，我们稍后将使用 <code>kotlinc-native</code> 作为输入。这个文件夹的创建非常重要，<!--
+-->因为 <code>cinterop</code> 之前需要一个现有的文件夹。<code>c_interop</code> 是针对互操作库遵循的约定。</p>
+<h3 id="在-windows-上-curl">在 Windows 上 curl</h3>
+<p>你应该在 Windows 上使用 <code>curl</code> 库二进制文件来使示例工作。
+你会在 Windows 从<a href="https://curl.haxx.se/download.html">源码</a>构建 <code>curl</code>（你将需要 Visual Studio 或 Windows SDK 命令行工具），关于更多<!--
+-->细节，请查看<a href="https://jonnyzzz.com/blog/2018/10/29/kn-libcurl-windows/">相关博文</a>。<!--
+-->或者，你也可以考虑使用 <a href="https://www.msys2.org/">MinGW/MSYS2</a> <code>curl</code> 二进制文件。</p>
+<p>你将需要提供 <code>curl</code> 源码路径给 <code>cinterop</code> 工具来调用： <code>-compilerOpts -I&lt;curl include directory&gt;</code> 以及一个链接器选项<!--
+-->给 <code>kotlinc-native</code> 调用：<code>-linker-options "&lt;curl binary directory&gt;\libcurl.lib"</code>。<!--
+-->注意。在 Windows 上，你总是使用 <code>.lib</code> 文件来链接，无论是使用<em>静态</em>还是<em>动态</em>库。对于<em>动态</em>链接，<!--
+--><code>.lib</code> 文件通常由工具链生成，并且它在内部使用 <code>.dll</code>。</p>
+<h2 id="消费生成的-kotlin-api">消费生成的 Kotlin API</h2>
 <p>Now that we have our library and Kotlin stubs, we can consume them from our application. To keep things simple, in this tutorial we're going to convert one of the simplest 
 <code>libcurl</code> examples over to Kotlin.</p>
 <p>The code in question is from the <a href="https://curl.haxx.se/libcurl/c/simple.html">simple</a> example (comments removed for brevity)</p>
