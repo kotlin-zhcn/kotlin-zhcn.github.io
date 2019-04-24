@@ -1161,7 +1161,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="集合listsetmap">集合：List、Set、Map</h1>
-<p>与大多数语言不同，Kotlin 区分可变集合与不可变集合（lists、sets、maps 等）。精确控制什么时候集合可编辑有助于消除 bug 以及设计良好的 API。</p>
+<p>与大多数语言不同，Kotlin 区分集合（lists、sets、maps 等）的可变与不可变视图。精确控制什么时候集合可编辑有助于消除 bug 以及设计良好的 API。</p>
 <p>预先了解一个可变集合的只读 <em>视图</em> 与一个真正的不可变集合之间的区别是很重要的。它们都容易创建，但类型系统不能表达它们的差别，所以由你来跟踪（是否相关）。</p>
 <p>Kotlin 的 <code>List&lt;out T&gt;</code> 类型是一个提供只读操作如 <code>size</code>、<code>get</code>等的接口。与 Java 类似，它继承自 <code>Collection&lt;T&gt;</code> 进而继承自 <code>Iterable&lt;T&gt;</code>。改变 list 的方法是由 <code>MutableList&lt;T&gt;</code> 加入的。这一模式同样适用于 <code>Set&lt;out T&gt;/MutableSet&lt;T&gt;</code> 及 <code>Map&lt;K, out V&gt;/MutableMap&lt;K, V&gt;</code>。</p>
 <p>我们可以看下 list 及 set 类型的基本用法：</p>

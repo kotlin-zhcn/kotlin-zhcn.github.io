@@ -977,7 +977,7 @@ kotlin {
         final def iOSTarget = System.getenv('SDK_NAME')?.startsWith("iphoneos") \
                               ? presets.iosArm64 : presets.iosX64
 
-        fromPreset(iOSTarget, 'iOS') {
+        fromPreset(iOSTarget, 'ios') {
              binaries {
                 framework('SharedCode')
             }
@@ -1038,7 +1038,7 @@ The more detailed explanation of the multiplatform projects can be found on the
 </tr>
 <tr>
 <td>iOS</td>
-<td><code>SharedCode/iOSMain</code></td>
+<td><code>SharedCode/iosMain</code></td>
 <td>iOS arm64 or x86_64</td>
 <td>Apple framework</td>
 </tr>
@@ -1118,7 +1118,7 @@ We need to include the additional task to the end of the <code>SharedCode/build.
 <pre><code class="language-groovy">task packForXCode(type: Sync) {
     final File frameworkDir = new File(buildDir, "xcode-frameworks")
     final String mode = project.findProperty("XCODE_CONFIGURATION")?.toUpperCase() ?: 'DEBUG'
-    final def framework = kotlin.targets.iOS.binaries.getFramework("SharedCode", mode)
+    final def framework = kotlin.targets.ios.binaries.getFramework("SharedCode", mode)
 
     inputs.property "mode", mode
     dependsOn framework.linkTask
