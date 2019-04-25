@@ -854,6 +854,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
                 <div class="text">Gradle 插件</div>
@@ -1196,9 +1205,9 @@ apply plugin: 'org.jetbrains.kotlin.platform.native'
 </code></pre>
 </div>
 <p>By default the plugin downloads the Kotlin/Native compiler during the first run. If you have already downloaded the compiler
-manually you can specify the path to its root directory using <code>konan.home</code> project property (e.g. in <code>gradle.properties</code>).</p>
+manually you can specify the path to its root directory using <code>org.jetbrains.kotlin.native.home</code> project property (e.g. in <code>gradle.properties</code>).</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">konan.home=/home/user/kotlin-native-0.8
+<pre><code class="language-groovy">org.jetbrains.kotlin.native.home=/home/user/kotlin-native-0.8
 </code></pre>
 </div>
 <p>In this case the compiler will not be downloaded by the plugin.</p>

@@ -854,6 +854,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/gradle_plugin.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1207,14 +1216,20 @@ or set it via the <code>JAVA_OPTS</code> environment variable.</p>
 </code></pre>
 </div>
 <h3 id="q-how-do-i-enable-bitcode-for-my-kotlin-framework">Q: How do I enable bitcode for my Kotlin framework?</h3>
-<p>A: Use either <code>-Xembed-bitcode</code> or <code>-Xembed-bitcode-marker</code> compiler option
-or matching Gradle DSL statement, i.e.</p>
+<p>A: By default gradle plugin adds it on iOS target.</p>
+<ul>
+<li>For debug build it embeds placeholder LLVM IR data as a marker.</li>
+<li>For release build it embeds bitcode as data.</li>
+</ul>
+<p>Or commandline arguments: <code>-Xembed-bitcode</code> (for release) and <code>-Xembed-bitcode-marker</code> (debug)</p>
+<p>Setting this in a Gradle DSL:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">targets {
     fromPreset(presets.iosArm64, 'myapp') {
-       compilations.main.outputKinds 'FRAMEWORK'
-       compilations.main.extraOpts '-Xembed-bitcode' // for release binaries
-       // or '-Xembed-bitcode-marker' for debug binaries
+        compilations.main.outputKinds 'FRAMEWORK'
+        compilations.main.embedBitcode BitcodeEmbeddingMode.BITCODE // for release binaries
+        // or BitcodeEmbeddingMode.MARKER for debug binaries
+    }
 }
 </code></pre>
 <p>These options have nearly the same effect as clang's <code>-fembed-bitcode</code>/<code>-fembed-bitcode-marker</code>
@@ -1230,7 +1245,7 @@ good practise to have the global state immutable. If for some reason you need a 
 object, use the <code>@konan.ThreadLocal</code> annotation on the object. Also the <code>kotlin.native.concurrent.AtomicReference</code> class could be
 used to store different pointers to frozen objects in a frozen object and automatically update them.</p>
 <h3 id="q-how-can-i-compile-my-project-against-the-kotlinnative-master">Q: How can I compile my project against the Kotlin/Native master?</h3>
-<p>A: We release dev builds frequently, usually at least once a week. You can check the <a href="https://bintray.com/jetbrains/kotlin-native-dependencies/kotlin-native-gradle-plugin">list of available versions</a>. But if we recently fixed an issue and you want to check it before a release is done, you can do:</p>
+<p>A: One of the following should be done:</p>
 <details>
 <summary>For the CLI, you can compile using gradle as stated in the README (and if you get errors, you can try to do a <code>./gradlew clean</code>):</summary>
 <div class="sample" mode="shell" theme="idea">
@@ -1252,8 +1267,8 @@ export KONAN_REPO=$PWD/../kotlin-native
 # Run this once since it is costly, you can remove the `clean` task if not big changes were made from the last time you did this
 pushd $KONAN_REPO &amp;&amp; git pull &amp;&amp; ./gradlew clean dependencies:update dist distPlatformLibs &amp;&amp; popd
 
-# In your project, you set have to the konan.home property, and include as composite the shared and gradle-plugin builds
-./gradlew check -Pkonan.home=$KONAN_REPO/dist --include-build $KONAN_REPO/shared --include-build $KONAN_REPO/tools/kotlin-native-gradle-plugin
+# In your project, you set have to the org.jetbrains.kotlin.native.home property, and include as composite the shared and gradle-plugin builds
+./gradlew check -Porg.jetbrains.kotlin.native.home=$KONAN_REPO/dist --include-build $KONAN_REPO/shared --include-build $KONAN_REPO/tools/kotlin-native-gradle-plugin
 </code></pre>
 </div>
 </details>

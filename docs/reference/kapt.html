@@ -854,6 +854,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/gradle_plugin.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1246,7 +1255,7 @@ With compile avoidance enabled, Gradle can skip annotation processing when rebui
 <p>However, compile avoidance can't be used for annotation processors discovered in the compile classpath since <em>any changes</em> in them require running the annotation processing tasks.</p>
 <p>To run kapt with compile avoidance:</p>
 <ul>
-<li>Add the annotation processor dependencies to the <code>kapt*</code> configurations manually as described <a href="#using-in-gradle">above</a>.</li>
+<li>Add the annotation processor dependencies to the <code>kapt*</code> configurations manually as described <a href="#在-gradle-中使用">above</a>.</li>
 <li>Turn off the discovery of annotation processors in the compile classpath by adding this line to your <code>gradle.properties</code> file:</li>
 </ul>
 <div class="sample" mode="xml" theme="idea">

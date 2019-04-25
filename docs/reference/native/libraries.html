@@ -852,6 +852,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/gradle_plugin.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1178,7 +1187,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The <strong>cinterop</strong> tool produces <code>.klib</code> wrappers for native libraries as its main output. 
 For example, using the simple <code>libgit2.def</code> native library definition file provided in your Kotlin/Native distribution</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ cinterop -def  samples/gitchurn/src/main/c_interop/libgit2.def -compilerOpts -I/usr/local/include -o libgit2
+<pre><code class="language-bash">$ cinterop -def  samples/gitchurn/src/nativeInterop/cinterop/libgit2.def -compilerOpts -I/usr/local/include -o libgit2
 </code></pre>
 </div>
 <p>we will obtain <code>libgit2.klib</code>.</p>

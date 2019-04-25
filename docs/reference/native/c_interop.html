@@ -852,6 +852,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/native/gradle_plugin.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1329,7 +1338,7 @@ Kotlin counterpart with the same width.</li>
 <li>Pointers and arrays are mapped to <code>CPointer&lt;T&gt;?</code>.</li>
 <li>Enums can be mapped to either Kotlin enum or integral values, depending on
 heuristics and the <a href="#definition-file-hints">definition file hints</a>.</li>
-<li>Structs are mapped to types having fields available via the dot notation,
+<li>Structs / unions are mapped to types having fields available via the dot notation,
 i.e. <code>someStructInstance.field1</code>.</li>
 <li><code>typedef</code> are represented as <code>typealias</code>.</li>
 </ul>
@@ -1507,7 +1516,7 @@ It allows using the APIs which require C pointers with a lifetime bound to a cer
 <p>In this example, all values passed to the C API <code>new_menu()</code> have a lifetime of the innermost <code>memScope</code>
 it belongs to. Once the control flow leaves the <code>memScoped</code> scope the C pointers become invalid.</p>
 <h3 id="passing-and-receiving-structs-by-value">Passing and receiving structs by value</h3>
-<p>When a C function takes or returns a struct <code>T</code> by value, the corresponding
+<p>When a C function takes or returns a struct / union <code>T</code> by value, the corresponding
 argument type or return type is represented as <code>CValue&lt;T&gt;</code>.</p>
 <p><code>CValue&lt;T&gt;</code> is an opaque type, so the structure fields cannot be accessed with
 the appropriate Kotlin properties. It should be possible, if an API uses structures
@@ -1535,9 +1544,6 @@ used:</p>
 <code>staticCFunction(::kotlinFunction)</code> can be used. It is also able to provide
 the lambda instead of a function reference. The function or lambda must not
 capture any values.</p>
-<p>Note that some function types are not supported currently. For example,
-it is not possible to get a pointer to a function that receives or returns structs
-by value.</p>
 <p>If the callback doesn't run in the main thread, it is mandatory to init the <em>Kotlin/Native</em>
 runtime by calling <code>kotlin.native.initRuntimeIfNeeded()</code>.</p>
 <h4 id="passing-user-data-to-callbacks">Passing user data to callbacks</h4>
