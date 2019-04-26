@@ -1200,7 +1200,7 @@ class DispatchersGuideTest {
 <li><a href="#父协程的职责">父协程的职责</a></li>
 <li><a href="#命名协程以用于调试">命名协程以用于调试</a></li>
 <li><a href="#组合上下文中的元素">组合上下文中的元素</a></li>
-<li><a href="#coroutine-scope">Coroutine scope</a></li>
+<li><a href="#协程作用域">协程作用域</a></li>
 <li><a href="#线程局部数据">线程局部数据</a></li>
 </ul>
 </li>
@@ -1559,18 +1559,18 @@ fun main() = runBlocking&lt;Unit&gt; {
 <pre><code class="code _highlighted" data-lang="text/plain">I'm working in thread DefaultDispatcher-worker-1 @test#2
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<h3 id="coroutine-scope">Coroutine scope</h3>
+<h3 id="协程作用域">协程作用域</h3>
 <p>让我们把有关上下文、子协程以及任务的知识梳理一下。假设我们的应用程序中有<!--
 -->一个在生命周期中的对象，但这个对象并不是协程。假如，我们写了一个 Android 应用程序<!--
 -->并在上下文中启动了多个协程来为 Android activity 进行异步操作来拉取<!--
 -->以及更新数据，或作动画等。当 activity 被销毁的时候这些协程必须被取消<!--
--->以防止内存泄漏。We, of course, can manipulate contexts and jobs manually to tie activity's
-and coroutines lifecycles, but <code>kotlinx.coroutines</code> provides an abstraction that encapsulates that: <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>.
-You should be already familiar with coroutine scope as all coroutine builders are declared as extensions on it.</p>
-<p>We manage a lifecycle of our coroutines by creating an instance of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> that is tied to
-the lifecycle of our activity. <code>CoroutineScope</code> instance can be created by <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> or <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
-factory functions. The former creates a general-purpose scope, while the latter creates scope for UI applications and uses
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> as default dispatcher:</p>
+-->以防止内存泄漏。我们当然可以手动操作上下文以及作业来绑定 activity
+与协程的生命周期，但是 <code>kotlinx.coroutines</code> 提供了一个抽象的封装：<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
+你应该已经熟悉了协程作用域，因为所有的协程构建器都被声明为扩展。</p>
+<p>我们通过创建一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 实例来管理协程的生命周期，并使它与
+activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 创建或者通过<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
+工厂函数。前者创建了一个通用作用域，而后者为使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> 作为默认调度器的 UI 应用程序
+创建作用域：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Activity {
     private val mainScope = MainScope()
@@ -1581,12 +1581,12 @@ factory functions. The former creates a general-purpose scope, while the latter 
     // 继续运行……
 </code></pre>
 </div>
-<p>Alternatively, we can implement <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> interface in this <code>Activity</code> class. The best way to do it is
-to use delegation with default factory functions.
-We also can combine the desired dispatcher (we used <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> in this example) with the scope:</p>
+<p>或者，我们可以在这个 <code>Activity</code> 类中实现 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 接口。最好的方法是<!--
+-->使用具有默认工厂函数的委托。
+我们也可以将所需的调度器与作用域合并（我们在这个示例中使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>）。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">    class Activity : CoroutineScope by CoroutineScope(Dispatchers.Default) {
-    // to be continued ...
+    // 继续运行……
 </code></pre>
 </div>
 <p>现在，在这个 <code>Activity</code> 的作用域中启动协程，且没有明确<!--
@@ -1698,9 +1698,9 @@ After yield, current thread: Thread[DefaultDispatcher-worker-2 @coroutine#2,5,ma
 Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value: 'main'
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p>Note how easily one may forget the corresponding context element and then still safely access thread local.
-To avoid such situations, it is recommended to use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/ensure-present.html">ensurePresent</a> method
-and fail-fast on improper usages.</p>
+<p>注意，使用者可能很容易忘记相应的上下文元素，然后仍然安全地访问本地线程。
+为避免这种情况，建议使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/ensure-present.html">ensurePresent</a> 方法<!--
+-->并且在不正确的使用上快速失败。</p>
 <p><code>ThreadLocal</code> 具有一流的支持，可以与任何原始的 <code>kotlinx.coroutines</code> 一起使用。
 它有一个关键限制：当线程局部发生突变，新值不会传递到协程调用者中
 （作为上下文元素不能跟踪所有的 <code>ThreadLocal</code> 对象访问）并且下次挂起时更新的值将丢失。

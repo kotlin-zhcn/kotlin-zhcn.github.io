@@ -1349,11 +1349,11 @@ Completed in 1017 ms
 <p>因此，在先前的例子中这里定义的两个协程没有被执行，但是控制权在于<!--
 -->程序员准确的在开始执行时调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>。我们首先
 调用 <code>one</code>，然后调用 <code>two</code>，接下来等待这个协程执行完毕。</p>
-<p>Note that if we have called <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> in <code>println</code> and omitted <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> on individual
-coroutines, then we would have got the sequential behaviour as <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> starts the coroutine 
-execution and waits for the execution to finish, which is not the intended use-case for laziness. 
-The use-case for <code>async(start = CoroutineStart.LAZY)</code> is a replacement for the 
-standard <code>lazy</code> function in cases when computation of the value involves suspending functions.</p>
+<p>注意，如果我们在 <code>println</code> 中调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 并在个别协程上省略 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>，<!--
+-->则我们会得到顺序的行为作为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 来启动协程的<!--
+-->执行并且等待执行结束，这不是懒序列的预期用例。
+当计算值涉及暂停函数时，该用例中使用 <code>async(start = CoroutineStart.LAZY)</code> 替换
+标准库中的 <code>lazy</code> 函数。</p>
 <h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
