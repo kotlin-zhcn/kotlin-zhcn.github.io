@@ -886,7 +886,7 @@ To change the generated function name with a custom name, use the <a href="/docs
 <li><code>(typeof ConsoleOutput === 'undefined' ? {} : ConsoleOutput, kotlin);</code> checks the existence of <code>ConsoleOutput</code>. If such a variable already exists in the scope, the new declarations will be added to it.</li>
 </ul>
 <p>Since the entire anonymous function is self-executing, it will execute as soon as the code is loaded. Its argument will be the object <code>kotlin</code> from <code>kotlin.js</code>.</p>
-<p>If you declare you Kotlin code in a package, <code>main</code> would be followed by a package definition part. For example, this is goes after the <code>main</code> declaration if you put your <code>main</code> function in the <code>org.example.hellojs</code> package:</p>
+<p>If you declare your Kotlin code in a package, <code>main</code> would be followed by a package definition part. For example, this goes after the <code>main</code> declaration if you put your <code>main</code> function in the <code>org.example.hellojs</code> package:</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">  var package$org = _.org || (_.org = {});
   var package$example = package$org.example || (package$org.example = {});
@@ -904,16 +904,15 @@ To change the generated function name with a custom name, use the <a href="/docs
         &lt;title&gt;Console Output&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;
-
-    &lt;script type="text/javascript" src="out/production/ConsoleOutput/lib/kotlin.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="out/production/ConsoleOutput/ConsoleOutput.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="out/production/ConsoleOutput/lib/kotlin.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="out/production/ConsoleOutput/ConsoleOutput.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 </div>
-<p>(我们使用HTML页面所在在相对路径来加载<code>*.js</code>文件)</p>
-<p>Make sure that you load the <code>kotlin.js</code> runtime first and then your application.</p>
-<p>这个空白页面会在控制台中输出<code>Hello JavaScript</code></p>
+<p>(Use the relative paths to the <code>*.js</code> files from the directory that contains the HTML page.)</p>
+<p>Make sure that you load the <code>kotlin.js</code> runtime first, and then your application.</p>
+<p>这个空白页面会在控制台中输出<code>Hello JavaScript!</code></p>
 <p><img alt="Application Output" src="/assets/images/tutorials/javascript/kotlin-to-javascript/app-output.png"/></p>
 <h2 id="概要">概要</h2>
 <p>As you see, Kotlin aims to create very concise and readable JavaScript allowing us to interact with it as needed. One question of course is why go to
