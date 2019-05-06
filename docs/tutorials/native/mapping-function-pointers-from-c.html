@@ -370,15 +370,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/interop-with-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">与 C 语言库互操作</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -413,24 +404,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">面向多平台</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/dynamic-libraries.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -449,11 +422,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+            <a href="/docs/tutorials/multiplatform-library.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Gradle 用于 Kotlin/Native</span>
+                <span class="text">发布 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
             </a>
     </div>
 
@@ -462,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目：iOS 与 Android</span>
+                <span class="text">构建 iOS 与 Android 应用</span>
             </a>
     </div>
 
@@ -828,7 +810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2018-07-20
+                            2019-04-15
                         </td>
                     </tr>
             </table>
@@ -856,29 +838,283 @@ example. We declare a function that accepts a function pointer as a parameter an
 another function that returns a function pointer.</p>
 <p>Kotlin/Native comes with the <code>cinterop</code> tool; the tool generates bindings between the C language and Kotlin.
 It uses a <code>.def</code> file to specify a C library to import. More details on this are
-in the <a href="interop-with-c.html">Interop with C Libraries</a> tutorial.</p>
+in the <a href="/docs/reference/native/c_interop.html">Interop with C Libraries</a> tutorial.</p>
 <p>The quickest way to try out C API mapping is to have all C declarations in the
-<code>lib.def</code> file, without creating any <code>.h</code> of <code>.c</code> files at all. Then place the C declarations 
+<code>interop.def</code> file, without creating any <code>.h</code> of <code>.c</code> files at all. Then place the C declarations 
 in a <code>.def</code> file after the special <code>---</code> separator line:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">
 ---
 
+int myFun(int i) {
+  return i+1;
+}
+
 typedef int  (*MyFun)(int);
 
-void  accept_fun(MyFun f) {}
-MyFun supply_fun() {}
+void accept_fun(MyFun f) {
+  f(42);
+}
+
+MyFun supply_fun() {
+  return myFun;
+}
 
 </code></pre>
 </div>
-<p>Now we call:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">cinterop -def lib.def -o lib.klib
-klib contents lib.klib
+<p>The <code>interop.def</code> file is enough to compile and run the application or open it in an IDE.
+Now it is time to create project files, open the project in
+<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> and run it.</p>
+<h2 id="inspecting-generated-kotlin-apis-for-a-c-library">Inspecting Generated Kotlin APIs for a C library</h2>
+<p>While it is possible to use the command line, either directly or
+by combining it with a script file (i.e., sh or bat file), we should notice,
+that it does not scale well for big projects that have hundreds of files and libraries.
+It is then better to use the Kotlin/Native compiler with a build system, as it
+helps to download and cache the Kotlin/Native compiler binaries and libraries with
+transitive dependencies and run the compiler and tests.
+Kotlin/Native can use the <a href="https://gradle.org">Gradle</a> build system through the
+<a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a> plugin.</p>
+<p>We covered the basics of setting up an IDE compatible project with Gradle in the
+<a href="basic-kotlin-native-app.html#create-gradle-project">A Basic Kotlin/Native Application</a>
+tutorial. Please check it out if you are looking for detailed first steps
+and instructions on how to start a new Kotlin/Native project and open it in IntelliJ IDEA.
+In this tutorial, we'll look at the advanced C interop related usages of Kotlin/Native 
+and
+<a href="/docs/reference/building-mpp-with-gradle.html">multiplatform</a>
+builds with Gradle.</p>
+<p>First, let's create a project folder. All the paths in this tutorial will be relative to this folder. Sometimes
+the missing directories will have to be created before any new files can be added.</p>
+<p>We'll use the following 
+<span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span>
+Gradle build file with the following contents:</p>
+<div class="multi-language-sample" data-lang="groovy" data-os="macos">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    compilations.main.cinterops {
+      interop 
+    }
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
-<p>and it prints the following Kotlin API for our C library declarations:</p>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="linux">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    compilations.main.cinterops {
+      interop 
+    }
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="windows">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    compilations.main.cinterops {
+      interop 
+    }
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    val main by compilations.getting
+    val interop by main.cinterops.creating
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="linux">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    val main by compilations.getting
+    val interop by main.cinterops.creating
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="windows">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    val main by compilations.getting
+    val interop by main.cinterops.creating
+    
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<p>The prepared project sources can be downloaded directly from
+<span class="multi-language-span" data-lang="groovy" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-macos-c.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-linux-c.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-windows-c.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-macos-c.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-linux-c.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-windows-c.zip">GitHub</a>
+</span></p>
+<p>The project file configures the C interop as an additional step of the build.
+Let's move the <code>interop.def</code> file to the <code>src/nativeInterop/cinterop</code> directory.
+Gradle recommends using conventions instead of configurations,
+for example, the source files are expected to be in the <code>src/nativeMain/kotlin</code> folder.
+By default, all the symbols from C are imported to the <code>interop</code> package,
+we may want to import the whole package in our <code>.kt</code> files.
+Check out the <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a>
+plugin documentation to learn about all the different ways you could configure it.</p>
+<p>Let's create a <code>src/nativeMain/kotlin/hello.kt</code> stub file with the following content
+to see how C primitive type declarations are visible from Kotlin:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import interop.*
+
+fun main() {
+  println("Hello Kotlin/Native!")
+  
+  accept_fun(/*fix me */)
+  val useMe = supply_fun()
+}
+</code></pre>
+</div>
+<p>Now we are ready to
+<a href="basic-kotlin-native-app.html#open-in-ide">open the project in IntelliJ IDEA</a>
+and to see how to fix the example project. While doing that,
+we'll examine how C functions are mapped into Kotlin/Native declarations.</p>
+<h2 id="c-function-pointers-in-kotlin">C Function Pointers in Kotlin</h2>
+<p>With the help of IntelliJ IDEA's <em>Goto Declaration</em> or
+compiler errors we see the following declarations for our C functions:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun accept_fun(f: MyFun? /* = CPointer&lt;CFunction&lt;(Int) -&gt; Int&gt;&gt;? */)
 fun supply_fun(): MyFun? /* = CPointer&lt;CFunction&lt;(Int) -&gt; Int&gt;&gt;? */
+
+fun myFun(i: kotlin.Int): kotlin.Int
 
 typealias MyFun = kotlinx.cinterop.CPointer&lt;kotlinx.cinterop.CFunction&lt;(kotlin.Int) -&gt; kotlin.Int&gt;&gt;
 
@@ -899,11 +1135,11 @@ function and pass the C function pointer to a Kotlin lambda:</p>
 
 </code></pre>
 </div>
-<p>We use <code>staticCFunction{..}</code> helper function from Kotlin/Native to wrap a Kotlin lambda function into a C Function pointer.
+<p>We use the <code>staticCFunction{..}</code> helper function from Kotlin/Native to wrap a Kotlin lambda function into a C function pointer.
 It only allows having unbound and non-capturing lambda functions. For example, it is not able
 to use a local variable from the function. We may only use globally visible declarations. Throwing exceptions
 from a <code>staticCFunction{..}</code> will end up in non-deterministic side-effects. It is vital to make sure that we are not 
-throwing any sudden exceptions from it</p>
+throwing any sudden exceptions from it.</p>
 <h2 id="using-the-c-function-pointer-from-kotlin">Using the C Function Pointer from Kotlin</h2>
 <p>The next step is to call a C function pointer from a C pointer that we have from the <code>supply_fun()</code> call:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
@@ -917,8 +1153,46 @@ throwing any sudden exceptions from it</p>
 </div>
 <p>Kotlin turns the function pointer return type into a nullable <code>CPointer&lt;CFunction&lt;..&gt;</code> object. There is the need
 to explicitly check for <code>null</code> first. We use <a href="../../reference/null-safety.html">elvis operator</a> for that.
-The <code>cinterop</code> tool helps us to turn a C function pointer into an easy to call object in Kotlin. That is
-what we did with the last line</p>
+The <code>cinterop</code> tool helps us to turn a C function pointer into an easy to call object in Kotlin. This is
+what we did on the last line.</p>
+<h2 id="fixing-the-code">Fixing the Code</h2>
+<p>We've seen all definitions and it is time to fix and run the code.
+Let's run the <code>runDebugExecutableNative</code> Gradle task <a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a>
+or use the following command to run the code:</p>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">gradlew.bat runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<p>The code in the <code>hello.kt</code> file may look like this:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import interop.*
+import kotlinx.cinterop.*
+
+fun main() {
+  println("Hello Kotlin/Native!")
+ 
+  val cFunctionPointer = staticCFunction&lt;Int, Int&gt; { it + 1 }
+  accept_fun(cFunctionPointer)
+
+  val funFromC = supply_fun() ?: error("No function is returned")
+  funFromC(42)
+}
+</code></pre>
+</div>
 <h2 id="next-steps">Next Steps</h2>
 <p>We will continue exploring more C language types and their representation in Kotlin/Native
 in next tutorials:</p>

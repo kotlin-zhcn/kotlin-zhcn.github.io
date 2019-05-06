@@ -370,15 +370,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/interop-with-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">与 C 语言库互操作</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -415,24 +406,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">面向多平台</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/dynamic-libraries.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -449,11 +422,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+            <a href="/docs/tutorials/multiplatform-library.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Gradle 用于 Kotlin/Native</span>
+                <span class="text">发布 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
             </a>
     </div>
 
@@ -462,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目：iOS 与 Android</span>
+                <span class="text">构建 iOS 与 Android 应用</span>
             </a>
     </div>
 
@@ -828,7 +810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2018-08-05
+                            2019-04-15
                         </td>
                     </tr>
             </table>
@@ -859,7 +841,7 @@ out of the Kotlin code. The created framework contains all declarations
 and binaries needed to use it with Objective-C and Swift.
 The best way to understand the techniques is to try it for ourselves. 
 Let's create a tiny Kotlin library first and use it from an Objective-C program.</p>
-<p>We create the <code>lib.kt</code> file with the library contents:</p>
+<p>We create the <code>hello.kt</code> file with the library contents:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package example
 
@@ -886,20 +868,163 @@ fun acceptFun(f: (String) -&gt; String?) = f("Kotlin/Native rocks!")
 fun supplyFun() : (String) -&gt; String? = { "$it is cool!" }
 </code></pre>
 </div>
-<p>We need to have a Kotlin/Native compiler on our machines. 
-More information on performing this step can be found in the
-<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
-tutorial.
-Let's assume we have a console, where the <code>kotlinc-native</code> command is available.</p>
-<p>Now let's call the following commands to compile the code into frameworks
-for macOS, iOS, and an iOS simulator respectively:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native lib.kt -produce framework -target macos_x64 -output macOS/Demo
-kotlinc-native lib.kt -produce framework -target ios_arm64 -output iOS/Demo
-kotlinc-native lib.kt -produce framework -target ios_x64 -output iOS_sim/Demo
+<p>While it is possible to use the command line, either directly or
+by combining it with a script file (i.e., sh or bat file), we should notice,
+that it does not scale well for big projects that have hundreds of files and libraries.
+It is then better to use the Kotlin/Native compiler with a build system, as it
+helps to download and cache the Kotlin/Native compiler binaries and libraries with
+transitive dependencies and run the compiler and tests.
+Kotlin/Native can use the <a href="https://gradle.org">Gradle</a> build system through the
+<a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a> plugin.</p>
+<p>We covered the basics of setting up an IDE compatible project with Gradle in the
+<a href="basic-kotlin-native-app.html#create-gradle-project">A Basic Kotlin/Native Application</a>
+tutorial. Please check it out if you are looking for detailed first steps
+and instructions on how to start a new Kotlin/Native project and open it in IntelliJ IDEA.
+In this tutorial, we'll look at the advanced C interop related usages of Kotlin/Native 
+and
+<a href="/docs/reference/building-mpp-with-gradle.html">multiplatform</a>
+builds with Gradle.</p>
+<p>First, let's create a project folder. All the paths in this tutorial will be relative to this folder. Sometimes
+the missing directories will have to be created before any new files can be added.</p>
+<p>We'll use the following 
+<span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span>
+Gradle build file with the following contents:</p>
+<div class="multi-language-sample" data-lang="groovy" data-os="macos">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      framework {
+        baseName = "Demo"
+      }
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
-<p>The <code>kotlinc-native</code> generates three frameworks for us, named <code>Demo.framework</code> under 
-<code>macOS</code>, <code>iOS</code>, and <code>iOS_sim</code> folders respectively.</p>
-<p>Let's see what is inside</p>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      framework {
+        baseName = "Demo"
+      }
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<p>The prepared project sources can be directly downloaded from 
+<span class="multi-language-span" data-lang="groovy" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-framework-groovy-macos-mac.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-framework-kotlin-macos-mac.zip">GitHub</a>
+</span></p>
+<p>Let's move the sources file into the <code>src/nativeMain/kotlin</code> folder under
+the project. That is the default path, where sources are located, when
+the <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a>
+plugin is used. We use the following block to instruct configure the project
+to generate a dynamic or shared library for us:</p>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">binaries {
+  framework {
+    baseName = "Demo"
+  }  
+}
+</code></pre>
+</div>
+<p>Along with <code>macOS X64</code>, Kotlin/Native supports iOS <code>arm32</code>, <code>arm64</code> and <code>X64</code>
+targets. We may replace the <code>macosX64</code> with respective functions as shown
+in the table:</p>
+<table class="zebra">
+<thead>
+<tr>
+<th>Target platform/device</th>
+<th>Gradle function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>macOS x86_64</td>
+<td><code>macosX64()</code></td>
+</tr>
+<tr>
+<td>iOS ARM 32</td>
+<td><code>iosArm32()</code></td>
+</tr>
+<tr>
+<td>iOS ARM 64</td>
+<td><code>iosArm64()</code></td>
+</tr>
+<tr>
+<td>iOS Simulator (x86_64)</td>
+<td><code>iosX64()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Let's run the <code>linkNative</code> Gradle task to build the library 
+<a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a> 
+or by calling the following console command:</p>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew linkNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew linkNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">gradlew.bat linkNative
+</code></pre>
+</div>
+</div>
+<p>Depending on the variant, the build generates the framework
+into the
+<code>build/bin/native/debugFramework</code>
+and
+<code>build/bin/native/releaseFramework</code>
+folders.
+Let's see what is inside</p>
 <h2 id="generated-framework-headers">Generated Framework Headers</h2>
 <p>Each of the created frameworks contains the header file in <code>&lt;Framework&gt;/Headers/Demo.h</code>.
 The headers do not depend on the target platform (at least with Kotlin/Native v.0.9.2).
@@ -1178,7 +1303,7 @@ int main(int argc, const char * argv[]) {
 }
 </code></pre>
 </div>
-<p>We call Kotlin classes directly from Objective-C code. Kotlin <code>object</code> has the class method 
+<p>We call Kotlin classes directly from Objective-C code. A Kotlin <code>object</code> has the class method 
 function <code>object</code>, which allows us to get the only instance of the object and to call 
 <code>Object</code> methods on it. 
 The widespread pattern is used to create an instance of the <code>Clazz</code> class. We call
@@ -1231,7 +1356,7 @@ target platform.</p>
 <h2 id="xcode-for-macos-target">Xcode for MacOS Target</h2>
 <p>First, we need to include the framework in the <code>General</code> section of the <em>target</em>
 configuration. There is the <code>Linked Frameworks and Libraries</code> section to include
-our framework. That will make Xcode look at our framework and resolve imports both
+our framework. This will make Xcode look at our framework and resolve imports both
 from Objective-C and Swift.</p>
 <p>The second step is to configure the framework search path of the produced
 binary. It is also known as <code>rpath</code> or <a href="https://en.wikipedia.org/wiki/Rpath">run-time search path</a>.
@@ -1239,12 +1364,12 @@ The binary uses the path to look for the required frameworks. We do not recommen
 installing additional frameworks to the OS if it is not needed. We should understand the layout
 of our future application, for example, 
 we may have the <code>Frameworks</code> folder under the application bundle with all the frameworks we use. 
-The <code>@rpath</code> parameter can be configured in the Xcode. We need to open
-the <em>project</em> configuration and find the <code>Runpath Search Paths</code> section. There we specify
+The <code>@rpath</code> parameter can be configured in Xcode. We need to open
+the <em>project</em> configuration and find the <code>Runpath Search Paths</code> section. Here we specify
 the relative path to the compiled framework.</p>
 <h2 id="xcode-for-ios-targets">Xcode for iOS Targets</h2>
 <p>First, we need to include the compiled framework into the Xcode project. For
-that we add the framework to the <code>Embedded Binaries</code> block of the <code>General</code> section of
+this we add the framework to the <code>Embedded Binaries</code> block of the <code>General</code> section of
 the <em>target</em> configuration page.</p>
 <p>The second step is to then include the framework path into the <code>Framework Search Paths</code> block
 of the <code>Build Settings</code> section of the <em>target</em> configuration page. It is possible to use <code>$(PROJECT_DIR)</code>

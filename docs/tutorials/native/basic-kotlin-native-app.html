@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/basic-kotlin-native-app.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="看看如何编译我们的第一个 Kotlin/Native 应用程序">
+    <meta property="og:description" content="A look at how to compile our first Kotlin/Native application and open it in an IDE">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="看看如何编译我们的第一个 Kotlin/Native 应用程序">
+    <meta name="twitter:description" content="A look at how to compile our first Kotlin/Native application and open it in an IDE">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>基本 Kotlin/Native 应用程序 - Kotlin 语言中文站</title>
+    <title>A Basic Kotlin/Native Application - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -368,15 +368,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/interop-with-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">与 C 语言库互操作</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -413,24 +404,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">面向多平台</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/dynamic-libraries.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -449,11 +422,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+            <a href="/docs/tutorials/multiplatform-library.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Gradle 用于 Kotlin/Native</span>
+                <span class="text">发布 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
             </a>
     </div>
 
@@ -462,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目：iOS 与 Android</span>
+                <span class="text">构建 iOS 与 Android 应用</span>
             </a>
     </div>
 
@@ -820,7 +802,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                基本 Kotlin/Native 应用程序
+                A Basic Kotlin/Native Application
             </h1>
             <table>
                     <tr>
@@ -828,63 +810,405 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2017-12-03
+                            2019-04-15
                         </td>
                     </tr>
             </table>
-                看看如何编译我们的第一个 Kotlin/Native 应用程序
+                A look at how to compile our first Kotlin/Native application and open it in an IDE
                 <br/>
                 <br/>
             
-<p>在本教程中我们将会学习到：</p>
+<p>In this tutorial, we'll look at how to</p>
 <ul>
-<li><a href="#obtaining-the-compiler">获取 Kotlin/Native 编译器</a></li>
-<li><a href="#creating-hello-kotlin">编写应用程序</a></li>
-<li><a href="#compiling-and-examining-output">编译和测试输出</a></li>
-<li><a href="#running-the-application">运行应用程序</a></li>
+<li><a href="#obtaining-the-compiler">Obtain the Kotlin/Native compiler</a></li>
+<li><a href="#creating-hello-kotlin">Write the application</a></li>
+<li><a href="#creating-a-kotlinnative-gradle-project">Create build files</a></li>
+<li><a href="#open-in-ide">Set up an IDE</a></li>
+<li><a href="#running-the-application">Run the application</a></li>
 </ul>
 <h2 id="获取编译器">获取编译器</h2>
-<p>Kotlin/Native 是可以运行在 macOS，Linux 和 Windows 上的。由于我们是工作在不同的操作系统上，因此需要正确地下载<!--
--->对应的编译器。虽然跨平台交叉编译是可行的（例如使用一个系统编译成另一个系统的可执行文件），在第一次的教程当中<!--
--->我们将会编译出与当前运行的操作系统一致的结果。本例中使用的将会是 macOS。</p>
-<p>我们可以从 <a href="https://github.com/JetBrains/kotlin-native/releases">GitHub releases page</a> 获取到最新版的编译器。</p>
-<p>一旦下载完成，我们可以把它解压到任意文件夹中，例如放在 ~/kotlin-native 这个路径里。为了方便起见，把 <code>bin</code> 文件夹放到系统的环境变量中是非常有用的，这样我们就可以在任意地方调用<!--
--->编译器。（如果我们把文件解压到 ~/kotlin-native，那么路径应该是 ~/kotlin-native/bin）</p>
-<p>虽然编译器的输出不需要任何依赖，但是编译器本身是需要 Java 8 的，这也就意味着操作系统中应该要有对应的环境。如果我们使用的是 macOS，那么我们就需要通过安装 Xcode 来安装 macOS SDK。</p>
+<p>The Kotlin/Native compiler is available for macOS, Linux, and Windows. It supports
+different targets including iOS (arm32, arm64, simulator x86_64), Windows (mingw32 and x86_64),
+Linux (x86_64, arm64, MIPS), macOS (x86_64), Raspberry PI, SMT32, WASM. For the full list of targets
+we can refer to the <a href="/docs/reference/native-overview.html">Kotlin/Native overview</a>.
+While cross-platform compilation is possible
+(i.e., using one platform to compile for another), in this first tutorial
+we are only compiling for the operating system we're running on.</p>
+<p>The best way to use the Kotlin/Native compiler is with a build system.
+It helps by downloading and caching the Kotlin/Native compiler binaries and libraries with
+transitive dependencies, and running the compiler and tests.
+It caches the compilation results too.
+A build system can also be used by an IDE to understand the project layout.</p>
+<p>Kotlin/Native uses the <a href="https://gradle.org">Gradle</a> build system through the
+<a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a> plugin.
+We'll look at how to configure a Gradle build below.
+For some corner cases, a Kotlin/Native compiler can still be obtained manually (not recommended)
+from the <a href="https://github.com/JetBrains/kotlin/releases">Kotlin releases page on GitHub</a>.
+In the tutorial, we are focusing on using the Gradle builds.</p>
+<p>While the output of the compiler does not have any dependencies or virtual machine requirements,
+the compiler itself and the Gradle build system require a Java 1.8 or 11 runtime. Check out the
+<a href="https://jdk.java.net/11/">https://jdk.java.net/11</a> or another resource
+for the best JRE, OpenJDK, or JDK distribution.</p>
 <h2 id="创建-hello-kotlin">创建 Hello Kotlin</h2>
-<p>我们的第一个应用程序将会是简单的输出一些文本。本例中，这些文本将会是“Hello Kotlin/Native”。</p>
-<p>我们可以打开自己喜欢的 IDE 或者编辑器，编写如下代码并把文件命名为：<code>hello.kt</code></p>
-<div class="sample" theme="idea">
-<pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
-    println("Hello Kotlin/Native!")
+<p>Our first application is simply going to print some text on the standard output. In our case, this text is "Hello Kotlin/Native".
+We can open up our favorite IDE or editor and write the following code in a file named <code>hello.kt</code>:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+  println("Hello Kotlin/Native!")
 }
 </code></pre>
 </div>
-<h2 id="编译和测试输出">编译和测试输出</h2>
-<p>Kotlin 编译器使用的是一种被称为 <a href="https://en.wikipedia.org/wiki/LLVM">LLVM</a> 的技术来支持多个平台。LLVM 需要中间码（或者被称为 IR）作为输入。IR 
-是一种字节码的代表，该文件是比特流文件格式。</p>
-<p><img alt="Compiler Diagram" src="/assets/images/tutorials/native/basic-kotlin-native/llvm-diagram.png"/></p>
-<p>我们现在需要使用之前下载好的编辑器来进行编译工作。如果我们正确的把 <code>bin</code> 文件夹<!--
--->添加到环境变量中，那么我们应该可以直接使用如下命令来调用编译器：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native hello.kt
+<h2 id="compiling-the-code-from-the-console">Compiling the code from the console</h2>
+<p>To manually compile the application call the <a href="https://github.com/JetBrains/kotlin/releases">downloaded</a>
+compiler and generate a <code>hello.kexe</code> (Linux and macOS) or <code>hello.exe</code> (Windows)
+binary file:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native hello.kt -o hello
 </code></pre>
-<p>这是告诉编译器来编译 <code>hello.kt</code> 文件中的源码。</p>
-<p>编译器第一次运行的时候会下载一些相关的依赖，因此第一次编译的时候会花费较长的时间。如果所有的步骤都正确执行了，那么输出的文件<!--
--->应该会是 <code>program.kexe</code>。</p>
-<p>该文件是针对我们目标平台所实际生成的二进制文件。编译器为我们提供了一系列的选项，其中一个<!--
--->是用来定义输出的文件名。为了实现这个效果，我们可以使用 -output (or -o) 选项，如下：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native -o first hello.kt
+<p>While compilation from the console seems to be easy and clear, we should notice, that it
+does not scale well for bigger projects with hundreds of files and libraries.
+In addition to this, the command line approach does not explain to an IDE how to open such a project,
+where the sources are located, what dependencies are used, or how the dependencies are downloaded and so on.</p>
+<p><a name="create-gradle-project"></a></p>
+<h2 id="creating-a-kotlinnative-gradle-project">Creating a Kotlin/Native Gradle project</h2>
+<p>The <em>New Project</em> wizard in IntelliJ IDEA can be used to start a new Kotlin/Native project with just one click.
+Check out the <em>Kotlin</em> section and select the <em>Native | Gradle</em> option to generate the project.
+For a better understanding and to explain what's happening, in this tutorial we'll create the project manually.</p>
+<p>Let's first create a project folder. All the paths in this tutorial will be relative to this folder. Sometimes
+the missing directories will have to be created before new files are added.</p>
+<p>Gradle supports two languages for the build scripts. We have the following
+options:</p>
+<ul>
+<li>Groovy scripts in <code>build.gradle</code> files</li>
+<li>Kotlin scripts in <code>build.gradle.kts</code> files</li>
+</ul>
+<p>Groovy language is the oldest supported scripting language for Gradle,
+it leverages the power of the dynamic typing and runtime features of the language.
+Sometimes it can be harder to maintain Groovy build scripts. IDEs are struggling
+to get through the dynamism of Groovy to provide helpful insights or
+code completion.</p>
+<p>Kotlin as a statically typed programming language plays well for writing
+Gradle build scripts.
+Thanks to the static type inference, the Kotlin compiler detects errors earlier and
+shows important compilation error messages and warnings.
+Both an IDE and the compiler can use the information about types to infer
+the available functions and properties in a given scope.</p>
+<p>We create
+<span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span>
+Gradle build file with the following contents:</p>
+<div class="multi-language-sample" data-lang="groovy" data-os="macos">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
-<p>这样生成的文件就应该是：<code>first.kexe</code>。</p>
-<p>后缀名是无法进行修改的，因为这取决于目标平台，但是我们仍然可以使用<!--
--->常用的系统命令来把这些可执行文件重命名为任何喜欢的名字。</p>
-<h2 id="运行应用程序">运行应用程序</h2>
-<p>为了运行程序，我们可以这样进行调用：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">./program.kexe
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="linux">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
-<p>有个非常重要的事情需要明白，那就是这是一个原生的应用程序，不需要额外的运行环境或者虚拟机来支持，输出的内容如下：</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">Hello Kotlin/Native!
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="windows">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="linux">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="windows">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<p>The prepared project sources can be directly downloaded from
+<span class="multi-language-span" data-lang="groovy" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-macos.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-linux.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-groovy-windows.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-macos.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-linux.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-app-kotlin-windows.zip">GitHub</a>
+</span></p>
+<p>Now need to create an empty
+<span class="multi-language-span" data-lang="kotlin">
+<code>settings.gradle.kts</code>
+</span><span class="multi-language-span" data-lang="groovy">
+<code>settings.gradle</code>
+</span>
+file in the project root directory.</p>
+<p>Depending on the target platform, we use different <a href="/docs/reference/building-mpp-with-gradle.html">functions</a>,
+e.g. <code>macosX64</code>, <code>mingwX64</code>, <code>linuxX64</code>, <code>iosX64</code>,
+to create the Kotlin target. The function name is the platform which we are compiling our code for.
+These functions optionally take the target name as a parameter, which is <code>"native"</code> in our case.
+The specified <em>target name</em> is used to generate the source paths and task names in the project.</p>
+<p>By the convention, all sources are located in the <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> folders.
+It creates <em>main</em> and <em>test</em> source sets for every target. Let's place the <code>hello.kt</code>
+we previously created into the <em>main</em> source set folder, which is <code>src/nativeMain/kotlin</code>.
+The <code>nativeMain</code> folder comes from the <code>"native"</code> target name, which we specified in the build script above.</p>
+<p>The project is ready. The next step is to open it in IntelliJ IDEA. For advanced build scenarios,
+it is recommended to refer to the
+<a href="/docs/reference/building-mpp-with-gradle.html#setting-up-a-multiplatform-project">more detailed</a>
+documentation.</p>
+<p>Anyone wanting to continue on without an IDE, will need to download and install the
+<a href="https://gradle.org">Gradle</a> build tool.
+Make sure to use the right version of Gradle (e.g. 5.4.1 or newer).
+Running the <code>gradle wrapper</code> command will complete the project creation.
+<a href="https://docs.gradle.org/current/userguide/getting_started.html">Getting Started with Gradle</a>
+explains in detail how to start using Gradle projects.</p>
+<p><a name="open-in-ide"></a></p>
+<h2 id="opening-the-project-in-ide">Opening the Project in IDE</h2>
+<p>We are using <a href="https://jetbrains.com/idea">IntelliJ IDEA</a> for this tutorial.
+Both the <a href="https://www.jetbrains.com/idea/features/editions_comparison_matrix.html">free and open source</a>
+IntelliJ IDEA <a href="https://www.jetbrains.com/idea/download">Community Edition</a> and
+IntelliJ IDEA Ultimate Edition work for this tutorial.
+We can download and install both of them from <a href="https://jetbrains.com/idea/download">https://jetbrains.com/idea/download</a> if necessary.
+The Kotlin plugin is included with IntelliJ IDEA by default, but still, we need to make sure the Kotlin plugin version
+is 1.3.31 (or newer) in the <em>Settings</em> or <em>Preferences</em> dialog, under
+the Language &amp; Frameworks | Kotlin section.</p>
+<p>At this point, we should have a Gradle project that is ready to be opened in an IDE.
+IntelliJ IDEA (CLion, AppCode, or AndroidStudio) helps us to generate the
+<a href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">Gradle Wrapper</a>
+scripts for our project.</p>
+<p>Now let's open the project in IntelliJ IDEA. For that we click on the File | Open… and select
+our
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span><span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+project file.</p>
+<p><img alt="Open Project Dialog" src="/assets/images/tutorials/native/basic-kotlin-native/idea-open-as-project.png" width="70%"/></p>
+<p>Confirm to open the file <em>as Project</em>.</p>
+<p><img alt="Gradle Import Dialog" src="/assets/images/tutorials/native/basic-kotlin-native/idea-import-gradle.png"/></p>
+<p>Select <em>Use gradle 'wrapper' task configuration</em> option in the Gradle import dialog to complete the import.
+For existing projects, which already have Gradle wrapper scripts, the <em>Use default Gradle wrapper</em>
+option should be selected instead.</p>
+<p>Use the path to the Java runtime version 1.8 or 11 for the <em>Gradle JVM</em> field. Check out the
+<a href="https://jdk.java.net/11/">https://jdk.java.net/11</a> or <a href="https://adoptopenjdk.net/">https://adoptopenjdk.net/</a>
+for the best JRE, OpenJDK, or JDK distribution.</p>
+<p><a name="run-in-ide"></a></p>
+<h2 id="running-the-application">Running the application</h2>
+<p>Usually, a native binary can be compiled as <em>debug</em> with more debug information and fewer optimizations, and <em>release</em>
+where optimizations are enabled and there is no (or at least less) debug information available.
+The binary files are created in the <code>build/bin/native/debugExecutable</code> or <code>build/bin/native/releaseExecutable</code>
+folders respectively. The file has a <code>.kexe</code> extension on Linux and macOS and an <code>.exe</code> extension on Windows. Use the following command
+to instruct the build to produce binaries:</p>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew build
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew build
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">gradlew.bat build
+</code></pre>
+</div>
+</div>
+<p>It's important to understand that this is now a native application, and no
+runtime or virtual machine is required.
+We can now run the compiled binary from the console:</p>
+<pre><code>Hello Kotlin/Native!
+</code></pre>
+<p>In addition to the build tasks, the Gradle build includes helpful
+tasks to run the application directly via
+<code>runDebugExecutableNative</code> and <code>runReleaseExecutableNative</code>.</p>
+<p>The names of these tasks were created from the formula:
+<code>run[Debug|Release]Executable&lt;target name&gt;</code>,
+where <code>target name</code> is the capitalized target name that we specified in the
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span><span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+file out of our build, <code>"native"</code> in our case.
+Let's run the task in the IDE. For that, let's open the Gradle Tool Window
+and find the task in the list:
+<img alt="Gradle Import Dialog" src="/assets/images/tutorials/native/basic-kotlin-native/idea-run-gradle-task.png"/></p>
+<p>Alternatively, we may call the following command from the console:</p>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">gradlew.bat runDebugExecutableNative
+</code></pre>
+</div>
+</div>
+<p>The output should be:</p>
+<pre><code>&gt; Task :runDebugExecutableNative
+Hello Kotlin/Native!
+
+BUILD SUCCESSFUL
+</code></pre>
+<h2 id="next-steps">Next Steps</h2>
+<p>Kotlin/Native can be used for many
+<a href="targeting-multiple-platforms.html">targets</a> and applications,
+including, but not limited to
+macOS, Windows, Linux, and <a href="/docs/tutorials/native/mpp-ios-android.html">iOS</a>.</p>
+<p>Calling C, Objective-C, or Swift from Kotlin/Native is easy. Take a look at
+the <a href="/docs/reference/native/c_interop.html">C Interop documentation</a> or
+<a href="/docs/reference/native/objc_interop.html">Objective-C and Swift</a> interop
+documentation or check out one of our tutorials.</p>
+<p>With Kotlin <a href="/docs/reference/multiplatform.html">multiplatform</a> projects, it is possible to
+share the same Kotlin code between all the supported platforms.
+Check out the tutorial on <a href="/docs/tutorials/native/mpp-ios-android.html">sharing Kotlin code between iOS and Android</a>
+or have a look at how to build your own <a href="/docs/tutorials/multiplatform-library.html">multiplatform library</a>.</p>
 
         </article>
     </div>

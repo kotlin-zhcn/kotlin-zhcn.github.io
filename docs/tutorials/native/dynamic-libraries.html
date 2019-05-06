@@ -370,15 +370,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/interop-with-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">与 C 语言库互操作</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -415,24 +406,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">面向多平台</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
                 <div class="text">Kotlin/Native 开发动态库</div>
@@ -449,11 +422,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+            <a href="/docs/tutorials/multiplatform-library.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Gradle 用于 Kotlin/Native</span>
+                <span class="text">发布 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
             </a>
     </div>
 
@@ -462,7 +444,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">多平台项目：iOS 与 Android</span>
+                <span class="text">构建 iOS 与 Android 应用</span>
             </a>
     </div>
 
@@ -828,7 +810,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2018-08-05
+                            2019-04-15
                         </td>
                     </tr>
             </table>
@@ -836,12 +818,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>In this tutorial, we look at how we can use a Kotlin/Native code from
+<p>In this tutorial, we look at how we can use the Kotlin/Native code from
 existing native applications or libraries. For this, we need to
-compile our Kotlin code into a dynamic library, <code>.so</code>, <code>.dylib</code> and <code>.dll</code>.</p>
+compile our Kotlin code into a dynamic library, <code>.so</code>, <code>.dylib</code>, and <code>.dll</code>.</p>
 <p>Kotlin/Native also has tight integration with Apple technologies.
 The <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>
-tutorial explains how to compile Kotlin code into framework for Swift and Objective-C.</p>
+tutorial explains how to compile Kotlin code into a framework for Swift and Objective-C.</p>
 <p>In this tutorial, we will:</p>
 <ul>
 <li><a href="#creating-a-kotlin-library">Compile a Kotlin code to a dynamic library</a></li>
@@ -853,12 +835,11 @@ and <a href="#compiling-and-running-the-example-on-windows">Windows</a></li>
 <h2 id="creating-a-kotlin-library">Creating a Kotlin Library</h2>
 <p>Kotlin/Native compiler can produce a dynamic
 library out of the Kotlin code we have.
-A dynamic library often comes with a header file, an <code>.h</code> file,
-which we will use to call compiled code from C</p>
+A dynamic library often comes with a header file, a <code>.h</code> file,
+which we will use to call compiled code from C.</p>
 <p>The best way to understand these techniques is to try them out. 
-Let's create a tiny Kotlin library first and use it from a C program 
-then.</p>
-<p>We can start by creating a library file in Kotlin and save it as <code>lib.kt</code>:</p>
+Let's create a first tiny Kotlin library and use it from a C program.</p>
+<p>We can start by creating a library file in Kotlin and save it as <code>hello.kt</code>:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package example
 
@@ -880,23 +861,288 @@ fun strings(str: String) : String? {
 val globalString = "A global String"
 </code></pre>
 </div>
-<p>We need to have a Kotlin/Native compiler on our machines.
-More information on performing this step can be found in the
-<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin/Native Application</a>
-tutorial.
-Let's assume that we have a console, where the <code>kotlinc-native</code> command is available.</p>
-<p>Now we can call the following command to compile the code into a dynamic library:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native lib.kt -produce dynamic -output demo
+<p>While it is possible to use the command line, either directly or
+by combining it with a script file (i.e., sh or bat file), we should notice,
+that it does not scale well for big projects that have hundreds of files and libraries.
+It is then better to use the Kotlin/Native compiler with a build system, as it
+helps to download and cache the Kotlin/Native compiler binaries and libraries with
+transitive dependencies and run the compiler and tests.
+Kotlin/Native can use the <a href="https://gradle.org">Gradle</a> build system through the
+<a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a> plugin.</p>
+<p>We covered the basics of setting up an IDE compatible project with Gradle in the
+<a href="basic-kotlin-native-app.html#create-gradle-project">A Basic Kotlin/Native Application</a>
+tutorial. Please check it out if you are looking for detailed first steps
+and instructions on how to start a new Kotlin/Native project and open it in IntelliJ IDEA.
+In this tutorial, we'll look at the advanced C interop related usages of Kotlin/Native 
+and
+<a href="/docs/reference/building-mpp-with-gradle.html">multiplatform</a>
+builds with Gradle.</p>
+<p>First, let's create a project folder. All the paths in this tutorial will be relative to this folder. Sometimes
+the missing directories will have to be created before any new files can be added.</p>
+<p>We'll use the following 
+<span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span>
+Gradle build file with the following contents:</p>
+<div class="multi-language-sample" data-lang="groovy" data-os="macos">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "native"
+      }
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
 </code></pre>
-<p>The <code>kotlinc-native</code> (with v0.9.2) generates the following files, depending on the host OS:</p>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="linux">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "native"
+      }
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="windows">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "libnative"
+      }
+    }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "native"
+      }
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="linux">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "native"
+      }
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="windows">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    binaries {
+      sharedLib {
+        baseName = "libnative"
+      }
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<p>The prepared project sources can be directly downloaded from 
+<span class="multi-language-span" data-lang="groovy" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-groovy-linux.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-groovy-macos.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-groovy-windows.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="macos">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-kotlin-linux.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="linux">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-kotlin-macos.zip">GitHub</a>
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="windows">
+<a href="https://github.com/JetBrains/kotlin-web-site-samples/archive/origin/mpp-kn-shared-lib-kotlin-windows.zip">GitHub</a>
+</span></p>
+<p>Let's move the sources file into the <code>src/nativeMain/kotlin</code> folder under
+the project. This is the default path, for where sources are located, when
+the <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a>
+plugin is used. We use the following block to instruct and configure the project
+to generate a dynamic or shared library for us:</p>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">binaries {
+  sharedLib {
+    baseName = "native"
+  }  
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">binaries {
+  sharedLib {
+    baseName = "native"
+  }  
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">binaries {
+  sharedLib {
+    baseName = "libnative"
+  }  
+}
+</code></pre>
+</div>
+</div>
+<p>The <code>libnative</code> is used as the library name, the generated
+header file name prefix. It is also prefixes all declarations in the
+header file.</p>
+<p>Now we are ready to
+<a href="basic-kotlin-native-app.html#open-in-ide">open the project in IntelliJ IDEA</a>
+and to see how to fix the example project. While doing this,
+we'll examine how C functions are mapped into Kotlin/Native declarations.</p>
+<p>Let's run the <code>linkNative</code> Gradle task to build the library 
+<a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a> 
+or by calling the following console command:</p>
+<div class="multi-language-sample" data-os="linux">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew linkNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="macos">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">./gradlew linkNative
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-os="windows">
+<div class="sample" data-highlight-only="" mode="bash" theme="idea">
+<pre><code class="language-bash">gradlew.bat linkNative
+</code></pre>
+</div>
+</div>
+<p>The build generates the following files under the <code>build/bin/native/debugShared</code>
+folder, depending on the host OS:</p>
 <ul>
-<li>macOS: <code>demo_api.h</code> and <code>libdemo.dylib</code></li>
-<li>Linux: <code>demo_api.h</code> and <code>libdemo.so</code></li>
-<li>Windows: <code>demo_api.h</code>, <code>demo_symbols.def</code> and <code>demo.dll</code></li>
+<li>macOS: <code>libnative_api.h</code> and <code>libnative.dylib</code></li>
+<li>Linux: <code>libnative_api.h</code> and <code>libnative.so</code></li>
+<li>Windows: <code>libnative_api.h</code>, <code>libnative_symbols.def</code> and <code>libnative.dll</code></li>
 </ul>
-<p>Let's check the C API for our Kotlin code in the <code>demo_api.h</code></p>
+<p>The same rules are used by the Kotlin/Native compiler
+to generate the <code>.h</code> file for all platforms.<br/>
+Let's check out the C API of our Kotlin library.`</p>
 <h2 id="generated-headers-file">Generated Headers File</h2>
-<p>In the <code>demo_api.h</code> (with Kotlin/Native v0.9.2) we'll find the following code. 
+<p>In the <code>libnative_api.h</code>, we'll find the following code. 
 We will discuss the code in parts to make it easier to understand.</p>
 <p>Note, the way Kotlin/Native exports symbols is subject to change without notice.</p>
 <p>The very first part contains the standard C/C++ header and footer:</p>
@@ -915,125 +1161,188 @@ extern "C" {
 #endif  /* KONAN_DEMO_H */
 </code></pre>
 </div>
-<p>After the rituals in the <code>demo_api.h</code> we have a block with the common type definitions:</p>
+<p>After the rituals in the <code>libnative_api.h</code>, we have a block with the common type definitions:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">#ifdef __cplusplus
-typedef bool            demo_KBoolean;
+typedef bool            libnative_KBoolean;
 #else
-typedef _Bool           demo_KBoolean;
+typedef _Bool           libnative_KBoolean;
 #endif
-typedef unsigned short     demo_KChar;
-typedef signed char        demo_KByte;
-typedef short              demo_KShort;
-typedef int                demo_KInt;
-typedef long long          demo_KLong;
-typedef unsigned char      demo_KUByte;
-typedef unsigned short     demo_KUShort;
-typedef unsigned int       demo_KUInt;
-typedef unsigned long long demo_KULong;
-typedef float              demo_KFloat;
-typedef double             demo_KDouble;
-typedef void*              demo_KNativePtr;
+typedef unsigned short     libnative_KChar;
+typedef signed char        libnative_KByte;
+typedef short              libnative_KShort;
+typedef int                libnative_KInt;
+typedef long long          libnative_KLong;
+typedef unsigned char      libnative_KUByte;
+typedef unsigned short     libnative_KUShort;
+typedef unsigned int       libnative_KUInt;
+typedef unsigned long long libnative_KULong;
+typedef float              libnative_KFloat;
+typedef double             libnative_KDouble;
+typedef void*              libnative_KNativePtr;
 </code></pre>
 </div>
-<p>Kotlin uses the <code>demo_</code> prefix from the library name to make sure
-the symbols will not clash with other symbols in the project.</p>
+<p>Kotlin uses the <code>libnative_</code> prefix for all declarations
+in the created <code>libnative_api.h</code> file. Let's present
+the mapping of the types in a more readable way:</p>
+<table class="zebra">
+<thead>
+<tr>
+<th>Kotlin Define</th>
+<th>C Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>libnative_KBoolean</code></td>
+<td><code>bool</code> or <code>_Bool</code></td>
+</tr>
+<tr>
+<td><code>libnative_KChar</code></td>
+<td><code>unsigned short</code></td>
+</tr>
+<tr>
+<td><code>libnative_KByte</code></td>
+<td><code>signed char</code></td>
+</tr>
+<tr>
+<td><code>libnative_KShort</code></td>
+<td><code>short</code></td>
+</tr>
+<tr>
+<td><code>libnative_KInt</code></td>
+<td><code>int</code></td>
+</tr>
+<tr>
+<td><code>libnative_KLong</code></td>
+<td><code>long long</code></td>
+</tr>
+<tr>
+<td><code>libnative_KUByte</code></td>
+<td><code>unsigned char</code></td>
+</tr>
+<tr>
+<td><code>libnative_KUShort</code></td>
+<td><code>unsigned short</code></td>
+</tr>
+<tr>
+<td><code>libnative_KUInt</code></td>
+<td><code>unsigned int</code></td>
+</tr>
+<tr>
+<td><code>libnative_KULong</code></td>
+<td><code>unsigned long long</code></td>
+</tr>
+<tr>
+<td><code>libnative_KFloat</code></td>
+<td><code>float</code></td>
+</tr>
+<tr>
+<td><code>libnative_KDouble</code></td>
+<td><code>double</code></td>
+</tr>
+<tr>
+<td><code>libnative_KNativePtr</code></td>
+<td><code>void*</code></td>
+</tr>
+</tbody>
+</table>
 <p>The definitions part shows how Kotlin primitive types map into C primitive types. 
 We discussed reverse mapping in the <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a> tutorial.</p>
-<p>The next part of the <code>demo_api.h</code> file contains definitions of types
+<p>The next part of the <code>libnative_api.h</code> file contains definitions of the types
 that are used in the library:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
-<pre><code class="language-c">struct demo_KType;
-typedef struct demo_KType demo_KType;
+<pre><code class="language-c">struct libnative_KType;
+typedef struct libnative_KType libnative_KType;
 
 typedef struct {
-  demo_KNativePtr pinned;
-} demo_kref_example_DemoObject;
+  libnative_KNativePtr pinned;
+} libnative_kref_example_Object;
 
 typedef struct {
-  demo_KNativePtr pinned;
-} demo_kref_example_DemoClazz;
+  libnative_KNativePtr pinned;
+} libnative_kref_example_Clazz;
 </code></pre>
 </div>
 <p>The <code>typedef struct { .. } TYPE_NAME</code> syntax is used in C language to declare a structure. 
 <a href="https://stackoverflow.com/questions/1675351/typedef-struct-vs-struct-definitions">The thread</a>
 provides more explanations of that pattern.</p>
-<p>We see from these definitions that the Kotlin object <code>DemoObject</code> is mapped into
-<code>demo_kref_example_DemoObject</code> and <code>DemoClazz</code> is mapped into <code>demo_kref_example_DemoClazz</code>.
+<p>We see from these definitions that the Kotlin object <code>Object</code> is mapped into
+<code>libnative_kref_example_Object</code>, and <code>Clazz</code> is mapped into <code>libnative_kref_example_Clazz</code>.
 Both structs contain nothing but the <code>pinned</code> field with a pointer, the field type 
-<code>demo_KNativePtr</code> is defined as <code>void*</code> above.</p>
-<p>There is no namespaces support in C so that Kotlin/Native compiler generates 
-long names to avoid a possible clashes with other symbols in existing native project.</p>
-<p>The most significant part of definitions goes further in the <code>demo_api.h</code> file.
+<code>libnative_KNativePtr</code> is defined as <code>void*</code> above.</p>
+<p>There is no namespaces support in C, so the Kotlin/Native compiler generates 
+long names to avoid any possible clashes with other symbols in the existing native project.</p>
+<p>A significant part of the definitions goes in the <code>libnative_api.h</code> file.
 It includes the definition of our Kotlin/Native library world:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">typedef struct {
   /* Service functions. */
-  void (*DisposeStablePointer)(demo_KNativePtr ptr);
+  void (*DisposeStablePointer)(libnative_KNativePtr ptr);
   void (*DisposeString)(const char* string);
-  demo_KBoolean (*IsInstance)(demo_KNativePtr ref, const demo_KType* type);
+  libnative_KBoolean (*IsInstance)(libnative_KNativePtr ref, const libnative_KType* type);
 
   /* User functions. */
   struct {
     struct {
       struct {
-        void (*forIntegers)(demo_KByte b, demo_KShort s, demo_KUInt i, demo_KLong l);
-        void (*forFloats)(demo_KFloat f, demo_KDouble d);
+        void (*forIntegers)(libnative_KByte b, libnative_KShort s, libnative_KUInt i, libnative_KLong l);
+        void (*forFloats)(libnative_KFloat f, libnative_KDouble d);
         const char* (*strings)(const char* str);
         const char* (*get_globalString)();
         struct {
-          demo_KType* (*_type)(void);
-          demo_kref_example_Object (*_instance)();
-          const char* (*get_field)(demo_kref_example_Object thiz);
+          libnative_KType* (*_type)(void);
+          libnative_kref_example_Object (*_instance)();
+          const char* (*get_field)(libnative_kref_example_Object thiz);
         } Object;
         struct {
-          demo_KType* (*_type)(void);
-          demo_kref_example_Clazz (*Clazz)();
-          demo_KULong (*memberFunction)(demo_kref_example_Clazz thiz, demo_KInt p);
+          libnative_KType* (*_type)(void);
+          libnative_kref_example_Clazz (*Clazz)();
+          libnative_KULong (*memberFunction)(libnative_kref_example_Clazz thiz, libnative_KInt p);
         } Clazz;
       } example;
     } root;
   } kotlin;
-} demo_ExportedSymbols;
+} libnative_ExportedSymbols;
 </code></pre>
 </div>
 <p>The code uses anonymous structure declarations. The code <code>struct { .. } foo</code>
 declares a field in the outer struct of that 
 anonymous structure type, the type with no name.</p>
-<p>C does not support objects too. People use function pointers to mimic 
+<p>C does not support objects either. People use function pointers to mimic 
 object semantics. A function pointer is declared as follows <code>RETURN_TYPE (* FIELD_NAME)(PARAMETERS)</code>.
 It is tricky to read, but we should be able to see function pointer fields in the structures above.</p>
 <h3 id="runtime-functions">Runtime Functions</h3>
-<p>The code reads as follows. We have the <code>demo_ExportedSymbols</code> structure which defines
-all the functions that Kotlin/Native and our library provides to us. It uses 
-nested anonymous structures heavily to mimic packages. The <code>demo_</code> prefix comes from the
+<p>The code reads as follows. We have the <code>libnative_ExportedSymbols</code> structure, which defines
+all the functions that Kotlin/Native and our library provides us. It uses 
+nested anonymous structures heavily to mimic packages. The <code>libnative_</code> prefix comes from the
 library name.</p>
-<p>The <code>demo_ExportedSymbols</code> structure contains several helper functions:</p>
+<p>The <code>libnative_ExportedSymbols</code> structure contains several helper functions:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
-<pre><code class="language-c">void (*DisposeStablePointer)(demo_KNativePtr ptr);
+<pre><code class="language-c">void (*DisposeStablePointer)(libnative_KNativePtr ptr);
 void (*DisposeString)(const char* string);
-demo_KBoolean (*IsInstance)(demo_KNativePtr ref, const demo_KType* type);
+libnative_KBoolean (*IsInstance)(libnative_KNativePtr ref, const libnative_KType* type);
 </code></pre>
 </div>
 <p>These functions deal with Kotlin/Native objects. Call the 
-<code>DisposeStablePointer</code> to release a Kotlin object and <code>DisposeString</code> to release Kotlin String, 
+<code>DisposeStablePointer</code> to release a Kotlin object and <code>DisposeString</code> to release a Kotlin String, 
 which has the <code>char*</code> type in C. It is possible to use the <code>IsInstance</code> function to check if a
-Kotlin type or a <code>demo_KNativePtr</code> is an instance of another type. The actual set of
-operations generated depend on the actual usages.</p>
-<p>Kotlin/Native has garbage collection, but it does not help deal
+Kotlin type or a <code>libnative_KNativePtr</code> is an instance of another type. The actual set of
+operations generated depends on the actual usages.</p>
+<p>Kotlin/Native has garbage collection, but it does not help us deal
 with Kotlin objects from the C language. Kotlin/Native has interop with Objective-C and 
 Swift and integrates with their reference counters. 
 The <a href="/docs/reference/native/objc_interop.html">Objective-C Interop</a>
-documentation article contains more more details on it. Also,
-there is the related tutorial named <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>.</p>
+documentation article contains more details on it. Also,
+there is the tutorial <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>.</p>
 <h3 id="our-library-functions">Our Library Functions</h3>
-<p>Let's take a look an the <code>kotlin.root.example</code> field, it
+<p>Let's take a look at the <code>kotlin.root.example</code> field, it
 mimics the package structure of our Kotlin code with a <code>kotlin.root.</code> prefix.</p>
 <p>There is a <code>kotlin.root.example.Clazz</code> field that 
 represents the <code>Clazz</code> from Kotlin. The <code>Clazz#memberFunction</code> is
 accessible with the <code>memberFunction</code> field. The only difference is that 
-the <code>memberFunction</code> accepts <code>this</code> reference as the first parameter. 
-C language does not support objects, and that is the reason to pass a
+the <code>memberFunction</code> accepts a <code>this</code> reference as the first parameter. 
+The C language does not support objects, and this is the reason to pass a
 <code>this</code> pointer explicitly.</p>
 <p>There is a constructor in the <code>Clazz</code> field (aka <code>kotlin.root.example.Clazz.Clazz</code>),
 which is the constructor function to create an instance of the <code>Clazz</code>.</p>
@@ -1047,26 +1356,26 @@ into a <code>get_globalString</code> function in C.</p>
 the <code>kotlin.root.example</code> anonymous struct.</p>
 <h3 id="the-entry-point">The Entry Point</h3>
 <p>We can see how the API is created. To start with, we need to initialize the 
-<code>demo_ExportedSymbols</code> structure. Let's take a look at the latest part 
-of the <code>demo_api.h</code> for that:</p>
-<pre><code class="code _highlighted" data-lang="text/x-csrc">extern demo_ExportedSymbols* demo_symbols(void);
+<code>libnative_ExportedSymbols</code> structure. Let's take a look at the latest part 
+of the <code>libnative_api.h</code> for this:</p>
+<pre><code class="code _highlighted" data-lang="text/x-csrc">extern libnative_ExportedSymbols* libnative_symbols(void);
 </code></pre>
-<p>The function <code>demo_symbols</code> allows us to open the door from the native 
-code to the Kotlin/Native library. That is the entry point we use. The 
+<p>The function <code>libnative_symbols</code> allows us to open the way from the native 
+code to the Kotlin/Native library. This is the entry point we use. The 
 library name is used as a prefix for the function name.</p>
 <p>Note, Kotlin/Native object references do not support multi-threaded access. 
-Hosting the returned <code>demo_ExportedSymbols*</code> pointer
+Hosting the returned <code>libnative_ExportedSymbols*</code> pointer
 per thread might be necessary.</p>
 <h2 id="using-generated-headers-from-c">Using Generated Headers from C</h2>
 <p>The usage from C is straightforward and uncomplicated. We create a <code>main.c</code> file with the following 
 code:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
-<pre><code class="language-c">#include "demo_api.h"
+<pre><code class="language-c">#include "libnative_api.h"
 #include "stdio.h"
 
 int main(int argc, char** argv) {
   //obtain reference for calling Kotlin/Native functions
-  demo_ExportedSymbols* lib = demo_symbols();
+  libnative_ExportedSymbols* lib = libnative_symbols();
 
   lib-&gt;kotlin.root.example.forIntegers(1, 2, 3, 4);
   lib-&gt;kotlin.root.example.forFloats(1.0f, 2.0);
@@ -1078,7 +1387,7 @@ int main(int argc, char** argv) {
   lib-&gt;DisposeString(response);
 
   //create Kotlin object instance
-  demo_kref_example_Clazz newInstance = lib-&gt;kotlin.root.example.Clazz.Clazz();
+  libnative_kref_example_Clazz newInstance = lib-&gt;kotlin.root.example.Clazz.Clazz();
   long x = lib-&gt;kotlin.root.example.Clazz.memberFunction(newInstance, 42);
   lib-&gt;DisposeStablePointer(newInstance.pinned);
 
@@ -1091,37 +1400,37 @@ int main(int argc, char** argv) {
 <h2 id="compiling-and-running-the-example-on-linux-and-macos">Compiling and Running the Example on Linux and macOS</h2>
 <p>On macOS 10.13 with Xcode, we compile the C code and link it with the dynamic library
 with the following command:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">clang main.c libdemo.dylib
+<pre><code class="code _highlighted" data-lang="text/x-sh">clang main.c libnative.dylib
 </code></pre>
 <p>On Linux we call a similar command:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">gcc main.c libdemo.so
+<pre><code class="code _highlighted" data-lang="text/x-sh">gcc main.c libnative.so
 </code></pre>
-<p>The compiler generates an executable called <code>a.out</code>. We need to run it to see Kotlin code
-being executed from C library in action. On Linux, we'll need to include <code>.</code> into the <code>LD_LIBRARY_PATH</code>
-to let the application know to load the <code>libdemo.so</code> library from the current folder.</p>
+<p>The compiler generates an executable called <code>a.out</code>. We need to run it to see in action the Kotlin code
+being executed from C library. On Linux, we'll need to include <code>.</code> into the <code>LD_LIBRARY_PATH</code>
+to let the application know to load the <code>libnative.so</code> library from the current folder.</p>
 <h2 id="compiling-and-running-the-example-on-windows">Compiling and Running the Example on Windows</h2>
 <p>To start with, we'll need a Microsoft Visual C++ compiler installed that supports a x64_64 
 target. The easiest way to do this is to have a version of Microsoft Visual Studio installed on 
-the Windows machine.</p>
+a Windows machine.</p>
 <p>We will be using the <code>x64 Native Tools Command Prompt &lt;VERSION&gt;</code> console. We'll see the 
 shortcut to open the console in the start menu. It comes with a Microsoft Visual Studio
 package.</p>
 <p>On Windows, Dynamic libraries are included either via a generated static library wrapper
-or with manual code which deals with the <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms684175.aspx">LoadLibrary</a>
+or with manual code, which deals with the <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ms684175.aspx">LoadLibrary</a>
 or similar Win32API functions. We will follow the first option and generate the static wrapper library
-for the <code>demo.dll</code> on our own.</p>
+for the <code>libnative.dll</code> on our own.</p>
 <p>We call <code>lib.exe</code> from the toolchain to generate the static library 
-wrapper <code>demo.lib</code> that automates the DLL usage from the code:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">lib /def:demo_symbols.def /out:demo.lib
+wrapper <code>libnative.lib</code> that automates the DLL usage from the code:</p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">lib /def:libnative_symbols.def /out:libnative.lib
 </code></pre>
-<p>Now we are ready to compile our <code>main.c</code> into an executable. We include the generated <code>demo.lib</code> into
+<p>Now we are ready to compile our <code>main.c</code> into an executable. We include the generated <code>libnative.lib</code> into
 the build command and start:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">cl.exe main.c demo.lib
+<pre><code class="code _highlighted" data-lang="text/x-sh">cl.exe main.c libnative.lib
 </code></pre>
 <p>The command produces the <code>main.exe</code> file, which we can run.</p>
 <h2 id="next-steps">Next Steps</h2>
-<p>Dynamic libraries are the main ways to use Kotlin code from existing programs. 
-We may use them to share our code with many platforms or languages, including JVM,
+<p>Dynamic libraries are the main way to use Kotlin code from existing programs. 
+We can use them to share our code with many platforms or languages, including JVM,
 <a href="https://github.com/JetBrains/kotlin-native/blob/master/samples/python_extension/src/main/c/kotlin_bridge.c">Python</a>,
 iOS, Android, and others.</p>
 <p>Kotlin/Native also has tight integration with Objective-C and Swift.

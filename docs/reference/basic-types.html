@@ -1406,7 +1406,7 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     // 创建一个 Array&lt;String&gt; 初始化为 ["0", "1", "4", "9", "16"]
-    val asc = Array(5, { i -&gt; (i * i).toString() })
+    val asc = Array(5) { i -&gt; (i * i).toString() }
     asc.forEach { println(it) }
 //sampleEnd
 }

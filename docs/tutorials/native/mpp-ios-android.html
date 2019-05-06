@@ -368,15 +368,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/interop-with-c.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">与 C 语言库互操作</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/mapping-primitive-data-types-from-c.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -413,24 +404,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/working-with-klib.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kotlin/Native 库</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/targeting-multiple-platforms.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">面向多平台</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/tutorials/native/dynamic-libraries.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -449,18 +422,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/gradle-for-kotlin-native.html"
+            <a href="/docs/tutorials/multiplatform-library.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Gradle 用于 Kotlin/Native</span>
+                <span class="text">发布 Kotlin/Native 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
             </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
-                <div class="text">多平台项目：iOS 与 Android</div>
+                <div class="text">构建 iOS 与 Android 应用</div>
             </div>
     </div>
 
@@ -1152,10 +1134,6 @@ to choose the framework from the disk. We can point to the following folder:</p>
 </code></pre>
 <p>We will then see something similar to this: 
 <img alt="Xcode General Screen" src="/assets/images/tutorials/native/mpp-ios-android/xcode-general.png"/></p>
-<p>We need to disable the <em>Bitcode</em> feature in the project too. Kotlin/Native produces the fully native
-binaries, not the LLVM bitcode, so we need to navigate to the <em>Build Settings</em> tab, pick the <em>All</em> sub-tab below, and type <code>bitcode</code> into
-the search field. Select <code>No</code> for the <em>Enable Bitcode</em> option.</p>
-<p><img alt="Xcode Build Settings" src="/assets/images/tutorials/native/mpp-ios-android/xcode-bitcode.png"/></p>
 <p>Now we need to explain to Xcode, where to look for frameworks. We need to add the <em>relative</em> path 
 <code>$(SRCROOT)/../../SharedCode/build/xcode-frameworks</code> into the <em>Search Paths | Framework Search Paths</em> section.
 Open the <em>Build Settings</em> tab again, pick the <em>All</em> sub-tab below, and type the <em>Framework Search Paths</em> into
