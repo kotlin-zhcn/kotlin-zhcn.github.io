@@ -958,14 +958,6 @@ internal fun sayHello() {
 }
 </code></pre>
 </div>
-<p>添加 <code>kapt</code> 的依赖后即可与 Kotlin 代码交互：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">apply plugin: 'kotlin-kapt'
-dependencies {
-    kapt "com.android.databinding:compiler:$android_plugin_version"
-}  
-</code></pre>
-</div>
 <p>使用 Kotlin 并不需要修改任何的 xml 文件。
 例如，在 <code>data</code> 中使用 <code>variable</code> 来描述可能在布局中使用的变量，
 可以使用Kotlin类型声明变量：</p>
