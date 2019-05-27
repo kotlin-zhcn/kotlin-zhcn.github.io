@@ -899,7 +899,7 @@ the straightforward imperative version of a solution to the problem can be writt
 </div>
 <p>Note the use of Kotlin's 
 <a href="/docs/reference/null-safety.html#the--operator">null-assertion operator</a> <code>!!</code>
-after the <a href="/api/latest/jvm/stdlib/kotlin.io/read-line.html">readLine()</a> function call. 
+after the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/read-line.html">readLine()</a> function call.
 Kotlin's <code>readLine()</code> function is defined to return a 
 <a href="/docs/reference/null-safety.html#nullable-types-and-non-null-types">nullable type</a>
 <code>String?</code> and returns <code>null</code> on the end of the input, which explicitly forces developer to handle the 
@@ -908,7 +908,7 @@ case of missing input.</p>
 In competitive programming an input format is always precisely specified and the actual input cannot deviate from 
 the input specification in the problem statement. That is what null-assertion operator <code>!!</code> essentially does — 
 it asserts that the input string is present and throws exception if not. Likewise, 
-<a href="/api/latest/jvm/stdlib/kotlin.text/to-int.html">String.toInt()</a> 
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/to-int.html">String.toInt()</a>
 function throws an exception if an input string is not integer.</p>
 <p>All online competitive programming events allow the use of pre-written code, so you can define your own library of 
 utility functions that are geared towards competitive programming to make your actual solution code somewhat easier 
@@ -1001,13 +1001,13 @@ natural in Kotlin. However, beware that <code>java.util.Scanner</code> is extrem
 10<sup>5</sup> or more integers with it might not fit into a typical 2 second time-limit, which a simple Kotlin's 
 <code>split(" ").map { it.toInt() }</code> would handle.</p>
 <p>Writing output in Kotlin is usually straightforward with 
-<a href="/api/latest/jvm/stdlib/kotlin.io/println.html">println(…)</a> 
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/println.html">println(…)</a>
 calls and using Kotlin's 
 <a href="/docs/reference/basic-types.html#string-templates">string templates</a>. However, care must be taken when output 
 contains on order of 10<sup>5</sup> lines or more. Issuing so many <code>println</code> calls is too slow, since the output 
 in Kotlin is automatically flushed after each line. 
 A faster way to write many lines from an array or a list is using
-<a href="/api/latest/jvm/stdlib/kotlin.collections/join-to-string.html">joinToString()</a> function
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/join-to-string.html">joinToString()</a> function
 with <code>"\n"</code> as separator, like this:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">println(a.joinToString("\n")) // each element of array/list of a separate line

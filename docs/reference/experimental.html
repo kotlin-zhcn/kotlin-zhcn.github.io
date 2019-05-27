@@ -1365,7 +1365,7 @@ fun displayDate() {
 <p>As you can see in this example, the annotated function appears to be a part of the <code>@ExperimentalDateTime</code> experimental API. So, the described way of acceptance propagates the experimental status to the code that uses an experimental API; its clients will be required to accept it as well.
 To use multiple experimental APIs, annotate the declaration with all their markers.</p>
 <h3 id="非传播使用">非传播使用</h3>
-<p>In modules that don't provide their own API, such as application modules, you can use experimental APIs without propagating the experimental status to your code. In this case, mark your code with the <a href="/api/latest/jvm/stdlib/kotlin/-use-experimental/index.html">@UseExperimental(Marker::class)</a> annotation specifying the marker annotation of the experimental API:</p>
+<p>In modules that don't provide their own API, such as application modules, you can use experimental APIs without propagating the experimental status to your code. In this case, mark your code with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-use-experimental/index.html">@UseExperimental(Marker::class)</a> annotation specifying the marker annotation of the experimental API:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// library code
 @Experimental
@@ -1444,7 +1444,7 @@ fun displayDate() {
 <p>To accept the usage of multiple experimental APIs on the module level, add one of the described arguments for each experimental API marker used in your module.</p>
 <h2 id="标记实验性-api">标记实验性 API</h2>
 <h3 id="创建标记注解">创建标记注解</h3>
-<p>If you want to declare your module's API as experimental, create an annotation class to use as its <em>experimental marker</em>. This class must be annotated with <a href="/api/latest/jvm/stdlib/kotlin/-experimental/index.html">@Experimental</a>:</p>
+<p>If you want to declare your module's API as experimental, create an annotation class to use as its <em>experimental marker</em>. This class must be annotated with <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-experimental/index.html">@Experimental</a>:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Experimental
 @Retention(AnnotationRetention.BINARY)
@@ -1454,11 +1454,11 @@ annotation class ExperimentalDateTime
 </div>
 <p>Experimental marker annotations must meet several requirements:</p>
 <ul>
-<li><code>BINARY</code> <a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-retention/index.html">retention</a></li>
-<li>No <code>EXPRESSION</code> and <code>FILE</code> among <a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/index.html">targets</a></li>
+<li><code>BINARY</code> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-retention/index.html">retention</a></li>
+<li>No <code>EXPRESSION</code> and <code>FILE</code> among <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/index.html">targets</a></li>
 <li>No parameters.</li>
 </ul>
-<p>A marker annotation can have one of two severity <a href="/api/latest/jvm/stdlib/kotlin/-experimental/-level/index.html">levels</a> of informing about experimental API usage:</p>
+<p>A marker annotation can have one of two severity <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-experimental/-level/index.html">levels</a> of informing about experimental API usage:</p>
 <ul>
 <li><code>Experimental.Level.ERROR</code>. Acceptance is mandatory. Otherwise, the code that uses marked API won't compile. This level is used by default.</li>
 <li><code>Experimental.Level.WARNING</code>. Acceptance is not mandatory, but advisable. Without it, the compiler raises a warning.
@@ -1485,7 +1485,7 @@ fun getTime(): Time {}
 <h3 id="模块级标记">模块级标记</h3>
 <p>If you consider all the APIs of your module experimental, you can mark the entire module as such with the compiler argument <code>-Xexperimental</code> as described in <a href="#模块级使用">Module-wide use</a>.</p>
 <h2 id="实验性-api-转正">实验性 API 转正</h2>
-<p>Once your experimental API graduates and is released in its final state, remove its marker annotation from declarations so that the clients can use it without restriction. However, you should leave the marker classes in modules so that the existing client code remains compatible. To let the API users update their modules accordingly (remove the markers from their code and recompile), mark the annotations as <a href="/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a> and provide the explanation in its message.</p>
+<p>Once your experimental API graduates and is released in its final state, remove its marker annotation from declarations so that the clients can use it without restriction. However, you should leave the marker classes in modules so that the existing client code remains compatible. To let the API users update their modules accordingly (remove the markers from their code and recompile), mark the annotations as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a> and provide the explanation in its message.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Deprecated("This experimental API marker is not used anymore. Remove its usages from your code.")
 @Experimental

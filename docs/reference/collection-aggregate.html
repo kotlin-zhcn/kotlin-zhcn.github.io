@@ -1327,10 +1327,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin collections contain functions for commonly used <em>aggregate operations</em> – operations that return a single value based on the collection content.
 Most of them are well known and work the same way as they do in other languages:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/min.html"><code>min()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/max.html"><code>max()</code></a> return the smallest and the largest element respectively;</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/average.html"><code>average()</code></a> returns the average value of elements in the collection of numbers;</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/sum.html"><code>sum()</code></a> returns the sum of elements in the collection of numbers;</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/count.html"><code>count()</code></a> returns the number of elements in a collection;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min.html"><code>min()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max.html"><code>max()</code></a> return the smallest and the largest element respectively;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/average.html"><code>average()</code></a> returns the average value of elements in the collection of numbers;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum.html"><code>sum()</code></a> returns the sum of elements in the collection of numbers;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/count.html"><code>count()</code></a> returns the number of elements in a collection;</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1346,10 +1346,10 @@ Most of them are well known and work the same way as they do in other languages:
 }
 </code></pre>
 </div>
-<p>There are also functions for retrieving the smallest and the largest elements by certain selector function or custom <a href="/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><code>Comparator</code></a>:</p>
+<p>There are also functions for retrieving the smallest and the largest elements by certain selector function or custom <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><code>Comparator</code></a>:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/max-by.html"><code>maxBy()</code></a>/<a href="/api/latest/jvm/stdlib/kotlin.collections/min-by.html"><code>minBy()</code></a> take a selector function and return the element for which it returns the largest or the smallest value.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/max-with.html"><code>maxWith()</code></a>/<a href="/api/latest/jvm/stdlib/kotlin.collections/min-with.html"><code>minWith()</code></a> take a <code>Comparator</code> object and return the largest or smallest element according to that <code>Comparator</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-by.html"><code>maxBy()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-by.html"><code>minBy()</code></a> take a selector function and return the element for which it returns the largest or the smallest value.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-with.html"><code>maxWith()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-with.html"><code>minWith()</code></a> take a <code>Comparator</code> object and return the largest or smallest element according to that <code>Comparator</code>.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1367,8 +1367,8 @@ Most of them are well known and work the same way as they do in other languages:
 </div>
 <p>Additionally, there are advanced summation functions that take a function and return the sum of its return values on all elements:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/sum-by.html"><code>sumBy()</code></a> applies functions that return <code>Int</code> values on collection elements.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/sum-by-double.html"><code>sumByDouble()</code></a> works with functions that return <code>Double</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by.html"><code>sumBy()</code></a> applies functions that return <code>Int</code> values on collection elements.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by-double.html"><code>sumByDouble()</code></a> works with functions that return <code>Double</code>.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1381,7 +1381,7 @@ Most of them are well known and work the same way as they do in other languages:
 </code></pre>
 </div>
 <h2 id="fold-and-reduce">Fold and reduce</h2>
-<p>For more specific cases, there are the functions <a href="/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> that apply the provided operation to the collection elements sequentially and return the accumulated result.
+<p>For more specific cases, there are the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> that apply the provided operation to the collection elements sequentially and return the accumulated result.
 The operation takes two arguments:  the previously accumulated value and the collection element.</p>
 <p>The difference between the two functions is that <code>fold()</code> takes an initial value and uses it as the accumulated value on the first step, whereas the first step of <code>reduce()</code> uses the first and the second elements as operation arguments on the first step.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1402,7 +1402,7 @@ The operation takes two arguments:  the previously accumulated value and the col
 </div>
 <p>The example above shows the difference: <code>fold()</code> is used for calculating the sum of doubled elements.
 If you pass the same function to <code>reduce()</code>, it will return another result because it uses the list's first and second elements as arguments on the first step, so the first element won't be doubled.</p>
-<p>To apply a function to elements in the reverse order, use functions <a href="/api/latest/jvm/stdlib/kotlin.collections/reduce-right.html"><code>reduceRight()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/fold-right.html"><code>foldRight()</code></a>.
+<p>To apply a function to elements in the reverse order, use functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right.html"><code>reduceRight()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right.html"><code>foldRight()</code></a>.
 They work in a way similar to <code>fold()</code> and <code>reduce()</code> but start from the last element and then continue to previous.
 Note that when folding or reducing right, the operation arguments change their order: first goes the element, and then the accumulated value.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1416,8 +1416,8 @@ Note that when folding or reducing right, the operation arguments change their o
 </code></pre>
 </div>
 <p>You can also apply operations that take element indices as parameters.
-For this purpose, use functions <a href="/api/latest/jvm/stdlib/kotlin.collections/reduce-indexed.html"><code>reduceIndexed()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/fold-indexed.html"><code>foldIndexed()</code></a> passing element index as the first argument of the operation.</p>
-<p>Finally, there are functions that apply such operations to collection elements from right to left - <a href="/api/latest/jvm/stdlib/kotlin.collections/reduce-right-indexed.html"><code>reduceRightIndexed()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/fold-right-indexed.html"><code>foldRightIndexed()</code></a>.</p>
+For this purpose, use functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-indexed.html"><code>reduceIndexed()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-indexed.html"><code>foldIndexed()</code></a> passing element index as the first argument of the operation.</p>
+<p>Finally, there are functions that apply such operations to collection elements from right to left - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right-indexed.html"><code>reduceRightIndexed()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right-indexed.html"><code>foldRightIndexed()</code></a>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

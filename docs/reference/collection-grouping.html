@@ -1325,7 +1325,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="grouping">Grouping</h1>
 <p>The Kotlin standard library provides extension functions for grouping collection elements.
-The basic function <a href="/api/latest/jvm/stdlib/kotlin.collections/group-by.html"><code>groupBy()</code></a> takes a lambda function and returns a <code>Map</code>.
+The basic function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/group-by.html"><code>groupBy()</code></a> takes a lambda function and returns a <code>Map</code>.
 In this map, each key is the lambda result and the corresponding value is the <code>List</code> of elements on which this result is returned.
 This function can be used, for example, to group a list of <code>String</code>s by their first letter.</p>
 <p>You can also call <code>groupBy()</code> with a second lambda argument – a value transformation function.
@@ -1341,14 +1341,14 @@ In the result map of <code>groupBy()</code> with two lambdas, the keys produced 
 }
 </code></pre>
 </div>
-<p>If you want to group elements and then apply an operation to all groups at one time, use the function <a href="/api/latest/jvm/stdlib/kotlin.collections/grouping-by.html"><code>groupingBy()</code></a>.
-It returns an instance of the <a href="/api/latest/jvm/stdlib/kotlin.collections/-grouping/index.html"><code>Grouping</code></a> type.
+<p>If you want to group elements and then apply an operation to all groups at one time, use the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/grouping-by.html"><code>groupingBy()</code></a>.
+It returns an instance of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-grouping/index.html"><code>Grouping</code></a> type.
 The <code>Grouping</code> instance lets you apply operations to all groups in a lazy manner: the groups are actually built right before the operation execution.</p>
 <p>Namely, <code>Grouping</code> supports the following operations:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/each-count.html"><code>eachCount()</code></a> counts the elements in each group.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> perform <a href="collection-aggregate.html#fold-and-reduce">fold and reduce</a> operations on each group as a separate collection and return the results.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/aggregate.html"><code>aggregate()</code></a> applies a given operation subsequently to all the elements in each group and returns the result.
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/each-count.html"><code>eachCount()</code></a> counts the elements in each group.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> perform <a href="collection-aggregate.html#fold-and-reduce">fold and reduce</a> operations on each group as a separate collection and return the results.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/aggregate.html"><code>aggregate()</code></a> applies a given operation subsequently to all the elements in each group and returns the result.
  This is the generic way to perform any operations on a <code>Grouping</code>. Use it to implement custom operations when fold or reduce are not enough.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

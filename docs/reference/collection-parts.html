@@ -1327,7 +1327,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The Kotlin standard library contains extension functions for retrieving parts of a collection.
 These functions provide a variety of ways to select elements for the result collection: listing their positions explicitly, specifying the result size, and others.</p>
 <h2 id="slice">Slice</h2>
-<p><a href="/api/latest/jvm/stdlib/kotlin.collections/slice.html"><code>slice()</code></a> returns a list of the collection elements with given indices.
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/slice.html"><code>slice()</code></a> returns a list of the collection elements with given indices.
 The indices may be passed either as a <a href="ranges.html">range</a> or as a collection of integer values.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1341,10 +1341,10 @@ The indices may be passed either as a <a href="ranges.html">range</a> or as a co
 </code></pre>
 </div>
 <h2 id="take-and-drop">Take and drop</h2>
-<p>To get the specified number of elements starting from the first, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/take.html"><code>take()</code></a> function.
-For getting the last elements, use <a href="/api/latest/jvm/stdlib/kotlin.collections/take-last.html"><code>takeLast()</code></a>.
+<p>To get the specified number of elements starting from the first, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take.html"><code>take()</code></a> function.
+For getting the last elements, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take-last.html"><code>takeLast()</code></a>.
 When called with a number larger than the collection size, both functions return the whole collection.</p>
-<p>To take all the elements except a given number of first or last elements, call the <a href="/api/latest/jvm/stdlib/kotlin.collections/drop.html"><code>drop()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/drop-last.html"><code>dropLast()</code></a> functions respectively.</p>
+<p>To take all the elements except a given number of first or last elements, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/drop.html"><code>drop()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/drop-last.html"><code>dropLast()</code></a> functions respectively.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1360,10 +1360,10 @@ When called with a number larger than the collection size, both functions return
 <p>You can also use predicates to define the number of elements for taking or dropping.
 There are four functions similar to the ones described above:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/take-while.html"><code>takeWhile()</code></a> is <code>take()</code> with a predicate: it takes the elements up to but excluding the first one not matching the predicate. If the first collection element doesn't match the predicate, the result is empty.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/take-last-while.html"><code>takeLastWhile()</code></a> is similar to <code>takeLast()</code>: it takes the range of elements matching the predicate from the end of the collection. The first element of the range is the element next to the last element not matching the predicate. If the last collection element doesn't match the predicate, the result is empty;</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/drop-while.html"><code>dropWhile()</code></a> is the opposite to <code>takeWhile()</code> with the same predicate: it returns the elements from the first one not matching the predicate to the end.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/drop-last-while.html"><code>dropLastWhile()</code></a> is the opposite to <code>takeLastWhile()</code> with the same predicate: it returns the elements from the beginning to the last one not matching the predicate.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take-while.html"><code>takeWhile()</code></a> is <code>take()</code> with a predicate: it takes the elements up to but excluding the first one not matching the predicate. If the first collection element doesn't match the predicate, the result is empty.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/take-last-while.html"><code>takeLastWhile()</code></a> is similar to <code>takeLast()</code>: it takes the range of elements matching the predicate from the end of the collection. The first element of the range is the element next to the last element not matching the predicate. If the last collection element doesn't match the predicate, the result is empty;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/drop-while.html"><code>dropWhile()</code></a> is the opposite to <code>takeWhile()</code> with the same predicate: it returns the elements from the first one not matching the predicate to the end.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/drop-last-while.html"><code>dropLastWhile()</code></a> is the opposite to <code>takeLastWhile()</code> with the same predicate: it returns the elements from the beginning to the last one not matching the predicate.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1378,7 +1378,7 @@ There are four functions similar to the ones described above:</p>
 </code></pre>
 </div>
 <h2 id="chunked">Chunked</h2>
-<p>To break a collection onto parts of a given size, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/chunked.html"><code>chunked()</code></a> function.
+<p>To break a collection onto parts of a given size, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html"><code>chunked()</code></a> function.
 <code>chunked()</code> takes a single argument – the size of the chunk – and returns a <code>List</code> of <code>List</code>s of the given size.
 The first chunk starts from the first element and contains the <code>size</code> elements, the second chunk holds the next <code>size</code> elements, and so on.
 The last chunk may have a smaller size.</p>
@@ -1406,7 +1406,7 @@ the chunks are short-living <code>List</code>s that should be consumed right in 
 </div>
 <h2 id="windowed">Windowed</h2>
 <p>You can retrieve all possible ranges of the collection elements of a given size.
-The function for getting them is called <a href="/api/latest/jvm/stdlib/kotlin.collections/windowed.html"><code>windowed()</code></a>: it returns a list of element ranges that you would see if you were looking at the collection through a sliding window of the given size.
+The function for getting them is called <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/windowed.html"><code>windowed()</code></a>: it returns a list of element ranges that you would see if you were looking at the collection through a sliding window of the given size.
 Unlike <code>chunked()</code>,  <code>windowed()</code> returns element ranges (<em>windows</em>) starting from <em>each</em> collection element.
 All the windows are returned as elements of a single <code>List</code>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1435,7 +1435,7 @@ To do this, provide the transformation as a lambda function when calling <code>w
 }
 </code></pre>
 </div>
-<p>To build two-element windows, there is a separate function - <a href="/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html"><code>zipWithNext()</code></a>.
+<p>To build two-element windows, there is a separate function - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html"><code>zipWithNext()</code></a>.
 It creates pairs of adjacent elements of the receiver collection.
 Note that <code>zipWithNext()</code> doesn't break the collection into pairs; it creates a <code>Pair</code> for <em>each</em> element except the last one, so its result on <code>[1, 2, 3, 4]</code> is <code>[[1, 2], [2, 3], [3, 4]]</code>, not <code>[[1, 2</code>], <code>[3, 4]]</code>.
 <code>zipWithNext()</code> can be called with a transformation function as well; it should take two elements of the receiver collection as arguments.</p>

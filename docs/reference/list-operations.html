@@ -1328,12 +1328,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="retrieving-elements-by-index">Retrieving elements by index</h2>
 <p>Lists support all common operations for element retrieval: <code>elementAt()</code>, <code>first()</code>, <code>last()</code>, and others listed in <a href="collection-elements.html">Retrieving Single Elements</a>.
 What is specific for lists is index access to the elements, so the simplest way to read an element is retrieving it by index.
-That is done with the <a href="/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a> function with the index passed in the argument or the shorthand <code>[index]</code> syntax.</p>
+That is done with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a> function with the index passed in the argument or the shorthand <code>[index]</code> syntax.</p>
 <p>If the list size is less than the specified index, an exception is thrown.
 There are two other functions that help you avoid such exceptions:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> lets you provide the function for calculating the default value to return if the index isn't present in the collection.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/get-or-null.html"><code>getOrNull()</code></a> returns <code>null</code> as the default value.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> lets you provide the function for calculating the default value to return if the index isn't present in the collection.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-null.html"><code>getOrNull()</code></a> returns <code>null</code> as the default value.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1350,7 +1350,7 @@ There are two other functions that help you avoid such exceptions:</p>
 </code></pre>
 </div>
 <h2 id="retrieving-list-parts">Retrieving list parts</h2>
-<p>In addition to common operations for <a href="collection-parts.html">Retrieving Collection Parts</a>, lists provide the <a href="/api/latest/jvm/stdlib/kotlin.collections/-list/sub-list.html"><code>subList()</code></a> function that returns a view of the specified elements range as a list.
+<p>In addition to common operations for <a href="collection-parts.html">Retrieving Collection Parts</a>, lists provide the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/sub-list.html"><code>subList()</code></a> function that returns a view of the specified elements range as a list.
 Thus, if an element of the original collection changes, it also changes in the previously created sublists and vice versa.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1364,7 +1364,7 @@ Thus, if an element of the original collection changes, it also changes in the p
 </div>
 <h2 id="finding-element-positions">Finding element positions</h2>
 <h3 id="linear-search">Linear search</h3>
-<p>In any lists, you can find the position of an element using the functions <a href="/api/latest/jvm/stdlib/kotlin.collections/index-of.html"><code>indexOf()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/last-index-of.html"><code>lastIndexOf()</code></a>.
+<p>In any lists, you can find the position of an element using the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of.html"><code>indexOf()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last-index-of.html"><code>lastIndexOf()</code></a>.
 They return the first and the last position of an element equal to the given argument in the list.
 If there are no such elements, both functions return <code>-1</code>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1380,8 +1380,8 @@ If there are no such elements, both functions return <code>-1</code>.</p>
 </div>
 <p>There is also a pair of functions that take a predicate and search for elements matching it:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/index-of-first.html"><code>indexOfFirst()</code></a> returns the <em>index of the first</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/index-of-last.html"><code>indexOfLast()</code></a> returns the <em>index of the last</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-first.html"><code>indexOfFirst()</code></a> returns the <em>index of the first</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-last.html"><code>indexOfLast()</code></a> returns the <em>index of the last</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1398,7 +1398,7 @@ If there are no such elements, both functions return <code>-1</code>.</p>
 <p>There is one more way to search elements in lists – <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>.
 It works significantly faster than other built-in search functions but <em>requires the list to be <a href="collection-ordering.html">sorted</a></em> in ascending order according to a certain ordering: natural or another one provided in the function parameter.
 Otherwise, the result is undefined.</p>
-<p>To search an element in a sorted list, call the <a href="/api/latest/jvm/stdlib/kotlin.collections/binary-search.html"><code>binarySearch()</code></a> function passing the value as an argument.
+<p>To search an element in a sorted list, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/binary-search.html"><code>binarySearch()</code></a> function passing the value as an argument.
 If such an element exists, the function returns its index; otherwise, it returns <code>(-insertionPoint - 1)</code> where <code>insertionPoint</code> is the index where this element should be inserted so that the list remains sorted.
 If there is more than one element with the given value, the search can return any of their indices.</p>
 <p>You can also specify an index range to search in: in this case, the function searches only between two provided indices.</p>
@@ -1417,7 +1417,7 @@ If there is more than one element with the given value, the search can return an
 </code></pre>
 </div>
 <h4 id="comparator-binary-search">Comparator binary search</h4>
-<p>When list elements aren't <code>Comparable</code>, you should provide a <a href="/api/latest/jvm/stdlib/kotlin/-comparator.html"><code>Comparator</code></a> to use in the binary search.
+<p>When list elements aren't <code>Comparable</code>, you should provide a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator.html"><code>Comparator</code></a> to use in the binary search.
 The list must be sorted in ascending order according to this <code>Comparator</code>. Let's have a look at an example:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">data class Product(val name: String, val price: Double)
@@ -1477,7 +1477,7 @@ fun main() {
 <p>In addition to the collection modification operations described in <a href="collection-write.html">Collection Write Operations</a>, <a href="collections-overview.html#collection-types">mutable</a> lists support specific write operations.
 Such operations use the index to access elements to broaden the list modification capabilities.</p>
 <h3 id="adding">Adding</h3>
-<p>To add elements to a specific position in a list, use <a href="/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> providing the position for element insertion as an additional argument.
+<p>To add elements to a specific position in a list, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> providing the position for element insertion as an additional argument.
 All elements that come after the position shift to the right.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1492,7 +1492,7 @@ All elements that come after the position shift to the right.</p>
 </code></pre>
 </div>
 <h3 id="updating">Updating</h3>
-<p>Lists also offer a function to replace an element at a given position - <a href="/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/set.html"><code>set()</code></a> and its operator form <code>[]</code>. <code>set()</code> doesn't change the indexes of other elements.</p>
+<p>Lists also offer a function to replace an element at a given position - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/set.html"><code>set()</code></a> and its operator form <code>[]</code>. <code>set()</code> doesn't change the indexes of other elements.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1504,7 +1504,7 @@ All elements that come after the position shift to the right.</p>
 
 </code></pre>
 </div>
-<p><a href="/api/latest/jvm/stdlib/kotlin.collections/fill.html"><code>fill()</code></a> simply replaces all the collection elements with the specified value.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fill.html"><code>fill()</code></a> simply replaces all the collection elements with the specified value.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1517,7 +1517,7 @@ All elements that come after the position shift to the right.</p>
 </code></pre>
 </div>
 <h3 id="removing">Removing</h3>
-<p>To remove an element at a specific position from a list, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/remove-at.html"><code>removeAt()</code></a> function providing the position as an argument.
+<p>To remove an element at a specific position from a list, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/remove-at.html"><code>removeAt()</code></a> function providing the position as an argument.
 All indices of elements that come after the element being removed will decrease by one.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1535,11 +1535,11 @@ For mutable lists, the standard library offers similar extension functions that 
 When you apply such an operation to a list instance, it changes the order of elements in that exact instance.</p>
 <p>The in-place sorting functions have similar names to the functions that apply to read-only lists, but without the <code>ed/d</code> suffix:</p>
 <ul>
-<li><code>sort*</code> instead of <code>sorted*</code> in the names of all sorting functions: <a href="/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a>, <a href="/api/latest/jvm/stdlib/kotlin.collections/sort-descending.html"><code>sortDescending()</code></a>, <a href="/api/latest/jvm/stdlib/kotlin.collections/sort-by.html"><code>sortBy()</code></a>, and so on.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/shuffle.html"><code>shuffle()</code></a> instead of <code>shuffled()</code>.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/reverse.html"><code>reverse()</code></a> instead of <code>reversed()</code>.</li>
+<li><code>sort*</code> instead of <code>sorted*</code> in the names of all sorting functions: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-descending.html"><code>sortDescending()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-by.html"><code>sortBy()</code></a>, and so on.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffle.html"><code>shuffle()</code></a> instead of <code>shuffled()</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reverse.html"><code>reverse()</code></a> instead of <code>reversed()</code>.</li>
 </ul>
-<p><a href="/api/latest/jvm/stdlib/kotlin.collections/as-reversed.html"><code>asReversed()</code></a> called on a mutable list returns another mutable list which is a reversed view of the original list. Changes in that view are reflected in the original list.
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/as-reversed.html"><code>asReversed()</code></a> called on a mutable list returns another mutable list which is a reversed view of the original list. Changes in that view are reflected in the original list.
 The following example shows sorting functions for mutable lists:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {

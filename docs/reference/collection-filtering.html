@@ -1330,7 +1330,7 @@ In Kotlin, filtering conditions are defined by <em>predicates</em> – lambda fu
 These functions leave the original collection unchanged, so they are available for both <a href="collections-overview.html#collection-types">mutable and read-only</a> collections.
 To operate the filtering result, you should assign it to a variable or chain the functions after filtering.</p>
 <h2 id="filtering-by-predicate">Filtering by predicate</h2>
-<p>The basic filtering function is <a href="/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a>.
+<p>The basic filtering function is <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a>.
 When called with a predicate, <code>filter()</code> returns the collection elements that match it.
 For both <code>List</code> and <code>Set</code>, the resulting collection is a <code>List</code>, for <code>Map</code> it's a <code>Map</code> as well.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1348,9 +1348,9 @@ For both <code>List</code> and <code>Set</code>, the resulting collection is a <
 </code></pre>
 </div>
 <p>The predicates in <code>filter()</code> can only check the values of the elements.
-If you want to use element positions in the filter, use <a href="/api/latest/jvm/stdlib/kotlin.collections/filter-indexed.html"><code>filterIndexed()</code></a>.
+If you want to use element positions in the filter, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-indexed.html"><code>filterIndexed()</code></a>.
 It takes a predicate with two arguments: the index and the value of an element.</p>
-<p>To filter collections by negative conditions, use <a href="/api/latest/jvm/stdlib/kotlin.collections/filter-not.html"><code>filterNot()</code></a>.
+<p>To filter collections by negative conditions, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-not.html"><code>filterNot()</code></a>.
 It returns a list of elements for which the predicate yields <code>false</code>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1368,7 +1368,7 @@ It returns a list of elements for which the predicate yields <code>false</code>.
 </div>
 <p>There are also functions that narrow the element type by filtering elements of a given type:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/filter-is-instance.html"><code>filterIsInstance()</code></a> returns collection elements of a given type. Being called on a <code>List&lt;Any&gt;</code>, <code>filterIsInstance&lt;T&gt;()</code> returns a <code>List&lt;T&gt;</code>, thus allowing you to call functions of the  <code>T</code> type on its items.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-is-instance.html"><code>filterIsInstance()</code></a> returns collection elements of a given type. Being called on a <code>List&lt;Any&gt;</code>, <code>filterIsInstance&lt;T&gt;()</code> returns a <code>List&lt;T&gt;</code>, thus allowing you to call functions of the  <code>T</code> type on its items.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1383,7 +1383,7 @@ It returns a list of elements for which the predicate yields <code>false</code>.
 </code></pre>
 </div>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/filter-not-null.html"><code>filterNotNull()</code></a> returns all non-null elements. Being called on a <code>List&lt;T?&gt;</code>, <code>filterNotNull()</code> returns a <code>List&lt;T: Any&gt;</code>, thus allowing you to treat the elements as non-null objects.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-not-null.html"><code>filterNotNull()</code></a> returns all non-null elements. Being called on a <code>List&lt;T?&gt;</code>, <code>filterNotNull()</code> returns a <code>List&lt;T: Any&gt;</code>, thus allowing you to treat the elements as non-null objects.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1397,7 +1397,7 @@ It returns a list of elements for which the predicate yields <code>false</code>.
 </code></pre>
 </div>
 <h2 id="partitioning">Partitioning</h2>
-<p>Another filtering function – <a href="/api/latest/jvm/stdlib/kotlin.collections/partition.html"><code>partition()</code></a> – filters a collection by a predicate and keeps the elements that don't match it in a separate list.
+<p>Another filtering function – <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/partition.html"><code>partition()</code></a> – filters a collection by a predicate and keeps the elements that don't match it in a separate list.
 So, you have a <code>Pair</code> of <code>List</code>s as a return value: the first list containing elements that match the predicate and the second one containing everything else from the original collection.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1414,9 +1414,9 @@ So, you have a <code>Pair</code> of <code>List</code>s as a return value: the fi
 <h2 id="testing-predicates">Testing predicates</h2>
 <p>Finally, there are functions that simply test a predicate against collection elements:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/any.html"><code>any()</code></a> returns <code>true</code> if at least one element matches the given predicate.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/none.html"><code>none()</code></a> returns <code>true</code> if none of the elements match the given predicate.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/all.html"><code>all()</code></a> returns <code>true</code> if all elements match the given predicate. Note that <code>all()</code> returns <code>true</code> when called with any valid predicate on an empty collection. Such behavior is known in logic as <a href="https://en.wikipedia.org/wiki/Vacuous_truth"><em>vacuous truth</em></a>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/any.html"><code>any()</code></a> returns <code>true</code> if at least one element matches the given predicate.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/none.html"><code>none()</code></a> returns <code>true</code> if none of the elements match the given predicate.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/all.html"><code>all()</code></a> returns <code>true</code> if all elements match the given predicate. Note that <code>all()</code> returns <code>true</code> when called with any valid predicate on an empty collection. Such behavior is known in logic as <a href="https://en.wikipedia.org/wiki/Vacuous_truth"><em>vacuous truth</em></a>.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {

@@ -1328,7 +1328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 On this page, we'll describe write operations available for all implementations of <code>MutableCollection</code>.
 For more specific operations available for <code>List</code> and <code>Map</code>, see <a href="list-operations.html">List Specific Operations</a> and <a href="map-operations.html">Map Specific Operations</a> respectively.</p>
 <h2 id="adding-elements">Adding elements</h2>
-<p>To add a single element to a list or a set, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> function. The specified object is appended to the end of the collection.</p>
+<p>To add a single element to a list or a set, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> function. The specified object is appended to the end of the collection.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1339,7 +1339,7 @@ For more specific operations available for <code>List</code> and <code>Map</code
 }
 </code></pre>
 </div>
-<p><a href="/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> adds every element of the argument object to a list or a set.
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> adds every element of the argument object to a list or a set.
 The argument can be any <code>Collection</code>, for example, you can add all items from a <code>Set</code> to a <code>List</code>.
 Moreover, <code>addAll()</code> can accept any <code>Iterable</code>, <code>Sequence</code>, or <code>Array</code>.</p>
 <p>For lists, you can also specify the index where the elements should be inserted.
@@ -1362,7 +1362,7 @@ Other elements of the argument collection will follow it, shifting the receiver 
 }
 </code></pre>
 </div>
-<p>You can also add elements using the in-place version of the <a href="collection-plus-minus.html"><code>plus</code> operator</a> - <a href="/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>)
+<p>You can also add elements using the in-place version of the <a href="collection-plus-minus.html"><code>plus</code> operator</a> - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>)
  When applied to a mutable collection, <code>+=</code> appends the second operand (an element or another collection) to the end of the collection.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1377,7 +1377,7 @@ Other elements of the argument collection will follow it, shifting the receiver 
 </code></pre>
 </div>
 <h2 id="removing-elements">Removing elements</h2>
-<p>To remove an element from a mutable collection, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/remove.html"><code>remove()</code></a> function.
+<p>To remove an element from a mutable collection, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html"><code>remove()</code></a> function.
 <code>remove()</code> accepts the element value and removes one occurrence of this value.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1393,11 +1393,11 @@ Other elements of the argument collection will follow it, shifting the receiver 
 </div>
 <p>For removing multiple elements at once, there are the following functions :</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/remove-all.html"><code>removeAll()</code></a> removes all elements that are present in the argument collection.
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-all.html"><code>removeAll()</code></a> removes all elements that are present in the argument collection.
  Alternatively, you can call it with a predicate as an argument; in this case the function removes all elements for which the predicate yields <code>true</code>.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/retain-all.html"><code>retainAll()</code></a> is the opposite of <code>removeAll()</code>: it removes all elements except the ones from the argument collection.
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/retain-all.html"><code>retainAll()</code></a> is the opposite of <code>removeAll()</code>: it removes all elements except the ones from the argument collection.
  When used with a predicate, it leaves only elements that match it.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/clear.html"><code>clear()</code></a> removes all elements from a list and leaves it empty.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/clear.html"><code>clear()</code></a> removes all elements from a list and leaves it empty.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1416,7 +1416,7 @@ Other elements of the argument collection will follow it, shifting the receiver 
 }
 </code></pre>
 </div>
-<p>Another way to remove elements from a collection is with the <a href="/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operator – the in-place version of <a href="collection-plus-minus.html"><code>minus</code></a>. 
+<p>Another way to remove elements from a collection is with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operator – the in-place version of <a href="collection-plus-minus.html"><code>minus</code></a>.
 The second argument can be a single instance of the element type or another collection.
 With a single element on the right-hand side, <code>-=</code> removes the <em>first</em> occurrence of it.
 In turn, if it's a collection, <em>all</em> occurrences of its elements are removed.

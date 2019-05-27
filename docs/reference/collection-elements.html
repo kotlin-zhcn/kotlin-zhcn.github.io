@@ -1337,7 +1337,7 @@ The order of a set of elements can also be unknown.
 In such cases, the elements are still ordered somehow, so the functions that rely on the element positions still return their results.
 However, such results are unpredictable to the caller unless they know the specific implementation of <code>Set</code> used.</p>
 <h2 id="retrieving-by-position">Retrieving by position</h2>
-<p>For retrieving an element at a specific position, there is the function <a href="/api/latest/jvm/stdlib/kotlin.collections/element-at.html"><code>elementAt()</code></a>.
+<p>For retrieving an element at a specific position, there is the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/element-at.html"><code>elementAt()</code></a>.
  Call it with the integer number as an argument, and you'll receive the collection element at the given position.
  The first element has the position <code>0</code>, and the last one is <code>(size - 1)</code>.</p>
 <p><code>elementAt()</code> is useful for collections that do not provide indexed access, or are not statically known to provide one.
@@ -1354,7 +1354,7 @@ However, such results are unpredictable to the caller unless they know the speci
 }
 </code></pre>
 </div>
-<p>There are also useful aliases for retrieving the first and the last element of the collection: <a href="/api/latest/jvm/stdlib/kotlin.collections/first.html"><code>first()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/last.html"><code>last()</code></a>.</p>
+<p>There are also useful aliases for retrieving the first and the last element of the collection: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first.html"><code>first()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last.html"><code>last()</code></a>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1367,8 +1367,8 @@ However, such results are unpredictable to the caller unless they know the speci
 </div>
 <p>To avoid exceptions when retrieving element with non-existing positions, use safe variations of <code>elementAt()</code>:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/element-at-or-null.html"><code>elementAtOrNull()</code></a> returns null when the specified position is out of the collection bounds.</li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/element-at-or-else.html"><code>elementAtOrElse()</code></a> additionally takes a lambda function that maps an <code>Int</code> argument to an instance of the collection element type.
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/element-at-or-null.html"><code>elementAtOrNull()</code></a> returns null when the specified position is out of the collection bounds.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/element-at-or-else.html"><code>elementAtOrElse()</code></a> additionally takes a lambda function that maps an <code>Int</code> argument to an instance of the collection element type.
  When called with an out-of-bounds position, the <code>elementAtOrElse()</code> returns the result of the lambda on the given value.</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1382,7 +1382,7 @@ However, such results are unpredictable to the caller unless they know the speci
 </code></pre>
 </div>
 <h2 id="retrieving-by-condition">Retrieving by condition</h2>
-<p>Functions <a href="/api/latest/jvm/stdlib/kotlin.collections/first.html"><code>first()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/last.html"><code>last()</code></a> also let you search a collection for elements matching a given predicate.
+<p>Functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first.html"><code>first()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last.html"><code>last()</code></a> also let you search a collection for elements matching a given predicate.
 When you call <code>first()</code> with a predicate that tests a collection element, you'll receive the first element on which the predicate yields <code>true</code>.
 In turn, <code>last()</code> with a predicate returns the last element matching it.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1396,7 +1396,7 @@ In turn, <code>last()</code> with a predicate returns the last element matching 
 </code></pre>
 </div>
 <p>If no elements match the predicate, both functions throw exceptions.
-To avoid them, use <a href="/api/latest/jvm/stdlib/kotlin.collections/first-or-null.html"><code>firstOrNull()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.collections/last-or-null.html"><code>lastOrNull()</code></a> instead: they return <code>null</code> if no matching elements are found.</p>
+To avoid them, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first-or-null.html"><code>firstOrNull()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last-or-null.html"><code>lastOrNull()</code></a> instead: they return <code>null</code> if no matching elements are found.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1408,8 +1408,8 @@ To avoid them, use <a href="/api/latest/jvm/stdlib/kotlin.collections/first-or-n
 </div>
 <p>Alternatively, you can use the aliases if their names suit your situation better:</p>
 <ul>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/find.html"><code>find()</code></a> instead of <code>firstOrNull()</code></li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.collections/find-last.html"><code>findLast()</code></a> instead of <code>lastOrNull()</code></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/find.html"><code>find()</code></a> instead of <code>firstOrNull()</code></li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/find-last.html"><code>findLast()</code></a> instead of <code>lastOrNull()</code></li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1422,8 +1422,8 @@ To avoid them, use <a href="/api/latest/jvm/stdlib/kotlin.collections/first-or-n
 </code></pre>
 </div>
 <h2 id="random-element">Random element</h2>
-<p>If you need to retrieve an arbitrary element of a collection, call the <a href="/api/latest/jvm/stdlib/kotlin.collections/random.html"><code>random()</code></a> function.
-You can call it without arguments or with a <a href="/api/latest/jvm/stdlib/kotlin.random/-random/index.html"><code>Random</code></a> object as a source of the randomness.</p>
+<p>If you need to retrieve an arbitrary element of a collection, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/random.html"><code>random()</code></a> function.
+You can call it without arguments or with a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/index.html"><code>Random</code></a> object as a source of the randomness.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1434,10 +1434,10 @@ You can call it without arguments or with a <a href="/api/latest/jvm/stdlib/kotl
 </code></pre>
 </div>
 <h2 id="checking-existence">Checking existence</h2>
-<p>To check the presence of an element in a collection, use the <a href="/api/latest/jvm/stdlib/kotlin.collections/contains.html"><code>contains()</code></a> function.
+<p>To check the presence of an element in a collection, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/contains.html"><code>contains()</code></a> function.
 It returns <code>true</code> if there is a collection element that <code>equals()</code> the function argument.
 You can call <code>contains()</code> in the operator form with the <code>in</code> keyword.</p>
-<p>To check the presence of multiple instances together at once, call <a href="/api/latest/jvm/stdlib/kotlin.collections/contains-all.html"><code>containsAll()</code></a> with a collection of these instances as an argument.</p>
+<p>To check the presence of multiple instances together at once, call <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/contains-all.html"><code>containsAll()</code></a> with a collection of these instances as an argument.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1451,7 +1451,7 @@ You can call <code>contains()</code> in the operator form with the <code>in</cod
 }
 </code></pre>
 </div>
-<p>Additionally, you can check if the collection contains any elements by calling <a href="/api/latest/jvm/stdlib/kotlin.collections/is-empty.html"><code>isEmpty()</code></a> or <a href="/api/latest/jvm/stdlib/kotlin.collections/is-not-empty.html"><code>isNotEmpty()</code></a>.</p>
+<p>Additionally, you can check if the collection contains any elements by calling <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/is-empty.html"><code>isEmpty()</code></a> or <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/is-not-empty.html"><code>isNotEmpty()</code></a>.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

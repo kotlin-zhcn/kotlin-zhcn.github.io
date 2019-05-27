@@ -1324,8 +1324,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="sequences">Sequences</h1>
-<p>Along with collections, the Kotlin standard library contains another container type – <em>sequences</em> (<a href="/api/latest/jvm/stdlib/kotlin.sequences/-sequence/index.html"><code>Sequence&lt;T&gt;</code></a>).
-Sequences offer the same functions as <a href="/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable</code></a> but implement another approach to multi-step collection processing.</p>
+<p>Along with collections, the Kotlin standard library contains another container type – <em>sequences</em> (<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence/index.html"><code>Sequence&lt;T&gt;</code></a>).
+Sequences offer the same functions as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable</code></a> but implement another approach to multi-step collection processing.</p>
 <p>When the processing of an <code>Iterable</code> includes multiple steps, they are executed eagerly: each processing step completes and returns its result – an intermediate collection.
 The following step executes on this collection. In turn, multi-step processing of sequences is executed lazily when possible: actual computing happens only when the result of the whole processing chain is requested.</p>
 <p>The order of operations execution is different as well: <code>Sequence</code> performs all the processing steps one-by-one for every single element.
@@ -1335,13 +1335,13 @@ However, the lazy nature of sequences adds some overhead which may be significan
 Hence, you should consider both <code>Sequence</code> and <code>Iterable</code> and decide which one is better for your case.</p>
 <h2 id="constructing">Constructing</h2>
 <h3 id="from-elements">From elements</h3>
-<p>To create a sequence, call the <a href="/api/latest/jvm/stdlib/kotlin.sequences/sequence-of.html"><code>sequenceOf()</code></a> function listing the elements as its arguments.</p>
+<p>To create a sequence, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence-of.html"><code>sequenceOf()</code></a> function listing the elements as its arguments.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbersSequence = sequenceOf("four", "three", "two", "one")
 </code></pre>
 </div>
 <h3 id="from-iterable">From <code>Iterable</code></h3>
-<p>If you already have an <code>Iterable</code> object (such as a <code>List</code> or a <code>Set</code>), you can create a sequence from it by calling <a href="/api/latest/jvm/stdlib/kotlin.collections/as-sequence.html"><code>asSequence()</code></a>.</p>
+<p>If you already have an <code>Iterable</code> object (such as a <code>List</code> or a <code>Set</code>), you can create a sequence from it by calling <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/as-sequence.html"><code>asSequence()</code></a>.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbers = listOf("one", "two", "three", "four")
 val numbersSequence = numbers.asSequence()
@@ -1350,7 +1350,7 @@ val numbersSequence = numbers.asSequence()
 </div>
 <h3 id="from-function">From function</h3>
 <p>One more way to create a sequence is by building it with a function that calculates its elements.
-To build a sequence based on a function, call <a href="/api/latest/jvm/stdlib/kotlin.sequences/generate-sequence.html"><code>generateSequence()</code></a> with this function as an argument.
+To build a sequence based on a function, call <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/generate-sequence.html"><code>generateSequence()</code></a> with this function as an argument.
 Optionally, you can specify the first element as an explicit value or a result of a function call.
 The sequence generation stops when the provided function returns <code>null</code>. So, the sequence in the example below is infinite.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1374,8 +1374,8 @@ The sequence generation stops when the provided function returns <code>null</cod
 </code></pre>
 </div>
 <h3 id="from-chunks">From chunks</h3>
-<p>Finally, there is a function that lets you produce sequence elements one by one or by chunks of arbitrary sizes – the <a href="/api/latest/jvm/stdlib/kotlin.sequences/sequence.html"><code>sequence()</code></a> function.
-This function takes a lambda expression containing calls of <a href="/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield.html"><code>yield()</code></a> and <a href="/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield-all.html"><code>yieldAll()</code></a> functions.
+<p>Finally, there is a function that lets you produce sequence elements one by one or by chunks of arbitrary sizes – the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html"><code>sequence()</code></a> function.
+This function takes a lambda expression containing calls of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield.html"><code>yield()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield-all.html"><code>yieldAll()</code></a> functions.
 They return an element to the sequence consumer and suspend the execution of <code>sequence()</code> until the next element is requested by the consumer.
 <code>yield()</code> takes a single element as an argument; <code>yieldAll()</code> can take an <code>Iterable</code> object, an <code>Iterator</code>, or another <code>Sequence</code>. A <code>Sequence</code> argument of <code>yieldAll()</code> can be infinite. However, such a call must be the last: all subsequent calls will never be executed.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
