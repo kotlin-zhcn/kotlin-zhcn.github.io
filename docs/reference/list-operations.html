@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>List Specific Operations - Kotlin 语言中文站</title>
+    <title>List 相关操作 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,9 +1323,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="list-specific-operations">List Specific Operations</h1>
+<h1 id="list-相关操作">List 相关操作</h1>
 <p><a href="collections-overview.html#list"><code>List</code></a> is the most popular type of built-in collection in Kotlin. Index access to the elements of lists provides a powerful set of operations for lists.</p>
-<h2 id="retrieving-elements-by-index">Retrieving elements by index</h2>
+<h2 id="按索引取元素">按索引取元素</h2>
 <p>Lists support all common operations for element retrieval: <code>elementAt()</code>, <code>first()</code>, <code>last()</code>, and others listed in <a href="collection-elements.html">Retrieving Single Elements</a>.
 What is specific for lists is index access to the elements, so the simplest way to read an element is retrieving it by index.
 That is done with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a> function with the index passed in the argument or the shorthand <code>[index]</code> syntax.</p>
@@ -1349,7 +1349,7 @@ There are two other functions that help you avoid such exceptions:</p>
 
 </code></pre>
 </div>
-<h2 id="retrieving-list-parts">Retrieving list parts</h2>
+<h2 id="取列表的一部分">取列表的一部分</h2>
 <p>In addition to common operations for <a href="collection-parts.html">Retrieving Collection Parts</a>, lists provide the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/sub-list.html"><code>subList()</code></a> function that returns a view of the specified elements range as a list.
 Thus, if an element of the original collection changes, it also changes in the previously created sublists and vice versa.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1362,8 +1362,8 @@ Thus, if an element of the original collection changes, it also changes in the p
 
 </code></pre>
 </div>
-<h2 id="finding-element-positions">Finding element positions</h2>
-<h3 id="linear-search">Linear search</h3>
+<h2 id="查找元素位置">查找元素位置</h2>
+<h3 id="线性查找">线性查找</h3>
 <p>In any lists, you can find the position of an element using the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of.html"><code>indexOf()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last-index-of.html"><code>lastIndexOf()</code></a>.
 They return the first and the last position of an element equal to the given argument in the list.
 If there are no such elements, both functions return <code>-1</code>.</p>
@@ -1394,7 +1394,7 @@ If there are no such elements, both functions return <code>-1</code>.</p>
 
 </code></pre>
 </div>
-<h3 id="binary-search-in-sorted-lists">Binary search in sorted lists</h3>
+<h3 id="在有序列表中二分查找">在有序列表中二分查找</h3>
 <p>There is one more way to search elements in lists – <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>.
 It works significantly faster than other built-in search functions but <em>requires the list to be <a href="collection-ordering.html">sorted</a></em> in ascending order according to a certain ordering: natural or another one provided in the function parameter.
 Otherwise, the result is undefined.</p>
@@ -1416,7 +1416,7 @@ If there is more than one element with the given value, the search can return an
 
 </code></pre>
 </div>
-<h4 id="comparator-binary-search">Comparator binary search</h4>
+<h4 id="comparator-二分搜索">Comparator 二分搜索</h4>
 <p>When list elements aren't <code>Comparable</code>, you should provide a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator.html"><code>Comparator</code></a> to use in the binary search.
 The list must be sorted in ascending order according to this <code>Comparator</code>. Let's have a look at an example:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1449,7 +1449,7 @@ So, having a list sorted ascending according to this order, we use <code>binaryS
 
 </code></pre>
 </div>
-<h4 id="comparison-binary-search">Comparison binary search</h4>
+<h4 id="比较函数二分搜索">比较函数二分搜索</h4>
 <p>Binary search with <em>comparison</em> function lets you find elements without providing explicit search values.
 Instead, it takes a comparison function mapping elements to <code>Int</code> values and searches for the element where the function returns zero.
 The list must be sorted in the ascending order according to the provided function; in other words, the return values of comparison must grow from one list element to the next one.</p>
@@ -1473,10 +1473,10 @@ fun main() {
 </code></pre>
 </div>
 <p>Both comparator and comparison binary search can be performed for list ranges as well.</p>
-<h2 id="list-write-operations">List write operations</h2>
-<p>In addition to the collection modification operations described in <a href="collection-write.html">Collection Write Operations</a>, <a href="collections-overview.html#collection-types">mutable</a> lists support specific write operations.
+<h2 id="list-写操作">List 写操作</h2>
+<p>In addition to the collection modification operations described in <a href="collection-write.html">Collection Write Operations</a>, <a href="collections-overview.html#集合类型">mutable</a> lists support specific write operations.
 Such operations use the index to access elements to broaden the list modification capabilities.</p>
-<h3 id="adding">Adding</h3>
+<h3 id="添加">添加</h3>
 <p>To add elements to a specific position in a list, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> providing the position for element insertion as an additional argument.
 All elements that come after the position shift to the right.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1491,7 +1491,7 @@ All elements that come after the position shift to the right.</p>
 
 </code></pre>
 </div>
-<h3 id="updating">Updating</h3>
+<h3 id="更新">更新</h3>
 <p>Lists also offer a function to replace an element at a given position - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/set.html"><code>set()</code></a> and its operator form <code>[]</code>. <code>set()</code> doesn't change the indexes of other elements.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1516,7 +1516,7 @@ All elements that come after the position shift to the right.</p>
 
 </code></pre>
 </div>
-<h3 id="removing">Removing</h3>
+<h3 id="删除">删除</h3>
 <p>To remove an element at a specific position from a list, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/remove-at.html"><code>removeAt()</code></a> function providing the position as an argument.
 All indices of elements that come after the element being removed will decrease by one.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1529,7 +1529,7 @@ All indices of elements that come after the element being removed will decrease 
 
 </code></pre>
 </div>
-<h3 id="sorting">Sorting</h3>
+<h3 id="排序">排序</h3>
 <p>In <a href="collection-ordering.html">Collection Ordering</a>, we describe operations that retrieve collection elements in specific orders.
 For mutable lists, the standard library offers similar extension functions that perform the same ordering operations in place.
 When you apply such an operation to a list instance, it changes the order of elements in that exact instance.</p>

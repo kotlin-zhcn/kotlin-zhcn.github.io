@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Filtering Collections - Kotlin 语言中文站</title>
+    <title>过滤集合 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,13 +1323,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="filtering">Filtering</h1>
+<h1 id="过滤">过滤</h1>
 <p>Filtering is one of the most popular tasks in the collection processing.
 In Kotlin, filtering conditions are defined by <em>predicates</em> – lambda functions that take a collection element and return a boolean value: <code>true</code> means that the given element matches the predicate, <code>false</code> means the opposite.</p>
 <p>The standard library contains a group of extension functions that let you filter collections in a single call.
-These functions leave the original collection unchanged, so they are available for both <a href="collections-overview.html#collection-types">mutable and read-only</a> collections.
+These functions leave the original collection unchanged, so they are available for both <a href="collections-overview.html#集合类型">mutable and read-only</a> collections.
 To operate the filtering result, you should assign it to a variable or chain the functions after filtering.</p>
-<h2 id="filtering-by-predicate">Filtering by predicate</h2>
+<h2 id="按谓词过滤">按谓词过滤</h2>
 <p>The basic filtering function is <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a>.
 When called with a predicate, <code>filter()</code> returns the collection elements that match it.
 For both <code>List</code> and <code>Set</code>, the resulting collection is a <code>List</code>, for <code>Map</code> it's a <code>Map</code> as well.</p>
@@ -1396,7 +1396,7 @@ It returns a list of elements for which the predicate yields <code>false</code>.
 }
 </code></pre>
 </div>
-<h2 id="partitioning">Partitioning</h2>
+<h2 id="划分">划分</h2>
 <p>Another filtering function – <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/partition.html"><code>partition()</code></a> – filters a collection by a predicate and keeps the elements that don't match it in a separate list.
 So, you have a <code>Pair</code> of <code>List</code>s as a return value: the first list containing elements that match the predicate and the second one containing everything else from the original collection.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1411,7 +1411,7 @@ So, you have a <code>Pair</code> of <code>List</code>s as a return value: the fi
 }
 </code></pre>
 </div>
-<h2 id="testing-predicates">Testing predicates</h2>
+<h2 id="检验谓词">检验谓词</h2>
 <p>Finally, there are functions that simply test a predicate against collection elements:</p>
 <ul>
 <li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/any.html"><code>any()</code></a> returns <code>true</code> if at least one element matches the given predicate.</li>

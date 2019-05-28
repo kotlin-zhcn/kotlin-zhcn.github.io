@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Ordering - Kotlin 语言中文站</title>
+    <title>排序 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="collection-ordering">Collection Ordering</h1>
+<h1 id="集合排序">集合排序</h1>
 <p>The order of elements is an important aspect of certain collection types.
 For example, two lists of the same elements are not equal if their elements are ordered differently.</p>
 <p>In Kotlin, the orders of objects can be defined in several ways.</p>
@@ -1388,10 +1388,10 @@ println(listOf("aaa", "bb", "c").sortedWith(compareBy { it.length }))
 </code></pre>
 </div>
 <p>The Kotlin collections package provides functions for sorting collections in natural, custom, and even random orders.
-On this page, we'll describe sorting functions that apply to <a href="collections-overview.html#collection-types">read-only</a> collections.
+On this page, we'll describe sorting functions that apply to <a href="collections-overview.html#集合类型">read-only</a> collections.
 These functions return their result as a new collection containing the elements of the original collection in the requested order.
-To learn about functions for sorting <a href="collections-overview.html#collection-types">mutable</a> collections in place, see the <a href="list-operations.html#sorting">List Specific Operations</a>.</p>
-<h2 id="natural-order">Natural order</h2>
+To learn about functions for sorting <a href="collections-overview.html#集合类型">mutable</a> collections in place, see the <a href="list-operations.html#排序">List Specific Operations</a>.</p>
+<h2 id="自然顺序">自然顺序</h2>
 <p>The basic functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted.html"><code>sorted()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted-descending.html"><code>sortedDescending()</code></a> return elements of a collection sorted into ascending and descending sequence according to their natural order.
 These functions apply to collections of <code>Comparable</code> elements.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1406,7 +1406,7 @@ These functions apply to collections of <code>Comparable</code> elements.</p>
 
 </code></pre>
 </div>
-<h2 id="custom-orders">Custom orders</h2>
+<h2 id="自定义顺序">自定义顺序</h2>
 <p>For sorting in custom orders or sorting non-comparable objects, there are the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted-by.html"><code>sortedBy()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted-by-descending.html"><code>sortedByDescending()</code></a>.
 They take a selector function that maps collection elements to <code>Comparable</code> values and sort the collection in natural order of that values.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1436,7 +1436,7 @@ With this function, sorting strings by their length looks like this:</p>
 
 </code></pre>
 </div>
-<h2 id="reverse-order">Reverse order</h2>
+<h2 id="倒序">倒序</h2>
 <p>You can retrieve the collection in the reversed order using the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reversed.html"><code>reversed()</code></a> function.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1477,7 +1477,7 @@ So, if you change the original collection later, this won't affect the previousl
 </code></pre>
 </div>
 <p>However, if the mutability of the list is unknown or the source is not a list at all, <code>reversed()</code> is more preferable since its result is a copy that won't change in the future.</p>
-<h2 id="random-order">Random order</h2>
+<h2 id="随机顺序">随机顺序</h2>
 <p>Finally, there is a shuffle function that retrieves all collection elements in a random order - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffled.html"><code>shuffled()</code></a>.
 You can call it without arguments or with a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/index.html"><code>Random</code></a> object.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

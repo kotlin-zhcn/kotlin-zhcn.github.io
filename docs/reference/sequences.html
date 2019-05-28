@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Sequences - Kotlin 语言中文站</title>
+    <title>序列 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="sequences">Sequences</h1>
+<h1 id="序列">序列</h1>
 <p>Along with collections, the Kotlin standard library contains another container type – <em>sequences</em> (<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence/index.html"><code>Sequence&lt;T&gt;</code></a>).
 Sequences offer the same functions as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable</code></a> but implement another approach to multi-step collection processing.</p>
 <p>When the processing of an <code>Iterable</code> includes multiple steps, they are executed eagerly: each processing step completes and returns its result – an intermediate collection.
@@ -1333,14 +1333,14 @@ In turn, <code>Iterable</code> completes each step for the whole collection and 
 <p>So, the sequences let you avoid building results of intermediate steps, therefore improving the performance of the whole collection processing chain.
 However, the lazy nature of sequences adds some overhead which may be significant when processing smaller collections or doing simpler computations.
 Hence, you should consider both <code>Sequence</code> and <code>Iterable</code> and decide which one is better for your case.</p>
-<h2 id="constructing">Constructing</h2>
-<h3 id="from-elements">From elements</h3>
+<h2 id="构造">构造</h2>
+<h3 id="由元素">由元素</h3>
 <p>To create a sequence, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence-of.html"><code>sequenceOf()</code></a> function listing the elements as its arguments.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbersSequence = sequenceOf("four", "three", "two", "one")
 </code></pre>
 </div>
-<h3 id="from-iterable">From <code>Iterable</code></h3>
+<h3 id="由-iterable">由 <code>Iterable</code></h3>
 <p>If you already have an <code>Iterable</code> object (such as a <code>List</code> or a <code>Set</code>), you can create a sequence from it by calling <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/as-sequence.html"><code>asSequence()</code></a>.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbers = listOf("one", "two", "three", "four")
@@ -1348,7 +1348,7 @@ val numbersSequence = numbers.asSequence()
 
 </code></pre>
 </div>
-<h3 id="from-function">From function</h3>
+<h3 id="由函数">由函数</h3>
 <p>One more way to create a sequence is by building it with a function that calculates its elements.
 To build a sequence based on a function, call <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/generate-sequence.html"><code>generateSequence()</code></a> with this function as an argument.
 Optionally, you can specify the first element as an explicit value or a result of a function call.
@@ -1373,7 +1373,7 @@ The sequence generation stops when the provided function returns <code>null</cod
 }
 </code></pre>
 </div>
-<h3 id="from-chunks">From chunks</h3>
+<h3 id="由组块">由组块</h3>
 <p>Finally, there is a function that lets you produce sequence elements one by one or by chunks of arbitrary sizes – the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html"><code>sequence()</code></a> function.
 This function takes a lambda expression containing calls of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield.html"><code>yield()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield-all.html"><code>yieldAll()</code></a> functions.
 They return an element to the sequence consumer and suspend the execution of <code>sequence()</code> until the next element is requested by the consumer.
@@ -1391,17 +1391,17 @@ They return an element to the sequence consumer and suspend the execution of <co
 }
 </code></pre>
 </div>
-<h2 id="sequence-operations">Sequence operations</h2>
+<h2 id="序列操作">序列操作</h2>
 <p>The sequence operations can be classified into the following groups regarding their state requirements:</p>
 <ul>
-<li><em>Stateless</em> operations require no state and process each element independently, for example, <a href="collection-transformations.html#mapping"><code>map()</code></a> or <a href="collection-filtering.html"><code>filter()</code></a>.
+<li><em>Stateless</em> operations require no state and process each element independently, for example, <a href="collection-transformations.html#映射"><code>map()</code></a> or <a href="collection-filtering.html"><code>filter()</code></a>.
  Stateless operations can also require a small constant amount of state to process an element, for example, <a href="collection-parts.html"><code>take()</code> or <code>drop()</code></a>.</li>
 <li><em>Stateful</em> operations require a significant amount of state, usually proportional to the number of elements in a sequence.</li>
 </ul>
 <p>If a sequence operation returns another sequence, which is produced lazily, it's called <em>intermediate</em>.
-Otherwise, the operation is <em>terminal</em>. Examples of terminal operations are <a href="constructing-collections.html#copying"><code>toList()</code></a> or <a href="collection-aggregate.html"><code>sum()</code></a>. Sequence elements can be retrieved only with terminal operations.</p>
+Otherwise, the operation is <em>terminal</em>. Examples of terminal operations are <a href="constructing-collections.html#复制"><code>toList()</code></a> or <a href="collection-aggregate.html"><code>sum()</code></a>. Sequence elements can be retrieved only with terminal operations.</p>
 <p>Sequences can be iterated multiple times; however some sequence implementations might constrain themselves to be iterated only once. That is mentioned specifically in their documentation.</p>
-<h2 id="sequence-processing-example">Sequence processing example</h2>
+<h2 id="序列处理示例">序列处理示例</h2>
 <p>Let's take a look at the difference between <code>Iterable</code> and <code>Sequence</code> with an example.</p>
 <h3 id="iterable">Iterable</h3>
 <p>Assume that you have a list of words. The code below filters the words longer than three characters and prints the lengths of first four such words.</p>

@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Grouping - Kotlin 语言中文站</title>
+    <title>分组 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="grouping">Grouping</h1>
+<h1 id="分组">分组</h1>
 <p>The Kotlin standard library provides extension functions for grouping collection elements.
 The basic function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/group-by.html"><code>groupBy()</code></a> takes a lambda function and returns a <code>Map</code>.
 In this map, each key is the lambda result and the corresponding value is the <code>List</code> of elements on which this result is returned.
@@ -1347,7 +1347,7 @@ The <code>Grouping</code> instance lets you apply operations to all groups in a 
 <p>Namely, <code>Grouping</code> supports the following operations:</p>
 <ul>
 <li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/each-count.html"><code>eachCount()</code></a> counts the elements in each group.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> perform <a href="collection-aggregate.html#fold-and-reduce">fold and reduce</a> operations on each group as a separate collection and return the results.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> perform <a href="collection-aggregate.html#fold-与-reduce">fold and reduce</a> operations on each group as a separate collection and return the results.</li>
 <li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/aggregate.html"><code>aggregate()</code></a> applies a given operation subsequently to all the elements in each group and returns the result.
  This is the generic way to perform any operations on a <code>Grouping</code>. Use it to implement custom operations when fold or reduce are not enough.</li>
 </ul>

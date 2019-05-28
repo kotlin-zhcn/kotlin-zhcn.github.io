@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Aggregate Operations - Kotlin 语言中文站</title>
+    <title>聚合操作 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="collection-aggregate-operations">Collection Aggregate Operations</h1>
+<h1 id="集合聚合操作">集合聚合操作</h1>
 <p>Kotlin collections contain functions for commonly used <em>aggregate operations</em> – operations that return a single value based on the collection content.
 Most of them are well known and work the same way as they do in other languages:</p>
 <ul>
@@ -1380,7 +1380,7 @@ Most of them are well known and work the same way as they do in other languages:
 }
 </code></pre>
 </div>
-<h2 id="fold-and-reduce">Fold and reduce</h2>
+<h2 id="fold-与-reduce">Fold 与 reduce</h2>
 <p>For more specific cases, there are the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> that apply the provided operation to the collection elements sequentially and return the accumulated result.
 The operation takes two arguments:  the previously accumulated value and the collection element.</p>
 <p>The difference between the two functions is that <code>fold()</code> takes an initial value and uses it as the accumulated value on the first step, whereas the first step of <code>reduce()</code> uses the first and the second elements as operation arguments on the first step.</p>

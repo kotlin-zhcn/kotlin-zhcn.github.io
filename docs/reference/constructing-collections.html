@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Constructing Collections - Kotlin 语言中文站</title>
+    <title>构造集合 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,8 +1323,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="constructing-collections">Constructing Collections</h1>
-<h2 id="constructing-from-elements">Constructing from elements</h2>
+<h1 id="构造集合">构造集合</h1>
+<h2 id="由元素构造">由元素构造</h2>
 <p>The most common way to create a collection is with the standard library functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/list-of.html"><code>listOf&lt;T&gt;()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/set-of.html"><code>setOf&lt;T&gt;()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-list-of.html"><code>mutableListOf&lt;T&gt;()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/mutable-set-of.html"><code>mutableSetOf&lt;T&gt;()</code></a>.
 If you provide a comma-separated list of collection elements as arguments, the compiler detects the element type automatically.  When creating empty collections, specify the type explicitly.</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1344,14 +1344,14 @@ The <a href="scope-functions.html#apply"><code>apply()</code></a> function can h
 <pre><code class="language-kotlin">val numbersMap = mutableMapOf&lt;String, String&gt;().apply { this["one"] = "1"; this["two"] = "2" }
 </code></pre>
 </div>
-<h2 id="empty-collections">Empty collections</h2>
+<h2 id="空集合">空集合</h2>
 <p>There are also functions for creating collections without any elements: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/empty-list.html"><code>emptyList()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/empty-set.html"><code>emptySet()</code></a>, and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/empty-map.html"><code>emptyMap()</code></a>.
 When creating empty collections, you should specify the type of elements that the collection will hold.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val empty = emptyList&lt;String&gt;()
 </code></pre>
 </div>
-<h2 id="initializer-functions-for-lists">Initializer functions for lists</h2>
+<h2 id="list-的初始化函数">list 的初始化函数</h2>
 <p>For lists, there is a constructor that takes the list size and the initializer function that defines the element value based on its index.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1362,7 +1362,7 @@ When creating empty collections, you should specify the type of elements that th
 }
 </code></pre>
 </div>
-<h2 id="concrete-type-constructors">Concrete type constructors</h2>
+<h2 id="具体类型构造函数">具体类型构造函数</h2>
 <p>To create a concrete type collection, such as an <code>ArrayList</code> or <code>LinkedList</code>, you can use the available constructors for these types.
 Similar constructors are available for implementations of <code>Set</code> and <code>Map</code>.</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1370,7 +1370,7 @@ Similar constructors are available for implementations of <code>Set</code> and <
 val presizedSet = HashSet&lt;Int&gt;(32)
 </code></pre>
 </div>
-<h2 id="copying">Copying</h2>
+<h2 id="复制">复制</h2>
 <p>To create a collection with the same elements as an existing collection, you can use copying operations. Collection copying operations from the standard library create <em>shallow</em> copy collections with references to the same elements.
 Thus, a change made to a collection element reflects in all its copies.</p>
 <p>Collection copying functions, such as <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/to-list.html"><code>toList()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/to-mutable-list.html"><code>toMutableList()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/to-set.html"><code>toSet()</code></a> and others, create a snapshot of a collection at a specific moment.
@@ -1430,7 +1430,7 @@ So, when the collection instance is altered through a reference, the changes are
 }
 </code></pre>
 </div>
-<h2 id="invoking-functions-on-other-collections">Invoking functions on other collections</h2>
+<h2 id="调用其他集合的函数">调用其他集合的函数</h2>
 <p>Collections can be created in result of various operations on other collections. For example, <a href="collection-filtering.html">filtering</a> a list creates a new list of elements that match the filter:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1442,7 +1442,7 @@ So, when the collection instance is altered through a reference, the changes are
 }
 </code></pre>
 </div>
-<p><a href="collection-transformations.html#mapping">Mapping</a> produces a list of a transformation results:</p>
+<p><a href="collection-transformations.html#映射">Mapping</a> produces a list of a transformation results:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart 
@@ -1453,7 +1453,7 @@ So, when the collection instance is altered through a reference, the changes are
 }
 </code></pre>
 </div>
-<p><a href="collection-transformations.html#association">Association</a> produces maps:</p>
+<p><a href="collection-transformations.html#关联">Association</a> produces maps:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

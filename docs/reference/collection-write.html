@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Collection Write Operations - Kotlin 语言中文站</title>
+    <title>集合写操作 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,11 +1323,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="collection-write-operations">Collection Write Operations</h1>
-<p><a href="collections-overview.html#collection-types">Mutable collections</a> support operations for changing the collection contents, for example, adding or removing elements.
+<h1 id="集合写操作">集合写操作</h1>
+<p><a href="collections-overview.html#集合类型">Mutable collections</a> support operations for changing the collection contents, for example, adding or removing elements.
 On this page, we'll describe write operations available for all implementations of <code>MutableCollection</code>.
 For more specific operations available for <code>List</code> and <code>Map</code>, see <a href="list-operations.html">List Specific Operations</a> and <a href="map-operations.html">Map Specific Operations</a> respectively.</p>
-<h2 id="adding-elements">Adding elements</h2>
+<h2 id="添加元素">添加元素</h2>
 <p>To add a single element to a list or a set, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> function. The specified object is appended to the end of the collection.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1376,7 +1376,7 @@ Other elements of the argument collection will follow it, shifting the receiver 
 }
 </code></pre>
 </div>
-<h2 id="removing-elements">Removing elements</h2>
+<h2 id="删除元素">删除元素</h2>
 <p>To remove an element from a mutable collection, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html"><code>remove()</code></a> function.
 <code>remove()</code> accepts the element value and removes one occurrence of this value.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1435,7 +1435,7 @@ The second operand can contain elements that are not present in the collection. 
 }
 </code></pre>
 </div>
-<h2 id="updating-elements">Updating elements</h2>
+<h2 id="更新元素">更新元素</h2>
 <p>Lists and sets also provide operations for updating elements.
 They are described in <a href="list-operations.html">List Specific Operations</a> and <a href="map-operations.html">Map Specific Operations</a>.
 For sets, updating doesn't make sense since it's actually removing an element and adding another one.</p>

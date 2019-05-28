@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Collection Operations Overview - Kotlin 语言中文站</title>
+    <title>集合操作概述 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,16 +1323,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="collection-operations-overview">Collection Operations Overview</h1>
+<h1 id="集合操作概述">集合操作概述</h1>
 <p>The Kotlin standard library offers a broad variety of functions for performing operations on collections. This includes simple operations, such as getting or adding elements, as well as more complex ones including search, sorting, filtering, transformations, and so on.</p>
-<h2 id="extension-and-member-functions">Extension and member functions</h2>
-<p>Collection operations are declared in the standard library in two ways: <a href="classes.html#class-members">member functions</a> of collection interfaces and <a href="extensions.html#extension-functions">extension functions</a>.</p>
+<h2 id="扩展与成员函数">扩展与成员函数</h2>
+<p>Collection operations are declared in the standard library in two ways: <a href="classes.html#类成员">member functions</a> of collection interfaces and <a href="extensions.html#扩展函数">extension functions</a>.</p>
 <p>Member functions define operations that are essential for a collection type. For example, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection</code></a> contains the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/is-empty.html"><code>isEmpty()</code></a> for checking its emptiness; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a> for index access to elements, and so on.</p>
 <p>When you create own implementations of collection interfaces, you must implement their member functions.
 To make the creation of new implementations easier, use the skeletal implementations of collection interfaces from the standard library: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-collection/index.html"><code>AbstractCollection</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-list/index.html"><code>AbstractList</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-set/index.html"><code>AbstractSet</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-map/index.html"><code>AbstractMap</code></a>, and their mutable counterparts.</p>
 <p>Other collection operations are declared as extension functions. These are filtering, transformation, ordering, and other collection processing functions.</p>
-<h2 id="common-operations">Common operations</h2>
-<p>Common operations are available for both <a href="collections-overview.html#collection-types">read-only and mutable collections</a>. Common operations fall into these groups:</p>
+<h2 id="公共操作">公共操作</h2>
+<p>Common operations are available for both <a href="collections-overview.html#集合类型">read-only and mutable collections</a>. Common operations fall into these groups:</p>
 <ul>
 <li><a href="collection-transformations.html">Transformations</a></li>
 <li><a href="collection-filtering.html">Filtering</a></li>
@@ -1388,8 +1388,8 @@ These functions take the destination collection as an additional parameter.</p>
 </code></pre>
 </div>
 <p>Functions with destination are available for filtering, association, grouping, flattening, and other operations. For the complete list of destination operations see the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html">Kotlin collections reference</a>.</p>
-<h2 id="write-operations">Write operations</h2>
-<p>For mutable collections, there are also <em>write operations</em> that change the collection state. Such operations include adding, removing, and updating elements. Write operations are listed in the <a href="collection-write.html">Write operations</a> and corresponding sections of <a href="list-operations.html#list-write-operations">List specific operations</a> and <a href="map-operations.html#map-write-operations">Map specific operations</a>.</p>
+<h2 id="写操作">写操作</h2>
+<p>For mutable collections, there are also <em>write operations</em> that change the collection state. Such operations include adding, removing, and updating elements. Write operations are listed in the <a href="collection-write.html">Write operations</a> and corresponding sections of <a href="list-operations.html#list-写操作">List specific operations</a> and <a href="map-operations.html#map-写操作">Map specific operations</a>.</p>
 <p>For certain operations, there are pairs of functions for performing the same operation: one applies the operation in-place and the other returns the result as a separate collection.
 For example, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a> sorts a mutable collection in-place, so it's state changes; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted.html"><code>sorted()</code></a> creates a new collection that contains the same elements in the sorted order.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

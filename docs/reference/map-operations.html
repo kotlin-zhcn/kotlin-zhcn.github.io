@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Map Specific Operations - Kotlin 语言中文站</title>
+    <title>Map 相关操作 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,11 +1323,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="map-specific-operations">Map Specific Operations</h1>
+<h1 id="map-相关操作">Map 相关操作</h1>
 <p>In <a href="collections-overview.html#map">maps</a>, types of both keys and values are user-defined.
 Key-based access to map entries enables various map-specific processing capabilities from getting a value by key to separate filtering of keys and values.
 On this page, we provide descriptions of the map processing functions from the standard library.</p>
-<h2 id="retrieving-keys-and-values">Retrieving keys and values</h2>
+<h2 id="取键与值">取键与值</h2>
 <p>For retrieving a value from a map, you must provide its key as an argument of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html"><code>get()</code></a> function.
 The shorthand <code>[key]</code> syntax is also supported. If the given key is not found, it returns <code>null</code>.
 There is also the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html"><code>getValue()</code></a> which has slightly different behavior: it throws an exception if the key is not found in the map.
@@ -1362,7 +1362,7 @@ Additionally, you have two more options to handle the key absence:</p>
 
 </code></pre>
 </div>
-<h2 id="filtering">Filtering</h2>
+<h2 id="过滤">过滤</h2>
 <p>You can <a href="collection-filtering.html">filter</a> maps with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a> function as well as other collections.
 When calling <code>filter()</code> on a map, pass to it a predicate with a <code>Pair</code> as an argument.
 This enables you to use both the key and the value in the filtering predicate.</p>
@@ -1395,7 +1395,7 @@ The predicate for <code>filterKeys()</code> checks only the element keys, the on
 
 </code></pre>
 </div>
-<h2 id="plus-and-minus-operators"><code>plus</code> and <code>minus</code> operators</h2>
+<h2 id="plus-与-minus-操作"><code>plus</code> 与 <code>minus</code> 操作</h2>
 <p>Due to the key access to elements, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus.html"><code>plus</code></a> (<code>+</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus.html"><code>minus</code></a> (<code>-</code>) operators work for maps differently than for other collections.
 <code>plus</code> returns a <code>Map</code> that contains elements of its both operands: a <code>Map</code> on the left and a <code>Pair</code> or another <code>Map</code> on the right.
 When the right-hand side operand contains entries with keys present in the left-hand side <code>Map</code>, the result map contains the entries from the right side.</p>
@@ -1424,9 +1424,9 @@ So, the right-hand side operand can be either a single key or a collection of ke
 
 </code></pre>
 </div>
-<p>For details on using <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operators on mutable maps, see <a href="#map-write-operations">Map write operations</a> below.</p>
-<h2 id="map-write-operations">Map write operations</h2>
-<p><a href="collections-overview.html#collection-types">Mutable</a> maps offer map-specific write operations.
+<p>For details on using <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operators on mutable maps, see <a href="#map-写操作">Map write operations</a> below.</p>
+<h2 id="map-写操作">Map 写操作</h2>
+<p><a href="collections-overview.html#集合类型">Mutable</a> maps offer map-specific write operations.
 These operations let you change the map content using the key-based access to the values.</p>
 <p>There are certain rules that define write operations on maps:</p>
 <ul>
@@ -1434,7 +1434,7 @@ These operations let you change the map content using the key-based access to th
 <li>For each key, there is always a single value associated with it. You can add and remove whole entries.</li>
 </ul>
 <p>Below are descriptions of the standard library functions for write operations available on mutable maps.</p>
-<h3 id="adding-and-updating-entries">Adding and updating entries</h3>
+<h3 id="添加与更新条目">添加与更新条目</h3>
 <p>To  add a new key-value pair to a mutable map, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/put.html"><code>put()</code></a>.
 When a new entry is put into a <code>LinkedHashMap</code> (the default map implementation), it is added so that it comes last when iterating the map.
 In sorted maps, the positions of new elements are defined by the order of their keys.</p>
@@ -1492,7 +1492,7 @@ In sorted maps, the positions of new elements are defined by the order of their 
 </code></pre>
 </div>
 <p>When called with the key present in the map, operators overwrite the values of the corresponding entries.</p>
-<h3 id="removing-entries">Removing entries</h3>
+<h3 id="删除条目">删除条目</h3>
 <p>To remove an entry from a mutable map, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/remove.html"><code>remove()</code></a> function.
 When calling <code>remove()</code>, you can pass either a key or a whole key-value-pair.
 If you specify both the key and value, the element with this key will be removed only if its value matches the second argument.</p>

@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Collections Overview - Kotlin 语言中文站</title>
+    <title>集合概述 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="kotlin-collections-overview">Kotlin Collections Overview</h1>
+<h1 id="kotlin-集合概述">Kotlin 集合概述</h1>
 <p>The Kotlin Standard Library provides a comprehensive set of tools for managing <em>collections</em> – groups of a variable number of items (possibly zero) that share significance to the problem being solved and are operated upon commonly.</p>
 <p>Collections are a common concept for most programming languages, so if you're familiar with, for example, Java or Python collections, you can skip this introduction and proceed to the detailed sections.</p>
 <p>A collection usually contains a number of objects (this number may also be zero) of the same type. Objects in a collection are called <em>elements</em> or <em>items</em>. For example, all the students in a department form a collection that can be used to calculate their average age. 
@@ -1336,14 +1336,14 @@ The  following collection types are relevant for Kotlin:</p>
 <p>Kotlin lets you manipulate collections independently of the exact type of objects stored in them. In other words, you add a <code>String</code> to a list of <code>String</code>s the same way as you would do with <code>Int</code>s or a user-defined class.
 So, the Kotlin Standard Library offers generic interfaces, classes, and functions for creating, populating, and managing collections of any type.</p>
 <p>The collection interfaces and related functions are located in the kotlin.collections package. Let's get an overview of its contents.</p>
-<h2 id="collection-types">Collection types</h2>
+<h2 id="集合类型">集合类型</h2>
 <p>The Kotlin Standard Library provides implementations for basic collection types: sets, lists, and maps.
 A pair of interfaces represent each collection type:</p>
 <ul>
 <li>A <em>read-only</em> interface that provides operations for accessing collection elements.</li>
 <li>A <em>mutable</em> interface that extends the corresponding read-only interface with write operations: adding, removing, and updating its elements.</li>
 </ul>
-<p>Note that altering a mutable collection doesn't require it to be a <a href="basic-syntax.html#defining-variables"><code>var</code></a>: write operations modify the same mutable collection object, so the reference doesn't change.
+<p>Note that altering a mutable collection doesn't require it to be a <a href="basic-syntax.html#定义变量"><code>var</code></a>: write operations modify the same mutable collection object, so the reference doesn't change.
 Although, if you try to reassign a <code>val</code> collection, you'll get a compilation error.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1355,7 +1355,7 @@ Although, if you try to reassign a <code>val</code> collection, you'll get a com
 }
 </code></pre>
 </div>
-<p>The read-only collection types are <a href="generics.html#variance">covariant</a>.
+<p>The read-only collection types are <a href="generics.html#型变">covariant</a>.
 This means that, if a <code>Rectangle</code> class inherits from <code>Shape</code>, you can use a <code>List&lt;Rectangle&gt;</code> anywhere the <code>List&lt;Shape&gt;</code> is required.
 In other words, the collection types have the same subtyping relationship as the element types. Maps are covariant on the value type, but not on the key type.</p>
 <p>In turn, mutable collections aren't covariant; otherwise, this would lead to runtime failures. If <code>MutableList&lt;Rectangle&gt;</code> was a subtype of <code>MutableList&lt;Shape&gt;</code>, you could insert other <code>Shape</code> inheritors (for example, <code>Circle</code>) into it, thus violating its <code>Rectangle</code> type argument.</p>
@@ -1413,7 +1413,7 @@ fun main() {
 </code></pre>
 </div>
 <p>List elements (including nulls) can duplicate: a list can contain any number of equal objects or occurrences of a single object.
-Two lists are considered equal if they have the same sizes and <a href="equality.html#structural-equality">structurally equal</a> elements at the same positions.</p>
+Two lists are considered equal if they have the same sizes and <a href="equality.html#结构相等">structurally equal</a> elements at the same positions.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int)
 

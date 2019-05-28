@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Retrieving Single Elements - Kotlin 语言中文站</title>
+    <title>取单个元素 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="retrieving-single-elements">Retrieving Single Elements</h1>
+<h1 id="取单个元素">取单个元素</h1>
 <p>Kotlin collections provide a set of functions for retrieving single elements from collections.
 Functions described on this page apply to both lists and sets.</p>
 <p>As the <a href="collections-overview.html">definition of list</a> says, a list is an ordered collection.
@@ -1336,12 +1336,12 @@ These can be the order of insertion (in <code>LinkedHashSet</code>), natural sor
 The order of a set of elements can also be unknown.
 In such cases, the elements are still ordered somehow, so the functions that rely on the element positions still return their results.
 However, such results are unpredictable to the caller unless they know the specific implementation of <code>Set</code> used.</p>
-<h2 id="retrieving-by-position">Retrieving by position</h2>
+<h2 id="按位置取">按位置取</h2>
 <p>For retrieving an element at a specific position, there is the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/element-at.html"><code>elementAt()</code></a>.
  Call it with the integer number as an argument, and you'll receive the collection element at the given position.
  The first element has the position <code>0</code>, and the last one is <code>(size - 1)</code>.</p>
 <p><code>elementAt()</code> is useful for collections that do not provide indexed access, or are not statically known to provide one.
-  In case of <code>List</code>, it's more idiomatic to use <a href="list-operations.html#retrieving-elements-by-index">indexed access operator</a> (<code>get()</code> or <code>[]</code>).</p>
+  In case of <code>List</code>, it's more idiomatic to use <a href="list-operations.html#按索引取元素">indexed access operator</a> (<code>get()</code> or <code>[]</code>).</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1381,7 +1381,7 @@ However, such results are unpredictable to the caller unless they know the speci
 }
 </code></pre>
 </div>
-<h2 id="retrieving-by-condition">Retrieving by condition</h2>
+<h2 id="按条件取">按条件取</h2>
 <p>Functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/first.html"><code>first()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last.html"><code>last()</code></a> also let you search a collection for elements matching a given predicate.
 When you call <code>first()</code> with a predicate that tests a collection element, you'll receive the first element on which the predicate yields <code>true</code>.
 In turn, <code>last()</code> with a predicate returns the last element matching it.</p>
@@ -1421,7 +1421,7 @@ To avoid them, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.
 }
 </code></pre>
 </div>
-<h2 id="random-element">Random element</h2>
+<h2 id="随机取元素">随机取元素</h2>
 <p>If you need to retrieve an arbitrary element of a collection, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/random.html"><code>random()</code></a> function.
 You can call it without arguments or with a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/index.html"><code>Random</code></a> object as a source of the randomness.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1433,7 +1433,7 @@ You can call it without arguments or with a <a href="https://kotlinlang.org/api/
 }
 </code></pre>
 </div>
-<h2 id="checking-existence">Checking existence</h2>
+<h2 id="检测存在与否">检测存在与否</h2>
 <p>To check the presence of an element in a collection, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/contains.html"><code>contains()</code></a> function.
 It returns <code>true</code> if there is a collection element that <code>equals()</code> the function argument.
 You can call <code>contains()</code> in the operator form with the <code>in</code> keyword.</p>

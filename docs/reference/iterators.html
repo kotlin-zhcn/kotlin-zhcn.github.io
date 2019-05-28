@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Iterators - Kotlin 语言中文站</title>
+    <title>迭代器 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1323,7 +1323,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
                 
-<h1 id="iterators">Iterators</h1>
+<h1 id="迭代器">迭代器</h1>
 <p>For traversing collection elements, the Kotlin standard library supports the commonly used mechanism of <em>iterators</em> – objects that provide access to the elements sequentially without exposing the underlying structure of the collection.
 Iterators are useful when you need to process all the elements of a collection one-by-one, for example, print values or make similar updates to them.</p>
 <p>Iterators can be obtained for inheritors of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable&lt;T&gt;</code></a> interface, including <code>Set</code> and <code>List</code>, by calling the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html"><code>iterator()</code></a> function.
@@ -1365,7 +1365,7 @@ Once the iterator passes through the last element, it can no longer be used for 
 }
 </code></pre>
 </div>
-<h2 id="list-iterators">List iterators</h2>
+<h2 id="list-迭代器">List 迭代器</h2>
 <p>For lists, there is a special iterator implementation: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html"><code>ListIterator</code></a>. It supports iterating lists in both directions: forwards and backwards.
 Backward iteration is implemented by the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/has-previous.html"><code>hasPrevious()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous.html"><code>previous()</code></a>.
 Additionally, the <code>ListIterator</code> provides information about the element indices with the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/next-index.html"><code>nextIndex()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous-index.html"><code>previousIndex()</code></a>.</p>
@@ -1385,7 +1385,7 @@ Additionally, the <code>ListIterator</code> provides information about the eleme
 </code></pre>
 </div>
 <p>Having the ability to iterate in both directions, means the <code>ListIterator</code> can still be used after it reaches the last element.</p>
-<h2 id="mutable-iterators">Mutable iterators</h2>
+<h2 id="可变迭代器">可变迭代器</h2>
 <p>For iterating mutable collections, there is <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/index.html"><code>MutableIterator</code></a> that extends <code>Iterator</code> with the element removal function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/remove.html"><code>remove()</code></a>. So, you can remove elements from a collection while iterating it.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
