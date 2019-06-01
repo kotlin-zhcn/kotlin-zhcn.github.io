@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/competitive-programming.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial explains basic usage of Kotlin for competitive programing.">
+    <meta property="og:description" content="本教程介绍了 Kotlin 在竞技性程序设计中的基本用法。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial explains basic usage of Kotlin for competitive programing.">
+    <meta name="twitter:description" content="本教程介绍了 Kotlin 在竞技性程序设计中的基本用法。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Competitive Programming - Kotlin 语言中文站</title>
+    <title>竞技程序设计 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,7 +811,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Competitive Programming
+                竞技程序设计
             </h1>
             <table>
                     <tr>
@@ -823,27 +823,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                This tutorial explains basic usage of Kotlin for competitive programing.
+                本教程介绍了 Kotlin 在竞技性程序设计中的基本用法。
                 <br/>
                 <br/>
             
-<h2 id="prerequisites">Prerequisites</h2>
-<p>This tutorial is designed both for competitive programmers that did not use Kotlin before and 
-for Kotlin developers that did not participate in any competitive programming events before.
-It assumes the corresponding programming skills.</p>
-<h2 id="competitive-programming-and-kotlin">Competitive programming and Kotlin</h2>
-<p><a href="https://en.wikipedia.org/wiki/Competitive_programming">Competitive programming</a>
-is a mind sport where contestants write programs to solve precisely specified 
-algorithmic problems within strict constraints. Problems can range from simple ones that can be solved by 
-any software developer and require little code to get a correct solution, to complex ones that require knowledge of 
-special algorithms, data structures, and lots of practice. While not being specifically designed for competitive 
-programming, Kotlin incidentally fits well in this domain, reducing the typical amount of boilerplate that a 
-programmer needs to write and read while working with the code almost to the level offered by dynamically-typed 
-scripting languages, while having tooling and performance of a statically-typed language.</p>
-<p>See <a href="/docs/tutorials/getting-started.html">Getting Started with IntelliJ IDEA</a> on how to set up development
-environment for Kotlin. In competitive programming, a single project is usually created and each problem's solution is 
-written in a single source file.</p>
-<h2 id="simple-example-reachable-numbers-problem">Simple example: Reachable Numbers problem</h2>
+<h2 id="先决条件">先决条件</h2>
+<p>本教程适用于之前未使用 Kotlin
+的竞技程序员，也适用于之前从未参与过任何竞技性程序设计活动的 Kotlin 开发人员。
+本教程假定读者具有相应的编程技能。</p>
+<h2 id="竞技程序设计与-kotlin">竞技程序设计与 Kotlin</h2>
+<p><a href="https://en.wikipedia.org/wiki/Competitive_programming">竞技性程序设计</a>
+是一项智力运动，参赛选手在严格的限制条件下编写程序精确地解决指定的<!--
+-->算法问题。问题可以简单到<!--
+-->任何软件开发人员都能解题、只需很少代码就能得到正确答案，也可以复杂到需要<!--
+-->特殊的算法、数据结构知识以及大量实践。虽然 Kotlin 不是专为竞技性<!--
+-->编程而设计的，但是它恰好适合这一领域，显著减少了<!--
+-->程序员所需编写与阅读的样板代码量，这样几乎可以像动态<!--
+-->脚本语言一样编写代码，同时又有静态类型语言的工具与性能支持。</p>
+<p>关于如何搭建 Kotlin 开发环境，请参见<a href="/docs/tutorials/getting-started.html">以 IntelliJ IDEA 入门</a><!--
+-->。在竞技程序设计中，通常会创建单个项目，而每个问题的答案<!--
+-->写在单个源文件中。</p>
+<h2 id="简单示例可达数问题">简单示例：可达数问题</h2>
 <p>Let's take a look at a concrete example.</p>
 <p><a href="http://codeforces.com/">Codeforces</a> 
 Round 555 was held on April 26th for 3rd Division, which means it had problems fit for any developer to try. 
@@ -924,7 +924,7 @@ private fun readInt() = readLn().toInt()
 While the concept of visibility modifier is not relevant for competitive programming at all, 
 it allows you to place multiple solution files based on the
 same template without getting an error for conflicting public declaration in the same package.</p>
-<h2 id="functional-operators-example-long-number-problem">Functional operators example: Long Number problem</h2>
+<h2 id="函数式操作符示例长数问题">函数式操作符示例：长数问题</h2>
 <p>For more complicated problems, Kotlin's extensive library of functional operations on collections comes in handy to 
 minimize the boilerplate and turn the code into a linear top-to-bottom and left-to-right fluent data transformation 
 pipeline. For example, the 
@@ -983,7 +983,7 @@ However, these names are usually still mnemonic — <code>a</code> for arrays,
 It is easier to keep the same names for input data as it is given in the problem statement. 
 However, more complex problems require more code to solve and subsequently variable and function names tend to 
 become longer and more self-explanatory.</p>
-<h2 id="more-tips-and-tricks">More tips and tricks</h2>
+<h2 id="更多提示和技巧">更多提示和技巧</h2>
 <p>Competitive programming problems often have input like this:</p>
 <blockquote>
 <p>The first line of the input contains two integers <code>n</code> and <code>k</code></p>
@@ -1013,7 +1013,7 @@ with <code>"\n"</code> as separator, like this:</p>
 <pre><code class="language-kotlin">println(a.joinToString("\n")) // each element of array/list of a separate line
 </code></pre>
 </div>
-<h2 id="learning-kotlin">Learning Kotlin</h2>
+<h2 id="学习-kotlin">学习 Kotlin</h2>
 <p>Kotlin is designed to be easy to learn for people who already know Java.
 A quick overview of differences is given on <a href="/docs/reference/comparison-to-java.html">the official comparison page</a>. 
 A short introduction to the basic syntax of Kotlin language for software developers can be found directly in the

@@ -822,7 +822,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Like in Python, functions in Kotlin are first-class values - they can be assigned to variables and passed around as parameters. The type a function is a <em>function type</em>, which is indicated with a parenthesized parameter type list and an arrow to the return type. Consider this function:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun safeDivide(numerator: Int, denominator: Int) =
-    if (denominator == 0.0) 0.0 else numerator.toDouble() / denominator
+    if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 </code></pre>
 </div>
 <p>It takes two <code>Int</code> parameters and returns a <code>Double</code>, so its type is <code>(Int, Int) -&gt; Double</code>. We can reference the function itself by prefixing its name with <code>::</code>, and we can assign it to a variable (whose type would normally be inferred, but we show the type signature for demonstration):</p>
@@ -832,7 +832,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>When you have a variable or parameter of function type (sometimes called a <em>function reference</em>), you can call it as if it were an ordinary function, and that will cause the referenced function to be called:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val quotient = f(3.14, 0.0)
+<pre><code class="language-kotlin">val quotient = f(3, 0)
 </code></pre>
 </div>
 <p>It is possible for a class to implement a function type as if it were an interface. It must then supply an operator function called <code>invoke</code> with the given signature, and instances of that class may then be assigned to a variable of that function type:</p>
@@ -846,7 +846,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Like in Python, you can write <em>lambda expressions</em>: unnamed function declarations with a very compact syntax, which evaluate to callable function objects. In Kotlin, lambdas can contain multiple statements, which make them useful for <a href="functional-programming.html#接收者">more complex tasks</a> than the single-expression lambdas of Python. The last statement must be an expression, whose result will become the return value of the lambda (unless <code>Unit</code> is the return type of the variable/parameter that the lambda expression is assigned to, in which case the lambda has no return value). A lambda expression is enclosed in curly braces, and begins by listing its parameter names and possibly their types (unless the types can be inferred from context):</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val safeDivide = { numerator: Int, denominator: Int -&gt;
-    if (denominator == 0.0) 0.0 else numerator.toDouble() / denominator
+    if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 }
 </code></pre>
 </div>
