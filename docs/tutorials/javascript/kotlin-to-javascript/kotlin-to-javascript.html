@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/kotlin-to-javascript/kotlin-to-javascript.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how Kotlin compiles to JavaScript and the use cases for that.">
+    <meta property="og:description" content="本文介绍 Kotlin 是如何编译到 JavaScript 及一些使用示例。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how Kotlin compiles to JavaScript and the use cases for that.">
+    <meta name="twitter:description" content="本文介绍 Kotlin 是如何编译到 JavaScript 及一些使用示例。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Kotlin to JavaScript - Kotlin 语言中文站</title>
+    <title>Kotlin 转 JavaScript - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,42 +811,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Kotlin to JavaScript
+                Kotlin 转 JavaScript
             </h1>
             <table>
             </table>
-                A look at how Kotlin compiles to JavaScript and the use cases for that.
+                本文介绍 Kotlin 是如何编译到 JavaScript 及一些使用示例。
                 <br/>
                 <br/>
             
-<p>There are multiple ways to compile Kotlin to JavaScript.
-The recommended approach is to use Gradle; if desired, you can also build JavaScript projects directly from
-IntelliJ IDEA, use Maven, or compile the code manually from the command line.
-To learn more about how to compile to JavaScript please see the corresponding tutorials:</p>
+<p>将 Kotlin 编译到 JavaScript 有许多种方法，<!--
+-->推荐的方法是使用 Gradle。如果需要，你还可以直接使用 Intellij IDEA 构建 JavaScript 项目，<!--
+-->使用 Maven 编译，或者手动使用命令行编译代码。<!--
+-->学习如何将 Kotlin 编译为 JavaScript，请参阅下面的相应教程：</p>
 <ul>
-<li><a href="../getting-started-gradle/getting-started-with-gradle.html">使用Gradle</a></li>
-<li><a href="../getting-started-idea/getting-started-with-intellij-idea.html">使用IntelliJ IDEA</a></li>
-<li><a href="../getting-started-maven/getting-started-with-maven.html">使用Maven</a></li>
+<li><a href="../getting-started-gradle/getting-started-with-gradle.html">使用 Gradle</a></li>
+<li><a href="../getting-started-idea/getting-started-with-intellij-idea.html">使用 IntelliJ IDEA</a></li>
+<li><a href="../getting-started-maven/getting-started-with-maven.html">使用 Maven</a></li>
 <li><a href="../getting-started-command-line/command-line-library-js.html">使用命令行</a></li>
 </ul>
-<h2 id="examining-the-compilation-output">Examining the compilation output</h2>
-<p>When compiling (we'll use this term interchangeably with <a href="https://en.wiktionary.org/wiki/transpile">transpiling</a>) to JavaScript, Kotlin outputs two main files:</p>
+<h2 id="检查编译输出">检查编译输出</h2>
+<p>当编译到（我们会交替使用编译（compile）和转译（<a href="https://en.wiktionary.org/wiki/transpile">transpile</a>）两个术语） JavaScript 时，Kotlin 会输出两个主要的文件：</p>
 <ul>
-<li><code>kotlin.js</code>. Kotlin正在使用版本的运行时标准库, 该文件在程序运行期间不会改变</li>
-<li><code>{module}.js</code>. 程序实际的代码。 所有文件都被编译成一个与模块名称相同的JavaScript文件。</li>
+<li><code>kotlin.js</code>：Kotlin 的运行时和标准库。这个文件在所有程序中都是一样的，它与我们使用的 Kotlin 版本有关。</li>
+<li><code>{module}.js</code>：来自应用程序的实际代码。 所有文件都编译为单个 JavaScript 文件，该文件与模块同名。</li>
 </ul>
-<p>另外, 每个文件都会生成一个 <code>{file}.meta.js</code> 文件用于对应Kotlin代码和Javascript代码的关系</p>
-<p>根据上面的描述, 我们给出下面的代码(模块名是 <code>ConsoleOutput</code>)</p>
+<p>另外，上面的每个文件还有一个相应的 <code>{file}.meta.js</code> 元数据文件，该文件用来实现反射及其他的功能。</p>
+<p>根据上面的描述, 我们给出下面的代码（模块名是 <code>ConsoleOutput</code>）</p>
 <div class="sample" data-target-platform="js" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     println("Hello JavaScript!")
 }
 </code></pre>
 </div>
-<p>Kotlin编译器将会生成下面的文件</p>
+<p>Kotlin 编译器将会生成下面的文件：</p>
 <p><img alt="Compiler Output" src="/assets/images/tutorials/javascript/kotlin-to-javascript/compiler-output.png"/></p>
-<p>注意：包含kotlin.js和其他库文件的lib目录仅在基于IntelliJ IDEA的项目中创建，并由Kotlin构面设置中的复制库运行时文件标志控制。 在Maven或Gradle构建（包括多平台项目）中，默认情况下没有库文件被复制到编译输出目录。 请参阅相应的教程，了解如何在这些构建系统上实现相同的效果。</p>
-<p>我们最感兴趣的文件是<code>ConsoleOutput.js</code></p>
+<p>注意：仅有基于 Intellij IDEA 的项目才会创建包含 <code>kotlin.js</code> 和其他库文件的 <code>lib</code> 目录，此功能由 Kotlin <a href="https://www.jetbrains.com/help/idea/facets.html">构面设置</a>中的 ”Copy library runtime files“ 标记控制。在 Maven 或 Gradle 构建（包含多平台项目）中，默认不会把库文件复制到编译输出目录。有关如何使用这些构建系统实现相同功能的说明，请参阅相应的教程。</p>
+<p>我们最感兴趣的文件是 <code>ConsoleOutput.js</code>：</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">if (typeof kotlin === 'undefined') {
   throw new Error("Error loading module 'ConsoleOutput'. Its dependency 'kotlin' was not found. /* ... */");
