@@ -864,20 +864,20 @@ var ConsoleOutput = function (_, Kotlin) {
 }(typeof ConsoleOutput === 'undefined' ? {} : ConsoleOutput, kotlin);
 </code></pre>
 </div>
-<p>This is the JS code generated for the Kotlin code above (the <code>main</code> function). Let's have a closer look at it.</p>
+<p>这是由上面的 Kotlin 代码（<code>main</code> 函数）编译生成的 js 代码，让我们再仔细地看看吧。</p>
 <ul>
-<li><code>if (typeof kotlin === 'undefined') { ... }</code> checks the existence of the <code>kotlin</code> object defined in <code>kotlin.js</code>. This object provides access to declarations from the Kotlin runtime and standard library.</li>
-<li><code>var ConsoleOutput = function (_, Kotlin) { ... }</code>: this is the variable named after your Kotlin module. Its value is the result of an anonymous function call. The rest of the code is the function body.</li>
-<li><code>var println = Kotlin.kotlin.io.println_s8jyv4$;</code>: a variable that refers to the <code>kotlin.io.println</code> function from the passed in parameter <code>Kotlin</code>. This is a way to import the standard <code>println</code> function defined in <code>kotlin.js</code>.</li>
-<li><code>function main(args) { ... }</code>: your <code>main</code> function.</li>
-<li><code>_.main_kand9s$ = main;</code> exports the declared <code>main</code> function. The name on the left-hand side will be used to access to the function from outside the module. The name contains a mangled word (<code>kand9s$</code>).
-This happens because you can have overloaded functions in Kotlin and need a way to translate them to their corresponding JavaScript ones.
-To change the generated function name with a custom name, use the <a href="/docs/reference/js-to-kotlin-interop.html#jsname-annotation"><code>@JsName</code> annotation</a>.</li>
-<li><code>main([]);</code>: a call of the <code>main</code> function.</li>
-<li><code>(typeof ConsoleOutput === 'undefined' ? {} : ConsoleOutput, kotlin);</code> checks the existence of <code>ConsoleOutput</code>. If such a variable already exists in the scope, the new declarations will be added to it.</li>
+<li><code>if (typeof kotlin === 'undefined') { ... }</code>：检查 <code>kotlin.js</code> 中定义的 <code>kotlin</code> 对象是否存在。通过该对象，我们才能访问到 Kotlin 运行时和标准库中声明的各种类和函数。</li>
+<li><code>var ConsoleOutput = function (_, Kotlin) { ... }</code>：这是以你的 Kotlin 模块命名的变量，它的值是匿名函数的调用结果，函数体就是我们的模块中的代码。</li>
+<li><code>var println = Kotlin.kotlin.io.println_s8jyv4$;</code>：一个变量，它从传入的参数 <code>Kotlin</code> 中引用了 <code>kotlin.io.println</code> 函数，这是导入 <code>kotlin.js</code> 中定义的标准 <code>println</code> 函数的方法。</li>
+<li><code>function main(args) { ... }</code>：你的 <code>main</code> 函数。</li>
+<li><code>_.main_kand9s$ = main;</code>：导出声明的 <code>main</code> 函数，左侧的名称将用于从模块外部访问该函数。该名称被 <code>kand9s$</code> 修饰，<!--
+-->这是因为你可以在 Kotlin 中使用重载函数，而 JavaScript 并不支持重载，所以在翻译为 JavaScript 代码的时候需要以此区分。<!--
+-->要自定义生成的函数的名称，请使用 <a href="/docs/reference/js-to-kotlin-interop.html#jsname-annotation"><code>@JsName</code> 注解</a>。</li>
+<li><code>main([]);</code>：调用 <code>main</code> 函数。</li>
+<li><code>(typeof ConsoleOutput === 'undefined' ? {} : ConsoleOutput, kotlin);</code>：检查 <code>ConsoleOutput</code> 是否存在。如果在作用域中早已存在该变量，则会将新的声明添加到其中。</li>
 </ul>
-<p>Since the entire anonymous function is self-executing, it will execute as soon as the code is loaded. Its argument will be the object <code>kotlin</code> from <code>kotlin.js</code>.</p>
-<p>If you declare your Kotlin code in a package, <code>main</code> would be followed by a package definition part. For example, this goes after the <code>main</code> declaration if you put your <code>main</code> function in the <code>org.example.hellojs</code> package:</p>
+<p>由于整个匿名函数是自执行的，因此只要代码被加载它就会运行，它的参数正是来自 <code>kotlin.js</code> 文件中的 <code>kotlin</code> 对象。</p>
+<p>如果你把你的 Kotlin 代码写在一个包中，在编译后的 <code>main</code> 函数后面就会生成一段包定义的代码。例如，如果你把 <code>main</code> 方法写在 <code>org.example.hellojs</code> 包中，那么编译后的 <code>main</code> 函数后面会多出这样一段：</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">  var package$org = _.org || (_.org = {});
   var package$example = package$org.example || (package$org.example = {});
@@ -886,7 +886,7 @@ To change the generated function name with a custom name, use the <a href="/docs
 </code></pre>
 </div>
 <h4 id="运行代码">运行代码</h4>
-<p>The purpose of this code is to write out some text in the console. In order to use this from the browser, load it, preferably from inside an HTML page:</p>
+<p>这段代码的目的是在控制台输出一些文本。要在浏览器中运行它，请加载它，最好是在 HTML 页面中加载：</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -901,15 +901,15 @@ To change the generated function name with a custom name, use the <a href="/docs
 &lt;/html&gt;
 </code></pre>
 </div>
-<p>(Use the relative paths to the <code>*.js</code> files from the directory that contains the HTML page.)</p>
-<p>Make sure that you load the <code>kotlin.js</code> runtime first, and then your application.</p>
-<p>这个空白页面会在控制台中输出<code>Hello JavaScript!</code></p>
+<p>（使用该 HTML 页面所在的目录到 <code>*.js</code> 文件的相对路径）</p>
+<p>请确保首先加载 <code>kotlin.js</code> 运行时库，然后再加载你的应用程序。</p>
+<p>该程序的输出是一个空白页，在控制台中打印出 <code>Hello JavaScript!</code>。</p>
 <p><img alt="Application Output" src="/assets/images/tutorials/javascript/kotlin-to-javascript/app-output.png"/></p>
-<h2 id="概要">概要</h2>
-<p>As you see, Kotlin aims to create very concise and readable JavaScript allowing us to interact with it as needed. One question of course is why go to
-all this trouble to as opposed to just use <code>console.log()</code>. Obviously this is a very simple example that shows the basics of how it works and we've focused on analysing the output. As application complexity grows, the benefits 
-of using Kotlin and static typing start to become more apparent.</p>
-<p>In subsequent tutorials we'll show how you can influence the files generated, for example, change location, prefix and suffixes, and how you can work with modules.</p>
+<h2 id="小结">小结</h2>
+<p>如你所见，Kotlin 旨在生成十分简洁易读的 JavaScript 代码，让我们能够根据需要与其进行交互。当然，有个问题是，为什么我们非要自找麻烦，<!--
+-->而不是直接使用 <code>console.log()</code>？显然，这是一个十分简单的实例，它展示了 Kotlin 编译到 JavaScript 的基本原理，并且让我们能够专注于分析它的输出。<!--
+-->随着应用程序复杂性的增加，使用 Kotlin 和静态类型的好处就开始变得更加明显。</p>
+<p>在后续的教程中，我们将展示如何影响生成的文件，例如，更改位置、前缀和后缀，以及如何使用模块。</p>
 
         </article>
     </div>
