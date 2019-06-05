@@ -882,9 +882,10 @@ class MyActivity : Activity() {
 <h3 id="layoutcontainer-support"><code>LayoutContainer</code> support</h3>
 <p>Android Extensions plugin supports different kinds of containers. The most basic ones are <a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>, <a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a> and <a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a>, but you can turn (virtually) any class to an Android Extensions container by implementing the <code>LayoutContainer</code> interface, e.g.:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.extensions.LayoutContainer
+<pre><code class="language-kotlin">import android.support.v7.widget.RecyclerView
+import kotlinx.android.extensions.LayoutContainer
 
-class ViewHolder(override val containerView: View) : ViewHolder(containerView), LayoutContainer {
+class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
     fun setup(title: String) {
         itemTitle.text = "Hello World!"
     }

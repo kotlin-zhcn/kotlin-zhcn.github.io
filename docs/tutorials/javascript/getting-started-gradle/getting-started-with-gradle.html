@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta property="og:description" content="本文介绍如何使用 Gradle 把 Kotlin 编译到 JavaScript">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to use Gradle to target JavaScript.">
+    <meta name="twitter:description" content="本文介绍如何使用 Gradle 把 Kotlin 编译到 JavaScript">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Getting Started with Kotlin and JavaScript with Gradle - Kotlin 语言中文站</title>
+    <title>以 Gradle 入门 Kotlin 和 JavaScript - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Getting Started with Kotlin and JavaScript with Gradle
+                以 Gradle 入门 Kotlin 和 JavaScript
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Hadi Hariri ，刘文俊（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,17 +831,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to use Gradle to target JavaScript.
+                本文介绍如何使用 Gradle 把 Kotlin 编译到 JavaScript
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll see how to</p>
+<p>在本教程中，我们会学习如何</p>
 <ul>
-<li>Create an application targeting JavaScript with Gradle</li>
-<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
+<li>使用 Gradle 创建编译到 JavaScript 的应用程序</li>
+<li><a href="#配置编译器选项">配置编译器选项</a></li>
 </ul>
-<p>In order to use Gradle to target JavaScript, we need to use the <code>kotlin2js</code> plugin as opposed to the <code>kotlin</code> plugin.</p>
-<p>Our <code>build.gradle</code> file should look like the following</p>
+<p>为了使用 Gradle 编译到 JavaScript，我们需要使用 <code>kotlin2js</code> 插件，而不是 <code>kotlin</code> 插件。</p>
+<p>我们的 <code>build.gradle</code> 文件应该如下所示：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">group 'org.example'
 version '1.0-SNAPSHOT'
@@ -860,11 +868,11 @@ dependencies {
 
 </code></pre>
 </div>
-<p>To use an EAP build instead, we need to specify its version in <code>ext.kotlin_version</code> and 
-add the corresponding repository to the <code>buildscript</code> section (usually EAP builds are located on <a href="https://bintray.com/kotlin">Bintray</a>)</p>
-<p>On compiling, Gradle will produce the output of our application, which is by default placed under the <code>build/classes/main</code> directory. This can be overridden using <a href="#configuring-compiler-options">the compiler options</a>.</p>
-<p>In order to assemble an application, we also need to include the Kotlin standard library, i.e. <code>kotlin.js</code>, which was included as a dependency, and the other libraries if any.</p>
-<p>By default, Gradle does not expand the JARs in the build process, so we need to add an additional step in our build to do so:</p>
+<p>如果要使用预览版（EAP, Early Access Preview），我们需要在 <code>ext.kotlin_version</code> 中指定其版本号，并且
+在 <code>buildscript</code> 块中添加相应的仓库（预览版一般发布在 <a href="https://bintray.com/kotlin">Bintray</a> 上）</p>
+<p>在编译时，Gradle 会生成我们应用程序的输出，默认位于 <code>build/classes/main</code> 目录下，这个路径可以使用<a href="#配置编译器选项">编译器选项</a>配置。</p>
+<p>为了组装一个应用程序，我们还需要包含 Kotlin 标准库，即 <code>kotlin.js</code>，它作为依赖项包含在内，以及其他库（如果有的话）。</p>
+<p>默认情况下，Gradle 不会在构建过程中解压 JAR 包，因此我们需要在构建中添加一个额外的步骤来执行此操作：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">task assembleWeb(type: Sync) {
     configurations.compile.each { File file -&gt;
@@ -886,11 +894,11 @@ add the corresponding repository to the <code>buildscript</code> section (usuall
 assemble.dependsOn assembleWeb
 </code></pre>
 </div>
-<p>This task copies both dependencies runtime files and the compilation output to the <code>web</code> directory.</p>
-<p>For more information on the output generated and the instructions for running the application, please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
-<h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
-<p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
+<p>这个 task 会将运行时的依赖文件和编译输出一起复制到 <code>web</code> 目录。</p>
+<p>有关生成的文件的更多信息和运行应用程序的说明，请参阅<a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a>一节。</p>
+<h2 id="配置编译器选项">配置编译器选项</h2>
+<p>与使用<a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA 构建系统</a>或命令行类似，我们可以让编译器输出的 JavaScript 符合某个特定的模块系统的标准，例如 AMD、CommonJS 或 UMD。</p>
+<p>要指定模块的类型，我们可以在插件中添加一条配置，如下所示：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">compileKotlin2Js {
     kotlinOptions.outputFile = "${projectDir}/web/output.js"
@@ -899,15 +907,15 @@ assemble.dependsOn assembleWeb
 }
 </code></pre>
 </div>
-<p>where <code>moduleKind</code> can be</p>
+<p>在这里，<code>moduleKind</code> 可以是：</p>
 <ul>
-<li>plain (default)</li>
+<li>plain（默认）</li>
 <li>amd</li>
 <li>commonjs</li>
 <li>umd</li>
 </ul>
-<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.html">Working with Modules</a></p>
-<p>We can also see how we can define whether we want the compiler to generate sourcemaps for us by indicating this via the <code>sourceMap</code> option.</p>
+<p>关于不同类型模块输出的更多信息，请参阅<a href="../working-with-modules/working-with-modules.html">使用模块</a>一节。</p>
+<p>我们还可以看到如何通过配置 <code>sourceMap</code> 选项，指示编译器是否为我们生成源码映射文件。</p>
 
         </article>
     </div>
