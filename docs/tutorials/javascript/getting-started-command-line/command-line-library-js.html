@@ -879,18 +879,12 @@ fun oddFactorial(n: Int): Long {
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc-js -output binom.js -libraries sample-library.meta.js binom.kt
 </code></pre>
-<div>
-
-   `sample-library.js` 和 `sample-library.meta.js` 两个文件都要提供, 因为编译后的 Javascript 文件包含内联的元信息, 编译器需要这些信息
-   
-   如果库是以包含了 `sample-library.js` 和 `sample-library.meta.js` 文件的压缩包 `sample-library.jar` 提供的, 可以使用下面的命令
-
+</div>
+<p><code>sample-library.js</code> 和 <code>sample-library.meta.js</code> 两个文件都要提供, 因为编译后的 Javascript 文件包含内联的元信息, 编译器需要这些信息</p>
+<p>如果库是以包含了 <code>sample-library.js</code> 和 <code>sample-library.meta.js</code> 文件的压缩包 <code>sample-library.jar</code> 提供的, 可以使用下面的命令</p>
 <div class="sample" mode="shell" theme="idea">
-<p><code>bash
-$ kotlinc-js -output binom.js -libraries sample-library.jar binom.kt
-</code>`</p>
-</div>
-</div>
+<pre><code class="language-bash">$ kotlinc-js -output binom.js -libraries sample-library.jar binom.kt
+</code></pre>
 </div>
 
         </article>

@@ -1478,7 +1478,7 @@ So, if you change the original collection later, this won't affect the previousl
 </div>
 <p>However, if the mutability of the list is unknown or the source is not a list at all, <code>reversed()</code> is more preferable since its result is a copy that won't change in the future.</p>
 <h2 id="随机顺序">随机顺序</h2>
-<p>Finally, there is a shuffle function that retrieves all collection elements in a random order - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffled.html"><code>shuffled()</code></a>.
+<p>Finally, there is a function that returns a new <code>List</code> containing the collection elements in a random order - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffled.html"><code>shuffled()</code></a>.
 You can call it without arguments or with a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.random/-random/index.html"><code>Random</code></a> object.</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
