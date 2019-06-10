@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/multiplatform-library.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="Sharing Kotlin library between JVM, JS and Native worlds">
+    <meta property="og:description" content="在 JVM、JS 以及 Native 的世界中共享 Kotlin 库">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="Sharing Kotlin library between JVM, JS and Native worlds">
+    <meta name="twitter:description" content="在 JVM、JS 以及 Native 的世界中共享 Kotlin 库">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Multiplatform Kotlin library - Kotlin 语言中文站</title>
+    <title>Kotlin 多平台库 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -809,9 +809,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Multiplatform Kotlin library
+                Kotlin 多平台库
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Vsevolod Tolstopyatov，乔禹昂（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -821,31 +829,31 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                Sharing Kotlin library between JVM, JS and Native worlds
+                在 JVM、JS 以及 Native 的世界中共享 Kotlin 库
                 <br/>
                 <br/>
             
-<p>In this tutorial, we will build a small library available from the worlds of JVM, JS, and Native. 
-You will learn step-by-step how to create a multiplatform library which can be used from any other common code (e.g., one shared with Android and iOS), 
-and how to write tests which will be executed on all platforms and use an efficient implementation provided by the concrete platform.</p>
-<h1 id="what-are-we-building">What are we building?</h1>
-<p>Our goal is to build a small multiplatform library to demonstrate the ability to share the code between the platforms and its benefits.
-In order to have a small implementation to focus on the multiplatform machinery, we will write a library which
-converts raw data (strings and byte arrays) to the <a href="https://en.wikipedia.org/wiki/Base64">Base64</a> format which can be used on JVM, JS, and any available K/N platform.
-On JVM implementation will be using <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html"><code>java.util.Base64</code></a> which is known to be extremely efficient 
-because JVM is aware of this particular class and compiles it in a special way.
-On JS we will be using the native <a href="https://nodejs.org/docs/latest/api/buffer.html">Buffer</a> API and on Kotlin/Native we will write our own implementation.
-We will cover this functionality with common tests and then publish the resulting library to Maven.</p>
-<h1 id="setting-up-the-local-environment">Setting up the local environment</h1>
-<p>We will be using IntelliJ IDEA Community Edition for this tutorial, though using Ultimate edition is possible as well. The Kotlin plugin 1.3.x or higher should be installed in the IDE. 
-This can be verified via the <em>Language &amp; Frameworks | Kotlin Updates</em> section in the <em>Settings</em> (or <em>Preferences</em>) of the IDE.
-Native part of this project is written using Mac OS X, but don't worry if you are using another platform, the platform affects only directory names in this particular tutorial.</p>
-<h1 id="creating-a-project">Creating a project</h1>
-<p>We will be using IntelliJ IDEA Community Edition for the example. You need to make sure you have the latest version of the Kotlin plugin installed, 1.3.x or newer.
-We select <em>File | New | Project</em>, select <em>Kotlin | Kotlin (Multiplatform Library)</em> and configure the project in the way we want.</p>
+<p>在本教程中，我们将创建一个在 JVM、JS 以及 Native 世界中可用的库。 
+您将逐步了解如何创建可从任何其他公共代码使用的多平台库（例如，在 Android 与 iOS 之间共享），
+以及如何编写可以在所有平台上执行的测试，并使用具体平台提供的有效实现。</p>
+<h1 id="我们将创建什么">我们将创建什么？</h1>
+<p>我们的目标是构建一个小型多平台库，以展示在平台之间共享代码的能力以及其优势。
+为了有一个小的实现来关注多平台机制，我们将编写一个库<!--
+-->将原始数据（字符串和字节数组）转换为 <a href="https://en.wikipedia.org/wiki/Base64">Base64</a> 格式，该格式可用于JVM、JS和任何可用的 K/N 平台。
+在 JVM 上的实现我们将使用 <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Base64.html"><code>java.util.Base64</code></a>，众所周知这是非常有效的，
+因为 JVM 可以识别这个特定的类并以特殊的方式编译它。
+在 JS 上我们将使用原生的 <a href="https://nodejs.org/docs/latest/api/buffer.html">Buffer</a> API 而在 Kotlin/Native 我们将编写自己的实现。
+我们将使用常见测试来介绍此功能，然后将生成的库发布到Maven。</p>
+<h1 id="配置本地环境">配置本地环境</h1>
+<p>在本教程中我们将使用 IntelliJ IDEA 社区版，而使用终极版也同样可以做到。IDE 应该已经安装了 Kotlin plugin 1.3.x 或者更高的版本。 
+这个可以通过 IDE 的 <em>Settings</em>（或 <em>Preferences</em>）中的 <em>Language &amp; Frameworks | Kotlin Updates</em> 部分来验证。
+此项目的原生部分是使用 Mac OS X 编写的，但如果您使用的是其他平台，请不要担心，该平台仅影响此特定教程中的目录名称。</p>
+<h1 id="创建一个工程">创建一个工程</h1>
+<p>我们将使用 IntelliJ IDEA 社区版来演示。你需要确保你已经安装了最新版本的 Kotlin plugin，1.3.x 或者更新。
+我们选择 <em>File | New | Project</em>，选择 <em>Kotlin | Kotlin (Multiplatform Library)</em> 并以我们想要的方式配置工程。</p>
 <p><img alt="Wizard" src="/assets/images/tutorials/multiplatform/wizard.png"/></p>
-<p>A multiplatform sample library is now created and imported into IntelliJ IDEA. Let's go to any <code>.kt</code> file and rename the package with the IntelliJ IDEA action <em>Refactor | Rename</em> action to <code>org.jetbrains.base64</code>
-Let's just check everything is right with the project so far, the project structure should be:</p>
+<p>现在创建了一个多平台样本库并将其导入 IntelliJ IDEA。让我们将所有的 <code>.kt</code> 使用 IntelliJ IDEA 的功能 <em>Refactor | Rename</em> 将它们的包名修改为 <code>org.jetbrains.base64</code>，
+让我们到目前为止检查项目的一切是否正确，项目结构应该是：</p>
 <pre><code>└── src
     ├── commonMain
     │   └── kotlin
@@ -864,28 +872,28 @@ Let's just check everything is right with the project so far, the project struct
     └── macosTest
         └── kotlin
 </code></pre>
-<p>And the <code>kotlin</code> folder should contain an <code>org.jetbrains.base64</code> subfolder.</p>
-<h1 id="common-part">Common part</h1>
-<p>Now we need to define the classes and interfaces we want to implement. Create the file <code>Base64.kt</code> in the <code>commonMain/kotlin/jetbrains/base64</code> folder.
-Core primitive will be the <code>Base64Encoder</code> interface which knows how to convert bytes to bytes in <code>Base64</code> format:</p>
+<p><code>kotlin</code> 文件夹应包含 <code>org.jetbrains.base64</code> 子文件夹。</p>
+<h1 id="通用部分">通用部分</h1>
+<p>现在我们需要定义我们想要实现的类以及接口。在 <code>commonMain/kotlin/jetbrains/base64</code> 文件夹下创建文件 <code>Base64.kt</code>。
+核心原语将是 <code>Base64Encoder</code> 接口，它知道如何将字节转换为 <code>Base64</code> 格式的字节：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">interface Base64Encoder {
     fun encode(src: ByteArray): ByteArray
 }
 </code></pre>
 </div>
-<p>But the common code should somehow get an instance of this interface, for that purpose we define the factory object <code>Base64Factory</code>:</p>
+<p>但是公共代码应该以某种方式获取此接口的实例，为此我们定义工厂对象 <code>Base64Factory</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">expect object Base64Factory {
     fun createEncoder(): Base64Encoder
 }
 </code></pre>
 </div>
-<p>Our factory is marked with the <code>expect</code> keyword. <code>expect</code> is a mechanism to define a requirement, which every platform should provide in order for the common part to work properly.
-So on each platform we should provide the <code>actual</code> <code>Base64Factory</code> which knows how to create the platform-specific encoder.
-You can read more about platform specific declarations <a href="/docs/reference/platform-specific-declarations.html">here</a>.</p>
-<h1 id="platform-specific-implementations">Platform-specific implementations</h1>
-<p>Now it is time to provide an <code>actual</code> implementation of <code>Base64Factory</code> for every platform.</p>
+<p>我们的工厂函数被使用 <code>expect</code> 关键字标记。<code>expect</code> 是一种定义需求的机制，每个平台都应提供这种机制，以使公共部分正常工作。
+所以在每个平台上我们都应该提供 <code>actual</code> <code>Base64Factory</code>，它知道如何创建特定于平台的编码器。
+你可以在<a href="/docs/reference/platform-specific-declarations.html">这里</a>阅读更多关于平台特定的声明。</p>
+<h1 id="平台指定实现">平台指定实现</h1>
+<p>现在是时候为每个平台提供 <code>Base64Factory</code> 的 <code>actual</code> 实现了。</p>
 <h2 id="jvm">JVM</h2>
 <p>We are starting with an implementation for the JVM. Let's create a file <code>Base64.kt</code> in <code>jvmMain/kotlin/jetbrains/base64</code> folder and provide a simple implementation, which delegates to <code>java.util.Base64</code>:</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
@@ -960,7 +968,7 @@ object NativeBase64Encoder : Base64Encoder {
 </code></pre>
 </div>
 <p>Now we have implementations on all the platforms and it is time to move to testing of our library.</p>
-<h1 id="testing">Testing</h1>
+<h1 id="测试">测试</h1>
 <p>To make the library complete we should write some tests, but we have three independent implementations and it is a waste of time to write duplicate tests for each one.
 The good thing about common code is that it can be covered with common tests, which later are compiled and executed on <em>every</em> platform.
 All the bits for testing are already generated by the project Wizard.</p>
@@ -1048,7 +1056,7 @@ version '1.0.0'
 </div>
 <p>Now check it with the command <code>./gradlew publishToMavenLocal</code> and you should see a successful build. 
 That's it, our library is now successfully published and any Kotlin project can depend on it, whether it is another common library, JVM, JS, or Native application.</p>
-<h1 id="summary">Summary</h1>
+<h1 id="总结">总结</h1>
 <p>In this tutorial we have:</p>
 <ul>
 <li>Created a multiplatform library with platform-specific implementations.</li>
