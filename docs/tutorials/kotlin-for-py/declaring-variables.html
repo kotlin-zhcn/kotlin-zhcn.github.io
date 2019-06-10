@@ -818,14 +818,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             
 <p><em>本资料英文原文的作者是 <a href="https://eldhuset.net/">Aasmund Eldhuset</a>；其所有权属于<a href="https://www.khanacademy.org/">可汗学院（Khan Academy）</a>，授权许可为 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US（署名-非商业-相同方式共享）</a>。请注意，这并不是可汗学院官方产品的一部分。中文版由<a href="https://hltj.me/">灰蓝天际</a>译，遵循相同授权方式。</em></p>
 <hr/>
-<p>Every variable must be <em>declared</em>. Any attempt to use a variable that hasn't been declared yet is a syntax error; thus, you are protected from accidentally assigning to a misspelled variable. The declaration also decides what kind of data you are allowed to store in the variable.</p>
-<p>Local variables are typically declared and initialized at the same time, in which case the type of the variable is <em>inferred</em> to be the type of the expression you initialize it with:</p>
+<p>每个变量都必需<em>声明</em>。任何尝试使用尚未声明的变量都会是语法错误；因此可以防止意外赋值给拼错的变量。声明还决定了允许在变量中存储哪种数据。</p>
+<p>局部变量通常在声明时同时初始化，对于这种情况，变量的类型<em>推断</em>为初始化所使用的表达式的类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">var number = 42
 var message = "Hello"
 </code></pre>
 </div>
-<p>We now have a local variable <code>number</code> whose value is 42 and whose type is <code>Int</code> (because that's the type of the literal <code>42</code>), and another local variable <code>message</code> whose value is <code>"Hello"</code> and whose type is <code>String</code>. Subsequent usages of the variable must use only the name, not <code>var</code>:</p>
+<p>我们现在有一个局部变量 <code>number</code>，其值为 42、其类型为 <code>Int</code>（因为这是字面值 <code>42</code> 的类型），还有一个局部变量 <code>message</code>，其值为 <code>Hello</code>、其类型为 <code>String</code>。变量的后续用法必须只使用其变量名而不带 <code>var</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">number = 10
 number += 7
@@ -833,7 +833,7 @@ println(number)
 println(message + " there")
 </code></pre>
 </div>
-<p>However, you cannot change the type of a variable: <code>number</code> can only ever refer to <code>Int</code> values, and <code>message</code> can only ever refer to <code>String</code> values, so both <code>number = "Test"</code> and <code>message = 3</code> are illegal and will produce syntax errors.</p>
+<p>然而不能改变变量的类型：<code>number</code> 只能引用 <code>Int</code> 值，而 <code>message</code> 只能引用 <code>String</code> 值，因此 <code>number = "Test"</code> 与 <code>message = 3</code> 都是非法的、都会产生语法错误。</p>
 <h2 id="只读变量">只读变量</h2>
 <p>Frequently, you'll find that during the lifetime of your variable, it only ever needs to refer to one object. Then, you can declare it with <code>val</code> (for "value") instead:</p>
 <div class="sample" data-highlight-only="" theme="idea">
