@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-idea/getting-started-with-intellij-idea.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to use IntelliJ IDEA to target JavaScript.">
+    <meta property="og:description" content="本文介绍如何使用 IntelliJ IDEA 把 Kotlin 编译到 JavaScript">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to use IntelliJ IDEA to target JavaScript.">
+    <meta name="twitter:description" content="本文介绍如何使用 IntelliJ IDEA 把 Kotlin 编译到 JavaScript">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Getting Started with Kotlin and JavaScript with IntelliJ IDEA - Kotlin 语言中文站</title>
+    <title>以 IntelliJ IDEA 入门 Kotlin 和 JavaScript - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Getting Started with Kotlin and JavaScript with IntelliJ IDEA
+                以 IntelliJ IDEA 入门 Kotlin 和 JavaScript
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Hadi Hariri，刘文俊（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,27 +831,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to use IntelliJ IDEA to target JavaScript.
+                本文介绍如何使用 IntelliJ IDEA 把 Kotlin 编译到 JavaScript
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll see how to</p>
+<p>在本教程中，我们会学习如何</p>
 <ul>
-<li><a href="#create-an-application-targeting-javascript">Create an application targeting JavaScript</a></li>
-<li><a href="#debugging-the-application">Debug the application</a></li>
-<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
+<li><a href="#创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</a></li>
+<li><a href="#调试程序">调试程序</a></li>
+<li><a href="#配置编译器选项">配置编译器选项</a></li>
 </ul>
-<h2 id="create-an-application-targeting-javascript">Create an application targeting JavaScript</h2>
-<p>When creating a new application or module that targets JavaScript, we need to select <code>Kotlin - JavaScript</code> as the target</p>
+<h2 id="创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</h2>
+<p>在创建面向 JavaScript 的新应用程序或模块时，我们需要选择 <code>Kotlin - JavaScript</code> 作为编译目标：</p>
 <p><img alt="First Step of Wizard" src="/assets/images/tutorials/javascript/getting-started-idea/first-step-wizard.png"/></p>
-<p>The next step is going to prompt us on the Kotlin runtime library. By default the plugin selects the one that is associated to the currently installed
-version. Unless we want to create a different one, we can click Finish at this point after
-entering the project name and location.</p>
+<p>下一步会提示我们选择 Kotlin 运行时库。默认情况下，插件会选择与当前安装版本关联的 Kotlin 库。<!--
+-->如果我们不需要修改，在输入项目名称和保存位置后<!--
+-->点击 Finish 即可。</p>
 <p><img alt="Selecting Runtime" src="/assets/images/tutorials/javascript/getting-started-idea/second-step-wizard.png"/></p>
-<p>Once the IDE has finished creating the new project, we should be left with the following layout</p>
+<p>当 IDE 完成项目创建之后，我们会看到这样的目录结构：</p>
 <p><img alt="Project Structure" src="/assets/images/tutorials/javascript/getting-started-idea/project-structure.png"/></p>
-<p>At this point we can start writing Kotlin code. For this sample, we're going to write some code that will print a string
-out to the console window.</p>
+<p>此时我们可以开始编写 Kotlin 代码了。在这个示例中，我们会编写一些代码，将字符串<!--
+-->输出到控制台窗口中。</p>
 <div class="sample" data-target-platform="js" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     val message = "Hello JavaScript!"
@@ -851,30 +859,29 @@ out to the console window.</p>
 }
 </code></pre>
 </div>
-<p>We now need an HTML page to load the code, so we'll create a file called <code>index.html</code>. If you want more information on how Kotlin compiles to JavaScript and the output generated, check out the
-<a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a> tutorial.</p>
+<p>我们现在需要一个 HTML 页面来加载代码，因此我们将创建一个名为 <code>index.html</code> 的文件。如果你想了解 Kotlin 是如何编译到 JavaScript 以及关于输出文件的更多信息，<!--
+-->请查看<a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a>教程。</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-    &lt;html lang="en"&gt;
+&lt;html lang="en"&gt;
     &lt;head&gt;
         &lt;meta charset="UTF-8"&gt;
         &lt;title&gt;Console Output&lt;/title&gt;
     &lt;/head&gt;
     &lt;body&gt;
-
-    &lt;script type="text/javascript" src="out/production/sampleapp/lib/kotlin.js"&gt;&lt;/script&gt;
-    &lt;script type="text/javascript" src="out/production/sampleapp/sampleapp.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="out/production/sampleapp/lib/kotlin.js"&gt;&lt;/script&gt;
+        &lt;script type="text/javascript" src="out/production/sampleapp/sampleapp.js"&gt;&lt;/script&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 </div>
-<p>A couple of important points:</p>
+<p>几个要点：</p>
 <ul>
-<li>The <code>kotlin.js</code> file should be referenced first as it is used by our application</li>
-<li>The path refers to the default output location that IntelliJ IDEA uses when we compile the application. Below we'll see how to change this.</li>
+<li>应该先加载 <code>kotlin.js</code> 文件，因为我们的程序会使用到它。</li>
+<li>路径指向的是 Intellij IDEA 在编译程序时使用的默认输出位置，下面我们会看到如何修改它。</li>
 </ul>
-<p>The only thing left to do is compile our application (Build|Build Project), and once the JavaScript files have been generated, we can open the <code>index.html</code> file in the browser and see the result
-in the console debug window.</p>
+<p>接下来要做的就是编译我们的程序（通过 Build|Build Project 菜单），当 JavaScript 文件生成完之后，我们就可以在浏览器中打开 <code>index.html</code> 文件，并在<!--
+-->控制台调试窗口中查看结果。</p>
 <h2 id="debugging-the-application">Debugging the application</h2>
 <p><code>This feature is only supported in the Ultimate edition.</code></p>
 <p>In order to debug the application using IntelliJ IDEA, we need to perform two steps:</p>

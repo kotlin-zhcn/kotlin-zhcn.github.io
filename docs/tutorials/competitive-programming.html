@@ -924,26 +924,26 @@ private fun readInt() = readLn().toInt()
 虽然可见性修饰符的概念与竞技程序设计并无瓜葛，
 但是它让你能够将<!--
 -->基于相同模板的多个解题文件放在同一包中，而不会出现公有声明冲突的报错。</p>
-<h2 id="函数式操作符示例长数问题">函数式操作符示例：长数问题</h2>
-<p>For more complicated problems, Kotlin's extensive library of functional operations on collections comes in handy to 
-minimize the boilerplate and turn the code into a linear top-to-bottom and left-to-right fluent data transformation 
-pipeline. For example, the 
-<a href="http://codeforces.com/contest/1157/problem/B">Problem B: Long Number</a> problem 
-takes a simple greedy algorithm to implement and it can be written using this style without a single mutable variable:</p>
+<h2 id="函数式操作示例长数问题">函数式操作示例：长数问题</h2>
+<p>对于更复杂的问题，Kotlin 丰富的集合函数式操作库就派上用场了，
+可以大幅减少模板代码，并将代码写成从上到下、从左到右的流式数据转换<!--
+-->流水线。例如<!--
+--><a href="http://codeforces.com/contest/1157/problem/B">问题 B：长数</a>问题<!--
+-->用一个简单的贪心算法实现，可以采用这种风格编写而无需任何可变变量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main() {
-    // read input
+    // 读取输入
     val n = readLine()!!.toInt()
     val s = readLine()!!
     val fl = readLine()!!.split(" ").map { it.toInt() }
-    // define local function f
+    // 定义局部函数 f
     fun f(c: Char) = '0' + fl[c - '1']
-    // greedily find first and last indices
+    // 贪婪查找第一个与最后一个索引
     val i = s.indexOfFirst { c -&gt; f(c) &gt; c }
         .takeIf { it &gt;= 0 } ?: s.length
     val j = s.withIndex().indexOfFirst { (j, c) -&gt; j &gt; i &amp;&amp; f(c) &lt; c }
         .takeIf { it &gt;= 0 } ?: s.length
-    // compose and write the answer
+    // 组合并写出答案
     val ans =
         s.substring(0, i) +
         s.substring(i, j).map { c -&gt; f(c) }.joinToString("") +
@@ -952,37 +952,37 @@ takes a simple greedy algorithm to implement and it can be written using this st
 }
 </code></pre>
 </div>
-<p>In this dense code, in addition to collection transformations, you can see such handy Kotlin features as local functions,
-and <a href="/docs/reference/null-safety.html#elvis-operator">elvis operator</a> <code>?:</code>
-that allow to express the 
-<a href="/docs/reference/idioms.html">idioms</a> like "take value if it is positive or else use length" with concise and readable 
-expression like <code>.takeIf { it &gt;= 0 } ?: s.length</code>, yet it is perfectly fine with Kotlin to create additional mutable
-variables and express the same code in imperative style, too.</p>
-<p>To make reading input in the competitive programming tasks like this more concise, 
-you can have the following list of helper input-reading functions:</p>
+<p>在这段密集的代码中，除了集合转换之外，还可以看到像局部函数<!--
+-->以及<a href="/docs/reference/null-safety.html#elvis-operator">elvis 操作符</a> <code>?:</code> 这样灵便的 Kotlin 特性，
+通过 elvis 操作符，可以用<!--
+-->简洁易读的表达式如 <code>.takeIf { it &gt;= 0 } ?: s.length</code>
+来表达类似“如果是正数就取其值，否则取长度”的<a href="/docs/reference/idioms.html">惯用法</a>，
+当然，也完全可以使用 Kotlin 创建额外的可变变量并以命令式风格表达相同的代码。</p>
+<p>为了让这种竞技程序设计任务中读取输入更简洁，
+可以使用以下输入读取辅助函数列表：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">private fun readLn() = readLine()!! // string line
-private fun readInt() = readLn().toInt() // single int
-private fun readStrings() = readLn().split(" ") // list of strings
-private fun readInts() = readStrings().map { it.toInt() } // list of ints
+<pre><code class="language-kotlin">private fun readLn() = readLine()!! // 字符串行
+private fun readInt() = readLn().toInt() // 单个整数
+private fun readStrings() = readLn().split(" ") // 字符串列表
+private fun readInts() = readStrings().map { it.toInt() } // 整数列表
 </code></pre>
 </div>
-<p>With these helpers, the part of code for reading input becomes simpler, closely following the input 
-specification in the problem statement line by line:</p>
+<p>有了这些辅助函数，读取输入的代码部分变得更简单，一行行地严格遵循<!--
+-->问题陈述中的输入规范：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    // read input
+<pre><code class="language-kotlin">    // 读取输入
     val n = readInt()
     val s = readLn()
     val fl = readInts()
 </code></pre>
 </div>
-<p>Note, that in competitive programming it is customary to give variables shorter names than it is 
-typical in industrial programming practice, since the code is to be written just once and need not be supported thereafter. 
-However, these names are usually still mnemonic — <code>a</code> for arrays,
-<code>i</code>, <code>j</code>, etc for indices, <code>r</code>, and <code>c</code> for row and column numbers in tables, <code>x</code> and <code>y</code> for coordinates, etc.
-It is easier to keep the same names for input data as it is given in the problem statement. 
-However, more complex problems require more code to solve and subsequently variable and function names tend to 
-become longer and more self-explanatory.</p>
+<p>请注意，在竞技程序设计中，习惯给变量取比<!--
+-->通常在工业编程实践中更短的名称，因为代码只需编写一次，以后就不需要支持了。
+当然，这些名称通常仍然是助记手段——数组用 <code>a</code>，
+索引用 <code>i</code>、<code>j</code>，表格的行列号用 <code>r</code>、<code>c</code>，坐标用 <code>x</code>、<code>y</code> 等。
+输入数据的名称保持与问题陈述中所给出的名称相同也更容易。
+当然，越复杂的问题就越需要更多的代码来解，既而变量名与函数名就会<!--
+-->越长、越具有自解释性。</p>
 <h2 id="更多提示和技巧">更多提示和技巧</h2>
 <p>Competitive programming problems often have input like this:</p>
 <blockquote>
