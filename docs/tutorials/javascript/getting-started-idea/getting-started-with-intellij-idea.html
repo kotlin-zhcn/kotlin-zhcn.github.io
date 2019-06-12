@@ -860,7 +860,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <p>我们现在需要一个 HTML 页面来加载代码，因此我们将创建一个名为 <code>index.html</code> 的文件。如果你想了解 Kotlin 是如何编译到 JavaScript 以及关于输出文件的更多信息，<!--
--->请查看<a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a>教程。</p>
+-->请查看 <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a> 教程。</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -882,34 +882,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>接下来要做的就是编译我们的程序（通过 Build|Build Project 菜单），当 JavaScript 文件生成完之后，我们就可以在浏览器中打开 <code>index.html</code> 文件，并在<!--
 -->控制台调试窗口中查看结果。</p>
-<h2 id="debugging-the-application">Debugging the application</h2>
-<p><code>This feature is only supported in the Ultimate edition.</code></p>
-<p>In order to debug the application using IntelliJ IDEA, we need to perform two steps:</p>
+<h2 id="调试程序">调试程序</h2>
+<p><code>此功能仅在旗舰版中支持。</code></p>
+<p>为了使用 Intellij IDEA 调试应用程序，我们需要执行两个步骤：</p>
 <ol>
 <li>
-<p>Install the <a href="https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en">JetBrains Chrome Extension</a> which allows debugging inside IntelliJ IDEA via Chrome. This is useful for any type
-of web application developed with IntelliJ IDEA, not just Kotlin.</p>
+<p>安装 <a href="https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en">JetBrains Chrome 插件</a>以支持通过 Chrome 在 Intellij IDEA 中进行调试。<!--
+-->这个插件对于使用 Intellij IDEA 开发的任意类型的 Web 应用程序都有用，而不仅仅是 Kotlin。</p>
 </li>
 <li>
-<p>Configure the Kotlin Compiler to generate source maps, accessible via <code>Preferences|Kotlin Compiler</code></p>
+<p>配置 Kotlin 编译器，生成源码映射文件（source map），配置项可通过 <code>Preferences|Kotlin Compiler</code> 找到。</p>
 </li>
 </ol>
 <p><img alt="SourceMaps" src="/assets/images/tutorials/javascript/getting-started-idea/compiler-options-sourcemaps.png"/></p>
-<p>Once that's done, we simply right-click on our <code>index.html</code> file and select the Debug option. This launches Chrome and then stops at the breakpoint defined in our code inside IntelliJ IDEA, from where
-we can evaluate expressions, step through code, etc.</p>
+<p>完成后，我们只需右键单击 <code>index.html</code> 文件并选择 Debug 选项。这将启动 Chrome，然后代码会停在 Intellij IDEA 我们的代码中定义的断点处，<!--
+-->在这里我们可以对表达式进行求值，单步执行代码等。</p>
 <p><img alt="Debugger" src="/assets/images/tutorials/javascript/getting-started-idea/debugger.png"/></p>
-<p>It is also possible to debug Kotlin applications using the standard Chrome debugger. Just make sure that you do generate source maps.</p>
-<h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Kotlin provides a series of compiler options that are accessible in IntelliJ IDEA also. In addition to the one we've just seen for
-generating source maps, we also have the ability to set</p>
+<p>你也可以使用标准的 Chrome 调试器调试 Kotlin 应用程序，只需要确保你已经生成了源码映射文件。</p>
+<h2 id="配置编译器选项">配置编译器选项</h2>
+<p>Kotlin 提供了一系列的编译器选项，它们也可以在 Intellij IDEA 中进行配置。除了刚刚介绍过的生成源码映射文件的选项，<!--
+-->我们还可以设置如下属性：</p>
 <ul>
-<li><strong>Output file prefix</strong>. We can prefix the output the compiler generates with additional JavaScript. In order to do so, we indicate the name of the file that contains the JavaScript we want in this box.</li>
-<li><strong>Output file postfix</strong>. Same as above, but in this case the compiler will append the contents of the selected file to the output.</li>
-<li><strong>Copy runtime library files</strong>. Indicates in what subfolder we want the <code>kotlin.js</code> library to be output to. By default it is <code>lib</code> which is why in the HTML we are referencing this path.</li>
-<li><strong>Module Kind</strong>. Indicates what module standard to follow. This is covered in the <a href="../working-with-modules/working-with-modules.html">Working with Modules</a> tutorial in more depth.</li>
+<li><strong>输出文件前缀</strong>：我们可以在编译器生成的输出文件前加上额外的 JavaScript 代码，为此，我们需要使用此选项指明我们想要包含的 JavaScript 文件的名称。</li>
+<li><strong>输出文件后缀</strong>：与上面相同，但是这个选项会把指定文件的内容附加到编译器输出的代码后面。</li>
+<li><strong>复制运行时库文件</strong>：指定我们希望将 <code>kotlin.js</code> 库输出到哪个子文件夹，默认情况下它是 <code>lib</code>，这就是为什么我们会在 HTML 中引用这个路径的原因。</li>
+<li><strong>模块类型</strong>：指定我们要遵循的模块标准，这将在<a href="../working-with-modules/working-with-modules.html">使用模块</a>教程中进行更深入的介绍。</li>
 </ul>
-<h2 id="summary">Summary</h2>
-<p>In this tutorial we've seen how to create a Kotlin application that targets JavaScript, debug it as well as set compiler options. In other tutorials we'll cover more in-depth topics such as interacting with the DOM, etc.</p>
+<h2 id="小节">小节</h2>
+<p>在本教程中，我们已经了解了如何创建编译到 JavaScript 的 Kotlin 应用程序，调试它以及设置编译器选项。 在接下来的其他教程中，我们将介绍更深入的主题，例如与DOM交互等。</p>
 
         </article>
     </div>
