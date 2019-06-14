@@ -828,7 +828,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <p>将 Kotlin 编译到 JavaScript 有许多种方法，<!--
--->推荐的方法是使用 Gradle。如果需要，你还可以直接使用 Intellij IDEA 构建 JavaScript 项目，<!--
+-->推荐的方法是使用 Gradle。如果需要，你还可以直接使用 IntelliJ IDEA 构建 JavaScript 项目，<!--
 -->使用 Maven 编译，或者手动使用命令行编译代码。<!--
 -->学习如何将 Kotlin 编译为 JavaScript，请参阅下面的相应教程：</p>
 <ul>
@@ -853,7 +853,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>Kotlin 编译器将会生成下面的文件：</p>
 <p><img alt="Compiler Output" src="/assets/images/tutorials/javascript/kotlin-to-javascript/compiler-output.png"/></p>
-<p>注意：仅有基于 Intellij IDEA 的项目才会创建包含 <code>kotlin.js</code> 和其他库文件的 <code>lib</code> 目录，此功能由 Kotlin <a href="https://www.jetbrains.com/help/idea/facets.html">构面设置</a>中的 ”Copy library runtime files“ 标记控制。在 Maven 或 Gradle 构建（包含多平台项目）中，默认不会把库文件复制到编译输出目录。有关如何使用这些构建系统实现相同功能的说明，请参阅相应的教程。</p>
+<p>注意：仅有基于 IntelliJ IDEA 的项目才会创建包含 <code>kotlin.js</code> 和其他库文件的 <code>lib</code> 目录，此功能由 Kotlin <a href="https://www.jetbrains.com/help/idea/facets.html">构面设置</a>中的 ”Copy library runtime files“ 标记控制。在 Maven 或 Gradle 构建（包含多平台项目）中，默认不会把库文件复制到编译输出目录。有关如何使用这些构建系统实现相同功能的说明，请参阅相应的教程。</p>
 <p>我们最感兴趣的文件是 <code>ConsoleOutput.js</code>：</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">if (typeof kotlin === 'undefined') {

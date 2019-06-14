@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to use Maven to target JavaScript.">
+    <meta property="og:description" content="本文介绍如何使用 Maven 把 Kotlin 编译到 JavaScript">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to use Maven to target JavaScript.">
+    <meta name="twitter:description" content="本文介绍如何使用 Maven 把 Kotlin 编译到 JavaScript">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Getting Started with Kotlin and JavaScript with Maven - Kotlin 语言中文站</title>
+    <title>以 Maven 入门 Kotlin 和 JavaScript - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Getting Started with Kotlin and JavaScript with Maven
+                以 Maven 入门 Kotlin 和 JavaScript
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Hadi Hariri，刘文俊（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,28 +831,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to use Maven to target JavaScript.
+                本文介绍如何使用 Maven 把 Kotlin 编译到 JavaScript
                 <br/>
                 <br/>
             
-<p>In this tutorial we'll see how to</p>
+<p>在本教程中，我们会学习如何</p>
 <ul>
-<li><a href="#creating-an-application-targeting-javascript">Create an application targeting JavaScript with Maven</a></li>
-<li><a href="#configuring-compiler-options">Configure compiler options</a></li>
+<li><a href="#创建编译到-javascript-的应用程序">使用 Maven 创建编译到 JavaScript 的应用程序</a></li>
+<li><a href="#配置编译器选项">配置编译器选项</a></li>
 </ul>
-<h2 id="creating-an-application-targeting-javascript">Creating an application targeting JavaScript</h2>
-<h3 id="automatic-configuration">Automatic Configuration</h3>
-<p>The easiest way to create a new application targeting JavaScript with Maven is to allow IntelliJ IDEA
-to configure the Maven project for us. Simply create a new Maven project in IntelliJ IDEA and once the project is created, add a new 
-folder to host the Kotlin source code, removing the default Java one. The project should end up with the following structure</p>
+<h2 id="创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</h2>
+<h3 id="自动配置">自动配置</h3>
+<p>创建使用 Maven 的编译到 JavaScript 的新程序，最简单的方法是让 IntelliJ IDEA <!--
+-->为我们配置 Maven 项目。只需在 IntelliJ IDEA 中创建一个新的 Maven 项目，创建完成后，添加一个新的<!--
+-->文件夹来保存 Kotlin 源代码，删除默认的 Java 文件夹。最终该项目应具有如下结构：</p>
 <p><img alt="Project Structure" src="/assets/images/tutorials/javascript/getting-started-maven/project-structure.png"/></p>
-<p>We can now add our first Kotlin source code file and IntelliJ IDEA will prompt us to configure the project for Kotlin. On doing so, we should select as target
-JavaScript</p>
+<p>我们现在可以添加第一个 Kotlin 源代码文件，IntelliJ IDEA 会提示我们配置项目的 Kotlin 环境，这时我们应该选择编译到 <!--
+-->JavaScript。</p>
 <p><img alt="Configure Kotlin" src="/assets/images/tutorials/javascript/getting-started-maven/configure-kotlin.png"/></p>
-<p>IntelliJ IDEA will add the corresponding entries for us in the <a href="#maven-configuration">Maven configuration</a>.</p>
-<h3 id="manual-configuration">Manual Configuration</h3>
-<p>If we're not using IntelliJ IDEA, we can configure the <code>pom.xml</code> file manually to target JavaScript, by adding the following entries</p>
-<h4 id="maven-configuration">Maven configuration</h4>
+<p>IntelliJ IDEA 将会为我们添加 <a href="#maven-配置">Maven 配置</a>中的相关条目。</p>
+<h3 id="手动配置">手动配置</h3>
+<p>如果我们不使用 IntelliJ IDEA，我们可以通过添加以下条目手动配置 <code>pom.xml</code> 文件以编译到 JavaScript：</p>
+<h4 id="maven-配置">Maven 配置</h4>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;properties&gt;
     &lt;kotlin.version&gt;1.3.31&lt;/kotlin.version&gt; 
@@ -887,11 +895,11 @@ JavaScript</p>
 
 </code></pre>
 </div>
-<p>On compiling, Maven will produce the following output</p>
+<p>在编译时，Maven 将产生以下输出：</p>
 <p><img alt="Maven Output" src="/assets/images/tutorials/javascript/getting-started-maven/maven-output.png"/></p>
-<p>where we can see the output of our application, which is the <code>kotlinjs-maven.js</code> file.</p>
-<p>In order to use this, we also need to include the Kotlin standard library in our application, i.e. <code>kotlin.js</code>, which was included as a dependency. By default,
-Maven does not expand the JAR as part of the build process, so we would need to add an additional step in our build to do so.</p>
+<p>在这里我们可以看到我们的应用程序的输出，即 <code>kotlinjs-maven.js</code> 文件。</p>
+<p>为了使用它，我们还需要在我们的应用程序中包含 Kotlin 的标准库，即 <code>kotlin.js</code>，它作为依赖项包含在内。默认情况下，<!--
+-->Maven 不会在构建过程中解压 JAR 包，因此我们需要在构建中添加一个额外的步骤来执行此操作。</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;plugin&gt;
     &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
@@ -919,10 +927,10 @@ Maven does not expand the JAR as part of the build process, so we would need to 
 &lt;/plugin&gt;
 </code></pre>
 </div>
-<p>For more information on the output generated please see <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></p>
-<h2 id="configuring-compiler-options">Configuring Compiler Options</h2>
-<p>Similar to when we're using <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA build system</a> or the command line, we can have the compiler output JavaScript to comply with a specific module system such as AMD, CommonJS or UMD.</p>
-<p>In order to specify the module kind, we can add a configuration to our plugin as below</p>
+<p>有关生成的文件的更多信息，请参阅 <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a>一节。</p>
+<h2 id="配置编译器选项">配置编译器选项</h2>
+<p>与使用 <a href="../getting-started-idea/getting-started-with-intellij-idea.html">IntelliJ IDEA 构建系统</a>或命令行类似，我们可以让编译器输出的 JavaScript 符合某个特定的模块系统的标准，例如 AMD、CommonJS 或 UMD。</p>
+<p>为了指定模块的类型，我们可以在插件中添加一条配置，如下所示：</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml"> &lt;/executions&gt;
  ...
@@ -933,15 +941,15 @@ Maven does not expand the JAR as part of the build process, so we would need to 
 
 </code></pre>
 </div>
-<p>where <code>moduleKind</code> can be</p>
+<p>在这里，<code>moduleKind</code> 可以是：</p>
 <ul>
-<li>plain (default)</li>
+<li>plain（默认）</li>
 <li>amd</li>
 <li>commonjs</li>
 <li>umd</li>
 </ul>
-<p>For more information about the different types of module outputs, please see <a href="../working-with-modules/working-with-modules.html">Working with Modules</a></p>
-<p>We can also see how we can define whether we want the compiler to generate sourcemaps for us by indicating this via the <code>sourceMap</code> parameter.</p>
+<p>关于不同类型模块输出的更多信息，请参阅<a href="../working-with-modules/working-with-modules.html">使用模块</a>一节。</p>
+<p>我们还可以看到如何通过配置 <code>sourceMap</code> 选项，指示编译器是否为我们生成源码映射文件。</p>
 
         </article>
     </div>

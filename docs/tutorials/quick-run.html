@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/quick-run.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.">
+    <meta property="og:description" content="本教程展示了在不创建或修改整个项目的情况下以轻量级方式运行 Kotlin 代码片段的方法。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.">
+    <meta name="twitter:description" content="本教程展示了在不创建或修改整个项目的情况下以轻量级方式运行 Kotlin 代码片段的方法。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Running Code Snippets  - Kotlin 语言中文站</title>
+    <title>运行代码片段 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,7 +811,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Running Code Snippets 
+                运行代码片段
             </h1>
             <table>
                     <tr>
@@ -823,46 +823,46 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                This tutorial shows the ways to run Kotlin code snippets in a lightweight manner without creating or modifying the whole project.
+                本教程展示了在不创建或修改整个项目的情况下以轻量级方式运行 Kotlin 代码片段的方法。
                 <br/>
                 <br/>
             
-<p>Sometimes you may need to quickly write and execute some code outside of a project or an application. This may be useful, for example, when learning Kotlin or evaluating expressions. Let's have a look through two handy ways to quickly run Kotlin code:</p>
+<p>有时，你可能需要在项目或应用程序之外快速编写和执行一些代码。例如，在学习 Kotlin 或计算表达式时，这可能很有用。让我们看看快速运行 Kotlin 代码的两种简便方法:</p>
 <ul>
-<li><a href="#scratches">Scratches</a> let you write and run code in a temporary file outside your project in IDE.</li>
-<li><a href="#repl">REPL</a> (<em>Read-Eval-Print-Loop</em>) runs code interactively in a console.</li>
+<li><a href="#代码草稿">代码草稿</a> 让你在 IDE 中的项目外部的临时文件中编写和运行代码。</li>
+<li><a href="#repl">REPL</a> (<em>读取-求值-输出-循环</em>) 在控制台中以交互方式运行代码。</li>
 </ul>
-<h2 id="scratches">Scratches</h2>
+<h2 id="代码草稿">代码草稿</h2>
 <blockquote class="note">
-<p>Currently, scratches are supported only in Kotlin/JVM projects.</p>
+<p>目前，代码草稿仅支持 Kotlin/JVM 项目。</p>
 </blockquote>
-<p>Kotlin plugin for IntelliJ IDEA supports <a href="https://www.jetbrains.com/help/idea/scratches.html">scratches</a>. Scratches let you create code drafts in the same IDE window with your project and run them on the fly. Scratches are not tied to projects; you can access and run all your scratches from any IntelliJ IDEA window on your OS.</p>
-<p>To create a Kotlin scratch, click <strong>File | New | Scratch file</strong> and select the <strong>Kotlin</strong> type.</p>
-<p>In your scratch, you can write any valid Kotlin code, including new functions and classes. Syntax highlighting, auto-completion, and other code editing features of IntelliJ IDEA are supported in scratches.</p>
-<p>Write your code in the scratch and click <strong>Run</strong>. The execution results will appear opposite the lines of your code.</p>
+<p>IntelliJ IDEA 的 Kotlin 插件支持 <a href="https://www.jetbrains.com/help/idea/scratches.html">代码草稿</a>。 代码草稿允许你在项目的同一 IDE 窗口中创建代码并即时运行它们。草稿与项目无关；你可以从操作系统上的任何 IntelliJ IDEA 窗口访问并运行任意代码草稿。</p>
+<p>要创建 Kotlin 草稿，请单击 <strong>文件 | 新的 | 草稿文件</strong> 并选择 <strong>Kotlin</strong> 类型。</p>
+<p>在草稿中，可以编写任何有效的 Kotlin 代码，包括新的函数和类。IntelliJ IDEA 支持草稿的语法高亮、自动补全和其他代码编辑功能。</p>
+<p>开始编写代码，然后单击 <strong>运行</strong> 。执行结果将出现在代码行的对面。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-run.gif" src="/assets/images/tutorials/quick-run/scratch-run.png"/>
 </div>
-<h3 id="interactive-mode">Interactive mode</h3>
-<p>IntelliJ IDEA can run your scratches automatically. To get the execution results once you stop typing for a short time, switch on the <strong>Interactive mode</strong>.</p>
+<h3 id="交互模式">交互模式</h3>
+<p>IntelliJ IDEA 可以自动运行你的草稿代码。要在短时间停止键入后获得执行结果，请打开 <strong>交互模式</strong> 。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-interactive.gif" src="/assets/images/tutorials/quick-run/scratch-interactive.png"/>
 </div>
-<h3 id="using-modules">Using modules</h3>
-<p>To use classes or functions from a project in the scratch, import them into the scratch file as usual with the <code>import</code> statement. Then write your code and run it with the appropriate module selected in <strong>Use classpath of module</strong> list. To rebuild the module automatically before running the scratch, select <strong>Make before Run</strong>.</p>
+<h3 id="调用模块">调用模块</h3>
+<p>要在草稿中使用项目中的类或函数，请像往常一样使用 <code>import</code> 语句将它们导入到临时文件中。然后编写代码并在 <strong>Use classpath of module</strong> 中选择的相应模块。要在运行草稿之前自动重建模块，请选择 <strong>Make before Run</strong>。</p>
 <p><img alt="Scratch select module" src="/assets/images/tutorials/quick-run/scratch-select-module.png"/></p>
-<h3 id="running-as-repl">Running as REPL</h3>
-<p>To evaluate each particular expression in a scratch, run it with <strong>Use REPL</strong> selected. The scratch will be executed the same way as in <a href="#repl">REPL</a>: the code lines will run subsequently, providing results of each call. You can later refer to the results by the names <code>res*</code> shown in the corresponding lines.</p>
+<h3 id="像-repl-那样运行">像 REPL 那样运行</h3>
+<p>若要计算草稿中的每个特定表达式，请在选择 <strong>Use REPL</strong> 的情况下运行它。草稿的执行方式与 <a href="#repl">REPL</a> 相同：代码行将随后运行，提供每次调用的结果。稍后，你可以通过相应行中显示的名称 <code>res*</code> 来引用结果。</p>
 <p><img alt="Scratch REPL" src="/assets/images/tutorials/quick-run/scratch-repl.png"/></p>
 <h2 id="repl">REPL</h2>
-<p><em>REPL</em> (<em>Read-Eval-Print-Loop</em>) is a tool for running Kotlin code interactively. REPL lets you evaluate expressions and code chunks without creating projects or even functions if you don't need them.</p>
-<p>To run REPL in IntelliJ IDEA, open <strong>Tools | Kotlin | Kotlin REPL</strong>.</p>
-<p>To run REPL in the OS command line, open <strong>/bin/kotlinc-jvm</strong> from the directory of standalone Kotlin compiler.</p>
-<p>The REPL command line interface opens. You can enter any valid Kotlin code and see the result. Results are printed as variables with auto-generated names like <code>res*</code>. You can later use such variables in the code you run in REPL.</p>
+<p><em>REPL</em> (<em>读取-求值-输出-循环</em>) 是一个交互式运行 Kotlin 代码的工具。REPL 允许你运行表达式和代码块，而无需创建项目或函数(如果你不需要的话)。</p>
+<p>如需在 IntelliJ IDEA 中运行 REPL，请打开 <strong>工具 | Kotlin | Kotlin REPL</strong> 。</p>
+<p>如需在操作系统命令行中运行REPL，请从 Kotlin 独立编译器的目录中打开 __/bin/Kotlic-JVM __ 。</p>
+<p>打开 REPL 命令行界面后。你可以输入任何有效的 Kotlin 代码并查看运行结果。结果以变量的形式输出，自动生成的变量名称如 <code>res*</code>。你可以稍后在REPL 运行的代码中使用这些变量。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-run.gif" src="/assets/images/tutorials/quick-run/repl-run.png"/>
 </div>
-<p>REPL supports multiple line input as well. The result of a multiple line input is the value of its last expression.</p>
+<p>REPL 也支持多行输入。多行输入的结果是其最后一个表达式的值。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-multi-line.gif" src="/assets/images/tutorials/quick-run/repl-multi-line.png"/>
 </div>
