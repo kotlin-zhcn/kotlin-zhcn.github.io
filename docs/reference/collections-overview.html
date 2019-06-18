@@ -1337,14 +1337,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 因此，Kotlin 标准库为创建、填充、管理任何类型的集合提供了泛型的（通用的，双关）接口、类与函数。</p>
 <p>这些集合接口与相关函数位于 kotlin.collections 包中。我们来大致了解下其内容。</p>
 <h2 id="集合类型">集合类型</h2>
-<p>The Kotlin Standard Library provides implementations for basic collection types: sets, lists, and maps.
-A pair of interfaces represent each collection type:</p>
+<p>Kotlin 标准库提供了基本集合类型的实现： set、list 以及 map。
+一对接口代表每种集合类型：</p>
 <ul>
-<li>A <em>read-only</em> interface that provides operations for accessing collection elements.</li>
-<li>A <em>mutable</em> interface that extends the corresponding read-only interface with write operations: adding, removing, and updating its elements.</li>
+<li>一个 <em>只读</em> 接口，提供访问集合元素的操作。</li>
+<li>一个 <em>可变</em> 接口，通过写操作扩展相应的只读接口：添加、删除和更新其元素。</li>
 </ul>
-<p>Note that altering a mutable collection doesn't require it to be a <a href="basic-syntax.html#定义变量"><code>var</code></a>: write operations modify the same mutable collection object, so the reference doesn't change.
-Although, if you try to reassign a <code>val</code> collection, you'll get a compilation error.</p>
+<p>请注意，更改可变集合不需要它是以 <a href="basic-syntax.html#定义变量"><code>var</code></a> 定义的变量：写操作修改同一个可变集合对象，因此引用不会改变。
+但是，如果尝试重新分配 <code>val</code> 集合，你将收到编译错误。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1355,16 +1355,16 @@ Although, if you try to reassign a <code>val</code> collection, you'll get a com
 }
 </code></pre>
 </div>
-<p>The read-only collection types are <a href="generics.html#型变">covariant</a>.
-This means that, if a <code>Rectangle</code> class inherits from <code>Shape</code>, you can use a <code>List&lt;Rectangle&gt;</code> anywhere the <code>List&lt;Shape&gt;</code> is required.
-In other words, the collection types have the same subtyping relationship as the element types. Maps are covariant on the value type, but not on the key type.</p>
-<p>In turn, mutable collections aren't covariant; otherwise, this would lead to runtime failures. If <code>MutableList&lt;Rectangle&gt;</code> was a subtype of <code>MutableList&lt;Shape&gt;</code>, you could insert other <code>Shape</code> inheritors (for example, <code>Circle</code>) into it, thus violating its <code>Rectangle</code> type argument.</p>
-<p>Below is a diagram of the Kotlin collection interfaces:</p>
+<p>只读集合类型是<a href="generics.html#型变">型变</a>的。
+这意味着，如果类 <code>Rectangle</code> 继承自 <code>Shape</code>，则可以在需要 <code>List &lt;Shape&gt;</code> 的任何地方使用 <code>List &lt;Rectangle&gt;</code>。
+换句话说，集合类型与元素类型具有相同的子类型关系。 地图在值类型上是型变的，但在键类型上不是。</p>
+<p>反之，可变集合不是型变的; 否则将导致运行时故障。 如果 <code>MutableList &lt;Rectangle&gt;</code> 是 <code>MutableList &lt;Shape&gt;</code> 的子类型，你可以在其中插入其他 <code>Shape</code> 的继承者（例如，<code>Circle</code>），从而违反了它的 <code>Rectangle</code> 类型参数。</p>
+<p>下面是 Kotlin 集合接口的图表：</p>
 <p><img alt="Collection interfaces hierarchy" src="/assets/images/reference/collections-overview/collections-diagram.png"/></p>
-<p>Let's walk through the interfaces and their implementations.</p>
+<p>让我们来看看接口及其实现。</p>
 <h3 id="collection">Collection</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection&lt;T&gt;</code></a> is the root of the collection hierarchy. This interface represents the common behavior of a read-only collection: retrieving size, checking item membership, and so on.
-<code>Collection</code> inherits from the <code>Iterable&lt;T&gt;</code> interface that defines the operations for iterating elements. You can use <code>Collection</code> as a parameter of a function that applies to different collection types. For more specific cases, use the <code>Collection</code>'s inheritors: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><code>Set</code></a>.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection&lt;T&gt;</code></a> 是集合层次结构的根。此接口表示一个只读集合的共同行为：检索大小、检查一个项的成员等等。
+<code>Collection</code> 继承自 <code>Iterable &lt;T&gt;</code> 接口，它定义了迭代元素的操作。可以使用 <code>Collection</code> 作为适用于不同集合类型的函数的参数。对于更具体的情况，请使用 <code>Collection</code> 的继承者： <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><code>Set</code></a>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun printAll(strings: Collection&lt;String&gt;) {
         for(s in strings) print("$s ")
@@ -1380,7 +1380,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><code>MutableCollection</code></a> is a <code>Collection</code> with write operations, such as <code>add</code> and <code>remove</code>.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><code>MutableCollection</code></a> 是一个具有写操作的 <code>Collection</code> 接口，例如 <code>add</code> 以及 <code>remove</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun List&lt;String&gt;.getShortWordsTo(shortWords: MutableList&lt;String&gt;, maxLength: Int) {
     this.filterTo(shortWords) { it.length &lt;= maxLength}
@@ -1399,7 +1399,7 @@ fun main() {
 </code></pre>
 </div>
 <h3 id="list">List</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List&lt;T&gt;</code></a> stores elements in a specified order and provides indexed access to them. Indices start from zero – the index of the first element – and go to <code>lastIndex</code> which is the <code>(list.size - 1)</code>.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List&lt;T&gt;</code></a> 以指定的顺序存储元素，并提供使用索引访问元素的方法。索引从 0 开始 – 第一个元素的索引 – 直到 <code>最后一个元素的索引</code> 即 <code>(list.size - 1)</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1412,8 +1412,8 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>List elements (including nulls) can duplicate: a list can contain any number of equal objects or occurrences of a single object.
-Two lists are considered equal if they have the same sizes and <a href="equality.html#结构相等">structurally equal</a> elements at the same positions.</p>
+<p>List 元素（包括空值）可以重复：List 可以包含任意数量的相同对象或单个对象的出现。
+如果两个 List 在相同的位置具有相同大小和相同结构的元素，则认为它们是相等的。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int)
 
@@ -1429,7 +1429,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><code>MutableList</code></a> is a <code>List</code> with list-specific write operations, for example, to add or remove an element at a specific position.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><code>MutableList</code></a> 是可以进行写操作的 <code>List</code>，例如用于在特定位置添加或删除元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1443,11 +1443,11 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>As you see, in some aspects lists are very similar to arrays.
-However, there is one important difference:  an array's size is defined upon initialization and is never changed; in turn, a list doesn't have a predefined size; a list's size can be changed as a result of write operations: adding, updating, or removing elements.</p>
-<p>In Kotlin, the default implementation of <code>List</code> is <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><code>ArrayList</code></a> which you can think of as a resizable array.</p>
+<p>如你所见，在某些方面，List 与数组非常相似。
+但是，有一个重要的区别：数组的大小是在初始化时定义的，永远不会改变; 反之，List 没有预定义的大小; 作为写操作的结果，可以更改 List 的大小：添加，更新或删除元素。</p>
+<p>在 Kotlin 中，<code>List</code> 的默认实现是 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><code>ArrayList</code></a>，可以将其视为可调整大小的数组。</p>
 <h3 id="set">Set</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><code>Set&lt;T&gt;</code></a> stores unique elements; their order is generally undefined. <code>null</code> elements are unique as well: a <code>Set</code> can contain only one <code>null</code>.  Two sets are equal if they have the same size, and for each element of a set there is an equal element in the other set.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><code>Set&lt;T&gt;</code></a> 存储唯一的元素；它们的顺序通常是未定义的。<code>null</code> 元素也是唯一的：一个 <code>Set</code> 只能包含一个 <code>null</code>。当两个 <code>set</code> 具有相同的大小并且对于一个 <code>set</code> 中的每个元素都能在另一个  <code>set</code> 中存在相同元素，则两个 <code>set</code> 相等。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1461,9 +1461,9 @@ However, there is one important difference:  an array's size is defined upon ini
 }
 </code></pre>
 </div>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><code>MutableSet</code></a> is a <code>Set</code> with write operations from <code>MutableCollection</code>.</p>
-<p>The default implementation of <code>Set</code> – <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-linked-hash-set/index.html"><code>LinkedHashSet</code></a> – preserves the order of elements insertion.
-Hence, the functions that rely on the order, such as <code>first()</code> or <code>last()</code>, return predictable results on such sets.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><code>MutableSet</code></a> 是一个带有来自 <code>MutableCollection</code> 的写操作接口的 <code>Set</code>。</p>
+<p><code>Set</code>的默认实现 -  <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-linked-hash-set/index.html"><code>LinkedHashSet</code></a> – 保留元素插入的顺序。
+因此，依赖于顺序的函数，例如 <code>first()</code> 或 <code>last()</code>，会在这些 <code>set</code> 上返回可预测的结果。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1476,7 +1476,7 @@ Hence, the functions that rely on the order, such as <code>first()</code> or <co
 }
 </code></pre>
 </div>
-<p>An alternative implementation – <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-set/index.html"><code>HashSet</code></a> – says nothing about the elements order, so calling such functions on it returns unpredictable results. However, <code>HashSet</code> requires less memory to store the same number of elements.</p>
+<p>另一种实现方式 – <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-hash-set/index.html"><code>HashSet</code></a> – 没有说明元素的顺序，所以在它上面调用这些函数会返回不可预测的结果。但是，<code>HashSet</code> 只需要较少的内存来存储相同数量的元素。</p>
 <h3 id="map">Map</h3>
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><code>Map&lt;K, V&gt;</code></a> is not an inheritor of the <code>Collection</code> interface; however, it's a Kotlin collection type as well.
 A <code>Map</code> stores <em>key-value</em> pairs (or <em>entries</em>); keys are unique, but different keys can be paired with equal values. The <code>Map</code> interface provides specific functions, such as access to value by key, searching keys and values, and so on.</p>

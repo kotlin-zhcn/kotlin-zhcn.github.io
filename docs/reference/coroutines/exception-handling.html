@@ -1353,7 +1353,7 @@ class ExceptionsGuideTest {
 </li>
 <li><a href="#监督">监督</a>
 <ul>
-<li><a href="#监督任务">监督任务</a></li>
+<li><a href="#监督作业">监督作业</a></li>
 <li><a href="#监督作用域">监督作用域</a></li>
 <li><a href="#监督协程中的异常">监督协程中的异常</a></li>
 </ul>
@@ -1633,12 +1633,12 @@ Caught original java.io.IOException
 <h2 id="监督">监督</h2>
 <p>正如我们之前研究的那样，取消是一种双向机制，在协程的整个层次结构<!--
 -->之间传播。但是如果需要单向取消怎么办？</p>
-<p>此类需求的一个良好示例是在其作用域内定义任务的的 UI 组件。如果任何一个 UI 的子任务<!--
+<p>此类需求的一个良好示例是在其作用域内定义作业的 UI 组件。如果任何一个 UI 的子作业<!--
 -->执行失败了，它并不总是有必要取消（有效地杀死）整个 UI 组件，
-但是如果 UI 组件被销毁了（并且它的任务也被取消了），由于它的结果不再被需要了，它有必要使所有的子任务执行失败。</p>
-<p>另一个例子是服务进程孵化了一些子任务并且需要 <em>监督</em>
-它们的执行，追踪它们的故障并在这些子任务执行失败的时候重启。</p>
-<h3 id="监督任务">监督任务</h3>
+但是如果 UI 组件被销毁了（并且它的作业也被取消了），由于它的结果不再被需要了，它有必要使所有的子作业执行失败。</p>
+<p>另一个例子是服务进程孵化了一些子作业并且需要 <em>监督</em>
+它们的执行，追踪它们的故障并在这些子作业执行失败的时候重启。</p>
+<h3 id="监督作业">监督作业</h3>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html">SupervisorJob</a> 可以被用于这些目的。它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html">Job</a>，唯一的取消异常将<!--
 -->只会向下传播。这是非常容易从示例中观察到的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1647,15 +1647,15 @@ Caught original java.io.IOException
 fun main() = runBlocking {
     val supervisor = SupervisorJob()
     with(CoroutineScope(coroutineContext + supervisor)) {
-        // 启动第一个子任务——这个示例将会忽略它的异常（不要在实践中这么做！）
+        // 启动第一个子作业——这个示例将会忽略它的异常（不要在实践中这么做！）
         val firstChild = launch(CoroutineExceptionHandler { _, _ -&gt;  }) {
             println("First child is failing")
             throw AssertionError("First child is cancelled")
         }
-        // 启动第二个子任务
+        // 启动第两个子作业
         val secondChild = launch {
             firstChild.join()
-            // 取消了第一个子任务且没有传播给第二个子任务
+            // 取消了第一个子作业且没有传播给第二个子作业
             println("First child is cancelled: ${firstChild.isCancelled}, but second one is still active")
             try {
                 delay(Long.MAX_VALUE)
@@ -1664,7 +1664,7 @@ fun main() = runBlocking {
                 println("Second child is cancelled because supervisor is cancelled")
             }
         }
-        // 等待直到第一个子任务失败且执行完成
+        // 等待直到第一个子作业失败且执行完成
         firstChild.join()
         println("Cancelling supervisor")
         supervisor.cancel()
@@ -1685,7 +1685,7 @@ Second child is cancelled because supervisor is cancelled
 <!--- TEST-->
 <h3 id="监督作用域">监督作用域</h3>
 <p>对于<em>作用域</em>的并发，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html">supervisorScope</a> 可以被用来替代 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 来实现相同的目的。它只会单向的传播<!--
--->并且当子任务自身执行失败的时候将它们全部取消。它也会在所有的子任务执行结束前等待，
+-->并且当子作业自身执行失败的时候将它们全部取消。它也会在所有的子作业执行结束前等待，
 就像 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 所做的那样。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.*
@@ -1702,7 +1702,7 @@ fun main() = runBlocking {
                     println("Child is cancelled")
                 }
             }
-            // 使用 yield 来给我们的子任务一个机会来执行打印
+            // 使用 yield 来给我们的子作业一个机会来执行打印
             yield()
             println("Throwing exception from scope")
             throw AssertionError()
@@ -1724,9 +1724,9 @@ Caught assertion error
 </code></pre>
 <!--- TEST-->
 <h3 id="监督协程中的异常">监督协程中的异常</h3>
-<p>常规的任务和监督任务之间的另一个重要区别是异常处理。
-每一个子任务应该通过异常处理机制处理自身的异常。
-这种差异来自于子任务的执行失败不会传播给它的父任务的事实。</p>
+<p>常规的作业和监督作业之间的另一个重要区别是异常处理。
+每一个子作业应该通过异常处理机制处理自身的异常。
+这种差异来自于子作业的执行失败不会传播给它的父作业的事实。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.*
 import kotlinx.coroutines.*

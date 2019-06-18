@@ -983,34 +983,34 @@ private fun readInts() = readStrings().map { it.toInt() } // 整数列表
 输入数据的名称保持与问题陈述中所给出的名称相同也更容易。
 当然，越复杂的问题就越需要更多的代码来解，既而变量名与函数名就会<!--
 -->越长、越具有自解释性。</p>
-<h2 id="更多提示和技巧">更多提示和技巧</h2>
-<p>Competitive programming problems often have input like this:</p>
+<h2 id="更多提示与技巧">更多提示与技巧</h2>
+<p>竞技程序设计通常有这样的输入：</p>
 <blockquote>
-<p>The first line of the input contains two integers <code>n</code> and <code>k</code></p>
+<p>输入的第一行包含两个整数 <code>n</code> 与 <code>k</code></p>
 </blockquote>
-<p>In Kotlin this line can be concisely parsed with the following statement using
-<a href="/docs/reference/multi-declarations.html#解构声明">destructuring declaration</a>
-from a list of integers:</p>
+<p>在 Kotlin 中，这一行可以通过使用对整型列表的<!--
+--><a href="/docs/reference/multi-declarations.html#解构声明">解构声明</a><!--
+-->的下述语句简明地解析：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val (n, k) = readInts() 
 </code></pre>
 </div>
-<p>It might be temping to use JVM's <code>java.util.Scanner</code> class to parse less structured 
-input formats. Kotlin is designed to interoperate well with JVM libraries, so that their use feels quite
-natural in Kotlin. However, beware that <code>java.util.Scanner</code> is extremely slow. So slow, in fact, that parsing
-10<sup>5</sup> or more integers with it might not fit into a typical 2 second time-limit, which a simple Kotlin's 
-<code>split(" ").map { it.toInt() }</code> would handle.</p>
-<p>Writing output in Kotlin is usually straightforward with 
+<p>很多人习惯使用 JVM 的 <code>java.util.Scanner</code> 类来解析结构较少的<!--
+-->输入格式。Kotlin 已设计成能与 JVM 库很好互操作，因此在
+Kotlin 中使用它们会很自然。然而请注意，<code>java.util.Scanner</code> 极其慢。事实上，速度慢得以至用它解析<!--
+-->10<sup>5</sup> 个或更多整数时，很可能不满足典型的 2 秒限制，而这是一个简单的 Kotlin
+<code>split(" ").map { it.toInt() }</code> 就能做到的。</p>
+<p>在 Kotlin 中写输出通常很简单，调用
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/println.html">println(…)</a>
-calls and using Kotlin's 
-<a href="/docs/reference/basic-types.html#字符串模板">string templates</a>. However, care must be taken when output
-contains on order of 10<sup>5</sup> lines or more. Issuing so many <code>println</code> calls is too slow, since the output 
-in Kotlin is automatically flushed after each line. 
-A faster way to write many lines from an array or a list is using
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/join-to-string.html">joinToString()</a> function
-with <code>"\n"</code> as separator, like this:</p>
+以及使用 Kotlin 的<!--
+--><a href="/docs/reference/basic-types.html#字符串模板">字符串模板</a>。然而，当输出<!--
+-->包含大约 10<sup>5</sup> 或更多行时，必须小心。调用这么多次 <code>println</code> 太慢了，因为
+Kotlin 中的该输出会在每行后自动刷新写缓冲。
+从数组或 list 中写多行的更快方式是使用
+<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/join-to-string.html">joinToString()</a> 函数<!--
+-->以 <code>"\n"</code> 作为分隔符，如下所示：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">println(a.joinToString("\n")) // each element of array/list of a separate line
+<pre><code class="language-kotlin">println(a.joinToString("\n")) // 数组/list 中的每个元素占一行
 </code></pre>
 </div>
 <h2 id="学习-kotlin">学习 Kotlin</h2>
