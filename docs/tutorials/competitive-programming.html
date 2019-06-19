@@ -832,8 +832,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 的竞技程序员，也适用于之前从未参与过任何竞技性程序设计活动的 Kotlin 开发人员。
 本教程假定读者具有相应的编程技能。</p>
 <h2 id="竞技程序设计与-kotlin">竞技程序设计与 Kotlin</h2>
-<p><a href="https://en.wikipedia.org/wiki/Competitive_programming">竞技性程序设计</a>
-是一项智力运动，参赛选手在严格的限制条件下编写程序精确地解决指定的<!--
+<p><a href="https://en.wikipedia.org/wiki/Competitive_programming">竞技性程序设计</a><!--
+-->是一项智力运动，参赛选手在严格的限制条件下编写程序精确地解决指定的<!--
 -->算法问题。问题可以简单到<!--
 -->任何软件开发人员都能解题、只需很少代码就能得到正确答案，也可以复杂到需要<!--
 -->特殊的算法、数据结构知识以及大量实践。虽然 Kotlin 不是专为竞技性<!--
@@ -858,8 +858,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 就去掉这个零。</p>
 </blockquote>
 <p>Kotlin 是实用且不拘一格的语言，既支持命令式也支持函数式编程风格，
-不强迫开发人员选择任何一种特定风格。可以按函数式风格实现函数 <code>f</code>，使用像
-<a href="/docs/reference/functions.html#尾递归函数">尾递归</a>这样的 Kotlin 特性：</p>
+不强迫开发人员选择任何一种特定风格。可以按函数式风格实现函数 <code>f</code>，使用像<!--
+--><a href="/docs/reference/functions.html#尾递归函数">尾递归</a>这样的 Kotlin 特性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">tailrec fun removeZeroes(x: Int): Int =
     if (x % 10 == 0) removeZeroes(x / 10) else x
@@ -868,7 +868,7 @@ fun f(x: Int) = removeZeroes(x + 1)
 </code></pre>
 </div>
 <p>也可以编写函数 <code>f</code> 的命令式实现，使用传统的
-<a href="/docs/reference/control-flow.html">while 循环</a> 与可变变量（在 Kotlin 中用
+<a href="/docs/reference/control-flow.html">while 循环</a>与可变变量（在 Kotlin 中用
 <a href="/docs/reference/basic-syntax.html#定义变量">var</a> 表示）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun f(x: Int): Int {
@@ -885,7 +885,7 @@ fun f(x: Int) = removeZeroes(x + 1)
 <code>n</code> 重复应用函数 <code>f</code> 时所产生的不同整数的个数。</p>
 <p>默认情况下，Kotlin 在 JVM 上运行，可以直接访问丰富且高效的集合库，其中包含<!--
 -->通用的集合与数据结构，如动态大小的数组（<code>ArrayList</code>）、
-基于哈希的 map 与 set（<code>HashMap</code>/<code>HashSet</code>）、基于树的map 与 set（<code>TreeMap</code>/<code>TreeSet</code>）等。
+基于哈希的 map 与 set（<code>HashMap</code>/<code>HashSet</code>）、基于树的 map 与 set（<code>TreeMap</code>/<code>TreeSet</code>）等。
 使用整数哈希 set 来跟踪应用函数 <code>f</code> 时已达到的值，
 该问题解法的一个简单命令式版本可以这样编写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -911,7 +911,7 @@ Kotlin 的 <code>readLine()</code> 函数定义成了返回<!--
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.text/to-int.html">String.toInt()</a>
 函数会抛出异常。</p>
 <p>所有在线竞技程序设计活动都允许使用预编写代码，因此可以定义自己的<!--
--->面向竞技性编程的工具函数库，以使实际解题代码更易<!--
+-->面向竞技程序设计的工具函数库，以使实际解题代码更易<!--
 -->于读写。然后，可以使用该代码作为解题模板。例如，可以定义<!--
 -->以下辅助函数来读取竞技程序设计中的输入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -953,7 +953,7 @@ private fun readInt() = readLn().toInt()
 </code></pre>
 </div>
 <p>在这段密集的代码中，除了集合转换之外，还可以看到像局部函数<!--
--->以及<a href="/docs/reference/null-safety.html#elvis-操作符">elvis 操作符</a> <code>?:</code> 这样灵便的 Kotlin 特性，
+-->以及 <a href="/docs/reference/null-safety.html#elvis-操作符">elvis 操作符</a> <code>?:</code> 这样灵便的 Kotlin 特性，
 通过 elvis 操作符，可以用<!--
 -->简洁易读的表达式如 <code>.takeIf { it &gt;= 0 } ?: s.length</code>
 来表达类似“如果是正数就取其值，否则取长度”的<a href="/docs/reference/idioms.html">惯用法</a>，
@@ -981,7 +981,7 @@ private fun readInts() = readStrings().map { it.toInt() } // 整数列表
 当然，这些名称通常仍然是助记手段——数组用 <code>a</code>，
 索引用 <code>i</code>、<code>j</code>，表格的行列号用 <code>r</code>、<code>c</code>，坐标用 <code>x</code>、<code>y</code> 等。
 输入数据的名称保持与问题陈述中所给出的名称相同也更容易。
-当然，越复杂的问题就越需要更多的代码来解，既而变量名与函数名就会<!--
+当然，越复杂的问题就越需要更多的代码来解，进而变量名与函数名就会<!--
 -->越长、越具有自解释性。</p>
 <h2 id="更多提示与技巧">更多提示与技巧</h2>
 <p>竞技程序设计通常有这样的输入：</p>
@@ -997,8 +997,8 @@ private fun readInts() = readStrings().map { it.toInt() } // 整数列表
 </div>
 <p>很多人习惯使用 JVM 的 <code>java.util.Scanner</code> 类来解析结构较少的<!--
 -->输入格式。Kotlin 已设计成能与 JVM 库很好互操作，因此在
-Kotlin 中使用它们会很自然。然而请注意，<code>java.util.Scanner</code> 极其慢。事实上，速度慢得以至用它解析<!--
--->10<sup>5</sup> 个或更多整数时，很可能不满足典型的 2 秒限制，而这是一个简单的 Kotlin
+Kotlin 中使用它们会很自然。然而请注意，<code>java.util.Scanner</code> 极其慢。事实上，速度慢得以至用它解析
+10<sup>5</sup> 个或更多整数时，很可能不满足典型的 2 秒限制，而这是一个简单的 Kotlin
 <code>split(" ").map { it.toInt() }</code> 就能做到的。</p>
 <p>在 Kotlin 中写输出通常很简单，调用
 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/println.html">println(…)</a>
