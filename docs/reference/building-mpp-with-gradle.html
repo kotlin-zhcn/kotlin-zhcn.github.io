@@ -1407,7 +1407,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.31'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.40'
 }
 
 repositories {
@@ -1427,7 +1427,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("multiplatform") version "1.3.31"
+    kotlin("multiplatform") version "1.3.40"
 }
 
 repositories {
@@ -1546,7 +1546,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.31'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.40'
 }
 </code></pre>
 </div>
@@ -1554,7 +1554,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("multiplatform") version "1.3.31"
+    kotlin("multiplatform") version "1.3.40"
 }
 </code></pre>
 </div>
@@ -2591,7 +2591,7 @@ Creating an Android target requires that one of the Android Gradle plugins, like
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform").version("1.3.31")
+    id("org.jetbrains.kotlin.multiplatform").version("1.3.40")
 }
 
 android { /* ... */ }
@@ -2608,7 +2608,7 @@ kotlin {
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
     id("com.android.library")
-    kotlin("multiplatform").version("1.3.31")
+    kotlin("multiplatform").version("1.3.40")
 }
 
 android { /* ... */ }
@@ -2737,7 +2737,12 @@ all native platforms):</p>
 <tbody>
 <tr>
 <td><code>executable</code></td>
-<td>an executable program</td>
+<td>a product executable</td>
+<td>all native targets</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>a test executable</td>
 <td>all native targets</td>
 </tr>
 <tr>
@@ -2836,46 +2841,11 @@ an optimized binary without debug information). Consequently the following snipp
 </div>
 <p>The first argument in this example allows one to set a name prefix for the created binaries which is used to access them in the buildscript (see the <a href="#accessing-binaries">"Accessing binaries"</a> section).
 Also this prefix is used as a default name for the binary file. For example on Windows the sample above produces files <code>foo.exe</code> and <code>bar.exe</code>.</p>
-<h4 id="using-binary-declaration-apis-introduced-in-13">Using binary declaration APIs introduced in 1.3</h4>
-<blockquote>
-<p><strong>Important:</strong> The approach described in this section is deprecated in Kotlin 1.3.30 and will not be available since Kotlin 1.3.40. Consider using the <a href="#declaring-binaries"><code>binaries</code></a> block instead.</p>
-</blockquote>
-<p>It is possible to use the binary declaration APIs introduced in 1.3 in addition to the binaries DSL. One can specify one or more of
-the <code>outputKinds</code> for a compilation using these APIs. The following output kinds are available:</p>
-<ul>
-<li><code>executable</code> for an executable program;</li>
-<li><code>dynamic</code> for a dynamic library;</li>
-<li><code>static</code> for a static library;</li>
-<li><code>framework</code> for an Objective-C framework (only supported for macOS and iOS targets)</li>
-</ul>
-<p>This can be done as follows:</p>
-<div class="multi-language-sample" data-lang="groovy">
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">kotlin {
-    linuxX64 { // Use your target instead
-        compilations.main.outputKinds("executable") // could also be "static", "dynamic" or "framework".
-    }
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin">
-<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">kotlin {
-    linuxX64 { // Use your target instead
-        compilations["main"].outputKinds("executable") // could also be "static", "dynamic" or "framework".
-    }
-}
-</code></pre>
-</div>
-</div>
-<p>This creates binaries with corresponding types and the compilation name as name prefixes in the <code>binaries</code> container. But note that such
-binaries are created after project evaluation so they are available only in an <code>afterEvaluate</code> code block.</p>
 <h4 id="accessing-binaries">Accessing binaries</h4>
 <p>The binaries DSL allows not only creating binaries but also accessing already created ones to configure them or get their properties
 (e.g. path to an output file). The <code>binaries</code> collection implements the
 <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DomainObjectSet.html"><code>DomainObjectSet</code></a> interface and provides methods like
-<code>all</code> or <code>matching</code> allowing configuring groups of elements .</p>
+<code>all</code> or <code>matching</code> allowing configuring groups of elements.</p>
 <p>Also it's possible to get a certain element of the collection. There are two ways to do this. First, each binary has a unique
 name. This name is based on the name prefix (if it's specified), build type and binary kind according to the following pattern:
 <code>&lt;optional-name-prefix&gt;&lt;build-type&gt;&lt;binary-kind&gt;</code>, e.g. <code>releaseFramework</code> or <code>testDebugExecutable</code>.</p>
@@ -2911,7 +2881,8 @@ binaries.findByName("fooDebugExecutable")
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">// Fails if there is no such a binary.
 binaries.getExecutable('foo', DEBUG)
-binaries.getExecutable('', DEBUG)    // Use an empty string if the name prefix isn't set.
+binaries.getExecutable(DEBUG)          // Skip the first argument if the name prefix isn't set.
+binaries.getExecutable('bar', 'DEBUG') // You also can use a string for build type.
 
 // Similar getters are available for other binary kinds:
 // getFramework, getStaticLib and getSharedLib.
@@ -2928,7 +2899,8 @@ binaries.findExecutable('foo', DEBUG)
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">// Fails if there is no such a binary.
 binaries.getExecutable("foo", DEBUG)
-binaries.getExecutable("", DEBUG)    // Use an empty string if the name prefix isn't set.
+binaries.getExecutable(DEBUG)          // Skip the first argument if the name prefix isn't set.
+binaries.getExecutable("bar", "DEBUG") // You also can use a string for build type.
 
 // Similar getters are available for other binary kinds:
 // getFramework, getStaticLib and getSharedLib.
@@ -2941,11 +2913,19 @@ binaries.findExecutable("foo", DEBUG)
 </code></pre>
 </div>
 </div>
+<blockquote class="note">
+<p>Note: Before 1.3.40, both test and product executables were represented by the same binary type. Thus to access the default test binary created by the plugin, the following line was used:</p>
+<pre><code>binaries.getExecutable("test", "DEBUG")
+</code></pre>
+<p>Since 1.3.40, test executables are represented by a separate binary type and have their own getter. To access the default test binary, use:</p>
+<pre><code>binaries.getTest("DEBUG")
+</code></pre>
+</blockquote>
 <h4 id="configuring-binaries">Configuring binaries</h4>
 <p>Binaries have a set of properties allowing one to configure them. The following options are available:</p>
 <ul>
-<li><strong>Compilation.</strong> Each binary is built on basis of some compilation available in the same target. The <code>main</code> compilation is used by
- default but a user can specify another one.</li>
+<li><strong>Compilation.</strong> Each binary is built on basis of some compilation available in the same target. The default value of this parameter depends
+ on the binary type: <code>Test</code> binaries are based on the <code>test</code> compilation while other binaries - on the <code>main</code> compilation.</li>
 <li><strong>Linker options.</strong> Options passed to a system linker during binary building. One can use this setting to link against some native library.</li>
 <li><strong>Output file name.</strong> By default the output file name is based on binary name prefix or, if the name prefix isn't specified, on a project name.
  But it's possible to configure the output file name independently using the <code>baseName</code> property. Note that final file name will be formed
@@ -2965,7 +2945,7 @@ binaries.findExecutable("foo", DEBUG)
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">binaries {
-    executable('test', [RELEASE]) {
+    executable('my_executable', [RELEASE]) {
         // Build a binary on the basis of the test compilation.
         compilation = compilations.test
 
@@ -2994,20 +2974,13 @@ binaries.findExecutable("foo", DEBUG)
         isStatic = true
     }
 }
-
-// Note that the test task created by default is also a run task.
-// So you can access it using the same property.
-def testTask = binaries.getExecutable("test", DEBUG).runTask
-task processTests {
-    dependsOn(testTask)
-}
 </code></pre>
 </div>
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">binaries {
-    executable("test", listOf(RELEASE)) {
+    executable("my_executable", listOf(RELEASE)) {
         // Build a binary on the basis of the test compilation.
         compilation = compilations["test"]
 
@@ -3036,12 +3009,6 @@ task processTests {
         isStatic = true
     }
 }
-
-// Note that the test task created by default is also a run task.
-// So you can access it using the same property.
-val testTask = binaries.getExecutable("test", DEBUG).runTask
-val processTests by tasks.creating
-processTests.dependsOn(testTask)
 </code></pre>
 </div>
 </div>
