@@ -879,36 +879,36 @@ IDE 还可以使用构建系统来了解项目布局。</p>
 源所在的位置，使用的依赖项，或依赖项的下载方式等。</p>
 <p><a name="create-gradle-project"></a></p>
 <h2 id="创建一个-kotlinnative-gradle-工程">创建一个 Kotlin/Native Gradle 工程</h2>
-<p>The <em>New Project</em> wizard in IntelliJ IDEA can be used to start a new Kotlin/Native project with just one click.
-Check out the <em>Kotlin</em> section and select the <em>Native | Gradle</em> option to generate the project.
-For a better understanding and to explain what's happening, in this tutorial we'll create the project manually.</p>
-<p>Let's first create a project folder. All the paths in this tutorial will be relative to this folder. Sometimes
-the missing directories will have to be created before new files are added.</p>
-<p>Gradle supports two languages for the build scripts. We have the following
-options:</p>
+<p>我们只需点击 IntelliJ IDEA 中的 <em>New Project</em> 引导项，就可以创建一个新的 Kotlin/Native 工程。
+点击 <em>Kotlin</em> 选项，并选择 <em>Native | Gradle</em> 配置项来生成工程。
+为了更好地理解和解释正在发生的事情，在本教程中我们将手动创建工程。</p>
+<p>让我们首先创建一个工程文件夹。本教程中的所有路径都与此文件夹相关。有时<!--
+-->在添加新文件之前，必须创建缺少的目录。</p>
+<p>Gradle 的构建脚本支持两种语言。我们有以下的两种<!--
+-->选项：</p>
 <ul>
-<li>Groovy scripts in <code>build.gradle</code> files</li>
-<li>Kotlin scripts in <code>build.gradle.kts</code> files</li>
+<li><code>build.gradle</code> 文件中的 Groovy 脚本</li>
+<li><code>build.gradle.kts</code> 文件中的 Kotlin 脚本</li>
 </ul>
-<p>Groovy language is the oldest supported scripting language for Gradle,
-it leverages the power of the dynamic typing and runtime features of the language.
-Sometimes it can be harder to maintain Groovy build scripts. IDEs are struggling
-to get through the dynamism of Groovy to provide helpful insights or
-code completion.</p>
-<p>Kotlin as a statically typed programming language plays well for writing
-Gradle build scripts.
-Thanks to the static type inference, the Kotlin compiler detects errors earlier and
-shows important compilation error messages and warnings.
-Both an IDE and the compiler can use the information about types to infer
-the available functions and properties in a given scope.</p>
-<p>We create
+<p>Groovy 语言是被 Gradle 脚本支持时间最长的语言，
+它利用了语言的动态类型以及运行时特性的强大功能。
+有时维护 Groovy 构建脚本可能会更困难。IDE 正在苦苦挣扎于<!--
+-->通过 Groovy 的动态特性来提供有用的预测或<!--
+-->代码补全。</p>
+<p>Kotlin 作为一种静态类型的编程语言非常适合写作
+Gradle 构建脚本。
+由于静态类型推断，Kotlin 编译器可以更早地检测到错误<!--
+-->以及显示重要的编译错误消息和警告。
+IDE 与编译器都可以使用有关类型的信息进行推断<!--
+-->给定范围内的可用函数与属性。</p>
+<p>我们创建
 <span class="multi-language-span" data-lang="groovy">
 <code>build.gradle</code>
 </span>
 <span class="multi-language-span" data-lang="kotlin">
 <code>build.gradle.kts</code>
 </span>
-Gradle build file with the following contents:</p>
+Gradle 构建文件中添加下面的内容：</p>
 <div class="multi-language-sample" data-lang="groovy" data-os="macos">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code>plugins {
@@ -1059,7 +1059,7 @@ tasks.withType&lt;Wrapper&gt; {
 </code></pre>
 </div>
 </div>
-<p>The prepared project sources can be directly downloaded from
+<p>准备好的工程源可以直接下载
 <span class="multi-language-span" data-lang="groovy" data-os="macos">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos.zip">GitHub</a>.
 </span>
@@ -1078,32 +1078,32 @@ tasks.withType&lt;Wrapper&gt; {
 <span class="multi-language-span" data-lang="kotlin" data-os="windows">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows.zip">GitHub</a>.
 </span></p>
-<p>Now need to create an empty
+<p>现在需要在工程根目录创建一个空的
 <span class="multi-language-span" data-lang="kotlin">
 <code>settings.gradle.kts</code>
 </span><span class="multi-language-span" data-lang="groovy">
 <code>settings.gradle</code>
 </span>
-file in the project root directory.</p>
-<p>Depending on the target platform, we use different <a href="/docs/reference/building-mpp-with-gradle.html">functions</a>,
-e.g. <code>macosX64</code>, <code>mingwX64</code>, <code>linuxX64</code>, <code>iosX64</code>,
-to create the Kotlin target. The function name is the platform which we are compiling our code for.
-These functions optionally take the target name as a parameter, which is <code>"native"</code> in our case.
-The specified <em>target name</em> is used to generate the source paths and task names in the project.</p>
-<p>By the convention, all sources are located in the <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> folders.
-It creates <em>main</em> and <em>test</em> source sets for every target. Let's place the <code>hello.kt</code>
-we previously created into the <em>main</em> source set folder, which is <code>src/nativeMain/kotlin</code>.
-The <code>nativeMain</code> folder comes from the <code>"native"</code> target name, which we specified in the build script above.</p>
-<p>The project is ready. The next step is to open it in IntelliJ IDEA. For advanced build scenarios,
-it is recommended to refer to the
-<a href="/docs/reference/building-mpp-with-gradle.html#setting-up-a-multiplatform-project">more detailed</a>
-documentation.</p>
-<p>Anyone wanting to continue on without an IDE, will need to download and install the
-<a href="https://gradle.org">Gradle</a> build tool.
-Make sure to use the right version of Gradle (e.g. 5.4.1 or newer).
-Running the <code>gradle wrapper</code> command will complete the project creation.
-<a href="https://docs.gradle.org/current/userguide/getting_started.html">Getting Started with Gradle</a>
-explains in detail how to start using Gradle projects.</p>
+文件</p>
+<p>根据目标平台，我们使用不同的<a href="/docs/reference/building-mpp-with-gradle.html">函数</a>，
+例如 <code>macosX64</code>、<code>mingwX64</code>、<code>linuxX64</code>、<code>iosX64</code>，
+来创建一个 Kotlin 目标。函数名称是我们编译代码的平台。
+这些函数可选地将目标名称作为参数，在我们的例子中是 <code>"native"</code>。
+指定的 <em>目标平台名称</em> 用于在项目中生成源路径以及任务名称。</p>
+<p>按照惯例，所有的源都位于 <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> 文件夹。
+它为每个目标平台都创建了 <em>main</em> 以及 <em>test</em> 源集。让我们将 <code>hello.kt</code> 放置到<!--
+-->我们之前在 <code>src/nativeMain/kotlin</code> 中创建的 <em>main</em> 源集文件夹。
+该 <code>nativeMain</code> 文件夹名称来源于我们在上面的构建脚本中指明的 <code>"native"</code> 目标平台名称。</p>
+<p>工程已经准备好了。下一步是在 IntelliJ IDEA 中打开它。关于高级的构建场景，
+建议参考<!--
+--><a href="/docs/reference/building-mpp-with-gradle.html#setting-up-a-multiplatform-project">更多细节</a><!--
+-->文档。</p>
+<p>任何想要在没有 IDE 的情况下继续使用的人都需要下载并安装
+<a href="https://gradle.org">Gradle</a> 构建工具。
+确保使用正确的 Gradle 版本（例如 5.4.1 或者更新）。
+当工程完成创建时运行 <code>gradle wrapper</code> 命令。
+<a href="https://docs.gradle.org/current/userguide/getting_started.html">从 Gradle 开始</a>
+有更多关于如何开始使用 Gradle 工程的说明。</p>
 <p><a name="open-in-ide"></a></p>
 <h2 id="在-ide-中打开这个工程">在 IDE 中打开这个工程</h2>
 <p>We are using <a href="https://jetbrains.com/idea">IntelliJ IDEA</a> for this tutorial.
