@@ -838,14 +838,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h2 id="获取编译器">获取编译器</h2>
 <p>Kotlin/Native 编译器可以被用于 macOS、Linux 以及 Windows。它支持<!--
 -->不同的目标平台包括 iOS（arm32、arm64、simulator x86_64），Windows（mingw32 以及 x86_64），
-Linux（x86_64, arm64, MIPS），macOS（x86_64），Raspberry PI、SMT32、WASM。所有的目标平台列表<!--
+Linux（x86_64、arm64、MIPS），macOS（x86_64），Raspberry PI、SMT32、WASM。所有的目标平台列表<!--
 -->我们可以在 <a href="/docs/reference/native-overview.html">Kotlin/Native overview</a> 中查看。
 虽然跨平台的编译是可能的，
 (即，使用一个平台为另一个平台编译)，但在这个第一篇教程中<!--
 -->我们仅仅为我们当前运行的系统进行编译。</p>
 <p>使用 Kotlin/Native 编译器的最好的方式是去构建一个系统。
-它有助于下载和缓存 Kotlin/Native 编译器二进制文件与库
-传递依赖，并运行编译器以及测试。
+它有助于下载和缓存 Kotlin/Native 编译器二进制文件与库<!--
+-->传递依赖，并运行编译器以及测试。
 它同样缓存编译结果。
 IDE 还可以使用构建系统来了解项目布局。</p>
 <p>Kotlin/Native 通过 <a href="https://gradle.org">Gradle</a> 的
@@ -869,14 +869,14 @@ IDE 还可以使用构建系统来了解项目布局。</p>
 </div>
 <h2 id="使用命令行编译代码">使用命令行编译代码</h2>
 <p>通过<a href="https://github.com/JetBrains/kotlin/releases">下载</a>的<!--
--->编译器手动生成一个 <code>hello.kexe</code>（Linux 以及 macOS）或 <code>hello.exe</code>（Windows）
-二进制文件</p>
+-->编译器手动生成一个 <code>hello.kexe</code>（Linux 以及 macOS）或 <code>hello.exe</code>（Windows）<!--
+-->二进制文件</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native hello.kt -o hello
 </code></pre>
 <p>虽然从控制台编译似乎很简单，但我们应该注意到它<!--
 -->对于包含数百个文件和库的大型项目来说，不能很好地扩展。
-除此之外，命令行方法没有向 IDE 解释如何打开这样的项目，
-源所在的位置，使用的依赖项，或依赖项的下载方式等。</p>
+除此之外，命令行方法没有向 IDE 解释如何打开这样的项目、
+源所在的位置、使用的依赖项、或依赖项的下载方式等。</p>
 <p><a name="create-gradle-project"></a></p>
 <h2 id="创建一个-kotlinnative-gradle-工程">创建一个 Kotlin/Native Gradle 工程</h2>
 <p>我们只需点击 IntelliJ IDEA 中的 <em>New Project</em> 引导项，就可以创建一个新的 Kotlin/Native 工程。
@@ -1092,13 +1092,13 @@ tasks.withType&lt;Wrapper&gt; {
 指定的 <em>目标平台名称</em> 用于在项目中生成源路径以及任务名称。</p>
 <p>按照惯例，所有的源都位于 <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> 文件夹。
 它为每个目标平台都创建了 <em>main</em> 以及 <em>test</em> 源集。让我们将 <code>hello.kt</code> 放置到<!--
--->我们之前在 <code>src/nativeMain/kotlin</code> 中创建的 <em>main</em> 源集文件夹。
+-->我们之前在 <code>src/nativeMain/kotlin</code> 中创建的 <em>main</em> 源集文件夹中。
 该 <code>nativeMain</code> 文件夹名称来源于我们在上面的构建脚本中指明的 <code>"native"</code> 目标平台名称。</p>
 <p>工程已经准备好了。下一步是在 IntelliJ IDEA 中打开它。关于高级的构建场景，
 建议参考<!--
 --><a href="/docs/reference/building-mpp-with-gradle.html#setting-up-a-multiplatform-project">更多细节</a><!--
 -->文档。</p>
-<p>任何想要在没有 IDE 的情况下继续使用的人都需要下载并安装
+<p>想要在没有 IDE 的情况下继续使用都需要下载并安装
 <a href="https://gradle.org">Gradle</a> 构建工具。
 确保使用正确的 Gradle 版本（例如 5.4.1 或者更新）。
 当工程完成创建时运行 <code>gradle wrapper</code> 命令。
@@ -1137,8 +1137,8 @@ IntelliJ IDEA（CLion、AppCode 或 AndroidStudio）将帮助我们的工程生�
 来确认最优的 JRE、OpenJDK 或 JDK 发行版的版本。</p>
 <p><a name="run-in-ide"></a></p>
 <h2 id="运行应用程序">运行应用程序</h2>
-<p>通常，一个原生可以被编译为 <em>debug</em> 版本，这时它拥有更多的调试信息以及更少的优化，而 <em>release</em>
-会有更多的优化被启用并且没有（或者至少是更少的）调试信息。
+<p>通常，一个原生二进制文件可以被编译为 <em>debug</em> 版本，这时它拥有更多的调试信息以及更少的优化，而 <em>release</em>
+版本会有更多的优化被启用并且没有（或者至少是更少的）调试信息。
 二进制文件会在 <code>build/bin/native/debugExecutable</code> 以及 <code>build/bin/native/releaseExecutable</code>
 目录下分别被创建。该文件在 Linux 以及 macOS 上会拥有一个 <code>.kexe</code> 扩展名，而在 Windows 上的扩展名则是 <code>.exe</code>。使用以下命令<!--
 -->指示构建生成二进制文件：</p>
@@ -1216,8 +1216,8 @@ macOS、Windows、Linux 以及 <a href="/docs/tutorials/native/mpp-ios-android.h
 -->文档。</p>
 <p>至于 Kotlin <a href="/docs/reference/multiplatform.html">多平台</a>项目，它可以用于<!--
 -->将 Kotlin 代码共享至所有支持的平台。
-查看文档<a href="/docs/tutorials/native/mpp-ios-android.html">在 iOS 与 Android 之间共享 Kotlin 代码</a>
-或者查看如何构建自己的<a href="/docs/tutorials/multiplatform-library.html">多平台库</a>。</p>
+查看文档<a href="/docs/tutorials/native/mpp-ios-android.html">在 iOS 与 Android 之间共享 Kotlin 代码</a><!--
+-->或者查看如何构建自己的<a href="/docs/tutorials/multiplatform-library.html">多平台库</a>。</p>
 
         </article>
     </div>
