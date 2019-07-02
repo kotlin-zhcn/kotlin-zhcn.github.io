@@ -863,7 +863,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="搭建本地环境">搭建本地环境</h1>
 <ul>
 <li>
-<p>我们将使用 <a href="https://developer.android.com/studio/">Android Studio</a> 来讲解 Android 部分的内容. 
+<p>我们将使用 <a href="https://developer.android.com/studio/">Android Studio</a> 来讲解 Android 部分的内容.
 当然也可以使用 <a href="https://jetbrains.com/idea">IntelliJ IDEA</a> 社区版或终级版。</p>
 </li>
 <li>
@@ -878,11 +878,11 @@ IDE 的 <em>Settings</em>（或<em>Preferences</em>）中的 <em>Language &amp; 
 </ul>
 <p><em>注意：我们将使用 IntelliJ IDEA 2018.3 EAP、Android Studio 3.2、Kotlin 1.3.21、Xcode 10.0、macOS 10.14、Gradle 4.7</em></p>
 <h1 id="创建一个-android-工程">创建一个 Android 工程</h1>
-<p>我们将通过 <em>Start New Android Project</em> 来创建一个 Android 工程。如果使用 IntelliJ IDEA，我们需要在左边的 <em>New Project</em> 
+<p>我们将通过 <em>Start New Android Project</em> 来创建一个 Android 工程。如果使用 IntelliJ IDEA，我们需要在左边的 <em>New Project</em>
 向导面板中选择 <em>Android</em>。</p>
 <p>重要的一点是你需要确保勾选了 <em>Include Kotlin support</em> 选择框。现在我们可以在向导的下一步中<!--
 -->保留默认设置。我们接下来选择 <em>Empty Activity</em> 选项并点击 <em>Next</em>，最后点击 <em>Finish</em>。</p>
-<p><strong>注意</strong> 如果使用早期发行版或者 EAP 版本的 Kotlin plugin，IDE 在生成工程的时候可能会失败， 
+<p><strong>注意</strong> 如果使用早期发行版或者 EAP 版本的 Kotlin plugin，IDE 在生成工程的时候可能会失败，
 给 Gradle 抛出 <a href="https://youtrack.jetbrains.com/issue/KT-18835#focus=streamItem-27-2718879-0-0">error</a>。
 这是因为 <code>build.gradle</code> 文件中没有引用正确的 Maven 库，可以通过将以下代码 <em>两次</em> 添加到每个 <code>repositories { .. }</code>
 块中来解决。</p>
@@ -900,13 +900,14 @@ Kotlin/Native 插件需要更新版本的 Gradle，让我们修改 <code>gradle/
 <p>此刻，我们应该可以编译并运行这个 Android 应用了</p>
 <h1 id="创建共享模块">创建共享模块</h1>
 <p>这部分教程的目标是演示在 Android 与 iOS 之间复用 Kotlin 源码。让我们从在
-Gradle 工程中创建一个 <code>SharedCode</code> 子工程开始。<code>SharedCode</code> 工程中的源码<!--
+Gradle 工程中手动创建一个 <code>SharedCode</code> 子工程开始。<code>SharedCode</code> 工程中的源码<!--
 -->将被在两个平台之间共享。
 我们将在工程中创建几个新文件来实现这个目标。</p>
 <h2 id="添加-kotlin-源码">添加 Kotlin 源码</h2>
 <p>我们想要使每个平台都根据平台自身展示相似的文本：<code>Kotlin Rocks on Android</code> 以及
 <code>Kotlin Rocks on iOS</code>。我们将复用生成消息的方式。
-让我们在 <code>SharedCode/src/commonMain/kotlin/common.kt</code> 下创建一个 main 文件。</p>
+Let's create the file (and missing directories) <code>SharedCode/src/commonMain/kotlin/common.kt</code> with the following contents
+under the project root directory</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package org.kotlin.mpp.mobile
 
@@ -921,7 +922,7 @@ fun createApplicationScreenMessage() : String {
 <p>这是通用的部分。这段代码生成了最终的消息。它 <code>expect</code> 平台<!--
 -->提供来自 <code>expect fun platformName（）：String</code> 函数的平台名称。我们将同时在
 Android 与 iOS 应用中使用 <code>createApplicationScreenMessage</code>。</p>
-<p>现在，我们需要在 <code>SharedCode/src/androidMain/kotlin/actual.kt</code> 中为 Android 创建相应的实现：</p>
+<p>现在，我们需要在 <code>SharedCode/src/androidMain/kotlin/actual.kt</code> 中为 Android 创建相应的实现文件（与缺失的目录）：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package org.kotlin.mpp.mobile
 
@@ -931,7 +932,7 @@ actual fun platformName(): String {
 
 </code></pre>
 </div>
-<p>我们为 iOS 也创建了一个相似的文件 <code>SharedCode/src/iosMain/kotlin/actual.kt</code>：</p>
+<p>我们为 iOS 也创建了一个相似的实现文件（与缺失的目录） <code>SharedCode/src/iosMain/kotlin/actual.kt</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package org.kotlin.mpp.mobile
 
@@ -950,7 +951,7 @@ Kotlin/Native 编译器带有一组预先导入的框架，所以我们可以无
 -->使用 UIKit Framework。
 Objective-C 与 Swift 互操作的细节被包含在这篇<a href="/docs/reference/native/objc_interop.html">文档</a>中</p>
 <h2 id="更新-gradle-脚本">更新 Gradle 脚本</h2>
-<p><code>SharedCode</code> 应该为我们生成一系列构件：</p>
+<p><code>SharedCode</code> 子项目应该为我们生成一系列构件：</p>
 <ul>
 <li>在 <code>androidMain</code> 源集中为 Android 工程生成 JAR 文件</li>
 <li>Apple framework
@@ -960,7 +961,7 @@ Objective-C 与 Swift 互操作的细节被包含在这篇<a href="/docs/referen
 </ul>
 </li>
 </ul>
-<p>让我们更新该 Gradle 脚本。</p>
+<p>Let's update the Gradle scripts now to implement that and configure our IDE.</p>
 <p>首先，我们将一个新工程添加到 <code>settings.gradle</code> 文件，只需要将下面这行代码添加到文件末尾：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="groovy" theme="idea">
 <pre><code class="language-groovy">include ':SharedCode'

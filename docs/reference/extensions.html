@@ -1340,8 +1340,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>这个 <em class="keyword">this</em> 关键字在扩展函数内部对应到接收者对象（传过来的在点符号前的对象）
 现在，我们对任意 <code>MutableList&lt;Int&gt;</code> 调用该函数了：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val l = mutableListOf(1, 2, 3)
-l.swap(0, 2) // “swap()”内部的“this”得到“l”的值
+<pre><code class="language-kotlin">val list = mutableListOf(1, 2, 3)
+list.swap(0, 2) // “swap()”内部的“this”会保存“list”的值
 </code></pre>
 </div>
 <p>当然，这个函数对任何 <code>MutableList&lt;T&gt;</code> 起作用，我们可以泛化它：</p>
