@@ -1526,12 +1526,13 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 </code></pre>
 </div>
 <h3 id="将-lambda-表达式传给最后一个参数">将 lambda 表达式传给最后一个参数</h3>
-<p>在 Kotlin 中有一个约定：如果函数的最后一个参数接受函数，那么作为相应参数<!--
+<p>在 Kotlin 中有一个约定：如果函数的最后一个参数是函数，那么作为相应参数<!--
 -->传入的 lambda 表达式可以放在圆括号之外：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val product = items.fold(1) { acc, e -&gt; acc * e }
 </code></pre>
 </div>
+<p>这种语法也称为<em>拖尾 lambda 表达式</em>。</p>
 <p>如果该 lambda 表达式是调用时唯一的参数，那么圆括号可以完全省略：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">run { println("...") }
