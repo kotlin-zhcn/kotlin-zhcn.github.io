@@ -1409,7 +1409,7 @@ Kotlin 中的不安全转换由中缀操作符 <em class="keyword">as</em>（参
 <p>请注意，尽管事实上 <em class="keyword">as?</em> 的右边是一个非空类型的 <code>String</code>，但是其转换的结果是可空的。</p>
 <h2 id="类型擦除与泛型检测">类型擦除与泛型检测</h2>
 <p>Kotlin 在编译时确保涉及<a href="generics.html">泛型</a>操作的类型安全性，
-而在运行时，泛型类型的实例并无未带有关于它们实际类型参数的信息。例如，
+而在运行时，泛型类型的实例并未带有关于它们实际类型参数的信息。例如，
 <code>List&lt;Foo&gt;</code> 会被擦除为 <code>List&lt;*&gt;</code>。通常，在运行时无法检测一个实例是否属于带有某个类型参数的泛型类型<!--
 -->。</p>
 <p>为此，编译器会禁止由于类型擦除而无法执行的 <em class="keyword">is</em> 检测，例如
