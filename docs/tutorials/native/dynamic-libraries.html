@@ -840,11 +840,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 Kotlin 代码编译为动态库，例如 <code>.so</code>、<code>.dylib</code> 以及 <code>.dll</code>。</p>
 <p>Kotlin/Native 也可以与 Apple 技术紧密集成。
 这篇 <a href="apple-framework.html">Kotlin/Native 开发 Apple Framework</a>
-教程解释了如何将代码编译成 Swift 与 Objective-C framework。</p>
+教程解释了如何将代码编译为 Swift 与 Objective-C framework。</p>
 <p>在这篇教程中，我们将：</p>
 <ul>
 <li><a href="#创建-kotlin-库">将 Kotlin 代码编译为动态库</a></li>
-<li><a href="#generated-headers-file">Examine generated C headers</a></li>
+<li><a href="#生成头文件">生成 C 的头文件</a></li>
 <li><a href="#using-generated-headers-from-c">在 C 中调用 Kotlin 动态库</a></li>
 <li>将示例代码编译并运行于 <a href="#compiling-and-running-the-example-on-linux-and-macos">Linux 与 Mac</a>
 以及 <a href="#compiling-and-running-the-example-on-windows">Windows</a></li>
@@ -1085,7 +1085,7 @@ tasks.withType&lt;Wrapper&gt; {
 <span class="multi-language-span" data-lang="kotlin" data-os="windows">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-shared-lib-kotlin-windows.zip">GitHub</a>.
 </span></p>
-<p>让我们移除工程目录下的源文件移动到 <code>src/nativeMain/kotlin</code>
+<p>让我们将工程目录下的源文件移动到 <code>src/nativeMain/kotlin</code>
 文件夹下。当使用 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件的时候，对于源文件的位置，
 这就是默认路径。我们使用以下代码块来指导和配置工程<!--
@@ -1120,9 +1120,9 @@ tasks.withType&lt;Wrapper&gt; {
 </code></pre>
 </div>
 </div>
-<p><code>libnative</code> 被用作库名，即生成的<!--
--->头文件名前缀。 它也是前缀中的所有声明的前缀<!--
--->头文件。</p>
+<p><code>libnative</code> 用作库名，即生成的<!--
+-->头文件名前缀。它同样也是该头文件中<!--
+-->所有声明的前缀。</p>
 <p>现在我们已经准备好<!--
 --><a href="basic-kotlin-native-app.html#open-in-ide">在 IntelliJ IDEA 中打开这个工程</a><!--
 -->并且可以看到如何修正这个示例工程。在我们这样做的时候，
@@ -1148,21 +1148,21 @@ tasks.withType&lt;Wrapper&gt; {
 </code></pre>
 </div>
 </div>
-<p>构建将会在 <code>build/bin/native/debugShared</code> 文件夹下生成
-以下文件，并取决于目标操作系统：</p>
+<p>构建将会在 <code>build/bin/native/debugShared</code> 文件夹下生成<!--
+-->以下文件，并取决于目标操作系统：</p>
 <ul>
 <li>macOS: <code>libnative_api.h</code> 与 <code>libnative.dylib</code></li>
 <li>Linux: <code>libnative_api.h</code> 与 <code>libnative.so</code></li>
 <li>Windows: <code>libnative_api.h</code>、<code>libnative_symbols.def</code> 以及 <code>libnative.dll</code></li>
 </ul>
-<p>相似的规则被 Kotlin/Native 编译器用于在<!--
+<p>Kotlin/Native 编译器用相似的规则在<!--
 -->所有的平台上生成 <code>.h</code> 文件。<br/>
-来看看我们的 Kotlin 库的 C API。</p>
+来看看我们的 Kotlin 库的 C 语言 API。</p>
 <h2 id="生成头文件">生成头文件</h2>
-<p>In the <code>libnative_api.h</code>, we'll find the following code. 
-We will discuss the code in parts to make it easier to understand.</p>
-<p>Note, the way Kotlin/Native exports symbols is subject to change without notice.</p>
-<p>The very first part contains the standard C/C++ header and footer:</p>
+<p>在 <code>libnative_api.h</code> 中，我们将发现如下代码。
+我们将探讨其中部分代码，以便更容易理解。</p>
+<p>注意，Kotlin/Native 的外部符号如有变更，将不会另外说明。</p>
+<p>第一部分包含了标准的 C/C++ 头文件的首尾：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">#ifndef KONAN_DEMO_H
 #define KONAN_DEMO_H
@@ -1170,7 +1170,7 @@ We will discuss the code in parts to make it easier to understand.</p>
 extern "C" {
 #endif
 
-/// THE REST OF THE GENERATED CODE GOES HERE
+/// 生成的代码的其余部分在这里
 
 #ifdef __cplusplus
 }  /* extern "C" */
@@ -1178,7 +1178,7 @@ extern "C" {
 #endif  /* KONAN_DEMO_H */
 </code></pre>
 </div>
-<p>After the rituals in the <code>libnative_api.h</code>, we have a block with the common type definitions:</p>
+<p>在 <code>libnative_api.h</code> 中的上述内容之后，我们就拥有了一个声明通用类型定义的块：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">#ifdef __cplusplus
 typedef bool            libnative_KBoolean;
@@ -1199,20 +1199,20 @@ typedef double             libnative_KDouble;
 typedef void*              libnative_KNativePtr;
 </code></pre>
 </div>
-<p>Kotlin uses the <code>libnative_</code> prefix for all declarations
-in the created <code>libnative_api.h</code> file. Let's present
-the mapping of the types in a more readable way:</p>
+<p>Kotlin 在已创建的 <code>libnative_api.h</code> 文件中为<!--
+-->所有的声明都添加了 <code>libnative_</code> 前缀。让我们以<!--
+-->更容易阅读的方式来查看类型的映射：</p>
 <table class="zebra">
 <thead>
 <tr>
-<th>Kotlin Define</th>
-<th>C Type</th>
+<th>Kotlin 定义。</th>
+<th>C 类型</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>libnative_KBoolean</code></td>
-<td><code>bool</code> or <code>_Bool</code></td>
+<td><code>bool</code> 或 <code>_Bool</code></td>
 </tr>
 <tr>
 <td><code>libnative_KChar</code></td>
@@ -1264,10 +1264,10 @@ the mapping of the types in a more readable way:</p>
 </tr>
 </tbody>
 </table>
-<p>The definitions part shows how Kotlin primitive types map into C primitive types. 
-We discussed reverse mapping in the <a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a> tutorial.</p>
-<p>The next part of the <code>libnative_api.h</code> file contains definitions of the types
-that are used in the library:</p>
+<p>这个定义部分展示了如何将 Kotlin 的原始类型映射为 C 的原始类型。 
+我们在这篇<a href="mapping-primitive-data-types-from-c.html">从 C 语言中映射原始类型</a>教程中讨论了反向映射。</p>
+<p><code>libnative_api.h</code> 文件的下一个部分包含了在该库中<!--
+-->使用的类型的定义：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">struct libnative_KType;
 typedef struct libnative_KType libnative_KType;
@@ -1281,17 +1281,17 @@ typedef struct {
 } libnative_kref_example_Clazz;
 </code></pre>
 </div>
-<p>The <code>typedef struct { .. } TYPE_NAME</code> syntax is used in C language to declare a structure. 
-<a href="https://stackoverflow.com/questions/1675351/typedef-struct-vs-struct-definitions">The thread</a>
-provides more explanations of that pattern.</p>
-<p>We see from these definitions that the Kotlin object <code>Object</code> is mapped into
-<code>libnative_kref_example_Object</code>, and <code>Clazz</code> is mapped into <code>libnative_kref_example_Clazz</code>.
-Both structs contain nothing but the <code>pinned</code> field with a pointer, the field type 
-<code>libnative_KNativePtr</code> is defined as <code>void*</code> above.</p>
-<p>There is no namespaces support in C, so the Kotlin/Native compiler generates 
-long names to avoid any possible clashes with other symbols in the existing native project.</p>
-<p>A significant part of the definitions goes in the <code>libnative_api.h</code> file.
-It includes the definition of our Kotlin/Native library world:</p>
+<p><code>typedef struct { .. } TYPE_NAME</code> 语法在 C 语言中用于声明一个结构体。
+<a href="https://stackoverflow.com/questions/1675351/typedef-struct-vs-struct-definitions">这个问题</a><!--
+-->提供了对该模式的更多解释。</p>
+<p>我们可以看到其中定义了 Kotlin 的 <code>Object</code> 类映射为
+<code>libnative_kref_example_Object</code>，而 <code>Clazz</code> 映射到了 <code>libnative_kref_example_Clazz</code>。
+这两个结构体都没有包含任何东西，但是 <code>pinned</code> 字段是一个指针，该字段类型
+<code>libnative_KNativePtr</code> 定义在 <code>void*</code> 之上。</p>
+<p>C 语言中没有支持命名空间，所以 Kotlin/Native 编译器生成了<!--
+-->长名称，以避免与现有原生工程中的其他符号发生任何可能的冲突。</p>
+<p>定义的很大一部分位于 <code>libnative_api.h</code> 文件。
+它包含了我们的 Kotlin/Native 库世界的定义：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">typedef struct {
   /* Service functions. */
@@ -1323,35 +1323,35 @@ It includes the definition of our Kotlin/Native library world:</p>
 } libnative_ExportedSymbols;
 </code></pre>
 </div>
-<p>The code uses anonymous structure declarations. The code <code>struct { .. } foo</code>
-declares a field in the outer struct of that 
-anonymous structure type, the type with no name.</p>
-<p>C does not support objects either. People use function pointers to mimic 
-object semantics. A function pointer is declared as follows <code>RETURN_TYPE (* FIELD_NAME)(PARAMETERS)</code>.
-It is tricky to read, but we should be able to see function pointer fields in the structures above.</p>
-<h3 id="runtime-functions">Runtime Functions</h3>
-<p>The code reads as follows. We have the <code>libnative_ExportedSymbols</code> structure, which defines
-all the functions that Kotlin/Native and our library provides us. It uses 
-nested anonymous structures heavily to mimic packages. The <code>libnative_</code> prefix comes from the
-library name.</p>
-<p>The <code>libnative_ExportedSymbols</code> structure contains several helper functions:</p>
+<p>这段代码使用了匿名的结构体定义。代码 <code>struct { .. } foo</code>
+在结构体外部声明了一个<!--
+-->匿名结构体类型，这个类型没有名字。</p>
+<p>C 语言同样也不支持对象。人们使用函数指针来模仿<!--
+-->对象语义。一个函数指针被声明在 <code>RETURN_TYPE (* FIELD_NAME)(PARAMETERS)</code> 后面。
+它的阅读性很差，但我们应该能够从上面的结构体中看到函数指针字段。</p>
+<h3 id="运行时函数">运行时函数</h3>
+<p>阅读下面的代码。我们拥有这个 <code>libnative_ExportedSymbols</code> 结构体，它定义了所有
+Kotlin/Native 中的以及我们的库提供给我们的函数。它使用<!--
+-->嵌套匿名结构，以模仿包。<code>libnative_</code> 前缀来源于<!--
+-->库的名字。</p>
+<p><code>libnative_ExportedSymbols</code> 结构体包含了几个辅助函数：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="C" theme="idea">
 <pre><code class="language-c">void (*DisposeStablePointer)(libnative_KNativePtr ptr);
 void (*DisposeString)(const char* string);
 libnative_KBoolean (*IsInstance)(libnative_KNativePtr ref, const libnative_KType* type);
 </code></pre>
 </div>
-<p>These functions deal with Kotlin/Native objects. Call the 
-<code>DisposeStablePointer</code> to release a Kotlin object and <code>DisposeString</code> to release a Kotlin String, 
-which has the <code>char*</code> type in C. It is possible to use the <code>IsInstance</code> function to check if a
-Kotlin type or a <code>libnative_KNativePtr</code> is an instance of another type. The actual set of
-operations generated depends on the actual usages.</p>
-<p>Kotlin/Native has garbage collection, but it does not help us deal
-with Kotlin objects from the C language. Kotlin/Native has interop with Objective-C and 
-Swift and integrates with their reference counters. 
-The <a href="/docs/reference/native/objc_interop.html">Objective-C Interop</a>
-documentation article contains more details on it. Also,
-there is the tutorial <a href="apple-framework.html">Kotlin/Native as an Apple Framework</a>.</p>
+<p>这些函数用于处理 Kotlin/Native 的对象。调用
+<code>DisposeStablePointer</code> 来释放一个 Kotlin 对象，而 <code>DisposeString</code> 用于释放一个 Kotlin 字符串， 
+该字符串具有 C 中的 <code>char*</code> 类型。<code>IsInstance</code> 函数可以用于检查一个
+Kotlin 类型或者一个 <code>libnative_KNativePtr</code> 是否是某个类型的实例。实际的<!--
+-->生成操作取决于实际的使用情况。</p>
+<p>Kotlin/Native 拥有垃圾回收机制，但是它不能帮助我们处理<!--
+-->来源于 C 的 Kotlin 对象。Kotlin/Native 可以与 Objective-C 以及
+Swift 进行互操作，并且结合了它们的引用计数。 
+这篇 <a href="/docs/reference/native/objc_interop.html">Objective-C 互操作</a>
+包含了更多关于此内容的细节。当然，也可以参考<!--
+-->这篇 <a href="apple-framework.html">Kotlin/Native 开发 Apple Framework</a> 文档。</p>
 <h3 id="our-library-functions">Our Library Functions</h3>
 <p>Let's take a look at the <code>kotlin.root.example</code> field, it
 mimics the package structure of our Kotlin code with a <code>kotlin.root.</code> prefix.</p>
