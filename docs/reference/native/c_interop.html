@@ -1315,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/v1.3.0-fixes/INTEROP.md"
+<a href="https://github.com/hltj/kotlin-native-cn/edit/v1.3.0-fixes/INTEROP.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1352,7 +1352,7 @@ on macOS/iOS are available this way.</p>
 <pre><code class="language-bash">
 cd samples/gitchurn
 ../../dist/bin/cinterop -def src/main/c_interop/libgit2.def \
- -compilerOpts -I/usr/local/include -o libgit2
+ -compiler-option -I/usr/local/include -o libgit2
 </code></pre>
 </div>
 <p>Compile the client:</p>
@@ -1378,7 +1378,7 @@ package = png
 <p>Then run the <code>cinterop</code> tool with something like this (note that for host libraries that are not included
 in the sysroot search paths, headers may be needed):</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">cinterop -def png.def -compilerOpts -I/usr/local/include -o png
+<pre><code class="language-bash">cinterop -def png.def -compiler-option -I/usr/local/include -o png
 </code></pre>
 </div>
 <p>This command will produce a <code>png.klib</code> compiled library and
@@ -1409,7 +1409,7 @@ included header matches any of the globs, then the declarations from this header
 are included into the bindings.</p>
 <p>The globs are applied to the header paths relative to the appropriate include
 path elements, e.g. <code>time.h</code> or <code>curl/curl.h</code>. So if the library is usually
-included with <code>#include &lt;SomeLibrary/Header.h&gt;</code>, then it would probably be
+included with <code>#include &lt;SomeLbrary/Header.h&gt;</code>, then it would probably be
 correct to filter headers with</p>
 <div class="sample" mode="c" theme="idea">
 <pre><code class="language-c">headerFilter = SomeLibrary/**
@@ -1475,7 +1475,8 @@ rather than assume it is available within the user's environment.
 To include a static library into <code>.klib</code> use <code>staticLibrary</code> and <code>libraryPaths</code>
 clauses. For example:</p>
 <div class="sample" mode="c" theme="idea">
-<pre><code class="language-c">staticLibraries = libfoo.a 
+<pre><code class="language-c">headers = foo.h
+staticLibraries = libfoo.a 
 libraryPaths = /opt/local/lib /usr/local/opt/curl/lib
 </code></pre>
 </div>

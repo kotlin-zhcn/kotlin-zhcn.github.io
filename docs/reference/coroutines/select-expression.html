@@ -1325,7 +1325,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <!--- INCLUDE .*/example-([a-z]+)-([0-9a-z]+)\.kt 
 /*
- * Copyright 2016-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
+ * Copyright 2016-2019 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license.
  */
 
 // This file was automatically generated from coroutines-guide.md by Knit tool. Do not edit.
@@ -1458,7 +1458,7 @@ buzz -&gt; 'Buzz!'
 <!--- TEST -->
 <h3 id="通道关闭时-select">通道关闭时 select</h3>
 <p>select 中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html">onReceive</a> 子句在已经关闭的通道执行会发生失败，并导致相应的
-<code>select</code> 抛出异常。我们可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive-or-null.html">onReceiveOrNull</a> 子句在关闭通道时执行<!--
+<code>select</code> 抛出异常。我们可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 子句在关闭通道时执行<!--
 -->特定操作。以下示例还显示了 <code>select</code> 是一个返回<!--
 -->其查询方法结果的表达式：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1479,6 +1479,9 @@ buzz -&gt; 'Buzz!'
     }
 </code></pre>
 </div>
+<p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> is an extension function defined only
+for channels with non-nullable elements so that there is no accidental confusion between a closed channel
+and a null value.</p>
 <p>现在有一个生成四次“Hello”字符串的 <code>a</code> 通道，
 和一个生成四次“World”字符串的 <code>b</code> 通道，我们在这两个通道上使用它：</p>
 <!--- CLEAR -->
@@ -1539,7 +1542,7 @@ Channel 'a' is closed
 -->作为 select 中的第一个子句获胜。然而因为我们使用的是无缓冲通道，所以 <code>a</code> 在其调用
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html">send</a> 时会不时地被挂起，进而 <code>b</code> 也有机会发送。</p>
 <p>第二个观察结果是，当通道已经关闭时，
-会立即选择 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive-or-null.html">onReceiveOrNull</a>。</p>
+会立即选择 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a>。</p>
 <h3 id="select-以发送">Select 以发送</h3>
 <p>Select 表达式具有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html">onSend</a> 子句，可以很好的与<!--
 -->选择的偏向特性结合使用。</p>
@@ -1674,7 +1677,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <h3 id="在延迟值通道上切换">在延迟值通道上切换</h3>
 <p>我们现在来编写一个通道生产者函数，它消费一个产生延迟字符串的通道，并等待每个接收的<!--
 -->延迟值，但它只在下一个延迟值到达或者通道关闭之前处于运行状态。此示例将
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive-or-null.html">onReceiveOrNull</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句放在同一个 <code>select</code> 中：</p>
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句放在同一个 <code>select</code> 中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.switchMapDeferreds(input: ReceiveChannel&lt;Deferred&lt;String&gt;&gt;) = produce&lt;String&gt; {
     var current = input.receive() // 从第一个接收到的延迟值开始

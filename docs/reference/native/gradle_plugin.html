@@ -1315,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/v1.3.0-fixes/GRADLE_PLUGIN.md"
+<a href="https://github.com/hltj/kotlin-native-cn/edit/v1.3.0-fixes/GRADLE_PLUGIN.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1324,10 +1324,195 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlinnative-gradle-插件">Kotlin/Native Gradle 插件</h1>
-<h3 id="important-notice">IMPORTANT NOTICE</h3>
-<p>This document describes Kotlin/Native experimental Gradle plugin, which is not the plugin yet supported by IDE
-or in multiplatform projects. See MPP Gradle plugin <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html">documentation</a>
-for more information.</p>
+<p>Since 1.3.40, a separate Gradle plugin for Kotlin/Native is deprecated in favor of the <code>kotlin-multiplatform</code> plugin.
+This plugin provides an IDE support along with support of the new multiplatform project model introduced in Kotlin 1.3.0.
+Below you can find a short list of differences between <code>kotlin-platform-native</code> and <code>kotlin-muliplatform</code> plugins. 
+For more information see the <code>kotlin-muliplatform</code> <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html">documentation page</a>.
+For <code>kotlin-platform-native</code> reference see the <a href="#kotlin-platform-native-reference">corresponding section</a>.</p>
+<h3 id="applying-the-multiplatform-plugin">Applying the multiplatform plugin</h3>
+<p>To apply the <code>kotlin-multiplatform</code> plugin, just add the following snippet into your build script:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">plugins {
+    id("org.jetbrains.kotlin.multiplatform") version '1.3.40'
+}
+</code></pre>
+</div>
+<h3 id="managing-targets">Managing targets</h3>
+<p>With the <code>kotlin-platform-native</code> plugin a set of target platforms is specified as a list in properties of the main component:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">components.main {
+    targets = ['macos_x64', 'linux_x64', 'mingw_x64']
+}
+</code></pre>
+</div>
+<p>With the <code>kotlin-multiplatform</code> plugin target platforms can be added into a project using special methods available in the <code>kotlin</code> extension.
+Each method adds into a project one <strong>target</strong> which can be accessed using the <code>targets</code> property. Each target can be configured independently
+including output kinds, additional compiler options etc. See details about targets at the <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#setting-up-targets">corresponding page</a>.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+
+kotlin {
+    // These targets are declared without any target-specific settings. 
+    macosX64()
+    linuxX64()
+    
+    // You can specify a custom name used to access the target.
+    mingwX64("windows") 
+    
+    iosArm64 {
+        // Additional settings for ios_arm64.
+    }
+    
+    // You can access declared targets using the `targets` property.
+    println(targets.macosX64)
+    println(targets.windows)
+    
+    // You also can configure all native targets in a single block.
+    targets.withType(KotlinNativeTarget) {
+        // Native target configuration.
+    }
+}
+</code></pre>
+</div>
+<p>Each target includes two <strong>compilations</strong>: <code>main</code> and <code>test</code> compiling product and test sources respectively. A compilation is an abstraction
+over a compiler invocation and described at the <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#configuring-compilations">corresponding page</a>.</p>
+<h3 id="managing-sources">Managing sources</h3>
+<p>With the <code>kotlin-platform-native</code> plugin source sets are used to separate test and product sources. Also you can specify different sources
+for different platforms in the same source set:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">sourceSets {
+    // Adding target-independent sources.
+    main.kotlin.srcDirs += 'src/main/mySources'
+    
+    // Adding Linux-specific code.
+    main.target('linux_x64').srcDirs += 'src/main/linux'
+}
+</code></pre>
+</div>
+<p>With the <code>kotlin-multiplatform</code> plugin <strong>source</strong> <strong>sets</strong> are also used to group sources but source files for different platforms are located in different source sets.
+For each declared target two source sets are created: <code>&lt;target-name&gt;Main</code> and <code>&lt;target-name&gt;Test</code> containing product and test sources for this platform. Common for all
+platforms sources are located in <code>commonMain</code> and <code>commonTest</code> source sets created by default. More information about source sets can be found
+<a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#configuring-source-sets">here</a>.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    sourceSets {
+        // Adding target-independent sources.
+        commonMain.kotlin.srcDirs += file("src/main/mySources")
+
+        // Adding Linux-specific code.
+        linuxX64Main.kotlin.srcDirs += file("src/main/linux")
+    }
+}
+</code></pre>
+</div>
+<h3 id="managing-dependencies">Managing dependencies</h3>
+<p>With the <code>kotlin-platform-native</code> plugin dependencies are configured in a traditional for Gradle way by grouping them into configurations
+using the project <code>dependencies</code> block:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">dependencies {
+    implementation 'org.sample.test:mylibrary:1.0'
+    testImplementation 'org.sample.test:testlibrary:1.0'
+}
+</code></pre>
+</div>
+<p>The <code>kotlin-multiplatform</code> plugin also uses configurations under the hood but it also provides a <code>dependencies</code> block for each source set
+allowing configuring dependencies of this sources set:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin.sourceSets {
+    commonMain {
+        dependencies {
+            implementation("org.sample.test:mylibrary:1.0")
+        }
+    }
+    
+    commonTest {
+        dependencies {
+            implementation("org.sample.test:testlibrary:1.0")
+        }
+    }
+}
+</code></pre>
+</div>
+<p>Note that a module referenced by a dependency declared for <code>commonMain</code> or <code>commonTest</code> source set must be published using the <code>kotlin-multiplatform</code> plugin.
+If you want to use libraries published by the <code>kotlin-platform-native</code> plugin, you need to declare a separate source set for common native sources.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin.sourceSets {
+    // Create a common source set used by native targets only.
+    nativeMain {
+        dependsOn(commonMain)
+        dependencies {
+            // Depend on a library published by the kotlin-platform-naive plugin.
+            implementation("org.sample.test:mylibrary:1.0")
+        }
+    }
+
+    // Configure all native platform sources sets to use it as a common one.
+    linuxX64Main.dependsOn(nativeMain)
+    macosX64Main.dependsOn(nativeMain)
+    //...
+}
+</code></pre>
+</div>
+<p>See more info about dependencies at the <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#adding-dependencies">corresponding page</a>.</p>
+<h3 id="output-kinds">Output kinds</h3>
+<p>With the <code>kotlin-platform-native</code> plugin output kinds are specified as a list in properties of a component:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">components.main {
+    // Compile the component into an executable and a Kotlin/Native library.
+    outputKinds = [EXECUTABLE, KLIBRARY]
+}
+</code></pre>
+</div>
+<p>With the <code>kotlin-multiplatform</code> plugin a compilation always produces a <code>*.klib</code> file. A separate <code>binaries</code> block is used to configure what
+final native binaries should be produced by each target. Each binary can be configured independently including linker options, executable entry point etc.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    macosX64 {
+        binaries {
+            executable {
+                // Binary configuration: linker options, name, etc.
+            }
+            framework {
+                // ...
+            }
+            
+        }
+    }
+}
+</code></pre>
+</div>
+<p>See more about native binaries declaration at the <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#building-final-native-binaries">corresponding page</a>.</p>
+<h3 id="publishing">Publishing</h3>
+<p>Both <code>kotlin-platform-native</code> and <code>kotlin-multiplatform</code> plugins automatically set up artifact publication when the
+<code>maven-publish</code> plugin is applied. See details about publication at the <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#publishing-a-multiplatform-library">corresponding page</a>.
+Note that currently only Kotlin/Native libraries (<code>*.klib</code>) can be published for native targets.</p>
+<h3 id="cinterop-support">Cinterop support</h3>
+<p>With the <code>kotlin-platform-native</code> plugin interop with a native library can be declared in component dependencies:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">components.main {
+    dependencies {
+        cinterop('mystdio') {
+            // Сinterop configuration.
+        }
+    }
+}
+</code></pre>
+</div>
+<p>With the <code>kotlin-multiplatform</code> plugin interops are configured as a part of a compilation (see details <a href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html#cinterop-support">here</a>).
+The rest of an interop configuration is the same as for the <code>kotlin-platform-native</code> plugin.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    macosX64 {
+        compilations.main.cinterops {
+            mystdio {
+                // Сinterop configuration.
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+<h2 id="kotlin-platform-native-reference"><code>kotlin-platform-native</code> reference</h2>
 <h3 id="overview">Overview</h3>
 <p>You may use the Gradle plugin to build <em>Kotlin/Native</em> projects. Builds of the plugin are
 <a href="https://plugins.gradle.org/plugin/org.jetbrains.kotlin.platform.native">available</a> at the Gradle plugin portal, so you can apply it
@@ -1478,7 +1663,7 @@ support so the corresponding feature must be enabled. Add the following line in 
 }
 </code></pre>
 </div>
-<p>Dependency declaraion is also possible in the component block:</p>
+<p>Dependency declaration is also possible in the component block:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">components.main {
     dependencies {
@@ -1534,7 +1719,7 @@ done using the <code>target</code> script block:</p>
 }
 </code></pre>
 </div>
-<h3 id="publishing">Publishing</h3>
+<h3 id="publishing-1">Publishing</h3>
 <p>In the presence of <code>maven-publish</code> plugin the publications for all the binaries built are created. The plugin uses Gradle
 metadata to publish the artifacts so this feature must be enabled (see the <a href="#dependencies">dependencies</a> section).</p>
 <p>Now you can publish the artifacts with the standard Gradle <code>publish</code> task:</p>
@@ -1649,7 +1834,7 @@ components.main {
             includeDirs "include/directory" "another/directory"
 
             // Pass additional command line options to the cinterop tool.
-            extraOpts '-shims', 'true'
+            extraOpts '-verbose'
 
             // Additional configuration for Linux.
             target('linux') {

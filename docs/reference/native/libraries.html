@@ -1315,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/v1.3.0-fixes/LIBRARIES.md"
+<a href="https://github.com/hltj/kotlin-native-cn/edit/v1.3.0-fixes/LIBRARIES.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1341,7 +1341,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>The <strong>cinterop</strong> tool produces <code>.klib</code> wrappers for native libraries as its main output. 
 For example, using the simple <code>libgit2.def</code> native library definition file provided in your Kotlin/Native distribution</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ cinterop -def  samples/gitchurn/src/nativeInterop/cinterop/libgit2.def -compilerOpts -I/usr/local/include -o libgit2
+<pre><code class="language-bash">$ cinterop -def samples/gitchurn/src/nativeInterop/cinterop/libgit2.def -compiler-option -I/usr/local/include -o libgit2
 </code></pre>
 </div>
 <p>we will obtain <code>libgit2.klib</code>.</p>

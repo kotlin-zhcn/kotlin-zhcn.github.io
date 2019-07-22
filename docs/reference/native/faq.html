@@ -1315,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/v1.3.0-fixes/FAQ.md"
+<a href="https://github.com/hltj/kotlin-native-cn/edit/v1.3.0-fixes/FAQ.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1333,10 +1333,10 @@ and return <code>Unit</code> as an entry point.</p>
 The current implementation includes an automated reference counter with a cycle collector to collect cyclical
 garbage.</p>
 <h3 id="q-how-do-i-create-a-shared-library">Q: How do I create a shared library?</h3>
-<p>A: Use the <code>-produce dynamic</code> compiler switch, or <code>compilations.main.outputKinds 'DYNAMIC'</code> in Gradle, i.e.</p>
+<p>A: Use the <code>-produce dynamic</code> compiler switch, or <code>binaries.sharedLib()</code> in Gradle, i.e.</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">targets {
     fromPreset(presets.iosArm64, 'mylib') {
-       compilations.main.outputKinds 'DYNAMIC'
+        binaries.sharedLib()
     }
 }
 </code></pre>
@@ -1345,10 +1345,10 @@ C language header, allowing the use of all public APIs available in your Kotlin/
 See <code>samples/python_extension</code> for an example of using such a shared object to provide a bridge between Python and
 Kotlin/Native.</p>
 <h3 id="q-how-do-i-create-a-static-library-or-an-object-file">Q: How do I create a static library or an object file?</h3>
-<p>A: Use the <code>-produce static</code> compiler switch, or <code>compilations.main.outputKinds 'STATIC'</code> in Gradle, i.e.</p>
+<p>A: Use the <code>-produce static</code> compiler switch, or <code>binaries.staticLib()</code> in Gradle, i.e.</p>
 <pre><code class="code _highlighted" data-lang="text/x-groovy">targets {
     fromPreset(presets.iosArm64, 'mylib') {
-       compilations.main.outputKinds 'STATIC'
+        binaries.staticLib()
     }
 }
 </code></pre>
@@ -1363,12 +1363,24 @@ or set it via the <code>JAVA_OPTS</code> environment variable.</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">targets {
     fromPreset(presets.iosArm64, 'myapp') {
-       compilations.main.outputKinds 'FRAMEWORK'
-       compilations.main.extraOpts '-module-name', 'TheName'
+        binaries.framework()
+        compilations.main.extraOpts '-module-name', 'TheName'
     }
 }
 </code></pre>
 </div>
+<h3 id="q-how-do-i-rename-the-ios-framework-default-name-is-project-nameframework">Q: How do I rename the iOS framework? (default name is <em>&lt;project name&gt;</em>.framework)</h3>
+<p>A: Use the <code>baseName</code> option. This will also set the module name.</p>
+<pre><code class="code _highlighted" data-lang="text/x-groovy">targets {
+    fromPreset(presets.iosArm64, 'myapp') {
+       binaries {
+          framework {
+              baseName = "TheName"
+          }
+       }
+    }
+}
+</code></pre>
 <h3 id="q-how-do-i-enable-bitcode-for-my-kotlin-framework">Q: How do I enable bitcode for my Kotlin framework?</h3>
 <p>A: By default gradle plugin adds it on iOS target.</p>
 <ul>
@@ -1380,9 +1392,13 @@ or set it via the <code>JAVA_OPTS</code> environment variable.</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">targets {
     fromPreset(presets.iosArm64, 'myapp') {
-        compilations.main.outputKinds 'FRAMEWORK'
-        compilations.main.embedBitcode BitcodeEmbeddingMode.BITCODE // for release binaries
-        // or BitcodeEmbeddingMode.MARKER for debug binaries
+        binaries {
+            framework {
+                // Use "marker" to embed the bitcode marker (for debug builds).
+                // Use "disable" to disable embedding.
+                embedBitcode "bitcode" // for release binaries.
+            }
+        }
     }
 }
 </code></pre>

@@ -1315,7 +1315,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-native-cn.git/edit/v1.3.0-fixes/OBJC_INTEROP.md"
+<a href="https://github.com/hltj/kotlin-native-cn/edit/v1.3.0-fixes/OBJC_INTEROP.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1475,6 +1475,18 @@ See <a href="https://github.com/JetBrains/kotlin-native/tree/master/samples/calc
 <td>Block pointer type</td>
 <td><a href="#function-types">note</a></td>
 </tr>
+<tr>
+<td>Suspend functions</td>
+<td>Unsupported</td>
+<td>Unsupported</td>
+<td><a href="#unsupported">note</a></td>
+</tr>
+<tr>
+<td>Inline classes</td>
+<td>Unsupported</td>
+<td>Unsupported</td>
+<td><a href="#unsupported">note</a></td>
+</tr>
 </tbody>
 </table>
 <h3 id="name-translation">Name translation</h3>
@@ -1591,6 +1603,56 @@ To sum the things up:</p>
 }
 </code></pre>
 </div>
+<h3 id="generics">Generics</h3>
+<p>Objective-C supports "lightweight generics" defined on classes, with a relatively limited feature set. Swift can import 
+generics defined on classes to help provide additional type information to the compiler.</p>
+<p>Generic feature support for Objc and Swift differ from Kotlin, so the translation will inevitably lose some information,
+but the features supported retain meaningful information.</p>
+<h3 id="to-use">To Use</h3>
+<p>Generics are currently not enabled by default. To have the framework header written with generics, add an experimental
+flag to the compiler config:</p>
+<pre><code>compilations.main {
+    outputKinds("framework")
+    extraOpts "-Xobjc-generics"
+}
+</code></pre>
+<h4 id="limitations">Limitations</h4>
+<p>Objective-C generics do not support all features of either Kotlin or Swift, so there will be some information lost
+in the translation.</p>
+<p>Generics can only be defined on classes, not on interfaces (protocols in Objc and Swift) or functions.</p>
+<h4 id="nullability">Nullability</h4>
+<p>Kotlin and Swift both define nullability as part of the type specification, while Objc defines nullability on methods
+and properties of a type. As such, the following:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Sample&lt;T&gt;(){
+  fun myVal():T
+}
+</code></pre>
+<p>will (logically) look like this:</p>
+<pre><code class="code _highlighted" data-lang="text/x-swift">class Sample&lt;T&gt;(){
+  fun myVal():T?
+}
+</code></pre>
+<p>In order to support a potentially nullable type, the Objc header needs to define <code>myVal</code> with a nullable return value.</p>
+<p>To mitigate this, when defining your generic classes, if the generic type should <em>never</em> be null, provide a non-null 
+type constraint:</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">class Sample&lt;T:Any&gt;(){
+  fun myVal():T
+}
+</code></pre>
+<p>That will force the Objc header to mark <code>myVal</code> as non-null.</p>
+<h4 id="variance">Variance</h4>
+<p>Objective-C allows generics to be declared covariant or contravariant. Swift has no support for variance. Generic classes coming
+from Objective-C can be force-cast as needed.</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">data class SomeData(val num:Int = 42):BaseData()
+class GenVarOut&lt;out T:Any&gt;(val arg:T)
+</code></pre>
+<pre><code class="code _highlighted" data-lang="text/x-swift">let variOut = GenVarOut&lt;SomeData&gt;(arg: sd)
+let variOutAny : GenVarOut&lt;BaseData&gt; = variOut as! GenVarOut&lt;BaseData&gt;
+</code></pre>
+<h4 id="constraints">Constraints</h4>
+<p>In Kotlin you can provide upper bounds for a generic type. Objective-C also supports this, but that support is unavailable 
+in more complex cases, and is currently not supported in the Kotlin - Objective-C interop. The exception here being a non-null
+upper bound will make Objective-C methods/properties non-null.</p>
 <h2 id="casting-between-mapped-types">Casting between mapped types</h2>
 <p>When writing Kotlin code, an object may need to be converted from a Kotlin type
 to the equivalent Swift/Objective-C type (or vice versa). In this case a plain old
@@ -1633,6 +1695,15 @@ this library would disable these compiler checks.</p>
 <h2 id="c-features">C features</h2>
 <p>See <a href="c_interop.html">INTEROP.md</a> for an example case where the library uses some plain C features
 (e.g. unsafe pointers, structs etc.).</p>
+<h2 id="unsupported">Unsupported</h2>
+<p>Some features of Kotlin programming language are not yet mapped into respective features of Objective-C or Swift.
+Currently, following features are not properly exposed in generated framework headers:</p>
+<ul>
+<li>suspend functions</li>
+<li>inline classes (arguments are mapped as either underlying primitive type or <code>id</code>)</li>
+<li>custom classes implementing standard Kotlin collection interfaces (<code>List</code>, <code>Map</code>, <code>Set</code>) and other special classes</li>
+<li>Kotlin subclasses of Objective-C classes</li>
+</ul>
 
         </article>
     </div>
