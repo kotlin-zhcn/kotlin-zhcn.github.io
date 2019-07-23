@@ -851,14 +851,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 这组问题中最简单的是<!--
 --><a href="http://codeforces.com/contest/1157/problem/A">问题 A：可达数</a>。
 它要求实现问题陈述中所描述的简单算法。</p>
-<p>我们会通过创建一个新的 Kotlin 源文件来解这个问题。文件名无关紧要。<code>A.kt</code> 就挺好。
+<p>我们会通过创建一个任意名称的 Kotlin 源文件来解这个问题。<code>A.kt</code> 就挺好。
 首先，我们需要实现问题陈述中指定的函数，如下：</p>
 <blockquote>
 <p>我们以这样的方式来表示函数 f(x)：将 x 加 1，然后，如果得到的数至少以一个零结尾，
 就去掉这个零。</p>
 </blockquote>
-<p>Kotlin 是实用且不拘一格的语言，既支持命令式也支持函数式编程风格，
-不强迫开发人员选择任何一种特定风格。可以按函数式风格实现函数 <code>f</code>，使用像<!--
+<p>Kotlin 是一门实用且不拘一格的语言，既支持命令式也支持函数式编程风格，
+而不会将开发人员推向任何一种风格。可以按函数式风格实现函数 <code>f</code>，使用像<!--
 --><a href="/docs/reference/functions.html#尾递归函数">尾递归</a>这样的 Kotlin 特性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">tailrec fun removeZeroes(x: Int): Int =
@@ -977,12 +977,12 @@ private fun readInts() = readStrings().map { it.toInt() } // 整数列表
 </code></pre>
 </div>
 <p>请注意，在竞技程序设计中，习惯给变量取比<!--
--->通常在工业编程实践中更短的名称，因为代码只需编写一次，以后就不需要支持了。
+-->通常在工业编程实践中更短的名称，因为代码只需编写一次，以后就不用支持了。
 当然，这些名称通常仍然是助记手段——数组用 <code>a</code>，
 索引用 <code>i</code>、<code>j</code>，表格的行列号用 <code>r</code>、<code>c</code>，坐标用 <code>x</code>、<code>y</code> 等。
 输入数据的名称保持与问题陈述中所给出的名称相同也更容易。
-当然，越复杂的问题就越需要更多的代码来解，进而变量名与函数名就会<!--
--->越长、越具有自解释性。</p>
+当然，越复杂的问题就越需要更多的代码来解，这导致更长、具有自解释性的<!--
+-->变量名与函数名。</p>
 <h2 id="更多提示与技巧">更多提示与技巧</h2>
 <p>竞技程序设计通常有这样的输入：</p>
 <blockquote>
@@ -1016,7 +1016,7 @@ Kotlin 中的该输出会在每行后自动刷新写缓冲。
 <h2 id="学习-kotlin">学习 Kotlin</h2>
 <p>Kotlin 旨在让已经了解 Java 的人易于学习。
 在<a href="/docs/reference/comparison-to-java.html">官方比较页</a>上给出了二者差异的快速概述。
-对于软件开发人员来说，关于 Kotlin 语言的基本语法的简短介绍可以直接在<!--
+对于软件开发人员来说，关于 Kotlin 基本语法的简短介绍可以直接在<!--
 -->以<a href="/docs/reference/basic-syntax.html">基本语法</a>开始的网站参考部分中直接找。</p>
 <p>IDEA 已内置
 <a href="https://www.jetbrains.com/help/idea/converting-a-java-file-to-kotlin-file.html">Java-to-Kotlin 转换器</a>。

@@ -877,12 +877,12 @@ fun acceptFun(f: (String) -&gt; String?) = f("Kotlin/Native rocks!")
 fun supplyFun() : (String) -&gt; String? = { "$it is cool!" }
 </code></pre>
 </div>
-<p>虽然可以直接或使用命令行<!--
--->通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
+<p>虽然可以使用命令行<!--
+-->或直接通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
 对于拥有数百个文件以及库的大型项目来说，这不能很好地扩展。
-所以最好使用附带构建系统的 Kotlin/Native 编译器，就这样<!--
+所以最好使用附带构建系统的 Kotlin/Native 编译器，它可以<!--
 -->帮助下载与缓存 Kotlin/Native 编译器二进制文件与库<!--
--->传递依赖，并运行编译器和测试。
+-->传递依赖，并运行编译器与测试。
 Kotlin/Native 可以通过 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件来使用 <a href="https://gradle.org">Gradle</a> 构建系统。</p>
 <p><a href="basic-kotlin-native-app.html#create-gradle-project">基本 Kotlin/Native 应用程序</a><!--
