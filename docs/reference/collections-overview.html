@@ -1383,7 +1383,7 @@ fun main() {
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-collection/index.html"><code>MutableCollection</code></a> 是一个具有写操作的 <code>Collection</code> 接口，例如 <code>add</code> 以及 <code>remove</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun List&lt;String&gt;.getShortWordsTo(shortWords: MutableList&lt;String&gt;, maxLength: Int) {
-    this.filterTo(shortWords) { it.length &lt;= maxLength}
+    this.filterTo(shortWords) { it.length &lt;= maxLength }
     // throwing away the articles
     val articles = setOf("a", "A", "an", "An", "the", "The")
     shortWords -= articles

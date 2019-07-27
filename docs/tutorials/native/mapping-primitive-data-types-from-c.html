@@ -848,7 +848,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 在 C 语言中有如下这些类型：</p>
 <ul>
 <li>基本类型 <code>char、int、float、double</code> 以及带修饰符的 <code>signed、unsigned、short、long</code></li>
-<li>结构体、联合、数组</li>
+<li>结构体、联合体、数组</li>
 <li>指针</li>
 <li>函数指针</li>
 </ul>
@@ -875,8 +875,8 @@ void doubles(float a, double b);
 </div>
 <p>该文件缺少了此示例不需要的 <code>extern "C"</code> 块，但是如果<!--
 -->我们在使用 C++ 的重载函数的时候这也许是必要的。该
-<a href="https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c">C++ 兼容性</a>
-问答包含了更多关于此内容的细节。</p>
+<a href="https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c">C++ 兼容性</a><!--
+-->问答包含了更多关于此内容的细节。</p>
 <p>对于每组 <code>.h</code> 文件，
 我们将使用来自 Kotlin/Native 的 <code>cinterop</code> <a href="/docs/reference/native/c_interop.html">C 库</a><!--
 -->来生成 Kotlin/Native 库，

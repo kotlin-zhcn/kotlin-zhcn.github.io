@@ -1639,8 +1639,8 @@ Caught original java.io.IOException
 <p>另一个例子是服务进程孵化了一些子作业并且需要 <em>监督</em>
 它们的执行，追踪它们的故障并在这些子作业执行失败的时候重启。</p>
 <h3 id="监督作业">监督作业</h3>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html">SupervisorJob</a> 可以被用于这些目的。它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html">Job</a>，唯一的取消异常将<!--
--->只会向下传播。这是非常容易从示例中观察到的：</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html">SupervisorJob</a> 可以被用于这些目的。它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html">Job</a>，唯一的不同是：<!--
+-->SupervisorJob 的取消只会向下传播。这是非常容易从示例中观察到的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
