@@ -29,14 +29,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/mapping-struct-union-types-from-c.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="如何在 Kotlin/Native 中观察 C 语言的结构与联合类型">
+    <meta property="og:description" content="来自 C 语言的结构与联合类型及其在 Kotlin/Native 中的样子">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="如何在 Kotlin/Native 中观察 C 语言的结构与联合类型">
+    <meta name="twitter:description" content="来自 C 语言的结构与联合类型及其在 Kotlin/Native 中的样子">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
@@ -831,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                如何在 Kotlin/Native 中观察 C 语言的结构与联合类型
+                来自 C 语言的结构与联合类型及其在 Kotlin/Native 中的样子
                 <br/>
                 <br/>
             
@@ -1128,8 +1128,8 @@ fun main() {
 -->并且看看如何修正这个示例工程。当我们做了这些之后，
 我们将观察到 C 的原始类型已经被映射到了 Kotlin/Native。</p>
 <h2 id="kotlin-中的原始类型">Kotlin 中的原始类型</h2>
-<p>通过 IntelliJ IDEA 的 <em>Goto Declaration</em> 或
-编译器错误的帮助，我们会看到如下的为 C  函数、<code>struct</code> 以及 <code>union</code> 生成的 API：</p>
+<p>通过 IntelliJ IDEA 的 <em>Goto Declaration</em> 或<!--
+-->编译器错误的帮助，我们会看到如下的为 C  函数、<code>struct</code> 以及 <code>union</code> 生成的 API：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun struct_by_value(s: CValue&lt;MyStruct&gt;)
 fun struct_by_pointer(s: CValuesRef&lt;MyStruct&gt;?)
@@ -1347,8 +1347,8 @@ fun main() {
 <li><a href="mapping-function-pointers-from-c.html">映射来自 C 语言的函数指针</a></li>
 <li><a href="mapping-strings-from-c.html">映射来自 C 语言的字符串</a></li>
 </ul>
-<p>这篇<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a>
-涵盖了互操作的更高级场景</p>
+<p>这篇<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a><!--
+-->涵盖了更多的高级互操作场景</p>
 
         </article>
     </div>
@@ -1374,7 +1374,7 @@ fun main() {
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                     <a class="terms-kit"
-                            href=/assets/kotlin-media-kit.zip>宣传资料</a>
+                            href=/assets/kotlin-media-kit.pdf>宣传资料</a>
                 </div>
                 <div class="global-footer-row">
                     <div class="terms-sponsor">

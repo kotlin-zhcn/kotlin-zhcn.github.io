@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/mapping-strings-from-c.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="Strings from C and how they look in Kotlin/Native">
+    <meta property="og:description" content="来自 C 语言的字符串及其在 Kotlin/Native 中的样子">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="Strings from C and how they look in Kotlin/Native">
+    <meta name="twitter:description" content="来自 C 语言的字符串及其在 Kotlin/Native 中的样子">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Mapping Strings from C - Kotlin 语言中文站</title>
+    <title>映射来自 C 语言的字符串 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Mapping Strings from C
+                映射来自 C 语言的字符串
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Eugene Petrenko，乔禹昂（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,37 +831,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                Strings from C and how they look in Kotlin/Native
+                来自 C 语言的字符串及其在 Kotlin/Native 中的样子
                 <br/>
                 <br/>
             
-<p>This is the last tutorial in the series. The first tutorial of the series is
-<a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>.
-There are also <a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
-<a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a> tutorials.</p>
-<p>In this tutorial we see how to deal with C strings in Kotlin/Native.
-We will learn how to:</p>
+<p>这是本系列的最后一篇教程。本系列的第一篇教程是<!--
+--><a href="mapping-primitive-data-types-from-c.html">映射来自 C 语言的原始数据类型</a>。
+系列其余教程包括<a href="mapping-struct-union-types-from-c.html">映射来自 C 语言的结构与联合类型</a>与<!--
+--><a href="mapping-function-pointers-from-c.html">映射来自 C 语言的函数指针</a>。</p>
+<p>在本教程中我们将看到如何在 Kotlin/Native 中处理 C 语言的字符串。
+我们将学习到如何：</p>
 <ul>
-<li><a href="#passing-kotlin-string-to-c">Pass a Kotlin string to C</a></li>
-<li><a href="#reading-c-strings-in-kotlin">Read a C string in Kotlin</a></li>
-<li><a href="#receiving-c-string-bytes-from-kotlin">Receive C string bytes into a Kotlin string</a></li>
+<li><a href="#将-kotlin-字符串传递给-c">传递一个 Kotlin 字符串给 C</a></li>
+<li><a href="#在-kotlin-中读取一个-c-字符串">在 Kotlin 中读取一个 C 字符串</a></li>
+<li><a href="#在-kotlin-中接收-c-字符串字节">接收 C 字符串字节并转换为 Kotlin 字符串</a></li>
 </ul>
-<p>We need to have a Kotlin compiler on our machines. 
-The
-<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial explains the steps in detail.
-Let's assume we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
-<h2 id="working-with-c-strings">Working with C strings</h2>
-<p>There is no dedicated type in C language for strings. A developer knows from a method 
-signature or the documentation, whether a given <code>char *</code> means a C string in the context. 
-Strings in the C language are null-terminated, a trailing zero character <code>\0</code> is added at the 
-end of a bytes sequence to mark a string termination.
-Usually, <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 encoded strings</a> are used. The UTF-8 encoding uses
-variable width characters, and it is backward compatible with <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>.
-Kotlin/Native uses UTF-8 character encoding by default.</p>
-<p>The best way to understand the mapping between C and Kotlin languages is to try it out on a small example. We will create
-a small library headers for that. First, we need to create a <code>lib.h</code> file with the following
-declaration of functions that deal with the C strings:</p>
+<p>我们需要在自己的机器上已经安装了 Kotlin 编译器。
+这篇<!--
+--><a href="basic-kotlin-native-app.html#obtaining-the-compiler">基本 Kotlin 应用程序</a><!--
+-->涵盖了这一步骤的细节。
+我们假定拥有一个控制台，其中 <code>kotlinc-native</code>、<code>cinterop</code> 与 <code>klib</code> 命令均可用。</p>
+<h2 id="使用-c-字符串">使用 C 字符串</h2>
+<p>在 C 语言中，没有专门用于字符串的类型。开发者需要从方法签名<!--
+-->或文档中才能得知给定的 <code>char *</code> 在上下文中是否表示 C 字符串。
+C 语言中的字符串以空值终止，即在字节序列尾部添加零字符 <code>\0</code>
+来标记字符串终止。
+通常，使用 <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8 编码字符串</a>。UTF-8 编码使用<!--
+-->可变长度的字符，并且它向后兼容 <a href="https://en.wikipedia.org/wiki/ASCII">ASCII</a>。
+Kotlin/Native 默认使用 UTF-8 字符编码。</p>
+<p>理解在 C 语言与 Kotlin 之间进行映射的最好方式是尝试编写一个小型示例。我们将为此创建<!--
+-->一个小型库的头文件。首先，我们需要为以下处理 C 字符串的函数声明<!--
+-->创建一个 <code>lib.h</code> 文件。</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">#ifndef LIB2_H_INCLUDED
 #define LIB2_H_INCLUDED
@@ -865,15 +873,15 @@ int copy_string(char* str, int size);
 #endif
 </code></pre>
 </div>
-<p>In the example we have the most popular ways to pass or receive a string in the C language. We should
-take the return of <code>return_string</code> with care. In general, it is best to make sure we
-use the right function to dispose the returned <code>char*</code> with the right <code>free(..)</code> function call.</p>
-<p>Kotlin/Native comes with the <code>cinterop</code> tool; the tool generates bindings between the C language and Kotlin.
-It uses a <code>.def</code> file to specify a C library to import. More details on this are
-in the <a href="/docs/reference/native/c_interop.html">Interop with C Libraries</a> tutorial.
-The quickest way to try out C API mapping is to have all C declarations in the
-<code>interop.def</code> file, without creating any <code>.h</code> of <code>.c</code> files at all. Then place the C declarations 
-in a <code>interop.def</code> file after the special <code>---</code> separator line:</p>
+<p>在示例中，我们使用了大多数情况下受欢迎的方式来传递或接收 C 语言中的字符串。我们应该<!--
+-->小心地返回 <code>return_string</code>。通常，最好确保我们<!--
+-->使用正确的函数来处理被正确调用 <code>free(..)</code> 函数返回的 <code>char*</code>。</p>
+<p>Kotlin/Native 附带 <code>cinterop</code> 工具；该工具可以生成 C 语言与 Kotlin 之间的绑定。
+它使用一个 .def 文件指定一个 C 库来导入。更多的细节将在<!--
+--><a href="/docs/reference/native/c_interop.html">与 C 库互操作</a>教程中讨论。
+最快速的尝试 C API 映射的方法是将所有的 C 声明写到
+<code>interop.def</code> 文件，而不用创建任何 <code>.h</code> 或 <code>.c</code> 文件。在 <code>.def</code> 文件中，
+所有的 C 声明都在特殊的 <code>---</code> 分割行之后。</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">headers = lib.h
 ---
@@ -897,10 +905,10 @@ int copy_string(char* str, int size) {
 
 </code></pre>
 </div>
-<p>The <code>interop.def</code> file is enough to compile and run the application or open it in an IDE.
-Now it is time to create project files, open the project in
-<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> and run it.</p>
-<h2 id="inspecting-generated-kotlin-apis-for-a-c-library">Inspecting Generated Kotlin APIs for a C library</h2>
+<p>该 <code>interop.def</code> 文件足够用来编译并运行应用程序，或在 IDE 中打开它。
+现在是时候创建工程文件，并在
+<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> 中打开这个工程，然后运行它。</p>
+<h2 id="探查为-c-库生成的-kotlin-api">探查为 C 库生成的 Kotlin API</h2>
 <p>虽然可以使用命令行<!--
 -->或直接通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
 对于拥有数百个文件以及库的大型项目来说，这不能很好地扩展。
@@ -1125,8 +1133,8 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>Let's create a <code>src/nativeMain/kotlin/hello.kt</code> stub file with the following content
-to see how C primitive type declarations are visible from Kotlin:</p>
+<p>让我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
+以用来观察 C 中的原始类型是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
 
@@ -1139,26 +1147,26 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>Now we are ready to
-<a href="basic-kotlin-native-app.html#open-in-ide">open the project in IntelliJ IDEA</a>
-and to see how to fix the example project. While doing that,
-we'll examine how C primitive types are mapped into Kotlin/Native.</p>
-<h2 id="primitive-types-in-kotlin">Primitive Types in Kotlin</h2>
-<p>With the help of IntelliJ IDEA's <em>Goto Declaration</em> or
-compiler errors we see the following generated API for our C functions:</p>
+<p>现在我们已经准备好<!--
+--><a href="basic-kotlin-native-app.html#open-in-ide">在 IntelliJ IDEA 中打开这个工程</a><!--
+-->并且看看如何修正这个示例工程。当我们做了这些之后，
+我们将观察 C 函数是如何映射到 Kotlin/Native 声明的。</p>
+<h2 id="kotlin-中的原始类型">Kotlin 中的原始类型</h2>
+<p>通过 IntelliJ IDEA 的 <em>Goto Declaration</em> 或<!--
+-->编译器错误的帮助，我们可以看到如下为 C 函数生成的声明：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun pass_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?)
 fun return_string(): CPointer&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?
 fun copy_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?, size: Int): Int
 </code></pre>
 </div>
-<p>These declarations look clear. All <code>char *</code> pointers are turned into <code>str: CValuesRef&lt;ByteVar&gt;?</code> for
-parameters and to <code>CPointer&lt;ByteVar&gt;?</code> in return types. Kotlin turns <code>char</code> type into <code>kotlin.Byte</code> type,
-as it is usually an 8-bit signed value.</p>
-<p>In the generated Kotlin declarations, we see that <code>str</code> is represented as <code>CValuesRef&lt;ByteVar/&gt;?</code>. The type
-is nullable, and we can simply pass Kotlin <code>null</code> as the parameter value.</p>
-<h2 id="passing-kotlin-string-to-c">Passing Kotlin string to C</h2>
-<p>Let's try to use the API from Kotlin. Let's call <code>pass_string</code> first:</p>
+<p>这些声明看起来很清晰。所有的 <code>char *</code> 指针在参数处都被转换为 <code>str: CValuesRef&lt;ByteVar&gt;?</code>
+而返回值类型则被转换为 <code>CPointer&lt;ByteVar&gt;?</code>。Kotlin 将 <code>char</code> 类型转换为 <code>kotlin.Byte</code> 类型，
+因为它通常是 8 位有符号值。</p>
+<p>在生成的 Kotlin 声明中，我们看到 <code>str</code> 被 <code>CValuesRef&lt;ByteVar/&gt;?</code> 表示。该类型<!--
+-->是可空的，我们可以简单地将 Kotlin <code>null</code> 作为参数值。</p>
+<h2 id="将-kotlin-字符串传递给-c">将 Kotlin 字符串传递给 C</h2>
+<p>让我们尝试在 Kotlin 中使用这些 API。首先我们调用 <code>pass_string</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun passStringToC() {
   val str = "this is a Kotlin String"
@@ -1166,13 +1174,13 @@ is nullable, and we can simply pass Kotlin <code>null</code> as the parameter va
 }
 </code></pre>
 </div>
-<p>Passing a Kotlin string to C is easy, thanks to the fact that we have <code>String.cstr</code>
-<a href="../../reference/extensions.html#extension-properties">extension property</a>
-in Kotlin for it. There is also <code>String.wcstr</code> for cases where we
-need UTF-16 wide characters.</p>
-<h2 id="reading-c-strings-in-kotlin">Reading C Strings in Kotlin</h2>
-<p>This time we take a returned <code>char *</code> from the <code>return_string</code> function and turn it into
-a Kotlin string. For that we do the following in Kotlin:</p>
+<p>将 Kotlin 字符串传递到 C 非常简单，幸亏事实上在 Kotlin 中我们拥有 <code>String.cstr</code>
+<a href="../../reference/extensions.html#extension-properties">扩展属性</a><!--
+-->来应对这种情况。在我们需要 UTF-16 字符编码的地方，
+我们也有 <code>String.wcstr</code> 来应对这种案例。</p>
+<h2 id="在-kotlin-中读取-c-字符串">在 Kotlin 中读取 C 字符串</h2>
+<p>这次我们将从 <code>return_string</code> 函数获取一个返回的 <code>char *</code> 并将其转换为<!--
+-->一个 Kotlin 字符串。为此我们在 Kotlin 中做了如下这些事：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun passStringToC() {
   val stringFromC = return_string()?.toKString()
@@ -1181,20 +1189,20 @@ a Kotlin string. For that we do the following in Kotlin:</p>
 }
 </code></pre>
 </div>
-<p>we use the <code>toKString()</code> extension function above. Please do not miss out the
-<code>toString()</code> function. The <code>toKString()</code> has two overloaded extension functions in Kotlin:</p>
+<p>在上面的示例中我们使用了 <code>toKString()</code> 扩展函数。请不要与
+<code>toString()</code> 函数混淆。<code>toKString()</code> 在 Kotlin 中拥有两个版本的重载扩展函数：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun CPointer&lt;ByteVar&gt;.toKString(): String
 fun CPointer&lt;ShortVar&gt;.toKString(): String
 </code></pre>
 </div>
-<p>The first extension takes a <code>char *</code> as a UTF-8 string and turns it into a String.
-The second function does the same but for wide UTF-16 strings.</p>
-<h2 id="receiving-c-string-bytes-from-kotlin">Receiving C string bytes from Kotlin</h2>
-<p>This time we will ask a C function to write us a C string to a given buffer. The function
-is called <code>copy_string</code>. It takes a pointer to the location writing characters and
-the allowed buffer size. The function returns something to indicate if it has succeeded or failed.
-Let's assume <code>0</code> means it succeeded, and the supplied buffer was big enough:</p>
+<p>第一个重载扩展函数将得到一个 <code>char *</code> 作为 UTF-8 字符串并转换到 String。
+第二个重载函数做了相同的事，但是它针对 UTF-16 字符串。</p>
+<h2 id="在-kotlin-中接收-c-字符串字节">在 Kotlin 中接收 C 字符串字节</h2>
+<p>这次我们将要求 C 函数将 C 字符串写入给定的缓冲区。这个函数<!--
+-->被称为 <code>copy_string</code>。它需要一个指针来定位写入字符的位置并<!--
+-->分配缓冲区的大小。该函数返回一些内容以指示它是成功还是失败。
+让我们假设 <code>0</code> 表示成功，并且提供的缓冲区足够大：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun sendString() {
   val buf = ByteArray(255)
@@ -1210,17 +1218,17 @@ Let's assume <code>0</code> means it succeeded, and the supplied buffer was big 
 
 </code></pre>
 </div>
-<p>First of all, we need to have a native pointer to pass
-to the C function. We use the <code>usePinned</code> extension function
-to temporarily pin the native memory address of the
-byte array. The C function fills in the
-byte array with data. We use another extension 
-function <code>ByteArray.stringFromUtf8()</code> to turn the byte 
-array into a Kotlin <code>String</code>, assuming UTF-8 encoding.</p>
-<h2 id="fixing-the-code">Fixing the Code</h2>
-<p>We've now seen all the definitions and it is time to fix the code. 
-Let's run the <code>runDebugExecutableNative</code> Gradle task <a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a>
-or use the following command to run the code:</p>
+<p>首先，我们需要拥有一个原生的指针来传递<!--
+-->这个 C 函数。我们使用 <code>usePinned</code> 扩展函数<!--
+-->来临时固定字节数组的<!--
+-->原生内存地址。该 C 函数填充了<!--
+-->带数据的字节数组。我们使用另一个扩展<!--
+-->函数 <code>ByteArray.stringFromUtf8()</code> 将字节<!--
+-->数组转换为一个 Kotlin <code>String</code>，假设它是 UTF-8 编码的。</p>
+<h2 id="修改代码">修改代码</h2>
+<p>我们已经看到了所有的定义并且是时候来修改代码了。
+让我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+-->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">
 <pre><code class="language-bash">./gradlew runDebugExecutableNative
@@ -1239,7 +1247,7 @@ or use the following command to run the code:</p>
 </code></pre>
 </div>
 </div>
-<p>The code in the final <code>hello.kt</code> file may look like this:</p>
+<p><code>hello.kt</code> 文件中的代码最终看起来会是这样的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
 import kotlinx.cinterop.*
@@ -1264,16 +1272,16 @@ fun main() {
 }
 </code></pre>
 </div>
-<h2 id="next-steps">Next Steps</h2>
-<p>We continue to explore more C language types and their representation in Kotlin/Native
-in our other tutorials:</p>
+<h2 id="接下来">接下来</h2>
+<p>我们将继续在下面几篇教程中继续探索更多的 C 语言类型及其在 Kotlin/Native
+中的表示：</p>
 <ul>
-<li><a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a></li>
-<li><a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a></li>
-<li><a href="mapping-function-pointers-from-c.html">Mapping Function Pointers from C</a></li>
+<li><a href="mapping-primitive-data-types-from-c.html">映射来自 C 语言的原始数据类型</a></li>
+<li><a href="mapping-struct-union-types-from-c.html">映射来自 C 语言的结构与联合类型</a></li>
+<li><a href="mapping-function-pointers-from-c.html">映射来自 C 语言的函数指针</a></li>
 </ul>
-<p>The <a href="/docs/reference/native/c_interop.html">C Interop documentation</a>
-documentation covers more advanced scenarios of the interop.</p>
+<p>这篇 <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a><!--
+-->涵盖了更多的高级互操作场景</p>
 
         </article>
     </div>
@@ -1299,7 +1307,7 @@ documentation covers more advanced scenarios of the interop.</p>
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                     <a class="terms-kit"
-                            href=/assets/kotlin-media-kit.zip>宣传资料</a>
+                            href=/assets/kotlin-media-kit.pdf>宣传资料</a>
                 </div>
                 <div class="global-footer-row">
                     <div class="terms-sponsor">

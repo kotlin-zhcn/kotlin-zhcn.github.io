@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/mapping-function-pointers-from-c.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="Function pointers from C and how they look in Kotlin/Native">
+    <meta property="og:description" content="来自 C 的函数指针以及它们在 Kotlin/Native 中的样子">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="Function pointers from C and how they look in Kotlin/Native">
+    <meta name="twitter:description" content="来自 C 的函数指针以及它们在 Kotlin/Native 中的样子">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Mapping Function Pointers from C - Kotlin 语言中文站</title>
+    <title>映射来自 C 语言的函数指针 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Mapping Function Pointers from C
+                映射来自 C 语言的函数指针
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Eugene Petrenko，乔禹昂（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,34 +831,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                Function pointers from C and how they look in Kotlin/Native
+                来自 C 的函数指针以及它们在 Kotlin/Native 中的样子
                 <br/>
                 <br/>
             
-<p>This is the third post in the series. The very first tutorial is
-<a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a>. There are also
-<a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a> and 
-<a href="mapping-strings-from-c.html">Mapping Strings from C</a> tutorials.</p>
-<p>In this tutorial We will learn how to:</p>
+<p>这是本系列的第三篇教程。本系列的第一篇教程是<!--
+--><a href="mapping-primitive-data-types-from-c.html">映射来自 C 语言的原始数据类型</a>。系列其余教程包括<!--
+--><a href="mapping-struct-union-types-from-c.html">映射来自 C 语言的结构与联合类型</a>与<!--
+--><a href="mapping-strings-from-c.html">映射来自 C 语言的字符串</a>。</p>
+<p>在本篇教程中我们将学习如何：</p>
 <ul>
-<li><a href="#passing-kotlin-function-as-c-function-pointer">Pass Kotlin function as C function pointer</a></li>
-<li><a href="#using-the-c-function-pointer-from-kotlin">Use C function pointer from Kotlin</a></li>
+<li><a href="#将-kotlin-函数作为-c-函数指针传递">将 Kotlin 函数作为 C 函数指针传递</a></li>
+<li><a href="#在-kotlin-中使用-c-函数指针">在 Kotlin 中使用 C 函数指针</a></li>
 </ul>
-<p>We need to have a Kotlin compiler on our machines. 
-The
-<a href="basic-kotlin-native-app.html#obtaining-the-compiler">A Basic Kotlin Application</a>
-tutorial covers that step in details.
-Let's assume that we have a console, where the <code>kotlinc-native</code>, <code>cinterop</code>, and <code>klib</code> commands are available.</p>
-<h2 id="mapping-function-pointer-types-from-c">Mapping Function Pointer Types from C</h2>
-<p>The best way to understand the mapping between Kotlin and C is to try a tiny 
-example. We declare a function that accepts a function pointer as a parameter and 
-another function that returns a function pointer.</p>
-<p>Kotlin/Native comes with the <code>cinterop</code> tool; the tool generates bindings between the C language and Kotlin.
-It uses a <code>.def</code> file to specify a C library to import. More details on this are
-in the <a href="/docs/reference/native/c_interop.html">Interop with C Libraries</a> tutorial.</p>
-<p>The quickest way to try out C API mapping is to have all C declarations in the
-<code>interop.def</code> file, without creating any <code>.h</code> of <code>.c</code> files at all. Then place the C declarations 
-in a <code>.def</code> file after the special <code>---</code> separator line:</p>
+<p>我们需要在自己的机器上已经安装了 Kotlin 编译器。
+这篇<!--
+--><a href="basic-kotlin-native-app.html#obtaining-the-compiler">基本 Kotlin 应用程序</a><!--
+-->涵盖了这一步骤的细节。
+我们假定拥有一个控制台，其中 <code>kotlinc-native</code>、<code>cinterop</code> 与 <code>klib</code> 命令均可用。</p>
+<h2 id="映射-c-中的函数指针类型">映射 C 中的函数指针类型</h2>
+<p>理解在 Kotlin 与 C 之间进行映射的最好方式是尝试编写一个小型<!--
+-->示例。我们声明一个函数，它接收一个函数指针作为参数，而<!--
+-->另一个函数返回一个函数指针。</p>
+<p>Kotlin/Native 附带 <code>cinterop</code> 工具；该工具可以生成 C 语言与 Kotlin 之间的绑定。
+它使用一个 .def 文件指定一个 C 库来导入。更多的细节将在<!--
+--><a href="/docs/reference/native/c_interop.html">与 C 库互操作</a>教程中讨论。</p>
+<p>最快速的尝试 C API 映射的方法是将所有的 C 声明写到
+<code>interop.def</code> 文件，而不用创建任何 <code>.h</code> 或 <code>.c</code> 文件。在 <code>.def</code> 文件中，
+所有的 C 声明都在特殊的 <code>---</code> 分割行之后。</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
 <pre><code class="language-c">
 ---
@@ -871,10 +879,10 @@ MyFun supply_fun() {
 
 </code></pre>
 </div>
-<p>The <code>interop.def</code> file is enough to compile and run the application or open it in an IDE.
-Now it is time to create project files, open the project in
-<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> and run it.</p>
-<h2 id="inspecting-generated-kotlin-apis-for-a-c-library">Inspecting Generated Kotlin APIs for a C library</h2>
+<p>该 <code>interop.def</code> 文件足够用来编译并运行应用程序，或在 IDE 中打开它。
+现在是时候创建工程文件，并在
+<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> 中打开这个工程，然后运行它。</p>
+<h2 id="探查为-c-库生成的-kotlin-api">探查为 C 库生成的 Kotlin API</h2>
 <p>虽然可以使用命令行<!--
 -->或直接通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
 对于拥有数百个文件以及库的大型项目来说，这不能很好地扩展。
@@ -1099,8 +1107,8 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>Let's create a <code>src/nativeMain/kotlin/hello.kt</code> stub file with the following content
-to see how C primitive type declarations are visible from Kotlin:</p>
+<p>让我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
+以用来观察 C 中的原始类型是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
 
@@ -1112,13 +1120,13 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>Now we are ready to
-<a href="basic-kotlin-native-app.html#open-in-ide">open the project in IntelliJ IDEA</a>
-and to see how to fix the example project. While doing that,
-we'll examine how C functions are mapped into Kotlin/Native declarations.</p>
-<h2 id="c-function-pointers-in-kotlin">C Function Pointers in Kotlin</h2>
-<p>With the help of IntelliJ IDEA's <em>Goto Declaration</em> or
-compiler errors we see the following declarations for our C functions:</p>
+<p>现在我们已经准备好<!--
+--><a href="basic-kotlin-native-app.html#open-in-ide">在 IntelliJ IDEA 中打开这个工程</a><!--
+-->并且看看如何修正这个示例工程。当我们做了这些之后，
+我们将观察 C 函数是如何映射到 Kotlin/Native 声明的。</p>
+<h2 id="kotlin-中的-c-函数指针">Kotlin 中的 C 函数指针</h2>
+<p>通过 IntelliJ IDEA 的 <em>Goto Declaration</em> 或<!--
+-->编译器错误的帮助，我们可以看到如下为 C 函数生成的声明：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun accept_fun(f: MyFun? /* = CPointer&lt;CFunction&lt;(Int) -&gt; Int&gt;&gt;? */)
 fun supply_fun(): MyFun? /* = CPointer&lt;CFunction&lt;(Int) -&gt; Int&gt;&gt;? */
@@ -1130,13 +1138,13 @@ typealias MyFun = kotlinx.cinterop.CPointer&lt;kotlinx.cinterop.CFunction&lt;(ko
 typealias MyFunVar = kotlinx.cinterop.CPointerVarOf&lt;lib.MyFun&gt;
 </code></pre>
 </div>
-<p>We see that our function typedef from C has been turned into Kotlin <code>typealias</code>. It uses <code>CPointer&lt;..&gt;</code> type
-to represent the pointer parameters, and <code>CFunction&lt;(Int)-&gt;Int&gt;</code> to represent the function signature. 
-There is an <code>invoke</code> operator extension function available for all <code>CPointer&lt;CFunction&lt;..&gt;</code> types, so that 
-it is possible to call it as we would call any other function in Kotlin.</p>
-<h2 id="passing-kotlin-function-as-c-function-pointer">Passing Kotlin Function as C Function Pointer</h2>
-<p>It is the time to try using C Functions from our Kotlin program. Let's call the <code>accept_fun</code>
-function and pass the C function pointer to a Kotlin lambda:</p>
+<p>我们看到 C 中的函数类型定义已经被转换到了 Kotlin <code>typealias</code>。它使用 <code>CPointer&lt;..&gt;</code> 类型<!--
+-->表示指针参数，使用 <code>CFunction&lt;(Int)-&gt;Int&gt;</code> 表示函数签名。
+这里有一个  <code>invoke</code> 操作符扩展函数，它可以用于所有的 <code>CPointer&lt;CFunction&lt;..&gt;</code> 类型，因此<!--
+-->它可以在任何一个我们可以调用其它 Kotlin 函数的地方调用。</p>
+<h2 id="将-kotlin-函数作为-c-函数指针传递">将 Kotlin 函数作为 C 函数指针传递</h2>
+<p>是时候尝试在我们的 Kotlin 程序中使用 C 函数了。让我们调用 <code>accept_fun</code>
+函数并传递 C 函数指针到一个 Kotlin lambda：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun myFun() {
   accept_fun(staticCFunction&lt;Int, Int&gt; { it + 1 })
@@ -1144,13 +1152,13 @@ function and pass the C function pointer to a Kotlin lambda:</p>
 
 </code></pre>
 </div>
-<p>We use the <code>staticCFunction{..}</code> helper function from Kotlin/Native to wrap a Kotlin lambda function into a C function pointer.
-It only allows having unbound and non-capturing lambda functions. For example, it is not able
-to use a local variable from the function. We may only use globally visible declarations. Throwing exceptions
-from a <code>staticCFunction{..}</code> will end up in non-deterministic side-effects. It is vital to make sure that we are not 
-throwing any sudden exceptions from it.</p>
-<h2 id="using-the-c-function-pointer-from-kotlin">Using the C Function Pointer from Kotlin</h2>
-<p>The next step is to call a C function pointer from a C pointer that we have from the <code>supply_fun()</code> call:</p>
+<p>我们使用 Kotlin/Native 中的 <code>staticCFunction{..}</code> 辅助函数将一个 Kotlin lambda 函数包装为 C 函数指针。
+它只能是非绑定的以及没有发生变量捕捉的 lambda functions。举例来说，它不能<!--
+-->使用函数中的局部变量。我们只能使用全局可见的声明。抛出来自
+<code>staticCFunction{..}</code> 的异常将导致非确定性的副作用。确保我们不会<!--
+-->从中抛出任何意想不到的异常是非常重要的。</p>
+<h2 id="在-kotlin-中使用-c-函数指针">在 Kotlin 中使用 C 函数指针</h2>
+<p>接下来是调用 <code>supply_fun()</code> 获得一个 C 函数指针，并调用它：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun myFun2() {
   val functionFromC = supply_fun() ?: error("No function is returned")
@@ -1160,14 +1168,14 @@ throwing any sudden exceptions from it.</p>
 
 </code></pre>
 </div>
-<p>Kotlin turns the function pointer return type into a nullable <code>CPointer&lt;CFunction&lt;..&gt;</code> object. There is the need
-to explicitly check for <code>null</code> first. We use <a href="../../reference/null-safety.html">elvis operator</a> for that.
-The <code>cinterop</code> tool helps us to turn a C function pointer into an easy to call object in Kotlin. This is
-what we did on the last line.</p>
-<h2 id="fixing-the-code">Fixing the Code</h2>
-<p>We've seen all definitions and it is time to fix and run the code.
-Let's run the <code>runDebugExecutableNative</code> Gradle task <a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a>
-or use the following command to run the code:</p>
+<p>Kotlin 将函数指针返回类型转换到一个可空的 <code>CPointer&lt;CFunction&lt;..&gt;</code> 对象。这里首先需要<!--
+-->显式检查 <code>null</code> 值。我们为此使用 <a href="../../reference/null-safety.html">elvis（猫王）操作符</a>。
+<code>cinterop</code> 工具帮助我们将一个 C 函数指针转换为一个 Kotlin 中可以简单调用的对象。这就是<!--
+-->我们在最后一行所做的事。</p>
+<h2 id="修改代码">修改代码</h2>
+<p>我们已经看到了所有的声明，所以是时候修改并运行代码了。
+让我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+-->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">
 <pre><code class="language-bash">./gradlew runDebugExecutableNative
@@ -1186,7 +1194,7 @@ or use the following command to run the code:</p>
 </code></pre>
 </div>
 </div>
-<p>The code in the <code>hello.kt</code> file may look like this:</p>
+<p><code>hello.kt</code> 文件中的代码最终看起来会是这样的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
 import kotlinx.cinterop.*
@@ -1202,16 +1210,16 @@ fun main() {
 }
 </code></pre>
 </div>
-<h2 id="next-steps">Next Steps</h2>
-<p>We will continue exploring more C language types and their representation in Kotlin/Native
-in next tutorials:</p>
+<h2 id="接下来">接下来</h2>
+<p>我们将继续在下面几篇教程中继续探索更多的 C 语言类型及其在 Kotlin/Native
+中的表示：</p>
 <ul>
-<li><a href="mapping-primitive-data-types-from-c.html">Mapping Primitive Data Types from C</a></li>
-<li><a href="mapping-struct-union-types-from-c.html">Mapping Struct and Union Types from C</a></li>
-<li><a href="mapping-strings-from-c.html">Mapping Strings from C</a></li>
+<li><a href="mapping-primitive-data-types-from-c.html">映射来自 C 语言的原始数据类型</a></li>
+<li><a href="mapping-struct-union-types-from-c.html">映射来自 C 语言的结构与联合类型</a></li>
+<li><a href="mapping-strings-from-c.html">映射来自 C 语言的字符串</a></li>
 </ul>
-<p>The <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop documentation</a>
-documentation covers more advanced scenarios of the interop.</p>
+<p>这篇 <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a><!--
+-->涵盖了更多的高级互操作场景</p>
 
         </article>
     </div>
@@ -1237,7 +1245,7 @@ documentation covers more advanced scenarios of the interop.</p>
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                     <a class="terms-kit"
-                            href=/assets/kotlin-media-kit.zip>宣传资料</a>
+                            href=/assets/kotlin-media-kit.pdf>宣传资料</a>
                 </div>
                 <div class="global-footer-row">
                     <div class="terms-sponsor">

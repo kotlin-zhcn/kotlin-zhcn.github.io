@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/apple-framework.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="Compiling Kotlin/Native code and use it from Objective-C and Swift">
+    <meta property="og:description" content="编译 Kotlin/Native 代码并在 Objective-C 与 Swift 中使用它">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="Compiling Kotlin/Native code and use it from Objective-C and Swift">
+    <meta name="twitter:description" content="编译 Kotlin/Native 代码并在 Objective-C 与 Swift 中使用它">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Kotlin/Native as an Apple Framework - Kotlin 语言中文站</title>
+    <title>Kotlin/Native 开发 Apple Framework - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -811,9 +811,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">编辑本页</span>
 </a>
             <h1>
-                Kotlin/Native as an Apple Framework
+                Kotlin/Native 开发 Apple Framework
             </h1>
             <table>
+                    <tr>
+                        <td>
+                            <strong>作者</strong>
+                        </td>
+                        <td>
+                            Eugene Petrenko，乔禹昂（翻译）
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
@@ -823,34 +831,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                Compiling Kotlin/Native code and use it from Objective-C and Swift
+                编译 Kotlin/Native 代码并在 Objective-C 与 Swift 中使用它
                 <br/>
                 <br/>
             
-<p>Kotlin/Native provides bi-directional interoperability with Objective-C/Swift. 
-Objective-C frameworks and libraries can be used in Kotlin code.
-Kotlin modules can be used in Swift/Objective-C code too.
-Besides that, Kotlin/Native has
-<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C Interop</a>.
-There is also the <a href="dynamic-libraries.html">Kotlin/Native as a Dynamic Library</a>
-tutorial for more information.</p>
-<p>In this tutorial, we will look at how to use Kotlin/Native code from
-Objective-C and Swift applications on macOS and iOS.
-We will build a framework from Kotlin code.</p>
-<p>In this tutorial we'll:</p>
+<p>Kotlin/Native 提供与 Objective-C/Swift 的双向互操作性。
+Objective-C framework 与库可以在 Kotlin 代码中使用。
+Kotlin 模块同样可以在 Swift/Objective-C 代码中使用。
+除此之外，Kotlin/Native 也拥有
+<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作性</a>。
+这篇 <a href="dynamic-libraries.html">Kotlin/Native 开发动态库</a><!--
+-->教程包含了更多信息。</p>
+<p>在本教程中，我们将看到如何在 Objective-C 与 Swift
+编写的 macOS 与 iOS 应用程序中使用 Kotlin/Native 代码。
+我们将使用 Kotlin 代码构建一个 framework。</p>
+<p>在本教程中我们将：</p>
 <ul>
-<li><a href="#creating-a-kotlin-library">create a Kotlin Library</a> and compile it to a framework</li>
-<li>examine the generated <a href="#generated-framework-headers">Objective-C and Swift API</a> code</li>
-<li>use the framework from <a href="#using-the-code-from-objective-c">Objective-C</a> and <a href="#using-the-code-from-swift">Swift</a></li>
-<li><a href="#xcode-and-framework-dependencies">Configure Xcode</a> to use the framework for <a href="#xcode-for-macos-target">macOS</a> and <a href="#xcode-for-ios-targets">iOS</a></li>
+<li><a href="#创建一个-kotlin-库">创建一个 Kotlin 库</a>并将它编译为 framework</li>
+<li>检查生成的 <a href="#生成framework-头">Objective-C 与 Swift API</a> 代码</li>
+<li>在 <a href="#在-objective-c-中使用代码">Objective-C</a> 与 <a href="#在-swift-中使用代码">Swift</a> 中使用 framework</li>
+<li>为 <a href="#xcode-与-macos-目标平台">macOS</a> 与 <a href="#xcode-与-ios-目标平台">iOS</a> <a href="#xcode-and-framework-dependencies">配置 Xcode</a> 以使用 framework</li>
 </ul>
-<h2 id="creating-a-kotlin-library">Creating a Kotlin Library</h2>
-<p>Kotlin/Native compiler can produce a framework for macOS and iOS
-out of the Kotlin code. The created framework contains all declarations
-and binaries needed to use it with Objective-C and Swift.
-The best way to understand the techniques is to try it for ourselves. 
-Let's create a tiny Kotlin library first and use it from an Objective-C program.</p>
-<p>We create the <code>hello.kt</code> file with the library contents:</p>
+<h2 id="创建一个-kotlin-库">创建一个 Kotlin 库</h2>
+<p>Kotlin/Native 编译器可以使 Kotlin 代码为 macOS 与 iOS
+生产一个 framework 的输出。生成的 framework 包含在 Objective-C 与 Swift
+中所有使用所需的声明与二进制文件。
+理解这项技术的最佳方式是自己进行一下尝试。
+让我们首先创建一个小型的 Kotlin 库，并在 Objective-C 程序中使用它。</p>
+<p>我们创建该 <code>hello.kt</code> 文件，并在其中编写库的内容：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package example
 
@@ -957,18 +965,18 @@ tasks.withType&lt;Wrapper&gt; {
 </code></pre>
 </div>
 </div>
-<p>The prepared project sources can be directly downloaded from 
+<p>已经准备好的工程源代码可以在这里直接下载：
 <span class="multi-language-span" data-lang="groovy" data-os="macos">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-framework-groovy-macos-mac.zip">GitHub</a>.
 </span>
 <span class="multi-language-span" data-lang="kotlin" data-os="macos">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-framework-kotlin-macos-mac.zip">GitHub</a>.
 </span></p>
-<p>Let's move the sources file into the <code>src/nativeMain/kotlin</code> folder under
-the project. That is the default path, where sources are located, when
-the <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-multiplatform</a>
-plugin is used. We use the following block to instruct configure the project
-to generate a dynamic or shared library for us:</p>
+<p>让我们将源文件移动到工程下的
+<code>src/nativeMain/kotlin</code> 文件夹。当使用 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-多平台</a><!--
+-->插件的时候这是定位文件的默认路径。
+使用插件。我们使用以下代码块来指示配置项目<!--
+-->为我们生成动态或共享库：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">binaries {
   framework {
@@ -977,14 +985,14 @@ to generate a dynamic or shared library for us:</p>
 }
 </code></pre>
 </div>
-<p>Along with <code>macOS X64</code>, Kotlin/Native supports iOS <code>arm32</code>, <code>arm64</code> and <code>X64</code>
-targets. We may replace the <code>macosX64</code> with respective functions as shown
-in the table:</p>
+<p><code>macOS X64</code> 是单独的，Kotlin/Native 支持 iOS <code>arm32</code>、<code>arm64</code> 与 <code>X64</code>
+目标平台。我们可以使用各自的函数替代 <code>macosX64</code>，
+如表所示：</p>
 <table class="zebra">
 <thead>
 <tr>
-<th>Target platform/device</th>
-<th>Gradle function</th>
+<th>目标 平台/设备</th>
+<th>Gradle 函数</th>
 </tr>
 </thead>
 <tbody>
@@ -1006,9 +1014,9 @@ in the table:</p>
 </tr>
 </tbody>
 </table>
-<p>Let's run the <code>linkNative</code> Gradle task to build the library 
-<a href="basic-kotlin-native-app.html#run-in-ide">in the IDE</a> 
-or by calling the following console command:</p>
+<p>让我们运行 <code>linkNative</code> Gradle 任务，以<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a><!--
+-->构建该库。
+或者使用如下的控制台命令：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">
 <pre><code class="language-bash">./gradlew linkNative
@@ -1027,21 +1035,21 @@ or by calling the following console command:</p>
 </code></pre>
 </div>
 </div>
-<p>Depending on the variant, the build generates the framework
-into the
+<p>依据配置的不同，构建生成的 framework
+位于
 <code>build/bin/native/debugFramework</code>
-and
+或
 <code>build/bin/native/releaseFramework</code>
-folders.
-Let's see what is inside</p>
-<h2 id="generated-framework-headers">Generated Framework Headers</h2>
-<p>Each of the created frameworks contains the header file in <code>&lt;Framework&gt;/Headers/Demo.h</code>.
-The headers do not depend on the target platform (at least with Kotlin/Native v.0.9.2).
-It contains the definitions for our Kotlin code and a few Kotlin-wide declarations.</p>
-<p>Note, the way Kotlin/Native exports symbols is subject to change without notice.</p>
-<h3 id="kotlinnative-runtime-declarations">Kotlin/Native Runtime Declarations</h3>
-<p>Let's
-take a look at Kotlin runtime declarations first:</p>
+文件夹。
+让我们看看里面是什么</p>
+<h2 id="生成-framework-头文件">生成 Framework 头文件</h2>
+<p>每个创建的 framework 头文件都包含在 <code>&lt;Framework&gt;/Headers/Demo.h</code> 中。
+这个头文件不依赖目标平台（至少需要 Kotlin/Native v.0.9.2）。
+它包含我们的 Kotlin 代码的定义与一些 Kotlin 级的声明。</p>
+<p>注意，Kotlin/Native 导出符号的方式如有变更，恕不另行通知。</p>
+<h3 id="kotlinnative-运行时声明">Kotlin/Native 运行时声明</h3>
+<p>让我们<!--
+-->首先看看 Kotlin 的运行时声明：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
 
@@ -1069,9 +1077,9 @@ __attribute__((swift_name("KotlinMutableDictionary")))
 @end;
 </code></pre>
 </div>
-<p>Kotlin classes have a <code>KotlinBase</code> base class in Objective-C, the class extends
-the <code>NSObject</code> class there. We also have wrappers for collections and exceptions. 
-Most of the collection types are mapped to similar collection types from the other side:</p>
+<p>Kotlin 类在 Objective-C 中拥有一个 <code>KotlinBase</code> 基类，该类在这里继承自
+<code>NSObject</code> 类。我们同样也有集合与异常的包装器。
+大多数的集合类型都从另一边映射到了相似的集合类型：</p>
 <table class="wide zebra">
 <thead>
 <tr>
@@ -1108,11 +1116,11 @@ Most of the collection types are mapped to similar collection types from the oth
 </tr>
 </tbody>
 </table>
-<h3 id="kotlin-numbers-and-nsnumber">Kotlin Numbers and NSNumber</h3>
-<p>The next part of the <code>&lt;Framework&gt;/Headers/Demo.h</code> contains number type mappings
-between Kotlin/Native and <code>NSNumber</code>. We have the base class called <code>DemoNumber</code> in Objective-C
-and <code>KotlinNumber</code> in Swift. It extends <code>NSNumber</code>.
-There are also child classes per Kotlin number type:</p>
+<h3 id="kotlin-numbers-与-nsnumber">Kotlin Numbers 与 NSNumber</h3>
+<p>下一步，<code>&lt;Framework&gt;/Headers/Demo.h</code> 包含了 Kotlin/Native 数字类型与 <code>NSNumber</code>
+之间的映射。我们在 Objective-C 中拥有一个基类名为 <code>DemoNumber</code>，
+而在 Swift 中是 <code>KotlinNumber</code>。它继承自 <code>NSNumber</code>。
+这里有每个作为子类的 Kotlin 数字类型：</p>
 <table class="wide zebra">
 <thead>
 <tr>
@@ -1197,8 +1205,8 @@ There are also child classes per Kotlin number type:</p>
 </tr>
 </tbody>
 </table>
-<p>Every number type has a class method to create a new instance from the related simple type. Also, there is an instance method
-to extract a simple value back. Schematically, declarations look like that:</p>
+<p>每个数字类型都有一个类方法，用于从相关的简单类型创建新实例。此外，还有一个实例方法<!--
+-->用于提取一个简单的值。原理上，声明看起来像这样：</p>
 <div auto-indent="false" clacss="sample" data-highlight-only="" mode="obj-c" theme="idea">
 <pre><code class="code _highlighted" data-lang="text/x-objectivec">__attribute__((objc_runtime_name("Kotlin__TYPE__")))
 __attribute__((swift_name("Kotlin__TYPE__")))
@@ -1208,13 +1216,13 @@ __attribute__((swift_name("Kotlin__TYPE__")))
 @end;
 </code></pre>
 </div>
-<p>Where <code>__TYPE__</code> is one of the simple type names and <code>__CTYPE__</code> is the related Objective-C type, e.g. <code>initWithChar(char)</code>.</p>
-<p>These types are used to map boxed Kotlin number types into Objective-C and Swift.
-In Swift, we may simply call the constructor to create an instance, e.g. <code>KotlinLong(value: 42)</code>.</p>
-<h3 id="classes-and-objects-from-kotlin">Classes and Objects from Kotlin</h3>
-<p>Let's see how <code>class</code> and <code>object</code> are mapped to Objective-C and Swift. 
-The generated <code>&lt;Framework&gt;/Headers/Demo.h</code> file contains the exact definitions for 
-<code>Class</code>, <code>Interface</code>, and <code>Object</code>:</p>
+<p>其中 <code>__TYPE__</code> 是简单类型的名称之一，而 <code>__CTYPE__</code> 是相关的 Objective-C 类型，例如 <code>initWithChar(char)</code>。</p>
+<p>这些类型用于将装箱的 Kotlin 数字类型映射到 Objective-C 与 Swift。
+在 Swift 中，我们可以简单的调用构造函数来创建一个示例，例如 <code>KotlinLong(value: 42)</code>。</p>
+<h3 id="kotlin-中的类与对象">Kotlin 中的类与对象</h3>
+<p>让我们看看如何将 <code>class</code> 与 <code>object</code> 映射到 Objective-C 与 Swift。 
+生成的 <code>&lt;Framework&gt;/Headers/Demo.h</code> 文件包含
+<code>Class</code>、<code>Interface</code> 与 <code>Object</code> 的确切定义：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
 
@@ -1242,18 +1250,18 @@ __attribute__((swift_name("Clazz")))
 @end;
 </code></pre>
 </div>
-<p>The code is full of Objective-C attributes, which are intended to help
-the use of the framework from both Objective-C and Swift languages.
-<code>DemoClazz</code>, <code>DemoInterface</code>, and <code>DemoObject</code> are created for <code>Clazz</code>, <code>Interface</code>, and <code>Object</code> 
-respectively. The <code>Interface</code> is turned into <code>@protocol</code>, both a <code>class</code> and an <code>object</code> are represented as
-<code>@interface</code>.
-The <code>Demo</code> prefix comes from the <code>-output</code> parameter
-of the <code>kotlinc-native</code> compiler and the framework name. 
-We see here that the nullable return type <code>ULong?</code> is turned into <code>DemoLong*</code> in Objective-C.</p>
-<h3 id="global-declarations-from-kotlin">Global Declarations from Kotlin</h3>
-<p>All global functions from Kotlin
-are turned into <code>DemoLibKt</code> in Objective-C and into <code>LibKt</code> in Swift, where <code>Demo</code> is the framework name and set by
-the <code>-output</code> parameter of <code>kotlinc-native</code>.</p>
+<p>这段代码有各种 Objective-C attribute，旨在提供在
+Objective-C 与 Swift 语言中使用该 framework 的帮助。
+<code>DemoClazz</code>、<code>DemoInterface</code>、<code>DemoObject</code> 被分别创建为 <code>Clazz</code>、<code>Interface</code> 与
+<code>Object</code>。<code>Interface</code> 被转换为 <code>@protocol</code>，同样 <code>class</code> 与 <code>object</code> 都以
+<code>@interface</code> 表示。
+<code>Demo</code> 前缀来自于 <code>kotlinc-native</code>
+编译器的 <code>-output</code> 参数与 framework 的名称。
+我们看到这里的可空的返回值类型 <code>ULong?</code> 被转换到 Objective-C 中的 <code>DemoLong*</code>。</p>
+<h3 id="kotlin-中的全局声明">Kotlin 中的全局声明</h3>
+<p>在 <code>Demo</code> 作为 framework 名称的地方且为 <code>kotlinc-native</code> 设置了 <code>-output</code> 参数时，
+所有 Kotlin 中的全局声明<!--
+-->都被转化为 Objective-C 中的 <code>DemoLibKt</code> 以及 Swift 中的 <code>LibKt</code>。</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
 
@@ -1268,23 +1276,23 @@ __attribute__((swift_name("LibKt")))
 @end;
 </code></pre>
 </div>
-<p>We see that Kotlin <code>String</code> and Objective-C <code>NSString*</code> are mapped transparently.
-Similarly, <code>Unit</code> type from Kotlin is mapped to <code>void</code>. We see primitive types
-are mapped directly. Non-nullable primitive types are mapped transparently.
-Nullable primitive types are mapped into <code>Kotlin&lt;TYPE&gt;*</code> types, as shown in the table <a href="#kotlin-numbers-and-nsnumber">above</a>. 
-Both higher order functions <code>acceptFunF</code> and <code>supplyFun</code> are included,
-and accept Objective-C blocks.</p>
-<p>More information about all other types mapping details can be found in the
-<a href="/docs/reference/native/objc_interop.html">Objective-C Interop</a>
-documentation article</p>
-<h2 id="garbage-collection-and-reference-counting">Garbage Collection and Reference Counting</h2>
-<p>Objective-C and Swift use reference counting. Kotlin/Native has its own garbage collection too.
-Kotlin/Native garbage collection is integrated with Objective-C/Swift reference
-counting. We do not need to use anything special to control the lifetime of Kotlin/Native instances
-from Swift or Objective-C.</p>
-<h2 id="using-the-code-from-objective-c">Using the Code from Objective-C</h2>
-<p>Let's call the framework from Objective-C. For that we create the <code>main.m</code> file with 
-the following content:</p>
+<p>我们看到 Kotlin <code>String</code> 与 Objective-C <code>NSString *</code> 是透明映射的。
+类似地，Kotlin 的 <code>Unit</code> 类型被映射到 <code>void</code>。我们看到原始类型<!--
+-->直接映射。不可空的原始类型透明地映射。
+可空的原始类型被映射到 <code>Kotlin&lt;TYPE&gt;*</code> 类型，如<a href="#kotlin-numbers-and-nsnumber">上</a>表所示。
+包括高阶函数 <code>acceptFunF</code> 与 <code>supplyFun</code>，
+都接收一个 Objective-C 块。</p>
+<p>更多的关于所有其它类型的映射细节可以在这篇
+<a href="/docs/reference/native/objc_interop.html">Objective-C 互操作</a><!--
+-->文档中找到。</p>
+<h2 id="垃圾回收与引用计数">垃圾回收与引用计数</h2>
+<p>Objective-C 与 Swift 使用引用计数。Kotlin/Native 也同样拥有自己的垃圾回收。
+Kotlin/Native 的垃圾回收与 Objective-C/Swift
+引用计数相集成。我们不需要在 Swift 或 Objective-C 中使用任何其它特别的方式去控制
+Kotlin/Native 实例的生命周期。</p>
+<h2 id="在-objective-c-中使用代码">在 Objective-C 中使用代码</h2>
+<p>让我们在 Objective-C 中调用代码。为此我们使用下面的内容创建
+<code>main.m</code> 文件：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">#import &lt;Foundation/Foundation.h&gt;
 #import &lt;Demo/Demo.h&gt;
@@ -1312,20 +1320,20 @@ int main(int argc, const char * argv[]) {
 }
 </code></pre>
 </div>
-<p>We call Kotlin classes directly from Objective-C code. A Kotlin <code>object</code> has the class method 
-function <code>object</code>, which allows us to get the only instance of the object and to call 
-<code>Object</code> methods on it. 
-The widespread pattern is used to create an instance of the <code>Clazz</code> class. We call
-the <code>[[ DemoClazz alloc] init]</code> on Objective-C. We may also use <code>[DemoClazz new]</code>
-for constructors without parameters.
-Global declarations from the Kotlin sources are scoped under the <code>DemoLibKt</code> class in Objective-C.
-All methods are turned into class methods of that class.
-The <code>strings</code> function is turned into <code>DemoLibKt.stringsStr</code> function in Objective-C, we can
-pass <code>NSString</code> directly to it. The return is visible as <code>NSString</code> too.</p>
-<h2 id="using-the-code-from-swift">Using the Code from Swift</h2>
-<p>The framework that we compiled with Kotlin/Native has helper attributes to make it
-easier to use with Swift. Let's convert the previous Objective-C example
-into Swift. As a result, we'll have the following code in <code>main.swift</code>:</p>
+<p>我们直接在 Objective-C 代码中调用 Kotlin 类。一个 Kotlin <code>object</code> 拥有类<!--
+-->方法函数 <code>object</code>，这使我们在想获取对象的唯一实例时调用
+<code>object</code> 方法就可以了。
+广泛使用的用于创建 <code>Clazz</code> 类实例的模式。我们在
+Objective-C 上调用 <code>[[ DemoClazz alloc] init]</code>。我们也可以使用<!--
+-->没有参数的构造函数 <code>[DemoClazz new]</code>。
+Kotlin 源中的全局声明的作用域位于 Objective-C 中的 <code>DemoLibKt</code> 类之下。
+所有的方法都被转化为该类的类方法。
+<code>strings</code> 函数转化为 Objective-C 中的 <code>DemoLibKt.stringsStr</code>函数，我们可以<!--
+-->给它直接传递 <code>NSString</code>。而返回值也同样可以看作 <code>NSString</code>。</p>
+<h2 id="在-swift-中使用代码">在 Swift 中使用代码</h2>
+<p>这个使用 Kotlin/Native 编译的 framework 拥有辅助 attribute
+来使它在 Swift 中的使用更为容易。让我们将之前的 Objective-C 示例覆盖为
+Swift。其结果是，我们将在 <code>main.swift</code> 中包含下面的代码：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="swift" theme="idea">
 <pre><code class="language-swift">import Foundation
 import Demo
@@ -1347,59 +1355,59 @@ if (ret != nil) {
 }
 </code></pre>
 </div>
-<p>The Kotlin code is turned into very similar looking
-code in Swift. There are some small differences, though. In Kotlin any <code>object</code> has 
-only one instance. Kotlin <code>object Object</code> now has a
-constructor in Swift, and we use the <code>Object()</code> syntax to access the only instance of it.
-The instance is always the same in Swift, so that 
-<code>Object() === Object()</code> is true. 
-Methods and property names are translated as-is. Kotlin <code>String</code> is turned into Swift <code>String</code> too.
-Swift hides <code>NSNumber*</code> boxing from us too. We pass Swift closure to Kotlin and call a Kotlin 
-lambda function from Swift too.</p>
-<p>More documentation on the types mapping can be found in the 
-<a href="/docs/reference/native/objc_interop.html">Objective-C Interop</a>
-article.</p>
-<h1 id="xcode-and-framework-dependencies">Xcode and Framework Dependencies</h1>
-<p>We need to configure an Xcode project to use our framework. The configuration depends on the
-target platform.</p>
-<h2 id="xcode-for-macos-target">Xcode for MacOS Target</h2>
-<p>First, we need to include the framework in the <code>General</code> section of the <em>target</em>
-configuration. There is the <code>Linked Frameworks and Libraries</code> section to include
-our framework. This will make Xcode look at our framework and resolve imports both
-from Objective-C and Swift.</p>
-<p>The second step is to configure the framework search path of the produced
-binary. It is also known as <code>rpath</code> or <a href="https://en.wikipedia.org/wiki/Rpath">run-time search path</a>.
-The binary uses the path to look for the required frameworks. We do not recommend
-installing additional frameworks to the OS if it is not needed. We should understand the layout
-of our future application, for example, 
-we may have the <code>Frameworks</code> folder under the application bundle with all the frameworks we use. 
-The <code>@rpath</code> parameter can be configured in Xcode. We need to open
-the <em>project</em> configuration and find the <code>Runpath Search Paths</code> section. Here we specify
-the relative path to the compiled framework.</p>
-<h2 id="xcode-for-ios-targets">Xcode for iOS Targets</h2>
-<p>First, we need to include the compiled framework into the Xcode project. For
-this we add the framework to the <code>Embedded Binaries</code> block of the <code>General</code> section of
-the <em>target</em> configuration page.</p>
-<p>The second step is to then include the framework path into the <code>Framework Search Paths</code> block
-of the <code>Build Settings</code> section of the <em>target</em> configuration page. It is possible to use <code>$(PROJECT_DIR)</code>
-macro to simplify the setup.</p>
-<p>The iOS simulator requires a framework compiled for the <code>ios_x64</code> target, the <code>iOS_sim</code> folder
-in our case.</p>
-<p><a href="https://stackoverflow.com/questions/30963294/creating-ios-osx-frameworks-is-it-necessary-to-codesign-them-before-distributin">The Stack Overflow thread</a>
-contains few more recommendations. Also, 
-<a href="https://cocoapods.org/">CocoaPods</a> package manager may be helpful to automate the process too.</p>
-<h1 id="next-steps">Next Steps</h1>
-<p>Kotlin/Native has bidirectional interop with Objective-C and Swift languages. 
-Kotlin objects integrate with Objective-C/Swift reference counting. Unused Kotlin
-objects are automatically removed. 
-The <a href="https://github.com/JetBrains/kotlin-native/blob/master/OBJC_INTEROP.md">Objective-C Interop</a>
-article contains more information on the interop implementation details.
-Of course, it is possible to import an existing framework and use it from Kotlin. Kotlin/Native
-comes with a good set of pre-imported system frameworks.</p>
-<p>Kotlin/Native supports C interop too. Check out the
-<a href="dynamic-libraries.html">Kotlin/Native as a Dynamic Library</a>
-tutorial for that, or have a look at the
-<a href="/docs/reference/native/c_interop.html">C Interop</a> documentation article</p>
+<p>这段 Kotlin 代码被转换为看起来非常相似的
+Swift 代码。但是它们有一些小差异。在 Kotlin 中任何 <code>object</code>
+只拥有一个实例。Kotlin <code>object Object</code> 现在在
+Swift 中拥有一个构造函数，我们使用 <code>Object()</code> 语法来访问它唯一的实例。
+在 Swift 中该实例总是相同的，所以 
+<code>Object() === Object()</code> 为 true。 
+方法与属性名称按原样转换。即 Kotlin <code>String</code> 被转换为 Swift <code>String</code>。
+Swift 同样隐藏了 <code>NSNumber*</code> 的装箱。我们传递 Swift 闭包给 Kotlin，
+与在 Swift 中调用 Kotlin lambda 函数是相同的。</p>
+<p>更多关于类型映射的信息可以在这篇
+<a href="/docs/reference/native/objc_interop.html">Objective-C 互操作</a><!--
+-->文档中找到。</p>
+<h1 id="xcode-与-framework-依赖">Xcode 与 Framework 依赖</h1>
+<p>我们需要配置一个 Xcode 工程来使用我们的 framework。这个配置依赖于<!--
+-->目标平台。</p>
+<h2 id="xcode-与-macos-目标平台">Xcode 与 MacOS 目标平台</h2>
+<p>首先，我们需要导入该 framework 到 <code>General</code> 选项的 <em>target</em>
+配置。选择 <code>Linked Frameworks and Libraries</code> 选项来导入<!--
+-->我们的 framework。这将使 Xcode 查看我们的 framework 并同时解决来自
+Objective-C 与 Swift 的导入。</p>
+<p>第二步是配置 framework 生产的二进制文件的<!--
+-->搜索路径。它也被称作 <code>rpath</code> 或<a href="https://en.wikipedia.org/wiki/Rpath">运行时搜索路径</a>。
+二进制文件使用路径来查找所需的 framework。我们不推荐，
+在不需要的时候在操作系统中去安装其它 framework。我们应该了解<!--
+-->未来应用程序的布局，举例来说，
+我们可能在应用程序包下有 <code>Frameworks</code> 文件夹，其中包含我们所使用的所有 framework。
+<code>@rpath</code> 参数可以被配置到 Xcode。我们需要打开
+<em>project</em> 配置项并找到 <code>Runpath Search Paths</code> 选项。在这里我们指定编译
+framework 的相对路径。</p>
+<h2 id="xcode-与-ios-目标平台">Xcode 与 iOS 目标平台</h2>
+<p>首先，我们需要导入编译好的 framework 到 Xcode 工程。为此<!--
+-->我们将 framework 添加到 <em>target</em> 配置页的 <code>General</code> 选项的
+<code>Embedded Binaries</code> 块。</p>
+<p>第二步是将 framework 路径导入到 <em>target</em> 配置页的 <code>Build Settings</code> 选项下的
+<code>Framework Search Paths</code> 块。它可以使用 <code>$(PROJECT_DIR)</code>
+宏来简化设置。</p>
+<p>iOS 模拟器需要一个为 <code>ios_x64</code> 目标平台编译的 framework，它位于我们案例中的
+<code>iOS_sim</code> 文件夹。</p>
+<p><a href="https://stackoverflow.com/questions/30963294/creating-ios-osx-frameworks-is-it-necessary-to-codesign-them-before-distributin">这个 Stack Overflow 主题</a><!--
+-->包含了一些更多的建议。同样，
+<a href="https://cocoapods.org/">CocoaPods</a> 包管理器也可能有助于自动化该过程。</p>
+<h1 id="接下来">接下来</h1>
+<p>Kotlin/Native 与 Objective-C 以及 Swift 语言之间拥有双向互操作性。
+Kotlin 对象集成了 Objective-C/Swift 的引用计数。Kotlin
+对象可以被自动释放。
+这篇 <a href="https://github.com/JetBrains/kotlin-native/blob/master/OBJC_INTEROP.md">Objective-C 互操作</a><!--
+-->文档包含了更多关于互操作实现细节的信息。
+当然，也可以导入一个外部的 framework 并在 Kotlin 中使用它。Kotlin/Native
+附带一套良好的预导入系统 framework。</p>
+<p>Kotlin/Native 同样支持 C 互操作。查看这篇
+<a href="dynamic-libraries.html">Kotlin/Native 开发动态库</a><!--
+-->教程，或者查看这篇
+<a href="/docs/reference/native/c_interop.html">C 互操作</a>文档</p>
 
         </article>
     </div>
@@ -1425,7 +1433,7 @@ tutorial for that, or have a look at the
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                     <a class="terms-kit"
-                            href=/assets/kotlin-media-kit.zip>宣传资料</a>
+                            href=/assets/kotlin-media-kit.pdf>宣传资料</a>
                 </div>
                 <div class="global-footer-row">
                     <div class="terms-sponsor">
