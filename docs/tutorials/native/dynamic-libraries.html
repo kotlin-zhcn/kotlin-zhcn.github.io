@@ -1349,8 +1349,8 @@ Kotlin 类型或者一个 <code>libnative_KNativePtr</code> 是否是某个类�
 <p>Kotlin/Native 拥有垃圾回收机制，但是它不能帮助我们处理<!--
 -->来源于 C 的 Kotlin 对象。Kotlin/Native 可以与 Objective-C 以及
 Swift 进行互操作，并且结合了它们的引用计数。 
-这篇 <a href="/docs/reference/native/objc_interop.html">Objective-C 互操作</a>
-包含了更多关于此内容的细节。当然，也可以参考<!--
+这篇 <a href="/docs/reference/native/objc_interop.html">Objective-C 互操作</a><!--
+-->包含了更多关于此内容的细节。当然，也可以参考<!--
 -->这篇 <a href="apple-framework.html">Kotlin/Native 开发 Apple Framework</a> 文档。</p>
 <h3 id="库函数">库函数</h3>
 <p>让我们来看看 <code>kotlin.root.example</code> 字段，它<!--
@@ -1422,8 +1422,8 @@ int main(int argc, char** argv) {
 <p>在 Linux 上我们也使用相似的命令：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">gcc main.c libnative.so
 </code></pre>
-<p>编译器生成一个名为 <code>a.out</code> 的可执行文件。我们需要运行它来查看 Kotlin 代码
-是如何调用 C 库来运行的。在 Linux 上，我们将需要将 <code>.</code> 引入到 <code>LD_LIBRARY_PATH</code>
+<p>编译器生成一个名为 <code>a.out</code> 的可执行文件。我们需要运行它来查看 Kotlin 代码<!--
+-->是如何调用 C 库来运行的。在 Linux 上，我们将需要将 <code>.</code> 引入到 <code>LD_LIBRARY_PATH</code>
 来使应用程序知晓从当前文件夹加载 <code>libnative.so</code> 库。</p>
 <h2 id="将示例编译并运行于-windows">将示例编译并运行于 Windows</h2>
 <p>首先，我们需要安装一个支持 64 位目标操作系统的 Microsoft Visual C++
