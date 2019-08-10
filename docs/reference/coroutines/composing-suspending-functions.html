@@ -1372,8 +1372,8 @@ suspend fun doSomethingUsefulTwo(): Int {
 }
 </code></pre>
 </div>
-<p>如果需要按 <em>顺序</em> 调用它们，我们接下来会做什么–首先调用 <code>doSomethingUsefulOne</code> <em>接下来</em>
-调用 <code>doSomethingUsefulTwo</code> 并且计算它们结果的和吗？
+<p>如果需要按 <em>顺序</em> 调用它们，我们接下来会做什么——首先调用 <code>doSomethingUsefulOne</code> <em>接下来</em>
+调用 <code>doSomethingUsefulTwo</code>，并且计算它们结果的和吗？
 实际上，如果我们要根据第一个函数的结果来决定是否我们需要<!--
 -->调用第二个函数或者决定如何调用它时，我们就会这样做。</p>
 <p>我们使用普通的顺序来进行调用，因为这些代码是运行在协程中的，只要像常规的<!--
@@ -1456,13 +1456,13 @@ suspend fun doSomethingUsefulTwo(): Int {
 Completed in 1017 ms
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<p>这里快了两倍，因为我们使用两个协程进行并发。
-注意，使用协程进行并发总是显式的。</p>
+<p>这里快了两倍，因为两个协程并发执行。
+请注意，使用协程进行并发总是显式的。</p>
 <h3 id="惰性启动的-async">惰性启动的 async</h3>
-<p>使用一个可选的参数 <code>start</code> 并传值 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a>，可以对 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 进行惰性操作。
-只有当结果需要被 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或者如果一个
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> 函数被调用，协程才会<!--
--->被启动。运行下面的示例：</p>
+<p>Optionally, <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> can be made lazy by setting its <code>start</code> parameter to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a>. 
+In this mode it only starts the coroutine when its result is required by 
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a>, or if its <code>Job</code>'s <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> function 
+is invoked. Run the following example:</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlin.system.*
@@ -1503,16 +1503,16 @@ Completed in 1017 ms
 <p>因此，在先前的例子中这里定义的两个协程没有被执行，但是控制权在于<!--
 -->程序员准确的在开始执行时调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>。我们首先
 调用 <code>one</code>，然后调用 <code>two</code>，接下来等待这个协程执行完毕。</p>
-<p>注意，如果我们在 <code>println</code> 中调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 并在个别协程上省略 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>，<!--
--->则我们会得到顺序的行为作为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 来启动协程的<!--
--->执行并且等待执行结束，这不是懒序列的预期用例。
-当计算值涉及暂停函数时，该用例中使用 <code>async(start = CoroutineStart.LAZY)</code> 替换
-标准库中的 <code>lazy</code> 函数。</p>
+<p>Note that if we just call <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> in <code>println</code> without first calling <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> on individual 
+coroutines, this will lead to sequential behavior, since <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> starts the coroutine 
+execution and waits for its finish, which is not the intended use-case for laziness. 
+The use-case for <code>async(start = CoroutineStart.LAZY)</code> is a replacement for the 
+standard <code>lazy</code> function in cases when computation of the value involves suspending functions.</p>
 <h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
 我们给这样的函数的名称中加上<!--
--->“Async”后缀来突出表明：事实上，它们只做异步计算并且需要<!--
+-->“……Async”后缀来突出表明：事实上，它们只做异步计算并且需要<!--
 -->使用延期的值来获得结果。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// somethingUsefulOneAsync 函数的返回值类型是 Deferred&lt;Int&gt;
@@ -1603,7 +1603,7 @@ Completed in 1085 ms
 </code></pre>
 </div>
 <p>这种情况下，如果在 <code>concurrentSum</code> 函数内部发生了错误，并且它抛出了一个异常，
-所有在作用域中启动的协程都将会被取消。</p>
+所有在作用域中启动的协程都会被取消。</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1638,7 +1638,7 @@ suspend fun doSomethingUsefulTwo(): Int {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>从上面的 main 函数的输出可以看出，我们仍然可以同时执行这两个操作：</p>
+<p>从上面的 <code>main</code> 函数的输出可以看出，我们仍然可以同时执行这两个操作：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">The answer is 42
 Completed in 1017 ms
 </code></pre>
@@ -1676,7 +1676,8 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>注意，当第一个子协程失败的时候第一个 <code>async</code> 是如何等待父线程被取消的：</p>
+<p>Note how both the first <code>async</code> and the awaiting parent are cancelled on failure of one of the children
+(namely, <code>two</code>):</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Second child throws an exception
 First child was cancelled
 Computation failed with ArithmeticException
