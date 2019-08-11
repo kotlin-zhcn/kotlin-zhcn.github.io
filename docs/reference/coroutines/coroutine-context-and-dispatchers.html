@@ -1507,7 +1507,10 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p>The <code>log</code> function prints the name of the thread in square brackets, and you can see that it is the <code>main</code>
 thread with the identifier of the currently executing coroutine appended to it. This identifier 
 is consecutively assigned to all created coroutines when the debugging mode is on.</p>
-<p>你可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-coroutine-context.html">newCoroutineContext</a> 函数的文档中阅读有关调试工具的更多信息。</p>
+<blockquote>
+<p>Debugging mode is also turned on when JVM is run with <code>-ea</code> option.
+你可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-d-e-b-u-g_-p-r-o-p-e-r-t-y_-n-a-m-e.html">DEBUG_PROPERTY_NAME</a> 属性的文档中阅读有关调试工具的更多信息。</p>
+</blockquote>
 <h3 id="在不同线程间跳转">在不同线程间跳转</h3>
 <p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（参见<a href="#调试协程与线程">调试</a>）：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
