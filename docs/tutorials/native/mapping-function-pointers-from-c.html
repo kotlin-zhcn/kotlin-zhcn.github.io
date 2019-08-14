@@ -1107,7 +1107,7 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>让我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
+<p>我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
 以用来观察 C 中的原始类型是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
@@ -1143,7 +1143,7 @@ typealias MyFunVar = kotlinx.cinterop.CPointerVarOf&lt;lib.MyFun&gt;
 这里有一个  <code>invoke</code> 操作符扩展函数，它可以用于所有的 <code>CPointer&lt;CFunction&lt;..&gt;</code> 类型，因此<!--
 -->它可以在任何一个我们可以调用其它 Kotlin 函数的地方调用。</p>
 <h2 id="将-kotlin-函数作为-c-函数指针传递">将 Kotlin 函数作为 C 函数指针传递</h2>
-<p>是时候尝试在我们的 Kotlin 程序中使用 C 函数了。让我们调用 <code>accept_fun</code>
+<p>是时候尝试在我们的 Kotlin 程序中使用 C 函数了。我们调用 <code>accept_fun</code>
 函数并传递 C 函数指针到一个 Kotlin lambda：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun myFun() {
@@ -1174,7 +1174,7 @@ typealias MyFunVar = kotlinx.cinterop.CPointerVarOf&lt;lib.MyFun&gt;
 -->我们在最后一行所做的事。</p>
 <h2 id="修改代码">修改代码</h2>
 <p>我们已经看到了所有的声明，所以是时候修改并运行代码了。
-让我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
 -->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">

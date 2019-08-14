@@ -843,7 +843,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>找到如何将 <a href="#kotlin-中的原始类型">Kotlin 中的原始类型</a>映射到 C 的方法</li>
 </ul>
 <h2 id="c-语言中的类型">C 语言中的类型</h2>
-<p>我们如何在 C 语言中拥有类型？让我们先列出所有这些类型。我引用了这篇
+<p>我们如何在 C 语言中拥有类型？我们先来列出所有这些类型。我引用了这篇
 <a href="https://en.wikipedia.org/wiki/C_data_types">C 数据类型</a>维基百科上的文章作为基础。
 在 C 语言中有如下这些类型：</p>
 <ul>
@@ -892,7 +892,7 @@ void doubles(float a, double b);
 </div>
 <p>我们可以在 <code>---</code> 分隔符之后将所有声明直接包含在 <code>.def</code> 文件中。
 将宏或其他 C 定义包含在 <code>cinterop</code> 工具生成的代码中会很有帮助。
-方法体同样被编译以及完全包含到二进制文件中。让我们使用<!--
+方法体同样被编译以及完全包含到二进制文件中。我们使用<!--
 -->这个功能并且在不使用 C 编译器的情况下来得到一个可运行的示例。
 为了实现这个，我们需要在 <code>lib.h</code> 文件中添加 C 函数的实现，
 并将这些函数放入 <code>.def</code> 文件中。
@@ -1134,7 +1134,7 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>让我们使用以下内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件<!--
+<p>我们使用以下内容来创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件<!--
 -->来查看 C 的原始类型声明是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
@@ -1215,7 +1215,7 @@ fun doubles(a: Float, b: Double)
 </table>
 <h2 id="修改代码">修改代码</h2>
 <p>我们已经看到了所有的定义并且是时候来修改代码了。
-让我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
 -->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">

@@ -852,8 +852,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>我们将使用 IntelliJ IDEA 社区版来演示。你需要确保你已经安装了最新版本的 Kotlin plugin，1.3.x 或者更新版本。
 我们选择 <em>File | New | Project</em>，再选择 <em>Kotlin | Kotlin (Multiplatform Library)</em> 并以我们想要的方式配置工程。</p>
 <p><img alt="Wizard" src="/assets/images/tutorials/multiplatform/wizard.png"/></p>
-<p>现在创建了一个多平台样本库并将其导入 IntelliJ IDEA。让我们将所有的 <code>.kt</code> 使用 IntelliJ IDEA 的功能 <em>Refactor | Rename</em> 将它们的包名修改为 <code>org.jetbrains.base64</code>，
-让我们到目前为止检查项目的一切是否正确，项目结构应该是：</p>
+<p>现在创建了一个多平台样本库并将其导入 IntelliJ IDEA。我们来将所有的 <code>.kt</code> 使用 IntelliJ IDEA 的功能 <em>Refactor | Rename</em> 将它们的包名修改为 <code>org.jetbrains.base64</code>，
+我们来检查项目到目前为止的一切是否正确，项目结构应该是：</p>
 <pre><code>└── src
     ├── commonMain
     │   └── kotlin
@@ -895,7 +895,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="平台指定实现">平台指定实现</h1>
 <p>现在是时候为每个平台提供 <code>Base64Factory</code> 的 <code>actual</code> 实现了。</p>
 <h2 id="jvm">JVM</h2>
-<p>我们开始编写 JVM 上的实现。让我们在 <code>jvmMain/kotlin/jetbrains/base64</code> 文件夹下创建一个文件——<code>Base64.kt</code>，委托给 <code>java.util.Base64</code> 来提供一个简单的实现：</p>
+<p>我们开始编写 JVM 上的实现。我们在 <code>jvmMain/kotlin/jetbrains/base64</code> 文件夹下创建一个文件——<code>Base64.kt</code>，委托给 <code>java.util.Base64</code> 来提供一个简单的实现：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">actual object Base64Factory {
     actual fun createEncoder(): Base64Encoder = JvmBase64Encoder
@@ -972,9 +972,9 @@ object NativeBase64Encoder : Base64Encoder {
 <p>为了使库完整，我们应该编写一些测试用例，但是我们有三个独立的实现，为每个平台编写重复测试用例是浪费时间的。
 通用代码的好处在于它可以通过通用的测试来覆盖，然后在<em>每个</em>平台上编译和执行。
 所有用于测试的位都已由工程向导生成。</p>
-<p>让我们在 <code>commonTest/kotlin/jetbrains/base64</code> 文件夹下创建类 <code>Base64Test</code>，并为 Base64 编写一个基本的测试。</p>
+<p>我们在 <code>commonTest/kotlin/jetbrains/base64</code> 文件夹下创建类 <code>Base64Test</code>，并为 Base64 编写一个基本的测试。</p>
 <p>但是，您还记得，我们的 API 将字节数组转换为不同格式的字节数组，并且测试字节数组并不容易。
-所以在我们编写测试代码之前，让我们为 <code>Base64Encoder</code> 接口的 <code>encodeToString</code> 添加一个默认实现：</p>
+所以在我们编写测试代码之前，我们来为 <code>Base64Encoder</code> 接口的 <code>encodeToString</code> 添加一个默认实现：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">interface Base64Encoder {
     fun encode(src: ByteArray): ByteArray

@@ -1108,7 +1108,7 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>让我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
+<p>我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
 以用来观察我们的 C 声明是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
@@ -1168,10 +1168,10 @@ class MyUnion constructor(rawPtr: NativePtr /* = NativePtr */) : CStructVar {
 -->的实例。正如我们在 <code>MyStruct</code> 与 <code>MyUnion</code> 的声明中所见，它们的构造函数需要一个 <code>NativePtr</code>。
 当然，我们不愿意手动处理指针。作为替代，我们可以使用 Kotlin API
 来为我们实例化这些对象。</p>
-<p>让我们看一看生成的函数，它将 <code>MyStruct</code> 与 <code>MyUnion</code> 作为参数。我们看到了<!--
+<p>我们来看一看生成的函数，它将 <code>MyStruct</code> 与 <code>MyUnion</code> 作为参数。我们看到了<!--
 -->值类型参数表示为 <code>kotlinx.cinterop.CValue&lt;T&gt;</code>。而指针类型参数表示为
 <code>kotlinx.cinterop.CValuesRef&lt;T&gt;</code>。
-Kotlin 给我们提供了 API 使得处理这两者都非常简单，让我们尝试一下并看看结果。</p>
+Kotlin 给我们提供了 API 使得处理这两者都非常简单，我们来尝试一下并看看结果。</p>
 <h3 id="创建一个-cvaluet">创建一个 <code>CValue&lt;T&gt;</code></h3>
 <p><code>CValue&lt;T&gt;</code> 类型用来传递一个值类型的参数到 C 函数调用。
 我们使用 <code>cValue</code> 函数来创建 <code>CValue&lt;T&gt;</code> 对象实例。该函数需要一个<!--
@@ -1204,7 +1204,7 @@ Kotlin 给我们提供了 API 使得处理这两者都非常简单，让我们�
 <p><code>CValuesRef&lt;T&gt;</code> 类型用于在 Kotlin 中将指针类型的参数传递给 C
 函数。首先，我们需要
 <code>MyStruct</code> 与 <code>MyUnion</code> 类的实例。这次我们直接在原生内存中创建它们。
-让我们使用</p>
+我们使用</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun &lt;reified T : kotlinx.cinterop.CVariable&gt; alloc(): T   
 </code></pre>
@@ -1252,7 +1252,7 @@ Kotlin 给我们提供了 API 使得处理这两者都非常简单，让我们�
 <p>当然，这里有一些用例：一种是我们需要将一个结构体作为值传递给一个调用，另一种是<!--
 -->将同一个结构体作为引用传递给另一个调用。这在 Kotlin/Native 中同样也是可行的。这里将<!--
 -->需要一个 <code>NativePlacement</code>。</p>
-<p>让我们看看现在首先将 <code>CValue&lt;T&gt;</code> 转换为一个指针：</p>
+<p>我们看看现在首先将 <code>CValue&lt;T&gt;</code> 转换为一个指针：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun callMix_ref() {
   val cStruct = cValue&lt;MyStruct&gt; {
@@ -1285,7 +1285,7 @@ Kotlin 给我们提供了 API 使得处理这两者都非常简单，让我们�
 </div>
 <h2 id="运行代码">运行代码</h2>
 <p>现在我们应学习了如何在我们的代码中使用 C 声明，我们已经准备好<!--
--->在一个真实的示例中尝试它的输出。让我们修改代码并看看如何<!--
+-->在一个真实的示例中尝试它的输出。我们来修改代码并看看如何<!--
 --><a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>调用 <code>runDebugExecutableNative</code> Gradle 任务来运行它。
 或者使用下面的控制台命令：</p>
 <div class="multi-language-sample" data-os="linux">
@@ -1347,7 +1347,7 @@ fun main() {
 <li><a href="mapping-function-pointers-from-c.html">映射来自 C 语言的函数指针</a></li>
 <li><a href="mapping-strings-from-c.html">映射来自 C 语言的字符串</a></li>
 </ul>
-<p>这篇<a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a><!--
+<p>这篇 <a href="https://github.com/JetBrains/kotlin-native/blob/master/INTEROP.md">C 互操作文档</a><!--
 -->涵盖了更多的高级互操作场景</p>
 
         </article>

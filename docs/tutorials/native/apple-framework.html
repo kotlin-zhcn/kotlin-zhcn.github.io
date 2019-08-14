@@ -857,7 +857,7 @@ Kotlin 模块同样可以在 Swift/Objective-C 代码中使用。
 生产一个 framework 的输出。生成的 framework 包含在 Objective-C 与 Swift
 中所有使用所需的声明与二进制文件。
 理解这项技术的最佳方式是自己进行一下尝试。
-让我们首先创建一个小型的 Kotlin 库，并在 Objective-C 程序中使用它。</p>
+我们首先来创建一个小型的 Kotlin 库，并在 Objective-C 程序中使用它。</p>
 <p>我们创建该 <code>hello.kt</code> 文件，并在其中编写库的内容：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package example
@@ -972,7 +972,7 @@ tasks.withType&lt;Wrapper&gt; {
 <span class="multi-language-span" data-lang="kotlin" data-os="macos">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-framework-kotlin-macos-mac.zip">GitHub</a>.
 </span></p>
-<p>让我们将源文件移动到工程下的
+<p>我们将源文件移动到工程下的
 <code>src/nativeMain/kotlin</code> 文件夹。当使用 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin-多平台</a><!--
 -->插件的时候这是定位文件的默认路径。
 使用插件。我们使用以下代码块来指示配置项目<!--
@@ -1014,7 +1014,7 @@ tasks.withType&lt;Wrapper&gt; {
 </tr>
 </tbody>
 </table>
-<p>让我们运行 <code>linkNative</code> Gradle 任务，以<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a><!--
+<p>我们运行 <code>linkNative</code> Gradle 任务，以<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a><!--
 -->构建该库。
 或者使用如下的控制台命令：</p>
 <div class="multi-language-sample" data-os="linux">
@@ -1041,15 +1041,15 @@ tasks.withType&lt;Wrapper&gt; {
 或
 <code>build/bin/native/releaseFramework</code>
 文件夹。
-让我们看看里面是什么</p>
+我们来看看里面是什么</p>
 <h2 id="生成-framework-头文件">生成 Framework 头文件</h2>
 <p>每个创建的 framework 头文件都包含在 <code>&lt;Framework&gt;/Headers/Demo.h</code> 中。
 这个头文件不依赖目标平台（至少需要 Kotlin/Native v.0.9.2）。
 它包含我们的 Kotlin 代码的定义与一些 Kotlin 级的声明。</p>
 <p>注意，Kotlin/Native 导出符号的方式如有变更，恕不另行通知。</p>
 <h3 id="kotlinnative-运行时声明">Kotlin/Native 运行时声明</h3>
-<p>让我们<!--
--->首先看看 Kotlin 的运行时声明：</p>
+<p>我们<!--
+-->首先来看看 Kotlin 的运行时声明：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" mode="obj-c" theme="idea">
 <pre><code class="language-obj-c">NS_ASSUME_NONNULL_BEGIN
 
@@ -1220,7 +1220,7 @@ __attribute__((swift_name("Kotlin__TYPE__")))
 <p>这些类型用于将装箱的 Kotlin 数字类型映射到 Objective-C 与 Swift。
 在 Swift 中，我们可以简单的调用构造函数来创建一个示例，例如 <code>KotlinLong(value: 42)</code>。</p>
 <h3 id="kotlin-中的类与对象">Kotlin 中的类与对象</h3>
-<p>让我们看看如何将 <code>class</code> 与 <code>object</code> 映射到 Objective-C 与 Swift。 
+<p>我们来看看如何将 <code>class</code> 与 <code>object</code> 映射到 Objective-C 与 Swift。 
 生成的 <code>&lt;Framework&gt;/Headers/Demo.h</code> 文件包含
 <code>Class</code>、<code>Interface</code> 与 <code>Object</code> 的确切定义：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="obj-c" theme="idea">
@@ -1332,7 +1332,7 @@ Kotlin 源中的全局声明的作用域位于 Objective-C 中的 <code>DemoLibK
 -->给它直接传递 <code>NSString</code>。而返回值也同样可以看作 <code>NSString</code>。</p>
 <h2 id="在-swift-中使用代码">在 Swift 中使用代码</h2>
 <p>这个使用 Kotlin/Native 编译的 framework 拥有辅助 attribute
-来使它在 Swift 中的使用更为容易。让我们将之前的 Objective-C 示例覆盖为
+来使它在 Swift 中的使用更为容易。我们来将之前的 Objective-C 示例覆盖为
 Swift。其结果是，我们将在 <code>main.swift</code> 中包含下面的代码：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="swift" theme="idea">
 <pre><code class="language-swift">import Foundation

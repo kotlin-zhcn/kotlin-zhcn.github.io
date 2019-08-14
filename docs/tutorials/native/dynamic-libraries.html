@@ -855,7 +855,7 @@ Kotlin 代码编译为动态库，例如 <code>.so</code>、<code>.dylib</code> 
 动态库常常带有一个头文件，即 <code>.h</code> 文件，
 我们将通过它来调用编译后的 C 代码。</p>
 <p>理解这些技术的最佳方法是尝试它们。
-让我们创建第一个小型的 Kotlin 库，并在 C 程序中使用它。</p>
+我们来创建第一个小型的 Kotlin 库，并在 C 程序中使用它。</p>
 <p>我们可以先在 Kotlin 中创建一个库文件，然后将其保存为 <code>hello.kt</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">package example
@@ -1085,7 +1085,7 @@ tasks.withType&lt;Wrapper&gt; {
 <span class="multi-language-span" data-lang="kotlin" data-os="windows">
 <a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-shared-lib-kotlin-windows.zip">GitHub</a>.
 </span></p>
-<p>让我们将工程目录下的源文件移动到 <code>src/nativeMain/kotlin</code>
+<p>我们将工程目录下的源文件移动到 <code>src/nativeMain/kotlin</code>
 文件夹下。当使用 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件的时候，对于源文件的位置，
 这就是默认路径。我们使用以下代码块来指导和配置工程<!--
@@ -1127,7 +1127,7 @@ tasks.withType&lt;Wrapper&gt; {
 --><a href="basic-kotlin-native-app.html#open-in-ide">在 IntelliJ IDEA 中打开这个工程</a><!--
 -->并且可以看到如何修正这个示例工程。在我们这样做的时候，
 我们将会研究 C 函数如何映射为 Kotlin/Native 声明。</p>
-<p>让我们运行这个 <code>linkNative</code> Gradle 任务来<!--
+<p>我们来运行这个 <code>linkNative</code> Gradle 任务来<!--
 --><a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>构建该库。
 或者运行下面这行控制台命令：</p>
 <div class="multi-language-sample" data-os="linux">
@@ -1353,7 +1353,7 @@ Swift 进行互操作，并且结合了它们的引用计数。
 -->包含了更多关于此内容的细节。当然，也可以参考<!--
 -->这篇 <a href="apple-framework.html">Kotlin/Native 开发 Apple Framework</a> 文档。</p>
 <h3 id="库函数">库函数</h3>
-<p>让我们来看看 <code>kotlin.root.example</code> 字段，它<!--
+<p>我们来看看 <code>kotlin.root.example</code> 字段，它<!--
 -->使用 <code>kotlin.root.</code> 前缀模仿 Kotlin 代码的包结构。</p>
 <p>这里有一个 <code>kotlin.root.example.Clazz</code> 字段用来<!--
 -->表示 Kotlin 中的 <code>Clazz</code>。这个 <code>Clazz#memberFunction</code> 是<!--
@@ -1373,7 +1373,7 @@ Kotlin 中的只读属性 <code>globalString</code> 在 C
 在 <code>kotlin.root.example</code> 匿名结构体中被转换为函数指针。</p>
 <h3 id="入口点">入口点</h3>
 <p>我们可以看到 API 是如何创建的。首先，我们需要初始化
-<code>libnative_ExportedSymbols</code> 结构体。让我们来看看
+<code>libnative_ExportedSymbols</code> 结构体。我们来看看
 <code>libnative_api.h</code> 的最新部分：</p>
 <pre><code class="code _highlighted" data-lang="text/x-csrc">extern libnative_ExportedSymbols* libnative_symbols(void);
 </code></pre>

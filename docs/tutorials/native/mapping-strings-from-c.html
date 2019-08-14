@@ -1133,7 +1133,7 @@ Gradle 建议使用约定而不是配置，
 我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
 查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件文档来学习所有不同的配置方式。</p>
-<p>让我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
+<p>我们使用下面的内容创建一个 <code>src/nativeMain/kotlin/hello.kt</code> 存根文件，
 以用来观察 C 中的原始类型是如何在 Kotlin 中可见的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import interop.*
@@ -1166,7 +1166,7 @@ fun copy_string(str: CValuesRef&lt;ByteVar /* = ByteVarOf&lt;Byte&gt; */&gt;?, s
 <p>在生成的 Kotlin 声明中，我们看到 <code>str</code> 被 <code>CValuesRef&lt;ByteVar/&gt;?</code> 表示。该类型<!--
 -->是可空的，我们可以简单地将 Kotlin <code>null</code> 作为参数值。</p>
 <h2 id="将-kotlin-字符串传递给-c">将 Kotlin 字符串传递给 C</h2>
-<p>让我们尝试在 Kotlin 中使用这些 API。首先我们调用 <code>pass_string</code>：</p>
+<p>我们来尝试在 Kotlin 中使用这些 API。首先我们调用 <code>pass_string</code>：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun passStringToC() {
   val str = "this is a Kotlin String"
@@ -1202,7 +1202,7 @@ fun CPointer&lt;ShortVar&gt;.toKString(): String
 <p>这次我们将要求 C 函数将 C 字符串写入给定的缓冲区。这个函数<!--
 -->被称为 <code>copy_string</code>。它需要一个指针来定位写入字符的位置并<!--
 -->分配缓冲区的大小。该函数返回一些内容以指示它是成功还是失败。
-让我们假设 <code>0</code> 表示成功，并且提供的缓冲区足够大：</p>
+我们假设 <code>0</code> 表示成功，并且提供的缓冲区足够大：</p>
 <div auto-indent="false" class="sample" data-highlight-only="1" theme="idea">
 <pre><code class="language-kotlin">fun sendString() {
   val buf = ByteArray(255)
@@ -1227,7 +1227,7 @@ fun CPointer&lt;ShortVar&gt;.toKString(): String
 -->数组转换为一个 Kotlin <code>String</code>，假设它是 UTF-8 编码的。</p>
 <h2 id="修改代码">修改代码</h2>
 <p>我们已经看到了所有的定义并且是时候来修改代码了。
-让我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
 -->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">
