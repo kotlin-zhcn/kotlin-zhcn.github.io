@@ -1324,43 +1324,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="平台库">平台库</h1>
-<h2 id="overview">Overview</h2>
-<p>To provide access to user's native operating system services,
-<code>Kotlin/Native</code> distribution includes a set of prebuilt libraries specific to
-each target. We call them <strong>Platform Libraries</strong>.</p>
-<h3 id="posix-bindings">POSIX bindings</h3>
-<p>For all <code>Unix</code> or <code>Windows</code> based targets (including <code>Android</code> and
-<code>iPhone</code>) we provide the <code>posix</code> platform lib. It contains bindings
-to platform's implementation of <code>POSIX</code> standard.</p>
-<p>To use the library just</p>
+<h2 id="概述">概述</h2>
+<p>为了提供对用户原生操作系统服务的访问，
+<code>Kotlin/Native</code> 发行版包含了一组为每个目标平台预构建的库<!--
+-->。我们称之为<strong>平台库</strong>。</p>
+<h3 id="posix-绑定">POSIX 绑定</h3>
+<p>对于所有基于 <code>Unix</code> 或 <code>Windows</code> 的目标平台（包括 <code>Android</code> 与
+<code>iPhone</code>），我们提供了 <code>posix</code> 平台库。它包含对
+<code>POSIX</code> 标准的平台实现的绑定。</p>
+<p>使用该库只需</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import platform.posix.*
 </code></pre>
 </div>
-<p>The only target for which it is not available is <a href="https://en.wikipedia.org/wiki/WebAssembly">WebAssembly</a>.</p>
-<p>Note that the content of <code>platform.posix</code> is NOT identical on
-different platforms, in the same way as different <code>POSIX</code> implementations
-are a little different.</p>
-<h3 id="popular-native-libraries">Popular native libraries</h3>
-<p>There are many more platform libraries available for host and
-cross-compilation targets.  <code>Kotlin/Native</code> distribution provides access to
-<code>OpenGL</code>, <code>zlib</code> and other popular native libraries on
-applicable platforms.</p>
-<p>On Apple platforms <code>objc</code> library is provided for interoperability with <a href="https://en.wikipedia.org/wiki/Objective-C">Objective-C</a>.</p>
-<p>Inspect the contents of <code>dist/klib/platform/$target</code> of the distribution for the details.</p>
-<h2 id="availability-by-default">Availability by default</h2>
-<p>The packages from platform libraries are available by default. No
-special link flags need to be specified to use them. <code>Kotlin/Native</code>
-compiler automatically detects which of the platform libraries have
-been accessed and automatically links the needed libraries.</p>
-<p>On the other hand, the platform libs in the distribution are merely
-just wrappers and bindings to the native libraries.  That means the
-native libraries themselves (<code>.so</code>, <code>.a</code>, <code>.dylib</code>, <code>.dll</code> etc)
-should be installed on the machine.</p>
-<h2 id="examples">Examples</h2>
-<p><code>Kotlin/Native</code> installation provides a wide spectrum of examples
-demonstrating the use of platform libraries. 
-See <a href="https://github.com/JetBrains/kotlin-native/tree/master/samples">samples</a> for details.</p>
+<p>唯一不可用的目标平台是 <a href="https://zh.wikipedia.org/wiki/WebAssembly">WebAssembly</a>。</p>
+<p>请注意，<code>platform.posix</code> 的内容在<!--
+-->不同平台上并不相同，就像不同的 <code>POSIX</code> 实现<!--
+-->一样略有不同。</p>
+<h3 id="热门原生库">热门原生库</h3>
+<p>还有很多平台库可用于所在主机以及<!--
+-->交叉编译目标。<code>Kotlin/Native</code> 发行版可以在适用的平台上访问
+<code>OpenGL</code>、 <code>zlib</code> 以及其他热门原生库<!--
+-->。</p>
+<p>在苹果平台上提供了 <code>objc</code> 库，用来与 <a href="https://zh.wikipedia.org/wiki/Objective-C">Objective-C</a> 进行互操作。</p>
+<p>详细信息请核查发行版的 <code>dist/klib/platform/$target</code> 的内容。</p>
+<h2 id="默认可用">默认可用</h2>
+<p>来自平台库的包都默认可用。使用时无需<!--
+-->指定特殊的链接标志。<code>Kotlin/Native</code>
+编译器会自动检测访问了哪些平台库，
+并自动链接所需的库。</p>
+<p>另一方面，发行版中的平台库仅仅是<!--
+-->对原生库的包装与绑定。这意味着<!--
+-->计算机上需要已经安装了<!--
+-->原生库自身（<code>.so</code>、 <code>.a</code>、 <code>.dylib</code>、 <code>.dll</code> 等）。</p>
+<h2 id="示例">示例</h2>
+<p><code>Kotlin/Native</code> 安装包中提供了大量的示例<!--
+-->演示平台库的使用。
+详见<a href="https://github.com/JetBrains/kotlin-native/tree/master/samples">样例</a>。</p>
 
         </article>
     </div>
