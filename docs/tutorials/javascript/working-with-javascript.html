@@ -831,7 +831,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><a href="#interacting-with-the-dom">Interact with the DOM</a></li>
 <li><a href="#using-kotlinxhtml">Use kotlinx.html to generate HTML</a></li>
-<li><a href="#using-ts2kt-to-generate-header-files-for-kotlin">Use ts2kt to interact with libraries</a></li>
+<li><a href="#using-dukat-to-generate-header-files-for-kotlin">Use dukat to interact with libraries</a></li>
 <li><a href="#using-dynamic">Use dynamic to interact with libraries</a></li>
 </ul>
 <h2 id="interacting-with-the-dom">Interacting with the DOM</h2>
@@ -894,16 +894,16 @@ fun printHello() {
 }
 </code></pre>
 </div>
-<h2 id="using-ts2kt-to-generate-header-files-for-kotlin">Using ts2kt to generate header files for Kotlin</h2>
+<h2 id="using-dukat-to-generate-header-files-for-kotlin">Using dukat to generate header files for Kotlin</h2>
 <p>The standard library provides us with a series of wrappers around DOM as well as functions to work with JavaScript, using static typing. What happens however
 when we want to use a library such as jQuery? Kotlin does not have its own "header" files for all the different libraries available on the JavaScript ecosystem
 however, TypeScript does. The <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">Definitely Typed repository</a>  provides us with a very large selection of header files.</p>
-<p>Using the tool <code>ts2kt</code> (TypeScript to Kotlin) we can convert any <code>d.ts</code> files to Kotlin. To install the tool we can use <code>npm</code></p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">npm -g install ts2kt
+<p>Using the <code>dukat</code> tool we can convert any TypeScript declaration files to Kotlin. To install the tool we can use <code>npm</code></p>
+<pre><code class="code _highlighted" data-lang="text/x-sh">npm -g install dukat
 </code></pre>
 <p>To convert a file we simply provide the input file, and optionally an output directory. The command below will convert the file <code>jquery.d.ts</code> in the current folder, which we've previously
  downloaded from the <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/types/jquery/jquery.d.ts">Definitely Typed repository</a> to the output folder <code>headers</code>:</p>
-<pre><code class="code _highlighted" data-lang="text/x-sh">ts2kt -d headers jquery.d.ts 
+<pre><code class="code _highlighted" data-lang="text/x-sh">dukat -d headers jquery.d.ts 
 </code></pre>
 <p>Once we have the file generated, we can simply include it in our project and use it:</p>
 <div class="sample" data-highlight-only="" theme="idea">

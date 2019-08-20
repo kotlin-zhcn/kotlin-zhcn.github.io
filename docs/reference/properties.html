@@ -1328,15 +1328,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin 类中的属性既可以用关键字 <em class="keyword">var</em> 声明为可变的，也可以用关键字 <em class="keyword">val</em> 声明为只读的。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Address {
-    var name: String = ……
-    var street: String = ……
-    var city: String = ……
-    var state: String? = ……
-    var zip: String = ……
+    var name: String = "Holmes, Sherlock"
+    var street: String = "Baker"
+    var city: String = "London"
+    var state: String? = null
+    var zip: String = "123456"
 }
 </code></pre>
 </div>
-<p>要使用一个属性，只要用名称引用它即可，就像 Java 中的字段：</p>
+<p>要使用一个属性，只要用名称引用它即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun copyAddress(address: Address): Address {
     val result = Address() // Kotlin 中没有“new”关键字
@@ -1431,7 +1431,10 @@ public val table: Map&lt;String, Int&gt;
     }
 </code></pre>
 </div>
-<p>从各方面看，这正是与 Java 相同的方式。因为通过默认 getter 和 setter 访问私有属性会被优化，所以不会引入函数调用开销。</p>
+<blockquote>
+<p><strong>On the JVM</strong>: 通过默认 getter 和 setter 访问私有属性会被优化，
+所以本例不会引入函数调用开销。</p>
+</blockquote>
 <h2 id="编译期常量">编译期常量</h2>
 <p>已知值的属性可以使用 <em class="keyword">const</em> 修饰符标记为 <em>编译期常量</em>。
 这些属性需要满足以下要求：</p>

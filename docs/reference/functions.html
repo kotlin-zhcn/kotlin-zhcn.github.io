@@ -1340,20 +1340,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>调用成员函数使用点表示法：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">Sample().foo() // 创建类 Sample 实例并调用 foo
+<pre><code class="language-kotlin">Stream().read() // 创建类 Stream 实例并调用 read()
 </code></pre>
 </div>
 <h3 id="参数">参数</h3>
 <p>函数参数使用 Pascal 表示法定义，即 <em>name</em>: <em>type</em>。参数用逗号隔开。每个参数必须有显式类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun powerOf(number: Int, exponent: Int) { …… }
+<pre><code class="language-kotlin">fun powerOf(number: Int, exponent: Int) { /*……*/ }
 </code></pre>
 </div>
 <h3 id="默认参数">默认参数</h3>
 <p>函数参数可以有默认值，当省略相应的参数时使用默认值。与其他语言相比，这可以减少<!--
 -->重载数量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) { …… }
+<pre><code class="language-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) { /*……*/ }
 </code></pre>
 </div>
 <p>默认值通过类型后面的 <strong>=</strong> 及给出的值来定义。</p>
@@ -1361,24 +1361,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class A {
-    open fun foo(i: Int = 10) { …… }
+    open fun foo(i: Int = 10) { /*……*/ }
 }
 
 class B : A() {
-    override fun foo(i: Int) { …… }  // 不能有默认值
+    override fun foo(i: Int) { /*……*/ }  // 不能有默认值
 }
 </code></pre>
 </div>
 <p>如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用<a href="#命名参数">命名参数</a>调用该函数来使用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int) { …… }
+<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int) { /*……*/ }
 
 foo(baz = 1) // 使用默认值 bar = 0
 </code></pre>
 </div>
 <p>如果在默认参数之后的最后一个参数是 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>，那么它既可以作为命名参数在括号内传入，也可以在<a href="lambdas.html#将-lambda-表达式传给最后一个参数">括号外</a>传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { …… }
+<pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /*……*/ }
 
 foo(1) { println("hello") }     // 使用默认值 baz = 1
 foo(qux = { println("hello") }) // 使用两个默认值 bar = 0 与 baz = 1
@@ -1394,7 +1394,7 @@ foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
              upperCaseFirstLetter: Boolean = true,
              divideByCamelHumps: Boolean = false,
              wordSeparator: Char = ' ') {
-……
+/*……*/
 }
 </code></pre>
 </div>
@@ -1426,13 +1426,15 @@ foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
 <p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
 <p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun foo(vararg strings: String) { …… }
+<pre><code class="language-kotlin">fun foo(vararg strings: String) { /*……*/ }
 
 foo(strings = *arrayOf("a", "b", "c"))
 </code></pre>
 </div>
-<p>请注意，在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
+<blockquote>
+<p><strong>On the JVM</strong>: 在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
 -->总是保留函数参数的名称。</p>
+</blockquote>
 <h3 id="返回-unit-的函数">返回 Unit 的函数</h3>
 <p>如果一个函数不返回任何有用的值，它的返回类型是 <code>Unit</code>。<code>Unit</code> 是一种只有一个值——<code>Unit</code> 的类型。这个<!--
 -->值不需要显式返回：</p>
@@ -1530,12 +1532,12 @@ val list = asList(-1, 0, *a, 4)
 -->那样省略。这是确保非模糊解析所必需的。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class MyStringCollection {
-    infix fun add(s: String) { …… }
+    infix fun add(s: String) { /*……*/ }
     
     fun build() {
         this add "abc"   // 正确
         add("abc")       // 正确
-        add "abc"        // 错误：必须指定接收者
+        //add "abc"        // 错误：必须指定接收者
     }
 }
 </code></pre>
@@ -1588,7 +1590,7 @@ val list = asList(-1, 0, *a, 4)
 <h2 id="泛型函数">泛型函数</h2>
 <p>函数可以有泛型参数，通过在函数名前使用尖括号指定：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; { …… }
+<pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; { /*……*/ }
 </code></pre>
 </div>
 <p>关于泛型函数的更多信息参见<a href="generics.html">泛型</a>。</p>

@@ -1610,7 +1610,7 @@ ints.filter {
 将从匿名函数自身返回。</p>
 <h3 id="闭包">闭包</h3>
 <p>Lambda 表达式或者匿名函数（以及<a href="functions.html#局部函数">局部函数</a>和<a href="object-declarations.html#对象表达式">对象表达式</a>）
-可以访问其 <em>闭包</em> ，即在外部作用域中声明的变量。 与 Java 不同的是可以修改闭包中捕获的变量：</p>
+可以访问其 <em>闭包</em> ，即在外部作用域中声明的变量。 在 lambda 表达式中可以修改闭包中捕获的变量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">var sum = 0
 ints.filter { it &gt; 0 }.forEach {

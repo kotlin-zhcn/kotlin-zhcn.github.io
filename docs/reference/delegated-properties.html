@@ -1343,7 +1343,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 属性的委托不必实现任何的接口，但是需要提供一个 <code>getValue()</code> 函数（与 <code>setValue()</code>——对于 <em class="keyword">var</em> 属性）。
 例如:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class Delegate {
+<pre><code class="language-kotlin">import kotlin.reflect.KProperty
+
+class Delegate {
     operator fun getValue(thisRef: Any?, property: KProperty&lt;*&gt;): String {
         return "$thisRef, thank you for delegating '${property.name}' to me!"
     }
@@ -1397,8 +1399,8 @@ fun main() {
 <p>默认情况下，对于 lazy 属性的求值是<strong>同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程<!--
 -->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
 -->可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
-而如果你确定初始化将总是发生在单个线程，那么你可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式，
-它不会有任何线程安全的保证以及相关的开销。</p>
+而如果你确定初始化将总是发生在与属性使用位于相同的线程，
+那么可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式：它不会有任何线程安全的保证以及相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
 <p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值与修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个<!--

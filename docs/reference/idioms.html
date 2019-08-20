@@ -1354,6 +1354,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <pre><code class="language-kotlin">val positives = list.filter { it &gt; 0 }
 </code></pre>
 </div>
+<h3 id="检测元素是否存在于集合中">检测元素是否存在于集合中</h3>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">if ("john@example.com" in emailsList) { …… }
+
+if ("jane@example.com" !in emailsList) { …… }
+</code></pre>
+</div>
 <h3 id="字符串内插">字符串内插</h3>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">println("Name $name")

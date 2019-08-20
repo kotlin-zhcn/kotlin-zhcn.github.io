@@ -1343,7 +1343,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="匿名类">匿名类</h2>
-<p>枚举常量也可以声明自己的匿名类：</p>
+<p>枚举常量还可以声明其带有相应方法以及覆盖了基类方法的匿名类。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">enum class ProtocolState {
     WAITING {
@@ -1358,9 +1358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>及相应的方法、以及覆盖基类的方法。注意，如果枚举类定义任何<!--
--->成员，要使用分号将成员定义中的枚举常量定义分隔开，就像<!--
--->在 Java 中一样。</p>
+<p>如果枚举类定义任何成员，那么使用分号将成员定义中的枚举常量定义分隔开。</p>
 <p>枚举条目不能包含内部类以外的嵌套类型（已在 Kotlin 1.2 中弃用）。</p>
 <h2 id="在枚举类中实现接口">在枚举类中实现接口</h2>
 <p>一个枚举类可以实现接口（但不能从类继承），可以为所有条目提供统一的接口成员实现，也可以在相应匿名类中为每个条目提供各自的实现。只需将接口添加到枚举类声明中即可，如下所示：</p>
@@ -1391,7 +1389,7 @@ fun main() {
 </code></pre>
 </div>
 <h2 id="使用枚举常量">使用枚举常量</h2>
-<p>就像在 Java 中一样，Kotlin 中的枚举类也有合成方法允许列出<!--
+<p>Kotlin 中的枚举类也有合成方法允许列出<!--
 -->定义的枚举常量以及通过名称获取枚举常量。这些方法的<!--
 -->签名如下（假设枚举类的名称是 <code>EnumClass</code>）：</p>
 <div class="sample" data-highlight-only="" theme="idea">

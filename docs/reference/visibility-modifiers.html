@@ -1335,8 +1335,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <pre><code class="language-kotlin">// 文件名：example.kt
 package foo
 
-fun baz() { ... }
-class Bar { ... }
+fun baz() { …… }
+class Bar { …… }
 </code></pre>
 </div>
 <ul>
@@ -1368,7 +1368,7 @@ internal val baz = 6    // 相同模块内可见
 <li><code>internal</code> —— 能见到类声明的 <em>本模块内</em> 的任何客户端都可见其 <code>internal</code> 成员；</li>
 <li><code>public</code> ——  能见到类声明的任何客户端都可见其 <code>public</code> 成员。</li>
 </ul>
-<p><em>注意</em> 对于Java用户：Kotlin 中外部类不能访问内部类的 private 成员。</p>
+<p>请注意在 Kotlin 中，外部类不能访问内部类的 private 成员。</p>
 <p>如果你覆盖一个 <code>protected</code> 成员并且没有显式指定其可见性，该成员还会是 <code>protected</code> 可见性。</p>
 <p>例子:</p>
 <div class="sample" data-highlight-only="" theme="idea">

@@ -1325,15 +1325,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="对象表达式与对象声明">对象表达式与对象声明</h1>
 <p>有时候，我们需要创建一个对某个类做了轻微改动的类的对象，而不用为之显式声明新的子类。
-Java 用<em>匿名内部类</em> 处理这种情况。
-Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微概括了下。</p>
+Kotlin 用<em>对象表达式</em>和<em>对象声明</em>处理这种情况。</p>
 <h2 id="对象表达式">对象表达式</h2>
 <p>要创建一个继承自某个（或某些）类型的匿名类的对象，我们会这么写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">window.addMouseListener(object : MouseAdapter() {
-    override fun mouseClicked(e: MouseEvent) { …… }
+    override fun mouseClicked(e: MouseEvent) { /*……*/ }
 
-    override fun mouseEntered(e: MouseEvent) { …… }
+    override fun mouseEntered(e: MouseEvent) { /*……*/ }
 })
 </code></pre>
 </div>
@@ -1344,7 +1343,7 @@ Kotlin 用<em>对象表达式</em>和<em>对象声明</em>对这个概念稍微�
     public open val y: Int = x
 }
 
-interface B { …… }
+interface B { /*……*/ }
 
 val ab: A = object : A(1), B {
     override val y = 15
@@ -1385,8 +1384,7 @@ val ab: A = object : A(1), B {
 }
 </code></pre>
 </div>
-<p>就像 Java 匿名内部类一样，对象表达式中的代码可以访问来自包含它的作用域的变量。
-（与 Java 不同的是，这不仅限于 final 或实际相当于 final 的变量。）</p>
+<p>对象表达式中的代码可以访问来自包含它的作用域的变量。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun countClicks(window: JComponent) {
     var clickCount = 0

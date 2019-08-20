@@ -1336,20 +1336,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <h3 id="应用风格指南">应用风格指南</h3>
 <p>如需根据本风格指南配置 IntelliJ 格式化程序，请安装 Kotlin 插件
-1.2.20 或更高版本，转到“Settings | Editor | Code Style | Kotlin”，点击右<!--
--->上角的“Set from…”链接，并从菜单中选择“Predefined style / Kotlin style guide”。</p>
+1.2.20 或更高版本，转到 <strong>Settings | Editor | Code Style | Kotlin</strong>，点击右<!--
+-->上角的 <strong>Set from…</strong> 链接，并从菜单中选择 <strong>Predefined style | Kotlin style guide</strong>。</p>
 <p>如需验证代码已按风格指南格式化，请转到探查设置（Inspections）并启用
-“Kotlin | Style issues | File is not formatted according to project settings”探查项。
+<strong>Kotlin | Style issues | File is not formatted according to project settings</strong> 探查项。
 验证风格指南中描述的其他问题（如命名约定）的附加探查项默认已启用。</p>
 <h2 id="源代码组织">源代码组织</h2>
 <h3 id="目录结构">目录结构</h3>
-<p>在混合语言项目中，Kotlin 源文件应当与 Java 源文件位于同一源文件根目录下，
-并遵循相同的目录结构（每个文件应存储在与其 package 语句对应的目录中
-）。</p>
-<p>在纯 Kotlin 项目中，推荐的目录结构遵循省略了公共根包的包结构
-（例如，如果项目中的所有代码都位于“org.example.kotlin”包及其<!--
--->子包中，那么“org.example.kotlin”包的文件应该直接放在源代码根目录下，而
-“org.example.kotlin.foo.bar”中的文件应该放在源代码根目录下的“foo/bar”子目录中）。</p>
+<p>在纯 Kotlin 项目中，推荐的目录结构遵循<!--
+-->省略了公共根包的包结构。例如，如果项目中的所有代码都位于 <code>org.example.kotlin</code> 包及其<!--
+-->子包中，那么 <code>org.example.kotlin</code> 包的文件应该直接放在源代码根目录下，而
+<code>org.example.kotlin.network.socket</code> 中的文件应该放在源代码根目录下的 <code>network/socket</code> 子目录中。</p>
+<blockquote>
+<p><strong>On the JVM</strong>: Kotlin 源文件应当与 Java 源文件位于同一源文件根目录下，
+并遵循相同的目录结构（每个文件应存储在与其 package 语句对应的目录中<!--
+-->。</p>
+</blockquote>
 <h3 id="源文件名称">源文件名称</h3>
 <p>如果 Kotlin 文件包含单个类（以及可能相关的顶层声明），那么文件名应该与<!--
 -->该类的名称相同，并追加 .kt 扩展名。如果文件包含多个类或只包含顶层声明，
@@ -1385,11 +1387,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="重载布局">重载布局</h3>
 <p>在类中总是将重载放在一起。</p>
 <h2 id="命名规则">命名规则</h2>
-<p>Kotlin 遵循 Java 命名约定。尤其是：</p>
-<p>包的名称总是小写且不使用下划线（<code>org.example.myproject</code>）。
+<p>Package and class naming rules in Kotlin are quite simple:</p>
+<ul>
+<li>
+<p>包的名称总是小写且不使用下划线（<code>org.example.project</code>）。
 通常不鼓励使用多个词的名称，但是如果确实需要使用多个词，可以将它们连接在一起<!--
 -->或使用驼峰（<code>org.example.myProject</code>）。</p>
+</li>
+<li>
 <p>类与对象的名称以大写字母开头并使用驼峰：</p>
+</li>
+</ul>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class DeclarationProcessor { …… }
 
@@ -1466,7 +1474,6 @@ val USER_NAME_FIELD = "UserName"
 <p>当使用首字母缩写作为名称的一部分时，如果缩写由两个字母组成，就将其大写（<code>IOStream</code>）；
 而如果缩写更长一些，就只大写其首字母（<code>XmlFormatter</code>、 <code>HttpInputStream</code>）。</p>
 <h2 id="格式化">格式化</h2>
-<p>在大多数情况下，Kotlin 遵循 Java 编码规范。</p>
 <p>使用 4 个空格缩进。不要使用 tab。</p>
 <p>对于花括号，将左花括号放在结构起始处的行尾，而将右花括号<!--
 -->放在与左括结构横向对齐的单独一行。</p>
@@ -1488,7 +1495,7 @@ Java 风格的花括号格式，如果尝试使用不同的格式化风格，那
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class A(val x: Int)
 
-fun foo(x: Int) { ... }
+fun foo(x: Int) { …… }
 
 fun bar() {
     foo(1)
@@ -1945,7 +1952,7 @@ when(x) {
 <p>当在使用多个高阶函数的复杂表达式与循环之间进行选择时，请了解<!--
 -->每种情况下所执行操作的开销并且记得考虑性能因素。</p>
 <h3 id="区间上循环">区间上循环</h3>
-<p>使用 <code>until</code> 函数在一个区间上循环：</p>
+<p>使用 <code>until</code> 函数在一个开区间上循环：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">for (i in 0..n - 1) { …… }  // 不良
 for (i in 0 until n) { …… }  // 良好

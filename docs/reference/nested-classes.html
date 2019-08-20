@@ -1361,7 +1361,7 @@ val demo = Outer().Inner().foo() // == 1
 })
 </code></pre>
 </div>
-<p>如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
+<p><em>Note</em>: on the JVM, 如果对象是函数式 Java 接口（即具有单个抽象方法的 Java 接口）的实例，
 你可以使用带接口类型前缀的lambda表达式创建它：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val listener = ActionListener { println("clicked") }

@@ -1326,16 +1326,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="包">包</h1>
 <p>源文件通常以包声明开头:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">package foo.bar
+<pre><code class="language-kotlin">package org.example
 
-fun baz() { ... }
-class Goo { ... }
+fun printMessage() { /*...*/ }
+class Message { /*...*/ }
 
 // ……
 </code></pre>
 </div>
 <p>源文件所有内容（无论是类还是函数）都包含在声明的包内。
-所以上例中 <code>baz()</code> 的全名是 <code>foo.bar.baz</code>、<code>Goo</code> 的全名是 <code>foo.bar.Goo</code>。</p>
+所以上例中 <code>printMessage()</code> 的全名是 <code>org.example.printMessage</code>，
+而 <code>Message</code> 的全名是 <code>org.example.Message</code>。</p>
 <p>如果没有指明包，该文件的内容属于无名字的默认包。</p>
 <h2 id="默认导入">默认导入</h2>
 <p>有多个包会默认导入到每个 Kotlin 文件中：</p>
@@ -1368,18 +1369,18 @@ class Goo { ... }
 导入语法在<a href="grammar.html#importHeader">语法</a>中讲述。</p>
 <p>可以导入一个单独的名字，如.</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import foo.Bar // 现在 Bar 可以不用限定符访问
+<pre><code class="language-kotlin">import org.example.Message // 现在 Message 可以不用限定符访问
 </code></pre>
 </div>
 <p>也可以导入一个作用域下的所有内容（包、类、对象等）:</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import foo.* // “foo”中的一切都可访问
+<pre><code class="language-kotlin">import org.example.* // “org.example”中的一切都可访问
 </code></pre>
 </div>
 <p>如果出现名字冲突，可以使用 <em class="keyword">as</em> 关键字在本地重命名冲突项来消歧义：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import foo.Bar // Bar 可访问
-import bar.Bar as bBar // bBar 代表“bar.Bar”
+<pre><code class="language-kotlin">import org.example.Message // Message 可访问
+import org.test.Message as testMessage // testMessage 代表“org.test.Message”
 </code></pre>
 </div>
 <p>关键字 <code>import</code> 并不仅限于导入类；也可用它来导入其他声明：</p>
@@ -1388,7 +1389,6 @@ import bar.Bar as bBar // bBar 代表“bar.Bar”
 <li>在<a href="object-declarations.html#对象声明">对象声明</a>中声明的函数和属性;</li>
 <li><a href="enum-classes.html">枚举常量</a>。</li>
 </ul>
-<p>与 Java 不同，Kotlin 没有单独的<a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/static-import.html">“import static”</a>语法； 所有这些声明都用 <code>import</code> 关键字导入。</p>
 <h2 id="顶层声明的可见性">顶层声明的可见性</h2>
 <p>如果顶层声明是 <em class="keyword">private</em> 的，它是声明它的文件所私有的（参见 <a href="visibility-modifiers.html">可见性修饰符</a>）。</p>
 

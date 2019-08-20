@@ -1395,7 +1395,7 @@ Kotlin 中的不安全转换由中缀操作符 <em class="keyword">as</em>（参
 </div>
 <p>请注意，<em class="keyword">null</em> 不能转换为 <code>String</code> 因该类型不是<a href="null-safety.html">可空的</a>，
 即如果 <code>y</code> 为空，上面的代码会抛出一个异常。
-为了匹配 Java 转换语义，我们必须在转换右边有可空类型，就像：</p>
+To make such code correct for null values, use the nullable type on the right hand side of the cast:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val x: String? = y as String?
 </code></pre>
