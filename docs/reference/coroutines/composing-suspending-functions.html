@@ -1459,10 +1459,10 @@ Completed in 1017 ms
 <p>这里快了两倍，因为两个协程并发执行。
 请注意，使用协程进行并发总是显式的。</p>
 <h3 id="惰性启动的-async">惰性启动的 async</h3>
-<p>Optionally, <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> can be made lazy by setting its <code>start</code> parameter to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a>. 
-In this mode it only starts the coroutine when its result is required by 
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a>, or if its <code>Job</code>'s <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> function 
-is invoked. Run the following example:</p>
+<p>可选的，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 可以通过将 <code>start</code> 参数设置为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-start/-l-a-z-y.html">CoroutineStart.LAZY</a> 而变为惰性的。
+在这个模式下，只有结果通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a>
+获取的时候协程才会启动，或者在 <code>Job</code> 的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>
+函数调用的时候。运行下面的示例：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlin.system.*
@@ -1500,14 +1500,14 @@ suspend fun doSomethingUsefulTwo(): Int {
 Completed in 1017 ms
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<p>因此，在先前的例子中这里定义的两个协程没有被执行，但是控制权在于<!--
+<p>因此，在先前的例子中这里定义的两个协程没有执行，但是控制权在于<!--
 -->程序员准确的在开始执行时调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>。我们首先
 调用 <code>one</code>，然后调用 <code>two</code>，接下来等待这个协程执行完毕。</p>
-<p>Note that if we just call <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> in <code>println</code> without first calling <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a> on individual 
-coroutines, this will lead to sequential behavior, since <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> starts the coroutine 
-execution and waits for its finish, which is not the intended use-case for laziness. 
-The use-case for <code>async(start = CoroutineStart.LAZY)</code> is a replacement for the 
-standard <code>lazy</code> function in cases when computation of the value involves suspending functions.</p>
+<p>注意，如果我们只是在 <code>println</code> 中调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a>，而没有在<!--
+-->单独的协程中调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/start.html">start</a>，这将会导致顺序行为，直到 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 启动该协程
+执行并等待至它结束，这并不是惰性的预期用例。
+在计算一个值涉及挂起函数时，这个 <code>async(start = CoroutineStart.LAZY)</code> 的用例用于替代<!--
+-->标准库中的 <code>lazy</code> 函数。</p>
 <h3 id="async-风格的函数">async 风格的函数</h3>
 <p>我们可以定义异步风格的函数来 <em>异步</em> 的调用 <code>doSomethingUsefulOne</code> 和 <code>doSomethingUsefulTwo</code>
 并使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 协程建造器并带有一个显式的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 引用。
@@ -1526,7 +1526,7 @@ fun somethingUsefulTwoAsync() = GlobalScope.async {
 }
 </code></pre>
 </div>
-<p>注意，这些 <code>xxxAsync</code> 函数<strong>不是</strong> <em>挂起</em> 函数。它们可以在任何地方被使用。
+<p>注意，这些 <code>xxxAsync</code> 函数<strong>不是</strong> <em>挂起</em> 函数。它们可以在任何地方使用。
 然而，它们总是在调用它们的代码中意味着<!--
 -->异步（这里的意思是 <em>并发</em> ）执行。</p>
 <p>下面的例子展示了它们在协程的外面是如何使用的：</p>
@@ -1584,7 +1584,7 @@ Completed in 1085 ms
 原因如下所述。</p>
 </blockquote>
 <p>考虑一下如果 <code>val one = somethingUsefulOneAsync()</code> 这一行和 <code>one.await()</code> 表达式这里在代码中有逻辑错误，
-并且程序抛出了异常以及程序在操作的过程中被中止，将会发生什么。
+并且程序抛出了异常以及程序在操作的过程中中止，将会发生什么。
 通常情况下，一个全局的异常处理者会捕获这个异常，将异常打印成日记并报告给开发者，但是反之<!--
 -->该程序将会继续执行其它操作。但是这里我们的 <code>somethingUsefulOneAsync</code> 仍然在后台执行，
 尽管如此，启动它的那次操作也会被终止。这个程序将不会进行结构化<!--
@@ -1676,8 +1676,8 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>Note how both the first <code>async</code> and the awaiting parent are cancelled on failure of one of the children
-(namely, <code>two</code>):</p>
+<p>注意，当任意一个子协程失败的时候，第一个 <code>async</code> 以及等待中的父协程都会被取消
+（即 <code>two</code>）：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Second child throws an exception
 First child was cancelled
 Computation failed with ArithmeticException
@@ -1717,10 +1717,12 @@ Computation failed with ArithmeticException
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、<a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a> &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
+                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
+                        <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
+                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">Yuang Qiao</a>
+                        &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
