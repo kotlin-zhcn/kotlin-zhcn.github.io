@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -701,7 +701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1377,7 +1377,7 @@ fun calendarDemo() {
 </div>
 <h2 id="空安全与平台类型">空安全与平台类型</h2>
 <p>Java 中的任何引用都可能是 <em class="keyword">null</em>，这使得 Kotlin 对来自 Java 的对象要求严格空安全是不现实的。
-Java 声明的类型在 Kotlin 中会被特别对待并称为<em>平台类型</em>。对这种类型的空检查会放宽，
+Java 声明的类型在 Kotlin 中会被特别对待并称为<em>平台类型</em>。对这种类型的空检测会放宽，
 因此它们的安全保证与在 Java 中相同（更多请参见<a href="#已映射类型">下文</a>）。</p>
 <p>考虑以下示例：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1846,7 +1846,7 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a href="#空安
 这使得执行 <em class="keyword">is</em>-检测不可能照顾到泛型。
 Kotlin 只允许 <em class="keyword">is</em>-检测星投影的泛型类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">if (a is List&lt;Int&gt;) // 错误：无法检查它是否真的是一个 Int 列表
+<pre><code class="language-kotlin">if (a is List&lt;Int&gt;) // 错误：无法检测它是否真的是一个 Int 列表
 // but
 if (a is List&lt;*&gt;) // OK：不保证列表的内容
 </code></pre>

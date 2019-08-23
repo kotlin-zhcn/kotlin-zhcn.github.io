@@ -262,7 +262,7 @@ output = null   // 编译错误
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">val name: String? = null    // 可控类型
 println(name.length())      // 编译错误
 </code></pre>
-<p>并且如果你检查类型是正确的，编译器会为你做自动类型转换</p>
+<p>并且如果你检测类型是正确的，编译器会为你做自动类型转换</p>
 <pre><code class="code _highlighted" data-lang="text/x-kotlin">fun calculateTotal(obj: Any) {
     if (obj is Invoice)
         obj.calculateTotal()

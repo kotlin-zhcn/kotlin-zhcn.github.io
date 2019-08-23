@@ -225,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1593,7 +1593,7 @@ fun main(args: Array&lt;String&gt;) {
 <h3 id="委托属性绑定的拦截">委托属性绑定的拦截</h3>
 <p>对于<a href="delegated-properties.html">委托属性</a>，现在可以使用 <code>provideDelegate</code> 操作符拦截委托到属性之间的绑定
 。
-例如，如果我们想要在绑定之前检查属性名称，我们可以这样写：</p>
+例如，如果我们想要在绑定之前检测属性名称，我们可以这样写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class ResourceLoader&lt;T&gt;(id: ResourceID&lt;T&gt;) {
     operator fun provideDelegate(thisRef: MyUI, property: KProperty&lt;*&gt;): ReadOnlyProperty&lt;MyUI, T&gt; {
@@ -1703,7 +1703,7 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检查接收者是否满足该谓词，并<!--
+<p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检测接收者是否满足该谓词，并<!--
 -->在满足时返回该接收者否则不满足时返回 <code>null</code>。
 结合 elvis-操作符和及早返回，它允许编写如下结构：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1903,7 +1903,7 @@ Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>�
 -->几个关键类（<code>StringBuilder</code>、 <code>Comparator</code>）现在都定义在 <code>kotlin</code> 包下。在 JVM 平台上，一些名称是相应 JDK 类的<!--
 -->类型别名，而在 JS 平台上，这些类在 Kotlin 标准库中实现。</p>
 <h3 id="更好的代码生成">更好的代码生成</h3>
-<p>JavaScript 后端现在生成更加可静态检查的代码，这对 JS 代码处理工具（如
+<p>JavaScript 后端现在生成更加可静态检测的代码，这对 JS 代码处理工具（如
 minifiers、 optimisers、 linters 等）更加友好。</p>
 <h3 id="external-修饰符"><code>external</code> 修饰符</h3>
 <p>如果你需要以类型安全的方式在 Kotlin 中访问 JavaScript 实现的类，

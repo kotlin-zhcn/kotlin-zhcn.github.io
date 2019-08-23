@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1443,7 +1443,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>在这里我们向上遍历一棵树并且检查每个节点是不是特定的类型。
+<p>在这里我们向上遍历一棵树并且检测每个节点是不是特定的类型。
 这都没有问题，但是调用处不是很优雅：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">treeNode.findParentOfType(MyTreeNode::class.java)
@@ -1505,7 +1505,7 @@ var bar: Bar
 <p>当一个内联函数是 <code>public</code> 或 <code>protected</code> 而不是 <code>private</code> 或 <code>internal</code> 声明的一部分时，就会认为它是一个<a href="visibility-modifiers.html#模块">模块级</a>的公有 API。可以在其他模块中调用它，并且也可以在调用处内联这样的调用。</p>
 <p>这带来了一些由模块做这样变更时导致的二进制兼容的风险——声明一个内联函数但调用它的模块在它修改后并没有重新编译。</p>
 <p>为了消除这种由<strong>非</strong>公有 API 变更引入的不兼容的风险，公有 API 内联函数体内不允许使用非公有声明，即，不允许使用 <code>private</code> 与 <code>internal</code> 声明以及其部件。</p>
-<p>一个 <code>internal</code> 声明可以由 <code>@PublishedApi</code> 标注，这会允许它在公有 API 内联函数中使用。当一个 <code>internal</code> 内联函数标记有 <code>@PublishedApi</code> 时，也会像公有函数一样检查其函数体。</p>
+<p>一个 <code>internal</code> 声明可以由 <code>@PublishedApi</code> 标注，这会允许它在公有 API 内联函数中使用。当一个 <code>internal</code> 内联函数标记有 <code>@PublishedApi</code> 时，也会像公有函数一样检测其函数体。</p>
 
         </article>
     </div>

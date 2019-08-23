@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1363,7 +1363,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p><img alt="Collection interfaces hierarchy" src="/assets/images/reference/collections-overview/collections-diagram.png"/></p>
 <p>让我们来看看接口及其实现。</p>
 <h3 id="collection">Collection</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection&lt;T&gt;</code></a> 是集合层次结构的根。此接口表示一个只读集合的共同行为：检索大小、检查一个项的成员等等。
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection&lt;T&gt;</code></a> 是集合层次结构的根。此接口表示一个只读集合的共同行为：检索大小、检测是否为成员等等。
 <code>Collection</code> 继承自 <code>Iterable &lt;T&gt;</code> 接口，它定义了迭代元素的操作。可以使用 <code>Collection</code> 作为适用于不同集合类型的函数的参数。对于更具体的情况，请使用 <code>Collection</code> 的继承者： <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-set/index.html"><code>Set</code></a>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun printAll(strings: Collection&lt;String&gt;) {

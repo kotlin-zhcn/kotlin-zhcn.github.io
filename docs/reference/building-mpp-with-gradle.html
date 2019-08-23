@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1586,10 +1586,10 @@ accept the target name and a configuring code block:</p>
 <p>The preset functions return an existing target if there is one. This can be used to configure an existing target:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
-    /* ... */
+    /* …… */
 
     // Configure the attributes of the 'jvm6' target:
-    jvm("jvm6").attributes { /* ... */ }
+    jvm("jvm6").attributes { /* …… */ }
 }
 </code></pre>
 </div>
@@ -1607,7 +1607,7 @@ access them by their names or configure all targets:</p>
 
     // Configure all targets, including those which will be added later:
     targets.all {
-        compilations["main"].defaultSourceSet { /* ... */ }
+        compilations["main"].defaultSourceSet { /* …… */ }
     }
 }
 </code></pre>
@@ -1632,7 +1632,7 @@ and a configuration code block.</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetPreset
 
-/* ... */
+/* …… */
 
 kotlin {
     presets.withType&lt;KotlinNativeTargetPreset&gt;().forEach {
@@ -1741,13 +1741,13 @@ compilation <code>foo</code> of a target <code>bar</code> has the name <code>bar
     sourceSets {
         // The default source set for the 'main` compilation of the 'jvm' target:
         jvmMain {
-            /* ... */
+            /* …… */
         }
     }
 
     // Alternatively, access it from the target's compilation:
     jvm().compilations.main.defaultSourceSet {
-        /* ... */
+        /* …… */
     }
 }
 </code></pre>
@@ -1761,13 +1761,13 @@ compilation <code>foo</code> of a target <code>bar</code> has the name <code>bar
     sourceSets {
         // The default source set for the 'main` compilation of the 'jvm' target:
         val jvmMain by getting {
-            /* ... */
+            /* …… */
         }
     }
 
     // Alternatively, access it from the target's compilation:
     jvm().compilations["main"].defaultSourceSet {
-        /* ... */
+        /* …… */
     }
 }
 </code></pre>
@@ -1790,7 +1790,7 @@ of a <code>jvm()</code> target:</p>
                     // Compile against the main compilation's compile classpath and outputs:
                     implementation(main.compileDependencyFiles + main.output.classesDirs)
                     implementation kotlin('test-junit')
-                    /* ... */
+                    /* …… */
                 }
             }
 
@@ -1822,7 +1822,7 @@ of a <code>jvm()</code> target:</p>
                         // Compile against the main compilation's compile classpath and outputs:
                         implementation(main.compileDependencyFiles + main.output.classesDirs)
                         implementation(kotlin("test-junit"))
-                        /* ... */
+                        /* …… */
                     }
                 }
 
@@ -1858,8 +1858,8 @@ features specific to that target's platform.</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets { 
-        foo { /* ... */ } // create or configure a source set by the name 'foo' 
-        bar { /* ... */ }
+        foo { /* …… */ } // create or configure a source set by the name 'foo' 
+        bar { /* …… */ }
     }
 }
 </code></pre>
@@ -1869,8 +1869,8 @@ features specific to that target's platform.</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
     sourceSets {
-        val foo by creating { /* ... */ } // create a new source set by the name 'foo'
-        val bar by getting { /* ... */ } // configure an existing source set by the name 'bar'
+        val foo by creating { /* …… */ } // create a new source set by the name 'foo'
+        val bar by getting { /* …… */ } // configure an existing source set by the name 'bar'
     }
 }
 </code></pre>
@@ -1942,10 +1942,10 @@ into the same target binary form, such as JVM class files or JS code;</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets {
-        commonMain { /* ... */ }
+        commonMain { /* …… */ }
         allJvm {
             dependsOn commonMain
-            /* ... */
+            /* …… */
         }
     }
 }
@@ -1956,10 +1956,10 @@ into the same target binary form, such as JVM class files or JS code;</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
     sourceSets {
-        val commonMain by getting { /* ... */ }
+        val commonMain by getting { /* …… */ }
         val allJvm by creating {
             dependsOn(commonMain)
-            /* ... */
+            /* …… */
         }
     }
 }
@@ -1982,17 +1982,17 @@ Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(co
         // custom source set with tests for the two targets
         desktopTest {
             dependsOn commonTest
-            /* ... */
+            /* …… */
         }
         // Make the 'windows' default test source set for depend on 'desktopTest'
         mingwX64().compilations.test.defaultSourceSet {
             dependsOn desktopTest
-            /* ... */
+            /* …… */
         }
         // And do the same for the other target:
         linuxX64().compilations.test.defaultSourceSet {
             dependsOn desktopTest
-            /* ... */
+            /* …… */
         }
     }
 }
@@ -2009,17 +2009,17 @@ Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(co
         // custom source set with tests for the two targets
         val desktopTest by creating {
             dependsOn(getByName("commonTest"))
-            /* ... */
+            /* …… */
         }
         // Make the 'windows' default test source set for depend on 'desktopTest'
         mingwX64().compilations["test"].defaultSourceSet {
             dependsOn(desktopTest)
-            /* ... */
+            /* …… */
         }
         // And do the same for the other target:
         linuxX64().compilations["test"].defaultSourceSet {
             dependsOn(desktopTest)
-            /* ... */
+            /* …… */
         }
     }
 }
@@ -2256,14 +2256,14 @@ Adding new targets for a multiplatform library at the consumer's side is not sup
 follows:</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    /* ... */
+    /* …… */
     id("maven-publish")
 }
 </code></pre>
 </div>
 <p>A library also needs <code>group</code> and <code>version</code> to be set in the project:</p>
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">plugins { /* ... */ }
+<pre><code class="language-groovy">plugins { /* …… */ }
 
 group = "com.example.my.library"
 version = "0.0.1"
@@ -2400,7 +2400,7 @@ publications. The default artifact ID of this publication matches the project na
 To configure this publication, access it via the <code>publishing { ... }</code> DSL of the <code>maven-publish</code> plugin:</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">kotlin { /* ... */ }
+<pre><code class="language-groovy">kotlin { /* …… */ }
 
 publishing {
     publications {
@@ -2414,7 +2414,7 @@ publishing {
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">kotlin { /* ... */ }
+<pre><code class="language-kotlin">kotlin { /* …… */ }
 
 publishing {
     publications {
@@ -2594,7 +2594,7 @@ Creating an Android target requires that one of the Android Gradle plugins, like
     id("org.jetbrains.kotlin.multiplatform").version("1.3.41")
 }
 
-android { /* ... */ }
+android { /* …… */ }
 
 kotlin {
     android { // Create the Android target
@@ -2611,7 +2611,7 @@ kotlin {
     kotlin("multiplatform").version("1.3.41")
 }
 
-android { /* ... */ }
+android { /* …… */ }
 
 kotlin {
     android { // Create the Android target
@@ -2636,7 +2636,7 @@ to be done in a top-level <code>dependencies { ... }</code> block rather than wi
 <pre><code class="language-kotlin">// ...
 
 kotlin {
-    android { /* ... */ }
+    android { /* …… */ }
 }
 
 dependencies {
@@ -3202,7 +3202,7 @@ the <code>cinterops</code> block of the compilation:</p>
                     includeDirs("include/directory", "another/directory")
                 }
 
-                anotherInterop { /* ... */ }
+                anotherInterop { /* …… */ }
             }
         }
     }
@@ -3239,7 +3239,7 @@ the <code>cinterops</code> block of the compilation:</p>
                 includeDirs("include/directory", "another/directory")
             }
 
-            val anotherInterop by cinterops.creating { /* ... */ }
+            val anotherInterop by cinterops.creating { /* …… */ }
         }
     }
 }

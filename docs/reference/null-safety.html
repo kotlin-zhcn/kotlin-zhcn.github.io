@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -701,7 +701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1378,13 +1378,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <p>但是我们还是需要访问该属性，对吧？有几种方式可以做到。</p>
-<h2 id="在条件中检查-null">在条件中检查 <em class="keyword">null</em></h2>
-<p>首先，你可以显式检查 <code>b</code> 是否为 <em class="keyword">null</em>，并分别处理两种可能：</p>
+<h2 id="在条件中检测-null">在条件中检测 <em class="keyword">null</em></h2>
+<p>首先，你可以显式检测 <code>b</code> 是否为 <em class="keyword">null</em>，并分别处理两种可能：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = if (b != null) b.length else -1
 </code></pre>
 </div>
-<p>编译器会跟踪所执行检查的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
+<p>编译器会跟踪所执行检测的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
 同时，也支持更复杂（更智能）的条件：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1400,9 +1400,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </code></pre>
 </div>
-<p>请注意，这只适用于 <code>b</code> 是不可变的情况（即在检查和使用之间没有修改过的局部变量
+<p>请注意，这只适用于 <code>b</code> 是不可变的情况（即在检测和使用之间没有修改过的局部变量
 ，或者不可覆盖并且有幕后字段的 <em class="keyword">val</em> 成员），因为否则可能会发生<!--
--->在检查之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
+-->在检测之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
 <h2 id="安全的调用">安全的调用</h2>
 <p>你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
 <div class="sample" theme="idea">
@@ -1456,7 +1456,7 @@ person?.department?.head = managersPool.getManager()
 <p>如果 <code>?:</code> 左侧表达式非空，elvis 操作符就返回其左侧表达式，否则返回右侧表达式。
 请注意，当且仅当左侧为空时，才会对右侧表达式求值。</p>
 <p>请注意，因为 <em class="keyword">throw</em> 和 <em class="keyword">return</em> 在 Kotlin 中都是表达式，所以它们也可以用在
- elvis 操作符右侧。这可能会非常方便，例如，检查函数参数：</p>
+ elvis 操作符右侧。这可能会非常方便，例如，检测函数参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(node: Node): String? {
     val parent = node.getParent() ?: return null

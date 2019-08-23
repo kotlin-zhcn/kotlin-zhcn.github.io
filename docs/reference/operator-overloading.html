@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -701,7 +701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1400,7 +1400,7 @@ fun main() {
 <ul>
 <li>确定 <code>a</code> 的类型，令其为 <code>T</code>；</li>
 <li>查找一个适用于类型为 <code>T</code> 的接收者的、带有 <code>operator</code> 修饰符的无参数函数 <code>inc()</code>；</li>
-<li>检查函数的返回类型是 <code>T</code> 的子类型。</li>
+<li>检测函数的返回类型是 <code>T</code> 的子类型。</li>
 </ul>
 <p>计算表达式的步骤是：</p>
 <ul>
@@ -1585,7 +1585,7 @@ Kotlin 1.1 中被弃用。</p>
 <li>生成 <code>a.plusAssign(b)</code> 的代码；</li>
 </ul>
 </li>
-<li>否则试着生成 <code>a = a + b</code> 的代码（这里包含类型检查：<code>a + b</code> 的类型必须是 <code>a</code> 的子类型）。</li>
+<li>否则试着生成 <code>a = a + b</code> 的代码（这里包含类型检测：<code>a + b</code> 的类型必须是 <code>a</code> 的子类型）。</li>
 </ul>
 <p><em>注意</em>：赋值在 Kotlin 中<em>不是</em>表达式。</p>
 <h3 id="equals">相等与不等操作符</h3>
@@ -1608,7 +1608,7 @@ Kotlin 1.1 中被弃用。</p>
 </tbody>
 </table>
 <p>这些操作符只使用函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html"><code>equals(other: Any?): Boolean</code></a>，可以覆盖它来提供自定义的相等性检测实现。不会调用任何其他同名函数（如 <code>equals(other: Foo)</code>）。</p>
-<p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检查）不可重载，因此不存在对他们的约定。</p>
+<p><em>注意</em>：<code>===</code> 和 <code>!==</code>（同一性检测）不可重载，因此不存在对他们的约定。</p>
 <p>这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值。
 <code>null == null</code>  总是 true，对于非空的 <code>x</code>，<code>x == null</code> 总是 false 而不会调用 <code>x.equals()</code>。</p>
 <h3 id="comparison">比较操作符</h3>

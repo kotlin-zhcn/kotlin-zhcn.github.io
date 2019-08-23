@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1432,7 +1432,7 @@ public val table: Map&lt;String, Int&gt;
 </code></pre>
 </div>
 <blockquote>
-<p><strong>On the JVM</strong>: 通过默认 getter 和 setter 访问私有属性会被优化，
+<p><strong>对于 JVM 平台</strong>：通过默认 getter 和 setter 访问私有属性会被优化，
 所以本例不会引入函数调用开销。</p>
 </blockquote>
 <h2 id="编译期常量">编译期常量</h2>
@@ -1454,7 +1454,7 @@ public val table: Map&lt;String, Int&gt;
 <p>一般地，属性声明为非空类型必须在构造函数中初始化。
 然而，这经常不方便。例如：属性可以通过依赖注入来初始化，
 或者在单元测试的 setup 方法中初始化。 这种情况下，你不能在构造函数内提供一个非空初始器。
-但你仍然想在类体中引用该属性时避免空检查。</p>
+但你仍然想在类体中引用该属性时避免空检测。</p>
 <p>为处理这种情况，你可以用 <code>lateinit</code> 修饰符标记该属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">public class MyTest {

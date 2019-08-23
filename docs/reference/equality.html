@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -701,7 +701,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1326,7 +1326,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="相等性">相等性</h1>
 <p>Kotlin 中有两种类型的相等性：</p>
 <ul>
-<li>结构相等（用 <code>equals()</code> 检查）；</li>
+<li>结构相等（用 <code>equals()</code> 检测）；</li>
 <li>引用相等（两个引用指向同一对象）。</li>
 </ul>
 <h2 id="结构相等">结构相等</h2>
@@ -1335,7 +1335,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <pre><code class="language-kotlin">a?.equals(b) ?: (b === null)
 </code></pre>
 </div>
-<p>也就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检查 b 是否与 <code>null</code> 引用相等。</p>
+<p>也就是说如果 <code>a</code> 不是 <code>null</code> 则调用 <code>equals(Any?)</code> 函数，否则（即 <code>a</code> 是 <code>null</code>）检测 b 是否与 <code>null</code> 引用相等。</p>
 <p>请注意，当与 <code>null</code> 显式比较时完全没必要优化你的代码：<code>a == null</code> 会被自动转换为 <code>a === null</code>。</p>
 <p>如需提供自定义的相等检测实现，请覆盖 [<code>equals(other: Any?): Boolean</code>]https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/equals.html) 函数。名称相同但签名不同的函数，如 <code>equals(other: Foo)</code> 并不会影响操作符 <code>==</code> 与 <code>!=</code> 的相等性检测。</p>
 <p>结构相等与 <code>Comparable&lt;……&gt;</code> 接口定义的比较无关，因此只有自定义的 <code>equals(Any?)</code> 实现可能会影响该操作符的行为。</p>

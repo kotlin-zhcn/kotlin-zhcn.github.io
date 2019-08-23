@@ -227,7 +227,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基础语法</span>
+                <span class="text">基本语法</span>
             </a>
     </div>
 
@@ -699,7 +699,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">类型检查与转换</span>
+                <span class="text">类型检测与转换</span>
             </a>
     </div>
 
@@ -1538,8 +1538,8 @@ class C {
 <p>通过定义 <code>provideDelegate</code> 操作符，可以扩展创建属性实现所委托对象的逻辑。
 如果 <code>by</code> 右侧所使用的对象将 <code>provideDelegate</code> 定义为成员或扩展函数，那么会调用该函数来<!--
 -->创建属性委托实例。</p>
-<p><code>provideDelegate</code> 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检查属性一致性。</p>
-<p>例如，如果要在绑定之前检查属性名称，可以这样写：</p>
+<p><code>provideDelegate</code> 的一个可能的使用场景是在创建属性时（而不仅在其 getter 或 setter 中）检测属性一致性。</p>
+<p>例如，如果要在绑定之前检测属性名称，可以这样写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class ResourceDelegate&lt;T&gt; : ReadOnlyProperty&lt;MyUI, T&gt; {
     override fun getValue(thisRef: MyUI, property: KProperty&lt;*&gt;): T { ... }
@@ -1575,7 +1575,7 @@ class MyUI {
 <p>如果没有这种拦截属性与其委托之间的绑定的能力，为了实现相同的功能，
 你必须显式传递属性名，这不是很方便：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 检查属性名称而不使用“provideDelegate”功能
+<pre><code class="language-kotlin">// 检测属性名称而不使用“provideDelegate”功能
 class MyUI {
     val image by bindResource(ResourceID.image_id, "image")
     val text by bindResource(ResourceID.text_id, "text")
