@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>异常处理 - Kotlin 语言中文站</title>
+    <title>异常处理与监督 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js"></script>
     <link rel="stylesheet" href="/_assets/common.css"/>
@@ -1081,15 +1081,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/channels.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">通道</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/coroutines/composing-suspending-functions.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1108,19 +1099,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">异常处理</div>
-            </div>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/select-expression.html"
+            <a href="/docs/reference/coroutines/flow.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Select 表达式</span>
+                <span class="text">异步流</span>
             </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/channels.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">通道</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">异常处理与监督</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -1129,6 +1129,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             >
                 <span class="marker"></span>
                 <span class="text">共享的可变状态与并发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/select-expression.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Select 表达式（实验性的）</span>
             </a>
     </div>
 
@@ -1349,13 +1358,13 @@ class ExceptionsGuideTest {
 <li><a href="#coroutineexceptionhandler">CoroutineExceptionHandler</a></li>
 <li><a href="#取消与异常">取消与异常</a></li>
 <li><a href="#异常聚合">异常聚合</a></li>
-</ul>
-</li>
 <li><a href="#监督">监督</a>
 <ul>
 <li><a href="#监督作业">监督作业</a></li>
 <li><a href="#监督作用域">监督作用域</a></li>
 <li><a href="#监督协程中的异常">监督协程中的异常</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -1630,7 +1639,7 @@ fun main() = runBlocking {
 Caught original java.io.IOException
 </code></pre>
 <!--- TEST-->
-<h2 id="监督">监督</h2>
+<h3 id="监督">监督</h3>
 <p>正如我们之前研究的那样，取消是一种双向机制，在协程的整个层次结构<!--
 -->之间传播。但是如果需要单向取消怎么办？</p>
 <p>此类需求的一个良好示例是在其作用域内定义作业的 UI 组件。如果任何一个 UI 的子作业<!--
@@ -1638,7 +1647,7 @@ Caught original java.io.IOException
 但是如果 UI 组件被销毁了（并且它的作业也被取消了），由于它的结果不再被需要了，它有必要使所有的子作业执行失败。</p>
 <p>另一个例子是服务进程孵化了一些子作业并且需要 <em>监督</em>
 它们的执行，追踪它们的故障并在这些子作业执行失败的时候重启。</p>
-<h3 id="监督作业">监督作业</h3>
+<h4 id="监督作业">监督作业</h4>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-supervisor-job.html">SupervisorJob</a> 可以被用于这些目的。它类似于常规的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job.html">Job</a>，唯一的不同是：<!--
 -->SupervisorJob 的取消只会向下传播。这是非常容易从示例中观察到的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1683,7 +1692,7 @@ Cancelling supervisor
 Second child is cancelled because supervisor is cancelled
 </code></pre>
 <!--- TEST-->
-<h3 id="监督作用域">监督作用域</h3>
+<h4 id="监督作用域">监督作用域</h4>
 <p>对于<em>作用域</em>的并发，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html">supervisorScope</a> 可以被用来替代 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 来实现相同的目的。它只会单向的传播<!--
 -->并且当子作业自身执行失败的时候将它们全部取消。它也会在所有的子作业执行结束前等待，
 就像 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 所做的那样。</p>
@@ -1723,7 +1732,7 @@ Child is cancelled
 Caught assertion error
 </code></pre>
 <!--- TEST-->
-<h3 id="监督协程中的异常">监督协程中的异常</h3>
+<h4 id="监督协程中的异常">监督协程中的异常</h4>
 <p>常规的作业和监督作业之间的另一个重要区别是异常处理。
 每一个子作业应该通过异常处理机制处理自身的异常。
 这种差异来自于子作业的执行失败不会传播给它的父作业的事实。</p>

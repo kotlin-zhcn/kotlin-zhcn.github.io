@@ -1079,15 +1079,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/channels.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">通道</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/coroutines/composing-suspending-functions.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1106,20 +1097,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/exception-handling.html"
+            <a href="/docs/reference/coroutines/flow.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">异常处理</span>
+                <span class="text">异步流</span>
             </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/coroutines/select-expression.html"
+            <a href="/docs/reference/coroutines/channels.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Select 表达式</span>
+                <span class="text">通道</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/exception-handling.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">异常处理与监督</span>
             </a>
     </div>
 
@@ -1129,6 +1129,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             >
                 <span class="marker"></span>
                 <span class="text">共享的可变状态与并发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/select-expression.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Select 表达式（实验性的）</span>
             </a>
     </div>
 
@@ -1401,13 +1410,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>可以在 IDE 的 New Project - Kotlin 对话框下选择一个多平台项目模板<!--
 -->来创建一个多平台项目。</p>
 <p>例如，如果选择了“Kotlin (Multiplatform Library)”，会创建一个包含三个<!--
---><a href="#设置目标">设置目标</a>的库项目，其中一个用于 JVM，一个用于 JS，还有一个用于您正在使用的原生平台。
+--><a href="#设置目标">目标</a>的库项目，其中一个用于 JVM，一个用于 JS，还有一个用于您正在使用的原生平台。
 这些是在 <code>build.gradle</code> <!--
 -->脚本中以下列方式配置的：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.41'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.50'
 }
 
 repositories {
@@ -1427,7 +1436,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("multiplatform") version "1.3.41"
+    kotlin("multiplatform") version "1.3.50"
 }
 
 repositories {
@@ -1546,7 +1555,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.41'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.50'
 }
 </code></pre>
 </div>
@@ -1554,7 +1563,7 @@ kotlin {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("multiplatform") version "1.3.41"
+    kotlin("multiplatform") version "1.3.50"
 }
 </code></pre>
 </div>
@@ -1565,63 +1574,62 @@ kotlin {
 <li><a href="#配置源集">配置源集</a>及其<a href="#添加依赖">依赖</a>；</li>
 </ul>
 <h2 id="设置目标">设置目标</h2>
-<p>A target is a part of the build responsible for compiling, testing, and packaging a piece of software aimed for
-one of the <a href="#已支持平台">supported platforms</a>.</p>
-<p>All of the targets may share some of the sources and may have platform-specific sources as well.</p>
-<p>As the platforms are different, targets are built in different ways as well and have various platform-specific
-settings. The Gradle plugin bundles a number of presets for the supported platforms.</p>
-<p>To create a target, use one of the preset functions, which are named according to the target platforms and optionally
-accept the target name and a configuring code block:</p>
+<p>目标构建的一部分，负责编译，测试与打包针对<!--
+-->一个<a href="#已支持平台">已支持平台</a>的软件。</p>
+<p>所有的目标可能共享一些源代码，也可能拥有平台专用的源代码。</p>
+<p>由于平台的不同，目标也以不同的方式构建，并且拥有各个平台专用的<!--
+-->设置。Gradle 插件捆绑了一些已支持平台的预设。</p>
+<p>要创建一个目标，请使用其中一个预设函数，这些预置函数根据目标平台命名，并可选择<!--
+-->接收一个目标名称与一个配置代码块：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
-    jvm() // Create a JVM target with the default name 'jvm'
-    js("nodeJs") // Create a JS target with a custom name 'nodeJs'
+    jvm() // 用默认名称 “jvm” 创建一个 JVM 目标
+    js("nodeJs") // 用自定义名称 “nodeJs” 创建一个 JS 目标
         
     linuxX64("linux") {
-        /* Specify additional settings for the 'linux' target here */
+        /* 在此处指定 “linux” 的其他设置 */
     }
 }
 </code></pre>
 </div>
-<p>The preset functions return an existing target if there is one. This can be used to configure an existing target:</p>
+<p>如果存在，这些预置函数将返回一个现有的目标。这可以用于配置一个现有的目标：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     /* …… */
 
-    // Configure the attributes of the 'jvm6' target:
+    // 配置 “jvm6” 目标的属性
     jvm("jvm6").attributes { /* …… */ }
 }
 </code></pre>
 </div>
-<p>Note that both the target platform and the name matter: if a target was created as <code>jvm('jvm6')</code>, using <code>jvm()</code> will
-create a separate target (with the default name <code>jvm</code>). If the preset function used to create the target under that name
-was different, an error is reported.</p>
-<p>The targets created from presets are added to the <code>kotlin.targets</code> domain object collection, which can be used to
-access them by their names or configure all targets:</p>
+<p>注意目标平台与命名都很重要：如果一个目标作为 <code>jvm('jvm6')</code> 创建，使用 <code>jvm()</code> 将会<!--
+-->创建一个单独的目标（使用默认名称 <code>jvm</code>）。如果用于创建该名称下的预设函数<!--
+-->不同，将会报告一个错误。</p>
+<p>从预置函数创建的目标将被添加到域对象集合 <code>kotlin.targets</code> 中，这可以用于<!--
+-->通过名称访问它们或者配置所有目标：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     jvm()
     js("nodeJs")
 
-    println(targets.names) // Prints: [jvm, metadata, nodeJs]
+    println(targets.names) // 打印：[jvm, metadata, nodeJs]
 
-    // Configure all targets, including those which will be added later:
+    // 配置所有的目标，包括稍后添加的目标
     targets.all {
         compilations["main"].defaultSourceSet { /* …… */ }
     }
 }
 </code></pre>
 </div>
-<p>To create or access several targets from multiple presets dynamically, you can use the <code>targetFromPreset</code> function which
-accepts a preset (those are contained in the <code>kotlin.presets</code> domain object collection) and, optionally, a target name
-and a configuration code block.</p>
-<p>For example, to create a target for each of the Kotlin/Native supported platforms (see below), use this code:</p>
+<p>要从动态创建或访问多个预设中的多个目标，你可以使用 <code>targetFromPreset</code> 函数，
+它接收一个接收预设（那些被包含在 <code>kotlin.presets</code> 域对象集合中的），以及可选的目标名称与配置的代码块。</p>
+<p>例如，要为每一个 Kotlin/Native 支持的平台（见下文）创建目标，使用以下代码：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     presets.withType(org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTargetPreset).each {
         targetFromPreset(it) {
-            /* Configure each of the created targets */
+            /* 配置每个已创建的目标 */
         }
     }
 }
@@ -1637,7 +1645,7 @@ and a configuration code block.</p>
 kotlin {
     presets.withType&lt;KotlinNativeTargetPreset&gt;().forEach {
         targetFromPreset(it) {
-            /* Configure each of the created targets */
+            /* 配置每个已创建的目标 */
         }
     }
 }
@@ -2591,7 +2599,7 @@ Creating an Android target requires that one of the Android Gradle plugins, like
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.multiplatform").version("1.3.41")
+    id("org.jetbrains.kotlin.multiplatform").version("1.3.50")
 }
 
 android { /* …… */ }
@@ -2608,7 +2616,7 @@ kotlin {
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
     id("com.android.library")
-    kotlin("multiplatform").version("1.3.41")
+    kotlin("multiplatform").version("1.3.50")
 }
 
 android { /* …… */ }
