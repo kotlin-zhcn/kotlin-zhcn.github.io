@@ -1763,7 +1763,7 @@ fun CoroutineScope.counterActor() = actor&lt;CounterMsg&gt; {
 }
 
 //sampleStart
-fun main() = runBlocking {
+fun main() = runBlocking&lt;Unit&gt; {
     val counter = counterActor() // 创建该 actor
     withContext(Dispatchers.Default) {
         massiveRun {
