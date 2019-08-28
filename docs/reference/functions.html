@@ -1558,7 +1558,7 @@ val list = asList(-1, 0, *a, 4)
 <p>Kotlin 支持局部函数，即一个函数在另一个函数内部：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun dfs(graph: Graph) {
-    fun dfs(current: Vertex, visited: Set&lt;Vertex&gt;) {
+    fun dfs(current: Vertex, visited: MutableSet&lt;Vertex&gt;) {
         if (!visited.add(current)) return
         for (v in current.neighbors)
             dfs(v, visited)
