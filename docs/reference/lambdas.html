@@ -1523,7 +1523,7 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 <h3 id="lambda-表达式语法">Lambda 表达式语法</h3>
 <p>Lambda 表达式的完整语法形式如下：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val sum = { x: Int, y: Int -&gt; x + y }
+<pre><code class="language-kotlin">val sum: (Int, Int) -&gt; Int = { x: Int, y: Int -&gt; x + y }
 </code></pre>
 </div>
 <p>lambda 表达式总是括在花括号中，
@@ -1531,7 +1531,7 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。</p>
 <p>如果我们把所有可选标注都留下，看起来如下：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val sum: (Int, Int) -&gt; Int = { x, y -&gt; x + y }
+<pre><code class="language-kotlin">val sum = { x, y -&gt; x + y }
 </code></pre>
 </div>
 <h3 id="将-lambda-表达式传给最后一个参数">将 lambda 表达式传给最后一个参数</h3>

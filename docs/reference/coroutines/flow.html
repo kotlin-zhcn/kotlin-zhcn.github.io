@@ -1423,12 +1423,12 @@ class FlowGuideTest {
 </ul>
 <!--- END_TOC -->
 <h2 id="异步流">异步流</h2>
-<p>Suspending functions asynchronously return a single value, but how can you return
-multiple asynchronously computed values? That is what Kotlin Flows are for.</p>
+<p>挂起函数可以异步的返回单个值，但是该如何异步返回<!--
+-->多个计算好的值呢？这正是 Kotlin 流所做的。</p>
 <h3 id="表示多个值">表示多个值</h3>
-<p>Multiple values can be represented in Kotlin using <a href="https://kotlinlang.org/docs/reference/collections-overview.html">collections</a>. 
-For example, we can have a function <code>foo()</code> that returns a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> 
-of three numbers and print them all using <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/for-each.html">forEach</a>:</p>
+<p>在 Kotlin 中可以使用 <a href="https://kotlinlang.org/docs/reference/collections-overview.html">集合</a> 来表示多个值。 
+比如说，我们可以拥有一个函数 <code>foo()</code>，它返回一个包含三个数字的 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a> 
+并使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/for-each.html">forEach</a> 打印他们：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun foo(): List&lt;Int&gt; = listOf(1, 2, 3)
  
@@ -1438,22 +1438,22 @@ fun main() {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-01.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code outputs:</p>
+<p>这段代码输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 2
 3
 </code></pre>
 <!--- TEST -->
 <h4 id="序列">序列</h4>
-<p>If the numbers are computed with some CPU-consuming blocking code 
-(each computation taking 100ms) then we can represent the numbers using a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html">Sequence</a>:</p>
+<p>如果使用一些消耗 CPU 资源的阻塞代码计算数字<!--
+-->（每次计算需要 100 毫秒）那么我们可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html">Sequence</a> 来表示数字：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
-<pre><code class="language-kotlin">fun foo(): Sequence&lt;Int&gt; = sequence { // sequence builder
+<pre><code class="language-kotlin">fun foo(): Sequence&lt;Int&gt; = sequence { // 序列构建器
     for (i in 1..3) {
-        Thread.sleep(100) // pretend we are computing it
-        yield(i) // yield next value
+        Thread.sleep(100) // 假装我们正在计算
+        yield(i) // 产生下一个值
     }
 }
 
@@ -1463,24 +1463,24 @@ fun main() {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-02.kt">here</a>.</p>
+<p>你可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code outputs the same numbers, but it waits 100ms before printing each one.</p>
+<p>这段代码输出相同的数字，但在打印每个数字之前等待 100 毫秒。</p>
 <!--- TEST 
 1
 2
 3
 -->
 <h4 id="挂起函数">挂起函数</h4>
-<p>However, this computation blocks the main thread that is running the code. 
-When those values are computed by an asynchronous code we can mark function <code>foo</code> with a <code>suspend</code> modifier,
-so that it can perform its work without blocking and return the result as a list:</p>
+<p>然而，计算过程阻塞运行该代码的主线程。
+当这些值由异步代码计算时，我们可以使用 <code>suspend</code> 修饰符标记函数 <code>foo</code>，
+这样它就可以在不阻塞的情况下执行其工作并将结果作为列表返回：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*                 
                            
 //sampleStart
 suspend fun foo(): List&lt;Int&gt; {
-    delay(1000) // pretend we are doing something asynchronous here
+    delay(1000) // 假装我们在这里做了一些异步的事情
     return listOf(1, 2, 3)
 }
 
@@ -1491,49 +1491,49 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-03.kt">here</a>.</p>
+<p>你可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code prints the numbers after waiting for a second.</p>
+<p>这段代码将会在等待一秒之后打印数字。</p>
 <!--- TEST 
 1
 2
 3
 -->
 <h4 id="流">流</h4>
-<p>Using <code>List&lt;Int&gt;</code> result type we can only return all the values at once. To represent
-the stream of values that are being asynchronously computed we can use <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html"><code>Flow&lt;Int&gt;</code></a> type similarly
-to the <code>Sequence&lt;Int&gt;</code> type for synchronously computed values:</p>
+<p>使用 List<int> 结果类型，我们只能一次返回所有值。
+为了表示异步计算的值流（stream），我们可以使用 Flow<int>
+类型（相当于同步计算值的 Sequence<int> 类型）：</int></int></int></p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart               
-fun foo(): Flow&lt;Int&gt; = flow { // flow builder
+fun foo(): Flow&lt;Int&gt; = flow { // 流构建器
     for (i in 1..3) {
-        delay(100) // pretend we are doing something useful here
-        emit(i) // emit next value
+        delay(100) // 假装我们在这里做了一些有用的事情
+        emit(i) // 发送下一个值
     }
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    // Launch a concurrent coroutine to see that the main thread is not blocked
+    // 启动并发的协程以查看主线程并未阻塞
     launch {
         for (k in 1..3) {
             println("I'm not blocked $k")
             delay(100)
         }
     }
-    // Collect the flow
+    // 收集这个流
     foo().collect { value -&gt; println(value) } 
 }
 //sampleEnd
 </code></pre>
 </div>
 <blockquote>
-<p>You can get full code <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-04.kt">here</a>.</p>
+<p>你可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code waits 100ms before printing each number without blocking the main thread. This is verified
-by printing "I'm not blocked" every 100ms from a separate coroutine that is running in the main thread:</p>
+<p>这段代码在不阻塞主线程的情况下每等待 100 毫秒打印一个数字。在主线程中运行一个<!--
+-->单独的协程每 100 毫秒打印一次 “I'm not blocked” 已经经过了验证。</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm not blocked 1
 1
 I'm not blocked 2
@@ -1542,17 +1542,17 @@ I'm not blocked 3
 3
 </code></pre>
 <!--- TEST -->
-<p>Notice the following differences of the code with the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> from the earlier examples:</p>
+<p>注意下面使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 的代码与先前示例的区别：</p>
 <ul>
-<li>A builder function for <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> type is called <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a>.</li>
-<li>Code inside the <code>flow { ... }</code> builder block can suspend.</li>
-<li>The function <code>foo()</code> is no longer marked with <code>suspend</code> modifier.</li>
-<li>Values are <em>emitted</em> from the flow using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> function.</li>
-<li>Values are <em>collected</em> from the flow using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> function.</li>
+<li>名为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> 的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 类型构建器函数。</li>
+<li><code>flow { ... }</code> 构建块中的代码可以挂起。</li>
+<li>函数 <code>foo()</code> 不再标有 <code>suspend</code> 修饰符。</li>
+<li>流使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> 函数 <em>发射</em> 值。</li>
+<li>流使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 函数 <em>收集</em> 值。</li>
 </ul>
 <blockquote>
-<p>You can replace <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> with <code>Thread.sleep</code> in the body of <code>foo</code>'s <code>flow { ... }</code> and see that the main
-thread is blocked in this case.</p>
+<p>你可以在 <code>foo</code> 的 <code>flow { ... }</code> 函数体内使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 代替 <code>Thread.sleep</code>
+以观察主线程在本案例中被阻塞了。</p>
 </blockquote>
 <h3 id="流是冷的">流是冷的</h3>
 <p>Flows are <em>cold</em> streams similarly to sequences — the code inside a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> builder does not
@@ -2237,7 +2237,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart                                                                           
     val nums = (1..3).asFlow().onEach { delay(300) } // numbers 1..3 every 300 ms
     val strs = flowOf("one", "two", "three").onEach { delay(400) } // strings every 400 ms          
-    val startTime = currentTimeMillis() // remember the start time 
+    val startTime = System.currentTimeMillis() // remember the start time 
     nums.combine(strs) { a, b -&gt; "$a -&gt; $b" } // compose a single string with "combine"
         .collect { value -&gt; // collect and print 
             println("$value at ${System.currentTimeMillis() - startTime} ms from start") 
@@ -2296,7 +2296,7 @@ fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = currentTimeMillis() // remember the start time 
+    val startTime = System.currentTimeMillis() // remember the start time 
     (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
         .flatMapConcat { requestFlow(it) }                                                                           
         .collect { value -&gt; // collect and print 
@@ -2336,7 +2336,7 @@ fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = currentTimeMillis() // remember the start time 
+    val startTime = System.currentTimeMillis() // remember the start time 
     (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
         .flatMapMerge { requestFlow(it) }                                                                           
         .collect { value -&gt; // collect and print 
@@ -2380,7 +2380,7 @@ fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = currentTimeMillis() // remember the start time 
+    val startTime = System.currentTimeMillis() // remember the start time 
     (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
         .flatMapLatest { requestFlow(it) }                                                                           
         .collect { value -&gt; // collect and print 
