@@ -1653,30 +1653,30 @@ kotlin {
 </div>
 </div>
 <h3 id="已支持平台">已支持平台</h3>
-<p>There are target presets that one can apply using the preset functions, as shown above, for the
-following target platforms:</p>
+<p>如上所示，对于以下目标平台，可以使用预设函数应用目标平台预设<!--
+-->：</p>
 <ul>
-<li><code>jvm</code> for Kotlin/JVM;</li>
-<li><code>js</code> for Kotlin/JS;</li>
+<li><code>jvm</code> 用于 Kotlin/JVM；</li>
+<li><code>js</code> 用于 Kotlin/JS；</li>
 <li>
-<p><code>android</code> for Android applications and libraries. Note that one of the Android Gradle 
- plugins should be applied before the target is created;</p>
+<p><code>android</code> 用于 Android 应用程序与库。请注意在创建目标之前， 
+ 应该应用其中之一的 Android Gradle 插件；</p>
 </li>
 <li>
-<p>Kotlin/Native target presets (see the <a href="#使用-kotlinnative-目标平台">notes</a> below):</p>
+<p>Kotlin/Native 目标平台预设（参见下文<a href="#使用-kotlinnative-目标平台">备注</a>）：</p>
 <ul>
-<li><code>androidNativeArm32</code> and <code>androidNativeArm64</code> for Android NDK;</li>
-<li><code>iosArm32</code>, <code>iosArm64</code>, <code>iosX64</code> for iOS;</li>
-<li><code>linuxArm32Hfp</code>, <code>linuxMips32</code>, <code>linuxMipsel32</code>, <code>linuxX64</code> for Linux;</li>
-<li><code>macosX64</code> for MacOS;</li>
-<li><code>mingwX64</code> and <code>mingwX86</code> for Windows;</li>
-<li><code>wasm32</code> for WebAssembly.</li>
+<li><code>androidNativeArm32</code> 与 <code>androidNativeArm64</code> 用于 Android NDK；</li>
+<li><code>iosArm32</code>、 <code>iosArm64</code>、 <code>iosX64</code> 用于 iOS；</li>
+<li><code>linuxArm32Hfp</code>、 <code>linuxMips32</code>、 <code>linuxMipsel32</code>、 <code>linuxX64</code> 用于 Linux；</li>
+<li><code>macosX64</code> 用于 MacOS；</li>
+<li><code>mingwX64</code> 与 <code>mingwX86</code> 用于 Windows；</li>
+<li><code>wasm32</code> 用于 WebAssembly。</li>
 </ul>
-<p>Note that some of the Kotlin/Native targets require an <a href="#使用-kotlinnative-目标平台">appropriate host machine</a> to build on.</p>
+<p>请注意，某些 Kotlin/Native 目标平台需要<a href="#使用-kotlinnative-目标平台">适宜的主机</a>来构建。</p>
 </li>
 </ul>
-<p>Some targets may require additional configuration. For Android and iOS examples, see
-the <a href="/docs/tutorials/native/mpp-ios-android.html">Multiplatform Project: iOS and Android</a> tutorial.</p>
+<p>某些目标平台可能需要附加配置。Android 与 iOS 示例请参见<!--
+--><a href="/docs/tutorials/native/mpp-ios-android.html">多平台项目：iOS 与 Android</a> 教程。</p>
 <h3 id="配置编译项">配置编译项</h3>
 <p>Building a target requires compiling Kotlin once or multiple times. Each Kotlin compilation of a target may serve a
 different purpose (e.g. production code, tests) and incorporate different <a href="#配置源集">source sets</a>.
