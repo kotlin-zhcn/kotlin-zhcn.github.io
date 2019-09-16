@@ -1454,7 +1454,7 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'kotlin2js' version '1.3.50'
+    id 'org.jetbrains.kotlin.js' version '1.3.50'
 }
 </code></pre>
 </div>
@@ -1462,23 +1462,10 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    id("kotlin2js") version "1.3.50"
+    kotlin("js") version "1.3.50"
 }
 </code></pre>
 </div>
-</div>
-<p>请注意，这种应用 Kotlin/JS 插件的方式需要将以下代码添加到 Gradle 设置文件（<code>settings.gradle</code>）中：</p>
-<div auto-indent="false" class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">pluginManagement {
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id == "kotlin2js") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            }
-        }
-    }
-}
-</code></pre>
 </div>
 <p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
 -->面向 JVM 一样，如果不使用默认约定，需要使用 <em>sourceSets</em> 来指定源代码文件夹：</p>
@@ -1686,6 +1673,7 @@ testImplementation(kotlin("test-junit"))
 </li>
 </ul>
 <p>请注意，任何情况下首次构建都不会是增量的。</p>
+<h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
 <p>Kotlin 插件支持 <a href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
 <p>如需禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
 <p>如果使用 <a href="kapt.html">kapt</a>，请注意默认情况下不会缓存注解处理任务。不过，可以手动为它们启用缓存。详见 <a href="kapt.html#gradle-构建缓存支持自-1220-起">kapt 页</a>。</p>
