@@ -1685,8 +1685,8 @@ suspend fun failedConcurrentSum(): Int = coroutineScope {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-compose-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>注意，当任意一个子协程失败的时候，第一个 <code>async</code> 以及等待中的父协程都会被取消
-（即 <code>two</code>）：</p>
+<p>请注意，如果其中一个子协程（即 <code>two</code>）失败，第一个 <code>async</code> 以及等待中的父协程都会被取消<!--
+-->：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Second child throws an exception
 First child was cancelled
 Computation failed with ArithmeticException
