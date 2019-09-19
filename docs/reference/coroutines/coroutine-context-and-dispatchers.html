@@ -1466,7 +1466,7 @@ main runBlocking: After delay in thread main
 <!--- TEST LINES_START -->
 <p>所以，该协程的上下文继承自 <code>runBlocking {...}</code> 协程并在
 <code>main</code> 线程中运行，当 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 函数调用的时候，非受限的那个协程在<!--
--->默认的执行者线程种恢复执行。</p>
+-->默认的执行者线程中恢复执行。</p>
 <blockquote>
 <p>非受限的调度器是一种高级机制，可以在某些极端情况下提供帮助<!--
 -->而不需要调度协程以便稍后执行或产生不希望的副作用，
