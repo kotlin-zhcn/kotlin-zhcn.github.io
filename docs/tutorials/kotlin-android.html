@@ -855,58 +855,58 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>It’s extremely easy to start using Kotlin for Android development.
-In this tutorial we’ll follow the warming up process with Android Studio. If you're using Intellij IDEA with Android, the process is almost the same.</p>
-<h3 id="creating-a-project">Creating a project</h3>
-<p>First, create a new Kotlin Android Project for your application:</p>
+<p>使用 Kotlin 进行 Android 开发非常简单。
+在本教程中，我们将按照 Android Studio 的熟悉流程。如果你使用 Intellij IDEA 进行 Android 开发，这个过程几乎是一样的。</p>
+<h3 id="创建一个工程">创建一个工程</h3>
+<p>首先，为你的应用创建一个新的 Kotlin Android 工程。</p>
 <ol>
 <li>
-<p>Open Android Studio and click <strong>Start a new Android Studio project</strong> on the welcome screen or <strong>File | New | New project</strong>.</p>
+<p>打开 Android Studio，在欢迎页面点击 <strong>Start a new Android Studio project</strong>  或者 <strong>File | New | New project</strong>。</p>
 </li>
 <li>
-<p>Select an <a href="https://developer.android.com/guide/components/activities/intro-activities">activity</a> that defines the behavior of your application. For your first "Hello world" application, select <strong>Empty Activity</strong> that just shows a screen, and click <strong>Next</strong>.</p>
+<p>选择一个定义应用程序行为的 <a href="https://developer.android.com/guide/components/activities/intro-activities">activity</a> 。对于第一个 "Hello world" 应用程序，选择仅显示空白屏幕的 <strong>Empty Activity</strong>，然后点击 <strong>Next</strong>。</p>
 <p><img alt="Choosing empty activity" src="/assets/images/tutorials/kotlin-android/0-create-new-project.png"/></p>
 </li>
 <li>
-<p>In the next dialog, provide the project details:</p>
+<p>在下一个对话框中，填写工程的详细信息：</p>
 <ul>
-<li>name and package</li>
-<li>location</li>
-<li>language: select <strong>Kotlin</strong></li>
+<li>名字和包名</li>
+<li>位置</li>
+<li>开发语音：选择 <strong>Kotlin</strong></li>
 </ul>
-<p>Leave other options with their default values and click <strong>Finish</strong>.</p>
+<p>保留其他选项的默认值，然后单击 <strong>Finish</strong>。</p>
 <p><img alt="Project configuration" src="/assets/images/tutorials/kotlin-android/1-create-new-project.png"/></p>
 </li>
 </ol>
-<p>Once you complete the steps, Android Studio creates a project. The project already contains all the code and resources for building an application that can run on your Android device or an emulator.</p>
-<h3 id="building-and-running-the-application">Building and running the application</h3>
-<p>The process of building and running the Kotlin application in Android Studio is exactly the same as with Java.</p>
-<p>To build and run your application on an emulator:</p>
+<p>完成这些步骤后，Android Studio 会创建一个项目。 该项目已包含用于构建可在 Android 设备或模拟器上运<!-- -->行的应用程序的所有代码和资源。</p>
+<h3 id="构建和运行应用程序">构建和运行应用程序</h3>
+<p>在 Android Studio 中构建和运行 Kotlin 应用程序的过程与 Java 完全相同。</p>
+<p>如需在模拟器上构建和运行应用程序：</p>
 <ol>
-<li>Run the predefined <strong>app</strong> configuration by clicking <strong>Run</strong> on the toolbar or <strong>Run | Run 'app'</strong>.</li>
+<li>点击工具栏上的 <strong>Run</strong> 运行预定义的 <strong>app</strong> 配置，或者 <strong>Run | Run 'app'</strong>。</li>
 <li>
-<p>Select <strong>Create New Virtual Device</strong>.</p>
+<p>选择 <strong>Create New Virtual Device</strong>。</p>
 <p><img alt="Select target" src="/assets/images/tutorials/kotlin-android/select-target.png"/></p>
 </li>
 <li>
-<p>Select a device you like and click <strong>Next</strong>.</p>
+<p>选择你喜欢的设备，然后点击 <strong>Next</strong>。</p>
 <p><img alt="Select device" src="/assets/images/tutorials/kotlin-android/select-device.png"/></p>
 </li>
 <li>
-<p>Select a system version and download its image.</p>
+<p>选择系统版本并下载其映像。</p>
 <p><img alt="System image" src="/assets/images/tutorials/kotlin-android/system-image.png"/></p>
 </li>
 <li>
-<p>Verify the emulator configuration and click <strong>Finish</strong>.</p>
+<p>验证模拟器配置，然后点击 <strong>Finish</strong>。</p>
 </li>
-<li>Click <strong>OK</strong> and here it is - your first Kotlin application for Android!</li>
+<li>点击 <strong>OK</strong>，这就是—— 你的第一个 Android 版 Kotlin 应用程序！</li>
 </ol>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/kotlin-android/hello-app.gif" src="/assets/images/tutorials/kotlin-android/hello-app.png"/>
 </div>
 <p>Kotlin有着极小的运行时文件体积：整个库的大小约 1261 KB（1.3.50 版本）。这意味着 Kotlin 对 apk 文件大小影响微乎其微。</p>
 <p>就对比 Kotlin 与 Java所编写的程序而言，Kotlin 编译器所生成的字节码看上去几乎毫无差异。</p>
-<p>If you want to customize your builds or run configuration, refer to the Android Studio <a href="https://developer.android.com/studio/run">documentation</a>.</p>
+<p>如果要自定义构建或运行配置，请参考 Android Studio <a href="https://developer.android.com/studio/run">文档</a>。</p>
 <h3 id="后续">后续？</h3>
 <ul>
 <li>更多内容请查阅 <a href="android-plugin.html">Kotlin Android 扩展插件</a> 以及 <a href="android-frameworks.html">Android 框架使用注解处理</a>。</li>
