@@ -1418,6 +1418,7 @@ class FlowGuideTest {
 </li>
 <li><a href="#命令式还是声明式">命令式还是声明式</a></li>
 <li><a href="#启动流">启动流</a></li>
+<li><a href="#flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</a></li>
 </ul>
 </li>
 </ul>
@@ -2817,6 +2818,14 @@ like the <code>addEventListener</code>. However, there is no need for the corres
 as cancellation and structured concurrency serve this purpose.</p>
 <p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> also returns a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>, which can be used to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">cancel</a> the corresponding flow collection
 coroutine only without cancelling the whole scope or to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> it.</p>
+<h3 id="flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</h3>
+<p>For those who are familiar with <a href="https://www.reactive-streams.org/">Reactive Streams</a> or reactive frameworks such as RxJava and project Reactor, 
+design of the Flow may look very familiar.</p>
+<p>Indeed, its design was inspired by Reactive Streams and its various implementations. But Flow main goal is to have as simple design as possible, 
+be Kotlin and suspension friendly and respect structured concurrency. Achieving this goal would be impossible without reactive pioneers and their tremendous work. You can read the complete story in <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> article.</p>
+<p>While being different, conceptually, Flow <em>is</em> a reactive stream and it is possible to convert it to the reactive (spec and TCK compliant) Publisher and vice versa.
+Such converters are provided by <code>kotlinx.coroutines</code> out-of-the-box and can be found in corresponding reactive modules (<code>kotlinx-coroutines-reactive</code> for Reactive Streams, <code>kotlinx-coroutines-reactor</code> for Project Reactor and <code>kotlinx-coroutines-rx2</code> for RxJava2).
+Integration modules include conversions from and to <code>Flow</code>, integration with Reactor's <code>Context</code> and suspension-friendly ways to work with various reactive entities.</p>
 <!-- stdlib references -->
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
