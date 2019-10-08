@@ -1346,7 +1346,7 @@ val demo = Outer.Nested().foo() // == 2
 </code></pre>
 </div>
 <h2 id="内部类">内部类</h2>
-<p>类可以标记为 <em class="keyword">inner</em> 以便能够访问外部类的成员。内部类会带有一个对外部类的对象的引用：</p>
+<p>标记为 <em class="keyword">inner</em> 的嵌套类能够访问其外部类的成员。内部类会带有一个对外部类的对象的引用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Outer {
     private val bar: Int = 1

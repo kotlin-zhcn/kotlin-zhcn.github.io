@@ -1937,13 +1937,13 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-14.kt">here</a>.</p>
 </blockquote>
 <p>This code produces the following exception:</p>
-<!--- TEST EXCEPTION
-Exception in thread "main" java.lang.IllegalStateException: Flow invariant is violated:
+<pre><code class="code _highlighted" data-lang="text/plain">Exception in thread "main" java.lang.IllegalStateException: Flow invariant is violated:
 		Flow was collected in [CoroutineId(1), "coroutine#1":BlockingCoroutine{Active}@5511c7f8, BlockingEventLoop@2eac3323],
 		but emission happened in [CoroutineId(1), "coroutine#1":DispatchedCoroutine{Active}@2dae0000, DefaultDispatcher].
 		Please refer to 'flow' documentation or use 'flowOn' instead
 	at ...
--->
+</code></pre>
+<!--- TEST EXCEPTION -->
 <blockquote>
 <p>Note that we had to use a fully qualified name of the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">kotlinx.coroutines.withContext</a> function in this example to 
 demonstrate this exception. A short name of <code>withContext</code> would have resolved to a special stub function that

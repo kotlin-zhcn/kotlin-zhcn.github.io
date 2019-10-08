@@ -1411,7 +1411,8 @@ fun main() {
 而如果你确定初始化将总是发生在与属性使用位于相同的线程，
 那么可以使用 <code>LazyThreadSafetyMode.NONE</code> 模式：它不会有任何线程安全的保证以及相关的开销。</p>
 <h3 id="可观察属性-observable">可观察属性 Observable</h3>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a> 接受两个参数：初始值与修改时处理程序（handler）。
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/observable.html"><code>Delegates.observable()</code></a>
+接受两个参数：初始值与修改时处理程序（handler）。
 每当我们给属性赋值时会调用该处理程序（在赋值<em>后</em>执行）。它有三个<!--
 -->参数：被赋值的属性、旧值与新值：</p>
 <div class="sample" theme="idea">
@@ -1431,7 +1432,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>如果你想能够截获一个赋值并“否决”它，就使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> 取代 <code>observable()</code>。
+<p>如果你想截获赋值并“否决”它们，那么使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> 取代 <code>observable()</code>。
 在属性被赋新值生效<em>之前</em>会调用传递给 <code>vetoable</code> 的处理程序。</p>
 <h2 id="把属性储存在映射中">把属性储存在映射中</h2>
 <p>一个常见的用例是在一个映射（map）里存储属性的值。

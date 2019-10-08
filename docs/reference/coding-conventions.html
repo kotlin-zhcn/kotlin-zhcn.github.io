@@ -1364,8 +1364,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h3 id="源文件名称">源文件名称</h3>
 <p>如果 Kotlin 文件包含单个类（以及可能相关的顶层声明），那么文件名应该与<!--
 -->该类的名称相同，并追加 .kt 扩展名。如果文件包含多个类或只包含顶层声明，
-那么选择一个描述该文件所包含内容的名称，并以此命名该文件。使用首字母大写的驼峰风格
-（例如 <code>ProcessDeclarations.kt</code>）。</p>
+那么选择一个描述该文件所包含内容的名称，并以此命名该文件。
+使用首字母大写的<a href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰风格</a>（例如 <code>ProcessDeclarations.kt</code>）。</p>
 <p>文件的名称应该描述文件中代码的作用。因此，应避免在文件名中使用<!--
 -->诸如“Util”之类的无意义词语。</p>
 <h3 id="源文件组织">源文件组织</h3>
@@ -1386,8 +1386,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <p>不要按字母顺序或者可见性对方法声明排序，也不要将常规方<!--
 -->法与扩展方法分开。而是要把相关的东西放在一起，这样从上到下<!--
--->阅读类的人就能够跟进所发生事情的逻辑。选择一个顺序（高级别优先，或者相反）
-并坚持下去。</p>
+-->阅读类的人就能够跟进所发生事情的逻辑。选择一个顺序（高级别优先，或者相反）并坚持下去。</p>
 <p>将嵌套类放在紧挨使用这些类的代码之后。如果打算在外部使用嵌套类，而且类中并没有<!--
 -->引用这些类，那么把它们放到末尾，在伴生对象之后。</p>
 <h3 id="接口实现布局">接口实现布局</h3>
@@ -1401,43 +1400,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li>
 <p>包的名称总是小写且不使用下划线（<code>org.example.project</code>）。
 通常不鼓励使用多个词的名称，但是如果确实需要使用多个词，可以将它们连接在一起<!--
--->或使用驼峰（<code>org.example.myProject</code>）。</p>
+-->或使用驼峰风格（<code>org.example.myProject</code>）。</p>
 </li>
 <li>
-<p>类与对象的名称以大写字母开头并使用驼峰：</p>
+<p>类与对象的名称以大写字母开头并使用驼峰风格：</p>
 </li>
 </ul>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">open class DeclarationProcessor { …… }
+<pre><code class="language-kotlin">open class DeclarationProcessor { /*……*/ }
 
-object EmptyDeclarationProcessor : DeclarationProcessor() { …… }
+object EmptyDeclarationProcessor : DeclarationProcessor() { /*……*/ }
 </code></pre>
 </div>
 <h3 id="函数名">函数名</h3>
-<p>函数、属性与局部变量的名称以小写字母开头、使用驼峰而不使用下划线：</p>
+<p>函数、属性与局部变量的名称以小写字母开头、使用驼峰风格而不使用下划线：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun processDeclarations() { …… }
-var declarationCount = ……
+<pre><code class="language-kotlin">fun processDeclarations() { /*……*/ }
+var declarationCount = 1
 </code></pre>
 </div>
 <p>例外：用于创建类实例的工厂函数可以与要创建的类具有相同的名称：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">abstract class Foo { …… }
+<pre><code class="language-kotlin">abstract class Foo { /*……*/ }
 
-class FooImpl : Foo { …… }
+class FooImpl : Foo { /*……*/ }
 
-fun Foo(): Foo { return FooImpl(……) }
+fun FooImpl(): Foo { return FooImpl() }
 </code></pre>
 </div>
 <h4 id="测试方法的名称">测试方法的名称</h4>
-<p>当且仅当在测试中，可以使用反引号括起来的带空格的方法名。
+<p><strong>当且仅当</strong>在测试中，可以使用反引号括起来的带空格的方法名。
 （请注意，Android 运行时目前不支持这样的方法名。）测试代码中<!--
 -->也允许方法名使用下划线。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class MyTestCase {
-     @Test fun `ensure everything works`() { ... }
+     @Test fun `ensure everything works`() { /*...*/ }
      
-     @Test fun ensureEverythingWorks_onAndroid() { ... }
+     @Test fun ensureEverythingWorks_onAndroid() { /*...*/ }
 }
 </code></pre>
 </div>
@@ -1449,18 +1448,18 @@ fun Foo(): Foo { return FooImpl(……) }
 val USER_NAME_FIELD = "UserName"
 </code></pre>
 </div>
-<p>保存带有行为的对象或者可变数据的顶层/对象属性的名称应该使用常规驼峰名称：</p>
+<p>保存带有行为的对象或者可变数据的顶层/对象属性的名称应该使用驼峰风格名称：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val mutableCollection: MutableSet&lt;String&gt; = HashSet()
 </code></pre>
 </div>
 <p>保存单例对象引用的属性的名称可以使用与 <code>object</code> 声明相同的命名风格：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val PersonComparator: Comparator&lt;Person&gt; = ...
+<pre><code class="language-kotlin">val PersonComparator: Comparator&lt;Person&gt; = /*...*/
 </code></pre>
 </div>
 <p>对于枚举常量，可以使用大写、下划线分隔的名称
-（<code>enum class Color { RED, GREEN }</code>）也可使用以大写字母开头的常规驼峰名称，具体取决于用途。</p>
+（<code>enum class Color { RED, GREEN }</code>）也可使用首字母大写的常规驼峰名称，具体取决于用途。</p>
 <h4 id="幕后属性的名称">幕后属性的名称</h4>
 <p>如果一个类有两个概念上相同的属性，一个是公共 API 的一部分，另一个是实现<!--
 -->细节，那么使用下划线作为私有属性名称的前缀：</p>
@@ -1534,9 +1533,9 @@ fun bar() {
 }
 
 class FooImpl : Foo() {
-    constructor(x: String) : this(x) { …… }
+    constructor(x: String) : this(x) { /*……*/ }
     
-    val x = object : IFoo { …… }
+    val x = object : IFoo { /*……*/ } 
 } 
 </code></pre>
 </div>
@@ -1554,7 +1553,7 @@ class FooImpl : Foo() {
     id: Int,
     name: String,
     surname: String
-) : Human(id, name) { …… }
+) : Human(id, name) { /*……*/ }
 </code></pre>
 </div>
 <p>对于多个接口，应该将超类构造函数调用放在首位，然后将每个接口应放在不同的行中：</p>
@@ -1564,7 +1563,7 @@ class FooImpl : Foo() {
     name: String,
     surname: String
 ) : Human(id, name),
-    KotlinMaker { …… }
+    KotlinMaker { /*……*/ }
 </code></pre>
 </div>
 <p>对于具有很长超类型列表的类，在冒号后面换行，并横向对齐所有超类型名：</p>
@@ -1574,7 +1573,7 @@ class FooImpl : Foo() {
     SomeOtherInterface,
     AndAnotherOne {
 
-    fun foo() { ... }
+    fun foo() { /*...*/ }
 }
 </code></pre>
 </div>
@@ -1586,7 +1585,7 @@ class FooImpl : Foo() {
     SomeOtherInterface,
     AndAnotherOne 
 {
-    fun foo() { ... }
+    fun foo() { /*...*/ }
 }
 </code></pre>
 </div>
@@ -1638,7 +1637,7 @@ var x: String
 </div>
 <p>无参数的单个注解可以与相应的声明放在同一行：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">@Test fun foo() { …… }
+<pre><code class="language-kotlin">@Test fun foo() { /*……*/ }
 </code></pre>
 </div>
 <h3 id="文件注解">文件注解</h3>
@@ -1691,7 +1690,7 @@ fun foo() = 1        // 良好
 <p>对于更复杂的属性，总是将 <code>get</code> 与 <code>set</code> 关键字放在不同的行上：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val foo: String
-    get() { …… }
+    get() { /*……*/ }
 </code></pre>
 </div>
 <p>对于具有初始化器的属性，如果初始化器很长，那么在等号后增加一个换行<!--
@@ -1834,14 +1833,14 @@ try {
  * @param number The number to return the absolute value for.
  * @return The absolute value.
  */
-fun abs(number: Int) = ……
+fun abs(number: Int) { /*……*/ }
 
 // 而要这样：
 
 /**
  * Returns the absolute value of the given [number].
  */
-fun abs(number: Int) = ……
+fun abs(number: Int) { /*……*/ }
 </code></pre>
 </div>
 <h2 id="避免重复结构">避免重复结构</h2>
@@ -1890,10 +1889,10 @@ val allowedValues = listOf("a", "b", "c")
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 不良
 fun foo() = foo("a")
-fun foo(a: String) { …… }
+fun foo(a: String) { /*……*/ }
 
 // 良好
-fun foo(a: String = "a") { …… }
+fun foo(a: String = "a") { /*……*/ }
 </code></pre>
 </div>
 <h3 id="类型别名">类型别名</h3>
@@ -1946,8 +1945,8 @@ when(x) {
 <p>二元条件优先使用 <code>if</code> 而不是 <code>when</code>。不要使用</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">when (x) {
-    null -&gt; ……
-    else -&gt; ……
+    null -&gt; // ……
+    else -&gt; // ……
 }
 </code></pre>
 </div>
@@ -1963,8 +1962,8 @@ when(x) {
 <h3 id="区间上循环">区间上循环</h3>
 <p>使用 <code>until</code> 函数在一个开区间上循环：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">for (i in 0..n - 1) { …… }  // 不良
-for (i in 0 until n) { …… }  // 良好
+<pre><code class="language-kotlin">for (i in 0..n - 1) { /*……*/ }  // 不良
+for (i in 0 until n) { /*……*/ }  // 良好
 </code></pre>
 </div>
 <h3 id="使用字符串">使用字符串</h3>
