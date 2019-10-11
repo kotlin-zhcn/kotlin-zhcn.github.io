@@ -1336,10 +1336,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>Kotlin 能够扩展一个类的新功能<!--
 -->而无需继承该类或者使用像装饰者这样的设计模式。
 这通过叫做 <em>扩展</em> 的特殊声明完成。
-For example, you can write new functions for a class from a third-party library that you can't modify.
-Such functions are available for calling in the usual way as if they were methods of the original class. 
-This mechanism is called <em>extension functions</em>. There are also <em>extension properties</em> that let you define
-new properties for existing classes.</p>
+例如，你可以为一个你不能修改的、来自第三方库中的类编写一个新的函数。
+这个新增的函数就像那个原始类本来就有的函数一样，可以用普通的方法调用。
+这种机制称为 <em>扩展函数</em> 。此外，也有 <em>扩展属性</em> ，
+允许你为一个已经存在的类添加新的属性。</p>
 <h2 id="扩展函数">扩展函数</h2>
 <p>声明一个扩展函数，我们需要用一个 <em>接收者类型</em> 也就是被扩展的类型来作为他的前缀。
 下面代码为 <code>MutableList&lt;Int&gt;</code> 添加一个<code>swap</code> 函数：</p>
