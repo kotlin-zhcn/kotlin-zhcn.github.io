@@ -1784,14 +1784,14 @@ Finally in numbers
 </code></pre>
 <!--- TEST -->
 <h3 id="末端流操作符">末端流操作符</h3>
-<p>Terminal operators on flows are <em>suspending functions</em> that start a collection of the flow.
-The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> operator is the most basic one, but there are other terminal operators, which can make it easier:</p>
+<p>Terminal operators on flows are <em>suspending functions</em> that start a collection of the flow.（这句话原文有歧义，先保留英文）
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 是最基础的末端操作符，但是还有另外一些更方便使用的末端操作符：</p>
 <ul>
-<li>Conversion to various collections like <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-list.html">toList</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-set.html">toSet</a>.</li>
-<li>Operators to get the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/first.html">first</a> value and to ensure that a flow emits a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/single.html">single</a> value.</li>
-<li>Reducing a flow to a value with <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/reduce.html">reduce</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/fold.html">fold</a>.</li>
+<li>转化为各种集合，例如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-list.html">toList</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-set.html">toSet</a>。</li>
+<li>获取第一个（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/first.html">first</a>）值与确保流发射单个（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/single.html">single</a>）值的操作符。</li>
+<li>使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/reduce.html">reduce</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/fold.html">fold</a> 将流规约到单个值。</li>
 </ul>
-<p>For example:</p>
+<p>举例来说：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -1814,12 +1814,12 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST -->
 <h3 id="流是连续的">流是连续的</h3>
-<p>Each individual collection of a flow is performed sequentially unless special operators that operate
-on multiple flows are used. The collection works directly in the coroutine that calls a terminal operator. 
-No new coroutines are launched by default. 
-Each emitted value is processed by all the intermediate operators from 
-upstream to downstream and is then delivered to the terminal operator after.</p>
-<p>See the following example that filters the even integers and maps them to strings:</p>
+<p>流的每次单独收集都是按顺序执行的，除非进行特殊操作的操作符<!--
+-->使用多个流。该收集过程直接在协程中运行，该协程调用末端操作符。
+默认情况下不启动新协程。
+从上游到下游每个过渡操作符都会处理每个发射出的值<!--
+-->然后再交给末端操作符。</p>
+<p>请参见以下示例，该示例过滤偶数并将其映射到字符串：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -1842,9 +1842,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-12.kt">here</a>.</p>
+<p>你可以从<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-12.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>Producing:</p>
+<p>执行：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Filter 1
 Filter 2
 Map 2
@@ -1857,22 +1857,22 @@ Filter 5
 </code></pre>
 <!--- TEST -->
 <h3 id="流上下文">流上下文</h3>
-<p>Collection of a flow always happens in the context of the calling coroutine. For example, if there is 
-a <code>foo</code> flow, then the following code runs in the context specified
-by the author of this code, regardless of the implementation details of the <code>foo</code> flow:</p>
+<p>流的收集总是在调用协程的上下文中发生。例如，如果有一个流
+<code>foo</code>，然后以下代码在它的编写者指定的上下文中<!--
+-->运行，而无论流 <code>foo</code> 的实现细节如何：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">withContext(context) {
     foo.collect { value -&gt;
-        println(value) // run in the specified context 
+        println(value) // 运行在指定上下文中
     }
 }
 </code></pre>
 </div>
 <!--- CLEAR -->
-<p>This property of a flow is called <em>context preservation</em>.</p>
-<p>So, by default, code in the <code>flow { ... }</code> builder runs in the context that is provided by a collector
-of the corresponding flow. For example, consider the implementation of <code>foo</code> that prints the thread
-it is called on and emits three numbers:</p>
+<p>流的该属性称为 <em>上下文保存</em> 。</p>
+<p>所以默认的，<code>flow { ... }</code> 构建器中的代码运行在相应流的收集器<!--
+-->提供的上下文中。举例来说，考虑打印线程的 <code>foo</code> 的实现，
+它被调用并发射三个数字：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -1894,35 +1894,35 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-13.kt">here</a>.</p>
+<p>你可以从<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-13.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>Running this code produces:</p>
+<p>运行这段代码：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">[main @coroutine#1] Started foo flow
 [main @coroutine#1] Collected 1
 [main @coroutine#1] Collected 2
 [main @coroutine#1] Collected 3
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p>Since <code>foo().collect</code> is called from the main thread, the body of <code>foo</code>'s flow is also called in the main thread.
-This is the perfect default for fast-running or asynchronous code that does not care about the execution context and
-does not block the caller.</p>
+<p>由于 <code>foo().collect</code> 是在主线程调用的，则 <code>foo</code> 的流主体也是在主线程调用的。
+这是快速运行或异步代码的理想默认形式，它不关心执行的上下文并且不会<!--
+-->阻塞调用者。</p>
 <h4 id="withcontext-发出错误">withContext 发出错误</h4>
-<p>However, the long-running CPU-consuming code might need to be executed in the context of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> and UI-updating
-code might need to be executed in the context of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a>. Usually, <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> is used
-to change the context in the code using Kotlin coroutines, but code in the <code>flow { ... }</code> builder has to honor the context
-preservation property and is not allowed to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> from a different context.</p>
-<p>Try running the following code:</p>
+<p>然而，长时间运行的消耗 CPU 的代码也许需要在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文中执行，并且更新 UI
+的代码也许需要在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> 中执行。通常，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 用于在
+Kotlin 协程中改变代码的上下文，但是 <code>flow {...}</code> 构建器中的代码必须遵循上下文<!--
+-->保存属性，并且不允许从其他上下文中发射（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a>）。</p>
+<p>尝试运行下面的代码：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
                       
 //sampleStart
 fun foo(): Flow&lt;Int&gt; = flow {
-    // The WRONG way to change context for CPU-consuming code in flow builder
+    // 在流构建器中更改消耗 CPU 代码的上下文的错误方式
     kotlinx.coroutines.withContext(Dispatchers.Default) {
         for (i in 1..3) {
-            Thread.sleep(100) // pretend we are computing it in CPU-consuming way
-            emit(i) // emit next value
+            Thread.sleep(100) // 假装我们以消耗 CPU 的方式进行计算
+            emit(i) // 发射下一个值
         }
     }
 }
@@ -1934,9 +1934,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-14.kt">here</a>.</p>
+<p>你可以从<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-14.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code produces the following exception:</p>
+<p>这段代码产生如下的异常：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Exception in thread "main" java.lang.IllegalStateException: Flow invariant is violated:
 		Flow was collected in [CoroutineId(1), "coroutine#1":BlockingCoroutine{Active}@5511c7f8, BlockingEventLoop@2eac3323],
 		but emission happened in [CoroutineId(1), "coroutine#1":DispatchedCoroutine{Active}@2dae0000, DefaultDispatcher].
@@ -1945,14 +1945,14 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST EXCEPTION -->
 <blockquote>
-<p>Note that we had to use a fully qualified name of the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">kotlinx.coroutines.withContext</a> function in this example to 
-demonstrate this exception. A short name of <code>withContext</code> would have resolved to a special stub function that
-produces a compilation error to prevent us from running into this problem.</p>
+<p>请注意，在此示例中，我们必须使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">kotlinx.coroutines.withContext</a> 函数的全限定名来<!--
+-->演示此异常。<code>withContext</code> 这个短名称将解析为一个特殊的存根函数<!--
+-->并产生编译错误，以防我们遇到此问题。</p>
 </blockquote>
 <h4 id="flowon-操作符">flowOn 操作符</h4>
-<p>The exception refers to the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> function that shall be used to change the context of the flow emission.
-The correct way to change the context of a flow is shown in the example below, which also prints the 
-names of the corresponding threads to show how it all works:</p>
+<p>例外的是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> 函数，该函数用于更改流发射的上下文。
+以下示例展示了更改流上下文的正确方法，该示例还通过<!--
+-->打印相应线程的名字以展示它们的工作方式：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -1962,11 +1962,11 @@ fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
 //sampleStart
 fun foo(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
-        Thread.sleep(100) // pretend we are computing it in CPU-consuming way
+        Thread.sleep(100) // 假装我们以消耗 CPU 的方式进行计算
         log("Emitting $i")
-        emit(i) // emit next value
+        emit(i) // 发射下一个值
     }
-}.flowOn(Dispatchers.Default) // RIGHT way to change context for CPU-consuming code in flow builder
+}.flowOn(Dispatchers.Default) // 在流构建器中改变消耗 CPU 代码上下文的正确方式
 
 fun main() = runBlocking&lt;Unit&gt; {
     foo().collect { value -&gt;
@@ -1977,9 +1977,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-15.kt">here</a>.</p>
+<p>你可以从<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-15.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>Notice how <code>flow { ... }</code> works in the background thread, while collection happens in the main thread:</p>
+<p>注意，当收集发生在主线程中，<code>flow { ... }</code> 是如何在后台线程中工作的：</p>
 <!--- TEST FLEXIBLE_THREAD
 [DefaultDispatcher-worker-1 @coroutine#2] Emitting 1
 [main @coroutine#1] Collected 1
@@ -1988,10 +1988,10 @@ fun main() = runBlocking&lt;Unit&gt; {
 [DefaultDispatcher-worker-1 @coroutine#2] Emitting 3
 [main @coroutine#1] Collected 3
 -->
-<p>Another thing to observe here is that the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> operator has changed the default sequential nature of the flow.
-Now collection happens in one coroutine ("coroutine#1") and emission happens in another coroutine
-("coroutine#2") that is running in another thread concurrently with the collecting coroutine. The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> operator
-creates another coroutine for an upstream flow when it has to change the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a> in its context.</p>
+<p>这里要观察的另一件事是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> 操作符已改变流的默认顺序性。
+现在收集发生在一个协程中（“coroutine#1”）而发射发生在运行于另一个线程中<!--
+-->与收集协程并发运行的另一个协程（“coroutine#2”）中。当上游流<!--
+-->必须改变其上下文中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a> 的时候，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> 操作符创建了另一个协程。</p>
 <h3 id="缓冲">缓冲</h3>
 <p>Running different parts of a flow in different coroutines can be helpful from the standpoint of the overall time it takes 
 to collect the flow, especially when long-running asynchronous operations are involved. For example, consider a case when
