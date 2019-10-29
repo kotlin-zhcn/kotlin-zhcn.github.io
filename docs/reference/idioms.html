@@ -1170,6 +1170,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compiler-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 编译器选项</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/using-gradle.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1477,7 +1486,8 @@ value?.let {
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val value = ……
 
-val mapped = value?.let { transformValue(it) } ?: defaultValueIfValueIsNull
+val mapped = value?.let { transformValue(it) } ?: defaultValue 
+// 如果该值或其转换结果为空，那么返回 defaultValue。
 </code></pre>
 </div>
 <h3 id="返回-when-表达式">返回 when 表达式</h3>
@@ -1602,6 +1612,13 @@ var b = 2
 a = b.also { b = a }
 </code></pre>
 </div>
+<h3 id="todo将代码标记为不完整">TODO()：将代码标记为不完整</h3>
+<p>Kotlin 的标准库有一个 <code>TODO()</code> 函数，该函数总是抛出一个 <code>NotImplementedError</code>。
+其返回类型为 <code>Nothing</code>，因此无论预期类型是什么都可以使用它。
+还有一个接受原因参数的重载：</p>
+<pre><code class="code _highlighted" data-lang="text/x-kotlin">fun calcTaxes(): BigDecimal = TODO("Waiting for feedback from accounting")
+</code></pre>
+<p>IntelliJ IDEA 的 kotlin 插件理解 <code>TODO()</code> 的语言，并且会自动在 TODO 工具窗口中添加代码指示。</p>
 
         </article>
     </div>
