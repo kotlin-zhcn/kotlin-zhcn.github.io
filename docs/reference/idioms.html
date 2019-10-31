@@ -1577,6 +1577,16 @@ with(myTurtle) { // 画一个 100 像素的正方形
 }
 </code></pre>
 </div>
+<h3 id="配置对象的属性apply">配置对象的属性（<code>apply</code>）</h3>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val myRectangle = Rectangle().apply {
+    length = 4
+    breadth = 5
+    color = 0xFAFAFA
+}
+</code></pre>
+</div>
+<p>这对于配置未出现在对象构造函数中的属性非常有用。</p>
 <h3 id="java-7-的-try-with-resources">Java 7 的 try with resources</h3>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val stream = Files.newInputStream(Paths.get("/some/file.txt"))

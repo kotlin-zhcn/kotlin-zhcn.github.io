@@ -917,22 +917,22 @@ void union_by_pointer(MyUnion* u) {}
 </code></pre>
 </div>
 <p>该 <code>interop.def</code> 文件足够用来编译并运行应用程序，或在 IDE 中打开它。
-现在是时候创建工程文件，并在
-<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> 中打开这个工程，然后运行它。</p>
+现在我们创建工程文件，并在
+<a href="https://jetbrains.com/idea">IntelliJ IDEA</a> 中打开该工程，然后运行它。</p>
 <h2 id="为-c-库检查生成的-kotlin-api">为 C 库检查生成的 Kotlin API</h2>
 <p>虽然可以使用命令行<!--
 -->或直接通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
 对于拥有数百个文件以及库的大型项目来说，这不能很好地扩展。
 所以最好使用附带构建系统的 Kotlin/Native 编译器，它可以<!--
 -->帮助下载与缓存 Kotlin/Native 编译器二进制文件与库<!--
--->传递依赖，并运行编译器与测试。
+-->传递依赖，以及运行该编译器并测试。
 Kotlin/Native 可以通过 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件来使用 <a href="https://gradle.org">Gradle</a> 构建系统。</p>
 <p><a href="basic-kotlin-native-app.html#create-gradle-project">基本 Kotlin/Native 应用程序</a><!--
 -->这篇教程涵盖了使用 Gradle 创建 IDE 兼容工程的<!--
 -->基础知识。如果你正在寻找关于第一步的更多细节<!--
 -->以及如何开始一个新的 Kotlin/Native 项目并在 IntelliJ IDEA 中打开它的说明，则请你阅读<!--
--->这篇教程，我们将看看关于在 Kotlin/Native 中进行高级的 C 互操作的相关用法<!--
+-->这篇教程，我们将看到关于在 Kotlin/Native 中进行高级的 C 互操作的相关用法<!--
 -->以及使用
 <a href="/docs/reference/building-mpp-with-gradle.html">multiplatform</a><!--
 -->（Kotlin 多平台插件）及 Gradle 进行构建。</p>
@@ -1119,22 +1119,22 @@ tasks.withType&lt;Wrapper&gt; {
 </div>
 <p>这个已经准备好的工程源文件可以直接在这里下载：
 <span class="multi-language-span" data-lang="groovy" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos-c.zip">GitHub</a>。
 </span>
 <span class="multi-language-span" data-lang="groovy" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-linux-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-linux-c.zip">GitHub</a>。
 </span>
 <span class="multi-language-span" data-lang="groovy" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-windows-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-windows-c.zip">GitHub</a>。
 </span>
 <span class="multi-language-span" data-lang="kotlin" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-macos-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-macos-c.zip">GitHub</a>。
 </span>
 <span class="multi-language-span" data-lang="kotlin" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-linux-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-linux-c.zip">GitHub</a>。
 </span>
 <span class="multi-language-span" data-lang="kotlin" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows-c.zip">GitHub</a>.
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows-c.zip">GitHub</a>。
 </span></p>
 <p>该项目文件将 C 互操作配置为构建的附加步骤。
 让我们将 <code>interop.def</code> 文件移动到 <code>src/nativeInterop/cinterop</code> 目录。
@@ -1283,7 +1283,7 @@ Kotlin 给我们提供了 API 使得处理这两者都非常简单，我们来�
 <p><code>MyStruct</code> 与 <code>MyUnion</code> 类具有指向原生内存的指针。当 <code>memScoped</code> 函数结束的时候，
 即 <code>block</code> 结尾的时候，内存将释放。请小心确保指针<!--
 -->没有在 <code>memScoped</code> 调用的外部使用。我们可以为指针使用 <code>Arena()</code> 或 <code>nativeHeap</code>
-这样应该有更长的可用时间，或者缓存在 C 库中。</p>
+这样应该有更长的可用时间，或者将它们缓存在 C 库中。</p>
 <h3 id="在-cvaluet-与-cvaluesreft-之间转换">在 <code>CValue&lt;T&gt;</code> 与 <code>CValuesRef&lt;T&gt;</code> 之间转换</h3>
 <p>当然，这里有一些用例：一种是我们需要将一个结构体作为值传递给一个调用，另一种是<!--
 -->将同一个结构体作为引用传递给另一个调用。这在 Kotlin/Native 中同样也是可行的。这里将<!--

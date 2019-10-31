@@ -1613,19 +1613,19 @@ fun main() {
 <h3 id="调用超类实现">调用超类实现</h3>
 <p>派生类中的代码可以使用 <em class="keyword">super</em> 关键字调用其超类的函数与属性访问器的实现：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    open class Rectangle {
-        open fun draw() { println("Drawing a rectangle") }
-        val borderColor: String get() = "black"
+<pre><code class="language-kotlin">open class Rectangle {
+    open fun draw() { println("Drawing a rectangle") }
+    val borderColor: String get() = "black"
+}
+
+class FilledRectangle : Rectangle() {
+    override fun draw() {
+        super.draw()
+        println("Filling the rectangle")
     }
 
-    class FilledRectangle : Rectangle() {
-        override fun draw() {
-            super.draw()
-            println("Filling the rectangle")
-        }
-
-        val fillColor: String get() = super.borderColor
-    }
+    val fillColor: String get() = super.borderColor
+}
 </code></pre>
 </div>
 <p>在一个内部类中访问外部类的超类，可以通过由外部类名限定的 <em class="keyword">super</em> 关键字来实现：<code>super@Outer</code>：</p>

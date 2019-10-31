@@ -1367,297 +1367,180 @@ For details, see <a href="using-maven.html#specifying-compiler-options">Using Ma
 <h2 id="公共选项">公共选项</h2>
 <p>The following options are common for all Kotlin compilers.</p>
 <h3 id="-version"><code>-version</code></h3>
-<ul>
-<li>Display the compiler version.</li>
-</ul>
+<p class="details-group">Display the compiler version.</p>
 <h3 id="-nowarn"><code>-nowarn</code></h3>
-<ul>
-<li>Suppress the compiler from displaying warnings during compilation.</li>
-</ul>
+<p class="details-group">Suppress the compiler from displaying warnings during compilation.</p>
 <h3 id="-werror"><code>-Werror</code></h3>
-<ul>
-<li>Turn any warnings into a compilation error.</li>
-</ul>
+<p class="details-group">Turn any warnings into a compilation error.</p>
 <h3 id="-verbose"><code>-verbose</code></h3>
-<ul>
-<li>Enable verbose logging output which includes details of the compilation process.</li>
-</ul>
+<p class="details-group">Enable verbose logging output which includes details of the compilation process.</p>
 <h3 id="-help--h"><code>-help</code> (<code>-h</code>)</h3>
-<ul>
-<li>Display usage information and exit. Only standard options are shown.
-To show advanced options, use <code>-X</code>.</li>
-</ul>
+<p class="details-group">Display usage information and exit. Only standard options are shown.
+To show advanced options, use <code>-X</code>.</p>
 <h3 id="-x"><code>-X</code></h3>
-<ul>
-<li>Display information about the advanced options and exit. These options are currently unstable: 
-their names and behavior may be changed without notice.</li>
-</ul>
+<p class="details-group">Display information about the advanced options and exit. These options are currently unstable: 
+their names and behavior may be changed without notice.</p>
 <h3 id="-kotlin-home-path"><code>-kotlin-home &lt;path&gt;</code></h3>
-<ul>
-<li>Specify a custom path to the Kotlin compiler used for the discovery of runtime libraries.</li>
-</ul>
+<p class="details-group">Specify a custom path to the Kotlin compiler used for the discovery of runtime libraries.</p>
 <h3 id="-p-pluginpluginidoptionnamevalue"><code>-P plugin:&lt;pluginId&gt;:&lt;optionName&gt;=&lt;value&gt;</code></h3>
-<ul>
-<li>Pass an option to a Kotlin compiler plugin.
-Available plugins and their options are listed in <a href="compiler-plugins.html">Compiler plugins</a>.</li>
-</ul>
+<p class="details-group">Pass an option to a Kotlin compiler plugin.
+Available plugins and their options are listed in <a href="compiler-plugins.html">Compiler plugins</a>.</p>
 <h3 id="-language-version-version"><code>-language-version &lt;version&gt;</code></h3>
-<ul>
-<li>Provide source compatibility with the specified version of Kotlin.</li>
-</ul>
+<p class="details-group">Provide source compatibility with the specified version of Kotlin.</p>
 <h3 id="-api-version-version"><code>-api-version &lt;version&gt;</code></h3>
-<ul>
-<li>Allow using declarations only from the specified version of Kotlin bundled libraries.</li>
-</ul>
+<p class="details-group">Allow using declarations only from the specified version of Kotlin bundled libraries.</p>
 <h3 id="-progressive"><code>-progressive</code></h3>
-<ul>
-<li>
-<p>Enable the <a href="whatsnew13.html#progressive-mode">progressive mode</a> for the compiler.</p>
-<p>In the progressive mode, deprecations and bug fixes for unstable code take effect immediately,
-  instead of going through a graceful migration cycle.
-  Code written in the progressive mode is backwards compatible; however, code written in
-  a non-progressive mode may cause compilation errors in the progressive mode.</p>
-</li>
-</ul>
+<p class="details-group">Enable the <a href="whatsnew13.html#progressive-mode">progressive mode</a> for the compiler.</p>
+<p class="details-group">In the progressive mode, deprecations and bug fixes for unstable code take effect immediately,
+instead of going through a graceful migration cycle.
+Code written in the progressive mode is backwards compatible; however, code written in
+a non-progressive mode may cause compilation errors in the progressive mode.</p>
 <h3 id="argfile"><code>@&lt;argfile&gt;</code></h3>
-<ul>
-<li>
-<p>Read the compiler options from the given file. A file passed in this option can contain compiler options with values 
-and paths to the source files. For example:</p>
+<p class="details-group">Read the compiler options from the given file. Such a file can contain compiler options with values 
+and paths to the source files. Options and paths should be separated by whitespaces. For example:</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code>  -d hello.jar -include-runtime
-  hello.kt
+<pre><code>-include-runtime -d hello.jar
+hello.kt
 </code></pre>
 </div>
-<p>You can also separate compiler options from source file names and pass multiple argument files.</p>
+<p class="details-group">To pass values that contain whitespaces, surround them with single (<strong>'</strong>) or double (<strong>"</strong>) quotes. If a value contains 
+quotation marks in it, escape them with a backslash (<strong>\</strong>).</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">  $ kotlinc @compiler.options @classes
+<pre><code>-include-runtime -d 'My folder'
 </code></pre>
 </div>
-<p>If the files reside in locations different from the current directory, use relative paths.</p>
+<p class="details-group">You can also pass multiple argument files, for example, to separate compiler options from source files.</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">  $ kotlinc @options/compiler.options hello.kt
+<pre><code class="language-bash">$ kotlinc @compiler.options @classes
 </code></pre>
 </div>
-</li>
-</ul>
-<h2 id="jvm-编译器选项">JVM 编译器选项</h2>
+<p class="details-group">If the files reside in locations different from the current directory, use relative paths.</p>
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash">$ kotlinc @options/compiler.options hello.kt
+</code></pre>
+</div>
+<h2 id="kotlinjvm-编译器选项">Kotlin/JVM 编译器选项</h2>
 <p>The Kotlin compiler for JVM compiles Kotlin source files into Java class files. 
 The command-line tools for Kotlin to JVM compilation are <code>kotlinc</code> and <code>kotlinc-jvm</code>.
 You can also use them for executing Kotlin script files.</p>
 <p>In addition to the <a href="#common-options">common options</a>, Kotlin/JVM compiler has the options listed below.</p>
 <h3 id="-classpath-path--cp-path"><code>-classpath &lt;path&gt;</code> (<code>-cp &lt;path&gt;</code>)</h3>
-<ul>
-<li>Search for class files in the specified paths. Separate elements of the classpath with system path separators (<strong>;</strong> on Windows, <strong>:</strong> on macOS/Linux).
-The classpath can contain file and directory paths, ZIP, or JAR files.</li>
-</ul>
+<p class="details-group">Search for class files in the specified paths. Separate elements of the classpath with system path separators (<strong>;</strong> on Windows, <strong>:</strong> on macOS/Linux).
+The classpath can contain file and directory paths, ZIP, or JAR files.</p>
 <h3 id="-d-path"><code>-d &lt;path&gt;</code></h3>
-<ul>
-<li>Place the generated class files into the specified location. The location can be a directory, a ZIP, or a JAR file.</li>
-</ul>
+<p class="details-group">Place the generated class files into the specified location. The location can be a directory, a ZIP, or a JAR file.</p>
 <h3 id="-include-runtime"><code>-include-runtime</code></h3>
-<ul>
-<li>Include the Kotlin runtime into the resulting JAR file. Makes the resulting archive runnable on any Java-enabled 
-environment.</li>
-</ul>
+<p class="details-group">Include the Kotlin runtime into the resulting JAR file. Makes the resulting archive runnable on any Java-enabled 
+environment.</p>
 <h3 id="-jdk-home-path"><code>-jdk-home &lt;path&gt;</code></h3>
-<ul>
-<li>Use a custom JDK home directory to include into the classpath if it differs from the default <code>JAVA_HOME</code>.</li>
-</ul>
+<p class="details-group">Use a custom JDK home directory to include into the classpath if it differs from the default <code>JAVA_HOME</code>.</p>
 <h3 id="-jvm-target-version"><code>-jvm-target &lt;version&gt;</code></h3>
-<ul>
-<li>Specify the target version of the generated JVM bytecode. Possible values are <code>1.6</code>, <code>1.8</code>, <code>9</code>, <code>10</code>, <code>11</code>, and <code>12</code>.
- The default value is <code>1.6</code>.</li>
-</ul>
+<p class="details-group">Specify the target version of the generated JVM bytecode. Possible values are <code>1.6</code>, <code>1.8</code>, <code>9</code>, <code>10</code>, <code>11</code>, and <code>12</code>.
+The default value is <code>1.6</code>.</p>
 <h3 id="-java-parameters"><code>-java-parameters</code></h3>
-<ul>
-<li>Generate metadata for Java 1.8 reflection on method parameters.</li>
-</ul>
+<p class="details-group">Generate metadata for Java 1.8 reflection on method parameters.</p>
 <h3 id="-module-name-name"><code>-module-name &lt;name&gt;</code></h3>
-<ul>
-<li>Set a custom name for the generated <code>.kotlin_module</code> file.</li>
-</ul>
+<p class="details-group">Set a custom name for the generated <code>.kotlin_module</code> file.</p>
 <h3 id="-no-jdk"><code>-no-jdk</code></h3>
-<ul>
-<li>Don't automatically include the Java runtime into the classpath.</li>
-</ul>
+<p class="details-group">Don't automatically include the Java runtime into the classpath.</p>
 <h3 id="-no-reflect"><code>-no-reflect</code></h3>
-<ul>
-<li>Don't automatically include the Kotlin reflection (<code>kotlin-reflect.jar</code>) into the classpath.</li>
-</ul>
+<p class="details-group">Don't automatically include the Kotlin reflection (<code>kotlin-reflect.jar</code>) into the classpath.</p>
 <h3 id="-no-stdlib"><code>-no-stdlib</code></h3>
-<ul>
-<li>Don't automatically include the Kotlin/JVM stdlib (<code>kotlin-stdlib.jar</code>) and Kotlin reflection (<code>kotlin-reflect.jar</code>)
- into the classpath.</li>
-</ul>
+<p class="details-group">Don't automatically include the Kotlin/JVM stdlib (<code>kotlin-stdlib.jar</code>) and Kotlin reflection (<code>kotlin-reflect.jar</code>)
+into the classpath.</p>
 <h3 id="-script"><code>-script</code></h3>
-<ul>
-<li>Evaluate a Kotlin script file. When called with this option, the compiler executes the first Kotlin script (<code>*.kts</code>) 
-file among the given arguments.</li>
-</ul>
+<p class="details-group">Evaluate a Kotlin script file. When called with this option, the compiler executes the first Kotlin script (<code>*.kts</code>) 
+file among the given arguments.</p>
 <h3 id="-script-templates-classnames"><code>-script-templates &lt;classnames[,]&gt;</code></h3>
-<ul>
-<li>Script definition template classes. Use fully qualified class names and separate them with commas (<strong>,</strong>).</li>
-</ul>
+<p class="details-group">Script definition template classes. Use fully qualified class names and separate them with commas (<strong>,</strong>).</p>
 <h2 id="kotlinjs-编译器选项">Kotlin/JS 编译器选项</h2>
 <p>The Kotlin compiler for JS compiles Kotlin source files into JavaScript code. 
 The command-line tool for Kotlin to JS compilation is <code>kotlinc-js</code>.</p>
 <p>In addition to the <a href="#common-options">common options</a>, Kotlin/JS compiler has the options listed below.</p>
 <h3 id="-libraries-path"><code>-libraries &lt;path&gt;</code></h3>
-<ul>
-<li>Paths to Kotlin libraries with <code>.meta.js</code> and <code>.kjsm</code> files, separated by the system path separator.</li>
-</ul>
+<p class="details-group">Paths to Kotlin libraries with <code>.meta.js</code> and <code>.kjsm</code> files, separated by the system path separator.</p>
 <h3 id="-main-callnocall"><code>-main {call|noCall}</code></h3>
-<ul>
-<li>Define whether the <code>main</code> function should be called upon execution.</li>
-</ul>
+<p class="details-group">Define whether the <code>main</code> function should be called upon execution.</p>
 <h3 id="-meta-info"><code>-meta-info</code></h3>
-<ul>
-<li>Generate <code>.meta.js</code> and <code>.kjsm</code> files with metadata. Use this option when creating a JS library.</li>
-</ul>
+<p class="details-group">Generate <code>.meta.js</code> and <code>.kjsm</code> files with metadata. Use this option when creating a JS library.</p>
 <h3 id="-module-kind-plainamdcommonjsumd"><code>-module-kind {plain|amd|commonjs|umd}</code></h3>
+<p class="details-group">The kind of JS module generated by the compiler:</p>
 <ul>
-<li>The kind of JS module generated by the compiler:
-    <ul>
 <li><code>plain</code> - a plain JS module;</li>
 <li><code>commonjs</code> - a <a href="http://www.commonjs.org/">CommonJS</a> module;</li>
 <li><code>amd</code> - an <a href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">Asynchronous Module Definition</a> module;</li>
 <li><code>umd</code> - a <a href="https://github.com/umdjs/umd">Universal Module Definition</a> module.</li>
 </ul>
-<p>To learn more about the different kinds of JS module and the distinctions between them,
-  see <a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">this</a> article.</p>
-</li>
-</ul>
+<p class="details-group">To learn more about the different kinds of JS module and the distinctions between them,
+see <a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">this</a> article.</p>
 <h3 id="-no-stdlib-1"><code>-no-stdlib</code></h3>
-<ul>
-<li>Don't automatically include the default Kotlin/JS stdlib into the compilation dependencies.</li>
-</ul>
+<p class="details-group">Don't automatically include the default Kotlin/JS stdlib into the compilation dependencies.</p>
 <h3 id="-output-filepath"><code>-output &lt;filepath&gt;</code></h3>
-<ul>
-<li>Set the destination file for the compilation result. The value must be a path to a <code>.js</code> file including its name.</li>
-</ul>
+<p class="details-group">Set the destination file for the compilation result. The value must be a path to a <code>.js</code> file including its name.</p>
 <h3 id="-output-postfix-filepath"><code>-output-postfix &lt;filepath&gt;</code></h3>
-<ul>
-<li>Add the content of the specified file to the end of the output file.</li>
-</ul>
+<p class="details-group">Add the content of the specified file to the end of the output file.</p>
 <h3 id="-output-prefix-filepath"><code>-output-prefix &lt;filepath&gt;</code></h3>
-<ul>
-<li>Add the content of the specified file to the beginning of the output file.</li>
-</ul>
+<p class="details-group">Add the content of the specified file to the beginning of the output file.</p>
 <h3 id="-source-map"><code>-source-map</code></h3>
-<ul>
-<li>Generate the source map.</li>
-</ul>
+<p class="details-group">Generate the source map.</p>
 <h3 id="-source-map-base-dirs-path"><code>-source-map-base-dirs &lt;path&gt;</code></h3>
-<ul>
-<li>Use the specified paths as base directories. Base directories are used for calculating relative paths in the source map.</li>
-</ul>
+<p class="details-group">Use the specified paths as base directories. Base directories are used for calculating relative paths in the source map.</p>
 <h3 id="-source-map-embed-sources-alwaysneverinlining"><code>-source-map-embed-sources {always|never|inlining}</code></h3>
-<ul>
-<li>Embed source files into the source map.</li>
-</ul>
+<p class="details-group">Embed source files into the source map.</p>
 <h3 id="-source-map-prefix"><code>-source-map-prefix</code></h3>
-<ul>
-<li>Add the specified prefix to paths in the source map.</li>
-</ul>
+<p class="details-group">Add the specified prefix to paths in the source map.</p>
 <h2 id="kotlinnative-编译器选项">Kotlin/Native 编译器选项</h2>
 <p>Kotlin/Native compiler compiles Kotlin source files into native binaries for the <a href="native-overview.html#target-platforms">supported platforms</a>. 
 The command-line tool for Kotlin/Native compilation is <code>kotlinc-native</code>.</p>
 <p>In addition to the <a href="#common-options">common options</a>, Kotlin/Native compiler has the options listed below.</p>
 <h3 id="-enable-assertions--ea"><code>-enable-assertions</code> (<code>-ea</code>)</h3>
-<ul>
-<li>Enable runtime assertions in the generated code.</li>
-</ul>
+<p class="details-group">Enable runtime assertions in the generated code.</p>
 <h3 id="-g"><code>-g</code></h3>
-<ul>
-<li>Enable emitting debug information.</li>
-</ul>
+<p class="details-group">Enable emitting debug information.</p>
 <h3 id="-generate-test-runner--tr"><code>-generate-test-runner</code> (<code>-tr</code>)</h3>
-<ul>
-<li>Produce an application for running unit tests from the project.</li>
-</ul>
+<p class="details-group">Produce an application for running unit tests from the project.</p>
 <h3 id="-generate-worker-test-runner--trw"><code>-generate-worker-test-runner</code> (<code>-trw</code>)</h3>
-<ul>
-<li>Produce an application for running unit tests in a <a href="native/concurrency.html#workers">worker thread</a>.</li>
-</ul>
+<p class="details-group">Produce an application for running unit tests in a <a href="native/concurrency.html#workers">worker thread</a>.</p>
 <h3 id="-generate-no-exit-test-runner--trn"><code>-generate-no-exit-test-runner</code> (<code>-trn</code>)</h3>
-<ul>
-<li>Produce an application for running unit tests without an explicit process exit.</li>
-</ul>
+<p class="details-group">Produce an application for running unit tests without an explicit process exit.</p>
 <h3 id="-include-binary-path--ib-path"><code>-include-binary &lt;path&gt;</code> (<code>-ib &lt;path&gt;</code>)</h3>
-<ul>
-<li>Pack external binary within the generated klib file.</li>
-</ul>
+<p class="details-group">Pack external binary within the generated klib file.</p>
 <h3 id="-library-path--l-path"><code>-library &lt;path&gt;</code> (<code>-l &lt;path&gt;</code>)</h3>
-<ul>
-<li>Link with the library. To learn about using libraries in Kotlin/native projects, see 
-<a href="native/libraries.html">Kotlin/Native libraries</a>.</li>
-</ul>
+<p class="details-group">Link with the library. To learn about using libraries in Kotlin/native projects, see 
+<a href="native/libraries.html">Kotlin/Native libraries</a>.</p>
 <h3 id="-library-version-version--lv"><code>-library-version &lt;version&gt;</code> (<code>-lv</code>)</h3>
-<ul>
-<li>Set library version.</li>
-</ul>
+<p class="details-group">Set the library version.</p>
 <h3 id="-list-targets"><code>-list-targets</code></h3>
-<ul>
-<li>List the available hardware targets.</li>
-</ul>
+<p class="details-group">List the available hardware targets.</p>
 <h3 id="-manifest-path"><code>-manifest &lt;path&gt;</code></h3>
-<ul>
-<li>Provide a manifest addend file.</li>
-</ul>
+<p class="details-group">Provide a manifest addend file.</p>
 <h3 id="-module-name-name-1"><code>-module-name &lt;name&gt;</code></h3>
-<ul>
-<li>Specify a name for the compilation module.
+<p class="details-group">Specify a name for the compilation module.
 This option can also be used to specify a name prefix for the declarations exported to Objective-C:
-<a href="native/faq.html#q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">How do I specify a custom Objective-C prefix/name for my Kotlin framework?</a></li>
-</ul>
+<a href="native/faq.html#q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">How do I specify a custom Objective-C prefix/name for my Kotlin framework?</a></p>
 <h3 id="-native-library-path-nl-path"><code>-native-library &lt;path&gt;</code>(<code>-nl &lt;path&gt;</code>)</h3>
-<ul>
-<li>Include the native bitcode library.</li>
-</ul>
+<p class="details-group">Include the native bitcode library.</p>
 <h3 id="-no-default-libs"><code>-no-default-libs</code></h3>
-<ul>
-<li>Disable linking user code with the <a href="native/platform_libs.html">default platform libraries</a> distributed with the compiler.</li>
-</ul>
+<p class="details-group">Disable linking user code with the <a href="native/platform_libs.html">default platform libraries</a> distributed with the compiler.</p>
 <h3 id="-nomain"><code>-nomain</code></h3>
-<ul>
-<li>Assume the <code>main</code> entry point to be provided by external libraries.</li>
-</ul>
+<p class="details-group">Assume the <code>main</code> entry point to be provided by external libraries.</p>
 <h3 id="-nopack"><code>-nopack</code></h3>
-<ul>
-<li>Don't pack the library into a klib file.</li>
-</ul>
+<p class="details-group">Don't pack the library into a klib file.</p>
 <h3 id="-linker-option"><code>-linker-option</code></h3>
-<ul>
-<li>Pass an argument to the linker. To learn more, see 
-<a href="native/c_interop.html#c-compiler-and-linker-options">C compiler and linker options</a>.</li>
-</ul>
+<p class="details-group">Pass an argument to the linker during binary building. This can be used for linking against some native library.</p>
 <h3 id="-linker-options-args"><code>-linker-options &lt;args&gt;</code></h3>
-<ul>
-<li>Pass arguments to the linker. To learn more, see 
-<a href="native/c_interop.html#c-compiler-and-linker-options">C compiler and linker options</a>.
- Separate different arguments with whitespaces.</li>
-</ul>
+<p class="details-group">Pass multiple arguments to the linker during binary building. Separate arguments with whitespaces.</p>
 <h3 id="-nostdlib"><code>-nostdlib</code></h3>
-<ul>
-<li>Don't link with stdlib.</li>
-</ul>
+<p class="details-group">Don't link with stdlib.</p>
 <h3 id="-opt"><code>-opt</code></h3>
-<ul>
-<li>Enable compilation optimizations.</li>
-</ul>
+<p class="details-group">Enable compilation optimizations.</p>
 <h3 id="-output-name--o-name"><code>-output &lt;name&gt;</code> (<code>-o &lt;name&gt;</code>)</h3>
-<ul>
-<li>Set the name for the output file.</li>
-</ul>
+<p class="details-group">Set the name for the output file.</p>
 <h3 id="-entry-name--e-name"><code>-entry &lt;name&gt;</code> (<code>-e &lt;name&gt;</code>)</h3>
-<ul>
-<li>Specify the qualified entry point name.</li>
-</ul>
+<p class="details-group">Specify the qualified entry point name.</p>
 <h3 id="-produce-output--p"><code>-produce &lt;output&gt;</code> (<code>-p</code>)</h3>
+<p class="details-group">Specify output file kind:</p>
 <ul>
-<li>Specify output file kind:
-    <ul>
 <li><code>program</code></li>
 <li><code>static</code></li>
 <li><code>dynamic</code></li>
@@ -1665,16 +1548,10 @@ This option can also be used to specify a name prefix for the declarations expor
 <li><code>library</code></li>
 <li><code>bitcode</code></li>
 </ul>
-</li>
-</ul>
 <h3 id="-repo-path--r-path"><code>-repo &lt;path&gt;</code> (<code>-r &lt;path&gt;</code>)</h3>
-<ul>
-<li>Library search path. For more information, see <a href="native/libraries.html#library-search-sequence">Library search sequence</a>.</li>
-</ul>
+<p class="details-group">Library search path. For more information, see <a href="native/libraries.html#library-search-sequence">Library search sequence</a>.</p>
 <h3 id="-target-target"><code>-target &lt;target&gt;</code></h3>
-<ul>
-<li>Set hardware target. To see the list of available targets, use the <a href="#-list-targets"><code>list-targets</code></a> option.</li>
-</ul>
+<p class="details-group">Set hardware target. To see the list of available targets, use the <a href="#-list-targets"><code>-list-targets</code></a> option.</p>
 
         </article>
     </div>

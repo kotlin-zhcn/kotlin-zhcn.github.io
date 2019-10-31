@@ -2943,7 +2943,7 @@ binaries.findExecutable("foo", DEBUG)
 <ul>
 <li><strong>Compilation.</strong> Each binary is built on basis of some compilation available in the same target. The default value of this parameter depends
  on the binary type: <code>Test</code> binaries are based on the <code>test</code> compilation while other binaries - on the <code>main</code> compilation.</li>
-<li><strong>Linker options.</strong> Options passed to a system linker during binary building. One can use this setting to link against some native library.</li>
+<li><strong>Linker options.</strong> Options passed to a system linker during binary building. One can use this setting for linking against some native library.</li>
 <li><strong>Output file name.</strong> By default the output file name is based on binary name prefix or, if the name prefix isn't specified, on a project name.
  But it's possible to configure the output file name independently using the <code>baseName</code> property. Note that final file name will be formed
  by adding system-dependent prefix and postfix to this base name. E.g. a <code>libfoo.so</code> is produced for a Linux shared library with the base name <code>foo</code>.</li>
