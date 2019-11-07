@@ -864,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <h3 id="下载编译器">下载编译器</h3>
-<p>每个版本都附带一个独立版本的编译器。可以从 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.50">GitHub Releases</a>下载。最新版本是 1.3.50。</p>
+<p>每个版本都附带一个独立版本的编译器。可以从 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.50">GitHub Releases</a> 页下载最新版本（<code>kotlin-compiler-1.3.50.zip</code>）。</p>
 <h4 id="手动安装">手动安装</h4>
 <p>将独立的编译器解压缩到一个目录中，并将 <code>bin</code> 目录添加到系统路径中。<code>bin</code> 目录包含了在 Windows、OS X 及 Linux 上编译与运行 Kotlin 所需的脚本。</p>
 <h4 id="sdkman">SDKMAN!</h4>
@@ -921,7 +921,7 @@ $ brew install kotlin
 <pre><code class="language-bash"> $ kotlinc hello.kt -include-runtime -d hello.jar
 </code></pre>
 </div>
-<p><code>-d</code> 选项表示我们想要编译器的输出被调用，可以是类文件目录名或一个 <em>.jar</em> 文件名。<code>-include-runtime</code> 选项通过在其中包含 Kotlin 运行时库，使得生成的 <em>.jar</em> 文件中自包含运行时库且可运行。
+<p><code>-d</code> 选项表示生成的类文件的输出路径，可以是目录，也可以是一个 <em>.jar</em> 文件。<code>-include-runtime</code> 选项通过在其中包含 Kotlin 运行时库，使得生成的 <em>.jar</em> 文件中自包含运行时库且可运行。
 如果要查看所有可用选项，请运行以下命令：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash"> $ kotlinc -help
@@ -937,7 +937,7 @@ $ brew install kotlin
 </li>
 </ol>
 <h3 id="编译库">编译库</h3>
-<p>如果你正在开发一个供其他 Kotlin 应用程序使用的库，则可以生成 .jar 文件，而不将 Kotlin 运行时包含在其中。</p>
+<p>如果你正在开发一个供其他 Kotlin 应用程序使用的库，那么可以构建 <em>.jar</em> 文件，而不将 Kotlin 运行时包含在其中。</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc hello.kt -d hello.jar
 </code></pre>
@@ -953,7 +953,7 @@ $ brew install kotlin
 <p>可以运行没有参数的编译器来拥有交互式 shell。可以输入任何有效的 Kotlin 代码并查看结果。</p>
 <p><img alt="Shell" src="/assets/images/tutorials/command-line/kotlin_shell.png"/></p>
 <h3 id="使用命令行运行脚本">使用命令行运行脚本</h3>
-<p>Kotlin 也可以用作脚本语言。脚本是具有顶层可执行代码的 Kotlin 源文件（.kts）。</p>
+<p>Kotlin 也可以用作脚本语言。脚本是具有顶层可执行代码的 Kotlin 源文件（<em>.kts</em>）。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import java.io.File
 
@@ -971,8 +971,7 @@ folders?.forEach { folder -&gt; println(folder) }
 -->带有适当支持代码的带注释的 kotlin 类定义。脚本文件扩展名用于选择适当的<!--
 -->定义。</p>
 <p>当适当的 jar 文件包含在<!--
--->编译类路径中时，会自动检测并正确应用正确编写的脚本定义。或可以<!--
--->使用编译器的 <code>-script-templates</code> 选项来手动定义：</p>
+-->编译类路径中时，会自动检测并正确应用正确编写的脚本定义。或可以使用编译器的 <code>-script-templates</code> 选项来手动定义：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc -script-templates org.example.CustomScriptDefinition -script custom.script1.kts
 </code></pre>

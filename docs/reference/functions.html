@@ -1534,14 +1534,14 @@ val list = asList(-1, 0, *a, 4)
 <p>中缀函数调用的优先级低于算术操作符、类型转换以及 <code>rangeTo</code> 操作符。
 以下表达式是等价的：</p>
 <ul>
-<li><code>1 shl 2 + 3</code> 与 <code>1 shl (2 + 3)</code></li>
-<li><code>0 until n * 2</code> 与 <code>0 until (n * 2)</code></li>
-<li><code>xs union ys as Set&lt;*&gt;</code> 与 <code>xs union (ys as Set&lt;*&gt;)</code></li>
+<li><code>1 shl 2 + 3</code> 等价于 <code>1 shl (2 + 3)</code></li>
+<li><code>0 until n * 2</code> 等价于 <code>0 until (n * 2)</code></li>
+<li><code>xs union ys as Set&lt;*&gt;</code> 等价于 <code>xs union (ys as Set&lt;*&gt;)</code></li>
 </ul>
 <p>另一方面，中缀函数调用的优先级高于布尔操作符 <code>&amp;&amp;</code> 与 <code>||</code>、<code>is-</code> 与 <code>in-</code> 检测以及其他一些操作符。这些表达式也是等价的：</p>
 <ul>
-<li><code>a &amp;&amp; b xor c</code> 与 <code>a &amp;&amp; (b xor c)</code></li>
-<li><code>a xor b in c</code> 与 <code>(a xor b) in c</code></li>
+<li><code>a &amp;&amp; b xor c</code> 等价于 <code>a &amp;&amp; (b xor c)</code></li>
+<li><code>a xor b in c</code> 等价于 <code>(a xor b) in c</code></li>
 </ul>
 <p>完整的优先级层次结构请参见其<a href="grammar.html#expressions">语法参考</a>。</p>
 </blockquote>
