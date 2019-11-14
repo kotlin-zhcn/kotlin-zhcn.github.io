@@ -1726,7 +1726,7 @@ compileKotlin.kotlinOptions.suppressWarnings = true
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions { …… }
+    kotlinOptions { ... }
 }
 </code></pre>
 </div>
@@ -1735,7 +1735,7 @@ compileKotlin.kotlinOptions.suppressWarnings = true
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-tasks.withType&lt;KotlinCompile&gt; {
+tasks.withType&lt;KotlinCompile&gt;().configureEach {
     kotlinOptions.suppressWarnings = true
 }
 </code></pre>

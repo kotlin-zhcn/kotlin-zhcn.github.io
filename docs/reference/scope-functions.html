@@ -1363,7 +1363,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>如果不使用 <code>let</code> 来写这段代码, 就必须引入一个新变量，并在每次使用它时重复其名称。</p>
+<p>如果不使用 <code>let</code> 来写这段代码，就必须引入一个新变量，并在每次使用它时重复其名称。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int, var city: String) {
     fun moveTo(newCity: String) { city = newCity }
@@ -1390,7 +1390,7 @@ fun main() {
 <li>返回值</li>
 </ul>
 <h3 id="上下文对象this-还是-it">上下文对象：<code>this</code> 还是 <code>it</code></h3>
-<p>在作用域函数的 lambda 表达式里，上下文对象可以不使用其实际名称而是使用一个更简短的引用来访问。每个作用域函数都使用以下两种方式之一来访问上下文对象：作为 lambda 的<a href="lambdas.html#带有接收者的函数字面值">接收者</a>（<code>this</code>）或者作为 lambda 的参数（<code>it</code>）。两者都提供了同样的功能，因此我们将针对不同的场景描述两者的优缺点，并提供使用建议。</p>
+<p>在作用域函数的 lambda 表达式里，上下文对象可以不使用其实际名称而是使用一个更简短的引用来访问。每个作用域函数都使用以下两种方式之一来访问上下文对象：作为 lambda 表达式的<a href="lambdas.html#带有接收者的函数字面值">接收者</a>（<code>this</code>）或者作为 lambda 表达式的参数（<code>it</code>）。两者都提供了同样的功能，因此我们将针对不同的场景描述两者的优缺点，并提供使用建议。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
     val str = "Hello"
@@ -1408,7 +1408,7 @@ fun main() {
 </code></pre>
 </div>
 <h4 id="this">this</h4>
-<p><code>run</code>、<code>with</code> 以及 <code>apply</code> 通过关键字 <code>this</code> 引用上下文对象。因此，在它们的 lambda 表达式中可以像在普通的类函数中一样访问上下文对象。在大多数场景，当你访问接收者对象时你可以省略 <code>this</code>，来让你的代码更简短。相对地，如果省略了 <code>this</code>，就很难区分接收者对象的成员及外部对象或函数。因此，对于主要对对象成员进行操作（调用其函数或赋值其属性）的 lambda，建议将上下文对象作为接收者（<code>this</code>）。</p>
+<p><code>run</code>、<code>with</code> 以及 <code>apply</code> 通过关键字 <code>this</code> 引用上下文对象。因此，在它们的 lambda 表达式中可以像在普通的类函数中一样访问上下文对象。在大多数场景，当你访问接收者对象时你可以省略 <code>this</code>，来让你的代码更简短。相对地，如果省略了 <code>this</code>，就很难区分接收者对象的成员及外部对象或函数。因此，对于主要对对象成员进行操作（调用其函数或赋值其属性）的 lambda 表达式，建议将上下文对象作为接收者（<code>this</code>）。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int = 0, var city: String = "")
 
@@ -1543,34 +1543,34 @@ fun main() {
 </code></pre>
 </div>
 <h2 id="几个函数">几个函数</h2>
-<p>To help you choose the right scope function for your case, we'll describe them in detail and provide usage recommendations. Technically, functions are interchangeable in many cases, so the examples show the conventions that define the common usage style.</p>
+<p>为了帮助你为你的场景选择合适的作用域函数，我们会详细地描述它们并且提供一些使用建议。从技术角度来说，作用域函数在很多场景里是可以互换的，所以这些示例展示了定义通用使用风格的约定用法。</p>
 <h3 id="let"><code>let</code></h3>
-<p><strong>The context object</strong> is available as an argument (<code>it</code>). <strong>The return value</strong> is the lambda result.</p>
-<p><code>let</code> can be used to invoke one or more functions on results of call chains. For example, the following code prints the results of two operations on a collection:</p>
+<p><strong>上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。<strong>返回值</strong>是 lambda 表达式的结果。</p>
+<p><code>let</code> 可用于在调用链的结果上调用一个或多个函数。例如，以下代码打印对集合的两个操作的结果：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = mutableListOf("one", "two", "three", "four", "five")
     val resultList = numbers.map { it.length }.filter { it &gt; 3 }
-    println(resultList)    
+    println(resultList)
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>With <code>let</code>, you can rewrite it:</p>
+<p>使用 <code>let</code>，可以写成这样：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = mutableListOf("one", "two", "three", "four", "five")
     numbers.map { it.length }.filter { it &gt; 3 }.let { 
         println(it)
-        // and more function calls if needed
+        // 如果需要可以调用更多函数
     } 
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>If the code block contains a single function with <code>it</code> as an argument, you can use the method reference (<code>::</code>) instead of the lambda:</p>
+<p>若代码块仅包含以 <code>it</code> 作为参数的单个函数，则可以使用方法引用(<code>::</code>)代替 lambda 表达式：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1580,24 +1580,24 @@ fun main() {
 }
 </code></pre>
 </div>
-<p><code>let</code> is often used for executing a code block only with non-null values. To perform actions on a non-null object, use the safe call operator <code>?.</code> on it and call <code>let</code> with the actions in its lambda.</p>
+<p><code>let</code> 经常用于仅使用非空值执行代码块。如需对非空对象执行操作，可对其使用安全调用操作符 <code>?.</code> 并调用 <code>let</code> 在 lambda 表达式中执行操作。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun processNonNullString(str: String) {}
 
 fun main() {
 //sampleStart
-    val str: String? = "Hello"   
-    //processNonNullString(str)       // compilation error: str can be null
+    val str: String? = "Hello" 
+    //processNonNullString(str)       // 编译错误：str 可能为空
     val length = str?.let { 
-        println("let() called on $it")        
-        processNonNullString(it)      // OK: 'it' is not null inside '?.let { }'
+        println("let() called on $it")
+        processNonNullString(it)      // 编译通过：'it' 在 '?.let { }' 中必不为空
         it.length
     }
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>Another case for using <code>let</code> is introducing local variables with a limited scope for improving code readability. To define a new variable for the context object, provide its name as the lambda argument so that it can be used instead of the default <code>it</code>.</p>
+<p>使用 <code>let</code> 的另一种情况是引入作用域受限的局部变量以提高代码的可读性。如需为上下文对象定义一个新变量，可提供其名称作为 lambda 表达式参数来替默认的 <code>it</code>。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1612,8 +1612,8 @@ fun main() {
 </code></pre>
 </div>
 <h3 id="with"><code>with</code></h3>
-<p>A non-extension function: <strong>the context object</strong> is passed as an argument, but inside the lambda, it's available as a receiver (<code>this</code>). <strong>The return value</strong> is the lambda result.</p>
-<p>We recommend <code>with</code> for calling functions on the context object without providing the lambda result. In the code, <code>with</code> can be read as “<em>with this object, do the following.</em>”</p>
+<p>一个非扩展函数：<strong>上下文对象</strong>作为参数传递，但是在 lambda 表达式内部，它可以作为接收者（<code>this</code>）使用。 <strong>返回值</strong>是 lambda 表达式结果。</p>
+<p>我们建议使用 <code>with</code> 来调用上下文对象上的函数，而不使用 lambda 表达式结果。 在代码中，<code>with</code> 可以理解为“<em>对于这个对象，执行以下操作。</em>”</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1626,7 +1626,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>Another use case for <code>with</code> is introducing a helper object whose properties or functions will be used for calculating a value.</p>
+<p><code>with</code> 的另一个使用场景是引入一个辅助对象，其属性或函数将用于计算一个值。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1641,9 +1641,9 @@ fun main() {
 </code></pre>
 </div>
 <h3 id="run"><code>run</code></h3>
-<p><strong>The context object</strong> is available as a receiver (<code>this</code>). <strong>The return value</strong> is the lambda result.</p>
-<p><code>run</code> does the same as <code>with</code> but invokes as <code>let</code> - as an extension function of the context object.</p>
-<p><code>run</code> is useful when your lambda contains both the object initialization and the computation of the return value.</p>
+<p><strong>上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong>返回值</strong> 是 lambda 表达式结果。</p>
+<p><code>run</code> 和 <code>with</code> 做同样的事情，但是调用方式和 <code>let</code> 一样——作为上下文对象的扩展函数.</p>
+<p>当 lambda 表达式同时包含对象初始化和返回值的计算时，<code>run</code> 很有用。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">class MultiportService(var url: String, var port: Int) {
     fun prepareRequest(): String = "Default request"
@@ -1659,7 +1659,7 @@ fun main() {
         query(prepareRequest() + " to port $port")
     }
     
-    // the same code written with let() function:
+    // 同样的代码如果用 let() 函数来写:
     val letResult = service.let {
         it.port = 8080
         it.query(it.prepareRequest() + " to port ${it.port}")
@@ -1670,7 +1670,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>Besides calling <code>run</code> on a receiver object, you can use it as a non-extension function. Non-extension <code>run</code> lets you execute a block of several statements where an expression is required.</p>
+<p>除了在接收者对象上调用 <code>run</code> 之外，还可以将其用作非扩展函数。 非扩展 <code>run</code> 可以使你在需要表达式的地方执行一个由多个语句组成的块。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1690,8 +1690,8 @@ fun main() {
 </code></pre>
 </div>
 <h3 id="apply"><code>apply</code></h3>
-<p><strong>The context object</strong> is available as a receiver (<code>this</code>). <strong>The return value</strong> is the object itself.</p>
-<p>Use <code>apply</code> for code blocks that don't return a value and mainly operate on the members of the receiver object. The common case for <code>apply</code> is the object configuration. Such calls can be read as “<em>apply the following assignments to the object.</em>”</p>
+<p><strong>上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong>返回值</strong> 是上下文对象本身。</p>
+<p>对于不返回值且主要在接收者（<code>this</code>）对象的成员上运行的代码块使用 <code>apply</code>。<code>apply</code> 的常见情况是对象配置。这样的调用可以理解为“<em>将以下赋值操作应用于对象</em>”。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int = 0, var city: String = "")
 
@@ -1705,11 +1705,11 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>Having the receiver as the return value, you can easily include <code>apply</code> into call chains for more complex processing.</p>
+<p>将接收者作为返回值，你可以轻松地将 <code>apply</code> 包含到调用链中以进行更复杂的处理。</p>
 <h3 id="also"><code>also</code></h3>
-<p><strong>The context object</strong> is available as an argument (<code>it</code>). <strong>The return value</strong> is the object itself.</p>
-<p><code>also</code> is good for performing some actions that take the context object as an argument. Use <code>also</code> for additional actions that don't alter the object, such as logging or printing debug information. Usually, you can remove the calls of <code>also</code> from the call chain without breaking the program logic.</p>
-<p>When you see <code>also</code> in the code, you can read it as “<em>and also do the following</em>”.</p>
+<p><strong>上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong>返回值</strong>是上下文对面本身。</p>
+<p><code>also</code> 对于执行一些将上下文对象作为参数的操作很有用。 对于不会改变上下文对象的操作，可使用 <code>also</code>，例如记录或打印调试信息。 通常，你可以在不破坏程序逻辑的情况下从调用链中删除 <code>also</code> 的调用。</p>
+<p>当你在代码中看到 <code>also</code> 时，可以将其理解为“<em>并且执行以下操作</em>”。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1722,70 +1722,70 @@ fun main() {
 </code></pre>
 </div>
 <h2 id="函数选择">函数选择</h2>
-<p>To help you choose the right scope function for your purpose, we provide the table of key differences between them.</p>
+<p>为了帮助你选择合适的作用域函数，我们提供了它们之间的主要区别表。</p>
 <table>
 <thead>
 <tr>
-<th>Function</th>
-<th>Object reference</th>
-<th>Return value</th>
-<th>Is extension function</th>
+<th>函数</th>
+<th>对象引用</th>
+<th>返回值</th>
+<th>是否是扩展函数</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>let</code></td>
 <td><code>it</code></td>
-<td>Lambda result</td>
-<td>Yes</td>
+<td>Lambda 表达式结果</td>
+<td>是</td>
 </tr>
 <tr>
 <td><code>run</code></td>
 <td><code>this</code></td>
-<td>Lambda result</td>
-<td>Yes</td>
+<td>Lambda 表达式结果</td>
+<td>是</td>
 </tr>
 <tr>
 <td><code>run</code></td>
 <td>-</td>
-<td>Lambda result</td>
-<td>No: called without the context object</td>
+<td>Lambda 表达式结果</td>
+<td>不是：调用无需上下文对象</td>
 </tr>
 <tr>
 <td><code>with</code></td>
 <td><code>this</code></td>
-<td>Lambda result</td>
-<td>No: takes the context object as an argument.</td>
+<td>Lambda 表达式结果</td>
+<td>不是：把上下文对象当做参数</td>
 </tr>
 <tr>
 <td><code>apply</code></td>
 <td><code>this</code></td>
-<td>Context object</td>
-<td>Yes</td>
+<td>上下文对象</td>
+<td>是</td>
 </tr>
 <tr>
 <td><code>also</code></td>
 <td><code>it</code></td>
-<td>Context object</td>
-<td>Yes</td>
+<td>上下文对象</td>
+<td>是</td>
 </tr>
 </tbody>
 </table>
-<p>Here is a short guide for choosing scope functions depending on the intended purpose:</p>
+<p>以下是根据预期目的选择作用域函数的简短指南：</p>
 <ul>
-<li>Executing a lambda on non-null objects: <code>let</code></li>
-<li>Introducing an expression as a variable in local scope: <code>let</code></li>
-<li>Object configuration: <code>apply</code></li>
-<li>Object configuration and computing the result: <code>run</code></li>
-<li>Running statements where an expression is required: non-extension <code>run</code></li>
-<li>Additional effects: <code>also</code></li>
-<li>Grouping function calls on an object: <code>with</code></li>
+<li>对一个非空（non-null）对象执行 lambda 表达式：<code>let</code></li>
+<li>将表达式作为变量引入为局部作用域中：<code>let</code></li>
+<li>对象配置：<code>apply</code></li>
+<li>对象配置并且计算结果：<code>run</code></li>
+<li>在需要表达式的地方运行语句：非扩展的 <code>run</code></li>
+<li>附加效果：<code>also</code></li>
+<li>一个对象的一组函数调用：<code>with</code></li>
 </ul>
-<p>The use cases of different functions overlap, so that you can choose the functions based on the specific conventions used in your project or team.</p>
-<p>Although the scope functions are a way of making the code more concise, avoid overusing them: it can decrease your code readability and lead to errors. Avoid nesting scope functions and be careful when chaining them: it's easy to get confused about the current context object and the value of <code>this</code> or <code>it</code>.</p>
+<p>不同函数的使用场景存在重叠，你可以根据项目或团队中使用的特定约定选择函数。</p>
+<p>尽管作用域函数是使代码更简洁的一种方法，但请避免过度使用它们：这会降低代码的可读性并可能导致错误。避免嵌套作用域函数，同时链式调用它们时要小心：此时很容易对当前上下文对象及 <code>this</code> 或 <code>it</code> 的值感到困惑。</p>
 <h2 id="takeif-与-takeunless"><code>takeIf</code> 与 <code>takeUnless</code></h2>
-<p>In addition to scope functions, the standard library contains the functions <code>takeIf</code> and <code>takeUnless</code>. These functions let you embed checks of the object state in call chains.</p>
-<p>When called on an object with a predicate provided, <code>takeIf</code> returns this object if it matches the predicate. Otherwise, it returns <code>null</code>. So, <code>takeIf</code> is a filtering function for a single object. In turn, <code>takeUnless</code> returns the object if it doesn't match the predicate and <code>null</code> if it does. The object is available as a lambda argument (<code>it</code>).</p>
+<p>除了作用域函数外，标准库还包含函数 <code>takeIf</code> 及 <code>takeUnless</code>。这俩函数使你可以将对象状态检查嵌入到调用链中。</p>
+<p>当以提供的谓词在对象上进行调用时，若该对象与谓词匹配，则 <code>takeIf</code> 返回此对象。否则返回 <code>null</code>。因此，<code>takeIf</code> 是单个对象的过滤函数。反之，<code>takeUnless</code>如果不匹配谓词，则返回对象，如果匹配则返回 <code>null</code>。该对象作为 lambda 表达式参数（<code>it</code>）来访问。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">import kotlin.random.*
 
@@ -1800,19 +1800,19 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>When chaining other functions after <code>takeIf</code> and <code>takeUnless</code>, don't forget to perform the null check or the safe call (<code>?.</code>) because their return value is nullable.</p>
+<p>当在 <code>takeIf</code> 及 <code>takeUnless</code> 之后链式调用其他函数，不要忘记执行空检查或安全调用（<code>?.</code>），因为他们的返回值是可为空的。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val str = "Hello"
     val caps = str.takeIf { it.isNotEmpty() }?.toUpperCase()
-   //val caps = str.takeIf { it.isNotEmpty() }.toUpperCase() //compilation error
+   //val caps = str.takeIf { it.isNotEmpty() }.toUpperCase() // 编译错误
     println(caps)
 //sampleEnd
 }
 </code></pre>
 </div>
-<p><code>takeIf</code> and <code>takeUnless</code> are especially useful together with scope functions. A good case is chaining them with <code>let</code> for running a code block on objects that match the given predicate. To do this, call <code>takeIf</code> on the object and then call <code>let</code> with a safe call (<code>?</code>). For objects that don't match the predicate, <code>takeIf</code> returns <code>null</code> and <code>let</code> isn't invoked.</p>
+<p><code>takeIf</code> 及 <code>takeUnless</code> 与作用域函数一起特别有用。 一个很好的例子是用 <code>let</code> 链接它们，以便在与给定谓词匹配的对象上运行代码块。 为此，请在对象上调用 <code>takeIf</code>，然后通过安全调用（<code>?.</code>）调用 <code>let</code>。对于与谓词不匹配的对象，<code>takeIf</code> 返回 <code>null</code>，并且不调用 <code>let</code>。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1829,7 +1829,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p>This is how the same function looks without the standard library functions:</p>
+<p>没有标准库函数时，相同的函数看起来是这样的：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
