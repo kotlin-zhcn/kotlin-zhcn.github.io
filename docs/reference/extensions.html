@@ -1516,21 +1516,21 @@ fun main() {
 class Connection(val host: Host, val port: Int) {
      fun printPort() { print(port) }
 
-     fun Host.printConnectionString(p: Int) {
-         printHostname()   // calls Host.printHostname()
+     fun Host.printConnectionString() {
+         printHostname()   // 调用 Host.printHostname()
          print(":")
-         printPort()   // calls Connection.printPort()
+         printPort()   // 调用 Connection.printPort()
      }
 
      fun connect() {
          /*……*/
-         host.printConnectionString(port)   // calls the extension function
+         host.printConnectionString()   // 调用扩展函数
      }
 }
 
 fun main() {
     Connection(Host("kotl.in"), 443).connect()
-    //Host("kotl.in").printConnectionString(443)  // error, the extension function is unavailable outside Connection
+    //Host("kotl.in").printConnectionString(443)  // 错误，该扩展函数再 Connection 外不可用
 }
 </code></pre>
 </div>
@@ -1577,9 +1577,9 @@ class DerivedCaller: BaseCaller() {
 }
 
 fun main() {
-    BaseCaller().call(Base())   // "Base extension function in BaseCaller"
-    DerivedCaller().call(Base())  // "Base extension function in DerivedCaller" - dispatch receiver is resolved virtually
-    DerivedCaller().call(Derived())  // "Base extension function in DerivedCaller" - extension receiver is resolved statically
+    BaseCaller().call(Base())   // “Base extension function in BaseCaller”
+    DerivedCaller().call(Base())  // “Base extension function in DerivedCaller”——分发接收者虚拟解析
+    DerivedCaller().call(Derived())  // “Base extension function in DerivedCaller”——扩展接收者静态解析
 }
 </code></pre>
 </div>
