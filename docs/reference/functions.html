@@ -53,6 +53,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+    <div class="global-header-panel banner-nav">
+        <div class="g-layout">
+<div class="global-nav banner-container">
+    <a class="banner-text" href="https://kotlinconf.com/registration" target="_blank">
+        <div class="banner-item title">
+           KotlinConf 直播
+        </div>
+        <div class="banner-item underline">
+            注册
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+</div>        </div>
+    </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
@@ -1394,7 +1408,7 @@ class B : A() {
 foo(baz = 1) // 使用默认值 bar = 0
 </code></pre>
 </div>
-<p>如果在默认参数之后的最后一个参数是 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>，那么它既可以作为命名参数在括号内传入，也可以在<a href="lambdas.html#将-lambda-表达式传给最后一个参数">括号外</a>传入：</p>
+<p>如果在默认参数之后的最后一个参数是 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>，那么它既可以作为命名参数在括号内传入，也可以在<a href="lambdas.html#passing-a-lambda-to-the-last-parameter">括号外</a>传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /*……*/ }
 

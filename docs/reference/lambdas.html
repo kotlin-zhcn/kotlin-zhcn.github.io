@@ -53,6 +53,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+    <div class="global-header-panel banner-nav">
+        <div class="g-layout">
+<div class="global-nav banner-container">
+    <a class="banner-text" href="https://kotlinconf.com/registration" target="_blank">
+        <div class="banner-item title">
+           KotlinConf 直播
+        </div>
+        <div class="banner-item underline">
+            注册
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+</div>        </div>
+    </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
@@ -1543,7 +1557,7 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 <pre><code class="language-kotlin">val sum = { x, y -&gt; x + y }
 </code></pre>
 </div>
-<h3 id="将-lambda-表达式传给最后一个参数">将 lambda 表达式传给最后一个参数</h3>
+<h3 id="passing-a-lambda-to-the-last-parameter">传递末尾的 lambda 表达式</h3>
 <p>在 Kotlin 中有一个约定：如果函数的最后一个参数是函数，那么作为相应参数<!--
 -->传入的 lambda 表达式可以放在圆括号之外：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1580,7 +1594,7 @@ ints.filter {
 }
 </code></pre>
 </div>
-<p>这一约定连同<a href="#将-lambda-表达式传给最后一个参数">在圆括号外传递 lambda 表达式</a>一起支持
+<p>这一约定连同<a href="#passing-a-lambda-to-the-last-parameter">在圆括号外传递 lambda 表达式</a>一起支持
 <a href="http://msdn.microsoft.com/en-us/library/bb308959.aspx">LINQ-风格</a> 的代码：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">strings.filter { it.length == 5 }.sortedBy { it }.map { it.toUpperCase() }

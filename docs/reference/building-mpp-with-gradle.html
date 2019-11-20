@@ -53,6 +53,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+    <div class="global-header-panel banner-nav">
+        <div class="g-layout">
+<div class="global-nav banner-container">
+    <a class="banner-text" href="https://kotlinconf.com/registration" target="_blank">
+        <div class="banner-item title">
+           KotlinConf 直播
+        </div>
+        <div class="banner-item underline">
+            注册
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+</div>        </div>
+    </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
@@ -1377,6 +1391,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </li>
 <li><a href="#使用-kotlinnative-目标平台">使用 Kotlin/Native 目标平台</a>
 <ul>
+<li><a href="#目标快捷方式">目标快捷方式</a></li>
 <li><a href="#构建最终原生二进制文件">构建最终原生二进制文件</a></li>
 </ul>
 </li>
@@ -1676,6 +1691,8 @@ kotlin {
 <ul>
 <li><code>androidNativeArm32</code> 与 <code>androidNativeArm64</code> 用于 Android NDK；</li>
 <li><code>iosArm32</code>、 <code>iosArm64</code>、 <code>iosX64</code> 用于 iOS；</li>
+<li><code>watchosArm32</code>、 <code>watchosArm64</code>、 <code>watchosX86</code> 用于 watchOS；</li>
+<li><code>tvosArm64</code>、 <code>tvosX64</code> 用于 tvOS；</li>
 <li><code>linuxArm32Hfp</code>、 <code>linuxMips32</code>、 <code>linuxMipsel32</code>、 <code>linuxX64</code> 用于 Linux；</li>
 <li><code>macosX64</code> 用于 MacOS；</li>
 <li><code>mingwX64</code> 与 <code>mingwX86</code> 用于 Windows；</li>
@@ -2733,6 +2750,59 @@ those will be merged into one dependencies list.</p>
 </ul>
 <p>A target that is not supported by the current host is ignored during build and therefore not published. A library author may want to set up
 builds and publishing from different hosts as required by the library target platforms.</p>
+<h3 id="目标快捷方式">目标快捷方式</h3>
+<p>Some native targets are often created together and use the same sources. For example, building for an iOS device and a simulator
+is represented by different targets (<code>iosArm64</code> and <code>iosX64</code> respectively) but their source codes are usually the same.
+A canonical way to express such shared code in the multiplatform project model is creating an intermediate
+source set (<code>iosMain</code>) and configuring links between it and the platform source sets:</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">sourceSets{
+    iosMain {
+        dependsOn(commonMain)
+        iosDeviceMain.dependsOn(it)
+        iosSimulatorMain.dependsOn(it)
+    }
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">val commonMain by sourceSets.getting
+val iosDeviceMain by sourceSets.getting
+val iosSimulatorMain by sourceSets.getting
+
+val iosMain by sourceSets.creating {
+    dependsOn(commonMain)
+    iosDeviceMain.dependsOn(this)
+    iosSimulatorMain.dependsOn(this)
+}
+</code></pre>
+</div>
+</div>
+<p>Since 1.3.60, the <code>kotlin-multiplaform</code> plugin provides shortcuts that automate such a configuration: they let users
+create a group of targets along with a common source set for them with a single DSL method.</p>
+<p>The following shortcuts are available:</p>
+<ul>
+<li><code>ios</code> creates targets for <code>iosArm64</code> and <code>iosX64</code>.</li>
+<li><code>watchos</code> creates targets for  <code>watchosArm32</code>, <code>watchosArm64</code>, and <code>watchosX86</code>.</li>
+<li><code>tvos</code> creates targets for  <code>tvosArm64</code> and <code>tvosX64</code>.</li>
+</ul>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">// Create two targets for iOS.
+// Create common source sets: iosMain and iosTest.
+ios {
+    // Configure targets.
+    // Note: this lambda will be called for each target.
+}
+
+// You can also specify a name prefix for created targets.
+// Common source sets will also have this prefix:
+// anotherIosMain and anotherIosTest.
+ios("anotherIos")
+</code></pre>
+</div>
 <h3 id="构建最终原生二进制文件">构建最终原生二进制文件</h3>
 <p>By default, a Kotlin/Native target is compiled down to a <code>*.klib</code> library artifact, which can be consumed by Kotlin/Native itself as a
 dependency but cannot be executed or used as a native library. To declare final native binaries like executables or shared libraries a <code>binaries</code>
@@ -2931,7 +3001,7 @@ binaries.findExecutable("foo", DEBUG)
 </div>
 </div>
 <blockquote class="note">
-<p>Note: Before 1.3.40, both test and product executables were represented by the same binary type. Thus to access the default test binary created by the plugin, the following line was used:</p>
+<p>Before 1.3.40, both test and product executables were represented by the same binary type. Thus to access the default test binary created by the plugin, the following line was used:</p>
 <pre><code>binaries.getExecutable("test", "DEBUG")
 </code></pre>
 <p>Since 1.3.40, test executables are represented by a separate binary type and have their own getter. To access the default test binary, use:</p>
