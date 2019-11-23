@@ -1360,11 +1360,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 这些操作也可以在 IntelliJ IDEA 中通过调用 <strong>Project action</strong> 中的 <strong>Tools | Kotlin | Configure Kotlin</strong> 自动执行。</p>
 <h2 id="插件与版本">插件与版本</h2>
 <p>使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 应用 Kotlin Gradle 插件。
-Kotlin Gradle 插件 1.3.50 适用于 Gradle 4.1 及更高版本。</p>
+Kotlin Gradle 插件 1.3.60 适用于 Gradle 4.9 及更高版本。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.＜……＞' version '1.3.50'
+    id 'org.jetbrains.kotlin.＜……＞' version '1.3.60'
 }
 </code></pre>
 </div>
@@ -1372,7 +1372,7 @@ Kotlin Gradle 插件 1.3.50 适用于 Gradle 4.1 及更高版本。</p>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("＜……＞") version "1.3.50"
+    kotlin("＜……＞") version "1.3.60"
 }
 </code></pre>
 </div>
@@ -1387,12 +1387,12 @@ Kotlin Gradle 插件 1.3.50 适用于 Gradle 4.1 及更高版本。</p>
     }
 
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.50"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.60"
     }
 }
 
 plugins {
-    id "org.jetbrains.kotlin.＜……＞" version "1.3.50"
+    id "org.jetbrains.kotlin.＜……＞" version "1.3.60"
 }
 </code></pre>
 </div>
@@ -1405,7 +1405,7 @@ plugins {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.3.50"))
+        classpath(kotlin("gradle-plugin", version = "1.3.60"))
     }
 }
 plugins {
@@ -1423,7 +1423,7 @@ plugins {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.3.50"
+    id "org.jetbrains.kotlin.jvm" version "1.3.60"
 }
 </code></pre>
 </div>
@@ -1431,7 +1431,7 @@ plugins {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("jvm") version "1.3.50"
+    kotlin("jvm") version "1.3.60"
 }
 </code></pre>
 </div>
@@ -1477,7 +1477,7 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.js' version '1.3.50'
+    id 'org.jetbrains.kotlin.js' version '1.3.60'
 }
 </code></pre>
 </div>
@@ -1485,7 +1485,7 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("js") version "1.3.50"
+    kotlin("js") version "1.3.60"
 }
 </code></pre>
 </div>
@@ -1535,7 +1535,7 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">buildscript {
-    ext.kotlin_version = '1.3.50'
+    ext.kotlin_version = '1.3.60'
 
     ……
 
@@ -1557,7 +1557,7 @@ plugins {
 <pre><code class="language-kotlin">buildscript {
     dependencies {
         classpath("com.android.tools.build:gradle:3.2.1")
-        classpath(kotlin("gradle-plugin", version = "1.3.50"))
+        classpath(kotlin("gradle-plugin", version = "1.3.60"))
     }
 }
 plugins {
@@ -1567,7 +1567,7 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>Kotlin Gradle 插件 1.3.50 适用于 Android Gradle 插件 3.0 及更高版本。</p>
+<p>Kotlin Gradle 插件 1.3.60 适用于 Android Gradle 插件 3.0 及更高版本。</p>
 <p>不要忘记配置<a href="#配置依赖">标准库依赖关系</a>。</p>
 <h3 id="android-studio">Android Studio</h3>
 <p>如果使用 Android Studio，那么需要在 android 下添加以下内容：</p>
