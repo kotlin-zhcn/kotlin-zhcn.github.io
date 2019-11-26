@@ -1358,7 +1358,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="kotlin-编译器选项">Kotlin 编译器选项</h1>
 <p>Each release of Kotlin includes compilers for the supported targets: 
 JVM, JavaScript, and native binaries for <a href="native-overview.html#target-platforms">supported platforms</a>.</p>
-<p>These compilers are used by the IDE when you push the <strong>Compile</strong> or <strong>Run</strong> button for your Kotlin project.</p>
+<p>These compilers are used by the IDE when you click the <strong>Compile</strong> or <strong>Run</strong> button for your Kotlin project.</p>
 <p>You can also run Kotlin compilers manually from the command line as described 
 in the <a href="/docs/tutorials/command-line.html">Working with command-line compiler</a> tutorial. For example:</p>
 <div class="sample" mode="shell" theme="idea">
@@ -1368,15 +1368,15 @@ in the <a href="/docs/tutorials/command-line.html">Working with command-line com
 <h2 id="编译器选项">编译器选项</h2>
 <p>Kotlin compilers have a number of options for tailoring the compiling process.
 Compiler options for different targets are listed on this page together with a description of each one.</p>
-<p>There are several ways to set the compiler options:</p>
+<p>There are several ways to set the compiler options and their values (<em>compiler arguments</em>):</p>
 <ul>
-<li>In IntelliJ IDEA, write in the options in the <strong>Additional command-line parameters</strong> text box in 
+<li>In IntelliJ IDEA, write in the compiler arguments in the <strong>Additional command-line parameters</strong> text box in 
 <strong>Settings | Build, Execution, Deployment | Compilers | Kotlin Compiler</strong></li>
-<li>If you're using Gradle, specify the options in the <code>kotlinOptions</code> property of the Kotlin compilation task.
+<li>If you're using Gradle, specify the compiler arguments in the <code>kotlinOptions</code> property of the Kotlin compilation task.
 For details, see <a href="using-gradle.html#compiler-options">Using Gradle</a>.</li>
-<li>If you're using Maven, specify the options in the <code>&lt;configuration&gt;</code> element of the Maven plugin node. 
+<li>If you're using Maven, specify the compiler arguments in the <code>&lt;configuration&gt;</code> element of the Maven plugin node. 
 For details, see <a href="using-maven.html#specifying-compiler-options">Using Maven</a>.</li>
-<li>If you run a command-line compiler, add the options directly to the utility call or write them into an <a href="#argfile">argfile</a>.</li>
+<li>If you run a command-line compiler, add the compiler arguments directly to the utility call or write them into an <a href="#argfile">argfile</a>.</li>
 </ul>
 <h2 id="公共选项">公共选项</h2>
 <p>The following options are common for all Kotlin compilers.</p>

@@ -971,13 +971,17 @@ $ brew install kotlin
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import java.io.File
 
-val folders = File(args[0]).listFiles { file -&gt; file.isDirectory() }
+// Get the passed in path, i.e. "-d some/path" or use the current path.
+val path = if (args.contains("-d")) args[1 + args.indexOf("-d")]
+           else "."
+
+val folders = File(path).listFiles { file -&gt; file.isDirectory() }
 folders?.forEach { folder -&gt; println(folder) }
 </code></pre>
 </div>
 <p>要运行脚本，我们只需使用相应的脚本文件将 <code>-script</code> 选项传递给编译器。</p>
 <div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ kotlinc -script list_folders.kts &lt;path_to_folder_to_inspect&gt;
+<pre><code class="language-bash">$ kotlinc -script list_folders.kts -- -d &lt;path_to_folder_to_inspect&gt;
 </code></pre>
 </div>
 <p>自 1.3.0 以来，Kotlin 对脚本定制提供了实验性支持，例如添加外部属性、<!--
