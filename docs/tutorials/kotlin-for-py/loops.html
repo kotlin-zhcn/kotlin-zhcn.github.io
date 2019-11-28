@@ -901,10 +901,33 @@ for (name in names) {
 <pre><code class="language-kotlin">val numbers = (0..9).toList()
 </code></pre>
 </div>
-<p>If you need to know the index of the current element when you're iterating through something, you can use <code>withIndex()</code>, which corresponds to <code>enumerate()</code>. It produces a sequence of objects that have got two properties (the index and the value) and two specially-named accessor functions called <code>component1()</code> and <code>component2()</code>; Kotlin lets you destructure such an object into a declaration:</p>
+<p>If you need to know the index of the current element when you're iterating over something, you can use <code>withIndex()</code>, which corresponds to <code>enumerate()</code>. It produces a sequence of objects that have got two properties (the index and the value) and two specially-named accessor functions called <code>component1()</code> and <code>component2()</code>; Kotlin lets you destructure such an object into a declaration:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">for ((index, value) in names.withIndex()) {
     println("$index: $value")
+}
+</code></pre>
+</div>
+<p>You can iterate over a map in several different ways, depending on whether you want the keys, the values, or both:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// Iterate over the entries as objects that contain the key and the value as properties
+for (entry in map) {
+    println("${entry.key}: ${entry.value}")
+}
+
+// Iterate over the entries as separate key and value objects
+for ((key, value) in map) {
+    println("$key: $value")
+}
+
+// Iterate over the keys
+for (key in map.keys) {
+    println(key)
+}
+
+// Iterate over the values
+for (value in map.values) {
+    println(values)
 }
 </code></pre>
 </div>

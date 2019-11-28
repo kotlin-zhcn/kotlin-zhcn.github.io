@@ -1544,7 +1544,7 @@ class Connection(val host: Host, val port: Int) {
 
 fun main() {
     Connection(Host("kotl.in"), 443).connect()
-    //Host("kotl.in").printConnectionString(443)  // 错误，该扩展函数再 Connection 外不可用
+    //Host("kotl.in").printConnectionString(443)  // 错误，该扩展函数在 Connection 外不可用
 }
 </code></pre>
 </div>
