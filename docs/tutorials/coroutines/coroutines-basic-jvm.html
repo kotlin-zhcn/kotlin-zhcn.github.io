@@ -1034,22 +1034,22 @@ println(c.get())
 </div>
 <p>所有这些都已经启动，我们所需要的只是收集结果：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val sum = deferred.sumBy { it.await() }
+<pre><code class="language-kotlin">val sum = deferred.map { it.await().toLong() }.sum()
 </code></pre>
 </div>
-<p>这里我们简单从每个协程等待并取得它的执行结果，接下来将使用标准库的 <code>sumBy()</code> 函数来将所有结果叠加到一起。但编译器理所当然地抱怨道：</p>
+<p>这里我们简单从每个协程等待并取得它的执行结果，接下来将使用标准库的 <code>sum()</code> 函数来将所有结果叠加到一起。但编译器理所当然地抱怨道：</p>
 <blockquote>
 <p>挂起函数只被允许在协程或另一个挂起函数中调用</p>
 </blockquote>
 <p><code>await()</code> 不能在协程外调用，因为它需要挂起直至计算结束，并且只有协程可以被无阻塞的挂起。因此，让我们将它们放到协程中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">runBlocking {
-    val sum = deferred.sumBy { it.await() }
+    val sum = deferred.map { it.await().toLong() }.sum()
     println("Sum: $sum")
 }
 </code></pre>
 </div>
-<p>现在它打印了一些合理的东西：<code>1784293664</code>，因为所有的协程都执行完毕了。</p>
+<p>现在它打印了一些合理的东西：<code>500000500000</code>，因为所有的协程都执行完毕了。</p>
 <p>让我们也确保我们的协程是实际并行运行的。如果我们在每个 <code>async</code> 中添加了 1 秒钟的 <code>delay()</code>，程序将不会运行 1'000'000 秒（超过 11.5 天）：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val deferred = (1..1_000_000).map { n -&gt;
