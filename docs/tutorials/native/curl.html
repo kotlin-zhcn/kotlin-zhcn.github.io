@@ -858,7 +858,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    target="_blank"
    title="在 GitHub 上编辑本页">
         <i class="github-icon"></i>
-        <span class="text">编辑本页</span>
+        <span class="text">改进翻译</span>
 </a>
             <h1>
                 在应用中使用 C 语言互操作与 libcurl
@@ -912,8 +912,8 @@ linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -lcurl
 </code></pre>
 </div>
 <p>这个文件中正在进行一些操作，我们来逐个浏览它们。第一个条目是 <code>headers</code>，它是我们想要生成的头文件列表的
-Kotlin 存根。我们可以在这个条目中添加多个文件，用新行上的 <code>\</code> 分隔每个文件。在我们的例子中，我们只想要<code>curl.h</code>。我们引用的文件
-需要相对于定义文件所在的文件夹，或者在系统路径上可用（在我们的例子中它将是 <code>/usr/include/curl</code>）。</p>
+Kotlin 存根。我们可以在这个条目中添加多个文件，用新行上的 <code>\</code> 分隔每个文件。在我们的例子中，我们只想要<code>curl.h</code>。我们引用的文件<!--
+-->需要相对于定义文件所在的文件夹，或者在系统路径上可用（在我们的例子中它将是 <code>/usr/include/curl</code>）。</p>
 <p>第二行是 <code>headerFilter</code>。这用于表示我们想要导入的内容。在 C 中，当一个文件使用 <code>#include</code> 指示引用另一个文件的时候，
 所有的头文件都将被导入。有时这也许是不必要的，这时我们可以使用这个方法：<a href="https://en.wikipedia.org/wiki/Glob_(programming)">使用全局参数</a>，来进行微调。
 注意，<code>headerFilter</code> 是一个可选参数，主要仅在我们使用的库作为系统库安装时使用，我们不想获取外部依赖项<!--

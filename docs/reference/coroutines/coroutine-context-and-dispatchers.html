@@ -1352,7 +1352,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    target="_blank"
    title="在 GitHub 上编辑本页">
         <i class="github-icon"></i>
-        <span class="text">编辑本页</span>
+        <span class="text">改进翻译</span>
 </a>
                 
 <!--- INCLUDE .*/example-([a-z]+)-([0-9a-z]+)\.kt 
@@ -1596,7 +1596,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>在<a href="#debugging-coroutines-and-threads">调试模式</a>下，它将输出如下这些信息：</p>
+<p>在<a href="#调试协程与线程">调试模式</a>下，它将输出如下这些信息：</p>
 <pre><code>My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
 </code></pre>
 <!--- TEST lines.size == 1 && lines[0].startsWith("My job is \"coroutine#1\":BlockingCoroutine{Active}@") -->
@@ -1688,7 +1688,7 @@ Now processing of the request is complete
 <p>当协程经常打印日志并且你只需要关联来自同一个协程的日志记录时，
 则自动分配的 id 是非常好的。然而，当一个协程与特定请求的处理相关联时<!--
 -->或做一些特定的后台任务，最好将其明确命名以用于调试目的。
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素与线程名具有相同的目的。当<a href="#debugging-coroutines-and-threads">调试模式</a><!--
+<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素与线程名具有相同的目的。当<a href="#调试协程与线程">调试模式</a><!--
 -->开启时，它被包含在正在执行此协程的线程名中。</p>
 <p>下面的例子演示了这一概念：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">

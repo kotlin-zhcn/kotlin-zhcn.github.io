@@ -1352,12 +1352,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
    target="_blank"
    title="在 GitHub 上编辑本页">
         <i class="github-icon"></i>
-        <span class="text">编辑本页</span>
+        <span class="text">改进翻译</span>
 </a>
                 
 <h1 id="kotlin-编译器选项">Kotlin 编译器选项</h1>
 <p>Each release of Kotlin includes compilers for the supported targets: 
-JVM, JavaScript, and native binaries for <a href="native-overview.html#target-platforms">supported platforms</a>.</p>
+JVM, JavaScript, and native binaries for <a href="native-overview.html#目标平台">supported platforms</a>.</p>
 <p>These compilers are used by the IDE when you click the <strong>Compile</strong> or <strong>Run</strong> button for your Kotlin project.</p>
 <p>You can also run Kotlin compilers manually from the command line as described 
 in the <a href="/docs/tutorials/command-line.html">Working with command-line compiler</a> tutorial. For example:</p>
@@ -1373,9 +1373,9 @@ Compiler options for different targets are listed on this page together with a d
 <li>In IntelliJ IDEA, write in the compiler arguments in the <strong>Additional command-line parameters</strong> text box in 
 <strong>Settings | Build, Execution, Deployment | Compilers | Kotlin Compiler</strong></li>
 <li>If you're using Gradle, specify the compiler arguments in the <code>kotlinOptions</code> property of the Kotlin compilation task.
-For details, see <a href="using-gradle.html#compiler-options">Using Gradle</a>.</li>
+For details, see <a href="using-gradle.html#编译器选项">Using Gradle</a>.</li>
 <li>If you're using Maven, specify the compiler arguments in the <code>&lt;configuration&gt;</code> element of the Maven plugin node. 
-For details, see <a href="using-maven.html#specifying-compiler-options">Using Maven</a>.</li>
+For details, see <a href="using-maven.html#指定编译器选项">Using Maven</a>.</li>
 <li>If you run a command-line compiler, add the compiler arguments directly to the utility call or write them into an <a href="#argfile">argfile</a>.</li>
 </ul>
 <h2 id="公共选项">公共选项</h2>
@@ -1404,7 +1404,7 @@ Available plugins and their options are listed in <a href="compiler-plugins.html
 <h3 id="-api-version-version"><code>-api-version &lt;version&gt;</code></h3>
 <p class="details-group">Allow using declarations only from the specified version of Kotlin bundled libraries.</p>
 <h3 id="-progressive"><code>-progressive</code></h3>
-<p class="details-group">Enable the <a href="whatsnew13.html#progressive-mode">progressive mode</a> for the compiler.</p>
+<p class="details-group">Enable the <a href="whatsnew13.html#渐进模式">progressive mode</a> for the compiler.</p>
 <p class="details-group">In the progressive mode, deprecations and bug fixes for unstable code take effect immediately,
 instead of going through a graceful migration cycle.
 Code written in the progressive mode is backwards compatible; however, code written in
@@ -1437,7 +1437,7 @@ quotation marks in it, escape them with a backslash (<strong>\</strong>).</p>
 <p>The Kotlin compiler for JVM compiles Kotlin source files into Java class files. 
 The command-line tools for Kotlin to JVM compilation are <code>kotlinc</code> and <code>kotlinc-jvm</code>.
 You can also use them for executing Kotlin script files.</p>
-<p>In addition to the <a href="#common-options">common options</a>, Kotlin/JVM compiler has the options listed below.</p>
+<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/JVM compiler has the options listed below.</p>
 <h3 id="-classpath-path--cp-path"><code>-classpath &lt;path&gt;</code> (<code>-cp &lt;path&gt;</code>)</h3>
 <p class="details-group">Search for class files in the specified paths. Separate elements of the classpath with system path separators (<strong>;</strong> on Windows, <strong>:</strong> on macOS/Linux).
 The classpath can contain file and directory paths, ZIP, or JAR files.</p>
@@ -1470,7 +1470,7 @@ file among the given arguments.</p>
 <h2 id="kotlinjs-编译器选项">Kotlin/JS 编译器选项</h2>
 <p>The Kotlin compiler for JS compiles Kotlin source files into JavaScript code. 
 The command-line tool for Kotlin to JS compilation is <code>kotlinc-js</code>.</p>
-<p>In addition to the <a href="#common-options">common options</a>, Kotlin/JS compiler has the options listed below.</p>
+<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/JS compiler has the options listed below.</p>
 <h3 id="-libraries-path"><code>-libraries &lt;path&gt;</code></h3>
 <p class="details-group">Paths to Kotlin libraries with <code>.meta.js</code> and <code>.kjsm</code> files, separated by the system path separator.</p>
 <h3 id="-main-callnocall"><code>-main {call|noCall}</code></h3>
@@ -1504,9 +1504,9 @@ see <a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">t
 <h3 id="-source-map-prefix"><code>-source-map-prefix</code></h3>
 <p class="details-group">Add the specified prefix to paths in the source map.</p>
 <h2 id="kotlinnative-编译器选项">Kotlin/Native 编译器选项</h2>
-<p>Kotlin/Native compiler compiles Kotlin source files into native binaries for the <a href="native-overview.html#target-platforms">supported platforms</a>. 
+<p>Kotlin/Native compiler compiles Kotlin source files into native binaries for the <a href="native-overview.html#目标平台">supported platforms</a>. 
 The command-line tool for Kotlin/Native compilation is <code>kotlinc-native</code>.</p>
-<p>In addition to the <a href="#common-options">common options</a>, Kotlin/Native compiler has the options listed below.</p>
+<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/Native compiler has the options listed below.</p>
 <h3 id="-enable-assertions--ea"><code>-enable-assertions</code> (<code>-ea</code>)</h3>
 <p class="details-group">Enable runtime assertions in the generated code.</p>
 <h3 id="-g"><code>-g</code></h3>
@@ -1514,7 +1514,7 @@ The command-line tool for Kotlin/Native compilation is <code>kotlinc-native</cod
 <h3 id="-generate-test-runner--tr"><code>-generate-test-runner</code> (<code>-tr</code>)</h3>
 <p class="details-group">Produce an application for running unit tests from the project.</p>
 <h3 id="-generate-worker-test-runner--trw"><code>-generate-worker-test-runner</code> (<code>-trw</code>)</h3>
-<p class="details-group">Produce an application for running unit tests in a <a href="native/concurrency.html#workers">worker thread</a>.</p>
+<p class="details-group">Produce an application for running unit tests in a <a href="native/concurrency.html#worker">worker thread</a>.</p>
 <h3 id="-generate-no-exit-test-runner--trn"><code>-generate-no-exit-test-runner</code> (<code>-trn</code>)</h3>
 <p class="details-group">Produce an application for running unit tests without an explicit process exit.</p>
 <h3 id="-include-binary-path--ib-path"><code>-include-binary &lt;path&gt;</code> (<code>-ib &lt;path&gt;</code>)</h3>
@@ -1563,7 +1563,7 @@ This option can also be used to specify a name prefix for the declarations expor
 <li><code>bitcode</code></li>
 </ul>
 <h3 id="-repo-path--r-path"><code>-repo &lt;path&gt;</code> (<code>-r &lt;path&gt;</code>)</h3>
-<p class="details-group">Library search path. For more information, see <a href="native/libraries.html#library-search-sequence">Library search sequence</a>.</p>
+<p class="details-group">Library search path. For more information, see <a href="native/libraries.html#库搜索顺序">Library search sequence</a>.</p>
 <h3 id="-target-target"><code>-target &lt;target&gt;</code></h3>
 <p class="details-group">Set hardware target. To see the list of available targets, use the <a href="#-list-targets"><code>-list-targets</code></a> option.</p>
 
