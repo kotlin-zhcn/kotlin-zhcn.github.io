@@ -911,6 +911,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-project-setup.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">搭建项目</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/dynamic-type.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
@@ -1446,7 +1455,7 @@ list.swap(0, 2) // “swap()”内部的“this”会保存“list”的值
 }
 </code></pre>
 </div>
-<p>This code prints "<em>Class method</em>".</p>
+<p>这段代码输出“<em>Class method</em>”。</p>
 <p>当然，扩展函数重载同样名字但不同签名成员函数也完全可以：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1492,8 +1501,8 @@ list.swap(0, 2) // “swap()”内部的“this”会保存“list”的值
 </div>
 <h2 id="伴生对象的扩展">伴生对象的扩展</h2>
 <p>如果一个类定义有一个<a href="object-declarations.html#伴生对象">伴生对象</a> ，你也可以为伴生对象定义<!--
--->扩展函数与属性。Just like regular members of the companion object,
-they can be called using only the class name as the qualifier:</p>
+-->扩展函数与属性。就像伴生对象的常规成员一样，
+可以只使用类名作为限定符来调用伴生对象的扩展成员：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">class MyClass {
     companion object { }  // 将被称为 "Companion"
