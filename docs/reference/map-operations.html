@@ -53,6 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+<!--
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -67,6 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="close-head-banner"></div>
 </div>        </div>
     </div>
+-->
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
@@ -1374,17 +1376,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="map-相关操作">Map 相关操作</h1>
-<p>In <a href="collections-overview.html#map">maps</a>, types of both keys and values are user-defined.
-Key-based access to map entries enables various map-specific processing capabilities from getting a value by key to separate filtering of keys and values.
-On this page, we provide descriptions of the map processing functions from the standard library.</p>
+<p>在 <a href="collections-overview.html#map">map</a> 中，键和值的类型都是用户定义的。
+对 map 条目的基于键的访问启用了各种特定于 map 的处理函数，从键获取值到对键和值进行单独过滤。
+在此页面上，我们提供了来自标准库的 map 处理功能的描述。</p>
 <h2 id="取键与值">取键与值</h2>
-<p>For retrieving a value from a map, you must provide its key as an argument of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html"><code>get()</code></a> function.
-The shorthand <code>[key]</code> syntax is also supported. If the given key is not found, it returns <code>null</code>.
-There is also the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html"><code>getValue()</code></a> which has slightly different behavior: it throws an exception if the key is not found in the map.
-Additionally, you have two more options to handle the key absence:</p>
+<p>要从映射中检索值，必须提供其键作为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html"><code>get()</code></a> 函数的参数。
+还支持简写 <code>[key]</code> 语法。 如果找不到给定的键，则返回 <code>null</code> 。
+还有一个函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html"><code>getValue()</code></a> ，它的行为略有不同：如果在映射中找不到键，则抛出异常。
+此外，还有两个选项可以解决键缺失的问题：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> works the same way as for lists: the values for non-existent keys are returned from the given lambda function.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-default.html"><code>getOrDefault()</code></a> returns the specified default value if the key is not found.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> 与列表的工作方式相同：对于不存在的键，其值由给定的 lambda 表达式返回。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-default.html"><code>getOrDefault()</code></a> 如果找不到键，则返回指定的默认值。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1400,7 +1402,7 @@ Additionally, you have two more options to handle the key absence:</p>
 
 </code></pre>
 </div>
-<p>To perform operations on all keys or all values of a map, you can retrieve them from the properties <code>keys</code> and <code>values</code> accordingly. <code>keys</code> is a set of all map keys and <code>values</code> is a collection of all map values.</p>
+<p>要对 map 的所有键或所有值执行操作，可以从属性 <code>keys</code> 和 <code>values</code> 中相应地检索它们。 <code>keys</code> 是所有映射键的集合， <code>values</code> 是所有映射值的集合。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1413,9 +1415,9 @@ Additionally, you have two more options to handle the key absence:</p>
 </code></pre>
 </div>
 <h2 id="过滤">过滤</h2>
-<p>You can <a href="collection-filtering.html">filter</a> maps with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a> function as well as other collections.
-When calling <code>filter()</code> on a map, pass to it a predicate with a <code>Pair</code> as an argument.
-This enables you to use both the key and the value in the filtering predicate.</p>
+<p>可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a> 函数来<a href="collection-filtering.html">过滤</a> map 或其他集合。
+对 map 使用 <code>filter()</code> 函数时， <code>Pair</code> 将作为参数的谓词传递给它。
+它将使用谓词同时过滤其中的键和值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1427,10 +1429,10 @@ This enables you to use both the key and the value in the filtering predicate.</
 
 </code></pre>
 </div>
-<p>There are also two specific ways for filtering maps: by keys and by values.
-For each way, there is a function: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-keys.html"><code>filterKeys()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-values.html"><code>filterValues()</code></a>.
-Both return a new map of entries which match the given predicate.
-The predicate for <code>filterKeys()</code> checks only the element keys, the one for <code>filterValues()</code> checks only values.</p>
+<p>还有两种用于过滤 map 的特定函数：按键或按值。
+这两种方式，都有对应的函数： <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-keys.html"><code>filterKeys()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-values.html"><code>filterValues()</code></a> 。
+两者都将返回与给定谓词匹配的新条目映射。
+ <code>filterKeys()</code> 的谓词仅检查元素键， <code>filterValues()</code> 的谓词仅检查值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

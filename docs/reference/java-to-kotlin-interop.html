@@ -53,6 +53,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="global-layout">
 
+<!--
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -67,6 +68,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="close-head-banner"></div>
 </div>        </div>
     </div>
+-->
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
@@ -1375,10 +1377,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="java-中调用-kotlin">Java 中调用 Kotlin</h1>
 <p>Java 可以轻松调用 Kotlin 代码。
-For example, instances of a Kotlin class can be seamlessly created and operated in Java methods.
-However, there are certain differences between Java and Kotlin that require attention when
-integrating Kotlin code into Java.
-On this page, we'll describe the ways to tailor the interop of your Kotlin code with its Java clients.</p>
+例如，可以在 Java 方法中无缝创建与操作 Kotlin 类的实例。
+然而，在将 Kotlin 代码集成到 Java 中时，
+需要注意 Java 与 Kotlin 之间的一些差异。
+在本页，我们会描述定制 Kotlin 代码与其 Java 客户端的互操作的方法。</p>
 <h2 id="属性">属性</h2>
 <p>Kotlin 属性会编译成以下 Java 元素：</p>
 <ul>
@@ -1492,7 +1494,7 @@ class JavaClient {
 <p><a href="properties.html#延迟初始化属性与变量">延迟初始化的</a>属性（在Java中）也会暴露为字段。
 该字段的可见性与 <code>lateinit</code> 属性的 setter 相同。</p>
 <h2 id="静态字段">静态字段</h2>
-<p>在命名对象或伴生对象中声明的 Kotlin 属性会在该命名对象或包含伴生对象的类中<!--
+<p>在具名对象或伴生对象中声明的 Kotlin 属性会在该具名对象或包含伴生对象的类中<!--
 -->具有静态幕后字段。</p>
 <p>通常这些字段是私有的，但可以通过以下方式之一暴露出来：</p>
 <ul>
@@ -1516,7 +1518,7 @@ Key.COMPARATOR.compare(key1, key2);
 // Key 类中的 public static final 字段
 </code></pre>
 </div>
-<p>在命名对象或者伴生对象中的一个<a href="properties.html#延迟初始化属性与变量">延迟初始化的</a>属性<!--
+<p>在具名对象或者伴生对象中的一个<a href="properties.html#延迟初始化属性与变量">延迟初始化的</a>属性<!--
 -->具有与属性 setter 相同可见性的静态幕后字段。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">object Singleton {
@@ -1556,7 +1558,7 @@ int version = C.VERSION;
 </div>
 <h2 id="静态方法">静态方法</h2>
 <p>如上所述，Kotlin 将包级函数表示为静态方法。
-Kotlin 还可以为命名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html"><code>@JvmStatic</code></a> 的话。
+Kotlin 还可以为具名对象或伴生对象中定义的函数生成静态方法，如果你将这些函数标注为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-static/index.html"><code>@JvmStatic</code></a> 的话。
 如果你使用该注解，编译器既会在相应对象的类中生成静态方法，也会在对象自身中生成实例方法。
 例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1576,7 +1578,7 @@ C.Companion.callStatic(); // 保留实例方法
 C.Companion.callNonStatic(); // 唯一的工作方式
 </code></pre>
 </div>
-<p>对于命名对象也同样：</p>
+<p>对于具名对象也同样：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">object Obj {
     @JvmStatic fun callStatic() {}
@@ -1592,9 +1594,9 @@ Obj.INSTANCE.callNonStatic(); // 没问题，通过单例实例调用
 Obj.INSTANCE.callStatic(); // 也没问题
 </code></pre>
 </div>
-<p>Starting from Kotlin 1.3, <code>@JvmStatic</code> applies to functions defined in companion objects of interfaces as well.
-Such functions compile to static methods in interfaces. Note that static method in interfaces were introduced in Java 1.8,
-so be sure to use the corresponding targets.</p>
+<p>自 Kotlin 1.3 起，<code>@JvmStatic</code> 也适用于在接口的伴生对象中定义的函数。
+这类函数会编译为接口中的静态方法。请注意，接口中的静态方法是 Java 1.8 中引入的，
+因此请确保使用相应的编译目标。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface ChatBot {
     companion object {
@@ -1607,17 +1609,17 @@ so be sure to use the corresponding targets.</p>
 </div>
 <p><code>@JvmStatic</code>　注解也可以应用于对象或伴生对象的属性，
 使其 getter 和 setter 方法在该对象或包含该伴生对象的类中是静态成员。</p>
-<h2 id="default-methods-in-interfaces">Default methods in interfaces</h2>
+<h2 id="接口中的默认方法">接口中的默认方法</h2>
 <blockquote class="note">
-<p>Default methods are available only for targets JVM 1.8 and above.</p>
+<p>默认方法仅适用于面向 JVM 1.8 及更高版本。</p>
 </blockquote>
 <blockquote class="note">
-<p>The <code>@JvmDefault</code> annotation is experimental in Kotlin 1.3. Its name and behavior may change, leading to future incompatibility.</p>
+<p><code>@JvmDefault</code> 注解在 Kotlin 1.3 中是实验性的。其名称与行为都可能发生变化，导致将来不兼容。</p>
 </blockquote>
-<p>Starting from JDK 1.8, interfaces in Java can contain <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">default methods</a>.
-You can declare a non-abstract member of a Kotlin interface as default for the Java classes implementing it.
-To make a member default, mark it with the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html"><code>@JvmDefault</code></a> annotation.
-Here is an example of a Kotlin interface with a default method:</p>
+<p>自 JDK 1.8 起，Java 中的接口可以包含<a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">默认方法</a>。
+可以将 Kotlin 接口的非抽象成员为实现它的 Java 类声明为默认。
+如需将一个成员声明为默认，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html"><code>@JvmDefault</code></a> 注解标记之。
+这是一个带有默认方法的 Kotlin 接口的一个示例：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Robot {
     @JvmDefault fun move() { println("~walking~") }
@@ -1625,11 +1627,11 @@ Here is an example of a Kotlin interface with a default method:</p>
 }
 </code></pre>
 </div>
-<p>The default implementation is available for Java classes implementing the interface.</p>
+<p>默认实现对于实现该接口的 Java 类都可用。</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-java">//Java implementation
+<pre><code class="language-java">//Java 实现
 public class C3PO implements Robot {
-    // move() implementation from Robot is available implicitly
+    // 来自 Robot 的 move() 实现隐式可用
     @Override
     public void speak() {
         System.out.println("I beg your pardon, sir");
@@ -1639,15 +1641,15 @@ public class C3PO implements Robot {
 </div>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-java">C3PO c3po = new C3PO();
-c3po.move(); // default implementation from the Robot interface
+c3po.move(); // 来自 Robot 接口的默认实现
 c3po.speak();
 </code></pre>
 </div>
-<p>Implementations of the interface can override default methods.</p>
+<p>接口的实现者可以覆盖默认方法。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-java">//Java
 public class BB8 implements Robot {
-    //own implementation of the default method
+    //自己实现默认方法
     @Override
     public void move() {
         System.out.println("~rolling~");
