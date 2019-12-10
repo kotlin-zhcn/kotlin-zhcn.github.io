@@ -1377,15 +1377,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="map-相关操作">Map 相关操作</h1>
 <p>在 <a href="collections-overview.html#map">map</a> 中，键和值的类型都是用户定义的。
-对 map 条目的基于键的访问启用了各种特定于 map 的处理函数，从键获取值到对键和值进行单独过滤。
+对基于键的访问启用了各种特定于 map 的处理函数，从键获取值到对键和值进行单独过滤。
 在此页面上，我们提供了来自标准库的 map 处理功能的描述。</p>
 <h2 id="取键与值">取键与值</h2>
-<p>要从映射中检索值，必须提供其键作为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html"><code>get()</code></a> 函数的参数。
+<p>要从 Map 中检索值，必须提供其键作为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/get.html"><code>get()</code></a> 函数的参数。
 还支持简写 <code>[key]</code> 语法。 如果找不到给定的键，则返回 <code>null</code> 。
-还有一个函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html"><code>getValue()</code></a> ，它的行为略有不同：如果在映射中找不到键，则抛出异常。
+还有一个函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-value.html"><code>getValue()</code></a> ，它的行为略有不同：如果在 Map 中找不到键，则抛出异常。
 此外，还有两个选项可以解决键缺失的问题：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> 与列表的工作方式相同：对于不存在的键，其值由给定的 lambda 表达式返回。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-else.html"><code>getOrElse()</code></a> 与 list 的工作方式相同：对于不存在的键，其值由给定的 lambda 表达式返回。</li>
 <li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/get-or-default.html"><code>getOrDefault()</code></a> 如果找不到键，则返回指定的默认值。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1402,7 +1402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </code></pre>
 </div>
-<p>要对 map 的所有键或所有值执行操作，可以从属性 <code>keys</code> 和 <code>values</code> 中相应地检索它们。 <code>keys</code> 是所有映射键的集合， <code>values</code> 是所有映射值的集合。</p>
+<p>要对 map 的所有键或所有值执行操作，可以从属性 <code>keys</code> 和 <code>values</code> 中相应地检索它们。 <code>keys</code> 是 Map 中所有键的集合， <code>values</code> 是 Map 中所有值的集合。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1431,8 +1431,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>还有两种用于过滤 map 的特定函数：按键或按值。
 这两种方式，都有对应的函数： <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-keys.html"><code>filterKeys()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-values.html"><code>filterValues()</code></a> 。
-两者都将返回与给定谓词匹配的新条目映射。
- <code>filterKeys()</code> 的谓词仅检查元素键， <code>filterValues()</code> 的谓词仅检查值。</p>
+两者都将返回一个新 Map ，其中包含与给定谓词相匹配的条目。
+<code>filterKeys()</code> 的谓词仅检查元素键， <code>filterValues()</code> 的谓词仅检查值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1448,9 +1448,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="plus-与-minus-操作"><code>plus</code> 与 <code>minus</code> 操作</h2>
-<p>Due to the key access to elements, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus.html"><code>plus</code></a> (<code>+</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus.html"><code>minus</code></a> (<code>-</code>) operators work for maps differently than for other collections.
-<code>plus</code> returns a <code>Map</code> that contains elements of its both operands: a <code>Map</code> on the left and a <code>Pair</code> or another <code>Map</code> on the right.
-When the right-hand side operand contains entries with keys present in the left-hand side <code>Map</code>, the result map contains the entries from the right side.</p>
+<p>由于需要访问元素的键，<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus.html"><code>plus</code></a>（<code>+</code>）与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus.html"><code>minus</code></a>（<code>-</code>）运算符对 map 的作用与其他集合不同。
+<code>plus</code> 返回包含两个操作数元素的 <code>Map</code> ：左侧的 Map 与右侧的 Pair 或另一个 Map 。
+当右侧操作数中有左侧 <code>Map</code> 中已存在的键时，该条目将使用右侧的值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1463,8 +1463,8 @@ When the right-hand side operand contains entries with keys present in the left-
 
 </code></pre>
 </div>
-<p><code>minus</code> creates a <code>Map</code> from entries of a <code>Map</code> on the left except those with keys from the right-hand side operand.
-So, the right-hand side operand can be either a single key or a collection of keys: list, set, and so on.</p>
+<p><code>minus</code> 将根据左侧 <code>Map</code> 条目创建一个新 <code>Map</code> ，右侧操作数带有键的条目将被剔除。
+因此，右侧操作数可以是单个键或键的集合： list 、 set 等。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1476,20 +1476,20 @@ So, the right-hand side operand can be either a single key or a collection of ke
 
 </code></pre>
 </div>
-<p>For details on using <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operators on mutable maps, see <a href="#map-写操作">Map write operations</a> below.</p>
+<p>关于在可变 Map 中使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a>（<code>+=</code>）与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a>（<code>-=</code>）运算符的详细信息，请参见 <a href="#map-写操作">Map 写操作</a> 。</p>
 <h2 id="map-写操作">Map 写操作</h2>
-<p><a href="collections-overview.html#集合类型">Mutable</a> maps offer map-specific write operations.
-These operations let you change the map content using the key-based access to the values.</p>
-<p>There are certain rules that define write operations on maps:</p>
+<p><a href="collections-overview.html#集合类型">Mutable</a> Map （可变 Map ）提供特定的 Map 写操作。
+这些操作使你可以使用键来访问或更改 Map 值。</p>
+<p>Map 写操作的一些规则：</p>
 <ul>
-<li>Values can be updated. In turn, keys never change: once you add an entry, its key is constant.</li>
-<li>For each key, there is always a single value associated with it. You can add and remove whole entries.</li>
+<li>值可以更新。 反过来，键也永远不会改变：添加条目后，键是不变的。</li>
+<li>每个键都有一个与之关联的值。也可以添加和删除整个条目。</li>
 </ul>
-<p>Below are descriptions of the standard library functions for write operations available on mutable maps.</p>
+<p>下面是对可变 Map 中可用写操作的标准库函数的描述。</p>
 <h3 id="添加与更新条目">添加与更新条目</h3>
-<p>To  add a new key-value pair to a mutable map, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/put.html"><code>put()</code></a>.
-When a new entry is put into a <code>LinkedHashMap</code> (the default map implementation), it is added so that it comes last when iterating the map.
-In sorted maps, the positions of new elements are defined by the order of their keys.</p>
+<p>要将新的键值对添加到可变 Map ，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/put.html"><code>put()</code></a> 。
+将新条目放入 <code>LinkedHashMap</code> （Map的默认实现）后，会添加该条目，以便在 Map 迭代时排在最后。
+在 Map 类中，新元素的位置由其键顺序定义。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1501,7 +1501,7 @@ In sorted maps, the positions of new elements are defined by the order of their 
 
 </code></pre>
 </div>
-<p>To add multiple entries at a time, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/put-all.html"><code>putAll()</code></a>. Its argument can be a <code>Map</code> or a group of <code>Pair</code>s: <code>Iterable</code>, <code>Sequence</code>, or <code>Array</code>.</p>
+<p>要一次添加多个条目，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/put-all.html"><code>putAll()</code></a> 。它的参数可以是 <code>Map</code> 或一组 <code>Pair</code> ： <code>Iterable</code> 、 <code>Sequence</code> 或 <code>Array</code> 。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1513,7 +1513,7 @@ In sorted maps, the positions of new elements are defined by the order of their 
 
 </code></pre>
 </div>
-<p>Both <code>put()</code> and <code>putAll()</code> overwrite the values if the given keys already exist in the map. Thus, you can use them to update values of map entries.</p>
+<p>如果给定键已存在于 Map 中，则 <code>put()</code> 与 <code>putAll()</code> 都将覆盖值。 因此，可以使用它们来更新 Map 条目的值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1526,16 +1526,16 @@ In sorted maps, the positions of new elements are defined by the order of their 
 
 </code></pre>
 </div>
-<p>You can also add new entries to maps using the shorthand operator form. There are two ways:</p>
+<p>还可以使用快速操作符将新条目添加到 Map 。 有两种方式：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) operator.</li>
-<li>the <code>[]</code> operator alias for <code>put()</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> （<code>+=</code>） 操作符。</li>
+<li><code>[]</code> 操作符为 <code>put()</code> 的别名。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbersMap = mutableMapOf("one" to 1, "two" to 2)
-    numbersMap["three"] = 3     // calls numbersMap.put("three", 3)
+    numbersMap["three"] = 3     // 调用 numbersMap.put("three", 3)
     numbersMap += mapOf("four" to 4, "five" to 5)
     println(numbersMap)
 //sampleEnd
@@ -1543,27 +1543,27 @@ In sorted maps, the positions of new elements are defined by the order of their 
 
 </code></pre>
 </div>
-<p>When called with the key present in the map, operators overwrite the values of the corresponding entries.</p>
+<p>使用 Map 中存在的键进行操作时，将覆盖相应条目的值。</p>
 <h3 id="删除条目">删除条目</h3>
-<p>To remove an entry from a mutable map, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/remove.html"><code>remove()</code></a> function.
-When calling <code>remove()</code>, you can pass either a key or a whole key-value-pair.
-If you specify both the key and value, the element with this key will be removed only if its value matches the second argument.</p>
+<p>要从可变 Map 中删除条目，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-map/remove.html"><code>remove()</code></a> 函数。
+调用 <code>remove()</code> 时，可以传递键或整个键值对。
+如果同时指定键和值，则仅当键值都匹配时，才会删除此的元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbersMap = mutableMapOf("one" to 1, "two" to 2, "three" to 3)
     numbersMap.remove("one")
     println(numbersMap)
-    numbersMap.remove("three", 4)            //doesn't remove anything
+    numbersMap.remove("three", 4)            //不会删除任何条目
     println(numbersMap)
 //sampleEnd
 }
 
 </code></pre>
 </div>
-<p>You can also remove entries from a mutable map by their keys or values.
-To do this, call <code>remove()</code> on the map's keys or values providing the key or the value of an entry.
-When called on values, <code>remove()</code> removes only the first entry with the given value.</p>
+<p>还可以通过键或值从可变 Map 中删除条目。
+在 Map 的 <code>.keys</code> 或 <code>.values</code> 中调用 <code>remove()</code> 并提供键或值来删除条目。
+在 <code>.values</code> 中调用时， <code>remove()</code> 仅删除给定值匹配到的的第一个条目。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1577,14 +1577,14 @@ When called on values, <code>remove()</code> removes only the first entry with t
 
 </code></pre>
 </div>
-<p>The <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) operator is also available for mutable maps.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> （<code>-=</code>） 操作符也可用于可变 Map 。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbersMap = mutableMapOf("one" to 1, "two" to 2, "three" to 3)
     numbersMap -= "two"
     println(numbersMap)
-    numbersMap -= "five"             //doesn't remove anything
+    numbersMap -= "five"             //不会删除任何条目
     println(numbersMap)
 //sampleEnd
 }
