@@ -1783,8 +1783,8 @@ The compilations of a target may be accessed in the DSL, for example, to get the
 </code></pre>
 </div>
 </div>
-<p>Each compilation is accompanied by a default <a href="#配置源集">source set</a>, which is created automatically
-and should be used for sources and dependencies that are specific to that compilation. The default source set for a
+<p>Each compilation is accompanied by a default <a href="#配置源集">source set</a> that stores sources and dependencies 
+ specific to that compilation. The default source set for a
 compilation <code>foo</code> of a target <code>bar</code> has the name <code>barFoo</code>. It can also be accessed from a compilation using
 <code>defaultSourceSet</code>:</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -1942,6 +1942,13 @@ it can be considered platform-specific if it is only compiled for a single platf
 common code shared between the platforms or platform-specific code.</p>
 <p>Each source set has a default source directory for Kotlin sources: <code>src/&lt;source set name&gt;/kotlin</code>. To add Kotlin source
 directories and resources to a source set, use its <code>kotlin</code> and <code>resources</code> <code>SourceDirectorySet</code>s:</p>
+<p>By default, the files of a source set are stored in the following directories:</p>
+<ul>
+<li>source files: <code>src/&lt;source set name&gt;/kotlin</code></li>
+<li>resources files: <code>src/&lt;source set name&gt;/resources</code></li>
+</ul>
+<p>You should create these directories manually.</p>
+<p>To add custom Kotlin source directories and resources to a source set, use its <code>kotlin</code> and <code>resources</code> <code>SourceDirectorySet</code>s:</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin { 

@@ -1376,11 +1376,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="迭代器">迭代器</h1>
-<p>For traversing collection elements, the Kotlin standard library supports the commonly used mechanism of <em>iterators</em> – objects that provide access to the elements sequentially without exposing the underlying structure of the collection.
-Iterators are useful when you need to process all the elements of a collection one-by-one, for example, print values or make similar updates to them.</p>
-<p>Iterators can be obtained for inheritors of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable&lt;T&gt;</code></a> interface, including <code>Set</code> and <code>List</code>, by calling the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html"><code>iterator()</code></a> function.
-Once you obtain an iterator, it points to the first element of a collection; calling the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/next.html"><code>next()</code></a> function returns this element and moves the iterator position to the following element if it exists.
-Once the iterator passes through the last element, it can no longer be used for retrieving elements; neither can it be reset to any previous position. To iterate through the collection again, create a new iterator.</p>
+<p>对于遍历集合元素， Kotlin 标准库支持 <em>迭代器</em> 的常用机制——对象可按顺序提供对元素的访问权限，而不会暴露集合的底层结构。
+当需要逐个处理集合的所有元素（例如打印值或对其进行类似更新）时，迭代器非常有用。</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><code>Iterable&lt;T&gt;</code></a> 接口的继承者（包括 <code>Set</code> 与 <code>List</code>）可以通过调用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/iterator.html"><code>iterator()</code></a> 函数获得迭代器。
+一旦获得迭代器它就指向集合的第一个元素；调用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterator/next.html"><code>next()</code></a> 函数将返回此元素，并将迭代器指向下一个元素（如果下一个元素存在）。
+一旦迭代器通过了最后一个元素，它就不能再用于检索元素；也无法重新指向到以前的任何位置。要再次遍历集合，请创建一个新的迭代器。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1393,7 +1393,7 @@ Once the iterator passes through the last element, it can no longer be used for 
 }
 </code></pre>
 </div>
-<p>Another way to go through an <code>Iterable</code> collection is the well-known <code>for</code> loop. When using <code>for</code> on a collection, you obtain the iterator implicitly. So, the following code is equivalent to the example above:</p>
+<p>遍历 <code>Iterable</code> 集合的另一种方法是众所周知的 <code>for</code> 循环。在集合中使用 <code>for</code> 循环时，将隐式获取迭代器。因此，以下代码与上面的示例等效：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1405,7 +1405,7 @@ Once the iterator passes through the last element, it can no longer be used for 
 }
 </code></pre>
 </div>
-<p>Finally, there is a useful <code>forEach()</code> function that lets you automatically iterate a collection and execute the given code for each element. So, the same example would look like this:</p>
+<p>最后，有一个好用的 <code>forEach()</code> 函数，可自动迭代集合并为每个元素执行给定的代码。因此，等效的示例如下所示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1418,9 +1418,9 @@ Once the iterator passes through the last element, it can no longer be used for 
 </code></pre>
 </div>
 <h2 id="list-迭代器">List 迭代器</h2>
-<p>For lists, there is a special iterator implementation: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html"><code>ListIterator</code></a>. It supports iterating lists in both directions: forwards and backwards.
-Backward iteration is implemented by the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/has-previous.html"><code>hasPrevious()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous.html"><code>previous()</code></a>.
-Additionally, the <code>ListIterator</code> provides information about the element indices with the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/next-index.html"><code>nextIndex()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous-index.html"><code>previousIndex()</code></a>.</p>
+<p>对于列表，有一个特殊的迭代器实现： <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/index.html"><code>ListIterator</code></a> 它支持列表双向迭代：正向与反向。
+反向迭代由 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/has-previous.html"><code>hasPrevious()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous.html"><code>previous()</code></a> 函数实现。
+此外， <code>ListIterator</code> 通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/next-index.html"><code>nextIndex()</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list-iterator/previous-index.html"><code>previousIndex()</code></a> 函数提供有关元素索引的信息。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1436,9 +1436,9 @@ Additionally, the <code>ListIterator</code> provides information about the eleme
 }
 </code></pre>
 </div>
-<p>Having the ability to iterate in both directions, means the <code>ListIterator</code> can still be used after it reaches the last element.</p>
+<p>具有双向迭代的能力意味着 <code>ListIterator</code> 在到达最后一个元素后仍可以使用。</p>
 <h2 id="可变迭代器">可变迭代器</h2>
-<p>For iterating mutable collections, there is <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/index.html"><code>MutableIterator</code></a> that extends <code>Iterator</code> with the element removal function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/remove.html"><code>remove()</code></a>. So, you can remove elements from a collection while iterating it.</p>
+<p>为了迭代可变集合，于是有了 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/index.html"><code>MutableIterator</code></a> 来扩展 <code>Iterator</code> 使其具有元素删除函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-iterator/remove.html"><code>remove()</code></a> 。因此，可以在迭代时从集合中删除元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1452,7 +1452,7 @@ Additionally, the <code>ListIterator</code> provides information about the eleme
 }
 </code></pre>
 </div>
-<p>In addition to removing elements, the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list-iterator/index.html"><code>MutableListIterator</code></a> can also insert and replace elements while iterating the list.</p>
+<p>除了删除元素， <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list-iterator/index.html"><code>MutableListIterator</code></a> 还可以在迭代列表时插入和替换元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
