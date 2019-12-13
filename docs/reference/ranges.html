@@ -1376,17 +1376,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="区间与数列">区间与数列</h1>
-<p>Kotlin lets you easily create ranges of values using the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/range-to.html"><code>rangeTo()</code></a> function from the <code>kotlin.ranges</code> package and its operator form <code>..</code>.
-Usually, <code>rangeTo()</code> is complemented by <code>in</code> or <code>!in</code> functions.</p>
+<p>Kotlin 可通过调用 <code>kotlin.ranges</code> 包中的 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/range-to.html"><code>rangeTo()</code></a> 函数及其操作符形式的 <code>..</code> 轻松地创建两个值的区间。
+通常，<code>rangeTo()</code> 会辅以 <code>in</code> 或 <code>!in</code> 函数。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">if (i in 1..4) {  // 等同于 1 &lt;= i &amp;&amp; i &lt;= 4
     print(i)
 }
 </code></pre>
 </div>
-<p>Integral type ranges (<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/index.html"><code>IntRange</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-range/index.html"><code>LongRange</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-range/index.html"><code>CharRange</code></a>) have an extra feature: they can be iterated over.
-These ranges are also <a href="https://en.wikipedia.org/wiki/Arithmetic_progression">progressions</a> of the corresponding integral types.
-Such ranges are generally used for iteration in the <code>for</code> loops.</p>
+<p>整数类型区间（<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-range/index.html"><code>IntRange</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-range/index.html"><code>LongRange</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-range/index.html"><code>CharRange</code></a>）还有一个拓展特性：可以对其进行迭代。
+这些区间也是相应整数类型的<a href="https://zh.wikipedia.org/wiki/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97">等差数列</a>。
+这种区间通常用于 <code>for</code> 循环中的迭代。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1396,7 +1396,7 @@ Such ranges are generally used for iteration in the <code>for</code> loops.</p>
 
 </code></pre>
 </div>
-<p>To iterate numbers in reverse order, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/down-to.html"><code>downTo</code></a> function instead of <code>..</code>.</p>
+<p>要反向迭代数字，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/down-to.html"><code>downTo</code></a> 函数而不是 <code>..</code> 。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1406,7 +1406,7 @@ Such ranges are generally used for iteration in the <code>for</code> loops.</p>
 
 </code></pre>
 </div>
-<p>It is also possible to iterate over numbers with an arbitrary step (not necessarily 1). This is done via the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/step.html"><code>step</code></a> function.</p>
+<p>也可以通过任意步长（不一定为 1 ）迭代数字。 这是通过 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/step.html"><code>step</code></a> 函数完成的。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1418,11 +1418,11 @@ Such ranges are generally used for iteration in the <code>for</code> loops.</p>
 
 </code></pre>
 </div>
-<p>To iterate a number range which does not include its end element, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/until.html"><code>until</code></a> function:</p>
+<p>要迭代不包含其结束元素的数字区间，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/until.html"><code>until</code></a> 函数：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-    for (i in 1 until 10) {       // i in [1, 10), 10 is excluded
+    for (i in 1 until 10) {       // i in [1, 10), 10被排除
         print(i)
     }
 //sampleEnd
