@@ -1987,11 +1987,6 @@ fun main() = runBlocking&lt;Unit&gt; {
 	at ...
 </code></pre>
 <!--- TEST EXCEPTION -->
-<blockquote>
-<p>请注意，在此示例中，我们必须使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">kotlinx.coroutines.withContext</a> 函数的全限定名来<!--
--->演示此异常。<code>withContext</code> 这个短名称将解析为一个特殊的存根函数<!--
--->并产生编译错误，以防我们遇到此问题。</p>
-</blockquote>
 <h4 id="flowon-操作符">flowOn 操作符</h4>
 <p>例外的是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> 函数，该函数用于更改流发射的上下文。
 以下示例展示了更改流上下文的正确方法，该示例还通过<!--

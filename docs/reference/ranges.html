@@ -1431,11 +1431,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="区间">区间</h2>
-<p>A range defines a closed interval in the mathematical sense: it is defined by its two endpoint values which are both included in the range.
-Ranges are defined for comparable types: having an order, you can define whether an arbitrary instance is in the range between two given instances.
-The main operation on ranges is <code>contains</code>, which is usually used in the form of <code>in</code> and <code>!in</code> operators.</p>
-<p>To create a range for your class, call the <code>rangeTo()</code> function on the range start value and provide the end value as an argument.
-<code>rangeTo()</code> is often called in its operator form <code>..</code>.</p>
+<p>区间从数学意义上定义了一个封闭的间隔：它由两个端点值定义，这两个端点值都包含在该区间内。
+区间是为可比较类型定义的：具有顺序，可以定义任意实例是否在两个给定实例之间的区间内。
+区间的主要操作是 <code>contains</code>，通常以 <code>in</code> 与 <code>!in</code> 操作符的形式使用。</p>
+<p>要为类创建一个区间，请在区间起始值上调用 <code>rangeTo()</code> 函数，并提供结束值作为参数。
+<code>rangeTo()</code> 通常以操作符 <code>..</code> 形式调用。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">class Version(val major: Int, val minor: Int): Comparable&lt;Version&gt; {
     override fun compareTo(other: Version): Int {
@@ -1457,19 +1457,19 @@ fun main() {
 </code></pre>
 </div>
 <h2 id="数列">数列</h2>
-<p>As shown in the examples above, the ranges of integral types, such as <code>Int</code>, <code>Long</code>, and <code>Char</code>, can be treated as <a href="https://en.wikipedia.org/wiki/Arithmetic_progression">arithmetic progressions</a> of them.
-In Kotlin, these progressions are defined by special types: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/index.html"><code>IntProgression</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-progression/index.html"><code>LongProgression</code></a>, and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-progression/index.html"><code>CharProgression</code></a>.</p>
-<p>Progressions have three essential properties: the <code>first</code> element, the <code>last</code> element, and a non-zero <code>step</code>.
-The first element is <code>first</code>, subsequent elements are the previous element plus a <code>step</code>.
-The last element is always hit by iteration unless the progression is empty.
-Iteration over a progression with a positive step is equivalent to an indexed <code>for</code> loop in Java/JavaScript.</p>
+<p>如上个示例所示，整数类型的区间（例如 <code>Int</code>、<code>Long</code> 与 <code>Char</code>）可视为<a href="https://zh.wikipedia.org/wiki/%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97">等差数列</a>。
+在 Kotlin 中，这些数列由特殊类型定义：<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-int-progression/index.html"><code>IntProgression</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-long-progression/index.html"><code>LongProgression</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.ranges/-char-progression/index.html"><code>CharProgression</code></a>。</p>
+<p>数列具有三个基本属性：<code>first</code> 元素、<code>last</code> 元素和一个非零的 <code>step</code>。
+首个元素为 <code>first</code>，后续元素是前一个元素加上一个 <code>step</code>。
+除非数列为空，否则最后一个元素总是被迭代命中。
+以确定的步长在数列上进行迭代等效于 Java/JavaScript 中基于索引的 <code>for</code> 循环。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-java">for (int i = first; i &lt;= last; i += step) {
   // ……
 }
 </code></pre>
 </div>
-<p>When you create a progression implicitly by iterating a range, this progression's <code>first</code> and <code>last</code> elements are the range's endpoints, and the <code>step</code> is 1.</p>
+<p>通过迭代数列隐式创建区间时，此数列的 <code>first</code> 与 <code>last</code> 元素是区间的端点，<code>step</code> 为 1 。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1479,7 +1479,7 @@ Iteration over a progression with a positive step is equivalent to an indexed <c
 
 </code></pre>
 </div>
-<p>To define a custom progression step, use the <code>step</code> function on a range.</p>
+<p>要指定数列步长，请在区间上使用 <code>step</code> 函数。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1489,8 +1489,8 @@ Iteration over a progression with a positive step is equivalent to an indexed <c
 
 </code></pre>
 </div>
-<p>The last element of the progression is calculated to find the maximum value not greater than the end value for a positive step or the minimum value not less than the end value for a negative step such that <code>(last - first) % step == 0</code>.</p>
-<p>To create a progression for iterating in reverse order, use <code>downTo</code> instead of <code>..</code> when defining the range for it.</p>
+<p>计算该数列的最后一个元素，以找到正步长的最大值不大于最终值，或负步长的最小值不小于最终值，使得 <code>(last - first) % step == 0</code>.</p>
+<p>要创建反向迭代的数列，请在定义其区间时使用 <code>downTo</code> 而不是 <code>..</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1500,7 +1500,7 @@ Iteration over a progression with a positive step is equivalent to an indexed <c
 
 </code></pre>
 </div>
-<p>Progressions implement <code>Iterable&lt;N&gt;</code>, where <code>N</code> is <code>Int</code>, <code>Long</code>, or <code>Char</code> respectively, so you can use them in various <a href="collection-operations.html">collection functions</a> like <code>map</code>, <code>filter</code>, and other.</p>
+<p>数列实现 <code>Iterable&lt;N&gt;</code>，其中 <code>N</code> 分别是 <code>Int</code>、<code>Long</code> 或 <code>Char</code>，因此可以在各种<a href="collection-operations.html">集合函数</a>（如 <code>map</code>、<code>filter</code> 与其他）中使用它们。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
