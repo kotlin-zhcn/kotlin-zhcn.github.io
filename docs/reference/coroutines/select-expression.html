@@ -1531,9 +1531,9 @@ buzz -&gt; 'Buzz!'
     }
 </code></pre>
 </div>
-<p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> is an extension function defined only
-for channels with non-nullable elements so that there is no accidental confusion between a closed channel
-and a null value.</p>
+<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 是一个仅在用于不可空元素的通道上<!--
+-->定义的扩展函数，以使关闭的通道与空值之间<!--
+-->不会出现意外的混乱。</p>
 <p>现在有一个生成四次“Hello”字符串的 <code>a</code> 通道，
 和一个生成四次“World”字符串的 <code>b</code> 通道，我们在这两个通道上使用它：</p>
 <!--- CLEAR -->
