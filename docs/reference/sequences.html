@@ -1429,7 +1429,7 @@ val numbersSequence = numbers.asSequence()
 <p>最后，有一个函数可以逐个或按任意大小的组块生成序列元素——<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/sequence.html"><code>sequence()</code></a> 函数。
 此函数采用一个 lambda 表达式，其中包含 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield.html"><code>yield()</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/-sequence-scope/yield-all.html"><code>yieldAll()</code></a> 函数的调用。
 它们将一个元素返回给序列使用者，并暂停 <code>sequence()</code> 的执行，直到使用者请求下一个元素。
-<code>yield()</code> 使用单个元素作为参数；<code>yieldAll()</code> 中可以采用 <code>Iterable</code> 对象、<code>Iterable</code> 或其他 <code>Sequence</code>。<code>yieldAll()</code> 的 <code>Sequence</code> 参数可以是无限的。 总之，这样的调用必须是最后一个：之后的所有调用将永远不会执行。</p>
+<code>yield()</code> 使用单个元素作为参数；<code>yieldAll()</code> 中可以采用 <code>Iterable</code> 对象、<code>Iterable</code> 或其他 <code>Sequence</code>。<code>yieldAll()</code> 的 <code>Sequence</code> 参数可以是无限的。 当然，这样的调用必须是最后一个：之后的所有调用都永远不会执行。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
