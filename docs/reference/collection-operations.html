@@ -1376,74 +1376,74 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="集合操作概述">集合操作概述</h1>
-<p>The Kotlin standard library offers a broad variety of functions for performing operations on collections. This includes simple operations, such as getting or adding elements, as well as more complex ones including search, sorting, filtering, transformations, and so on.</p>
+<p>Kotlin 标准库提供了用于对集合执行操作的多种函数。这包括简单的操作，例如获取或添加元素，以及更复杂的操作，包括搜索、排序、过滤、转换等。</p>
 <h2 id="扩展与成员函数">扩展与成员函数</h2>
-<p>Collection operations are declared in the standard library in two ways: <a href="classes.html#类成员">member functions</a> of collection interfaces and <a href="extensions.html#扩展函数">extension functions</a>.</p>
-<p>Member functions define operations that are essential for a collection type. For example, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection</code></a> contains the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/is-empty.html"><code>isEmpty()</code></a> for checking its emptiness; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> contains <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a> for index access to elements, and so on.</p>
-<p>When you create own implementations of collection interfaces, you must implement their member functions.
-To make the creation of new implementations easier, use the skeletal implementations of collection interfaces from the standard library: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-collection/index.html"><code>AbstractCollection</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-list/index.html"><code>AbstractList</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-set/index.html"><code>AbstractSet</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-map/index.html"><code>AbstractMap</code></a>, and their mutable counterparts.</p>
-<p>Other collection operations are declared as extension functions. These are filtering, transformation, ordering, and other collection processing functions.</p>
+<p>集合操作在标准库中以两种方式声明：集合接口的<a href="classes.html#类成员">成员函数</a>和<a href="extensions.html#扩展函数">扩展函数</a>。</p>
+<p>成员函数定义了对于集合类型是必不可少的操作。例如，<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/index.html"><code>Collection</code></a> 包含函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-collection/is-empty.html"><code>isEmpty()</code></a> 来检查其是否为空； <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><code>List</code></a> 包含用于对元素进行索引访问的 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/get.html"><code>get()</code></a>，等等。</p>
+<p>创建自己的集合接口实现时，必须实现其成员函数。
+为了使新实现的创建更加容易，请使用标准库中集合接口的框架实现：<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-collection/index.html"><code>AbstractCollection</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-list/index.html"><code>AbstractList</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-set/index.html"><code>AbstractSet</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-abstract-map/index.html"><code>AbstractMap</code></a> 及其相应可变抽象类。</p>
+<p>其他集合操作被声明为扩展函数。这些是过滤、转换、排序和其他集合处理功能。</p>
 <h2 id="公共操作">公共操作</h2>
-<p>Common operations are available for both <a href="collections-overview.html#集合类型">read-only and mutable collections</a>. Common operations fall into these groups:</p>
+<p>公共操作可用于<a href="collections-overview.html#集合类型">只读集合与可变集合</a>。 常见操作分为以下几类：</p>
 <ul>
-<li><a href="collection-transformations.html">Transformations</a></li>
-<li><a href="collection-filtering.html">Filtering</a></li>
-<li><a href="collection-plus-minus.html"><code>plus</code> and <code>minus</code> operators</a></li>
-<li><a href="collection-grouping.html">Grouping</a></li>
-<li><a href="collection-parts.html">Retrieving collection parts</a></li>
-<li><a href="collection-elements.html">Retrieving single elements</a></li>
-<li><a href="collection-ordering.html">Ordering</a></li>
-<li><a href="collection-aggregate.html">Aggregate operations</a></li>
+<li><a href="collection-transformations.html">集合转换</a></li>
+<li><a href="collection-filtering.html">集合过滤</a></li>
+<li><a href="collection-plus-minus.html"><code>plus</code> 与 <code>minus</code> 操作符</a></li>
+<li><a href="collection-grouping.html">分组</a></li>
+<li><a href="collection-parts.html">取集合的一部分</a></li>
+<li><a href="collection-elements.html">取单个元素</a></li>
+<li><a href="collection-ordering.html">集合排序</a></li>
+<li><a href="collection-aggregate.html">集合聚合操作</a></li>
 </ul>
-<p>Operations described on these pages return their results without affecting the original collection. For example, a filtering operation produces a <em>new collection</em> that contains all the elements matching the filtering predicate.
-Results of such operations should be either stored in variables, or used in some other way, for example, passed in other functions.</p>
+<p>这些页面中描述的操作将返回其结果，而不会影响原始集合。例如，一个过滤操作产生一个_新集合_，其中包含与过滤谓词匹配的所有元素。
+此类操作的结果应存储在变量中，或以其他方式使用，例如，传到其他函数中。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = listOf("one", "two", "three", "four")  
-    numbers.filter { it.length &gt; 3 }  // nothing happens with `numbers`, result is lost
+    numbers.filter { it.length &gt; 3 }  // `numbers` 没有任何改变，结果丢失
     println("numbers are still $numbers")
-    val longerThan3 = numbers.filter { it.length &gt; 3 } // result is stored in `longerThan3`
+    val longerThan3 = numbers.filter { it.length &gt; 3 } // 结果存储在 `longerThan3` 中
     println("numbers longer than 3 chars are $longerThan3")
 //sampleEnd
 }
 
 </code></pre>
 </div>
-<p>For certain collection operations, there is an option to specify the <em>destination</em> object.
-Destination is a mutable collection to which the function appends its resulting items instead of returning them in a new object.
-For performing operations with destinations, there are separate functions with the <code>To</code> postfix in their names, for example, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-to.html"><code>filterTo()</code></a> instead of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a>  or <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate-to.html"><code>associateTo()</code></a> instead of <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html"><code>associate()</code></a>.
-These functions take the destination collection as an additional parameter.</p>
+<p>对于某些集合操作，有一个选项可以指定 <em>目标</em> 对象。
+目标是一个可变集合，该函数将其结果项附加到该可变对象中，而不是在新对象中返回它们。
+对于执行带有目标的操作，有单独的函数，其名称中带有 <code>To</code> 后缀，例如，用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter-to.html"><code>filterTo()</code></a> 代替 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/filter.html"><code>filter()</code></a> 以及用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate-to.html"><code>associateTo()</code></a> 代替 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/associate.html"><code>associate()</code></a>。
+这些函数将目标集合作为附加参数。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = listOf("one", "two", "three", "four")
-    val filterResults = mutableListOf&lt;String&gt;()  //destination object
+    val filterResults = mutableListOf&lt;String&gt;()  // 目标对象
     numbers.filterTo(filterResults) { it.length &gt; 3 }
     numbers.filterIndexedTo(filterResults) { index, _ -&gt; index == 0 }
-    println(filterResults) // contains results of both operations
+    println(filterResults) // 包含两个操作的结果
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>For convenience, these functions return the destination collection back, so you can create it right in the corresponding argument of the function call:</p>
+<p>为了方便起见，这些函数将目标集合返回了，因此您可以在函数调用的相应参数中直接创建它：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
     val numbers = listOf("one", "two", "three", "four")
 //sampleStart
-    // filter numbers right into a new hash set, 
-    // thus eliminating duplicates in the result
+    // 将数字直接过滤到新的哈希集中，
+    // 从而消除结果中的重复项
     val result = numbers.mapTo(HashSet()) { it.length }
     println("distinct item lengths are $result")
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>Functions with destination are available for filtering, association, grouping, flattening, and other operations. For the complete list of destination operations see the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html">Kotlin collections reference</a>.</p>
+<p>具有目标的函数可用于过滤、关联、分组、展平以及其他操作。 有关目标操作的完整列表，请参见 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html">Kotlin collections reference</a>。</p>
 <h2 id="写操作">写操作</h2>
-<p>For mutable collections, there are also <em>write operations</em> that change the collection state. Such operations include adding, removing, and updating elements. Write operations are listed in the <a href="collection-write.html">Write operations</a> and corresponding sections of <a href="list-operations.html#list-写操作">List specific operations</a> and <a href="map-operations.html#map-写操作">Map specific operations</a>.</p>
-<p>For certain operations, there are pairs of functions for performing the same operation: one applies the operation in-place and the other returns the result as a separate collection.
-For example, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a> sorts a mutable collection in-place, so it's state changes; <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted.html"><code>sorted()</code></a> creates a new collection that contains the same elements in the sorted order.</p>
+<p>对于可变集合，还存在可更改集合状态的 <em>写操作</em> 。这些操作包括添加、删除和更新元素。写操作在<a href="collection-write.html">集合写操作</a>以及 <a href="list-operations.html#list-写操作">List 写操作</a>与 <a href="map-operations.html#map-写操作">Map 写操作</a>的相应部分中列出。</p>
+<p>对于某些操作，有成对的函数可以执行相同的操作：一个函数就地应用该操作，另一个函数将结果作为单独的集合返回。
+例如， <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a> 就地对可变集合进行排序，因此其状态发生了变化； <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sorted.html"><code>sorted()</code></a> 创建一个新集合，该集合包含按排序顺序相同的元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

@@ -1076,6 +1076,7 @@ object NativeBase64Encoder : Base64Encoder {
 }
 </code></pre>
 </div>
+<p>Use gradle 4.7 and above to generate wrapper (<code>gradle wrapper</code>) in project root directoy to generate gradlew, gradlew.bat and gradle/wrapper/gradle-wrapper.jar.</p>
 <p>执行 <code>./gradlew check</code> 并且你将看到测试代码在 JVM、JS 以及 Native 平台上共运行了三次！</p>
 <p>如果我们想要，我们可以将测试代码添加到指定平台，接下来只执行这个平台部分的测试。
 例如，我们可以在 JVM 上添加 UTF-16 测试。只需按照之前的步骤操作，但是要在 <code>jvmTest/kotlin/jetbrains/base64</code> 中创建文件：</p>

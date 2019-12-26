@@ -1428,8 +1428,10 @@ vert.x 或 JSF。另外还有一些 Kotlin 写的特定框架，例如 <a href="
 <h3 id="kotlin-会编译成什么">Kotlin 会编译成什么？</h3>
 <p>当面向JVM 平台时，Kotlin 生成 Java 兼容的字节码。当面向 JavaScript 时，Kotlin 会转译到 ES5.1，并生成与<!--
 -->包括 AMD 和 CommonJS 在内的模块系统相兼容的代码。当面向原生平台时，Kotlin 会（通过 LLVM）生成平台相关的代码。</p>
-<h3 id="kotlin-只面向-java-6-吗">Kotlin 只面向 Java 6 吗？</h3>
-<p>不是。Kotlin 可以让你选择生成 Java 6 或者 Java 8 兼容的字节码。可以为较高版本的平台生成更优化的字节码。</p>
+<h3 id="which-versions-of-jvm-does-kotlin-target">Which versions of JVM does Kotlin target?</h3>
+<p>Kotlin lets you choose the version of JVM for execution. By default, the Kotlin/JVM compiler produces Java 6 compatible bytecode.
+If you want to make use of optimizations available in newer versions of Java, you can explicitly specify the target Java version from 8 to 12.
+Note that in this case the resulting bytecode might not run on lower versions.</p>
 <h3 id="kotlin-难吗">Kotlin 难吗？</h3>
 <p>Kotlin 是受 Java、C#、JavaScript、Scala 以及 Groovy 等现有语言的启发。我们已经努力确保 Kotlin 易于学习，
 所以人们可以在几天之内轻松转向、阅读和编写 Kotlin。
@@ -1438,7 +1440,7 @@ vert.x 或 JSF。另外还有一些 Kotlin 写的特定框架，例如 <a href="
 <p>有太多使用 Kotlin 的公司可列，而有些更明显的公司已经公开宣布使用 Kotlin，分别通过博文、Github 版本库或者演讲宣布，包括
 <a href="https://medium.com/square-corner-blog/square-open-source-loves-kotlin-c57c21710a17">Square</a>、 <a href="https://www.youtube.com/watch?v=mDpnc45WwlI">Pinterest</a>、 <a href="https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12">Basecamp</a> 还有 <a href="https://docs.corda.net/releases/release-M9.2/further-notes-on-kotlin.html">Corda</a>。</p>
 <h3 id="谁开发-kotlin">谁开发 Kotlin？</h3>
-<p>Kotlin 主要由 JetBrains 的一个工程师团队开发（目前团队规模为 50+）。其首席语言设计师是
+<p>Kotlin 主要由 JetBrains 的一个工程师团队开发（目前团队规模为 90+）。其首席语言设计师是
 <a href="https://twitter.com/abreslav">Andrey Breslav</a>。除了核心团队，GitHub 上还有 250 多个外部贡献者。</p>
 <h3 id="在哪里可以了解关于-kotlin-更多">在哪里可以了解关于 Kotlin 更多？</h3>
 <p>最好的起始地方好是<a href="https://www.kotlincn.net">本网站</a>（原文是<a href="https://kotlinlang.org">英文官网</a>）。从那里你可以下载编译器、
