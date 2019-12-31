@@ -1402,23 +1402,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 其中包括<strong>用于 Jupyter notbook 的 Kotlin 内核</strong>。有了这个内核，就可以在 Jupyter
 notebook 中编写并运行 Kotlin 代码，以及使用以 Java 或 Kotlin 编写的第三方数据科学框架。</p>
 <h4 id="设置-kotlin-内核">设置 Kotlin 内核</h4>
-<p>The Kotlin kernel requires Java 8 to be installed.</p>
-<p>To install the kernel, use <a href="https://docs.conda.io/projects/conda/en/latest/">Conda</a>:</p>
+<p>Kotlin 内核需要安装 Java 8。</p>
+<p>请使用 <a href="https://docs.conda.io/projects/conda/en/latest/">Conda</a> 安装该内核：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">conda install kotlin-jupyter-kernel -c jetbrains
 </code></pre>
 </div>
-<p>Once the kernel is installed, feel free to run the Jupyter notebook and switch to the Kotlin kernel.
-And that’s all there is to it, you can then write and run Kotlin in your notebook!</p>
+<p>一旦内核安装完毕，就可以运行 Jupyter notebook 并切换到 Kotlin 内核。
+仅此而已，然后就可以在 notebook 中编写并运行 Kotlin 了！</p>
 <p><img alt="Kotlin in Jupyter notebook" src="/assets/images/landing/data-science/jupyter-kotlin.png"/></p>
-<p>You can find more information about the Kotlin kernel for Jupyter <a href="https://github.com/cheptsov/kotlin-jupyter-demo/blob/master/index.ipynb">here</a>.</p>
+<p>可以在<a href="https://github.com/cheptsov/kotlin-jupyter-demo/blob/master/index.ipynb">这里</a>找到关于 Jupyter 的 Kotlin 内核的更多信息。</p>
 <h3 id="zeppelin-解释器">Zeppelin 解释器</h3>
-<p><a href="http://zeppelin.apache.org/">Apache Zeppelin</a> is a popular web-based solution for interactive data analytics.
-Zeppelin provides strong support for the <a href="http://zeppelin.apache.org/docs/latest/interpreter/spark.html">Apache Spark</a>
-cluster computing system, which is particularly useful for data engineering. Spark provides a high-level API in multiple languages.</p>
-<p>The language support in Zeppelin is provided by <em>interpreters</em> - plugins that enable users to use a specific language or data-processing-backend.
-There are numerous community-maintained interpreters for different programming languages.
-The one we offer you is the <strong>Kotlin interpreter for Apache Zeppelin</strong> that adds the Kotlin support.</p>
+<p><a href="http://zeppelin.apache.org/">Apache Zeppelin</a> 是一个流行的基于 web 的交互式数据分析解决方案。
+Zeppelin 为 <a href="http://zeppelin.apache.org/docs/latest/interpreter/spark.html">Apache Spark</a>
+集群计算系统提供了强大的支持，这对于数据工程特别有用。Spark 提供了多种语言的高级 API。</p>
+<p>Zeppelin 中的语言支持由<em>解释器</em>提供，解释器是让用户能够使用指定语言或者数据处理后端的插件。
+对于不同的编程语言有许多社区维护的解释器。
+我们提供了增加 Kotlin 支持的<strong>用于 Apache Zeppelin 的 Kotlin 解释器</strong>。</p>
 <h4 id="设置带-kotlin-解释器的-zeppelin">设置带 Kotlin 解释器的 Zeppelin</h4>
 <p>Currently, the latest release of Zeppelin (0.8.2) doesn’t come with bundled Kotlin interpreter.
 But anyway, it’s available in the master branch of Zeppelin. 
