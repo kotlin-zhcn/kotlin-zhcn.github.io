@@ -1829,10 +1829,10 @@ kotlin {
 </div>
 <p>为了收集参与编译项的所有源集，包括通过依赖关系添加的源集，可以<!--
 -->使用属性 <code>allKotlinSourceSets</code>。</p>
-<p>对于某些特定用例，可能需要创建自定义编译项。这可以在目标的 <code>compilations</code> 领域对象集合
-中完成。请注意，需要为所有自定义编译项手动设置依赖项，并且
-自定义编译项输出的使用取决于构建所有者。例如，对目标 <code>jvm()</code> 的集成测试的
-自定义编译项：</p>
+<p>对于某些特定用例，可能需要创建自定义编译项。这可以在目标的 <code>compilations</code> 领域对象集合<!--
+-->中完成。请注意，需要为所有自定义编译项手动设置依赖项，并且<!--
+-->自定义编译项输出的使用取决于构建所有者。例如，对目标 <code>jvm()</code> 的集成测试的<!--
+-->自定义编译项：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
@@ -1899,20 +1899,20 @@ kotlin {
 <p>还要注意，默认情况下，自定义编译项的默认源集既不依赖于 <code>commonMain</code> 也不依赖于
 <code>commonTest</code>。</p>
 <h2 id="配置源集">配置源集</h2>
-<p>A Kotlin source set is a collection of Kotlin sources, along with their resources, dependencies, and language settings,
-which may take part in Kotlin compilations of one or more <a href="#设置目标">targets</a>.</p>
-<p>A source set is not bound to be platform-specific or "shared"; what it's allowed to contain depends on its usage:
-a source set added to multiple compilations is limited to the common language features and dependencies, while a source
-set that is only used by a single target can have platform-specific dependencies, and its code may use language
-features specific to that target's platform.</p>
-<p>Some source sets are created and configured by default: <code>commonMain</code>, <code>commonTest</code>, and the default source sets for the
- compilations. See <a href="#默认项目布局">默认项目布局</a>.</p>
-<p>The source sets are configured within a <code>sourceSets { ... }</code> block of the <code>kotlin { ... }</code> extension:</p>
+<p>Kotlin 源集是 Kotlin 源代码及其资源、依赖关系以及语言设置的集合，
+一个源集可能会参与一个或多个<a href="#设置目标">目标</a>的 Kotlin 编译项。</p>
+<p>源集不限于平台特定的或“共享的”；允许包含的内容取决于其用法：
+添加到多个编译项中的源集仅限于通用语言特性及依赖项，仅由单个目标使用的源集<!--
+-->可以具有平台特定的依赖项，并且其代码可能使用目标平台<!--
+-->特定的语言特性。</p>
+<p>默认情况下会创建并配置一些源集：<code>commonMain</code>、<code>commonTest</code> 和编译项的<!--
+-->默认源集。 请参见<a href="#默认项目布局">默认项目布局</a>。</p>
+<p>源集在 <code>kotlin { ... }</code> 扩展的 <code>sourceSets { ... }</code> 块内配置：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets { 
-        foo { /* …… */ } // create or configure a source set by the name 'foo' 
+        foo { /* …… */ } // 创建或配置名称为 “foo” 的源集
         bar { /* …… */ }
     }
 }
@@ -1923,32 +1923,32 @@ features specific to that target's platform.</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
     sourceSets {
-        val foo by creating { /* …… */ } // create a new source set by the name 'foo'
-        val bar by getting { /* …… */ } // configure an existing source set by the name 'bar'
+        val foo by creating { /* …… */ } // 创建一个名为 “foo” 的新源集
+        val bar by getting { /* …… */ } // 使用名称 “bar” 配置现有的源集
     }
 }
 </code></pre>
 </div>
 </div>
 <blockquote class="note">
-<p>Note: creating a source set does not link it to any target. Some source sets are <a href="#默认项目布局">predefined</a>
-and thus compiled by default. However, custom source sets always need to be explicitly directed to the compilations. 
-See: <a href="#关联源集">关联源集</a>.</p>
+<p>注意：创建源集不会将其链接到任何目标。一些源集是<a href="#默认项目布局">预定义的</a>
+因此默认情况下进行编译。但是，始终需要将自定义源集明确地定向到编译项。
+请参见：<a href="#关联源集">关联源集</a>。</p>
 </blockquote>
-<p>The source set names are case-sensitive. When referring to a default source set by its name, make sure the name prefix
-matches a target's name, for example, a source set <code>iosX64Main</code> for a target <code>iosX64</code>.</p>
-<p>A source set by itself is platform-agnostic, but
-it can be considered platform-specific if it is only compiled for a single platform. A source set can, therefore, contain either
-common code shared between the platforms or platform-specific code.</p>
-<p>Each source set has a default source directory for Kotlin sources: <code>src/&lt;source set name&gt;/kotlin</code>. To add Kotlin source
-directories and resources to a source set, use its <code>kotlin</code> and <code>resources</code> <code>SourceDirectorySet</code>s:</p>
-<p>By default, the files of a source set are stored in the following directories:</p>
+<p>源集名称区分大小写。在通过名称引用默认源集时，请确保源集的名称前缀<!--
+-->与目标名称匹配，例如，目标 <code>iosX64</code> 的源集 <code>iosX64Main</code>。</p>
+<p>源集本身是平台无关的，但是<!--
+-->如果仅针对单个平台进行编译，则可以将其视为特定于平台的。因此，源集可以包含<!--
+-->平台之间共享的公共代码或平台特定的代码。</p>
+<p>每个源集都有 Kotlin 源代码的默认源目录：<code>src/&lt;源集名称&gt;/kotlin</code>。要将 Kotlin 源目录<!--
+-->以及资源添加到源集中，请使用其 <code>kotlin</code> 与 <code>resources</code> <code>SourceDirectorySet</code>：</p>
+<p>默认情况下，源集的文件存储在以下目录中：</p>
 <ul>
-<li>source files: <code>src/&lt;source set name&gt;/kotlin</code></li>
-<li>resources files: <code>src/&lt;source set name&gt;/resources</code></li>
+<li>源文件：<code>src/&lt;source set name&gt;/kotlin</code></li>
+<li>资源文件：<code>src/&lt;source set name&gt;/resources</code></li>
 </ul>
-<p>You should create these directories manually.</p>
-<p>To add custom Kotlin source directories and resources to a source set, use its <code>kotlin</code> and <code>resources</code> <code>SourceDirectorySet</code>s:</p>
+<p>应该手动创建这些目录。</p>
+<p>要将自定义 Kotlin 源目录和资源添加到源集中，请使用其 <code>kotlin</code> 与 <code>resources</code> <code>SourceDirectorySet</code>：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin { 
