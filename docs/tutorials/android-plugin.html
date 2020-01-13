@@ -910,6 +910,20 @@ class MyActivity : Activity() {
 <pre><code class="language-groovy">apply plugin: 'kotlin-android-extensions'
 </code></pre>
 </div>
+<h3 id="启用实验特性">启用实验特性</h3>
+<p>Android 扩展插件包括几个实验特性：</p>
+<ul>
+<li><a href="#layoutcontainer-支持">LayoutContainer 支持</a></li>
+<li><a href="#多渠道支持">多渠道支持</a></li>
+<li><a href="#parcelable-实现生成器">Parcelable 实现生成器</a></li>
+</ul>
+<p>这些特性尚未被考虑用于生产环境，因此你需要在 <code>build.gradle</code> 中打开 <em>实验模式</em> 才能使用它们：</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">androidExtensions {
+    experimental = true
+}
+</code></pre>
+</div>
 <h3 id="导入合成属性">导入合成属性</h3>
 <p>仅需要一行即可非常方便导入指定布局文件中所有控件属性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -931,7 +945,7 @@ class MyActivity : Activity() {
 <pre><code class="language-kotlin">activity.hello.text = "Hello World!"
 </code></pre>
 </div>
-<h3 id="layoutcontainer-支持"><code>LayoutContainer</code> 支持</h3>
+<h3 id="layoutcontainer-支持">LayoutContainer 支持</h3>
 <p>Android 扩展插件支持不同类型的容器。最基本的是<a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>、<a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a> 以及 <a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a>，但是你可以（实际上）通过实现 <code>LayoutContainer</code> 接口将任何类转换为 Android 扩展容器，例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import android.support.v7.widget.RecyclerView
@@ -944,7 +958,7 @@ class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(con
 }
 </code></pre>
 </div>
-<p>请注意，你需要打开<a href="#enabling-experimental-features">实验性标志</a>才能使用 <code>LayoutContainer</code>。</p>
+<p>请注意，你需要打开<a href="#启用实验特性">实验性标志</a>才能使用 <code>LayoutContainer</code>。</p>
 <h3 id="多渠道支持">多渠道支持</h3>
 <p>安卓扩展插件现已支持安卓多渠道。假设当前在 <code>build.gradle</code> 文件中指定一个名为 <code>free</code> 的渠道：</p>
 <div class="sample" mode="groovy" theme="idea">
@@ -962,7 +976,7 @@ class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(con
 <pre><code class="language-kotlin">import kotlinx.android.synthetic.free.activity_free.*
 </code></pre>
 </div>
-<p>在<a href="#enabling-experimental-features">实验模式</a>中，你可以指定任何变体名称（不仅是渠道），例如 <code>freeDebug</code> 或者 <code>freeRelease</code> 也可以使用。</p>
+<p>在<a href="#启用实验特性">实验模式</a>中，你可以指定任何变体名称（不仅是渠道），例如 <code>freeDebug</code> 或者 <code>freeRelease</code> 也可以使用。</p>
 <h3 id="视图缓存">视图缓存</h3>
 <p>调用 <code>findViewById()</code>可能会很慢，尤其是在视图层次结构庞大的情况下，因此 Android 扩展程序试图通过在容器中缓存视图来使 <code>findViewById()</code> 的调用次数达到最少。</p>
 <p>默认情况下，Android 扩展给每个用 kotlin 编写的容器（<a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>、<a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a>、<a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a> 或者 <code>LayoutContainer</code> 的实现）添加了一个隐藏的缓存函数以及一个存储字段。该方法很小，因此不会增加APK的大小。</p>
@@ -986,7 +1000,7 @@ fun MyActivity.a() {
 </div>
 <p>我们不知道这个函数会仅在用 kotlin 编写的 activity 中被调用还是会在普通的 Java activity 中被调用。 因此，即使将上一个示例中的 <code>MyActivity</code> 实例作为接收者进行传递，我们也不会在此处使用缓存。</p>
 <h4 id="更改视图缓存策略">更改视图缓存策略</h4>
-<p>你可以全局或按容器更改缓存策略。这也需要打开<a href="#enabling-experimental-features">实验模式</a>。</p>
+<p>你可以全局或按容器更改缓存策略。这也需要打开<a href="#启用实验特性">实验模式</a>。</p>
 <p>项目全局缓存策略在 <code>build.gradle</code> 文件中设置：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">androidExtensions {
@@ -994,7 +1008,7 @@ fun MyActivity.a() {
 }
 </code></pre>
 </div>
-<p>默认情况下，Android扩展插件使用 <code>HashMap</code> 作为幕后存储集合，但是你可以切换到 <code>SparseArray</code>，也可以关闭缓存。当仅使用 Android 扩展的<a href="#parcelable-implementations-generator">Parcelable</a>部分时，关闭缓存特别有用。</p>
+<p>默认情况下，Android扩展插件使用 <code>HashMap</code> 作为幕后存储集合，但是你可以切换到 <code>SparseArray</code>，也可以关闭缓存。当仅使用 Android 扩展的<a href="#parcelable-实现生成器">Parcelable</a>部分时，关闭缓存特别有用。</p>
 <p>另外，你可以通过给一个容器添加注解 <code>@ContainerOptions</code> 来更改它的缓存策略：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.android.extensions.ContainerOptions
@@ -1010,8 +1024,8 @@ fun MyActivity.a() {
 </code></pre>
 </div>
 <h3 id="parcelable-实现生成器"><code>Parcelable</code> 实现生成器</h3>
-<p>Android 扩展插件提供<a href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> 实现生成器作为一项实验功能。
-想要使用它，请<a href="#enabling-experimental-features">打开</a>实验标记。</p>
+<p>Android 扩展插件提供<a href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> 实现生成器作为一项实验特性。
+想要使用它，请<a href="#启用实验特性">打开</a>实验标记。</p>
 <h4 id="如何使用">如何使用</h4>
 <p>给该类添加 <code>@Parcelize</code> 注解，会自动生成一个 <code>Parcelable</code> 的实现。</p>
 <div class="sample" data-highlight-only="" theme="idea">

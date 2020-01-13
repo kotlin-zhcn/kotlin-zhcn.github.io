@@ -1420,38 +1420,38 @@ Zeppelin 为 <a href="http://zeppelin.apache.org/docs/latest/interpreter/spark.h
 对于不同的编程语言有许多社区维护的解释器。
 我们提供了增加 Kotlin 支持的<strong>用于 Apache Zeppelin 的 Kotlin 解释器</strong>。</p>
 <h4 id="设置带-kotlin-解释器的-zeppelin">设置带 Kotlin 解释器的 Zeppelin</h4>
-<p>Currently, the latest release of Zeppelin (0.8.2) doesn’t come with bundled Kotlin interpreter.
-But anyway, it’s available in the master branch of Zeppelin. 
-So, to add Kotlin support to Zeppelin, you need to build your own version from the sources.</p>
-<p>To build a custom version of Zeppelin, you will need:</p>
+<p>目前，最新版本的 Zeppelin（0.8.2）并未内置 Kotlin 解释器。
+不过，在 Zeppelin 的 master 分支中有。
+因此，为了向 Zeppelin 添加 Kotlin 支持，需要从源代码构建自己的版本。</p>
+<p>构建 Zeppelin 的定制版需要：</p>
 <ul>
 <li><a href="https://git-scm.com/">Git</a></li>
 <li><a href="https://maven.apache.org/install.html">Maven</a>,</li>
 <li><a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html">JDK 8</a></li>
-<li>The dependencies listed <a href="https://zeppelin.apache.org/docs/latest/setup/basics/how_to_build.html#build-requirements">here</a></li>
+<li>列在<a href="https://zeppelin.apache.org/docs/latest/setup/basics/how_to_build.html#build-requirements">此处</a>各项依赖</li>
 </ul>
-<p>First, checkout the master branch from the Zeppelin repository:</p>
+<p>首先，从 Zeppelin 版本库中检出 master 分支：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">git clone --depth=1 git@github.com:apache/zeppelin.git
 </code></pre>
 </div>
-<p>or</p>
+<p>或者</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">git clone --depth=1 https://github.com/apache/zeppelin.git
 </code></pre>
 </div>
-<p>To build Zeppelin with Maven, go to the Zeppelin directory and run the following command:</p>
+<p>使用 Maven 构建 Zeppelin，请切换到 Zeppelin 目录并运行以下命令：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">mvn clean package -DskipTests -Pspark-2.4 -Pscala-2.11
 </code></pre>
 </div>
-<p>Then run Zeppelin with the following command:</p>
+<p>然后使用以下命令运行 Zeppelin：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./bin/zeppelin-daemon.sh start
 </code></pre>
 </div>
-<p>Now the Zeppelin UI is available on <code>http://localhost:8089</code>.</p>
-<p>To learn about how to deploy Zeppelin with Kotlin support in a Spark cluster, see <a href="/docs/tutorials/zeppelin-spark-cluster.html">this instruction</a>.</p>
+<p>现在可以在 <code>http://localhost:8089</code> 打开 Zeppelin UI 了。</p>
+<p>如需了解如何在 Spark 集群中部署带 Kotlin 支持的 Zeppelin，请参见<a href="/docs/tutorials/zeppelin-spark-cluster.html">这个说明</a>。</p>
 <h2 id="相关库">相关库</h2>
 <p>For software engineering, an important part of any domain is the availability of frameworks for related areas.
 For data science, this includes such areas as machine learning, data analysis, visualization, and many others.
