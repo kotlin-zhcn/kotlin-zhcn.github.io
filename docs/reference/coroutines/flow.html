@@ -1827,7 +1827,7 @@ Finally in numbers
 </code></pre>
 <!--- TEST -->
 <h3 id="末端流操作符">末端流操作符</h3>
-<p>Terminal operators on flows are <em>suspending functions</em> that start a collection of the flow.（这句话原文有歧义，先保留英文）
+<p>末端操作符是在流上用于启动流收集的<em>挂起函数</em>。
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 是最基础的末端操作符，但是还有另外一些更方便使用的末端操作符：</p>
 <ul>
 <li>转化为各种集合，例如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-list.html">toList</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/to-set.html">toSet</a>。</li>
@@ -2857,13 +2857,13 @@ as cancellation and structured concurrency serve this purpose.</p>
 <p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> also returns a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>, which can be used to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">cancel</a> the corresponding flow collection
 coroutine only without cancelling the whole scope or to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> it.</p>
 <h3 id="flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</h3>
-<p>For those who are familiar with <a href="https://www.reactive-streams.org/">Reactive Streams</a> or reactive frameworks such as RxJava and project Reactor, 
-design of the Flow may look very familiar.</p>
-<p>Indeed, its design was inspired by Reactive Streams and its various implementations. But Flow main goal is to have as simple design as possible, 
-be Kotlin and suspension friendly and respect structured concurrency. Achieving this goal would be impossible without reactive pioneers and their tremendous work. You can read the complete story in <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> article.</p>
-<p>While being different, conceptually, Flow <em>is</em> a reactive stream and it is possible to convert it to the reactive (spec and TCK compliant) Publisher and vice versa.
-Such converters are provided by <code>kotlinx.coroutines</code> out-of-the-box and can be found in corresponding reactive modules (<code>kotlinx-coroutines-reactive</code> for Reactive Streams, <code>kotlinx-coroutines-reactor</code> for Project Reactor and <code>kotlinx-coroutines-rx2</code> for RxJava2).
-Integration modules include conversions from and to <code>Flow</code>, integration with Reactor's <code>Context</code> and suspension-friendly ways to work with various reactive entities.</p>
+<p>对于熟悉响应式流（<a href="https://www.reactive-streams.org/">Reactive Streams</a>）或诸如 RxJava 与 Project Reactor 这样的响应式框架的人来说，
+Flow 的设计也许看起来会非常熟悉。</p>
+<p>确实，其设计灵感来源于响应式流以及其各种实现。但是 Flow 的主要目标是拥有尽可能简单的设计，
+对 Kotlin 以及挂起友好且遵从结构化并发。没有响应式的先驱及他们大量的工作，就不可能实现这一目标。您可以阅读 <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> 这篇文章来了解完成 Flow 的故事。</p>
+<p>虽然有所不同，但从概念上讲，Flow <em>依然是</em>响应式流，并且可以将它转换为响应式（规范及符合 TCK）的发布者（Publisher），反之亦然。
+这些开箱即用的转换器可以在 <code>kotlinx.coroutines</code> 提供的相关响应式模块（<code>kotlinx-coroutines-reactive</code> 用于 Reactive Streams，<code>kotlinx-coroutines-reactor</code> 用于 Project Reactor，以及 <code>kotlinx-coroutines-rx2</code> 用于 RxJava2）中找到。
+集成模块包含 <code>Flow</code> 与其他实现之间的转换，与 Reactor 的 <code>Context</code> 集成以及与一系列响应式实体配合使用的挂起友好的使用方式。</p>
 <!-- stdlib references -->
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->

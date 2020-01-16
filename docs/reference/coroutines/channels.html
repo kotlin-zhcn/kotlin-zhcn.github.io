@@ -1544,10 +1544,12 @@ import kotlinx.coroutines.channels.*
 
 fun main() = runBlocking {
 //sampleStart
-    val numbers = produceNumbers() // 从 1 开始生产整数
-    val squares = square(numbers) // 对整数做平方
-    for (i in 1..5) println(squares.receive()) // 打印前 5 个数字
-    println("Done!") // 我们的操作已经结束了
+    val numbers = produceNumbers() // 从 1 开始生成整数
+    val squares = square(numbers) // 整数求平方
+    repeat(5) {
+        println(squares.receive()) // 输出前五个
+    }
+    println("Done!") // 至此已完成
     coroutineContext.cancelChildren() // 取消子协程
 //sampleEnd
 }
@@ -1615,7 +1617,7 @@ import kotlinx.coroutines.channels.*
 fun main() = runBlocking {
 //sampleStart
     var cur = numbersFrom(2)
-    for (i in 1..10) {
+    repeat(10) {
         val prime = cur.receive()
         println(prime)
         cur = filter(cur, prime)
