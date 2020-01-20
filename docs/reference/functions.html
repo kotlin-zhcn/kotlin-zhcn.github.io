@@ -1421,14 +1421,14 @@ class B : A() {
 }
 </code></pre>
 </div>
-<p>如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用<a href="#命名参数">命名参数</a>调用该函数来使用：</p>
+<p>如果一个默认参数在一个无默认值的参数之前，那么该默认值只能通过使用<a href="#具名参数">具名参数</a>调用该函数来使用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int) { /*……*/ }
 
 foo(baz = 1) // 使用默认值 bar = 0
 </code></pre>
 </div>
-<p>如果在默认参数之后的最后一个参数是 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>，那么它既可以作为命名参数在括号内传入，也可以在<a href="lambdas.html#passing-a-lambda-to-the-last-parameter">括号外</a>传入：</p>
+<p>如果在默认参数之后的最后一个参数是 <a href="lambdas.html#lambda-表达式语法">lambda 表达式</a>，那么它既可以作为具名参数在括号内传入，也可以在<a href="lambdas.html#passing-a-lambda-to-the-last-parameter">括号外</a>传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(bar: Int = 0, baz: Int = 1, qux: () -&gt; Unit) { /*……*/ }
 
@@ -1437,8 +1437,8 @@ foo(qux = { println("hello") }) // 使用两个默认值 bar = 0 与 baz = 1
 foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
 </code></pre>
 </div>
-<h3 id="命名参数">命名参数</h3>
-<p>可以在调用函数时使用命名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。</p>
+<h3 id="具名参数">具名参数</h3>
+<p>可以在调用函数时使用具名的函数参数。当一个函数有大量的参数或默认参数时这会非常方便。</p>
 <p>给定以下函数：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun reformat(str: String,
@@ -1460,7 +1460,7 @@ foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
 <pre><code class="language-kotlin">reformat(str, true, true, false, '_')
 </code></pre>
 </div>
-<p>使用命名参数我们可以使代码更具有可读性：</p>
+<p>使用具名参数我们可以使代码更具有可读性：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">reformat(str,
     normalizeCase = true,
@@ -1475,8 +1475,8 @@ foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
 <pre><code class="language-kotlin">reformat(str, wordSeparator = '_')
 </code></pre>
 </div>
-<p>当一个函数调用混用位置参数与命名参数时，所有位置参数都要放在第一个命名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
-<p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以命名形式传入：</p>
+<p>当一个函数调用混用位置参数与具名参数时，所有位置参数都要放在第一个具名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
+<p>可以通过使用<strong>星号</strong>操作符将<a href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以具名形式传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(vararg strings: String) { /*……*/ }
 
@@ -1484,7 +1484,7 @@ foo(strings = *arrayOf("a", "b", "c"))
 </code></pre>
 </div>
 <blockquote>
-<p><strong>对于 JVM 平台</strong>：在调用 Java 函数时不能使用命名参数语法，因为 Java 字节码并不<!--
+<p><strong>对于 JVM 平台</strong>：在调用 Java 函数时不能使用具名参数语法，因为 Java 字节码并不<!--
 -->总是保留函数参数的名称。</p>
 </blockquote>
 <h3 id="返回-unit-的函数">返回 Unit 的函数</h3>
@@ -1538,7 +1538,7 @@ Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函�
 </div>
 <p>在函数内部，类型 <code>T</code> 的 <code>vararg</code> 参数的可见方式是作为 <code>T</code> 数组，即上例中的 <code>ts</code> 变量具有类型 <code>Array &lt;out T&gt;</code>。</p>
 <p>只有一个参数可以标注为 <code>vararg</code>。如果 <code>vararg</code> 参数不是列表中的最后一个参数， 可以使用<!--
--->命名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部<!--
+-->具名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部<!--
 -->传一个 lambda。</p>
 <p>当我们调用 <code>vararg</code>-函数时，我们可以一个接一个地传参，例如 <code>asList(1, 2, 3)</code>，或者，如果我们已经有一个数组<!--
 -->并希望将其内容传给该函数，我们使用<strong>伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>

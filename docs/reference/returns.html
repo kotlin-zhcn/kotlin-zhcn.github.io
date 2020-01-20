@@ -1409,7 +1409,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 <p>标签限制的 break 跳转到刚好位于该标签指定的循环后面的执行点。
 <em class="keyword">continue</em> 继续标签指定的循环的下一次迭代。</p>
-<h2 id="标签处返回">标签处返回</h2>
+<h2 id="返回到标签">返回到标签</h2>
 <p>Kotlin 有函数字面量、局部函数和对象表达式。因此 Kotlin 的函数可以被嵌套。
 标签限制的 <em class="keyword">return</em> 允许我们从外层函数返回。
 最重要的一个用途就是从 lambda 表达式中返回。回想一下我们这么写的时候：</p>
@@ -1508,7 +1508,7 @@ fun main() {
 <pre><code class="language-kotlin">return@a 1
 </code></pre>
 </div>
-<p>意为“从标签 <code>@a</code> 返回 1”，而不是“返回一个标签标注的表达式 <code>(@a 1)</code>”。</p>
+<p>意为“返回 <code>1</code> 到 <code>@a</code>”，而不是“返回一个标签标注的表达式 <code>(@a 1)</code>”。</p>
 
         </article>
     </div>

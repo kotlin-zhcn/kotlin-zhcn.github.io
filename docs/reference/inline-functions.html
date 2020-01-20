@@ -1419,8 +1419,8 @@ finally {
 --><a href="#具体化的类型参数">具体化的类型参数</a>，编译器会产生一个警告，因为内联这样的函数<!--
 -->很可能并无益处（如果你确认需要内联，则可以用 <code>@Suppress("NOTHING_TO_INLINE")</code> 注解关掉该警告）。</p>
 <h2 id="非局部返回">非局部返回</h2>
-<p>在 Kotlin 中，我们可以只使用一个正常的、非限定的 <code>return</code> 来退出一个命名或匿名函数。
-这意味着要退出一个 lambda 表达式，我们必须使用一个<a href="returns.html#标签处返回">标签</a>，并且<!--
+<p>在 Kotlin 中，我们只能对具名或匿名函数使用正常的、非限定的 return 来退出。
+这意味着要退出一个 lambda 表达式，我们必须使用一个<a href="returns.html#返回到标签">标签</a>，并且<!--
 -->在 lambda 表达式内部禁止使用裸 <code>return</code>，因为 lambda 表达式不能使包含它的函数返回：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun ordinaryFunction(block: () -&gt; Unit) {

@@ -1953,8 +1953,8 @@ typealias PersonIndex = Map&lt;String, Person&gt;
 <p>避免在 lambda 表达式中使用多个返回到标签。请考虑重新组织这样的 lambda 表达式使其只有单一退出点。
 如果这无法做到或者不够清晰，请考虑将 lambda 表达式转换为匿名函数。</p>
 <p>不要在 lambda 表达式的最后一条语句中使用返回到标签。</p>
-<h3 id="命名参数">命名参数</h3>
-<p>当一个方法接受多个相同的原生类型参数或者多个 <code>Boolean</code> 类型参数时，请使用命名参数语法，
+<h3 id="具名参数">具名参数</h3>
+<p>当一个方法接受多个相同的原生类型参数或者多个 <code>Boolean</code> 类型参数时，请使用具名参数语法，
 除非在上下文中的所有参数的含义都已绝对清楚。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">drawSquare(x = 10, y = 10, width = 100, height = 100, fill = true)

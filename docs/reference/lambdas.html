@@ -1558,7 +1558,7 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 </div>
 <p>函数 <code>max</code> 是一个高阶函数，它接受一个函数作为第二个参数。
 其第二个参数是一个表达式，它本身是一个函数，即函数字面值，它等价于<!--
--->以下命名函数：</p>
+-->以下具名函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun compare(a: String, b: String): Boolean = a.length &lt; b.length
 </code></pre>
@@ -1599,7 +1599,7 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 </code></pre>
 </div>
 <h3 id="从-lambda-表达式中返回一个值">从 lambda 表达式中返回一个值</h3>
-<p>我们可以使用<a href="returns.html#标签处返回">限定的返回</a>语法从 lambda 显式返回一个值。
+<p>我们可以使用<a href="returns.html#返回到标签">限定的返回</a>语法从 lambda 显式返回一个值。
 否则，将隐式返回最后一个表达式的值。</p>
 <p>因此，以下两个片段是等价的：</p>
 <div class="sample" data-highlight-only="" theme="idea">

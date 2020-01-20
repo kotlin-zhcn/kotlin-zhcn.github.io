@@ -1457,7 +1457,7 @@ catch (IOException e) {
 }
 </code></pre>
 </div>
-<p>当你调用该函数时，编译器会知道执行不会超出该调用：</p>
+<p>当你调用该函数时，编译器会知道在该调用后就不再继续执行了：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val s = person.name ?: fail("Name required")
 println(s)     // 在此已知“s”已初始化
