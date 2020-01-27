@@ -1488,16 +1488,16 @@ fun main() {
 
 </code></pre>
 </div>
-<p>The <code>last</code> element of the progression is calculated this way:</p>
+<p>数列的 <code>last</code> 元素是这样计算的：</p>
 <ul>
-<li>For a positive step: the maximum value not greater than the end value such that <code>(last - first) % step == 0</code>.</li>
-<li>For a negative step: the minimum value not less than the end value such that <code>(last - first) % step == 0</code>.</li>
+<li>对于正步长：不大于结束值且满足 <code>(last - first) % step == 0</code> 的最大值。</li>
+<li>对于负步长：不小于结束值且满足 <code>(last - first) % step == 0</code> 的最小值。</li>
 </ul>
-<p>Thus, the <code>last</code> element is not always the same as the specified end value.</p>
+<p>因此，<code>last</code> 元素并非总与指定的结束值相同。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-    for (i in 1..9 step 3) print(i) // the last element is 7
+    for (i in 1..9 step 3) print(i) // 最后一个元素是 7
 //sampleEnd
 }
 
