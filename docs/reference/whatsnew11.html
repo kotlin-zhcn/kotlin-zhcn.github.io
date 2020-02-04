@@ -1418,7 +1418,7 @@ launch(UI) {
 </code></pre>
 </div>
 <p>这里，<code>async { …… }</code> 启动一个协程，当我们使用 <code>await()</code> 时，挂起协程的执行，而执行正在等待的操作，并且在等待的操作完成时恢复（可能在不同的线程上） 。</p>
-<p>标准库通过 <code>yield</code> 和 <code>yieldAll</code> 函数使用协程来支持<em>惰性生成序列</em>。
+<p>标准库通过 <code>yield</code> 与 <code>yieldAll</code> 函数使用协程来支持<em>惰性生成序列</em>。
 在这样的序列中，在取回每个元素之后挂起返回序列元素的代码块，
 并在请求下一个元素时恢复。这里有一个例子：</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
@@ -1445,7 +1445,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>更多信息请参见<a href="coroutines.html">协程文档</a>及<a href="https://www.kotlincn.net/docs/tutorials/coroutines/coroutines-basic-jvm.html">教程</a>。</p>
 <p>请注意，协程目前还是一个<strong>实验性的特性</strong>，这意味着 Kotlin 团队不承诺<!--
 -->在最终的 1.1 版本时保持该功能的向后兼容性。</p>
-<h2 id="其他语言功能">其他语言功能</h2>
+<h2 id="其他语言特性">其他语言特性</h2>
 <h3 id="类型别名">类型别名</h3>
 <p>类型别名允许你为现有类型定义备用名称。
 这对于泛型类型（如集合）以及函数类型最有用。
@@ -1457,7 +1457,7 @@ typealias OscarWinners = Map&lt;String, String&gt;
 fun countLaLaLand(oscarWinners: OscarWinners) =
         oscarWinners.count { it.value.contains("La La Land") }
 
-// 请注意，类型名称（初始名和类型别名）是可互换的：
+// 请注意，类型名称（初始名与类型别名）是可互换的：
 fun checkLaLaLandIsTheBestMovie(oscarWinners: Map&lt;String, String&gt;) =
         oscarWinners["Best picture"] == "La La Land"
 //sampleEnd
@@ -1497,8 +1497,8 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>更详细信息请参阅其 <a href="https://github.com/Kotlin/KEEP/blob/master/proposals/bound-callable-references.md">KEEP</a>。</p>
-<h3 id="密封类和数据类">密封类和数据类</h3>
-<p>Kotlin 1.1 删除了一些对 Kotlin 1.0 中已存在的密封类和数据类的限制。
+<h3 id="密封类与数据类">密封类与数据类</h3>
+<p>Kotlin 1.1 删除了一些对 Kotlin 1.0 中已存在的密封类与数据类的限制。
 现在你可以在同一个文件中的任何地方定义一个密封类的子类，而不只是以作为密封类嵌套类的方式。
 数据类现在可以扩展其他类。
 这可以用来友好且清晰地定义一个表达式类的层次结构：</p>
@@ -1699,7 +1699,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <p>在 Kotlin 1.0 中，传递给 <code>td</code> 的 lambda 表达式中的代码可以访问三个隐式接收者：传递给 <code>table</code>、<code>tr</code>
-和 <code>td</code> 的。 这允许你调用在上下文中没有意义的方法——例如在 <code>td</code> 里面调用 <code>tr</code>，从而<!--
+与 <code>td</code> 的。 这允许你调用在上下文中没有意义的方法——例如在 <code>td</code> 里面调用 <code>tr</code>，从而<!--
 -->在 <code>&lt;td&gt;</code> 中放置一个 <code>&lt;tr&gt;</code> 标签。</p>
 <p>在 Kotlin 1.1 中，你可以限制这种情况，以使只有在 <code>td</code> 的隐式接收者上定义的方法<!--
 -->会在传给 <code>td</code> 的 lambda 表达式中可用。你可以通过定义标记有 <code>@DslMarker</code> 元注解的注解<!--
@@ -1718,7 +1718,7 @@ fun main(args: Array&lt;String&gt;) {
 <p>还有整数转换函数，如 <code>Int.toString()</code>、 <code>String.toInt()</code>、 <code>String.toIntOrNull()</code>，
 每个都有一个带有 <code>radix</code> 参数的重载，它允许指定转换的基数（2 到 36）。</p>
 <h3 id="oneach">onEach()</h3>
-<p><code>onEach</code> 是一个小、但对于集合和序列很有用的扩展函数，它允许对操作链中<!--
+<p><code>onEach</code> 是一个小、但对于集合与序列很有用的扩展函数，它允许对操作链中<!--
 -->的集合/序列的每个元素执行一些操作，可能带有副作用。
 对于迭代其行为像 <code>forEach</code> 但是也进一步返回可迭代实例。 对于序列它返回一个<!--
 -->包装序列，它在元素迭代时延迟应用给定的动作。</p>
@@ -1729,7 +1729,7 @@ fun main(args: Array&lt;String&gt;) {
         .forEach { moveFile(it, File(outputDir, it.toRelativeString(inputDir))) }
 </code></pre>
 </div>
-<h3 id="alsotakeif-和-takeunless">also()、takeIf() 和 takeUnless()</h3>
+<h3 id="alsotakeif-与-takeunless">also()、takeIf() 与 takeUnless()</h3>
 <p>这些是适用于任何接收者的三个通用扩展函数。</p>
 <p><code>also</code> 就像 <code>apply</code>：它接受接收者、做一些动作、并返回该接收者。
 二者区别是在 <code>apply</code> 内部的代码块中接收者是 <code>this</code>，
@@ -1761,7 +1761,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <p><code>takeIf</code> 就像单个值的 <code>filter</code>。它检测接收者是否满足该谓词，并<!--
 -->在满足时返回该接收者否则不满足时返回 <code>null</code>。
-结合 elvis-操作符和及早返回，它允许编写如下结构：</p>
+结合 elvis-操作符与及早返回，可以编写如下结构：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val outDirFile = File(outputDir.path).takeIf { it.exists() } ?: return false
 // 对现有的 outDirFile 做些事情
@@ -1815,14 +1815,14 @@ fun main(args: Array&lt;String&gt;) {
 //sampleEnd
     println("Counting first letters: $frequencies.")
 
-    // 另一种方式是使用“groupBy”和“mapValues”创建一个中间的映射，
+    // 另一种方式是使用“groupBy”与“mapValues”创建一个中间的映射，
     // 而“groupingBy”的方式会即时计数。
     val groupBy = words.groupBy { it.first() }.mapValues { (_, list) -&gt; list.size }
     println("Comparing the result with using 'groupBy': ${groupBy == frequencies}.")
 }
 </code></pre>
 </div>
-<h3 id="maptomap-和-maptomutablemap">Map.toMap() 和 Map.toMutableMap()</h3>
+<h3 id="maptomap-与-maptomutablemap">Map.toMap() 与 Map.toMutableMap()</h3>
 <p>这俩函数可以用来简易复制映射：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class ImmutablePropertyBag(map: Map&lt;String, Any&gt;) {
@@ -1832,7 +1832,7 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h3 id="mapminuskey">Map.minus(key)</h3>
 <p>运算符 <code>plus</code> 提供了一种将键值对添加到只读映射中以生成新映射的方法，但是没有一种简单的方法来做相反的操作：从映射中删除一个键采用不那么直接的方式如 <code>Map.filter()</code> 或 <code>Map.filterKeys()</code>。
-现在运算符 <code>minus</code> 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列和键的数组。</p>
+现在运算符 <code>minus</code> 填补了这个空白。有 4 个可用的重载：用于删除单个键、键的集合、键的序列与键的数组。</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
@@ -1845,8 +1845,8 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<h3 id="minof-和-maxof">minOf() 和 maxOf()</h3>
-<p>这些函数可用于查找两个或三个给定值中的最小和最大值，其中值是原生数字或 <code>Comparable</code> 对象。每个函数还有一个重载，它接受一个额外的 <code>Comparator</code> 实例，如果你想比较自身不可比的对象的话。</p>
+<h3 id="minof-与-maxof">minOf() 与 maxOf()</h3>
+<p>这些函数可用于查找两个或三个给定值中的最小与最大值，其中值是原生数字或 <code>Comparable</code> 对象。每个函数还有一个重载，它接受一个额外的 <code>Comparator</code> 实例，如果你想比较自身不可比的对象的话。</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 //sampleStart
@@ -1862,7 +1862,7 @@ fun main(args: Array&lt;String&gt;) {
 </code></pre>
 </div>
 <h3 id="类似数组的列表实例化函数">类似数组的列表实例化函数</h3>
-<p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 和 <code>MutableList</code> 实例的函数，并通过<!--
+<p>类似于 <code>Array</code> 构造函数，现在有创建 <code>List</code> 与 <code>MutableList</code> 实例的函数，并通过<!--
 -->调用 lambda 表达式来初始化每个元素：</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -1900,14 +1900,14 @@ fun main(args: Array&lt;String&gt;) {
 </div>
 <h3 id="抽象集合">抽象集合</h3>
 <p>这些抽象类可以在实现 Kotlin 集合类时用作基类。
-对于实现只读集合，有 <code>AbstractCollection</code>、 <code>AbstractList</code>、 <code>AbstractSet</code> 和 <code>AbstractMap</code>，
-而对于可变集合，有 <code>AbstractMutableCollection</code>、 <code>AbstractMutableList</code>、 <code>AbstractMutableSet</code> 和 <code>AbstractMutableMap</code>。
+对于实现只读集合，有 <code>AbstractCollection</code>、 <code>AbstractList</code>、 <code>AbstractSet</code> 与 <code>AbstractMap</code>，
+而对于可变集合，有 <code>AbstractMutableCollection</code>、 <code>AbstractMutableList</code>、 <code>AbstractMutableSet</code> 与 <code>AbstractMutableMap</code>。
 在 JVM 上，这些抽象可变集合从 JDK 的抽象集合继承了大部分的功能。</p>
 <h3 id="数组处理函数">数组处理函数</h3>
 <p>标准库现在提供了一组用于逐个元素操作数组的函数：比较
-（<code>contentEquals</code> 和 <code>contentDeepEquals</code>），哈希码计算（<code>contentHashCode</code> 和 <code>contentDeepHashCode</code>），
-以及转换成一个字符串（<code>contentToString</code> 和 <code>contentDeepToString</code>）。它们都支持 JVM
-（它们作为 <code>java.util.Arrays</code> 中的相应函数的别名）和 JS（在
+（<code>contentEquals</code> 与 <code>contentDeepEquals</code>），哈希码计算（<code>contentHashCode</code> 与 <code>contentDeepHashCode</code>），
+以及转换成一个字符串（<code>contentToString</code> 与 <code>contentDeepToString</code>）。它们都支持 JVM
+（它们作为 <code>java.util.Arrays</code> 中的相应函数的别名）与 JS（在
 Kotlin 标准库中提供实现）。</p>
 <div class="sample" data-min-compiler-version="1.1" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -1922,11 +1922,11 @@ Kotlin 标准库中提供实现）。</p>
 <h2 id="jvm-后端">JVM 后端</h2>
 <h3 id="java-8-字节码支持">Java 8 字节码支持</h3>
 <p>Kotlin 现在可以选择生成 Java 8 字节码（命令行选项 <code>-jvm-target 1.8</code> 或者 Ant/Maven/Gradle 中<!--
--->的相应选项）。目前这并不改变字节码的语义（特别是，接口和 lambda 表达式中的默认方法<!--
+-->的相应选项）。目前这并不改变字节码的语义（特别是，接口与 lambda 表达式中的默认方法<!--
 -->的生成与 Kotlin 1.0 中完全一样），但我们计划在以后进一步使用它。</p>
 <h3 id="java-8-标准库支持">Java 8 标准库支持</h3>
-<p>现在有支持在 Java 7 和 8 中新添加的 JDK API 的标准库的独立版本。
-如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 和 <code>kotlin-stdlib-jre8</code> maven 构件，而不是标准的 <code>kotlin-stdlib</code>。
+<p>现在有支持在 Java 7 与 8 中新添加的 JDK API 的标准库的独立版本。
+如果你需要访问新的 API，请使用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code> maven 构件，而不是标准的 <code>kotlin-stdlib</code>。
 这些构件是在 <code>kotlin-stdlib</code> 之上的微小扩展，它们将它作为传递依赖项带到项目中。</p>
 <h3 id="字节码中的参数名">字节码中的参数名</h3>
 <p>Kotlin 现在支持在字节码中存储参数名。这可以使用命令行选项 <code>-java-parameters</code> 启用。</p>
@@ -1948,7 +1948,7 @@ println(engine.eval("x + 2"))  // 输出 5
 <p>关于使用 API 的示例项目参见<a href="https://github.com/JetBrains/kotlin/tree/master/libraries/examples/kotlin-jsr223-local-example">这里</a>
 。</p>
 <h3 id="kotlinreflectfull">kotlin.reflect.full</h3>
-<p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数和属性已移动<!--
+<p><a href="https://blog.jetbrains.com/kotlin/2017/01/kotlin-1-1-whats-coming-in-the-standard-library/">为 Java 9 支持准备</a>，在 <code>kotlin-reflect.jar</code> 库中的扩展函数与属性已移动<!--
 -->到 <code>kotlin.reflect.full</code> 包中。旧包（<code>kotlin.reflect</code>）中的名称已弃用，将在
 Kotlin 1.2 中删除。请注意，核心反射接口（如 <code>KClass</code>）是 Kotlin 标准库
 （而不是 <code>kotlin-reflect</code>）的一部分，不受移动影响。</p>
@@ -1964,7 +1964,7 @@ minifiers、 optimisers、 linters 等）更加友好。</p>
 <h3 id="external-修饰符"><code>external</code> 修饰符</h3>
 <p>如果你需要以类型安全的方式在 Kotlin 中访问 JavaScript 实现的类，
 你可以使用 <code>external</code> 修饰符写一个 Kotlin 声明。（在 Kotlin 1.0 中，使用了 <code>@native</code> 注解。）
-与 JVM 目标平台不同，JS 平台允许对类和属性使用 external 修饰符。
+与 JVM 目标平台不同，JS 平台允许对类与属性使用 external 修饰符。
 例如，可以按以下方式声明 DOM <code>Node</code> 类：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">external class Node {

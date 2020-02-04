@@ -1382,7 +1382,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="集合写操作">集合写操作</h1>
 <p><a href="collections-overview.html#集合类型">可变集合</a>支持更改集合内容的操作，例如添加或删除元素。
 在次页面上，我们将描述实现 <code>MutableCollection</code> 的所有写操作。
-有关 <code>List</code> 和 <code>Map</code> 可用的更多特定操作，请分别参见 <a href="list-operations.html">List 相关操作</a>和 <a href="map-operations.html">Map 相关操作</a>。</p>
+有关 <code>List</code> 与 <code>Map</code> 可用的更多特定操作，请分别参见 <a href="list-operations.html">List 相关操作</a>与 <a href="map-operations.html">Map 相关操作</a>。</p>
 <h2 id="添加元素">添加元素</h2>
 <p>要将单个元素添加到列表或集合，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> 函数。指定的对象将添加到集合的末尾。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1399,7 +1399,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 接收者的类型和参数可能不同，例如，你可以将所有内容从 <code>Set</code> 添加到 <code>List</code>。</p>
 <p>当在列表上调用时，<code>addAll()</code> 会按照在参数中出现的顺序添加各个新元素。
 你也可以调用 <code>addAll()</code> 时指定一个元素位置作为第一参数。
-参数集合的第一个元素将被插入到这个位置。
+参数集合的第一个元素会被插入到这个位置。
 其他元素将跟随在它后面，将接收者元素移到末尾。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1413,8 +1413,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>You can also add elements using the in-place version of the <a href="collection-plus-minus.html"><code>plus</code> operator</a> - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>)
- When applied to a mutable collection, <code>+=</code> appends the second operand (an element or another collection) to the end of the collection.</p>
+<p>你还可以使用 <a href="collection-plus-minus.html"><code>plus</code> 运算符</a> - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) 添加元素。
+ 当应用于可变集合时，<code>+=</code> 将第二个操作数(一个元素或另一个集合)追加到集合的末尾。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1428,8 +1428,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="删除元素">删除元素</h2>
-<p>To remove an element from a mutable collection, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html"><code>remove()</code></a> function.
-<code>remove()</code> accepts the element value and removes one occurrence of this value.</p>
+<p>若要从可变集合中移除元素，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove.html"><code>remove()</code></a> 函数。
+<code>remove()</code> 接受元素值，并删除该值的一个匹配项。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1442,13 +1442,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>For removing multiple elements at once, there are the following functions :</p>
+<p>要一次删除多个元素，有以下函数：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-all.html"><code>removeAll()</code></a> removes all elements that are present in the argument collection.
- Alternatively, you can call it with a predicate as an argument; in this case the function removes all elements for which the predicate yields <code>true</code>.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/retain-all.html"><code>retainAll()</code></a> is the opposite of <code>removeAll()</code>: it removes all elements except the ones from the argument collection.
- When used with a predicate, it leaves only elements that match it.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/clear.html"><code>clear()</code></a> removes all elements from a list and leaves it empty.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/remove-all.html"><code>removeAll()</code></a> 移除参数集合中存在的所有元素。
+ 或者，你可以用谓词作为参数来调用它；在这种情况下，函数移除谓词产生 <code>true</code> 的所有元素。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/retain-all.html"><code>retainAll()</code></a> 与 <code>removeAll()</code> 相反：它移除除参数集合中的元素之外的所有元素。
+ 当与谓词一起使用时，它只留下与之匹配的元素。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/clear.html"><code>clear()</code></a> 从列表中移除所有元素并将其置空。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {

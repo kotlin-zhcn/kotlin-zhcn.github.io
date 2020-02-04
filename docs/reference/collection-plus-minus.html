@@ -1380,13 +1380,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="plus-与-minus-操作符"><code>plus</code> 与 <code>minus</code> 操作符</h1>
-<p>In Kotlin, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus.html"><code>plus</code></a> (<code>+</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus.html"><code>minus</code></a> (<code>-</code>) operators are defined for collections.
-They take a collection as the first operand; the second operand can be either an element or another collection.
-The return value is a new read-only collection:</p>
+<p>在 Kotlin 中，为集合定义了 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus.html"><code>plus</code></a> (<code>+</code>) 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus.html"><code>minus</code></a> (<code>-</code>) 操作符。
+它们把一个集合作为第一个操作数；第二个操作数可以是一个元素或者是另一个集合。
+返回值是一个新的只读集合：</p>
 <ul>
-<li>The result of <code>plus</code> contains the elements from the original collection <em>and</em> from the second operand.</li>
-<li>The result of <code>minus</code> contains the elements of the original collection <em>except</em> the elements from the second operand.
- If it's an element, <code>minus</code> removes its <em>first</em> occurrence; if it's a collection, <em>all</em> occurrences of its elements are removed.</li>
+<li><code>plus</code> 的结果包含原始集合 <em>和</em> 第二个操作数中的元素。</li>
+<li><code>minus</code> 的结果包含原始集合中的元素，但第二个操作数中的元素 <em>除外</em>。
+如果第二个操作数是一个元素，那么 <code>minus</code> 移除其在原始集合中的 <em>第一次</em> 出现；如果是一个集合，那么移除其元素在原始集合中的 <em>所有</em> 出现。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1401,11 +1401,11 @@ The return value is a new read-only collection:</p>
 }
 </code></pre>
 </div>
-<p>For the details on <code>plus</code> and <code>minus</code> operators for maps, see <a href="map-operations.html">Map Specific Operations</a>.
-The <a href="operator-overloading.html#assignments">augmented assignment operators</a> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>) are also defined for collections.
-However, for read-only collections, they actually use the <code>plus</code> or <code>minus</code> operators and try to assign the result to the same variable.
-Thus, they are available only on <code>var</code> read-only collections.
-For mutable collections, they modify the collection if it's a <code>val</code>. For more details see <a href="collection-write.html">Collection Write Operations</a>.</p>
+<p>有关 map 的 <code>plus</code> 和 <code>minus</code> 操作符的详细信息，请参见 <a href="map-operations.html">Map 相关操作</a>。
+也为集合定义了<a href="operator-overloading.html#assignments">广义赋值操作符</a> <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/plus-assign.html"><code>plusAssign</code></a> (<code>+=</code>) 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/minus-assign.html"><code>minusAssign</code></a> (<code>-=</code>)。
+然而，对于只读集合，它们实际上使用 <code>plus</code> 或者 <code>minus</code> 操作符并尝试将结果赋值给同一变量。
+因此，它们仅在由 <code>var</code> 声明的只读集合中可用。
+对于可变集合，如果它是一个 <code>val</code>，那么它们会修改集合。更多详细信息请参见<a href="collection-write.html">集合写操作</a>。</p>
 
         </article>
     </div>
