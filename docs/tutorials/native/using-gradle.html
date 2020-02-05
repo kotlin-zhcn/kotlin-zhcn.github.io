@@ -27,20 +27,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/android-plugin.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/using-gradle.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。">
+    <meta property="og:description" content="A look at how to compile Kotlin/Native applications using Gradle">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。">
+    <meta name="twitter:description" content="A look at how to compile Kotlin/Native applications using Gradle">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Kotlin Android 扩展 - Kotlin 语言中文站</title>
+    <title>Hello Kotlin/Native using Gradle - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=a375d2e5f7722841efd36e03a18627d0"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -223,10 +223,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">Kotlin Android 扩展</div>
-            </div>
+            <a href="/docs/tutorials/android-plugin.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin Android 扩展</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -405,12 +407,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/using-gradle.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Gradle 的 Hello Kotlin/Native</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">使用 Gradle 的 Hello Kotlin/Native</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -867,7 +867,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/android-plugin.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/using-gradle.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -875,246 +875,246 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Kotlin Android 扩展
+                Hello Kotlin/Native using Gradle
             </h1>
             <table>
                     <tr>
                         <td>
-                            <strong>作者</strong>
+                            <strong>最近更新</strong>
                         </td>
                         <td>
-                            Yan Zhulanow
+                            2020-01-15
                         </td>
                     </tr>
             </table>
-                本教程介绍如何使用 Kotlin Android 扩展来改进对 Android 开发的支持。
+                A look at how to compile Kotlin/Native applications using Gradle
                 <br/>
                 <br/>
             
-<p>在本章教程中，我们将逐步介绍如何使用 Kotlin 安卓扩展插件提升安卓的开发体验。</p>
-<h2 id="view-binding">View binding</h2>
-<h3 id="背景">背景</h3>
-<p>相信每一位安卓开发人员对 <code>findViewById()</code> 这个方法再熟悉不过了，毫无疑问，潜在的 bug 以及脏乱的代码令后续开发无从下手的。尽管存在一系列的开源库能够为这个问题带来解决方案，这些库需要为每个公开的 'view' 添加注解字段。</p>
-<p>现在 Kotlin 安卓扩展插件能够提供与这些开源库功能相同的体验，不需要添加任何额外代码。</p>
-<p>本质上，它允许代码以下面这种方式实现：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 从 "main" 源集中使用 R.layout.activity_main 
-import kotlinx.android.synthetic.main.activity_main.*
-
-class MyActivity : Activity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        
-        // 代替 findViewById&lt;TextView&gt;(R.id.textView)
-        textView.setText("Hello, world!")
-    }
-}
-</code></pre>
-</div>
-<p><code>textView</code> 是对 <code>Activity</code> 的一项扩展属性，与在 <code>activity_main.xml</code> 中的声明具有同样类型 (它是一个 <code>TextView</code>)。</p>
-<h2 id="使用-kotlin-安卓扩展">使用 Kotlin 安卓扩展</h2>
-<h3 id="依赖配置">依赖配置</h3>
-<p>In this tutorial, we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
-<p>安卓扩展是 IntelliJ IDEA 与 Android Studio 的 Kotlin 插件的组成之一，因此不需要再单独安装额外插件。</p>
-<p>开发者仅需要在模块的 <code>build.gradle</code> 文件中启用 Gradle 安卓扩展插件即可：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">apply plugin: 'kotlin-android-extensions'
-</code></pre>
-</div>
-<h3 id="启用实验特性">启用实验特性</h3>
-<p>Android 扩展插件包括几个实验特性：</p>
+<!--- To become a How-To. Need to change type to new "HowTo" --->
+<h2 id="creating-a-kotlinnative-gradle-project">Creating a Kotlin/Native Gradle project</h2>
+<p><a href="https://gradle.org">Gradle</a> is a build system that is very commonly used in the Java, Android, and other ecosystems. It is the default choice for Kotlin/Native and Multiplatform
+when it comes to build systems.</p>
+<p>While most IDE's including <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a> can generate the corresponding Gradle file, we're going to 
+take a look at how to create this manually, to have a better understanding of how things work under the covers. If you'd like to use the IDE, check out 
+<a href="using-intellij-idea.html">Using IntelliJ IDEA</a>.</p>
+<p>Gradle supports two languages for build scripts:</p>
 <ul>
-<li><a href="#layoutcontainer-支持">LayoutContainer 支持</a></li>
-<li><a href="#多渠道支持">多渠道支持</a></li>
-<li><a href="#parcelable-实现生成器">Parcelable 实现生成器</a></li>
+<li>Groovy scripts in <code>build.gradle</code> files</li>
+<li>Kotlin scripts in <code>build.gradle.kts</code> files</li>
 </ul>
-<p>这些特性尚未被考虑用于生产环境，因此你需要在 <code>build.gradle</code> 中打开 <em>实验模式</em> 才能使用它们：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">androidExtensions {
-    experimental = true
+<p>The Groovy language is the first supported scripting language for Gradle, 
+it leverages the power of dynamic typing and runtime features of the language. It is also possible to use Kotlin in Gradle scripts. Being a statically-typed language, it plays better with IDEs when 
+it comes to compilation and error detection.</p>
+<p>Either can be used and samples will show the syntax for both languages.</p>
+<p>First step is to create a project folder. Inside it we create
+<span class="multi-language-span" data-lang="groovy">
+<code>build.gradle</code>
+</span>
+<span class="multi-language-span" data-lang="kotlin">
+<code>build.gradle.kts</code>
+</span>
+Gradle build file with the following contents:</p>
+<div class="multi-language-sample" data-lang="groovy" data-os="macos">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
 }
-</code></pre>
-</div>
-<h3 id="导入合成属性">导入合成属性</h3>
-<p>仅需要一行即可非常方便导入指定布局文件中所有控件属性：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.synthetic.main.＜布局＞.*
-</code></pre>
-</div>
-<p>因此，如果布局文件名是 <code>activity_main.xml</code>，我们将导入 <code>kotlinx.android.synthetic.main.activity_main.*</code>。</p>
-<p>若需要调用 <code>View</code> 的合成属性，同时还应该导入 <code>kotlinx.android.synthetic.main.activity_main.view.*</code>。</p>
-<p>导入完成后即可调用在xml文件中以视图控件具名属性的对应扩展，比如下例:</p>
-<div class="sample" mode="xml" theme="idea">
-<pre><code class="language-xml">&lt;TextView
-    android:id="@+id/hello"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"/&gt;
-</code></pre>
-</div>
-<p>将有一个名为 <code>hello</code> 的属性：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">activity.hello.text = "Hello World!"
-</code></pre>
-</div>
-<h3 id="layoutcontainer-支持">LayoutContainer 支持</h3>
-<p>Android 扩展插件支持不同类型的容器。最基本的是<a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>、<a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a> 以及 <a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a>，但是你可以（实际上）通过实现 <code>LayoutContainer</code> 接口将任何类转换为 Android 扩展容器，例如：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import android.support.v7.widget.RecyclerView
-import kotlinx.android.extensions.LayoutContainer
 
-class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView), LayoutContainer {
-    fun setup(title: String) {
-        itemTitle.text = "Hello World!"
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  macosX64("native") {
+    binaries {
+      executable()
     }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
 }
 </code></pre>
 </div>
-<p>请注意，你需要打开<a href="#启用实验特性">实验性标志</a>才能使用 <code>LayoutContainer</code>。</p>
-<h3 id="多渠道支持">多渠道支持</h3>
-<p>安卓扩展插件现已支持安卓多渠道。假设当前在 <code>build.gradle</code> 文件中指定一个名为 <code>free</code> 的渠道：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">android {
-    productFlavors {
-        free {
-            versionName "1.0-free"
-        }
+</div>
+<div class="multi-language-sample" data-lang="groovy" data-os="linux">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  linuxX64("native") {
+    binaries {
+      executable()
     }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
 }
 </code></pre>
 </div>
-<p>所以现在只需要添加一行导入语句即可从 <code>free/res/layout/activity_free.xml</code> 布局中导入所有的合成属性：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.synthetic.free.activity_free.*
-</code></pre>
 </div>
-<p>在<a href="#启用实验特性">实验模式</a>中，你可以指定任何变体名称（不仅是渠道），例如 <code>freeDebug</code> 或者 <code>freeRelease</code> 也可以使用。</p>
-<h3 id="视图缓存">视图缓存</h3>
-<p>调用 <code>findViewById()</code>可能会很慢，尤其是在视图层次结构庞大的情况下，因此 Android 扩展程序试图通过在容器中缓存视图来使 <code>findViewById()</code> 的调用次数达到最少。</p>
-<p>默认情况下，Android 扩展给每个用 kotlin 编写的容器（<a href="https://developer.android.com/reference/android/app/Activity.html"><code>Activity</code></a>、<a href="https://developer.android.com/reference/android/support/v4/app/Fragment.html"><code>Fragment</code></a>、<a href="https://developer.android.com/reference/android/view/View.html"><code>View</code></a> 或者 <code>LayoutContainer</code> 的实现）添加了一个隐藏的缓存函数以及一个存储字段。该方法很小，因此不会增加APK的大小。</p>
-<p>在下面的示例中，<code>findViewById()</code> 仅被调用一次：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class MyActivity : Activity()
-
-fun MyActivity.a() { 
-    textView.text = "Hidden view"
-    textView.visibility = View.INVISIBLE
+<div class="multi-language-sample" data-lang="groovy" data-os="windows">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code>plugins {
+    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
 }
-</code></pre>
-</div>
-<p>然而在下面的例子中：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun Activity.b() { 
-    textView.text = "Hidden view"
-    textView.visibility = View.INVISIBLE
+
+repositories {
+    mavenCentral()
 }
-</code></pre>
-</div>
-<p>我们不知道这个函数会仅在用 kotlin 编写的 activity 中被调用还是会在普通的 Java activity 中被调用。 因此，即使将上一个示例中的 <code>MyActivity</code> 实例作为接收者进行传递，我们也不会在此处使用缓存。</p>
-<h4 id="更改视图缓存策略">更改视图缓存策略</h4>
-<p>你可以全局或按容器更改缓存策略。这也需要打开<a href="#启用实验特性">实验模式</a>。</p>
-<p>项目全局缓存策略在 <code>build.gradle</code> 文件中设置：</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">androidExtensions {
-    defaultCacheImplementation = "HASH_MAP" // 也可以是 SPARSE_ARRAY、NONE
-}
-</code></pre>
-</div>
-<p>默认情况下，Android扩展插件使用 <code>HashMap</code> 作为幕后存储集合，但是你可以切换到 <code>SparseArray</code>，也可以关闭缓存。当仅使用 Android 扩展的<a href="#parcelable-实现生成器">Parcelable</a>部分时，关闭缓存特别有用。</p>
-<p>另外，你可以通过给一个容器添加注解 <code>@ContainerOptions</code> 来更改它的缓存策略：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.extensions.ContainerOptions
 
-@ContainerOptions(cache = CacheImplementation.NO_CACHE)
-class MyActivity : Activity()
-
-fun MyActivity.a() { 
-    // findViewById() 会被调用两次
-    textView.text = "Hidden view"
-    textView.visibility = View.INVISIBLE
-}
-</code></pre>
-</div>
-<h3 id="parcelable-实现生成器"><code>Parcelable</code> 实现生成器</h3>
-<p>Android 扩展插件提供<a href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> 实现生成器作为一项实验特性。
-想要使用它，请<a href="#启用实验特性">打开</a>实验标记。</p>
-<h4 id="如何使用">如何使用</h4>
-<p>给该类添加 <code>@Parcelize</code> 注解，会自动生成一个 <code>Parcelable</code> 的实现。</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-class User(val firstName: String, val lastName: String, val age: Int): Parcelable
-</code></pre>
-</div>
-<p><code>@Parcelize</code> 要求在主构造函数中声明所有序列化的属性。 Android 扩展会针对每个属性发出警告，并在类主体中声明一个支持字段。另外，如果某些主构造函数参数不是属性，那么无法使用 <code>@Parcelize</code>。</p>
-<p>如果你的类需要更高级的序列化逻辑，可以在伴生类中实现：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">@Parcelize
-data class User(val firstName: String, val lastName: String, val age: Int) : Parcelable {
-    private companion object : Parceler&lt;User&gt; {
-        override fun User.write(parcel: Parcel, flags: Int) {
-            // 自定义写实现
-        }
-
-        override fun create(parcel: Parcel): User {
-            // 自定义读实现
-        }
+kotlin {
+  mingwX64("native") {
+    binaries {
+      executable()
     }
+  }
+}
+
+wrapper {
+  gradleVersion = "5.3.1"
+  distributionType = "ALL"
 }
 </code></pre>
 </div>
-<h4 id="支持的类型">支持的类型</h4>
-<p><code>@Parcelize</code> 支持多种类型：</p>
-<ul>
-<li>基本类型（及其装箱版本）；</li>
-<li>objects 与 enums；</li>
-<li><code>String</code>、<code>CharSequence</code>；</li>
-<li><code>Exception</code>；</li>
-<li><code>Size</code>、<code>SizeF</code>、<code>Bundle</code>、<code>IBinder</code>、<code>IInterface</code>、<code>FileDescriptor</code>；</li>
-<li><code>SparseArray</code>、<code>SparseIntArray</code>、<code>SparseLongArray</code>、<code>SparseBooleanArray</code>；</li>
-<li>所有 <code>Serializable</code> (包括 <code>Date</code>) 以及 <code>Parcelable</code> 的实现；
-    <ul>
-<li>所有受支持类型的集合：<code>List</code>（映射到 <code>ArrayList</code>）、<code>Set</code>（映射到 <code>LinkedHashSet</code>）、<code>Map</code>（映射到 <code>LinkedHashMap</code>）；
-        <ul>
-<li>还有一些具体的实现：<code>ArrayList</code>、<code>LinkedList</code>、<code>SortedSet</code>、<code>NavigableSet</code>、<code>HashSet</code>、<code>LinkedHashSet</code>、<code>TreeSet</code>、<code>SortedMap</code>、<code>NavigableMap</code>、<code>HashMap</code>、<code>LinkedHashMap</code>、<code>TreeMap</code>、<code>ConcurrentHashMap</code>；</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>所有受支持类型的数组；</li>
-<li>所有受支持类型的可空版本。</li>
-</ul>
-<h4 id="自定义-parcelers">自定义 <code>Parcelers</code></h4>
-<p>即使不直接支持的类型，你也可以为其编写 <code>Parceler</code> 映射对象。</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class ExternalClass(val value: Int)
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
 
-object ExternalClassParceler : Parceler&lt;ExternalClass&gt; {
-    override fun create(parcel: Parcel) = ExternalClass(parcel.readInt())
+repositories {
+    mavenCentral()
+}
 
-    override fun ExternalClass.write(parcel: Parcel, flags: Int) {
-        parcel.writeInt(value)
+kotlin {
+  macosX64("native") {
+    binaries {
+      executable()
     }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
 }
 </code></pre>
 </div>
-<p>可以通过注解 <code>@TypeParceler</code> 或者 <code>@WriteWith</code> 应用外部的 parcelers：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// 局部类的 parceler
-@Parcelize
-@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;()
-class MyClass(val external: ExternalClass)
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="linux">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
 
-// 局部属性的 parceler
-@Parcelize
-class MyClass(@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;() val external: ExternalClass)
+repositories {
+    mavenCentral()
+}
 
-// 局部类型的 parceler
-@Parcelize
-class MyClass(val external: @WriteWith&lt;ExternalClassParceler&gt;() ExternalClass)
+kotlin {
+  linuxX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
 </code></pre>
 </div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin" data-os="windows">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code>plugins {
+    kotlin("multiplatform") version "1.3.21"
+}
+
+repositories {
+    mavenCentral()
+}
+
+kotlin {
+  mingwX64("native") {
+    binaries {
+      executable()
+    }
+  }
+}
+
+tasks.withType&lt;Wrapper&gt; {
+  gradleVersion = "5.3.1"
+  distributionType = Wrapper.DistributionType.ALL
+}
+</code></pre>
+</div>
+</div>
+<p>The prepared project sources can be directly downloaded from 
+<span class="multi-language-span" data-lang="groovy" data-os="macos">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos.zip">GitHub</a>。
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="linux">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-linux.zip">GitHub</a>。
+</span>
+<span class="multi-language-span" data-lang="groovy" data-os="windows">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-windows.zip">GitHub</a>。
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="macos">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-macos.zip">GitHub</a>。
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="linux">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-linux.zip">GitHub</a>。
+</span>
+<span class="multi-language-span" data-lang="kotlin" data-os="windows">
+<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows.zip">GitHub</a>。
+</span></p>
+<p>Next create an empty
+<span class="multi-language-span" data-lang="kotlin">
+<code>settings.gradle.kts</code>
+</span><span class="multi-language-span" data-lang="groovy">
+<code>settings.gradle</code>
+</span>
+file in the project folder.</p>
+<p>Depending on the target platform, different <a href="/docs/reference/building-mpp-with-gradle.html">functions</a>,
+e.g. <code>macosX64</code>, <code>mingwX64</code>, <code>linuxX64</code>, <code>iosX64</code>,
+are used to create the Kotlin target. The function name is the platform which we are compiling our code for. 
+These functions optionally take the target name as a parameter, which is <code>"native"</code> in our case. 
+The specified <em>target name</em> is used to generate the source paths and task names in the project.</p>
+<p>By convention, all sources are located in the <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> folders, where <code>main</code> is for the source code
+and <code>test</code> is for tests. <code>&lt;target name&gt;</code> corresponds to the target platform (in this case <code>native</code>), as specified in the build file.</p>
+<p>Create a folder <code>src/nativeMain/kotlin</code> and inside it place the file <code>hello.kt</code> with the following contents:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+  println("Hello Kotlin/Native!")
+}
+</code></pre>
+</div>
+<h2 id="building-the-project">Building the project</h2>
+<p>From the root project folder, execute the build by running</p>
+<p><code>gradle nativeBinaries</code></p>
+<p>This should create a folder <code>build/native/bin</code> with two subfolders <code>debugExecutable</code> and <code>releaseExecutable</code> with the corresponding binary.
+By default, the binary is named the same as the project folder.</p>
+<h2 id="opening-the-project-in-an-ide">Opening the project in an IDE</h2>
+<p>Any IDE that supports Gradle should allow for opening the project in the IDE. In the case of <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a>, just open the project folder, and it will automatically
+detect it as Kotlin/Native project.</p>
+<h2 id="whats-next">What's next?</h2>
+<p>To learn how to write Gradle build scripts for real-life Kotlin/Native projects, see <a href="/docs/reference/building-mpp-with-gradle.html">Building Multiplatform Projects with Gradle</a>.</p>
 
         </article>
     </div>

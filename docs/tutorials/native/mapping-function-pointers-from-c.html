@@ -398,20 +398,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/intro-to-kotlin-native.html"
+            <a href="/docs/tutorials/native/using-command-line-compiler.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Kotlin/Native 简介</span>
+                <span class="text">使用命令行编译器的 Hello Kotlin/Native</span>
             </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/native/basic-kotlin-native-app.html"
+            <a href="/docs/tutorials/native/using-gradle.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">基本 Kotlin/Native 应用程序</span>
+                <span class="text">使用 Gradle 的 Hello Kotlin/Native</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/using-intellij-idea.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">使用 ntelliJ IDEA 的 Hello Kotlin/Native</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/native/intro-to-kotlin-native.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在 Kotlin/Native 中创建 HTTP 客户端</span>
             </a>
     </div>
 
@@ -890,11 +908,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="#将-kotlin-函数作为-c-函数指针传递">将 Kotlin 函数作为 C 函数指针传递</a></li>
 <li><a href="#在-kotlin-中使用-c-函数指针">在 Kotlin 中使用 C 函数指针</a></li>
 </ul>
-<p>我们需要在自己的机器上已经安装了 Kotlin 编译器。
-这篇<!--
---><a href="basic-kotlin-native-app.html#obtaining-the-compiler">基本 Kotlin 应用程序</a><!--
--->涵盖了这一步骤的细节。
-我们假定拥有一个控制台，其中 <code>kotlinc-native</code>、<code>cinterop</code> 与 <code>klib</code> 命令均可用。</p>
 <h2 id="映射-c-中的函数指针类型">映射 C 中的函数指针类型</h2>
 <p>理解在 Kotlin 与 C 之间进行映射的最好方式是尝试编写一个小型<!--
 -->示例。我们声明一个函数，它接收一个函数指针作为参数，而<!--
@@ -937,7 +950,7 @@ MyFun supply_fun() {
 -->传递依赖，以及运行该编译器并测试。
 Kotlin/Native 可以通过 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
 -->插件来使用 <a href="https://gradle.org">Gradle</a> 构建系统。</p>
-<p><a href="basic-kotlin-native-app.html#create-gradle-project">基本 Kotlin/Native 应用程序</a><!--
+<p><a href="/docs/tutorials/native/using-gradle.html">基本 Kotlin/Native 应用程序</a><!--
 -->这篇教程涵盖了使用 Gradle 创建 IDE 兼容工程的<!--
 -->基础知识。如果你正在寻找关于第一步的更多细节<!--
 -->以及如何开始一个新的 Kotlin/Native 项目并在 IntelliJ IDEA 中打开它的说明，则请你阅读<!--
@@ -1167,7 +1180,7 @@ fun main() {
 </code></pre>
 </div>
 <p>现在我们已经准备好<!--
---><a href="basic-kotlin-native-app.html#open-in-ide">在 IntelliJ IDEA 中打开这个工程</a><!--
+--><a href="using-intellij-idea.html">在 IntelliJ IDEA 中打开这个工程</a><!--
 -->并且看看如何修正这个示例工程。当我们做了这些之后，
 我们将观察到 C 函数是如何映射到 Kotlin/Native 声明的。</p>
 <h2 id="kotlin-中的-c-函数指针">Kotlin 中的 C 函数指针</h2>
@@ -1220,7 +1233,7 @@ typealias MyFunVar = kotlinx.cinterop.CPointerVarOf&lt;lib.MyFun&gt;
 -->我们在最后一行所做的事。</p>
 <h2 id="修改代码">修改代码</h2>
 <p>我们已经看到了所有的声明，所以是时候修改并运行代码了。
-我们<a href="basic-kotlin-native-app.html#run-in-ide">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
+我们<a href="using-intellij-idea.html">在 IDE 中</a>运行 <code>runDebugExecutableNative</code> Gradle 任务<!--
 -->或使用下面的命令来运行代码：</p>
 <div class="multi-language-sample" data-os="linux">
 <div class="sample" data-highlight-only="" mode="bash" theme="idea">
