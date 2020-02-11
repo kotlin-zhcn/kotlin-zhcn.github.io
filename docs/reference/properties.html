@@ -1492,8 +1492,8 @@ public val table: Map&lt;String, Int&gt;
 所以本例不会引入函数调用开销。</p>
 </blockquote>
 <h2 id="编译期常量">编译期常量</h2>
-<p>已知值的属性可以使用 <em class="keyword">const</em> 修饰符标记为 <em>编译期常量</em>。
-这些属性需要满足以下要求：</p>
+<p>如果只读属性的值在编译期是已知的，那么可以使用 <em class="keyword">const</em> 修饰符将其标记为<em>编译期常量</em>。
+这种属性需要满足以下要求：</p>
 <ul>
 <li>位于顶层或者是 <a href="object-declarations.html#对象声明"><em class="keyword">object</em> 声明</a> 或 <a href="object-declarations.html#伴生对象"><em class="keyword">companion object</em></a> 的一个成员</li>
 <li>以 <code>String</code> 或原生类型值初始化</li>

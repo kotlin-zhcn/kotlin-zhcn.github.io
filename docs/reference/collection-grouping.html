@@ -1380,12 +1380,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="分组">分组</h1>
-<p>The Kotlin standard library provides extension functions for grouping collection elements.
-The basic function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/group-by.html"><code>groupBy()</code></a> takes a lambda function and returns a <code>Map</code>.
-In this map, each key is the lambda result and the corresponding value is the <code>List</code> of elements on which this result is returned.
-This function can be used, for example, to group a list of <code>String</code>s by their first letter.</p>
-<p>You can also call <code>groupBy()</code> with a second lambda argument – a value transformation function.
-In the result map of <code>groupBy()</code> with two lambdas, the keys produced by <code>keySelector</code> function are mapped to the results of the value transformation function instead of the original elements.</p>
+<p>Kotlin 标准库提供用于对集合元素进行分组的扩展函数。
+基本函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/group-by.html"><code>groupBy()</code></a> 使用一个 lambda 函数并返回一个 <code>Map</code>。
+在此 Map 中，每个键都是 lambda 结果，而对应的值是返回此结果的元素 <code>List</code>。
+例如，可以使用此函数将 <code>String</code> 列表按首字母分组。</p>
+<p>还可以使用第二个 lambda 参数（值转换函数）调用 <code>groupBy()</code>。
+在带有两个 lambda 的 <code>groupBy()</code> 结果 Map 中，由 <code>keySelector</code> 函数生成的键映射到值转换函数的结果，而不是原始元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1397,15 +1397,15 @@ In the result map of <code>groupBy()</code> with two lambdas, the keys produced 
 }
 </code></pre>
 </div>
-<p>If you want to group elements and then apply an operation to all groups at one time, use the function <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/grouping-by.html"><code>groupingBy()</code></a>.
-It returns an instance of the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-grouping/index.html"><code>Grouping</code></a> type.
-The <code>Grouping</code> instance lets you apply operations to all groups in a lazy manner: the groups are actually built right before the operation execution.</p>
-<p>Namely, <code>Grouping</code> supports the following operations:</p>
+<p>如果要对元素进行分组，然后一次将操作应用于所有分组，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/grouping-by.html"><code>groupingBy()</code></a> 函数。
+它返回一个 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-grouping/index.html"><code>Grouping</code></a> 类型的实例。
+通过 <code>Grouping</code> 实例，可以以一种惰性的方式将操作应用于所有组：这些分组实际上是刚好在执行操作前构建的。</p>
+<p>即，<code>Grouping</code> 支持以下操作：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/each-count.html"><code>eachCount()</code></a> counts the elements in each group.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> perform <a href="collection-aggregate.html#fold-与-reduce">fold and reduce</a> operations on each group as a separate collection and return the results.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/aggregate.html"><code>aggregate()</code></a> applies a given operation subsequently to all the elements in each group and returns the result.
- This is the generic way to perform any operations on a <code>Grouping</code>. Use it to implement custom operations when fold or reduce are not enough.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/each-count.html"><code>eachCount()</code></a> 计算每个组中的元素。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> 对每个组分别执行 <a href="collection-aggregate.html#fold-与-reduce">fold 与 reduce</a> 操作，作为一个单独的集合并返回结果。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/aggregate.html"><code>aggregate()</code></a> 随后将给定操作应用于每个组中的所有元素并返回结果。
+ 这是对 <code>Grouping</code> 执行任何操作的通用方法。当折叠或缩小不够时，可使用它来实现自定义操作。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
