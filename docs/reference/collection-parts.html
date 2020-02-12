@@ -1434,10 +1434,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="chunked">Chunked</h2>
-<p>To break a collection onto parts of a given size, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html"><code>chunked()</code></a> function.
-<code>chunked()</code> takes a single argument – the size of the chunk – and returns a <code>List</code> of <code>List</code>s of the given size.
-The first chunk starts from the first element and contains the <code>size</code> elements, the second chunk holds the next <code>size</code> elements, and so on.
-The last chunk may have a smaller size.</p>
+<p>要将集合分解为给定大小的“块”，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/chunked.html"><code>chunked()</code></a> 函数。
+<code>chunked()</code> 采用一个参数（块的大小），并返回一个 <code>List</code> 其中包含给定大小的 <code>List</code>。
+第一个块从第一个元素开始并包含 <code>size</code> 元素，第二个块包含下一个 <code>size</code> 元素，依此类推。
+最后一个块的大小可能较小。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1447,24 +1447,24 @@ The last chunk may have a smaller size.</p>
 }
 </code></pre>
 </div>
-<p>You can also apply a transformation for the returned chunks right away.
-To do this, provide the transformation as a lambda function when calling <code>chunked()</code>.
-The lambda argument is a chunk of the collection. When <code>chunked()</code> is called with a transformation,
-the chunks are short-living <code>List</code>s that should be consumed right in that lambda.</p>
+<p>还可以立即对返回的块应用转换。
+为此，请在调用 <code>chunked()</code> 时将转换作为 lambda 函数提供。
+lambda 参数是集合的一块。当通过转换调用 <code>chunked()</code> 时，
+这些块是临时的 <code>List</code>，应立即在该 lambda 中使用。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
     val numbers = (0..13).toList() 
-    println(numbers.chunked(3) { it.sum() })  // `it` is a chunk of the original collection
+    println(numbers.chunked(3) { it.sum() })  // `it` 为原始集合的一个块
 //sampleEnd
 }
 </code></pre>
 </div>
 <h2 id="windowed">Windowed</h2>
-<p>You can retrieve all possible ranges of the collection elements of a given size.
-The function for getting them is called <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/windowed.html"><code>windowed()</code></a>: it returns a list of element ranges that you would see if you were looking at the collection through a sliding window of the given size.
-Unlike <code>chunked()</code>,  <code>windowed()</code> returns element ranges (<em>windows</em>) starting from <em>each</em> collection element.
-All the windows are returned as elements of a single <code>List</code>.</p>
+<p>可以检索给定大小的集合元素中所有可能区间。
+获取它们的函数称为 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/windowed.html"><code>windowed()</code></a>：它返回一个元素区间列表，比如通过给定大小的滑动窗口查看集合，则会看到该区间。
+与 <code>chunked()</code> 不同，<code>windowed()</code> 返回从<em>每个</em>集合元素开始的元素区间（<em>窗口</em>）。
+所有窗口都作为单个 <code>List</code> 的元素返回。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1474,13 +1474,13 @@ All the windows are returned as elements of a single <code>List</code>.</p>
 }
 </code></pre>
 </div>
-<p><code>windowed()</code> provides more flexibility with optional parameters:</p>
+<p><code>windowed()</code> 通过可选参数提供更大的灵活性：</p>
 <ul>
-<li><code>step</code> defines a distance between first elements of two adjacent windows. By default the value is 1, so the result contains windows starting from all elements. If you increase the step to 2, you will receive only windows starting from odd elements: first, third, an so on.</li>
-<li><code>partialWindows</code> includes windows of smaller sizes that start from the elements at the end of the collection. For example, if you request windows of three elements, you can't build them for the last two elements. Enabling <code>partialWindows</code> in this case includes two more lists of sizes 2 and 1.</li>
+<li><code>step</code> 定义两个相邻窗口的第一个元素之间的距离。默认情况下，该值为 1，因此结果包含从所有元素开始的窗口。如果将 step 增加到 2，将只收到以奇数元素开头的窗口：第一个、第三个等。</li>
+<li><code>partialWindows</code> 包含从集合末尾的元素开始的较小的窗口。例如，如果请求三个元素的窗口，就不能为最后两个元素构建它们。在本例中，启用 <code>partialWindows</code> 将包括两个大小为2与1的列表。</li>
 </ul>
-<p>Finally, you can apply a transformation to the returned ranges right away.
-To do this, provide the transformation as a lambda function when calling <code>windowed()</code>.</p>
+<p>最后，可以立即对返回的区间应用转换。
+为此，在调用 <code>windowed()</code> 时将转换作为 lambda 函数提供。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1491,10 +1491,10 @@ To do this, provide the transformation as a lambda function when calling <code>w
 }
 </code></pre>
 </div>
-<p>To build two-element windows, there is a separate function - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html"><code>zipWithNext()</code></a>.
-It creates pairs of adjacent elements of the receiver collection.
-Note that <code>zipWithNext()</code> doesn't break the collection into pairs; it creates a <code>Pair</code> for <em>each</em> element except the last one, so its result on <code>[1, 2, 3, 4]</code> is <code>[[1, 2], [2, 3], [3, 4]]</code>, not <code>[[1, 2</code>], <code>[3, 4]]</code>.
-<code>zipWithNext()</code> can be called with a transformation function as well; it should take two elements of the receiver collection as arguments.</p>
+<p>要构建两个元素的窗口，有一个单独的函数——<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/zip-with-next.html"><code>zipWithNext()</code></a>。
+它创建接收器集合的相邻元素对。
+请注意，<code>zipWithNext()</code> 不会将集合分成几对；它为 <em>每个</em> 元素创建除最后一个元素外的对，因此它在 <code>[1, 2, 3, 4]</code> 上的结果为 <code>[[1, 2], [2, 3], [3, 4]]</code>，而不是 <code>[[1, 2</code>]，<code>[3, 4]]</code>。
+<code>zipWithNext()</code> 也可以通过转换函数来调用；它应该以接收者集合的两个元素作为参数。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
