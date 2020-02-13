@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=2fdca5f8817371fc7d721f92898e004f">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=34b2ff7fd74a6a4ecf5050742ab77291">
 
 
 <!-- Social Media tag Starts -->
@@ -29,20 +29,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/spring-boot-restful.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial walks us through the process of creating a simple REST controller with Spring Boot">
+    <meta property="og:description" content="本教程将引导完成使用 Spring Boot 创建简单的 REST 控制器的过程">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial walks us through the process of creating a simple REST controller with Spring Boot">
+    <meta name="twitter:description" content="本教程将引导完成使用 Spring Boot 创建简单的 REST 控制器的过程">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Creating a RESTful Web Service with Spring Boot - Kotlin 语言中文站</title>
+    <title>用 Spring Boot 创建 RESTful Web 服务 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=a375d2e5f7722841efd36e03a18627d0"></script>
+    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -875,7 +875,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Creating a RESTful Web Service with Spring Boot
+                用 Spring Boot 创建 RESTful Web 服务
             </h1>
             <table>
                     <tr>
@@ -895,34 +895,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                This tutorial walks us through the process of creating a simple REST controller with Spring Boot
+                本教程将引导完成使用 Spring Boot 创建简单的 REST 控制器的过程
                 <br/>
                 <br/>
             
-<p>Kotlin works quite smoothly with Spring Boot and many of the steps found on the <a href="https://spring.io/guides">Spring Guides</a> for creating a RESTful service
-can be followed verbatim for Kotlin. There are some minor differences however when it comes to defining the Gradle configuration
-and the project layout structure, as well as the initialization code.</p>
-<p>In this tutorial we'll walk through the steps required. For a more thorough explanation of Spring Boot and Kotlin, please see
-<a href="https://spring.io/guides/tutorials/spring-boot-kotlin/">Building web applications with Spring Boot and Kotlin</a>.</p>
-<p>Note that all classes in this tutorial are in the <code>org.jetbrains.kotlin.demo</code> package.</p>
-<h3 id="defining-the-project-and-dependencies">Defining the project and dependencies</h3>
+<p>Kotlin 使用 Spring Boot 可以非常顺畅地工作，
+并且 Kotlin 可以完全遵循 <a href="https://spring.io/guides">Spring 指南</a>中创建 RESTful 服务的许多步骤。
+但是，在定义 Gradle 配置和项目布局结构以及初始化代码方面存在一些细微的差异。</p>
+<p>在本教程中，将逐步完成所需的步骤。
+有关 Spring Boot 与 Kotlin 的更详尽说明，请参见<a href="https://spring.io/guides/tutorials/spring-boot-kotlin/">使用 Spring Boot 与 Kotlin 构建 Web 应用程序</a>.</p>
+<p>注意，本教程中的所有类都在 <code>org.jetbrains.kotlin.demo</code> 包中。</p>
+<h3 id="定义项目与依赖项">定义项目与依赖项</h3>
 <p>In this tutorial, we're going to be using Gradle but the same can be accomplished using either IntelliJ IDEA project structure or Maven. For details on setting up Gradle to work with Kotlin, see <a href="/docs/reference/using-gradle.html">Using Gradle</a>.</p>
-<p>The Gradle file is pretty much standard for Spring Boot. The only differences are the structure layout for source folders for Kotlin, the required Kotlin dependencies and the <a href="https://www.kotlincn.net/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a> Gradle plugin (CGLIB proxies used for example for <code>@Configuration</code> and <code>@Bean</code> processing require <code>open</code> classes).</p>
+<p>Gradle 文件几乎是标准的 Spring Boot。唯一的区别是 Kotlin 的源文件夹的结构布局、所需的 Kotlin 依赖项与 Gradle 插件：<a href="https://www.kotlincn.net/docs/reference/compiler-plugins.html#kotlin-spring-compiler-plugi"><em>kotlin-spring</em></a>（以使用 CGLIB 代理为例，<code>@Configuration</code> 与 <code>@Bean</code> 处理需要 <code>open</code> 类）。</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">buildscript {
-    ext.kotlin_version = '1.3.61' // Required for Kotlin integration
+    ext.kotlin_version = '1.3.61' // Kotlin 集成所需
     ext.spring_boot_version = '2.1.0.RELEASE'
     repositories {
         jcenter()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Required for Kotlin integration
-        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // See https://www.kotlincn.net/docs/reference/compiler-plugins.html#spring-support
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version" // Kotlin 集成所需
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version" // 参见 https://www.kotlincn.net/docs/reference/compiler-plugins.html#spring-support
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version"
     }
 }
 
-apply plugin: 'kotlin' // Required for Kotlin integration
+apply plugin: 'kotlin' // Kotlin 集成所需
 apply plugin: "kotlin-spring" // https://www.kotlincn.net/docs/reference/compiler-plugins.html#spring-support
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -937,20 +937,20 @@ repositories {
 }
 
 dependencies {
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Kotlin 集成所需
     compile "org.springframework.boot:spring-boot-starter-web"
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 </code></pre>
 </div>
-<h3 id="creating-a-greeting-data-class-and-controller">Creating a Greeting Data Class and Controller</h3>
-<p>The next step is to create Greeting Data class that has two properties: <em>id</em> and a <em>content</em></p>
+<h3 id="创建-greeting-数据类与控制器">创建 Greeting 数据类与控制器</h3>
+<p>下一步是创建具有两个属性（<em>id</em> 与 <em>content</em>）的 Greeting 数据类</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">data class Greeting(val id: Long, val content: String)
 </code></pre>
 </div>
-<p>We now define the <em>GreetingController</em> which serves requests of the form <em>/greeting?name={value}</em> and returns a JSON object
-representing an instance of <em>Greeting</em></p>
+<p>现在，定义 <em>GreetingController</em> ，以 <em>/greeting?name={value}</em> 的形式接受请求，
+并返回表示 <em>Greeting</em> 实例的 JSON 对象。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@RestController
 class GreetingController {
@@ -964,10 +964,11 @@ class GreetingController {
 }
 </code></pre>
 </div>
-<p>As can be seen, this is again pretty much a one-to-one translation of Java to Kotlin, with nothing special required for Kotlin.</p>
-<h3 id="creating-the-application-class">Creating the Application class</h3>
-<p>Finally we need to define an Application class. As Spring Boot looks for a public static main method, we need to define this in Kotlin. It could be done with the <em>@JvmStatic</em> annotation and a companion object but here we prefer using a <a href="/docs/reference/functions.html">top-level function</a> defined outside Application class since it leads to more concise and clean code.</p>
-<p>No need to mark the Application class as <em>open</em> since we are using the <em>kotlin-spring</em> Gradle plugin which does that automatically.</p>
+<p>可以看出，这几乎是 Java 到 Kotlin 的一对一转换，对 Kotlin 没有任何特殊要求。</p>
+<h3 id="创建-application-类">创建 Application 类</h3>
+<p>最后，需要定义一个 Application 类。使用 Kotlin 来定义一个 Spring Boot 所需的公共静态 main 方法。
+可以使用 <em>@JvmStatic</em> 注解与一个伴生对象来完成，但在这里更推荐使用 Application 类外部定义的<a href="/docs/reference/functions.html">顶级函数</a>，因为这可以使代码更简洁明了。</p>
+<p>无需将 Application 类标记为 <em>open</em>，因为 Gradle 插件 <em>kotlin-spring</em> 会自动完成。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@SpringBootApplication
 class Application
@@ -977,11 +978,11 @@ fun main(args: Array&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<h3 id="running-the-application">Running the application</h3>
-<p>We can now use any of the standard Gradle tasks for Spring Boot to run the application. As such, running</p>
+<h3 id="运行应用程序">运行应用程序</h3>
+<p>现在可以使用一个 Gradle 标准任务来运行 Spring Boot 应用：</p>
 <pre><code>./gradlew bootRun
 </code></pre>
-<p>the application is compiled, resources bundled and launched, allowing us to access it via the browser (default port is 8080)</p>
+<p>当应用完成编译，资源捆绑并启动，就可以通过浏览器访问了（默认端口为 8080）</p>
 <p><img alt="Running App" src="/assets/images/tutorials/spring-boot-restful/running-app.png"/></p>
 
         </article>
@@ -1043,7 +1044,7 @@ fun main(args: Array&lt;String&gt;) {
     </div>
 
 </footer>
-    <script src="/_assets/tutorial.js?&amp;v=c62176feec6b3833708353bb0bc7e460"></script>
+    <script src="/_assets/tutorial.js?&amp;v=d9df75db7bc1177822c2f64b43cae0ec"></script>
     <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">
