@@ -1418,9 +1418,9 @@ List 的特点是能通过索引访问特定元素，因此读取元素的最简
 </div>
 <h2 id="查找元素位置">查找元素位置</h2>
 <h3 id="线性查找">线性查找</h3>
-<p>In any lists, you can find the position of an element using the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of.html"><code>indexOf()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last-index-of.html"><code>lastIndexOf()</code></a>.
-They return the first and the last position of an element equal to the given argument in the list.
-If there are no such elements, both functions return <code>-1</code>.</p>
+<p>在任何列表中，都可以使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of.html"><code>indexOf()</code></a> 或 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/last-index-of.html"><code>lastIndexOf()</code></a> 函数找到元素的位置。
+它们返回与列表中给定参数相等的元素的第一个或最后一个位置。
+如果没有这样的元素，则两个函数均返回 <code>-1</code>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1432,10 +1432,10 @@ If there are no such elements, both functions return <code>-1</code>.</p>
 
 </code></pre>
 </div>
-<p>There is also a pair of functions that take a predicate and search for elements matching it:</p>
+<p>还有一对函数接受谓词并搜索与之匹配的元素：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-first.html"><code>indexOfFirst()</code></a> returns the <em>index of the first</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-last.html"><code>indexOfLast()</code></a> returns the <em>index of the last</em> element matching the predicate or <code>-1</code> if there are no such elements.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-first.html"><code>indexOfFirst()</code></a> 返回与谓词匹配的<em>第一个元素的索引</em>，如果没有此类元素，则返回 <code>-1</code>。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index-of-last.html"><code>indexOfLast()</code></a> 返回与谓词匹配的<em>最后一个元素的索引</em>，如果没有此类元素，则返回 <code>-1</code>。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1449,13 +1449,13 @@ If there are no such elements, both functions return <code>-1</code>.</p>
 </code></pre>
 </div>
 <h3 id="在有序列表中二分查找">在有序列表中二分查找</h3>
-<p>There is one more way to search elements in lists – <a href="https://en.wikipedia.org/wiki/Binary_search_algorithm">binary search</a>.
-It works significantly faster than other built-in search functions but <em>requires the list to be <a href="collection-ordering.html">sorted</a></em> in ascending order according to a certain ordering: natural or another one provided in the function parameter.
-Otherwise, the result is undefined.</p>
-<p>To search an element in a sorted list, call the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/binary-search.html"><code>binarySearch()</code></a> function passing the value as an argument.
-If such an element exists, the function returns its index; otherwise, it returns <code>(-insertionPoint - 1)</code> where <code>insertionPoint</code> is the index where this element should be inserted so that the list remains sorted.
-If there is more than one element with the given value, the search can return any of their indices.</p>
-<p>You can also specify an index range to search in: in this case, the function searches only between two provided indices.</p>
+<p>还有另一种搜索列表中元素的方法——<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%88%86%E6%90%9C%E5%B0%8B%E6%BC%94%E7%AE%97%E6%B3%95">二分查找算法</a>。
+它的工作速度明显快于其他内置搜索功能，但<em>要求该列表按照一定的顺序</em>（自然排序或函数参数中提供的另一种排序）按升序<a href="collection-ordering.html">排序过</a>。
+否则，结果是不确定的。</p>
+<p>要搜索已排序列表中的元素，请调用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/binary-search.html"><code>binarySearch()</code></a> 函数，并将该值作为参数传递。
+如果存在这样的元素，则函数返回其索引；否则，将返回 <code>(-insertionPoint - 1)</code>，其中 <code>insertionPoint</code> 为应插入此元素的索引，以便列表保持排序。
+如果有多个具有给定值的元素，搜索则可以返回其任何索引。</p>
+<p>还可以指定要搜索的索引区间：在这种情况下，该函数仅在两个提供的索引之间搜索。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1471,8 +1471,8 @@ If there is more than one element with the given value, the search can return an
 </code></pre>
 </div>
 <h4 id="comparator-二分搜索">Comparator 二分搜索</h4>
-<p>When list elements aren't <code>Comparable</code>, you should provide a <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator.html"><code>Comparator</code></a> to use in the binary search.
-The list must be sorted in ascending order according to this <code>Comparator</code>. Let's have a look at an example:</p>
+<p>如果列表元素不是 <code>Comparable</code>，则应提供一个用于二分搜索的 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator.html"><code>Comparator</code></a>。
+该列表必须根据此 <code>Comparator</code> 以升序排序。来看一个例子：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">data class Product(val name: String, val price: Double)
 
@@ -1490,9 +1490,9 @@ fun main() {
 
 </code></pre>
 </div>
-<p>Here's a list of <code>Product</code> instances that aren't <code>Comparable</code> and a <code>Comparator</code> that defines the order: product <code>p1</code> precedes product <code>p2</code> if <code>p1</code>'s  price is less than <code>p2</code>'s price.
-So, having a list sorted ascending according to this order, we use <code>binarySearch()</code> to find the index of the specified <code>Product</code>.</p>
-<p>Custom comparators are also handy when a list uses an order different from natural one, for example, a case-insensitive order for <code>String</code> elements.</p>
+<p>这是一个不可<code>排序</code>的 <code>Product</code> 实例列表，以及一个定义排序的 <code>Comparator</code>：如果 <code>p1</code> 的价格小于 <code>p2</code> 的价格，则产品 <code>p1</code> 在产品 <code>p2</code> 之前。
+因此，按照此顺序对列表进行升序排序后，使用 <code>binarySearch()</code> 查找指定的 <code>Product</code>的索引。</p>
+<p>当列表使用与自然排序不同的顺序时（例如，对 <code>String</code> 元素不区分大小写的顺序），自定义 Comparator 也很方便。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1504,9 +1504,9 @@ So, having a list sorted ascending according to this order, we use <code>binaryS
 </code></pre>
 </div>
 <h4 id="比较函数二分搜索">比较函数二分搜索</h4>
-<p>Binary search with <em>comparison</em> function lets you find elements without providing explicit search values.
-Instead, it takes a comparison function mapping elements to <code>Int</code> values and searches for the element where the function returns zero.
-The list must be sorted in the ascending order according to the provided function; in other words, the return values of comparison must grow from one list element to the next one.</p>
+<p>使用 <em>比较</em> 函数的二分搜索无需提供明确的搜索值即可查找元素。
+取而代之的是，它使用一个比较函数将元素映射到 <code>Int</code> 值，并搜索函数返回 0 的元素。
+该列表必须根据提供的函数以升序排序；换句话说，比较的返回值必须从一个列表元素增长到下一个列表元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlin.math.sign
 //sampleStart
@@ -1526,13 +1526,13 @@ fun main() {
 //sampleEnd
 </code></pre>
 </div>
-<p>Both comparator and comparison binary search can be performed for list ranges as well.</p>
+<p>Comparator 与比较函数二分搜索都可以针对列表区间执行。</p>
 <h2 id="list-写操作">List 写操作</h2>
-<p>In addition to the collection modification operations described in <a href="collection-write.html">Collection Write Operations</a>, <a href="collections-overview.html#集合类型">mutable</a> lists support specific write operations.
-Such operations use the index to access elements to broaden the list modification capabilities.</p>
+<p>除了<a href="collection-write.html">集合写操作</a>中描述的集合修改操作之外，<a href="collections-overview.html#集合类型">可变</a>列表还支持特定的写操作。
+这些操作使用索引来访问元素以扩展列表修改功能。</p>
 <h3 id="添加">添加</h3>
-<p>To add elements to a specific position in a list, use <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> providing the position for element insertion as an additional argument.
-All elements that come after the position shift to the right.</p>
+<p>要将元素添加到列表中的特定位置，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/add.html"><code>add()</code></a> 或 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/add-all.html"><code>addAll()</code></a> 并提供元素插入的位置作为附加参数。
+位置之后的所有元素都将向右移动。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1546,7 +1546,7 @@ All elements that come after the position shift to the right.</p>
 </code></pre>
 </div>
 <h3 id="更新">更新</h3>
-<p>Lists also offer a function to replace an element at a given position - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/set.html"><code>set()</code></a> and its operator form <code>[]</code>. <code>set()</code> doesn't change the indexes of other elements.</p>
+<p>列表还提供了在指定位置替换元素的函数——<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/set.html"><code>set()</code></a> 及其操作符形式 <code>[]</code>。<code>set()</code> 不会更改其他元素的索引。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1558,7 +1558,7 @@ All elements that come after the position shift to the right.</p>
 
 </code></pre>
 </div>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fill.html"><code>fill()</code></a> simply replaces all the collection elements with the specified value.</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fill.html"><code>fill()</code></a> 简单地将所有集合元素的值替换为指定值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1571,8 +1571,8 @@ All elements that come after the position shift to the right.</p>
 </code></pre>
 </div>
 <h3 id="删除">删除</h3>
-<p>To remove an element at a specific position from a list, use the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/remove-at.html"><code>removeAt()</code></a> function providing the position as an argument.
-All indices of elements that come after the element being removed will decrease by one.</p>
+<p>要从列表中删除指定位置的元素，请使用 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/remove-at.html"><code>removeAt()</code></a> 函数，并将位置作为参数。
+在元素被删除之后出现的所有元素索引将减 1。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1585,17 +1585,17 @@ All indices of elements that come after the element being removed will decrease 
 </code></pre>
 </div>
 <h3 id="排序">排序</h3>
-<p>In <a href="collection-ordering.html">Collection Ordering</a>, we describe operations that retrieve collection elements in specific orders.
-For mutable lists, the standard library offers similar extension functions that perform the same ordering operations in place.
-When you apply such an operation to a list instance, it changes the order of elements in that exact instance.</p>
-<p>The in-place sorting functions have similar names to the functions that apply to read-only lists, but without the <code>ed/d</code> suffix:</p>
+<p>在<a href="collection-ordering.html">集合排序</a>中，描述了按特定顺序检索集合元素的操作。
+对于可变列表，标准库中提供了类似的扩展函数，这些扩展函数可以执行相同的排序操作。
+将此类操作应用于列表实例时，它将更改指定实例中元素的顺序。</p>
+<p>就地排序函数的名称与应用于只读列表的函数的名称相似，但没有 <code>ed/d</code> 后缀：</p>
 <ul>
-<li><code>sort*</code> instead of <code>sorted*</code> in the names of all sorting functions: <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-descending.html"><code>sortDescending()</code></a>, <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-by.html"><code>sortBy()</code></a>, and so on.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffle.html"><code>shuffle()</code></a> instead of <code>shuffled()</code>.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reverse.html"><code>reverse()</code></a> instead of <code>reversed()</code>.</li>
+<li><code>sort*</code> 在所有排序函数的名称中代替 <code>sorted*</code>：<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort.html"><code>sort()</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-descending.html"><code>sortDescending()</code></a>、<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sort-by.html"><code>sortBy()</code></a> 等等。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/shuffle.html"><code>shuffle()</code></a> 代替 <code>shuffled()</code>。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reverse.html"><code>reverse()</code></a> 代替 <code>reversed()</code>。</li>
 </ul>
-<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/as-reversed.html"><code>asReversed()</code></a> called on a mutable list returns another mutable list which is a reversed view of the original list. Changes in that view are reflected in the original list.
-The following example shows sorting functions for mutable lists:</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/as-reversed.html"><code>asReversed()</code></a> 在可变列表上调用会返回另一个可变列表，该列表是原始列表的反向视图。在该视图中的更改将反映在原始列表中。
+以下示例展示了可变列表的排序函数：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart

@@ -1378,13 +1378,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="集合聚合操作">集合聚合操作</h1>
-<p>Kotlin collections contain functions for commonly used <em>aggregate operations</em> – operations that return a single value based on the collection content.
-Most of them are well known and work the same way as they do in other languages:</p>
+<p>Kotlin 集合包含用于常用的 <em>聚合操作</em> （基于集合内容返回单个值的操作）的函数 。
+其中大多数是众所周知的，并且其工作方式与在其他语言中相同。</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min.html"><code>min()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max.html"><code>max()</code></a> return the smallest and the largest element respectively;</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/average.html"><code>average()</code></a> returns the average value of elements in the collection of numbers;</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum.html"><code>sum()</code></a> returns the sum of elements in the collection of numbers;</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/count.html"><code>count()</code></a> returns the number of elements in a collection;</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min.html"><code>min()</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max.html"><code>max()</code></a> 分别返回最小和最大的元素；</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/average.html"><code>average()</code></a> 返回数字集合中元素的平均值；</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum.html"><code>sum()</code></a> 返回数字集合中元素的总和；</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/count.html"><code>count()</code></a> 返回集合中元素的数量；</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1400,10 +1400,10 @@ Most of them are well known and work the same way as they do in other languages:
 }
 </code></pre>
 </div>
-<p>There are also functions for retrieving the smallest and the largest elements by certain selector function or custom <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><code>Comparator</code></a>:</p>
+<p>还有一些通过某些选择器函数或自定义 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-comparator/index.html"><code>Comparator</code></a> 来检索最小和最大元素的函数。</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-by.html"><code>maxBy()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-by.html"><code>minBy()</code></a> take a selector function and return the element for which it returns the largest or the smallest value.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-with.html"><code>maxWith()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-with.html"><code>minWith()</code></a> take a <code>Comparator</code> object and return the largest or smallest element according to that <code>Comparator</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-by.html"><code>maxBy()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-by.html"><code>minBy()</code></a> 接受一个选择器函数并返回使选择器返回最大或最小值的元素。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/max-with.html"><code>maxWith()</code></a>/<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/min-with.html"><code>minWith()</code></a> 接受一个 <code>Comparator</code> 对象并且根据此 <code>Comparator</code> 对象返回最大或最小元素。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1419,10 +1419,10 @@ Most of them are well known and work the same way as they do in other languages:
 }
 </code></pre>
 </div>
-<p>Additionally, there are advanced summation functions that take a function and return the sum of its return values on all elements:</p>
+<p>此外，有一些高级的求和函数，它们接受一个函数并返回对所有元素调用此函数的返回值的总和：</p>
 <ul>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by.html"><code>sumBy()</code></a> applies functions that return <code>Int</code> values on collection elements.</li>
-<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by-double.html"><code>sumByDouble()</code></a> works with functions that return <code>Double</code>.</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by.html"><code>sumBy()</code></a> 使用对集合元素调用返回 <code>Int</code> 值的函数。</li>
+<li><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/sum-by-double.html"><code>sumByDouble()</code></a> 与返回 <code>Double</code> 的函数一起使用。</li>
 </ul>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1435,9 +1435,9 @@ Most of them are well known and work the same way as they do in other languages:
 </code></pre>
 </div>
 <h2 id="fold-与-reduce">Fold 与 reduce</h2>
-<p>For more specific cases, there are the functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a> that apply the provided operation to the collection elements sequentially and return the accumulated result.
-The operation takes two arguments:  the previously accumulated value and the collection element.</p>
-<p>The difference between the two functions is that <code>fold()</code> takes an initial value and uses it as the accumulated value on the first step, whereas the first step of <code>reduce()</code> uses the first and the second elements as operation arguments on the first step.</p>
+<p>对于更特定的情况，有函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce.html"><code>reduce()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold.html"><code>fold()</code></a>，它们依次将所提供的操作应用于集合元素并返回累积的结果。
+操作有两个参数：先前的累积值和集合元素。</p>
+<p>这两个函数的区别在于：<code>fold()</code> 接受一个初始值并将其用作第一步的累积值，而 <code>reduce()</code> 的第一步则将第一个和第二个元素作为第一步的操作参数。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1448,17 +1448,17 @@ The operation takes two arguments:  the previously accumulated value and the col
     val sumDoubled = numbers.fold(0) { sum, element -&gt; sum + element * 2 }
     println(sumDoubled)
 
-    //val sumDoubledReduce = numbers.reduce { sum, element -&gt; sum + element * 2 } //incorrect: the first element isn't doubled in the result
+    //val sumDoubledReduce = numbers.reduce { sum, element -&gt; sum + element * 2 } //错误：第一个元素在结果中没有加倍
     //println(sumDoubledReduce)
 //sampleEnd
 }
 </code></pre>
 </div>
-<p>The example above shows the difference: <code>fold()</code> is used for calculating the sum of doubled elements.
-If you pass the same function to <code>reduce()</code>, it will return another result because it uses the list's first and second elements as arguments on the first step, so the first element won't be doubled.</p>
-<p>To apply a function to elements in the reverse order, use functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right.html"><code>reduceRight()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right.html"><code>foldRight()</code></a>.
-They work in a way similar to <code>fold()</code> and <code>reduce()</code> but start from the last element and then continue to previous.
-Note that when folding or reducing right, the operation arguments change their order: first goes the element, and then the accumulated value.</p>
+<p>上面的实例展示了区别：<code>fold()</code> 用于计算加倍的元素之和。
+如果将相同的函数传给 <code>reduce()</code>，那么它会返回另一个结果，因为在第一步中它将列表的第一个和第二个元素作为参数，所以第一个元素不会被加倍。</p>
+<p>如需将函数以相反的顺序应用于元素，可以使用函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right.html"><code>reduceRight()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right.html"><code>foldRight()</code></a>
+它们的工作方式类似于 <code>fold()</code> 和 <code>reduce()</code>，但从最后一个元素开始，然后再继续到前一个元素。
+记住，在使用 foldRight 或 reduceRight 时，操作参数会更改其顺序：第一个参数变为元素，然后第二个参数变为累积值。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1469,9 +1469,9 @@ Note that when folding or reducing right, the operation arguments change their o
 }
 </code></pre>
 </div>
-<p>You can also apply operations that take element indices as parameters.
-For this purpose, use functions <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-indexed.html"><code>reduceIndexed()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-indexed.html"><code>foldIndexed()</code></a> passing element index as the first argument of the operation.</p>
-<p>Finally, there are functions that apply such operations to collection elements from right to left - <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right-indexed.html"><code>reduceRightIndexed()</code></a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right-indexed.html"><code>foldRightIndexed()</code></a>.</p>
+<p>你还可以使用将元素索引作为参数的操作。
+为此，使用函数 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-indexed.html"><code>reduceIndexed()</code></a> 和 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-indexed.html"><code>foldIndexed()</code></a> 传递元素索引作为操作的第一个参数。</p>
+<p>最后，还有将这些操作从右到左应用于集合元素的函数——<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/reduce-right-indexed.html"><code>reduceRightIndexed()</code></a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/fold-right-indexed.html"><code>foldRightIndexed()</code></a>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
