@@ -1978,29 +1978,29 @@ kotlin {
 </div>
 </div>
 <h3 id="关联源集">关联源集</h3>
-<p>Kotlin source sets may be connected with the <em>'depends on'</em> relation, so that if a source set <code>foo</code>  depends on a
-source set <code>bar</code> then:</p>
+<p>Kotlin 源集可能与 <em>“depends on”</em> 关系有关，因而如果一个源集 <code>foo</code> 依赖于一个<!--
+-->源集 <code>bar</code>，那么：</p>
 <ul>
 <li>
-<p>whenever <code>foo</code> is compiled for a certain target, <code>bar</code> takes part in that compilation as well and is also compiled 
-into the same target binary form, such as JVM class files or JS code;</p>
+<p>每当为特定目标编译 <code>foo</code> 时，<code>bar</code> 也参与到编译中，并且还会编译成<!--
+-->相同的目标二进制格式，例如 JVM 类文件或者 JS 代码；</p>
 </li>
 <li>
-<p>sources of <code>foo</code> 'see' the declarations of <code>bar</code>, including the <code>internal</code> ones, and the <a href="#添加依赖">dependencies</a> of <code>bar</code>, even those
- specified as <code>implementation</code> dependencies;</p>
+<p><code>foo</code> 源中的代码能 “看到” <code>bar</code> 的定义，包括 <code>internal</code> 的以及 <code>bar</code> 的<a href="#添加依赖">依赖</a>，即使是<!--
+-->被指定为 <code>implementation</code> 的依赖；</p>
 </li>
 <li>
-<p><code>foo</code> may contain <a href="platform-specific-declarations.html">platform-specific implementations</a> for the expected declarations of <code>bar</code>;</p>
+<p><code>foo</code> 可能包含针对 <code>bar</code> 的预期定义的<a href="platform-specific-declarations.html">特定平台的实现</a>；</p>
 </li>
 <li>
-<p>the resources of <code>bar</code> are always processed and copied along with the resources of <code>foo</code>;</p>
+<p><code>bar</code> 的资源总是与 <code>foo</code> 的资源一起处理与复制；</p>
 </li>
 <li>
-<p>the <a href="#语言设置">语言设置</a> of <code>foo</code> and <code>bar</code> should be consistent;</p>
+<p><code>foo</code> 与 <code>bar</code> 的语言应该是一致的；</p>
 </li>
 </ul>
-<p>Circular source set dependencies are prohibited.</p>
-<p>The source sets DSL can be used to define these connections between the source sets:</p>
+<p>不允许源集间循环依赖。</p>
+<p>源集 DSL 可以用于定义两个源集之间的联系：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
@@ -2029,12 +2029,12 @@ into the same target binary form, such as JVM class files or JS code;</p>
 </code></pre>
 </div>
 </div>
-<p>Custom source sets created in addition to the <a href="#默认项目布局">default ones</a> should be explicitly included into
- the dependencies hierarchy to be able to use declarations from other source sets and, most importantly, to take part 
- in compilations. 
-Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(commonTest)</code> statement, and some of the default platform-specific
- source sets should depend on the custom ones, 
- directly or indirectly:</p>
+<p>除了<a href="#默认项目布局">默认源集</a>外，还应将创建的自定义源集显式地包含在<!--
+-->依赖关系层次结构中，以便于能够使用其他源集的定义，并且最重要的是能够参与到<!--
+-->编译中。
+大多数时候，它们需要 <code>dependsOn(commonMain)</code> 或 <code>dependsOn(commonTest)</code> 声明，并且一些默认的特定平台的<!--
+-->源集应该直接或间接地<!--
+-->依赖于自定义的源集</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin { 
@@ -2042,17 +2042,17 @@ Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(co
     linuxX64()
 
     sourceSets {
-        // custom source set with tests for the two targets
+        // 带有两个目标测试的自定义源集
         desktopTest {
             dependsOn commonTest
             /* …… */
         }
-        // Make the 'windows' default test source set for depend on 'desktopTest'
+        // 将 “windows” 的默认测试源集设置为依赖于 “desktopTest”
         mingwX64().compilations.test.defaultSourceSet {
             dependsOn desktopTest
             /* …… */
         }
-        // And do the same for the other target:
+        // 并且为其他目标做同样的工作：
         linuxX64().compilations.test.defaultSourceSet {
             dependsOn desktopTest
             /* …… */
@@ -2069,17 +2069,17 @@ Most often, they need a <code>dependsOn(commonMain)</code> or <code>dependsOn(co
     linuxX64()
 
     sourceSets {
-        // custom source set with tests for the two targets
+        // 带有两个目标测试的自定义源集
         val desktopTest by creating {
             dependsOn(getByName("commonTest"))
             /* …… */
         }
-        // Make the 'windows' default test source set for depend on 'desktopTest'
+        // 将 “windows” 的默认测试源集设置为依赖于 “desktopTest”
         mingwX64().compilations["test"].defaultSourceSet {
             dependsOn(desktopTest)
             /* …… */
         }
-        // And do the same for the other target:
+        // 并且为其他目标做同样的工作：
         linuxX64().compilations["test"].defaultSourceSet {
             dependsOn(desktopTest)
             /* …… */
