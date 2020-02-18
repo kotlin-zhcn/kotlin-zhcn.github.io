@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Kotlin and Continuous Integration with TeamCity - Kotlin 语言中文站</title>
+    <title>Kotlin 与 TeamCity 的持续集成 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Kotlin and Continuous Integration with TeamCity
+                Kotlin 与 TeamCity 的持续集成
             </h1>
             <table>
                     <tr>
@@ -886,48 +886,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </tr>
             </table>
             
-<p>We're going to see how to set up TeamCity to build our Kotlin project. For more information and basics of TeamCity please check the <a href="https://www.jetbrains.com/teamcity/documentation/">Documentation page</a>
-which contains information about installation, basic configuration, etc.</p>
-<p>Kotlin works with different <a href="build-tools.html">build tools</a>, so if we're using a standard tool such as Ant, Maven or Gradle, the process for setting up a Kotlin
-project is no different to any other language or library that integrates with these tools. Where there are some minor requirements and differences is when using JBS, which
-is the internal build system that IntelliJ IDEA uses, which is also supported on TeamCity.</p>
-<h3 id="using-a-standard-build-tool">Using a standard build tool</h3>
-<p>If using Ant, Maven or Gradle, the setup process is straightforward. All that is needed is to define the Build Step. In our case, if using Gradle
-we'd simply define the required parameters such as the Step Name and Gradle tasks that need executing for the Runner Type.</p>
+<p>了解如何设置 TeamCity 来构建 Kotlin 项目。有关 TeamCity 的更多基础信息，请参阅 <a href="https://www.jetbrains.com/teamcity/documentation/">文档页面</a>，
+其中包含有关安装，基本配置等信息。</p>
+<p>Kotlin 可以使用不同的<a href="build-tools.html">构建工具</a>，因此，如果使用的是 Ant、Maven 或 Gradle 等标准工具，
+则 Kotlin 项目的设置过程与任何其他语言或库都没有什么不同。
+在使用 JBS 时，有一些小要求与不同之处。JBS 是 IntelliJ IDEA 使用的内部构建系统，TeamCity 也支持该系统。</p>
+<h3 id="使用标准构建工具">使用标准构建工具</h3>
+<p>如果使用 Ant、Maven 或 Gradle，它们的设置过程并不复杂。所需要做的就是定义构建步骤。
+在本例中，如果使用 Gradle，则只需定义所需的参数，比如步骤名与需要为 Runner 类型执行的 Gradle 任务。</p>
 <p><br/>
-<img alt="Gradle Build Step" src="/assets/images/tutorials/kotlin-and-ci/teamcity-gradle.png"/>
+<img alt="Gradle 构建步骤" src="/assets/images/tutorials/kotlin-and-ci/teamcity-gradle.png"/>
 <br/></p>
-<p>Since all the dependencies required for Kotlin are defined in the Gradle file, nothing else needs to be configured specifically for Kotlin to run correctly.</p>
-<p>If using Ant or Maven, the same configuration applies. The only difference being that the Runner Type would be Ant or Maven respectively.</p>
-<h3 id="using-intellij-idea-build-system">Using IntelliJ IDEA Build System</h3>
-<p>If using IntelliJ IDEA build system with TeamCity, we need to make sure that the version of Kotlin being used by IntelliJ IDEA is the same as that that TeamCity
-runs. This would mean that we need to download the specific version of the Kotlin plugin and install it on TeamCity.</p>
-<p>Fortunately, there is a meta-runner already available that takes care of most of the manual work. If not familiar with the concept of TeamCity meta-runners, check the
-<a href="https://confluence.jetbrains.com/display/TCD9/Working+with+Meta-Runner">documentation</a>. They are very easy and powerful way to introduce custom Runners without the need to
-write plugins</p>
-<h4 id="download-and-install-the-meta-runner">Download and install the meta-runner.</h4>
-<p>The meta-runner for Kotlin is available on <a href="https://github.com/jonnyzzz/Kotlin.TeamCity">GitHub</a>. If using TeamCity 9 or above, we can now simply import that meta-runner
-from the TeamCity user interface</p>
+<p>由于 Kotlin 所需的所有依赖项均在 Gradle 文件中定义，因此无需进行其他配置即可使 Kotlin 正常运行。</p>
+<p>如果使用 Ant 或 Maven，则应用相同的配置。唯一的区别是 Runner 类型分别是 Ant 或 Maven。</p>
+<h3 id="使用-intellij-idea-的构建系统">使用 IntelliJ IDEA 的构建系统</h3>
+<p>如果在 TeamCity 中使用 IntelliJ IDEA 的构建系统，则需要确保 IntelliJ IDEA 使用的 Kotlin 版本与 TeamCity 运行的版本相同。
+这意味着需要下载 Kotlin 插件的特定版本，并将其安装在 TeamCity 上。</p>
+<p>幸运的是，已经有一个 Meta-Runner 可以处理大多数手工操作。
+如果不熟悉 TeamCity Meta-Runner 的概念，请参阅<a href="https://confluence.jetbrains.com/display/TCD9/Working+with+Meta-Runner">文档</a>。
+这是无需编写插件即可引入自定义 Runner 的非常简单而强大的方法。</p>
+<h4 id="下载并安装-meta-runner">下载并安装 Meta-Runner</h4>
+<p>GitHub 上提供了 Kotlin 的 Meta-Runner。
+如果使用 TeamCity 9 或更高版本，则可以简单地从 TeamCity 用户界面导入该 Meta-Runner。</p>
 <p><br/>
-<img alt="Meta-runner" src="/assets/images/tutorials/kotlin-and-ci/teamcity-metarunner.png"/>
+<img alt="Meta-Runner" src="/assets/images/tutorials/kotlin-and-ci/teamcity-metarunner.png"/>
 <br/></p>
-<p>If using a previous version, refer to the <a href="https://confluence.jetbrains.com/display/TCD9/Working+with+Meta-Runner">documentation on how to add meta-runners</a>.</p>
-<h4 id="setup-kotlin-compiler-fetching-step">Setup Kotlin Compiler Fetching Step</h4>
-<p>Basically this step is limited to defining the Step Name and the version of Kotlin we need. Tags can be used.</p>
+<p>如果在使用旧版本，请参阅有关<a href="https://confluence.jetbrains.com/display/TCD9/Working+with+Meta-Runner">如何添加 Meta-Runner 的文档</a>。</p>
+<h4 id="设置-kotlin-编译器获取步骤">设置 Kotlin 编译器获取步骤</h4>
+<p>基本上，此步骤仅限于定义步骤名称和所需的 Kotlin 版本。并可以使用标签。</p>
 <p><br/>
-<img alt="Setup Kotlin Compiler" src="/assets/images/tutorials/kotlin-and-ci/teamcity-setupkotlin.png"/>
+<img alt="设置 Kotlin 编译器" src="/assets/images/tutorials/kotlin-and-ci/teamcity-setupkotlin.png"/>
 <br/></p>
-<p>The runner will set the value for the property system.path.macro.KOTLIN.BUNDLED to the correct one based on the path settings from the IntelliJ IDEA project. However
-this value needs to be defined in TeamCity (and can be set to any value). Therefore we need to define it as a system variable.</p>
-<h4 id="setup-kotlin-compilation-step">Setup Kotlin Compilation Step</h4>
-<p>The final step is to define the actual compilation of the project, which uses the standard IntelliJ IDEA Runner Type</p>
+<p>运行程序将根据 IntelliJ IDEA 项目中的路径设置，将属性 system.path.macro.KOTLIN.BUNDLED 的值设置为正确的值。
+但是，此值需要在 TeamCity 中定义（可以设置为任何值）。因此，我们需要将其定义为系统变量。</p>
+<h4 id="设置-kotlin-编译步骤">设置 Kotlin 编译步骤</h4>
+<p>最后一步是定义项目的实际编译，该项目使用标准的 IntelliJ IDEA Runner 类型</p>
 <p><br/>
 <img alt="IntelliJ IDEA Runner" src="/assets/images/tutorials/kotlin-and-ci/teamcity-idearunner.png"/>
 <br/></p>
-<p>With that, our project should now build and produce the corresponding artifacts.</p>
-<h3 id="other-ci-server">Other CI Server</h3>
-<p>If using a Continuous Integration tool different to TeamCity, as long as it supports any of the build tools, or calling command line tools, compiling Kotlin and automating things
-as part of a CI process should be possible.</p>
+<p>这样，项目现在应该构建并生成相应的工件。</p>
+<h3 id="其他-ci-服务器">其他 CI 服务器</h3>
+<p>如果使用与 TeamCity 不同的持续集成工具，只要它支持任何构建工具或调用命令行工具，
+则应可以将 Kotlin 编译和自动化作为 CI 流程的一部分。</p>
 
         </article>
     </div>
