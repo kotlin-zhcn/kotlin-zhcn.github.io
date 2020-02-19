@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=c0e62c305d6e7aab987982440f848de5">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=a6272859623a312b212eac5396a247ee">
 
 
 <!-- Social Media tag Starts -->
@@ -56,12 +56,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
-    <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/e8-kotlin-census-2019" target="_blank">
         <div class="banner-item title">
-            Kotlin Heroes 编程挑战赛
+            Kotlin 调查问卷
         </div>
         <div class="banner-item underline">
-            参与！
+            填写赢门票/T恤！
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -2090,28 +2090,28 @@ kotlin {
 </div>
 </div>
 <h3 id="添加依赖">添加依赖</h3>
-<p>To add a dependency to a source set, use a <code>dependencies { ... }</code> block of the source sets DSL. Four kinds of dependencies
-are supported:</p>
+<p>为了添加依赖到源集中，需要在源集 DSL 中使用 <code>dependencies { …… }</code> 块，支持以下<!--
+-->四种依赖：</p>
 <ul>
 <li>
-<p><code>api</code> dependencies are used both during compilation and at runtime and are exported to library consumers. If any types
-from a dependency are used in the public API of the current module, then it should be an <code>api</code> dependency;</p>
+<p><code>api</code> 依赖在编译项与运行时均会使用，并导出到库使用者。如果<!--
+-->当前模块的公共 API 中使用了依赖中的任何类型，那么它应该是一个 <code>api</code> 依赖；</p>
 </li>
 <li>
-<p><code>implementation</code> dependencies are used during compilation and at runtime for the current module, but are not exposed for compilation 
-of other modules depending on the one with the <code>implementation</code> dependency. The<code>implementation</code> dependency kind should be used for 
-dependencies needed for the internal logic of a module. If a module is an endpoint application which is not published, it may
-use <code>implementation</code> dependencies instead of <code>api</code> ones.</p>
+<p><code>implementation</code> 依赖在当前模块的编译项与运行时均会使用，但不暴露<!--
+-->给其他具有 <code>implementation</code> 依赖的模块的编译项。对于那种内部逻辑实现所需要的依赖，应该使用 <code>implementation</code>
+依赖类型。如果模块是一个未发布的 endpoint 应用，它或许该<!--
+-->使用 <code>implementation</code> 依赖而不是 <code>api</code> 依赖。</p>
 </li>
 <li>
-<p><code>compileOnly</code> dependencies are only used for compilation of the current module and are available neither at runtime nor during compilation
-of other modules. These dependencies should be used for APIs which have a third-party implementation available at runtime.</p>
+<p><code>compileOnly</code> 依赖仅用于当前模块的编译项，并且在运行时与&lt;!—
+-&gt;其他模块的编译项均不可用。这些依赖应该用于运行时具有第三方实现 API 中。</p>
 </li>
 <li>
-<p><code>runtimeOnly</code> dependencies are available at runtime but are not visible during compilation of any module.</p>
+<p><code>runtimeOnly</code> 依赖在运行时可用，但在任何模块的编译项都是不可见的。</p>
 </li>
 </ul>
-<p>Dependencies are specified per source set as follows:</p>
+<p>每个源集都可以通过以下方式指定依赖：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
@@ -2150,23 +2150,23 @@ of other modules. These dependencies should be used for APIs which have a third-
 </code></pre>
 </div>
 </div>
-<p>Note that for the IDE to correctly analyze the dependencies of the common sources, the common source sets need to have 
-corresponding dependencies on the Kotlin metadata packages in addition to the platform-specific artifact dependencies 
-of the platform-specific source sets. Usually, an artifact with a suffix 
-<code>-common</code> (as in <code>kotlin-stdlib-common</code>) or <code>-metadata</code> is required when using a published library (unless it is 
-published with Gradle metadata, as described below).</p>
-<p>However, a <code>project('...')</code> dependency on another multiplatform project is resolved to an appropriate target
-automatically. It is enough to specify a single <code>project('...')</code> dependency in a source set's dependencies, 
-and the compilations that include the source set will receive a corresponding platform-specific artifact of 
-that project, given that it has a compatible target:</p>
+<p>请注意，为了 IDE 能够正确地识别公共源的依赖，除了特定平台源集构件的依赖外，
+公共源集还需要在
+Kotlin 元数据包中具有相应的依赖。通常，
+在使用一个已发布的库时（除非它与 Gradle 元数据一起发布，如下所述），
+需要有一个后缀为 <code>-common</code> （如 <code>kotlin-stdlib-common</code>）或 <code>-metadata</code> 的构件。</p>
+<p>然而，在另一个多平台项目中的 <code>project('……')</code> 依赖会被自动处理成一个<!--
+-->合适的目标。在源集的依赖中指定单个 <code>project('……')</code> 依赖就足够了，
+并且包含在源集中的编译将会接收到其项目的合适的特定平台的构件，
+鉴于它具有兼容的目标：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets {
         commonMain {
             dependencies {
-                // All of the compilations that include source set 'commonMain'
-                // will get this dependency resolved to a compatible target, if any:
+                // 包含源集 “commonMain” 的所有编译项
+                // 会将依赖项解析为兼容的目标（如果有）：
                 api project(':foo-lib')
             }
         }
@@ -2181,8 +2181,8 @@ that project, given that it has a compatible target:</p>
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // All of the compilations that include source set 'commonMain'
-                // will get this dependency resolved to a compatible target, if any:
+                // 包含源集 “commonMain” 的所有编译项
+                // 会将依赖项解析为兼容的目标（如果有）：
                 api(project(":foo-lib"))
             }
         }
@@ -2191,12 +2191,12 @@ that project, given that it has a compatible target:</p>
 </code></pre>
 </div>
 </div>
-<p>Likewise, if a multiplatform library is published in the experimental <a href="#experimental-metadata-publishing-mode">Gradle metadata publishing mode</a> and the project 
-is set up to consume the metadata as well, then it is enough to specify a dependency only once, for the common source set. 
-Otherwise, each platform-specific source set should be 
-provided with a corresponding platform module of the library, in addition to the common module, as shown above.</p>
-<p>An alternative way to specify the dependencies is to use the Gradle built-in DSL at the top level with the configuration names following the 
-pattern <code>&lt;sourceSetName&gt;&lt;DependencyKind&gt;</code>:</p>
+<p>同样的，如果以实验性的<a href="#experimental-metadata-publishing-mode">Gradle 元数据发布模式</a>发布了一个多平台库，并且该项目<!--
+-->也设置为使用元数据，那么只需要为公共源集指定一次依赖。
+除此以外，应该为每个特定平台的源集<!--
+-->提供库的相应平台模块（除了公共模块），如上所示。</p>
+<p>指定依赖的另一种方式是在顶层使用 Gradle 内置 DSL，其配置名称遵循<!--
+-->模式 <code>&lt;源集名称&gt;&lt;依赖类型&gt;</code>：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
@@ -2215,23 +2215,23 @@ pattern <code>&lt;sourceSetName&gt;&lt;DependencyKind&gt;</code>:</p>
 </code></pre>
 </div>
 </div>
-<p>Some of the Gradle built-in dependencies, like <code>gradleApi()</code>, <code>localGroovy()</code>, or <code>gradleTestKit()</code> are not available
-in the source sets dependency DSL. You can, however, add them within the top-level dependency block, as shown above.</p>
-<p>A dependency on a Kotlin module like <code>kotlin-stdlib</code> or <code>kotlin-reflect</code> may be added with the notation <code>kotlin("stdlib")</code>,
-which is a shorthand for <code>"org.jetbrains.kotlin:kotlin-stdlib"</code>.</p>
+<p>一些 Gradle 内置依赖（例如 <code>gradleApi()</code>、<code>localGroovy()</code>、或 <code>gradleTestKit()</code>）<!--
+-->在源集依赖 DSL 中是不可用的。但是，你可以将它们添加到顶级依赖块中，如上所示。</p>
+<p>可以使用 <code>kotlin("stdlib")</code> 表示法添加对 Kotlin 模块（例如 <code>kotlin-stdlib</code> 或 <code>kotlin-reflect</code>）的依赖，
+这是 <code>"org.jetbrains.kotlin:kotlin-stdlib"</code> 的简写。</p>
 <h3 id="语言设置">语言设置</h3>
-<p>The language settings for a source set can be specified as follows:</p>
+<p>源集的语言设置可以通过以下方式指定：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets {
         commonMain {
             languageSettings {
-                languageVersion = '1.3' // possible values: '1.0', '1.1', '1.2', '1.3'
-                apiVersion = '1.3' // possible values: '1.0', '1.1', '1.2', '1.3'
-                enableLanguageFeature('InlineClasses') // language feature name
-                useExperimentalAnnotation('kotlin.ExperimentalUnsignedTypes') // annotation FQ-name
-                progressiveMode = true // false by default
+                languageVersion = '1.3' // 可填：“1.0”、“1.1”、“1.2”、“1.3”
+                apiVersion = '1.3' // 可填：“1.0”、“1.1”、“1.2”、“1.3”
+                enableLanguageFeature('InlineClasses') // 语言特性名称
+                useExperimentalAnnotation('kotlin.ExperimentalUnsignedTypes') // 注解的全限定名
+                progressiveMode = true // 默认为 false
             }
         }
     }
@@ -2245,11 +2245,11 @@ which is a shorthand for <code>"org.jetbrains.kotlin:kotlin-stdlib"</code>.</p>
     sourceSets {
         val commonMain by getting {
             languageSettings.apply {
-                languageVersion = "1.3" // possible values: '1.0', '1.1', '1.2', '1.3'
-                apiVersion = "1.3" // possible values: '1.0', '1.1', '1.2', '1.3'
-                enableLanguageFeature("InlineClasses") // language feature name
-                useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes") // annotation FQ-name
-                progressiveMode = true // false by default
+                languageVersion = "1.3" // 可填：“1.0”、“1.1”、“1.2”、“1.3”
+                apiVersion = "1.3" // 可填：“1.0”、“1.1”、“1.2”、“1.3”
+                enableLanguageFeature("InlineClasses") // 语言特性名称
+                useExperimentalAnnotation("kotlin.ExperimentalUnsignedTypes") // 注解的全限定名
+                progressiveMode = true // 默认为 false
             }
         }
     }
@@ -2257,41 +2257,41 @@ which is a shorthand for <code>"org.jetbrains.kotlin:kotlin-stdlib"</code>.</p>
 </code></pre>
 </div>
 </div>
-<p>It is possible to configure the language settings of all source sets at once:</p>
+<p>可以一次性为所有源集配置语言设置：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.sourceSets.all {
     languageSettings.progressiveMode = true
 }
 </code></pre>
 </div>
-<p>Language settings of a source set affect how the sources are analyzed in the IDE. Due to the current limitations, in a
-Gradle build, only the language settings of the compilation's default source set are used and are applied to all of the
-sources participating in the compilation.</p>
-<p>The language settings are checked for consistency between source sets depending on each other. Namely, if <code>foo</code> depends on <code>bar</code>:</p>
+<p>源集的语言设置会影响 IDE 识别源代码的方式。由于当前的限制，在
+Gradle 构建中，只有构建的默认源集的语言设置会被使用，并且应用于<!--
+-->参与编译的所有源代码。</p>
+<p>检查语言设置是否相互依赖，以确保源集之间的一致性。即如果 <code>foo</code> 依赖于 <code>bar</code>：</p>
 <ul>
-<li><code>foo</code> should set <code>languageVersion</code> that is greater than or equal to that of <code>bar</code>;</li>
-<li><code>foo</code> should enable all unstable language features that <code>bar</code> enables (there's no such requirement for bugfix features);</li>
-<li><code>foo</code> should use all experimental annotations that <code>bar</code> uses;</li>
-<li><code>apiVersion</code>, bugfix language features, and <code>progressiveMode</code> can be set arbitrarily;</li>
+<li><code>foo</code> 需设置高于或等于 <code>bar</code> 的 <code>languageVersion</code>；</li>
+<li><code>foo</code> 需要启用所有 <code>bar</code> 启用的非稳定语言特性（对于错误修复特性则没有这种要求）；</li>
+<li><code>foo</code> 需要使用所有 <code>bar</code> 使用的实验性注解；</li>
+<li><code>apiVersion</code>、错误修复的语言特性 和 <code>progressiveMode</code> 可以被任意设置；</li>
 </ul>
 <h2 id="默认项目布局">默认项目布局</h2>
-<p>By default, each project contains two source sets, <code>commonMain</code> and <code>commonTest</code>, where one can place all the code that should be 
-shared between all of the target platforms. These source sets are added to each production and test compilation, respectively.</p>
-<p>Then, once a target is added, default compilations are created for it:</p>
+<p>默认情况下，每个项目都包含了两个源集，<code>commonMain</code> 与 <code>commonTest</code>，在其中可以放置应在<!--
+-->所有目标平台之间共享的所有代码。这些源集会被分别添加到每个生产和测试编译项。</p>
+<p>之后，当目标被添加时，将为其创建默认编译项：</p>
 <ul>
-<li><code>main</code> and <code>test</code> compilations for JVM, JS, and Native targets;</li>
-<li>a compilation per <a href="https://developer.android.com/studio/build/build-variants">Android build variant</a>, for Android targets;</li>
+<li>针对 JVM、JS 和原生目标的 <code>main</code> 与 <code>test</code> 编译项；</li>
+<li>针对每个 <a href="https://developer.android.com/studio/build/build-variants">Android 构建版本</a>的编译项；</li>
 </ul>
-<p>For each compilation, there is a default source set under the name composed as <code>&lt;targetName&gt;&lt;CompilationName&gt;</code>. This default source
-set participates in the compilation, and thus it should be used for the platform-specific code and dependencies, and for adding other source
- sets to the compilation by the means of 'depends on'. For example, a project with
-targets <code>jvm6</code> (JVM) and <code>nodeJs</code> (JS) will have source sets: <code>commonMain</code>, <code>commonTest</code>, <code>jvm6Main</code>, <code>jvm6Test</code>, <code>nodeJsMain</code>, <code>nodeJsTest</code>.</p>
-<p>Numerous use cases are covered by just the default source sets and don't require custom source sets.</p>
-<p>Each source set by default has its Kotlin sources under <code>src/&lt;sourceSetName&gt;/kotlin</code> directory and the resources under <code>src/&lt;sourceSetName&gt;/resources</code>.</p>
-<p>In Android projects, additional Kotlin source sets are created for each <a href="https://developer.android.com/studio/build/#sourcesets">Android source set</a>.
-If the Android target has a name <code>foo</code>, the Android source set <code>bar</code> gets a Kotlin source set counterpart <code>fooBar</code>.
-The Kotlin compilations, however, are able to consume Kotlin sources from all of the directories <code>src/bar/java</code>,
-<code>src/bar/kotlin</code>, and <code>src/fooBar/kotlin</code>. Java sources are only read from the first of these directories.</p>
+<p>对于每个编译项，在由 <code>&lt;目标名称&gt;&lt;编译项名称&gt;</code> 组成的名称下都有一个默认源集。这个默认源集<!--
+-->参与编译，因此它应用于特定平台的代码与依赖，并且以依赖的方式将其他<!--
+-->源集添加到编译项中。例如，一个有着
+<code>jvm6</code> （JVM）与 <code>nodeJs</code>（JS）目标的项目将拥有源集：<code>commonMain</code>、<code>commonTest</code>、<code>jvm6Main</code>、<code>jvm6Test</code>、<code>nodeJsMain</code> 以及 <code>nodeJsTest</code>。</p>
+<p>仅仅是默认源集就涵盖了很多用例，因此不需要自定义源集。</p>
+<p>每个源集都默认拥有在 <code>src/&lt;源集名称&gt;/kotlin</code> 目录下的 Kotlin 源代码与在 <code>src/&lt;源集名称&gt;/resources</code> 目录下的资源。</p>
+<p>在 Android 项目中，将为每个 <a href="https://developer.android.com/studio/build/#sourcesets">Android 源集</a>创建额外的 Kotlin 源集.
+如果其 Android 目标的名称为 <code>foo</code>，那么其 Android 源集 <code>bar</code> 将获得一个对应的 Kotlin 源集 <code>fooBar</code>。
+然而，Kotlin 编译项能够使用来自所有 <code>src/bar/java</code>、<code>src/bar/kotlin</code> 以及 <code>src/fooBar/kotlin</code>
+目录的 Kotlin 源代码。而 Java 源代码则只能从上述第一个目录读取。</p>
 <h2 id="运行测试">运行测试</h2>
 <p>Running tests in a Gradle build is currently supported by default for JVM, Android, Linux, Windows and macOS; 
 JS and other Kotlin/Native targets
