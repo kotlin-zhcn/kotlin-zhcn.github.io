@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=a6272859623a312b212eac5396a247ee">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=cbe1a5a2f749b82eed45ffc5c3dd535c">
 
 
 <!-- Social Media tag Starts -->
@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/quick-run.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="This tutorial shows the ways to write and run Kotlin code snippets in a lightweight manner without creating entire applications.">
+    <meta property="og:description" content="本教程介绍了以轻量级方式编写和运行 Kotlin 代码段、 而无需创建整个应用程序的方法。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="This tutorial shows the ways to write and run Kotlin code snippets in a lightweight manner without creating entire applications.">
+    <meta name="twitter:description" content="本教程介绍了以轻量级方式编写和运行 Kotlin 代码段、 而无需创建整个应用程序的方法。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Running Code Snippets  - Kotlin 语言中文站</title>
+    <title>运行代码片段 - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Running Code Snippets 
+                运行代码片段
             </h1>
             <table>
                     <tr>
@@ -885,67 +885,67 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                This tutorial shows the ways to write and run Kotlin code snippets in a lightweight manner without creating entire applications.
+                本教程介绍了以轻量级方式编写和运行 Kotlin 代码段、 而无需创建整个应用程序的方法。
                 <br/>
                 <br/>
             
-<p>There may be times when you need to quickly write and execute code outside of a project or application. 
-This may be useful, for example, when learning Kotlin or evaluating expressions.
-Let's have a look at three handy ways we can use to run Kotlin code quickly:</p>
+<p>有时可能需要在项目或应用程序之外快速编写并执行代码。
+例如，在学习 Kotlin 或计算表达式时，这可能会很有用。
+来看一下可以用来快速运行 Kotlin 代码的三种便捷方式：</p>
 <ul>
-<li><a href="#scratches-and-worksheets">Scratches</a> let us write and run code in a temporary file outside of our project in the IDE.</li>
-<li><a href="#scratches-and-worksheets">Worksheets</a> are like scratches, but they reside within projects.</li>
-<li><a href="#repl">REPL</a> (<em>Read-Eval-Print-Loop</em>) runs code in an interactive console.</li>
+<li><a href="#scratches-and-worksheets">草稿</a>：在 IDE 中的项目之外的临时文件中编写和运行代码。</li>
+<li><a href="#scratches-and-worksheets">工单</a>：就像草稿一样，但是它们位于项目中。</li>
+<li><a href="#repl">REPL</a>：(<em><span title="Read">读取</span>-<span title="Eval">求值</span>-<span title="Print">输出</span>-<span title="Loop">循环</span></em>)在交互式控制台中运行代码。</li>
 </ul>
-<h2 id="scratches-and-worksheets">Scratches and worksheets</h2>
-<p>The Kotlin plugin for IntelliJ IDEA supports <a href="https://www.jetbrains.com/help/idea/scratches.html"><em>scratches</em></a> and <em>worksheets.</em></p>
-<p>Scratches let us create code drafts in the same IDE window as our project and run them on the fly. 
-Scratches are not tied to projects; you can access and run all your scratches from any IntelliJ IDEA window on your OS.</p>
-<p>To create a Kotlin scratch, click <strong>File | New | Scratch file</strong> and select the <strong>Kotlin</strong> type.</p>
-<p>In turn, worksheets are project files: they are stored in project directories and tied to the project modules.
-Worksheets are useful for writing code parts that don't actually make a software unit but should still be stored together 
-in a project. For example, you can use worksheets for education or demo materials.</p>
-<p>To create a Kotlin worksheet in a project directory, right-click the directory in the project tree and select
-<strong>New | Kotlin Worksheet</strong>.</p>
-<p>In scratches and worksheets, you can write any valid Kotlin code. Syntax highlighting, auto-completion, and the other IntelliJ IDEA code 
-editing features are all supported too. Note that there's no need for declaring the <code>main</code> function: all the 
-code you write is executed as if it would be in the body of <code>main</code>.</p>
-<p>Once you have finished writing your code in a scratch or a worksheet, click <strong>Run</strong>. 
-The execution results will appear in the lines opposite your code.</p>
+<h2 id="草稿与工单">草稿与工单</h2>
+<p>IntelliJ IDEA 的 Kotlin 插件支持<a href="https://www.jetbrains.com/help/idea/scratches.html"><em>草稿</em></a>与 <em>工单</em>。</p>
+<p>使用草稿，可以在与项目相同的 IDE 窗口中创建代码草稿，并即时运行它们。
+草稿与项目无关；所以可以从系统上的任何 IntelliJ IDEA 窗口访问并运行所有草稿。</p>
+<p>要创建 Kotlin 草稿，请单击 <strong>File | New | Scratch file</strong> 并选择 <strong>Kotlin</strong> 类型。</p>
+<p>相反，工单是项目文件：它们存储在项目目录中并与项目模块绑定。
+工单对于编写实际上不是软件模块但仍应一起存储在项目中的代码部分很有用。
+例如，可以将工单用于教育或演示材料。</p>
+<p>要在项目目录中创建 Kotlin 工单，请右键单击项目树中的目录并选择
+<strong>New | Kotlin Worksheet</strong>。</p>
+<p>在草稿与工单中，可以编写任何有效的 Kotlin 代码。
+语法高亮显示、自动完成与其他 IntelliJ IDEA 代码编辑功能也都受支持。
+注意，无需声明 <code>main</code> 函数：编写的所有代码都将像在 <code>main</code> 主体中那样执行。</p>
+<p>在草稿或工作表中完成代码编写后，请单击 <strong>Run</strong>。
+执行结果将出现在代码右边的行中。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-run.gif" src="/assets/images/tutorials/quick-run/scratch-run.png"/>
 </div>
 <h3 id="交互模式">交互模式</h3>
-<p>IntelliJ IDEA can run the code from scratches and worksheets automatically. To get the execution results when you stop 
-typing, switch on the <strong>Interactive mode</strong>.</p>
+<p>IntelliJ IDEA 可以自动运行草稿与工单中的代码。
+要在停止输入时自动执行并获得结果，请勾选 <strong>Interactive mode</strong>。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/scratch-interactive.gif" src="/assets/images/tutorials/quick-run/scratch-interactive.png"/>
 </div>
 <h3 id="调用模块">调用模块</h3>
-<p>We can use classes or functions from a Kotlin project, in our scratches and worksheets.</p>
-<p>Worksheets automatically get access to classes and functions from the module where they reside.</p>
-<p>To use classes or functions from a project in a scratch, import them into the scratch file as usual with the 
-<code>import</code> statement. Then write your code and run it with the appropriate module selected in <strong>Use classpath of module</strong> list.</p>
-<p>Both scratches and worksheets use the compiled versions of connected modules. So, if you modify a module's source files,
-the changes will propagate to scratches and worksheets when you rebuild the module.
-To rebuild the module automatically before each run of a scratch or a worksheet, select <strong>Make before Run</strong>.</p>
+<p>可以在草稿与工单中使用 Kotlin 项目中的类或函数。</p>
+<p>工单会自动从其所在的模块中访问类或函数。</p>
+<p>要从草稿中使用项目中的类或函数，请照常使用 <code>import</code> 语句将它们导入到草稿文件中。
+然后编写代码，并使用在 <strong>Use classpath of module</strong> 列表中选择的适当模块运行它。</p>
+<p>草稿与工单都使用已连接模块的已编译版本。
+因此，如果修改了模块的源文件，则在重新构建模块后，更改才会将传播到草稿或工单中。
+要在每次运行草稿或工单之前自动重新构建模块，请勾选 <strong>Make before Run</strong>。</p>
 <p><img alt="Scratch select module" src="/assets/images/tutorials/quick-run/scratch-select-module.png"/></p>
 <h3 id="像-repl-那样运行">像 REPL 那样运行</h3>
-<p>To evaluate each particular expression in a scratch or a worksheet, run it with <strong>Use REPL</strong> selected. The code will be 
-executed the same way as in <a href="#repl">REPL</a>: the code lines will run sequentially, providing results of each call. 
-You can later refer to the results by the names <code>res*</code> shown in the corresponding lines.</p>
+<p>若要计算草稿或工单中的每个特定表达式，请在勾选 <strong>Use REPL</strong> 的情况下运行它。
+该代码将以与 REPL 中相同的方式执行：代码行将按顺序运行，并提供每个调用的结果。
+然后可以通过相应行中显示的名称 <code>res*</code> 来引用结果。</p>
 <p><img alt="Scratch REPL" src="/assets/images/tutorials/quick-run/scratch-repl.png"/></p>
 <h2 id="repl">REPL</h2>
-<p><em>REPL</em> (<em>读取-求值-输出-循环</em>) 是一个交互式运行 Kotlin 代码的工具。REPL 允许你运行表达式与<!--
--->代码块，而无需创建项目或函数(如果你不需要的话)。</p>
-<p>如需在 IntelliJ IDEA 中运行 REPL，请打开 <strong>工具 | Kotlin | Kotlin REPL</strong> 。</p>
-<p>如需在操作系统命令行中运行REPL，请从 Kotlin 独立编译器的目录中打开 __/bin/Kotlic-JVM __ 。</p>
-<p>The REPL command line interface will open. You can enter any valid Kotlin code and see the result. The results are printed as 
-variables with auto-generated names like <code>res*</code>. You can later use such variables in the code you run in REPL.</p>
+<p><em>REPL</em>（<em><span title="Read">读取</span>-<span title="Eval">求值</span>-<span title="Print">输出</span>-<span title="Loop">循环</span></em>）是一个交互式运行 Kotlin 代码的工具。
+REPL 允许运行表达式与代码块，而无需创建项目或函数（如果不需要的话）。</p>
+<p>如需在 IntelliJ IDEA 中运行 REPL，请打开 <strong>Tools | Kotlin | Kotlin REPL</strong> 。</p>
+<p>如需在操作系统命令行中运行 REPL，请从 Kotlin 独立编译器的目录中打开 __/bin/Kotlic-JVM __ 。</p>
+<p>将打开 REPL 命令行界面。可以输入任何有效的 Kotlin 代码并查看结果。
+结果将打印为具有自动生成的名称（如 <code>res*</code>）的变量。之后便可在 REPL 中运行的代码中使用此类变量。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-run.gif" src="/assets/images/tutorials/quick-run/repl-run.png"/>
 </div>
-<p>REPL supports multiline input as well. The result of the multiline input is the value of its last expression.</p>
+<p>REPL 也支持多行输入。多行输入的结果为其最后一个表达式的值。</p>
 <div style="display: flex; align-items: center; margin-bottom: 10px;">
 <img class="gif-image" data-gif-src="/assets/images/tutorials/quick-run/repl-multi-line.gif" src="/assets/images/tutorials/quick-run/repl-multi-line.png"/>
 </div>
