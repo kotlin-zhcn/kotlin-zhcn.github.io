@@ -1594,8 +1594,42 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 </code></pre>
 </div>
 <h3 id="运算">运算</h3>
-<p>Kotlin支持数字运算的标准集，运算被定义为相应的类成员（但编译器会将函数调用优化为相应的指令）。
+<p>Kotlin支持数字运算的标准集（<code>+</code> <code>-</code> <code>*</code> <code>/</code> <code>%</code>），运算被定义<!--
+-->为相应的类成员（但编译器会将函数调用优化为相应的指令）。
 参见<a href="operator-overloading.html">运算符重载</a>。</p>
+<h4 id="整数除法">整数除法</h4>
+<p>Note that division between integers always returns an integer. Any fractional part is discarded. For example:</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    val x = 5 / 2
+    //println(x == 2.5) // ERROR: Operator '==' cannot be applied to 'Int' and 'Double'
+    println(x == 2)
+//sampleEnd
+}
+</code></pre>
+</div>
+<p>This is true for a division between any two integer types.</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    val x = 5L / 2
+    println(x == 2L)
+//sampleEnd
+}
+</code></pre>
+</div>
+<p>To return a floating-point type, explicitly convert one of the arguments to a floating-point type.</p>
+<div class="sample" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    val x = 5 / 2.toDouble()
+    println(x == 2.5)
+//sampleEnd
+}
+</code></pre>
+</div>
+<h4 id="位运算">位运算</h4>
 <p>对于位运算，没有特殊字符来表示，而只可用中缀方式调用具名函数，例如:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val x = (1 shl 2) and 0x000FF000
