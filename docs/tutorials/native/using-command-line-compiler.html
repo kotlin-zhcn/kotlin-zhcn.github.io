@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/using-command-line-compiler.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to compileKotlin/Native applications using the command line compiler">
+    <meta property="og:description" content="了解如何使用命令行编译器编译 Kotlin/Native 应用程序">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to compileKotlin/Native applications using the command line compiler">
+    <meta name="twitter:description" content="了解如何使用命令行编译器编译 Kotlin/Native 应用程序">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Hello Kotlin/Native using Command Line Compiler - Kotlin 语言中文站</title>
+    <title>使用命令行编译器的 Hello Kotlin/Native - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Hello Kotlin/Native using Command Line Compiler
+                使用命令行编译器的 Hello Kotlin/Native
             </h1>
             <table>
                     <tr>
@@ -885,38 +885,38 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to compileKotlin/Native applications using the command line compiler
+                了解如何使用命令行编译器编译 Kotlin/Native 应用程序
                 <br/>
                 <br/>
             
 <!--- To become a How-To. Need to change type to new "HowTo" --->
-<h2 id="obtaining-the-compiler">Obtaining the Compiler</h2>
-<p>The Kotlin/Native compiler is available for macOS, Linux, and Windows. It is available as a command line tool and ships as part of the standard Kotlin distribution and can be downloaded from <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.61">GitHub Releases</a>. It supports
-different targets including iOS (arm32, arm64, simulator x86_64), Windows (mingw32 and x86_64),
-Linux (x86_64, arm64, MIPS), macOS (x86_64), Raspberry PI, SMT32, WASM. For the full list of targets please see the <a href="/docs/reference/native-overview.html">Kotlin/Native overview</a>.</p>
-<p>While cross-platform compilation is possible, which means using one platform to compile for a different one, 
-in this case we'll be targeting the same platform we're compiling on.</p>
-<p>While the output of the compiler does not have any dependencies or virtual machine requirements,
-the compiler itself requires <a href="https://jdk.java.net/11/">Java 1.8 or higher runtime</a>.</p>
-<h2 id="creating-hello-kotlinnative">Creating Hello Kotlin/Native</h2>
-<p>The application will print "Hello Kotlin/Native" on the standard output. In a working directory of choice, create a file named
-<code>hello.kt</code> and enter the following contents:</p>
+<h2 id="获取编译器">获取编译器</h2>
+<p>Kotlin/Native 编译器适用于 macOS、Linux 及 Windows。它是一个命令行工具，作为标准 Kotlin 发行版的一部分提供，可以从 <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.61">GitHub 发行版</a>下载。它支持包括 
+iOS （arm32、arm64、simulator x86_64）、Windows （mingw32 及 x86_64）在内的多个不同目标平台，
+Linux （x86_64、arm64、MIPS）、macOS （x86_64）、Raspberry PI、SMT32、WASM。有关目标的完整列表，请参见 <a href="/docs/reference/native-overview.html">Kotlin/Native 概述</a>。</p>
+<p>进行跨平台交叉编译，这意味着可以使用一个平台针对另一个平台进行编译，
+在本例中，我们将针对跟本机相同的单平台。</p>
+<p>尽管编译器的输出没有任何依赖项或虚拟机要求，
+但编译器本身需要 <a href="https://jdk.java.net/11/">Java 1.8 或更高版本的运行时</a>。</p>
+<h2 id="创建-hello-kotlinnative">创建 Hello Kotlin/Native</h2>
+<p>该应用程序将在标准输出上打印 "Hello Kotlin/Native"。在选择的工作目录中，创建一个名为
+<code>hello.kt</code> 的文件，并输入以下内容:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main() {
   println("Hello Kotlin/Native!")
 }
 </code></pre>
 </div>
-<h2 id="compiling-the-code-from-the-console">Compiling the code from the console</h2>
-<p>To compile the application use the <a href="https://github.com/JetBrains/kotlin/releases">downloaded</a>
-compiler to execute the following command:</p>
+<h2 id="从控制台编译代码">从控制台编译代码</h2>
+<p>要编译这个应用程序，请<a href="https://github.com/JetBrains/kotlin/releases">下载</a>
+编译器执行以下命令:</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">kotlinc-native hello.kt -o hello
 </code></pre>
-<p>The value of <code>-o</code> option specifies the name of the output file, so this call should generate a <code>hello.kexe</code> (Linux and macOS) or <code>hello.exe</code> (Windows) binary file.
-For the full list of available compiler options, see the <a href="/docs/reference/compiler-reference.html">compiler options reference</a>.</p>
-<p>While compilation from the console seems to be easy and clear, it
-does not scale well for larger projects with hundreds of files and libraries. For real-world projects it is recommended
-to use a <a href="using-gradle.html">build system</a> and <a href="using-intellij-idea.html">IDE</a>.</p>
+<p><code>-o</code> 选项的值指定了输出文件的名称，所以这个调用应该生成一个 <code>hello.kexe</code> （Linux 及 macOS） 或 <code>hello.exe</code> （Windows）二进制文件。
+有关可用编译器选项的完整列表，请参见<a href="/docs/reference/compiler-reference.html">编译器选项参考</a>。</p>
+<p>虽然从控制台编译看起来简单明了，但它<!--
+-->对于包含数百个文件和库的大型项目来说，这种方法不太适用。对于现实项目，建议<!--
+-->使用<a href="using-gradle.html">构建系统</a>和<a href="using-intellij-idea.html">集成开发环境</a>。</p>
 
         </article>
     </div>

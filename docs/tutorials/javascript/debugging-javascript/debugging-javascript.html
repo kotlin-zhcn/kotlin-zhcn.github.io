@@ -40,7 +40,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Debugging Kotlin in browser - Kotlin 语言中文站</title>
+    <title>在浏览器中调试 Kotlin - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Debugging Kotlin in browser
+                在浏览器中调试 Kotlin
             </h1>
             <table>
                     <tr>
@@ -886,35 +886,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </tr>
             </table>
             
-<p>This tutorial shows how to debug a Kotlin/JS project build by Gradle.
-If you are using Maven or IDEA, the recipes would be similar.</p>
-<p>Before reading this tutorial, please, look through
-<a href="http://www.kotlincn.net/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html">Kotlin and JavaScript for Gradle tutorial</a>.</p>
-<h2 id="generating-source-map">Generating source map</h2>
-<p>To debug Kotlin sources in the browser, you should tell the compiler to generate source map file.
-Add following lines to the Gradle configuration:</p>
+<p>本教程介绍了如何调试 Gradle 构建的 Kotlin/JS 项目。
+如果使用的是 Maven 或 IDEA，操作方法相似。</p>
+<p>在阅读本教程之前，
+请仔细阅读<a href="http://www.kotlincn.net/docs/tutorials/javascript/getting-started-gradle/getting-started-with-gradle.html">以 Gradle 入门 Kotlin 和 JavaScript</a>.</p>
+<h2 id="创建源代码映射">创建源代码映射</h2>
+<p>要在浏览器中调试 Kotlin 源代码，应告诉编译器生成源代码映射文件。
+将以下行添加到 Gradle 配置中：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">compileKotlin2Js {
     kotlinOptions.sourceMap = true
     kotlinOptions.sourceMapEmbedSources = "always"
 
-    // remaining configuration options
+    // 其他配置选项
 } 
 </code></pre>
 </div>
-<p>Now, if you rebuild the project, you should see both <code>.js</code> and <code>.js.map</code> files generated.</p>
-<h2 id="debugging-in-chrome-devtools">Debugging in Chrome DevTools</h2>
-<p>To debug Kotlin in Google Chrome, you should use DevTools.
-Please, read the <a href="https://developer.chrome.com/devtools">official documentation</a> to learn
-how to open and use DevTools.</p>
-<p>Now, if you open DevTools, you should see both JavaScript and Kotlin files in Sources tab,
-as shown in the picture below.</p>
+<p>现在，如果重新构建项目，则应该同时看到生成的 <code>.js</code> 和 <code>.js.map</code> 文件。</p>
+<h2 id="在-chrome-devtools-中进行调试">在 Chrome DevTools 中进行调试</h2>
+<p>要在 Google Chrome 浏览器中调试 Kotlin，应使用 DevTools。
+请参阅其<a href="https://developer.chrome.com/devtools">官方文档</a>
+以了解如何打开与使用 DevTools。</p>
+<p>现在，如果打开了 DevTools，则应该在 Sources 选项卡中同时看到 JavaScript 与 Kotlin 文件，
+如下图所示：</p>
 <p><img alt="Debugging in Chrome DevTools" src="/assets/images/tutorials/javascript/debugging-javascript/chrome-devtools.png"/></p>
-<p>Note that you can open folders in the Source tab and see sources of libraries you are using in your project,
-including Kotlin standard library (<code>kotlin.js</code>).
-This, however, requires that libraries are compiled with source maps enabled,
-as well as sources embedded into source maps.
-So the good practice is: if you share a library for Kotlin/JS, please, include source map into distribution.</p>
+<p>请注意，可以在 Source 选项卡中打开文件夹，并查看项目中正在使用的库的源代码，
+包括 Kotlin 标准库（<code>kotlin.js</code>）。
+但是，这需要在启用源代码映射以及嵌入源代码映射的源代码的情况下编译库。
+因此，推荐做法是：
+如果共享 Kotlin/JS 的库，请在发行版中包含源代码映射。</p>
 
         </article>
     </div>
