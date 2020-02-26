@@ -56,12 +56,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
-    <a class="banner-text" href="https://surveys.jetbrains.com/s3/e8-kotlin-census-2019" target="_blank">
+    <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
         <div class="banner-item title">
-            Kotlin 调查问卷
+            Kotlin Heroes 编程挑战赛
         </div>
         <div class="banner-item underline">
-            填写赢门票/T恤！
+            参与！
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -1579,7 +1579,7 @@ World!
 <p>除了由不同的构建器提供协程作用域之外，还可以使用
 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 构建器声明自己的作用域。它会创建一个协程作用域并且在所有已启动子协程执行完毕之前不会<!--
 -->结束。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 可能看起来很类似，因为它们都会等待其协程体以及所有自协程结束。
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 可能看起来很类似，因为它们都会等待其协程体以及所有子协程结束。
 这两者的主要区别在于，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 方法会<em>阻塞</em>当前线程来等待，
 而 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 只是挂起，会释放底层线程用于其他用途。
 由于存在这点差异，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 是常规函数，而 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">coroutineScope</a> 是挂起函数。</p>

@@ -56,12 +56,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
-    <a class="banner-text" href="https://surveys.jetbrains.com/s3/e8-kotlin-census-2019" target="_blank">
+    <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
         <div class="banner-item title">
-            Kotlin 调查问卷
+            Kotlin Heroes 编程挑战赛
         </div>
         <div class="banner-item underline">
-            填写赢门票/T恤！
+            参与！
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -1679,7 +1679,7 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 }
 </code></pre>
 </div>
-<p>接下来我们可以得到几个生产者协程。在这个示例中，它们只是打印它们的 id 和<!--
+<p>接下来我们可以得到几个处理器协程。在这个示例中，它们只是打印它们的 id 和<!--
 -->接收到的数字：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.launchProcessor(id: Int, channel: ReceiveChannel&lt;Int&gt;) = launch {
@@ -1689,7 +1689,7 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 }
 </code></pre>
 </div>
-<p>现在让我们启动五个生产者协程并让它们工作将近一秒。看看发生了什么：</p>
+<p>现在让我们启动五个处理器协程并让它们工作将近一秒。看看发生了什么：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1722,8 +1722,8 @@ fun CoroutineScope.launchProcessor(id: Int, channel: ReceiveChannel&lt;Int&gt;) 
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>该输出将类似于如下所示，尽管接收的是生产者的 id
-但每个整数也许会不同：</p>
+<p>该输出将类似于如下所示，尽管接收<!--
+-->每个特定整数的处理器 id 可能会不同：</p>
 <pre><code>Processor #2 received 1
 Processor #4 received 2
 Processor #0 received 3
@@ -1736,12 +1736,12 @@ Processor #1 received 9
 Processor #3 received 10
 </code></pre>
 <!--- TEST lines.size == 10 && lines.withIndex().all { (i, line) -> line.startsWith("Processor #") && line.endsWith(" received ${i + 1}") } -->
-<p>注意，取消生产者协程并关闭它的通道，因此通过正在执行的生产者协程通道来<!--
--->终止迭代。</p>
+<p>注意，取消生产者协程将关闭它的通道，从而最终终止<!--
+-->处理器协程正在执行的此通道上的迭代。</p>
 <p>还有，注意我们如何使用 <code>for</code> 循环显式迭代通道以在 <code>launchProcessor</code> 代码中执行扇出。
-与 <code>consumeEach</code> 不同，这个 <code>for</code> 循环是安全完美地使用多个协程的。如果其中一个生产者<!--
--->协程执行失败，其它的生产者协程仍然会继续处理通道，而通过 <code>consumeEach</code>
-编写的生产者始终在正常或非正常完成时消耗（取消）底层通道。</p>
+与 <code>consumeEach</code> 不同，这个 <code>for</code> 循环是安全完美地使用多个协程的。如果其中一个处理器<!--
+-->协程执行失败，其它的处理器协程仍然会继续处理通道，而通过 <code>consumeEach</code>
+编写的处理器始终在正常或非正常完成时消耗（取消）底层通道。</p>
 <h3 id="扇入">扇入</h3>
 <p>多个协程可以发送到同一个通道。
 比如说，让我们创建一个字符串的通道，和一个在这个通道中<!--
