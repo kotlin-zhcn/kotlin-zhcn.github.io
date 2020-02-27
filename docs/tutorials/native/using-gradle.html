@@ -29,18 +29,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/using-gradle.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="A look at how to compile Kotlin/Native applications using Gradle">
+    <meta property="og:description" content="了解如何使用 Gradle 编译 Kotlin/Native 应用程序">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="A look at how to compile Kotlin/Native applications using Gradle">
+    <meta name="twitter:description" content="了解如何使用 Gradle 编译 Kotlin/Native 应用程序">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
-    <title>Hello Kotlin/Native using Gradle - Kotlin 语言中文站</title>
+    <title>使用 Gradle 的 Hello Kotlin/Native - Kotlin 语言中文站</title>
 
     <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
@@ -873,7 +873,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                Hello Kotlin/Native using Gradle
+                使用 Gradle 的 Hello Kotlin/Native
             </h1>
             <table>
                     <tr>
@@ -885,34 +885,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </td>
                     </tr>
             </table>
-                A look at how to compile Kotlin/Native applications using Gradle
+                了解如何使用 Gradle 编译 Kotlin/Native 应用程序
                 <br/>
                 <br/>
             
 <!--- To become a How-To. Need to change type to new "HowTo" --->
-<h2 id="creating-a-kotlinnative-gradle-project">Creating a Kotlin/Native Gradle project</h2>
-<p><a href="https://gradle.org">Gradle</a> is a build system that is very commonly used in the Java, Android, and other ecosystems. It is the default choice for Kotlin/Native and Multiplatform
-when it comes to build systems.</p>
-<p>While most IDE's including <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a> can generate the corresponding Gradle file, we're going to 
-take a look at how to create this manually, to have a better understanding of how things work under the covers. If you'd like to use the IDE, check out 
-<a href="using-intellij-idea.html">Using IntelliJ IDEA</a>.</p>
-<p>Gradle supports two languages for build scripts:</p>
+<h2 id="创建-kotlinnative-的-gradle项目">创建 Kotlin/Native 的 Gradle项目</h2>
+<p><a href="https://gradle.org">Gradle</a> 是一个在 Java、Android 与其他生态系统工程中非常常用的构建系统。
+它是 Kotlin/Native 与 Multiplatform 的默认构建系统。</p>
+<p>尽管包括 <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a> 在内的大多数 IDE 都可以生成相应的 Gradle 文件，
+但还是建议看一下如何手动创建此 Gradle 文件，以更好地了解事物的本质。
+如果想使用 IDE，请参阅<a href="using-intellij-idea.html">使用 IntelliJ IDEA 的 Hello Kotlin/Native</a>。</p>
+<p>Gradle 支持两种语言的构建脚本：</p>
 <ul>
-<li>Groovy scripts in <code>build.gradle</code> files</li>
-<li>Kotlin scripts in <code>build.gradle.kts</code> files</li>
+<li>Groovy 脚本为 <code>build.gradle</code> 文件</li>
+<li>Kotlin 脚本为 <code>build.gradle.kts</code> 文件</li>
 </ul>
-<p>The Groovy language is the first supported scripting language for Gradle, 
-it leverages the power of dynamic typing and runtime features of the language. It is also possible to use Kotlin in Gradle scripts. Being a statically-typed language, it plays better with IDEs when 
-it comes to compilation and error detection.</p>
-<p>Either can be used and samples will show the syntax for both languages.</p>
-<p>First step is to create a project folder. Inside it we create
+<p>Groovy 语言是 Gradle 最早支持的脚本语言，它利用了该语言的动态类型与运行时特性。
+也可以在 Gradle 脚本中使用 Kotlin。
+作为一种静态类型的语言，当涉及到编译与错误检测时，可以在 IDE 中更好地发挥作用。</p>
+<p>两种都可以使用，示例将展示两种语言的语法。</p>
+<p>第一步是创建一个项目文件夹。在其中，创建包含以下内容的
 <span class="multi-language-span" data-lang="groovy">
 <code>build.gradle</code>
 </span>
 <span class="multi-language-span" data-lang="kotlin">
 <code>build.gradle.kts</code>
 </span>
-Gradle build file with the following contents:</p>
+Gradle 构建文件：</p>
 <div class="multi-language-sample" data-lang="groovy" data-os="macos">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code>plugins {
@@ -1063,56 +1063,39 @@ tasks.withType&lt;Wrapper&gt; {
 </code></pre>
 </div>
 </div>
-<p>The prepared project sources can be directly downloaded from 
-<span class="multi-language-span" data-lang="groovy" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="groovy" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-linux.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="groovy" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-windows.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-macos.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-linux.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows.zip">GitHub</a>。
-</span></p>
-<p>Next create an empty
+<p>准备好的项目源代码可以直接从
+[[include pages-includes/docs/tutorials/native/basic-kotlin-native-app-codeblocks-link.md]] 下载。</p>
+<p>接下来，在项目文件夹中创建一个空的
 <span class="multi-language-span" data-lang="kotlin">
 <code>settings.gradle.kts</code>
 </span><span class="multi-language-span" data-lang="groovy">
 <code>settings.gradle</code>
 </span>
-file in the project folder.</p>
-<p>Depending on the target platform, different <a href="/docs/reference/building-mpp-with-gradle.html">functions</a>,
-e.g. <code>macosX64</code>, <code>mingwX64</code>, <code>linuxX64</code>, <code>iosX64</code>,
-are used to create the Kotlin target. The function name is the platform which we are compiling our code for. 
-These functions optionally take the target name as a parameter, which is <code>"native"</code> in our case. 
-The specified <em>target name</em> is used to generate the source paths and task names in the project.</p>
-<p>By convention, all sources are located in the <code>src/&lt;target name&gt;[Main|Test]/kotlin</code> folders, where <code>main</code> is for the source code
-and <code>test</code> is for tests. <code>&lt;target name&gt;</code> corresponds to the target platform (in this case <code>native</code>), as specified in the build file.</p>
-<p>Create a folder <code>src/nativeMain/kotlin</code> and inside it place the file <code>hello.kt</code> with the following contents:</p>
+文件。</p>
+<p>取决于目标平台，不同的<a href="/docs/reference/building-mpp-with-gradle.html">函数</a>，
+例如：<code>macosX64</code>、<code>mingwX64</code>、<code>linuxX64</code>、<code>iosX64</code>，用于创建 Kotlin 目标。
+函数名称是其编译代码的平台。
+这些函数可以选择将目标名称作为参数，在本例中为 <code>"native"</code>。
+指定的 <em>目标名称</em> 用于在项目中生成源路径和任务名称。</p>
+<p>按照惯例，所有源代码都位于 <code>src/&lt;目标名称&gt;[Main|Test]/kotlin</code> 文件夹中，其中 <code>main</code> 用于源代码，而 <code>test</code> 用于测试。
+<code>&lt;目标名称&gt;</code> 对应于构建文件中指定的目标平台（在本例中为 <code>native</code>）。</p>
+<p>创建一个文件夹 <code>src/nativeMain/kotlin</code>，并在其中放置文件 <code>hello.kt</code>，其内容如下：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main() {
   println("Hello Kotlin/Native!")
 }
 </code></pre>
 </div>
-<h2 id="building-the-project">Building the project</h2>
-<p>From the root project folder, execute the build by running</p>
+<h2 id="构建项目">构建项目</h2>
+<p>在项目根目录中，通过运行执行构建</p>
 <p><code>gradle nativeBinaries</code></p>
-<p>This should create a folder <code>build/native/bin</code> with two subfolders <code>debugExecutable</code> and <code>releaseExecutable</code> with the corresponding binary.
-By default, the binary is named the same as the project folder.</p>
-<h2 id="opening-the-project-in-an-ide">Opening the project in an IDE</h2>
-<p>Any IDE that supports Gradle should allow for opening the project in the IDE. In the case of <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a>, just open the project folder, and it will automatically
-detect it as Kotlin/Native project.</p>
-<h2 id="whats-next">What's next?</h2>
-<p>To learn how to write Gradle build scripts for real-life Kotlin/Native projects, see <a href="/docs/reference/building-mpp-with-gradle.html">Building Multiplatform Projects with Gradle</a>.</p>
+<p>这将创建一个文件夹 <code>build/native/bin</code>，其中包含两个子文件夹 <code>debugExecutable</code> 与 <code>releaseExecutable</code> 以及相应的二进制文件。
+默认情况下，二进制文件的名称与项目文件夹的名称相同。</p>
+<h2 id="在-ide-中打开项目">在 IDE 中打开项目</h2>
+<p>任何支持 Gradle 的 IDE 都应允许在 IDE 中打开项目。
+对于 <a href="https://www.jetbrains.com/idea">IntelliJ IDEA</a>，只需打开项目文件夹，会自动将其检测为 Kotlin/Native 项目。</p>
+<h2 id="下一步做什么">下一步做什么？</h2>
+<p>要了解如何为现实的 Kotlin/Native 项目编写 Gradle 构建脚本，请参阅<a href="/docs/reference/building-mpp-with-gradle.html">使用 Gradle 构建多平台项目</a>.</p>
 
         </article>
     </div>
