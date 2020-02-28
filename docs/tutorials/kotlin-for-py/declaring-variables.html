@@ -885,7 +885,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 var message = "Hello"
 </code></pre>
 </div>
-<p>我们现在有一个局部变量 <code>number</code>，其值为 42、其类型为 <code>Int</code>（因为这是字面值 <code>42</code> 的类型），还有一个局部变量 <code>message</code>，其值为 <code>Hello</code>、其类型为 <code>String</code>。变量的后续用法必须只使用其变量名而不带 <code>var</code>：</p>
+<p>现在有一个局部变量 <code>number</code>，其值为 42、其类型为 <code>Int</code>（因为这是字面值 <code>42</code> 的类型），还有一个局部变量 <code>message</code>，其值为 <code>Hello</code>、其类型为 <code>String</code>。变量的后续用法必须只使用其变量名而不带 <code>var</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">number = 10
 number += 7
@@ -895,37 +895,37 @@ println(message + " there")
 </div>
 <p>然而不能改变变量的类型：<code>number</code> 只能引用 <code>Int</code> 值，而 <code>message</code> 只能引用 <code>String</code> 值，因此 <code>number = "Test"</code> 与 <code>message = 3</code> 都是非法的、都会产生语法错误。</p>
 <h2 id="只读变量">只读变量</h2>
-<p>Frequently, you'll find that during the lifetime of your variable, it only ever needs to refer to one object. Then, you can declare it with <code>val</code> (for "value") instead:</p>
+<p>在变量的生存期内，通常仅需要引用一个对象。然后，可以使用 <code>val</code>（用于“值”）声明它：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val message = "Hello"
 val number = 42
 </code></pre>
 </div>
-<p>The terminology is that <code>var</code> declares a <em>mutable</em> variable, and that <code>val</code> declares a <em>read-only</em> or <em>assign-once</em> variable - so both kinds are called <em>variables</em>.</p>
-<p>Note that a read-only variable is not a constant per se: it can be initialized with the value of a variable (so its value doesn't need to be known at compile-time), and if it is declared inside a construct that is repeatedly invoked (such as a function or a loop), it can take on a different value on each invocation. Also, while the read-only variable may not be reassigned while it is in scope, it can still refer to an object which is in itself mutable (such as a list).</p>
+<p>关键字 <code>var</code> 声明了一个 <em>可变</em> 变量，而 <code>val</code> 声明了一个 <em>只读</em> 或者说 <em>只赋值一次</em> 的变量——因此这两种都称为 <em>变量</em>。</p>
+<p>请注意，只读变量本身不是常量：可以使用变量的值进行初始化（因此，在编译期不需要知道其值），如果在构造函数中声明了该变量，并反复调用（例如函数或循环），则每次调用时可以采用不同的值。同样，尽管只读变量在作用域内可能无法重新赋值，但它仍可以引用自身是可变的对象（例如列表）。</p>
 <h2 id="常量">常量</h2>
-<p>If you have a value that is truly constant, and the value is a string or a primitive type (see below) that is known at compile-time, you can declare an actual constant instead. You can only do this at the top level of a file or inside an <a href="objects-and-companion-objects.html#对象声明">对象声明</a> (but not inside a class declaration):</p>
+<p>如果有一个真正常量的值，并且该值是在编译期已知的字符串或原生类型（请参见下文），则可以声明一个实际常量。只能在文件的顶层或<a href="objects-and-companion-objects.html#对象声明">对象声明</a>内（但不能在类声明内）执行此操作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">const val x = 2
 </code></pre>
 </div>
 <h2 id="显式指定类型">显式指定类型</h2>
-<p>If you really want to, you can both initialize and specify the type on the same line. This is mostly useful if you're dealing with a class hierarchy (more on that later) and you want the variable type to be a base type of the value's class:</p>
+<p>如果确实需要，可以在同一行上初始化并指定类型。如果要处理类层次结构（稍后会详细介绍），并且希望变量类型是值的类的基类型，那么这是非常有用的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val characters: CharSequence = "abc"
 </code></pre>
 </div>
-<p>In this doc, we'll sometimes specify the type unnecessarily, in order to highlight what type is produced by an expression. (Also, a good IDE will be able to show you the resulting type.)</p>
-<p>For completeness: it is also possible (but discouraged) to split the declaration and the initial assignment, and even to initialize in multiple places based on some condition. You can only read the variable at a point where the compiler can prove that every possible execution path will have initialized it. If you're creating a read-only variable in this way, you must also ensure that every possible execution path assigns to it <em>exactly</em> once.</p>
+<p>在本文档中，有时会不必要地指定类型，以突出显示表达式产生的类型。（此外，良好的 IDE 可以显示结果类型。）</p>
+<p>为了完整起见：也可以（但不鼓励）拆分声明与初始赋值，甚至可以根据某些条件在多个位置进行初始化。只能在编译器可以证明每个可能的执行路径都已将其初始化的点读取变量。如果以这种方式创建只读变量，则还必须确保每个可能的执行路径都 <em>刚好只</em> 赋值一次。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val x: String
 x = 3
 </code></pre>
 </div>
 <h2 id="作用域与命名">作用域与命名</h2>
-<p>A variable only exists inside the <em>scope</em> (curly-brace-enclosed block of code; more on that later) in which it has been declared - so a variable that's declared inside a loop only exists in that loop; you can't check its final value after the loop. Variables can be redeclared inside nested scopes - so if there's a parameter <code>x</code> to a function and you create a loop and declare an <code>x</code> inside that loop, the <code>x</code> inside the loop is a different variable than the parameter <code>x</code>.</p>
-<p>Variable names should use <code>lowerCamelCase</code> instead of <code>snake_case</code>.</p>
-<p>In general, identifiers may consist of letters, digits, and underscores, and may not begin with a digit. However, if you are writing code that e.g. autogenerates JSON based on identifiers and you want the JSON key to be a string that does not conform to these rules or that collides with a keyword, you can enclose it in backticks: <code>`I can't believe this is not an error!`</code> is a valid identifier.</p>
+<p>变量仅存在于其中声明了它的 <em>作用域</em>（花括号括起来的代码块；稍后会详细介绍）内——因此，在循环内声明的变量仅存在于该循环内。无法在循环后检查其最终值。可以在嵌套作用域内重新声明变量——因此，如果函数有一个参数 <code>x</code>，在该函数内创建一个循环并在该循环内声明一个 <code>x</code>，则该循环内的 <code>x</code> 与函数内的 <code>x</code> 不同。</p>
+<p>变量名称应使用 <code>lowerCamelCase</code>（小驼峰命名）而不是 <code>snake_case</code>（蛇形命名）。</p>
+<p>通常，标识符可以由字母、数字与下划线组成，并且不能以数字开头。但是，如果正在编写这样的代码：根据标识符自动生成 JSON，并且希望 JSON 键是不符合这些规则或与关键字冲突的字符串，可以将其括在反引号中：<code>`I can't believe this is not an error!`</code> 是有效的标识符。</p>
 <hr/>
 <table>
 <tbody>
