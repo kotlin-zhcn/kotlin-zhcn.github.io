@@ -1437,7 +1437,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
-<p>默认情况下，kapt 注解处理任务就会<a href="https://guides.gradle.org/using-build-cache/">在 Gradle 中缓存</a>。注解处理器所运行的任意代码可能不一定将输入转换为输出、可能访问与修改 Gradle 未跟踪的文件等。If the annotation processors used in the build cannot be properly cached, it is possible to disable caching for kapt entirely by adding the following lines to the build script, in order to avoid false-positive cache hits for the kapt tasks:</p>
+<p>默认情况下，kapt 注解处理任务就会<a href="https://guides.gradle.org/using-build-cache/">在 Gradle 中缓存</a>。注解处理器所运行的任意代码可能不一定将输入转换为输出、可能访问与修改 Gradle 未跟踪的文件等。如果无法正确缓存在构建中使用的注解处理器，那么可以通过在构建脚本中添加以下几行来完全禁用对 kapt 的缓存，以避免对 kapt 任务造成假阳性的缓存命中：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kapt {
     useBuildCache = false
@@ -1445,41 +1445,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="并行运行-kapt-任务自-1260-起">并行运行 kapt 任务（自 1.2.60 起）</h2>
-<p>To improve the speed of builds that use kapt, you can enable the <a href="https://guides.gradle.org/using-the-worker-api/">Gradle worker API</a> for kapt tasks.
-Using the worker API lets Gradle run independent annotation processing tasks from a single project in parallel, which in some cases significantly decreases the execution time.
-However, running kapt with Gradle worker API enabled can result in increased memory consumption due to parallel execution.</p>
-<p>To use the Gradle worker API for parallel execution of kapt tasks, add this line to your <code>gradle.properties</code> file:</p>
+<p>为了提高使用 kapt 的构建速度，可以为 kapt 任务启用 <a href="https://guides.gradle.org/using-the-worker-api/">Gradle Worker API</a>。
+使用 Worker API，Gradle 可以并行运行来自单个项目的独立注解处理任务，这在某些情况下会大大减少执行时间。
+但是，在启用 Gradle Worker API 的情况下运行 kapt 会由于并行执行而导致内存消耗增加。</p>
+<p>要使用 Gradle Worker API 并行执行 kapt 任务，请将此行添加到 <code>gradle.properties</code> 文件中：</p>
 <div class="sample" mode="xml" theme="idea">
 <pre><code>kapt.use.worker.api=true
 </code></pre>
 </div>
 <h2 id="kapt-的避免编译自-1320-起">kapt 的避免编译（自 1.3.20 起）</h2>
-<p>To improve the times of incremental builds with kapt, it can use the Gradle <a href="https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_compile_avoidance">compile avoidance</a>.
-With compile avoidance enabled, Gradle can skip annotation processing when rebuilding a project. Particularly, annotation processing is skipped when:</p>
+<p>为了减少 kapt 增量构建的时间，可以使用 Gradle <a href="https://docs.gradle.org/current/userguide/java_plugin.html#sec:java_compile_avoidance">避免编译</a>。
+启用避免编译后，Gradle 可以在重新构建项目时跳过注解处理。特别是在以下情况下，将跳过注解处理：</p>
 <ul>
-<li>The project's source files are unchanged.</li>
-<li>The changes in dependencies are <a href="https://en.wikipedia.org/wiki/Application_binary_interface">ABI</a> compatible. For example, the only changes are in method bodies.</li>
+<li>项目的源文件未更改。</li>
+<li>依赖项中的变更是 <a href="https://en.wikipedia.org/wiki/Application_binary_interface">ABI</a> 兼容的。例如，唯一的变化是方法主体。</li>
 </ul>
-<p>However, compile avoidance can't be used for annotation processors discovered in the compile classpath since <em>any changes</em> in them require running the annotation processing tasks.</p>
-<p>To run kapt with compile avoidance:</p>
+<p>但是，避免编译不能用于在编译类路径中发现的注解处理器，因为它们中的任何更改都需要运行注解处理任务。</p>
+<p>要在避免编译的情况下运行 kapt：</p>
 <ul>
-<li>Add the annotation processor dependencies to the <code>kapt*</code> configurations manually as described <a href="#在-gradle-中使用">above</a>.</li>
-<li>Turn off the discovery of annotation processors in the compile classpath by adding this line to your <code>gradle.properties</code> file:</li>
+<li>如<a href="#在-gradle-中使用">在 Gradle 中使用</a>所述，将注解处理器依赖项手动添加到 <code>kapt*</code> 配置。</li>
+<li>通过在 <code>gradle.properties</code> 文件中添加以下行，在编译类路径中关闭对注解处理器的发现：</li>
 </ul>
 <div class="sample" mode="xml" theme="idea">
 <pre><code>kapt.include.compile.classpath=false
 </code></pre>
 </div>
 <h2 id="增量注解处理自-1330-起">增量注解处理（自 1.3.30 起）</h2>
-<p>Starting from version 1.3.30, kapt supports incremental annotation processing as an experimental feature.
-Currently, annotation processing can be incremental only if all annotation processors being used are incremental.</p>
-<p>Incremental annotation processing is enabled by default starting from version 1.3.50.
-To disable incremental annotation processing, add this line to your <code>gradle.properties</code> file:</p>
+<p>从 1.3.30 版开始，kapt 作为实验特性支持增量注解处理。
+当前，仅当所使用的所有注解处理器均为增量式时，注解处理才可以是增量式的。</p>
+<p>从 1.3.50 版开始，默认情况下启用增量注解处理。
+要禁用增量注解处理，请将以下行添加到 <code>gradle.properties</code> 文件中：</p>
 <div class="sample" mode="xml" theme="idea">
 <pre><code>kapt.incremental.apt=false
 </code></pre>
 </div>
-<p>Note that incremental annotation processing requires <a href="using-gradle.html#增量编译">incremental compilation</a> to be enabled as well.</p>
+<p>请注意，增量注解处理也需要启用<a href="using-gradle.html#增量编译">增量编译</a>。</p>
 <h2 id="java-编译器选项">Java 编译器选项</h2>
 <p>Kapt 使用 Java 编译器来运行注解处理器。
 以下是将任意选项传给 javac 的方式：</p>
