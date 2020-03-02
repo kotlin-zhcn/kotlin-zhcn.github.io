@@ -878,16 +878,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <table>
             </table>
             
-<p>The <em>primitive data types</em> are the most fundamental types in Kotlin; all other types are built up of these types and arrays thereof. Their representation is very efficient (both in terms of memory and CPU time), as they map to small byte groups that are directly manipulatable by the CPU.</p>
+<p><em>原生数据类型</em> 是 Kotlin 中最基本的类型。所有其他类型均由这些类型及其数组组成。它们的表现（在内存与 CPU 时间方面都）非常高效，因为它们映射到可由 CPU 直接操作的小字节组。</p>
 <h2 id="整型">整型</h2>
-<p>Integer types in Kotlin have a <em>limited size</em>, as opposed to the arbitrarily large integers in Python. The limit depends on the type, which decides how many bits the number occupies in memory:</p>
+<p>与 Python 中任意大的整数相反，Kotlin 中的整数类型具有 <em>大小限制</em>。该限制取决于类型，而类型决定了该数字在内存中占用多少比特：</p>
 <table>
 <thead>
 <tr>
-<th>Type</th>
-<th>Bits</th>
-<th>Min value</th>
-<th>Max value</th>
+<th>类型</th>
+<th>比特数</th>
+<th>最小值</th>
+<th>最大值</th>
 </tr>
 </thead>
 <tbody>
@@ -917,8 +917,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tr>
 </tbody>
 </table>
-<p>Bytes are -128 through 127 due to Kotlin inheriting a bad design decision from Java. In order to get a traditional byte value between 0 and 255, keep the value as-is if it is positive, and add 256 if it is negative (so -128 is really 128, and -1 is really 255). See the section on <a href="extension-functionsproperties.html">extension functions</a> for a neat workaround for this.</p>
-<p>An integer literal has the type <code>Int</code> if its value fits in an <code>Int</code>, or <code>Long</code> otherwise. <code>Long</code> literals should be suffixed by <code>L</code> for clarity, which will also let you make a <code>Long</code> with a "small" value. There are no literal suffixes for <code>Short</code> or <code>Byte</code>, so such values need an explicit type declaration or the use of an explicit conversion function.</p>
+<p>由于 Kotlin 继承了 Java 的不良设计决策，因此字节数为 -128 至 127。为了获得介于 0 与 255 之间的传统字节值，如果该值是正数，则将其保持原样；如果它是负数，则将其加上 256（因此，-128 实际上是 128，而 -1 是真正的 255）。请参见<a href="extension-functionsproperties.html">扩展函数</a>部分，以获取解决方案。</p>
+<p>如果整数字面的值适合 <code>Int</code>，则其类型为 <code>Int</code>，否则为 <code>Long</code>。为清晰起见，<code>Long</code> 字面量应加 <code>L</code> 后缀，这也使得可以将“小”值设为 <code>Long</code>。<code>Short</code> 或 <code>Byte</code> 没有字面后缀，因此此类值需要显式类型声明或使用显式转换函数。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val anInt = 3
 val anotherInt = 2147483647
@@ -931,16 +931,16 @@ val aByte: Byte = 65
 val anotherByte = -32.toByte()
 </code></pre>
 </div>
-<p>Beware that dividing an integer by an integer produces an integer (like in Python 2, but unlike Python 3). If you want a floating-point result, at least one of the operands needs to be a floating-point number (and recall that like in most languages, floating-point operations are generally imprecise):</p>
+<p>请注意，将整数除以整数会产生整数（类似于 Python 2，但与 Python 3不同）。如果需要浮点结果，则至少一个操作数需要为浮点数（并且请记住，就像在大多数语言中一样，浮点运算通常是不精确的）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">println(7 / 3)            // Prints 2
-println(7 / 3.0)          // Prints 2.3333333333333335
+<pre><code class="language-kotlin">println(7 / 3)            // 输出 2
+println(7 / 3.0)          // 输出 2.3333333333333335
 val x = 3
-println(7 / x)            // Prints 2
-println(7 / x.toDouble()) // Prints 2.3333333333333335
+println(7 / x)            // 输出 2
+println(7 / x.toDouble()) // 输出 2.3333333333333335
 </code></pre>
 </div>
-<p>Whenever you use an arithmetic operator on two integers of the same type (or when you use a unary operator like negation), <em>there is no automatic "upgrading" if the result doesn't fit in the type of the operands!</em> Try this:</p>
+<p>每当对相同类型的两个整数使用算术运算符时（或使用例如 <code>-</code> 之类的一元运算符时），<em>如果结果不适合操作数的类型，则不会自动进行“升级”！</em> 试试这个：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val mostPositive = 2147483647
 val mostNegative = -2147483648
@@ -948,42 +948,42 @@ println(mostPositive + 1)
 println(-mostNegative)
 </code></pre>
 </div>
-<p>Both of these print <code>-2147483648</code>, because only the lower 32 bits of the "real" result are stored.</p>
-<p>When you use an arithmetic operator on two integers of different types, the result is "upgraded" to the widest type. Note that the result might still overflow.</p>
-<p>In short: <em>think carefully through your declarations of integers, and be absolutely certain that the value will never ever need to be larger than the limits of the type!</em> If you need an integer of unlimited size, use the non-primitive type <code>BigInteger</code>.</p>
+<p>这两个命令都输出 <code>-2147483648</code>，因为仅存储了“真实”结果的低 32 比特。</p>
+<p>当对两个不同类型的整数使用算术运算符时，结果将“升级”为最大类型。请注意，结果仍有可能溢出。</p>
+<p>简而言之：<em>请仔细考虑整数的声明，并绝对肯定该值永远不会大于该类型的限制！</em> 如果需要无限制大小的整数，请使用非原始类型 <code>BigInteger</code>。</p>
 <h2 id="浮点数与其他类型">浮点数与其他类型</h2>
 <table>
 <thead>
 <tr>
-<th>Type</th>
-<th>Bits</th>
-<th>Notes</th>
+<th>类型</th>
+<th>比特数</th>
+<th>注释</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>Double</code></td>
 <td>64</td>
-<td>16-17 significant digits (same as <code>float</code> in Python)</td>
+<td>16~17 位有效数字（与 Python 中的 <code>float</code> 相同）</td>
 </tr>
 <tr>
 <td><code>Float</code></td>
 <td>32</td>
-<td>6-7 significant digits</td>
+<td>6~7 位有效数字</td>
 </tr>
 <tr>
 <td><code>Char</code></td>
 <td>16</td>
-<td>UTF-16 code unit (see the section on <a href="strings.html">字符串</a> - in most cases, this is one Unicode character, but it might be just one half of a Unicode character)</td>
+<td>UTF-16 代码单元（请参阅<a href="strings.html">字符串</a>——在大多数情况下，这是一个 Unicode 字符，但也可能只是 Unicode 字符的一半）</td>
 </tr>
 <tr>
 <td><code>Boolean</code></td>
 <td>8</td>
-<td><code>true</code> or <code>false</code></td>
+<td><code>true</code> 或 <code>false</code></td>
 </tr>
 </tbody>
 </table>
-<p>Floating-point numbers act similarly to in Python, but they come in two types, depending on how many digits you need. If you need larger precision, or to work with monetary amounts (or other situations where you must have exact results), use the non-primitive type <code>BigDecimal</code>.</p>
+<p>浮点数的作用与 Python 中的相似，但根据所需的位数，分为两种类型。如果需要更高的精度，或者需要处理货币金额（或必须具有精确结果的其他情况），请使用非原始类型 <code>BigDecimal</code>。</p>
 <hr/>
 <table>
 <tbody>
@@ -994,7 +994,7 @@ println(-mostNegative)
 </tbody>
 </table>
 <hr/>
-<p><em>本资料英文原文的作者是 <a href="https://eldhuset.net/">Aasmund Eldhuset</a>；其所有权属于<a href="https://www.khanacademy.org/">可汗学院（Khan Academy）</a>，授权许可为 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US（署名-非商业-相同方式共享）</a>。请注意，这并不是可汗学院官方产品的一部分。中文版由<a href="https://hltj.me/">灰蓝天际</a>译，遵循相同授权方式。</em></p>
+<p><em>本资料英文原文的作者是 <a href="https://eldhuset.net/">Aasmund Eldhuset</a>；其所有权属于<a href="https://www.khanacademy.org/">可汗学院（Khan Academy）</a>，授权许可为 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/us/">CC BY-NC-SA 3.0 US（署名-非商业-相同方式共享）</a>。请注意，这并不是可汗学院官方产品的一部分。中文版由<a href="https://hltj.me/">灰蓝天际</a>、<a href="https://github.com/Yue-plus">Yue-plus</a> 译，遵循相同授权方式。</em></p>
 
         </article>
     </div>
