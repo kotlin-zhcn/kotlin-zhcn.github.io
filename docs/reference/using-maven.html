@@ -914,11 +914,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -1574,42 +1574,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>这个独立的 jar 文件可以直接传给 JRE 来运行应用程序：</p>
 <pre><code class="code _highlighted" data-lang="text/x-sh">java -jar target/mymodule-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 </code></pre>
-<h2 id="面向-javascript">面向 JavaScript</h2>
-<p>为了编译 JavaScript 代码，需要使用 <code>js</code> 和 <code>test-js</code> 目标来执行 <code>compile</code>：</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
-<pre><code class="language-xml">&lt;plugin&gt;
-    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
-    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;${kotlin.version}&lt;/version&gt;
-    &lt;executions&gt;
-        &lt;execution&gt;
-            &lt;id&gt;compile&lt;/id&gt;
-            &lt;phase&gt;compile&lt;/phase&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;js&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-        &lt;execution&gt;
-            &lt;id&gt;test-compile&lt;/id&gt;
-            &lt;phase&gt;test-compile&lt;/phase&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;test-js&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-    &lt;/executions&gt;
-&lt;/plugin&gt;
-</code></pre>
-</div>
-<p>你还需要更改标准库依赖：</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
-<pre><code class="language-xml">&lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
-&lt;artifactId&gt;kotlin-stdlib-js&lt;/artifactId&gt;
-&lt;version&gt;${kotlin.version}&lt;/version&gt;
-</code></pre>
-</div>
-<p>对于单元测试支持，你还需要添加对 <code>kotlin-test-js</code> 构件的依赖。</p>
-<p>更多信息请参阅<a href="https://www.kotlincn.net/docs/tutorials/javascript/getting-started-maven/getting-started-with-maven.html">以 Maven 入门使用 Kotlin 与 JavaScript</a>
-教程。</p>
 <h2 id="指定编译器选项">指定编译器选项</h2>
 <p>可以将额外的编译器选项与参数指定为 Maven 插件节点的 <code>&lt;configuration&gt;</code> 元素下的标签
 ：</p>

@@ -912,11 +912,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -1745,7 +1745,7 @@ fun main() {
 </div>
 <p>将接收者作为返回值，你可以轻松地将 <code>apply</code> 包含到调用链中以进行更复杂的处理。</p>
 <h3 id="also"><code>also</code></h3>
-<p><strong>上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong>返回值</strong>是上下文对面本身。</p>
+<p><strong>上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong>返回值</strong>是上下文对象本身。</p>
 <p><code>also</code> 对于执行一些将上下文对象作为参数的操作很有用。 对于不会改变上下文对象的操作，可使用 <code>also</code>，例如记录或打印调试信息。 通常，你可以在不破坏程序逻辑的情况下从调用链中删除 <code>also</code> 的调用。</p>
 <p>当你在代码中看到 <code>also</code> 时，可以将其理解为“<em>并且执行以下操作</em>”。</p>
 <div class="sample" theme="idea">

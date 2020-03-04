@@ -914,11 +914,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -1390,47 +1390,55 @@ require.js 库所使用。</li>
 <li>统一模块定义（UMD，Unified Module Definitions），它与 <em>AMD</em> 和 <em>CommonJS</em> 兼容，
 并且当在运行时 <em>AMD</em> 和 <em>CommonJS</em> 都不可用时，作为“plain”使用。</li>
 </ol>
-<h2 id="选择目标模块系统">选择目标模块系统</h2>
-<p>选择目标模块系统的方式取决于你的构建环境：</p>
-<h3 id="在-intellij-idea-中">在 IntelliJ IDEA 中</h3>
-<p>设置每个模块：
-打开“File → Project Structure…”，在“Modules”中找到你的模块并选择其下的“Kotlin”facet。在
-“Module kind”字段中选择合适的模块系统。</p>
-<p>为整个项目设置：
-打开“File → Settings”，选择“Build, Execution, Deployment”→“Compiler”→“Kotlin compiler”。 在
-“Module kind”字段中选择合适的模块系统。</p>
-<h3 id="在-maven-中">在 Maven 中</h3>
-<p>要选择通过 Maven 编译时的模块系统，你应该设置 <code>moduleKind</code> 配置属性，即你的
-<code>pom.xml</code> 应该看起来像这样：</p>
-<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
-<pre><code class="language-xml">&lt;plugin&gt;
-    &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
-    &lt;artifactId&gt;kotlin-maven-plugin&lt;/artifactId&gt;
-    &lt;version&gt;${kotlin.version}&lt;/version&gt;
-    &lt;executions&gt;
-        &lt;execution&gt;
-            &lt;id&gt;compile&lt;/id&gt;
-            &lt;goals&gt;
-                &lt;goal&gt;js&lt;/goal&gt;
-            &lt;/goals&gt;
-        &lt;/execution&gt;
-    &lt;/executions&gt;
-    &lt;!-- 插入这些行 --&gt;
-    &lt;configuration&gt;
-        &lt;moduleKind&gt;commonjs&lt;/moduleKind&gt;
-    &lt;/configuration&gt;
-    &lt;!-- 插入文本结束 --&gt;
-&lt;/plugin&gt;
+<h2 id="targeting-the-browser">Targeting the browser</h2>
+<p>If you're targeting the browser, you can specify the desired module type in the <code>webpackTask</code> configuration block:</p>
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackOutput.Target.COMMONJS
+
+kotlin {
+    target {
+        browser {
+            webpackTask {
+                output.libraryTarget = COMMONJS 
+                //output.libraryTarget = "commonjs" // alternative
+             }
+        }
+    }
+}
+
 </code></pre>
 </div>
-<p>可用值包括：<code>plain</code>、 <code>amd</code>、 <code>commonjs</code>、 <code>umd</code>。</p>
-<h3 id="在-gradle-中">在 Gradle 中</h3>
-<p>要选择通过 Gradle 编译时的模块系统，你应该设置 <code>moduleKind</code> 属性，即</p>
-<div class="sample" mode="groovy" theme="idea">
-<pre><code class="language-groovy">compileKotlin2Js.kotlinOptions.moduleKind = "commonjs"
+<p>This way, you'll get a single JS file with all dependencies included.</p>
+<h2 id="creating-libraries-and-nodejs-files">Creating libraries and node.js files</h2>
+<p>If you're creating a JS library or a node.js file, define the module kind as described below.</p>
+<h3 id="choosing-the-target-module-system">Choosing the target module system</h3>
+<p>To select module kind, set the <code>moduleKind</code> compiler option in the Gradle build script.</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">compileKotlinJs.kotlinOptions.moduleKind = "commonjs"
+
 </code></pre>
 </div>
-<p>可用的值类似于 Maven。</p>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">tasks.named("compileKotlinJs") {
+    this as KotlinJsCompile
+    kotlinOptions.moduleKind = "commonjs"
+}
+</code></pre>
+</div>
+</div>
+<p>Available values are: <code>plain</code>, <code>amd</code>, <code>commonjs</code>, <code>umd</code>.</p>
+<p>In Kotlin Gradle DSL, there is also a shortcut for setting the CommonJS module kind:</p>
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code>kotlin {
+    target {
+         useCommonJs()
+    }
+}
+</code></pre>
+</div>
 <h2 id="jsmodule-注解"><code>@JsModule</code> 注解</h2>
 <p>要告诉 Kotlin 一个 <code>external</code> 类、 包、 函数或者属性是一个 JavaScript 模块，你可以使用 <code>@JsModule</code>
 注解。考虑你有以下 CommonJS 模块叫“hello”：</p>
@@ -1539,7 +1547,7 @@ external fun sayHello(name: String)
 </div>
 <h3 id="备注">备注</h3>
 <p>Kotlin 以 <code>kotlin.js</code> 标准库作为单个文件分发，该文件本身被编译为 UMD 模块，因此<!--
--->你可以使用上述任何模块系统。也可以在 NPM 上使用 <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> 包</a></p>
+-->你可以使用上述任何模块系统。在 NPM 上作为 <a href="https://www.npmjs.com/package/kotlin"><code>kotlin</code> 包</a> 提供</p>
 
         </article>
     </div>

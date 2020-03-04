@@ -914,11 +914,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -1377,69 +1377,73 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 id="javascript-dce">JavaScript DCE</h1>
-<p>自版本 1.1.4 起，Kotlin/JS 包含了一个无用代码消除（DCE，dead code elimination）工具。
-该工具允许在生成的 JS 中删除未使用的属性、函数和类。
-出现未使用的声明有这几种可能情况：</p>
+<h1 id="javascript-dead-code-elimination-dce">JavaScript Dead Code Elimination (DCE)</h1>
+<p>The Kotlin/JS Gradle plugin includes a <a href="https://wikipedia.org/wiki/Dead_code_elimination"><em>dead code elimination</em></a> (<em>DCE</em>) tool.
+Dead code elimination is often also called <em>tree shaking</em>. It reduces the size or the resulting JavaScript code by
+removing unused properties, functions, and classes.</p>
+<p>Unused declarations can appear in cases like:</p>
 <ul>
-<li>函数可以内联并且从未直接调用（除少数情况之外，这总会出现）。</li>
-<li>你所使用的共享库提供了比实际需要更多的功能/函数。
-例如，标准库（<code>kotlin.js</code>）包含用于操作列表、数组、字符序列、
-DOM 适配器等的函数/功能，这些一起提供了大约 1.3 mb 的文件。一个简单的“Hello, world”应用程序只需要<!--
--->控制台程序，整个文件只有几千字节。</li>
+<li>A function is inlined and never gets called directly (which happens always except for few situations).</li>
+<li>A module uses a shared library. Its parts that you don't use still get into the resulting bundle without DCE.
+For example, the Kotlin standard library contains functions for manipulating lists, arrays, char sequences,
+adapters for DOM, and so on. Altogether, they comprise about 1.3 mb file. A simple "Hello, world" application only requires
+console routines, which is only few kilobytes for the entire file.</li>
 </ul>
-<p>无用代码消除通常也称为“tree shaking”。</p>
-<h2 id="如何使用">如何使用</h2>
-<p>DCE 工具目前对 Gradle 可用。</p>
-<p>要激活 DCE 工具，请将以下这行添加到 <code>build.gradle</code> 中：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-groovy">apply plugin: 'kotlin-dce-js'
+<p>Kotlin/JS Gradle plugin handles DCE automatically when you build a production bundle, for example, with <code>browserProductionWebpack</code> task.
+The development bundling tasks don't include DCE.</p>
+<h2 id="excluding-declarations-from-dce">Excluding declarations from DCE</h2>
+<p>Sometimes you may need to keep a function or a class in the resulting JavaScript code even if you don't use it in your module,
+for example, if you're going to use it in the client JavaScript code.</p>
+<p>To keep certain declarations from elimination, add the <code>dceTask</code> block into the Gradle build script and
+list the declarations as the arguments of the <code>keep</code> function. An argument must be the declaration's fully qualified name
+with the module name as a prefix: <code>moduleName.dot.separated.package.name.declarationName</code></p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin.target.browser {
+    dceTask {
+        keep 'myKotlinJSModule.org.example.getName', 'myKotlinJSModule.org.example.User'
+    }
+}
 </code></pre>
 </div>
-<p>请注意，如果你正在使用多项目构建，那么应该将插件应用在作为应用程序入口点的主项目。</p>
-<p>默认情况下，可以在路径 <code>$BUILD_DIR/min/</code> 中找到生成的一组 JavaScript文件（你的应用程序与所有依赖关系）<!--
--->，其中 <code>$BUILD_DIR</code> 是生成 JavaScript 的路径<!--
--->（通常是 <code>build/classes/main</code>）。</p>
-<h3 id="配置">配置</h3>
-<p>要在主源集上配置 DCE，可以使用 <code>runDceKotlinJs</code> 任务<!--
--->（以及用于其他源集对应的 <code>runDce&lt;sourceSetName&gt;KotlinJs</code>）。</p>
-<p>有时你直接在 JavaScript 中使用一个 Kotlin 声明，而被 DCE 给去除掉了。
-你可能想保留这个声明。 为此，你可以在 <code>build.gradle</code> 中使用以下语法：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-groovy">runDceKotlinJs.keep "declarationToKeep"[, "declarationToKeep", ...]
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin.target.browser {
+    dceTask {
+        keep("myKotlinJSModule.org.example.getName", "myKotlinJSModule.org.example.User" )
+    }
+}
 </code></pre>
 </div>
-<p>其中 <code>declarationToKeep</code> 具有以下语法：</p>
-<pre><code>moduleName.dot.separated.package.name.declarationName
-</code></pre>
-<p>例如，考虑一个模块命名为 <code>kotlin-js-example</code>，它在 <code>org.jetbrains.kotlin.examples</code> 包中包含一个名为 <code>toKeep</code>
-的函数。使用以下这行：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-groovy">runDceKotlinJs.keep "kotlin-js-example_main.org.jetbrains.kotlin.examples.toKeep"
+</div>
+<p>Note that the names of functions with parameters are <a href="js-to-kotlin-interop.html#jsname-annotation">mangled</a>
+in the generated JavaScript code. To keep such functions from elimination, use the mangled names in the <code>keep</code> arguments.</p>
+<h2 id="known-issue-dce-and-ktor">Known issue: DCE and ktor</h2>
+<p>In Kotlin 1.3.61, there is a known <a href="https://github.com/ktorio/ktor/issues/1339">issue</a> 
+of using <a href="https://ktor.io/">ktor</a> in Kotlin/JS projects. In some cases, you may get a type error like <code>&lt;something&gt; is not a function</code> 
+that comes from the <code>io.ktor:ktor-client-js:1.3.0</code> or <code>io.ktor:ktor-client-core:1.3.0</code> artifacts.
+To avoid this issue, add the following DCE configuration:</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin.target.browser {
+    dceTask {
+        keep 'ktor-ktor-io.\$\$importsForInline\$\$.ktor-ktor-io.io.ktor.utils.io'
+    }
+}
 </code></pre>
 </div>
-<p>请注意，如果函数具有参数，它的名称会被修饰，因此在 keep 指令中应该使用修饰后的名称。</p>
-<h3 id="开发模式">开发模式</h3>
-<p>运行 DCE 在每次构建时会额外花费一些时间，而且输出大小在开发过程中无关紧要。可以通过 DCE 任务的 <code>dceOptions.devMode</code> 标志使 DCE 工具跳过实际的无效代码消除从而缩短开发构建时间。</p>
-<p>例如，如需根据自定义条件禁用 <code>main</code> 源集的 DCE 并且总是禁用 <code>test</code> 代码的 DCE，请将下述几行添加到构建脚本中：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-groovy">runDceKotlinJs.dceOptions.devMode = isDevMode
-runDceTestKotlinJs.dceOptions.devMode = true 
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin.target.browser {
+    dceTask {
+        keep("ktor-ktor-io.\$\$importsForInline\$\$.ktor-ktor-io.io.ktor.utils.io")
+    }
+}
 </code></pre>
 </div>
-<h1 id="示例">示例</h1>
-<p>显示如何将 Kotlin 与 DCE 及 webpack 集成并得到一个小的捆绑的完整示例，
-可以在<a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/js-dce">这里</a>找到。</p>
-<h2 id="注意事项">注意事项</h2>
-<ul>
-<li>对于 1.3.x 版本，DCE 工具是一个实验性的特性。这并不意味着我们要删除它，或者它不能用于生产。这意味着我们可能更改配置参数的名称、默认设置等等。</li>
-<li>目前，如果你的项目是共享库，那么不应使用 DCE 工具。
-它只适用于开发应用程序（可能使用共享库）时。
-原因是：DCE 不知道库的哪些部分会被用户的应用程序所使用。</li>
-<li>DCE 不会通过删除不必要的空格及缩短标识符来执行代码压缩（丑化）。
-对于此目的，你应该使用现有的工具，如 <a href="https://github.com/mishoo/UglifyJS2">UglifyJS</a><!--
--->或者 <a href="https://developers.google.com/closure/compiler/">Google Closure Compiler</a>。</li>
-</ul>
+</div>
 
         </article>
     </div>

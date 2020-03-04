@@ -912,11 +912,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -3133,20 +3133,20 @@ binaries.findExecutable("foo", DEBUG)
 </code></pre>
 </div>
 </div>
-<h4 id="exporting-dependencies-in-frameworks">Exporting dependencies in frameworks</h4>
-<p>When building an Objective-C framework, it is often necessary to pack not just the classes of the current project,
-but also the classes of some of its dependencies. The Binaries DSL allows one to specify which dependencies will be exported
-in the framework using the <code>export</code> method.  Note that only API dependencies of a corresponding source set can be exported.</p>
+<h4 id="exporting-dependencies-to-binaries">Exporting dependencies to binaries</h4>
+<p>When building an Objective-C framework or a native library (shared or static), it is often necessary to pack not just the
+classes of the current project, but also the classes of some of its dependencies. The Binaries DSL allows one to specify
+which dependencies will be exported to a binary using the <code>export</code> method. Note that only API dependencies of a corresponding source set can be exported.</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     sourceSets {
         macosMain.dependencies {
-            // Will be exported in the framework.
+            // Will be exported.
             api project(':dependency')
             api 'org.example:exported-library:1.0'
 
-            // Will not be exported in the framework.
+            // Will not be exported.
             api 'org.example:not-exported-library:1.0'
         }
     }
@@ -3155,6 +3155,11 @@ in the framework using the <code>export</code> method.  Note that only API depen
         framework {
             export project(':dependency')
             export 'org.example:exported-library:1.0'
+        }
+
+        sharedLib {
+            // It's possible to export different sets of dependencies to different binaries.
+            export project(':dependency')
         }
     }
 }
@@ -3166,11 +3171,11 @@ in the framework using the <code>export</code> method.  Note that only API depen
 <pre><code class="language-kotlin">kotlin {
     sourceSets {
         macosMain.dependencies {
-            // Will be exported in the framework.
+            // Will be exported.
             api(project(":dependency"))
             api("org.example:exported-library:1.0")
 
-            // Will not be exported in the framework.
+            // Will not be exported.
             api("org.example:not-exported-library:1.0")
         }
     }
@@ -3179,6 +3184,11 @@ in the framework using the <code>export</code> method.  Note that only API depen
         framework {
             export(project(":dependency"))
             export("org.example:exported-library:1.0")
+        }
+
+        sharedLib {
+            // It's possible to export different sets of dependencies to different binaries.
+            export(project(':dependency'))
         }
     }
 }

@@ -914,11 +914,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/experimental.html"
+            <a href="/docs/reference/opt-in-requirements.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">实验性 API 标记</span>
+                <span class="text">Opt-in Requirements</span>
             </a>
     </div>
 
@@ -1410,6 +1410,9 @@ For details, see <a href="using-maven.html#指定编译器选项">Using Maven</a
 <p class="details-group">Turn any warnings into a compilation error.</p>
 <h3 id="-verbose"><code>-verbose</code></h3>
 <p class="details-group">Enable verbose logging output which includes details of the compilation process.</p>
+<h3 id="-script"><code>-script</code></h3>
+<p class="details-group">Evaluate a Kotlin script file. When called with this option, the compiler executes the first Kotlin script (<code>*.kts</code>) 
+file among the given arguments.</p>
 <h3 id="-help--h"><code>-help</code> (<code>-h</code>)</h3>
 <p class="details-group">Display usage information and exit. Only standard options are shown.
 To show advanced options, use <code>-X</code>.</p>
@@ -1471,7 +1474,7 @@ environment.</p>
 <h3 id="-jdk-home-path"><code>-jdk-home &lt;path&gt;</code></h3>
 <p class="details-group">Use a custom JDK home directory to include into the classpath if it differs from the default <code>JAVA_HOME</code>.</p>
 <h3 id="-jvm-target-version"><code>-jvm-target &lt;version&gt;</code></h3>
-<p class="details-group">Specify the target version of the generated JVM bytecode. Possible values are <code>1.6</code>, <code>1.8</code>, <code>9</code>, <code>10</code>, <code>11</code>, and <code>12</code>.
+<p class="details-group">Specify the target version of the generated JVM bytecode. Possible values are <code>1.6</code>, <code>1.8</code>, <code>9</code>, <code>10</code>, <code>11</code>, <code>12</code>, and <code>13</code>.
 The default value is <code>1.6</code>.</p>
 <h3 id="-java-parameters"><code>-java-parameters</code></h3>
 <p class="details-group">Generate metadata for Java 1.8 reflection on method parameters.</p>
@@ -1484,9 +1487,6 @@ The default value is <code>1.6</code>.</p>
 <h3 id="-no-stdlib"><code>-no-stdlib</code></h3>
 <p class="details-group">Don't automatically include the Kotlin/JVM stdlib (<code>kotlin-stdlib.jar</code>) and Kotlin reflection (<code>kotlin-reflect.jar</code>)
 into the classpath.</p>
-<h3 id="-script"><code>-script</code></h3>
-<p class="details-group">Evaluate a Kotlin script file. When called with this option, the compiler executes the first Kotlin script (<code>*.kts</code>) 
-file among the given arguments.</p>
 <h3 id="-script-templates-classnames"><code>-script-templates &lt;classnames[,]&gt;</code></h3>
 <p class="details-group">Script definition template classes. Use fully qualified class names and separate them with commas (<strong>,</strong>).</p>
 <h2 id="kotlinjs-编译器选项">Kotlin/JS 编译器选项</h2>
