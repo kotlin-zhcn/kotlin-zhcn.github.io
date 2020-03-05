@@ -1392,7 +1392,7 @@ require.js 库所使用。</li>
 <li>统一模块定义（UMD，Unified Module Definitions），它与 <em>AMD</em> 和 <em>CommonJS</em> 兼容，
 并且当在运行时 <em>AMD</em> 和 <em>CommonJS</em> 都不可用时，作为“plain”使用。</li>
 </ol>
-<h2 id="targeting-the-browser">Targeting the browser</h2>
+<h2 id="面向浏览器">面向浏览器</h2>
 <p>If you're targeting the browser, you can specify the desired module type in the <code>webpackTask</code> configuration block:</p>
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackOutput.Target.COMMONJS
@@ -1411,9 +1411,9 @@ kotlin {
 </code></pre>
 </div>
 <p>This way, you'll get a single JS file with all dependencies included.</p>
-<h2 id="creating-libraries-and-nodejs-files">Creating libraries and node.js files</h2>
+<h2 id="创建库与-nodejs-文件">创建库与 node.js 文件</h2>
 <p>If you're creating a JS library or a node.js file, define the module kind as described below.</p>
-<h3 id="choosing-the-target-module-system">Choosing the target module system</h3>
+<h3 id="选择目标模块系统">选择目标模块系统</h3>
 <p>To select module kind, set the <code>moduleKind</code> compiler option in the Gradle build script.</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">

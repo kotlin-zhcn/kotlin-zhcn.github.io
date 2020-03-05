@@ -274,7 +274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Setting up a project</span>
+                <span class="text">搭建一个项目</span>
             </a>
     </div>
 
@@ -283,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Running Kotlin/JS</span>
+                <span class="text">运行 Kotlin/JS</span>
             </a>
     </div>
 
@@ -292,7 +292,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Development Server and Continuous Compilation</span>
+                <span class="text">开发服务器与持续编译</span>
             </a>
     </div>
 
@@ -301,7 +301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Using packages from npm</span>
+                <span class="text">使用来自 npm 的包</span>
             </a>
     </div>
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Running tests</span>
+                <span class="text">运行测试</span>
             </a>
     </div>
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Browser API and the DOM</span>
+                <span class="text">浏览器 API 与 DOM</span>
             </a>
     </div>
 
@@ -337,7 +337,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Typesafe HTML DSL</span>
+                <span class="text">类型安全的 HTML DSL</span>
             </a>
     </div>
 
@@ -889,30 +889,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <table>
             </table>
             
-<p>Arrays in Kotlin have a constant length, so one normally uses lists, which are similar to the ones in Python. What's called a <em>dict</em> in Python is called a <em>map</em> in Kotlin (not to be confused with the function <code>map()</code>). <code>List</code>, <code>Map</code>, and <code>Set</code> are all <em>interfaces</em> which are implemented by many different classes. In most situations, a standard array-backed list or hash-based map or set will do, and you can easily make those like this:</p>
+<p>Kotlin 中的数组具有恒定的长度，因此通常使用列表，这些列表类似于 Python 中的列表。在 Python 中称为 <em>字典</em> 而在 Kotlin 中称为 <em>map</em>（不要与 <code>map()</code> 函数混淆）。<code>List</code>、<code>Map</code> 与 <code>Set</code> 都是由许多不同的类实现的 <em>接口</em>。在大多数情况下，将使用标准的基于数组的列表或基于哈希的 Map 或 Set，并且可以轻松地进行如下操作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val strings = listOf("Anne", "Karen", "Peter") // List&lt;String&gt;
 val map = mapOf("a" to 1, "b" to 2, "c" to 3)  // Map&lt;String, Int&gt;
 val set = setOf("a", "b", "c")                 // Set&lt;String&gt;
 </code></pre>
 </div>
-<p>(Note that <code>to</code> is an <a href="classes.html#中缀函数">中缀函数</a> that creates a <code>Pair</code> containing a key and a value, from which the map is constructed.) The resulting collections are immutable - you can neither change their size nor replace their elements - however, the elements themselves may still be mutable objects. For mutable collections, do this:</p>
+<p>（请注意，<code>to</code> 是一个<a href="classes.html#中缀函数">中缀函数</a>，它创建一个包含键和值的 <code>Pair</code>，并以此构建 Map。）结果集合是不可变的——既不能更改其大小，也不能替换其元素——但是，元素本身仍可能是可变对象。对于可变集合，请执行以下操作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val strings = mutableListOf("Anne", "Karen", "Peter")
 val map = mutableMapOf("a" to 1, "b" to 2, "c" to 3)
 val set = mutableSetOf("a", "b", "c")
 </code></pre>
 </div>
-<p>You can get the size/length of a collection <code>c</code> with <code>c.size</code> (except for string objects, where you for legacy Java reasons must use <code>s.length</code> instead).</p>
-<p>Unfortunately, if you want an empty collection, you need to either declare the resulting collection type explicitly, or supply the element type(s) to the function that constructs the collection:</p>
+<p>可以使用 <code>c.size</code> 获得集合 <code>c</code> 的大小/长度（字符串对象除外，由于 Java 的遗留问题，必须使用 <code>s.length</code> 代替）。</p>
+<p>不幸的是，如果想要一个空集合，那么需要显式声明结果集合类型，或者将元素类型提供给构造该集合的函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val noInts: List&lt;Int&gt; = listOf()
 val noStrings = listOf&lt;String&gt;()
 val emptyMap = mapOf&lt;String, Int&gt;()
 </code></pre>
 </div>
-<p>The types inside the angle brackets are called <em>generic type parameters</em>, which we will cover later. In short, it's a useful technique to make a class that is tied to another class (such as a container class, which is tied to its element class) applicable to many different classes.</p>
-<p>If you really really need a mixed-type collection, you can use the element type <code>Any</code> - but you'll need typecasting to get the elements back to their proper type again, so if what you want is a multiple-value return from a function, please use the per-element-typed <code>Pair</code> or <code>Triple</code> instead. If you need four or more elements, consider making a <a href="classes.html#数据类">数据类</a> for the return type instead (which you should ideally do for two or three elements as well, especially if it's a public function, since it gives you proper names for the elements) - it's very easy and usually a oneliner.</p>
+<p>尖括号内的类型称为 <em>泛型参数</em>，将在后面介绍。简而言之，这是使一个类与另一个类绑定的有用技术（例如，将容器类与其元素类绑定）且适用于许多不同的类。</p>
+<p>如果确实需要混合类型的集合，那么可以使用元素类型 <code>Any</code>——但是需要再次进行类型转换以使元素回到其正确的类型，因此，如果想要从函数返回多个值，请改用按元素类型的 <code>Pair</code> 或 <code>Triple</code>。如果需要四个或更多元素，请考虑为返回类型制作一个<a href="classes.html#数据类">数据类</a>（理想情况下，也应该对两个或三个元素进行此处理，尤其是公有函数，因为它会为元素提供恰当的名称）——这很容易，通常一行搞定。</p>
 <hr/>
 <table>
 <tbody>

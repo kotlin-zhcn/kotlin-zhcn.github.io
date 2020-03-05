@@ -274,7 +274,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Setting up a project</span>
+                <span class="text">搭建一个项目</span>
             </a>
     </div>
 
@@ -283,7 +283,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Running Kotlin/JS</span>
+                <span class="text">运行 Kotlin/JS</span>
             </a>
     </div>
 
@@ -292,7 +292,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Development Server and Continuous Compilation</span>
+                <span class="text">开发服务器与持续编译</span>
             </a>
     </div>
 
@@ -301,7 +301,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Using packages from npm</span>
+                <span class="text">使用来自 npm 的包</span>
             </a>
     </div>
 
@@ -319,7 +319,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Running tests</span>
+                <span class="text">运行测试</span>
             </a>
     </div>
 
@@ -328,7 +328,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Browser API and the DOM</span>
+                <span class="text">浏览器 API 与 DOM</span>
             </a>
     </div>
 
@@ -337,7 +337,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Typesafe HTML DSL</span>
+                <span class="text">类型安全的 HTML DSL</span>
             </a>
     </div>
 
@@ -917,9 +917,9 @@ if (age &lt; 10) {
 </div>
 <p>使用 if/else 作为表达式时，<code>else</code> 部分是必需的（但也可以有 <code>else if</code> 部分）。如果最后要求值的主体包含多行，则返回最后一行的结果作为 <code>if</code>/<code>else</code> 的结果。</p>
 <h2 id="比较">比较</h2>
-<p>结构相等性比较是使用 <code>==</code> 或 <code>!=</code> 进行的，但取决于每个类来定义含义是什么，就像在 Python 中一样，可以通过<a href="inheritance.html#覆盖">覆盖</a> <a href="classes.html#继承的内置函数"><code>equals()</code></a>（将在左侧操作数上调用，以右侧操作数为参数）与 <code>hashCode()</code>。大多数内置集合类型对这些运算符和函数执行深度相等检查。检查两个变量是否引用同一对象（与 Python 中的 <code>is</code> 相同）——用 <code>===</code> 或 <code>!==</code> 进行。</p>
-<p>布尔表达式由 <code>&amp;&amp;</code> 表示逻辑“与”，<code>||</code> 表示逻辑“或”，而 <code>!</code> 表示逻辑“非”。与 Python 中一样，<code>&amp;&amp;</code> 与 <code>||</code> 是短路的：它们仅在需要求值时才检查右侧。请注意，关键字 <code>and</code> 与 <code>or</code> 也存在，但是它们仅对整数值执行 <em>逐位</em> 操作，并且不会短路。</p>
-<p>没有自动转换为布尔值的方法，因此也没有真值（truthy）与假值（falsy）的概念：必须使用 <code>==</code> 或 <code>!=</code> 明确进行是否为零、empty 或 null 的检查。 大多数集合类型具有 <code>isEmpty()</code> 和 <code>isNotEmpty()</code> 函数。</p>
+<p>结构相等性比较是使用 <code>==</code> 或 <code>!=</code> 进行的，但取决于每个类来定义含义是什么，就像在 Python 中一样，可以通过<a href="inheritance.html#覆盖">覆盖</a> <a href="classes.html#继承的内置函数"><code>equals()</code></a>（将在左侧操作数上调用，以右侧操作数为参数）与 <code>hashCode()</code>。大多数内置集合类型对这些运算符和函数执行深度相等检测。检测两个变量是否引用同一对象（与 Python 中的 <code>is</code> 相同）——用 <code>===</code> 或 <code>!==</code> 进行。</p>
+<p>布尔表达式由 <code>&amp;&amp;</code> 表示逻辑“与”，<code>||</code> 表示逻辑“或”，而 <code>!</code> 表示逻辑“非”。与 Python 中一样，<code>&amp;&amp;</code> 与 <code>||</code> 是短路的：它们仅在需要求值时才检测右侧。请注意，关键字 <code>and</code> 与 <code>or</code> 也存在，但是它们仅对整数值执行 <em>逐位</em> 操作，并且不会短路。</p>
+<p>没有自动转换为布尔值的方法，因此也没有真值（truthy）与假值（falsy）的概念：必须使用 <code>==</code> 或 <code>!=</code> 显式进行是否为零、为空容器或为 null 的检测。 大多数集合类型都有 <code>isEmpty()</code> 与 <code>isNotEmpty()</code> 函数。</p>
 <h2 id="when"><code>when</code></h2>
 <p>并不会在这里深入介绍 <a href="https://www.kotlincn.net/docs/reference/control-flow.html#when-表达式"><code>when</code> 表达式</a>，因为在 Python 中没有非常接近的等效表达式，但请来看看——<span title="漂亮警告！( ‵▽′)ψ">它好漂亮的</span>，因为它可以用非常紧凑的方式将一个表达式与多种表达式进行比较（但这不是完整的函数式编程风格的模式匹配器）。例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
