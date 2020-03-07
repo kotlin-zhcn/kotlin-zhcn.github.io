@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=d50d4503e9ab9459a5648e3f93b94678">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=d8b80d53134a6b022602a0d7d791f9b6">
 
 
 <!-- Social Media tag Starts -->
@@ -890,7 +890,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </table>
             
 <h2 id="for"><code>for</code></h2>
-<p>Kotlin's loops are similar to Python's. <code>for</code> iterates over anything that is <em>iterable</em> (anything that has an <code>iterator()</code> function that provides an <code>Iterator</code> object), or anything that is itself an iterator:</p>
+<p>Kotlin 的循环类似于 Python 的循环。<code>for</code> 用于遍历任何 <em>可遍历对象</em>（任何具有提供 <code>Iterator</code> 对象的 <code>iterator()</code> 函数的对象）或者本身就是迭代器的对象：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val names = listOf("Anne", "Peter", "Jeff")
 for (name in names) {
@@ -898,75 +898,75 @@ for (name in names) {
 }
 </code></pre>
 </div>
-<p>Note that a <code>for</code> loop always implicitly declares a new read-only variable (in this example, <code>name</code>) - if the outer scope already contains a variable with the same name, it will be shadowed by the unrelated loop variable. For the same reason, the final value of the loop variable is not accessible after the loop.</p>
-<p>You can also create a range with the <code>..</code> operator - but beware that unlike Python's <code>range()</code>, it <em>includes</em> its endpoint:</p>
+<p>请注意，<code>for</code> 循环始终隐式声明一个新的只读变量（在本示例中为 <code>name</code>）——如果外部作用域已经包含一个具有相同名称的变量，则该变量将被不相关的循环变量遮盖。出于同样的原因，循环变量的最终值在循环后不可访问。</p>
+<p>还可以使用 <code>..</code> 运算符创建区间——但要注意，与 Python 的 <code>range()</code> 不同，它 <em>包含</em> 其端点：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">for (x in 0..10) println(x) // Prints 0 through 10 (inclusive)
+<pre><code class="language-kotlin">for (x in 0..10) println(x) // 输出 0 到 10（含10）
 </code></pre>
 </div>
-<p>If you want to exclude the last value, use <code>until</code>:</p>
+<p>如果要排除最后一个值，请使用 <code>until</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">for (x in 0 until 10) println(x) // Prints 0 through 9
+<pre><code class="language-kotlin">for (x in 0 until 10) println(x) // 输出 0 到 9
 </code></pre>
 </div>
-<p>You can control the increment with <code>step</code>:</p>
+<p>可以使用 <code>step</code> 控制增量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">for (x in 0 until 10 step 2) println(x) // Prints 0, 2, 4, 6, 8
+<pre><code class="language-kotlin">for (x in 0 until 10 step 2) println(x) // 输出 0, 2, 4, 6, 8
 </code></pre>
 </div>
-<p>The step value must be positive. If you need to count downwards, use the inclusive <code>downTo</code>:</p>
+<p>step 值必须为正。如果需要递减计数，请使用内置的 <code>downTo</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">for (x in 10 downTo 0 step 2) println(x) // Prints 10, 8, 6, 4, 2, 0
+<pre><code class="language-kotlin">for (x in 10 downTo 0 step 2) println(x) // 输出 10, 8, 6, 4, 2, 0
 </code></pre>
 </div>
-<p>Any of the expressions to the right of <code>in</code> in the loops above can also be used outside of loops in order to generate <em>ranges</em> (one type of iterables - this is similar to <code>xrange()</code> in Python 2 and <code>range()</code> in Python 3), which can be iterated over later or turned into lists:</p>
+<p>以上例子中所有 <code>in</code> 右边的表达式都可以在循环外部使用，以生成 <em>区间</em>（一种可遍历的类型——这类似于 Python 2 中的 <code>xrange()</code> 或 Python 3 中的 <code>range()</code>），可以稍后进行遍历或转换为列表：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val numbers = (0..9).toList()
 </code></pre>
 </div>
-<p>If you need to know the index of the current element when you're iterating over something, you can use <code>withIndex()</code>, which corresponds to <code>enumerate()</code>. It produces a sequence of objects that have got two properties (the index and the value) and two specially-named accessor functions called <code>component1()</code> and <code>component2()</code>; Kotlin lets you destructure such an object into a declaration:</p>
+<p>如果在遍历时需要了解当前元素的索引，可以使用 <code>withIndex()</code>，它对应于 <code>enumerate()</code>。它产生一系列具有两个属性（索引与值）以及两个特殊命名的访问器函数的对象序列，分别称为 <code>component1()</code> 与 <code>component2()</code>。Kotlin 允许将这样的对象解构为声明：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">for ((index, value) in names.withIndex()) {
     println("$index: $value")
 }
 </code></pre>
 </div>
-<p>You can iterate over a map in several different ways, depending on whether you want the keys, the values, or both:</p>
+<p>可以通过几种不同的方式遍历 Map，具体取决于是想要键、要值还是两个都要：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// Iterate over the entries as objects that contain the key and the value as properties
+<pre><code class="language-kotlin">// 遍历条目为包含键与值作为属性的对象
 for (entry in map) {
     println("${entry.key}: ${entry.value}")
 }
 
-// Iterate over the entries as separate key and value objects
+// 遍历条目，将键值分开为单独的对象
 for ((key, value) in map) {
     println("$key: $value")
 }
 
-// Iterate over the keys
+// 遍历键
 for (key in map.keys) {
     println(key)
 }
 
-// Iterate over the values
+// 遍历值
 for (value in map.values) {
     println(value)
 }
 </code></pre>
 </div>
 <h2 id="while"><code>while</code></h2>
-<p>The <code>while</code> loop is similar to Python (but keep in mind that the condition must be an actual boolean expression, as there's no concept of truthy or falsy values).</p>
+<p><code>while</code> 循环与 Python 类似（但请记住，条件必须是实际的布尔表达式，因为没有真值（truthy）与假值（falsy）的概念）。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">var x = 0
 while (x &lt; 10) {
     println(x)
-    x++ // Same as x += 1
+    x++ // 等同于 x += 1
 }
 </code></pre>
 </div>
-<p>The loop variable(s), if any, must be declared outside of the <code>while</code> loop, and are therefore available for inspection afterwards, at which point they will contain the value(s) that made the loop condition false.</p>
+<p>循环变量（如果有）必须在 <code>while</code> 循环外声明，因此可以在以后检查，此时它们将包含使循环条件为假的值。</p>
 <h2 id="continue-与-break"><code>continue</code> 与 <code>break</code></h2>
-<p>A plain <code>continue</code> or <code>break</code> works the same way as in Python: <code>continue</code> skips to the next iteration of the innermost containing loop, and <code>break</code> stops the loop. However, you can also <em>label</em> your loops and reference the label in the <code>continue</code> or <code>break</code> statement in order to indicate which loop you want to affect. A label is an identifier followed by <code>@,</code> e.g. <code>outer@</code> (possibly followed by a space). For example, to generate primes:</p>
+<p>普通的 <code>continue</code> 或 <code>break</code> 与 Python 中的工作方式相同：<code>continue</code> 跳到最里面的包含循环的下一个迭代，而 <code>break</code> 停止循环。但是，也可以用 <em>标签</em> 循环并在 <code>continue</code> 或 <code>break</code> 语句中引用该标签，以指示要影响哪个循环。标签是标识符，后跟 <code>@</code>，例如：<code>outer@</code>（可能后跟一个空格）。例如，生成质数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">outer@ for (n in 2..100) {
     for (d in 2 until n) {
@@ -976,7 +976,7 @@ while (x &lt; 10) {
 }
 </code></pre>
 </div>
-<p>Note that there must be no space between <code>continue</code>/<code>break</code> and <code>@</code>.</p>
+<p>请注意，<code>continue</code>/<code>break</code> 与 <code>@</code> 之间必须没有空格。</p>
 <hr/>
 <table>
 <tbody>

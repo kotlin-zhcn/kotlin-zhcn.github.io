@@ -19,7 +19,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       href="/assets/images/apple-touch-icon-114x114.png"/>
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=d50d4503e9ab9459a5648e3f93b94678">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=d8b80d53134a6b022602a0d7d791f9b6">
 
 
 <!-- Social Media tag Starts -->
@@ -2613,10 +2613,10 @@ configurations {
 </div>
 </div>
 <h2 id="jvm-目标平台中的-java-支持">JVM 目标平台中的 Java 支持</h2>
-<p>This feature is available since Kotlin 1.3.40.</p>
-<p>By default, a JVM target ignores Java sources and only compiles Kotlin source files.
-To include Java sources in the compilations of a JVM target, or to apply a Gradle plugin that requires the
-<code>java</code> plugin to work, you need to explicitly enable Java support for the target:</p>
+<p>这个特性自 Kotlin 1.3.40 可用。</p>
+<p>默认情况下，JVM 目标将忽略 Java 源代码，并且只编译 Kotlin 源文件。
+为了将 Java 源代码包含入 JVM 目标的编译项中，或是为了应用需要
+<code>java</code> 插件才能工作的 Gradle 插件，你需要为目标显式地启用 Java 支持：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
     jvm {
@@ -2625,12 +2625,12 @@ To include Java sources in the compilations of a JVM target, or to apply a Gradl
 }
 </code></pre>
 </div>
-<p>This will apply the Gradle <code>java</code> plugin and configure the target to cooperate with it.
-Note that just applying the Java plugin without specifying <code>withJava()</code> in a JVM
-target will have no effect on the target.</p>
-<p>The file system locations for the Java sources are different from  the <code>java</code> plugin's defaults.
-The Java source files need to be placed in the sibling directories of the Kotlin source
-roots. For example, if the JVM target has the default name <code>jvm</code>, the paths are:</p>
+<p>这将会应用 Gradle <code>java</code> 插件，并配置目标以与它协作。
+注意，在 JVM 目标中仅应用 Java 插件但没有指定 <code>withJava()</code>，
+将不会对目标有任何影响。</p>
+<p>Java 源代码的文件系统位置与 <code>java</code> 插件的默认值不同。
+Java 源文件需要被放置在 Kotlin 源代码<!--
+-->根目录的同级目录中。例如，如果 JVM 目标有一个默认名称 <code>jvm</code>，则路径为：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code>src
 ├── jvmMain
@@ -2643,16 +2643,16 @@ roots. For example, if the JVM target has the default name <code>jvm</code>, the
 …   └── resources
 </code></pre>
 </div>
-<p>The common source sets cannot include Java sources.</p>
-<p>Due to the current limitations, some tasks configured by the Java plugin are disabled, and the corresponding tasks added
-by the Kotlin plugin are used instead:</p>
+<p>公共源集不能包含 Java 源代码。</p>
+<p>由于当前的限制，一些由 Java 插件配置的任务将被禁用，并且 Kotlin 插件添加了<!--
+-->相应的任务来代替它们：</p>
 <ul>
-<li><code>jar</code> is disabled in favor of the target's JAR task (e.g. <code>jvmJar</code>)</li>
-<li><code>test</code> is disabled, and the target's test task is used (e.g. <code>jvmTest</code>)</li>
-<li><code>*ProcessResources</code> tasks are disabled, and the resources are processed by the equivalent tasks of the compilations</li>
+<li><code>jar</code> 被禁用，取而代之的是目标的 JAR 任务（例如 <code>jvmJar</code>）</li>
+<li><code>test</code> 被禁用，并且使用目标的测试任务（例如 <code>jvmTest</code>）</li>
+<li><code>*ProcessResources</code> 任务被禁用，并且资源将由编译项的等价任务处理</li>
 </ul>
-<p>The publication of this target is handled by the Kotlin plugin and doesn't require the steps that are specific to the
-Java plugin, such as manually creating a publication and configuring it as <code>from(components.java)</code>.</p>
+<p>这个目标的发布项将由 Kotlin 插件处理，并且不需要特定于
+Java 插件的步骤，例如手动创建发布项并配置它为 <code>from(components.java)</code>。</p>
 <h2 id="android-支持">Android 支持</h2>
 <p>Kotlin Multiplatform projects support the Android platform by providing the <code>android</code> preset.
 Creating an Android target requires that one of the Android Gradle plugins, like <code>com.android.application</code> or
