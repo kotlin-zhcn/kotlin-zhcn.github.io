@@ -2654,9 +2654,9 @@ Java 源文件需要被放置在 Kotlin 源代码<!--
 <p>这个目标的发布项将由 Kotlin 插件处理，并且不需要特定于
 Java 插件的步骤，例如手动创建发布项并配置它为 <code>from(components.java)</code>。</p>
 <h2 id="android-支持">Android 支持</h2>
-<p>Kotlin Multiplatform projects support the Android platform by providing the <code>android</code> preset.
-Creating an Android target requires that one of the Android Gradle plugins, like <code>com.android.application</code> or
-<code>com.android.library</code> is manually applied to the project. Only one Android target may be created per Gradle subproject:</p>
+<p>Kotlin 多平台项目通过提供 <code>android</code> 内置函数支持 Android 平台。
+创建 Android 目标需要 Android Gradle 插件之一，例如手动应用<code>com.android.application</code> 或
+<code>com.android.library</code> 到项目中。每个 Gradle 子项目仅可能创建一个 Android 目标：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -2667,8 +2667,8 @@ Creating an Android target requires that one of the Android Gradle plugins, like
 android { /* …… */ }
 
 kotlin {
-    android { // Create the Android target
-        // Provide additional configuration if necessary
+    android { // 创建 Android 目标
+        // 提供必要的附加配置
     }
 }
 </code></pre>
@@ -2684,24 +2684,24 @@ kotlin {
 android { /* …… */ }
 
 kotlin {
-    android { // Create the Android target
-        // Provide additional configuration if necessary
+    android { // 创建 Android 目标
+        // 提供必要的附加配置
     }
 }
 </code></pre>
 </div>
 </div>
-<p>An Android target's compilations created by default are tied to <a href="https://developer.android.com/studio/build/build-variants">Android build variants</a>:
-for each build variant, a Kotlin compilation is created under the same name.</p>
-<p>Then, for each <a href="https://developer.android.com/studio/build/build-variants#sourcesets">Android source set</a> compiled by
-the variants, a Kotlin source set is created under that source set name
-prepended by the target name, like Kotlin source set <code>androidDebug</code> for an Android source set <code>debug</code> and the Kotlin target
-named <code>android</code>. These Kotlin source sets are added to the variants compilations accordingly.</p>
-<p>The default source set <code>commonMain</code> is added to each production (application or library) variant's compilation. The
-<code>commonTest</code> source set is, similarly, added to the compilations of unit test and instrumented test variants.</p>
-<p>Annotation processing with <a href="/docs/reference/kapt.html">kapt</a> is also supported but, due to the current limitations,
-it requires that the Android target is created before the <code>kapt</code> dependencies are configured, which needs
-to be done in a top-level <code>dependencies { ... }</code> block rather than within Kotlin source sets dependencies.</p>
+<p>默认创建的 Android 目标编译项与 <a href="https://developer.android.com/studio/build/build-variants">Android 构建变体</a>相关联：
+对于每个构建变体，将会以相同的名称创建 Kotlin 构建项。</p>
+<p>然后，对于每个通过变体编译的 <a href="https://developer.android.com/studio/build/build-variants#sourcesets">Android 源集</a>，
+将在目标名称前面的那个源集名称下创建 Kotlin 源集，
+Kotlin 源集 <code>androidDebug</code> 用于 Android 源集 <code>debug</code>
+与名为 <code>android</code> 的 Kotlin 目标。 这些 Kotlin 源集将相应地添加到变体编译项中。</p>
+<p>默认源集 <code>commonMain</code> 将添加到每个生产项（应用或库）变体的编译项中。
+类似地，<code>commonTest</code> 源集也将添加到单元测试的编译项，以及 instrumented 测试变体中。</p>
+<p>使用 <a href="/docs/reference/kapt.html">kapt</a> 进行注解处理也是受支持的，但，由于当前的限制，
+它要求 Android 目标需要在配置 <code>kapt</code> 依赖之前创建，<code>kapt</code> 依赖需要在<!--
+-->顶级 <code>dependencies { …… }</code> 代码块（而不是 Kotlin 源集依赖）中完成。</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">// ...
 
