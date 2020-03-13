@@ -1518,42 +1518,23 @@ sourceSets["main"].withConvention(KotlinSourceSet::class) {
 -->面向 JVM 一样，如果不使用默认约定，需要使用 <em>sourceSets</em> 来指定源代码文件夹：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">sourceSets {
-    main.kotlin.srcDirs += 'src/main/myKotlin'
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin">
-<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">sourceSets["main"].withConvention(KotlinSourceSet::class) {
-    kotlin.srcDir("src/main/myKotlin")
-}
-</code></pre>
-</div>
-</div>
-<p>除了输出的 JavaScript 文件，该插件默认会创建一个带二进制描述符的额外 JS 文件。
-如果你是构建其他 Kotlin 模块可以依赖的可重用库，那么该文件是必需的，并且应该与转换结果一起分发。
-其生成由 <code>kotlinOptions.metaInfo</code> 选项控制：</p>
-<div class="multi-language-sample" data-lang="groovy">
-<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">compileKotlin2Js {
-    kotlinOptions.metaInfo = true
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin">
-<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">tasks {
-    "compileKotlin2Js"(Kotlin2JsCompile::class)  {
-        kotlinOptions.metaInfo = true
+<pre><code class="language-groovy">kotlin {
+    sourceSets {
+        main.kotlin.srcDirs += 'src/main/myKotlin'
     }
 }
 </code></pre>
 </div>
 </div>
-<h2 id="面向-android">面向 Android</h2>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    sourceSets["main"].apply {    
+        kotlin.srcDir("src/main/myKotlin") 
+    }
+}
+</code></pre>
+<h2 id="android">面向 Android</h2>
 <p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -1618,7 +1599,7 @@ plugins {
 </div>
 </div>
 <p>这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 <code>src/main/java</code>。</p>
-<h2 id="配置依赖">配置依赖</h2>
+<h2 id="section">配置依赖</h2>
 <p>除了上面显示的 <code>kotlin-gradle-plugin</code> 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
@@ -1705,9 +1686,9 @@ testImplementation(kotlin("test-junit"))
 </code></pre>
 </div>
 </div>
-<h2 id="注解处理">注解处理</h2>
+<h2 id="section-1">注解处理</h2>
 <p>Kotlin 通过 <em>Kotlin 注解处理工具</em>（<code>kapt</code>）支持注解处理。kapt 同 Gradle 合用的用法已在 <a href="kapt.html">kapt 页</a>描述。</p>
-<h2 id="增量编译">增量编译</h2>
+<h2 id="section-2">增量编译</h2>
 <p>Kotlin Gradle 插件支持支持增量编译。增量编译会跟踪多次构建之间源文件的变更，因此只会编译这些变更所影响的文件。</p>
 <p>Kotlin/JVM 与 Kotlin/JS 项目均支持增量编译。对于 Kotlin 1.1.1 起的 Kotlin/JVM 项目以及自 Kotlin 1.3.20 起的 Kotlin/JS 项目默认启用增量编译。</p>
 <p>有几种方法可以覆盖默认设置：</p>
@@ -1720,11 +1701,11 @@ testImplementation(kotlin("test-junit"))
 </li>
 </ul>
 <p>请注意，任何情况下首次构建都不会是增量的。</p>
-<h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
+<h2 id="gradle--1220-">Gradle 构建缓存支持（自 1.2.20 起）</h2>
 <p>Kotlin 插件支持 <a href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
 <p>如需禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
 <p>如果使用 <a href="kapt.html">kapt</a>，请注意默认情况下不会缓存注解处理任务。不过，可以手动为它们启用缓存。详见 <a href="kapt.html#gradle-构建缓存支持自-1220-起">kapt 页</a>。</p>
-<h2 id="编译器选项">编译器选项</h2>
+<h2 id="section-3">编译器选项</h2>
 <p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
 <p>当面向 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于<!--
 -->测试代码称为 <code>compileTestKotlin</code>。对于自定义源文件集（source set）这些任务称呼取决于 <code>compile＜Name＞Kotlin</code> 模式。</p>
@@ -1780,7 +1761,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </div>
 </div>
 <p>对于 Gradle 任务的完整选项列表如下：</p>
-<h3 id="jvmjs-与-js-dce-的公共属性">JVM、JS 与 JS DCE 的公共属性</h3>
+<h3 id="jvmjs--js-dce-">JVM、JS 与 JS DCE 的公共属性</h3>
 <table>
 <thead>
 <tr>
@@ -1817,7 +1798,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="jvm-与-js-的公共属性">JVM 与 JS 的公共属性</h3>
+<h3 id="jvm--js-">JVM 与 JS 的公共属性</h3>
 <table>
 <thead>
 <tr>
@@ -1842,7 +1823,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="jvm-特有的属性">JVM 特有的属性</h3>
+<h3 id="jvm-">JVM 特有的属性</h3>
 <table>
 <thead>
 <tr>
@@ -1891,7 +1872,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="js-特有的属性">JS 特有的属性</h3>
+<h3 id="js-">JS 特有的属性</h3>
 <table>
 <thead>
 <tr>
@@ -1970,16 +1951,16 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h2 id="生成文档">生成文档</h2>
+<h2 id="section-4">生成文档</h2>
 <p>要生成 Kotlin 项目的文档，请使用 <a href="https://github.com/Kotlin/dokka">Dokka</a>；
 相关配置说明请参见 <a href="https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin">Dokka README</a>
 。Dokka 支持混合语言项目，并且可以生成多种格式的输出
 ，包括标准 JavaDoc。</p>
 <h2 id="osgi">OSGi</h2>
 <p>关于 OSGi 支持请参见 <a href="kotlin-osgi.html">Kotlin OSGi 页</a>。</p>
-<h2 id="使用-gradle-kotlin-dsl">使用 Gradle Kotlin DSL</h2>
+<h2 id="gradle-kotlin-dsl">使用 Gradle Kotlin DSL</h2>
 <p>使用 <a href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 时，请使用 <code>plugins { …… }</code> 块应用 Kotlin 插件。如果使用 <code>apply { plugin(……) }</code> 来应用的话，可能会遇到未解析的到由 Gradle Kotlin DSL 所生成扩展的引用问题。为了解决这个问题，可以注释掉出错的用法，运行 Gradle 任务 <code>kotlinDslAccessorsSnapshot</code>，然后解除该用法注释并重新运行构建或者重新将项目导入到 IDE 中。</p>
-<h2 id="示例">示例</h2>
+<h2 id="section-5">示例</h2>
 <p>以下示例显示了配置 Gradle 插件的不同可能性：</p>
 <ul>
 <li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/hello-world">Kotlin</a></li>
@@ -1987,6 +1968,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 <li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-mixed-java-kotlin-project">Android</a></li>
 <li><a href="https://github.com/JetBrains/kotlin/tree/master/libraries/tools/kotlin-gradle-plugin-integration-tests/src/test/resources/testProject/kotlin2JsProject">JavaScript</a></li>
 </ul>
+</div></div>
 
         </article>
     </div>
