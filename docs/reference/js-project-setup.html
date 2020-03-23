@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>搭建 Kotlin/JS 项目 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1380,15 +1380,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="搭建-kotlinjs-项目">搭建 Kotlin/JS 项目</h1>
-<p>Kotlin/JS projects use Gradle as a build system. To let developers easily manage their Kotlin/JS projects, we offer
-the Kotlin/JS Gradle plugin that provides project configuration tools together with helper tasks for automating routines
-typical for JavaScript development. For example, the plugin downloads the <a href="https://yarnpkg.com/">Yarn</a> package manager
-for managing NPM dependencies in background and builds a JavaScript bundle from a Kotlin project using <a href="https://webpack.js.org/">Webpack</a>.</p>
-<p>To create a Kotlin/JS project in IntelliJ IDEA, go to <strong>File | New | Project</strong> and select <strong>Gradle | Kotlin/JS for browser</strong>
- or <strong>Kotlin/JS for Node.js</strong>. Be sure to clear the <strong>Java</strong> checkbox.</p>
+<p>Kotlin/JS 项目使用 Gradle 作为构建系统。为了开发者轻松管理其 Kotlin/JS 项目，我们提供了 Kotlin/JS Gradle 插件。
+该插件提供项目配置工具以及用以自动执行 JavaScript 开发中常用的例程的帮助程序。
+举个例子，该插件会下载 <a href="https://yarnpkg.com/">Yarn</a> 软件包管理器，在后台管理 NPM 依赖，并使用 <a href="https://webpack.js.org/">Webpack</a>
+从 Kotlin 项目构建 JavaScript 包。</p>
+<table>
+<tbody>
+<tr>
+<td>要在 IntelliJ IDEA 中创建 Kotlin/JS 项目，请转至 **File</td>
+<td>New</td>
+<td>Project**，</td>
+</tr>
+<tr>
+<td>并选择 **Gradle</td>
+<td>Kotlin/JS for browser** 或 <strong>Kotlin/JS for Node.js</strong>。请不要勾选 <strong>Java</strong> 复选框。</td>
+<td> </td>
+</tr>
+</tbody>
+</table>
 <p><img alt="New project wizard" src="/assets/images/reference/js-project-setup/wizard.png"/></p>
-<p>Alternatively, you can apply the <code>org.jetbrains.kotlin.js</code> plugin to a Gradle project manually in the <code>build.gradle</code> file.
-If you use the Gradle Kotlin DSL, you can apply the plugin with <code>kotlin(“js”)</code>.</p>
+<p>另外，你可以在 <code>build.gradle</code> 文件中手动将 <code>org.jetbrains.kotlin.js</code> 插件应用于 Gradle 项目。
+如果你使用 Gradle Kotlin DSL，则可以使用插件 <code>kotlin(“js”)</code>。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1405,29 +1417,29 @@ If you use the Gradle Kotlin DSL, you can apply the plugin with <code>kotlin(“
 </code></pre>
 </div>
 </div>
-<p>The Kotlin/JS plugin lets you manage aspects of your project in the <code>kotlin</code> section of the build script.</p>
+<p>Kotlin/JS 插件可让你在构建脚本的 <code>kotlin</code> 部分中管理项目的各个方面。</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     //...
 }
 </code></pre>
 </div>
-<p>Inside the <code>kotlin</code> section, you can manage the following aspects:</p>
+<p>在 <code>kotlin</code> 部分中，你可以管理以下方面：</p>
 <ul>
-<li><a href="#选择执行环境">Target execution environment</a>: browser or Node.js</li>
-<li><a href="#管理依赖">Project dependencies</a>: Maven and NPM</li>
-<li><a href="#配置-run-任务">Run configuration</a></li>
-<li><a href="#配置-test-任务">Test configuration</a></li>
-<li><a href="#配置-webpack-绑定">Bundling</a> for browser projects</li>
-<li><a href="#分发目标目录">Target directory</a></li>
+<li><a href="#选择执行环境">选择执行环境</a>: 浏览器或 Node.js</li>
+<li><a href="#管理依赖">管理依赖</a>: Maven 和 NPM</li>
+<li><a href="#配置-run-任务">配置 run 任务</a></li>
+<li><a href="#配置-test-任务">配置 test 任务</a></li>
+<li><a href="#配置-webpack-绑定">配置 webpack 绑定</a> 针对于浏览器项目</li>
+<li><a href="#分发目标目录">分发目标目录</a></li>
 </ul>
 <h2 id="选择执行环境">选择执行环境</h2>
-<p>Kotlin/JS projects can target two different execution environments:</p>
+<p>Kotlin/JS 项目可以针对两个不同的执行环境：</p>
 <ul>
-<li>Browser for client-side scripting in browsers</li>
-<li><a href="https://nodejs.org/">Node.js</a> for running JavaScript code outside of a browser, for example, for server-side scripting.</li>
+<li>Browser，用于浏览器中客户端脚本</li>
+<li><a href="https://nodejs.org/">Node.js</a>，用于在浏览器外部运行 JavaScript 代码，例如，用于服务器端脚本。</li>
 </ul>
-<p>To define the target execution environment for a Kotlin/JS project, add the <code>target</code> section with <code>browser {}</code> or <code>nodejs {}</code> inside.</p>
+<p>要定义 Kotlin/JS 项目的目标执行环境，请在 <code>target</code> 部分添加 <code>browser {}</code> 或 <code>nodejs {}</code>。</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
     target {
@@ -1437,18 +1449,18 @@ If you use the Gradle Kotlin DSL, you can apply the plugin with <code>kotlin(“
 }    
 </code></pre>
 </div>
-<p>Or just</p>
+<p>或者</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {     
 }    
 </code></pre>
 </div>
-<p>The Kotlin/JS plugin automatically configures its tasks for working with the selected environment.
-This includes downloading and installing dependencies required for running and testing the application, and therefore
-lets developers  build, run, and test simple projects without additional configuration.</p>
+<p>Kotlin/JS 插件会自动配置其任务与所选环境配合工作。
+这项操作包括下载与安装运行和测试应用程序所需的依赖。
+因此，开发者无需额外配置就可以构建、运行和测试简单项目。</p>
 <h2 id="管理依赖">管理依赖</h2>
-<p>Like any other Gradle projects, Kotlin/JS projects support traditional Gradle <a href="https://docs.gradle.org/current/userguide/declaring_dependencies.html">dependency declarations</a>
-in the <code>dependencies</code> section of the build script.</p>
+<p>就像其他任何的 Gradle 项目一样，Kotlin/JS 项目支持位于构建脚本的 <code>dependencies</code> 
+部分的传统 Gradle <a href="https://docs.gradle.org/current/userguide/declaring_dependencies.html">依赖声明</a>。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
@@ -1465,8 +1477,8 @@ in the <code>dependencies</code> section of the build script.</p>
 </code></pre>
 </div>
 </div>
-<p>The Kotlin/JS Gradle plugin also supports dependency declarations for particular source sets in the <code>kotlin</code> section 
-of the build script.</p>
+<p>Kotlin/JS Gradle 插件还支持构建脚本的 <code>kotlin</code> 部分中特定 
+<code>sourceSets</code> 的依赖声明。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin {
@@ -1492,9 +1504,9 @@ of the build script.</p>
 </div>
 </div>
 <h3 id="kotlin-标准库">Kotlin 标准库</h3>
-<p>The dependency on the Kotlin/JS <a href="https://kotlinlang.org/api/latest/jvm/stdlib/index.html">standard library</a> is mandatory
-for all Kotlin/JS projects. If your project contains tests written in Kotlin, you should also add the dependency on the
-<a href="https://kotlinlang.org/api/latest/kotlin.test/index.html">kotlin.test</a> library.</p>
+<p>所有 Kotlin/JS 项目都必须依赖 Kotlin/JS <a href="https://kotlinlang.org/api/latest/jvm/stdlib/">标准库</a>。
+如果你的项目包含用 Kotlin 编写的测试，则还应在添加 <a href="https://kotlinlang.org/api/latest/kotlin.test/">kotlin.test</a>
+<a href="https://kotlinlang.org/api/latest/kotlin.test/">依赖项</a>。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
@@ -1514,13 +1526,13 @@ for all Kotlin/JS projects. If your project contains tests written in Kotlin, yo
 </div>
 </div>
 <h3 id="npm-依赖">NPM 依赖</h3>
-<p>In the JavaScript world, the common way to manage dependencies is <a href="https://www.npmjs.com/">NPM</a>.
-It offers the biggest public <a href="https://www.npmjs.com/">repository</a> of JavaScript modules and a tool for downloading them.</p>
-<p>The Kotlin/JS plugin lets you declare NPM dependencies in the Gradle build script among other dependencies and
-does everything else automatically. It installs the <a href="https://yarnpkg.com/lang/en/">Yarn</a> package manager
-and uses it to download the dependencies from the NPM repository to the <code>node_modules</code> directory of your project -
-the common location for NPM dependencies of a JavaScript project.</p>
-<p>To declare an NPM dependency, pass its name and version to the <code>npm()</code> function inside a dependency declaration.</p>
+<p>在 JavaScript 中，管理依赖项的常用方法是 <a href="https://www.npmjs.com/">NPM</a>。
+它提供了最大的 JavaScript 模块公共<a href="https://www.npmjs.com/">存储库</a>以及用于下载它们的工具。</p>
+<p>Kotlin/JS 插件使你可以在 Gradle 构建脚本中声明 NPM 依赖项以及其他依赖项，并自动执行其他所有操作。
+它安装了 <a href="https://yarnpkg.com/lang/en/">Yarn</a> 程序包管理器，
+并使用它来将依赖项从 NPM 存储库下载项目的 <code>node_modules</code> 目录
+─── JavaScript 项目的 NPM 依赖项的一般位置。</p>
+<p>要声明 NPM 依赖项，将其名称与版本传给依赖项声明内的 <code>npm()</code> 函数。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
@@ -1537,41 +1549,41 @@ the common location for NPM dependencies of a JavaScript project.</p>
 </code></pre>
 </div>
 </div>
-<p>Once an NPM dependency is installed, you can use its API in your code as described in 
-<a href="js-interop.html">Calling JS from Kotlin</a>.</p>
+<p>安装 NPM 依赖项后，你可以按照<a href="http://www.kotlincn.net/docs/reference/js-interop.html">在 Kotlin 中调用 JS</a> 
+中所述，在代码中使用其 API。</p>
 <h2 id="配置-run-任务">配置 run 任务</h2>
-<p>The Kotlin/JS plugin provides a run task that lets you run projects without additional configuration.
-For running Kotlin/JS projects, it uses <a href="https://webpack.js.org/configuration/dev-server/">Webpack DevServer</a>.
-If you want to customize the DevServer configuration, for example, change its port, use the Webpack configuration file.</p>
-<p>To run the project, execute the standard lifecycle <code>run</code> task:</p>
+<p>Kotlin/JS 插件提供了一个 <code>run</code> 任务，使你无需额外配置即可运行项目。
+它使用 <a href="https://webpack.js.org/configuration/dev-server/">Webpack DevServer</a> 来运行 Kotlin/JS 项目。
+如果要自定义 DevServer 配置，请更改其端口，请使用 Webpack 配置文件。</p>
+<p>要运行项目，请执行标准生命周期的 <code>run</code> 任务：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew run
 </code></pre>
 </div>
-<p>To see the source file changes in browser without restarting the DevServer, use 
-the Gradle <a href="https://docs.gradle.org/current/userguide/command_line_interface.html#sec:continuous_build">continuous build</a>:</p>
+<p>要在浏览器中查看源文件更改而不想重新启动 DevServer，请使用 Gradle 
+<a href="https://docs.gradle.org/current/userguide/command_line_interface.html#sec:continuous_build">连续构建（continuous build）</a>：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew run --continuous
 </code></pre>
 </div>
-<p>or</p>
+<p>或者</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew run -t
 </code></pre>
 </div>
 <h2 id="配置-test-任务">配置 test 任务</h2>
-<p>The Kotin/JS Gradle plugin automatically sets up a test infrastructure for projects. For browser projects, it downloads
-and installs the <a href="https://karma-runner.github.io/">Karma</a> test runner with other required dependencies;
-for NodeJS projects, the <a href="https://mochajs.org/">Mocha</a> test framework is used.</p>
-<p>The plugin also provides useful testing features, for example:</p>
+<p>Kotin/JS Gradle 插件会自动为项目设置测试基础结构。对于浏览器项目，它将下载并安装具有其他必需依赖的 
+<a href="https://karma-runner.github.io/">Karma</a>  测试运行程序；
+对于 NodeJS 项目，使用 <a href="https://mochajs.org/">Mocha</a> 测试框架。</p>
+<p>该插件还提供了有用的测试功能，例如：</p>
 <ul>
-<li>Source maps generation</li>
-<li>Test reports generation</li>
-<li>Test run results in the console</li>
+<li>源代码映射文件生成</li>
+<li>测试报告生成</li>
+<li>在控制台中测试运行结果</li>
 </ul>
-<p>By default, the plugin uses <a href="https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md">Headless Chrome</a>
-for running browser tests. You can also run them in other browsers by adding the corresponding entries inside the
-<code>useKarma</code> section of the build script:</p>
+<p>默认情况下，该插件使用 
+<a href="https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md">Headless Chrome</a> 
+来运行浏览器测试。你还可以通过在构建脚本中的 <code>useKarma</code> 部分中添加相应的条目，从而在其他浏览器中运行它们 ：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {
     testTask {
@@ -1589,7 +1601,7 @@ for running browser tests. You can also run them in other browsers by adding the
 }
 </code></pre>
 </div>
-<p>If you want to skip tests, add the line <code>enabled = false</code> to the <code>testTask</code>.</p>
+<p>如果要跳过测试，请将 <code>enabled = false</code> 这一行添加到 <code>testTask</code> 中。</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {
     testTask {
@@ -1598,30 +1610,30 @@ for running browser tests. You can also run them in other browsers by adding the
 }
 </code></pre>
 </div>
-<p>To run tests, execute the standard lifecycle <code>check</code> task:</p>
+<p>要运行测试，请执行标准生命周期 <code>check</code> 任务：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew check
 </code></pre>
 </div>
 <h2 id="配置-webpack-绑定">配置 Webpack 绑定</h2>
-<p>For browser targets, the Kotlin/JS plugin uses widely known <a href="https://webpack.js.org/">Webpack</a> module bundler.
-For configuring the project bundling, you can use the standard Webpack configuration file. The Webpack configuration
-capabilities are well described in its <a href="https://webpack.js.org/concepts/configuration/">documentation</a>.
-For Kotlin/JS projects, the Webpack configuration files should reside in the <code>webpack.config.d</code> directory inside the 
-root project directory.</p>
-<p>For building executable JavaScript artifacts, the Kotlin/JS plugin contains the <code>browserDevelopmentWebpack</code>
-<code>browserProductionWebpack</code> tasks.</p>
-<p>To build a project artifact using Webpack, execute the <code>browserProductionWebpack</code>or <code>browserDevelopmentWebpack</code> Gradle task:</p>
+<p>对于浏览器目标，Kotlin/JS 插件使用众所周知的 <a href="https://webpack.js.org/">Webpack</a> 模块捆绑器。
+为了配置项目捆绑，可以使用标准的 Webpack 配置文件。
+Webpack 配置功能在其<a href="https://webpack.js.org/concepts/configuration/">文档</a>中有很好的描述。
+对于 Kotlin/JS 项目，Webpack 配置文件位于项目根目录下的 
+<code>webpack.config.d</code> 目录中。</p>
+<p>为了构建可执行的 JavaScript 构件，Kotlin/JS 插件包含 <code>browserDevelopmentWebpack</code> 
+以及 <code>browserProductionWebpack</code> 任务。</p>
+<p>要使用 Webpack 构建项目构件，请执行 Gradle 任务 <code>browserProductionWebpack</code> 或 <code>browserDevelopmentWebpack</code>：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew browserProductionWebpack
 </code></pre>
 </div>
 <h2 id="分发目标目录">分发目标目录</h2>
-<p>By default, the results of a Kotlin/JS project build reside in the <code>/build/distribution</code> directory within the project root.</p>
-<p>To set another location for project distribution files, add the <code>distribution</code> block inside <code>browser</code> in the build script and 
-assign a value to the <code>directory</code> property.
-Once you run a project build task, Gradle will save the output bundle in this location together
-with project resources.</p>
+<p>默认情况下，Kotlin/JS 项目构建的结果位于项目根目录下的 <code>/build/distribution</code> 目录中。</p>
+<p>要为项目分发文件设置另一个位置，请在构建脚本中的 <code>browser</code> 里添加 <code>distribution</code>，然后<!--
+-->为它的 <code>directory</code> 属性赋值。
+运行项目构建任务后，Gradle 会将输出的内容<!--
+-->和项目资源一起保存在此位置。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {
@@ -1702,7 +1714,7 @@ with project resources.</p>
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

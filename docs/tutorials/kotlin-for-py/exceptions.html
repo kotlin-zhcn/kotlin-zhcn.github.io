@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>异常 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -890,12 +890,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </table>
             
 <h2 id="抛出与捕获">抛出与捕获</h2>
-<p>Exceptions pretty much work like they do in Python. You <em>throw</em> (raise) one with <code>throw</code>:</p>
+<p>异常几乎像在 Python 中一样工作。使用 <code>throw</code> 将 <em>抛出</em> 一个异常：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">throw IllegalArgumentException("Value must be positive")
 </code></pre>
 </div>
-<p>You <em>catch</em> it with <code>try</code>/<code>catch</code> (which corresponds to <code>try</code>/<code>except</code> in Python):</p>
+<p>然后使用 <code>try</code>/<code>catch</code> 来 <em>捕获</em> 异常（对应 Python 的 <code>try</code>/<code>except</code>）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun divideOrZero(numerator: Int, denominator: Int): Int {
     try {
@@ -906,9 +906,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>The <code>catch</code> blocks are tried in order until an exception type is found that matches the thrown exception (it doesn't need to be an exact match; the thrown exception's class can be a subclass of the declared one), and at most one <code>catch</code> block will be executed. If no match is found, the exception bubbles out of the <code>try</code>/<code>catch</code>.</p>
-<p>The <code>finally</code> block (if any) is executed at the end, no matter what the outcome is: either after the try block completes successfully, or after a catch block is executed (even if another exception is thrown by the catch block), or if no matching catch is found.</p>
-<p>Unlike Python, <code>try</code>/<code>catch</code> is an expression: the last expression of the <code>try</code> block (if it succeeds) or the chosen <code>catch</code> block becomes the result value (<code>finally</code> doesn't affect the result), so we can refactor the function body above to:</p>
+<p>依次尝试 <code>catch</code> 代码块，直到找到与抛出的异常匹配的异常类型（无需精准匹配；抛出的异常的类可以是已声明异常的子类），并且最多包含一个 <code>catch</code> 代码块将被执行。如果没有找到匹配项，那么异常会从 <code>try</code>/<code>catch</code> 中冒出。</p>
+<p>无论结果如何，都将在最后执行 <code>finally</code> 代码块（如果有的话）：在 try 代码块成功执行之后，或者在 catch 代码块执行之后（即使 catch 块引发了另一个异常），或者找不到匹配的捕获。</p>
+<p>与 Python 不同，<code>try</code>/<code>catch</code> 是一个表达式：<code>try</code> 代码块（如果成功）或所选的 <code>catch</code> 代码块的最后一个表达式将成为结果值（<code>finally</code> 不会影响结果），因此可以将上面的函数体重构为：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">return try {
     numerator / denominator
@@ -917,11 +917,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>The base exception class is <code>Throwable</code> (but it is more common to extend its subclass <code>Exception</code>), and there are a ton of built-in exception classes. If you don't find one that match your needs, you can create your own by inheriting from an existing exception class.</p>
-<p>Note that exceptions are somewhat discouraged in Kotlin except when interacting with Java code. Instead of throwing exceptions in your own code, consider using special return types like <a href="https://arrow-kt.io/docs/datatypes/option/">Option</a> or <a href="https://arrow-kt.io/docs/datatypes/either/">Either</a> from the <a href="https://arrow-kt.io/">Arrow library</a>.</p>
+<p>基本异常类是 <code>Throwable</code>（但是扩展其子类 <code>Exception</code> 更为常见），并且有大量内置的异常类。如果找不到满足需求的异常类，则可以通过从现有异常类继承来创建自己的异常类。</p>
+<p>请注意，除了与 Java 代码进行交互时，在 Kotlin 中不建议使用异常。与其在自己的代码中引发异常，不如考虑使用特殊的返回类型，例如 <a href="https://arrow-kt.io/">Arrow 库</a>中的 <a href="https://arrow-kt.io/docs/datatypes/option/">Option</a> 或 <a href="https://arrow-kt.io/docs/datatypes/either/">Either</a>。</p>
 <h2 id="nothing">Nothing</h2>
-<p><code>throw</code> is also an expression, and its return type is the special class <code>Nothing</code>, which does not have any instances. The compiler knows that an expression whose type is <code>Nothing</code> will never return normally, and will therefore generally accept its use even where a different type would normally be required, such as after the <a href="null-safety.html#elvis-操作符">Elvis 操作符</a>. If you make a function that always throws, or that starts an infinite loop, you could declare its return type to be <code>Nothing</code> in order to make the compiler aware of this. One fun example of this is the built-in function <code>TODO</code>, which you can call in any expression (possibly supplying a string argument), and it raises a <code>NotImplementedError</code>.</p>
-<p>The nullable version <code>Nothing?</code> will be used by the compiler when something is initialized with null and there is no other type information. In <code>val x = null</code>, the type of <code>x</code> will be <code>Nothing?</code>. This type does not have the "never returns normally" semantics; instead, the compiler knows that the value will always be null.</p>
+<p><code>throw</code> 也是一个表达式，其返回类型是特殊类 <code>Nothing</code>，它没有任何实例。编译器知道类型为 <code>Nothing</code> 的表达式永远不会正常返回，因此即使通常需要使用其他类型（例如在 <a href="null-safety.html#elvis-操作符">Elvis 操作符</a>之后）的情况下，也通常会接受其使用。如果创建一个始终抛出异常的函数，或者开始一个无限循环，则可以将其返回类型声明为 <code>Nothing</code>，以使编译器意识到这一点。一个有趣的例子是内置函数 <code>TODO</code>，可以在任何表达式中调用它（可能提供一个字符串参数），它会引发 <code>NotImplementedError</code>。</p>
+<p>可为空版本 <code>Nothing?</code> 在当使用 null 初始化某些内容且没有其他类型信息时，编译器将使用它。在 <code>val x = null</code> 中，<code>x</code> 的类型将为 <code>Nothing?</code>。此类型没有“从不正常返回”的语义；相反，编译器知道该值将始终为 null。</p>
 <hr/>
 <table>
 <tbody>
@@ -993,7 +993,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
 </footer>
-    <script src="/_assets/tutorial.js?&amp;v=d9df75db7bc1177822c2f64b43cae0ec"></script>
+    <script src="/_assets/tutorial.js?&amp;v=73e8f61e3acd8abd46f885227c811f8b"></script>
     <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

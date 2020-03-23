@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>通道 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1782,7 +1782,7 @@ BAR!
 <!--- TEST -->
 <h3 id="带缓冲的通道">带缓冲的通道</h3>
 <p>到目前为止展示的通道都是没有缓冲区的。无缓冲的通道在发送者和接收者相遇时<!--
--->传输元素（aka rendezvous（这句话应该是个俚语，意思好像是“又是约会”的意思，不知道怎么翻））。如果发送先被调用，则它将被挂起直到接收被调用，
+-->传输元素（也称“对接”）。如果发送先被调用，则它将被挂起直到接收被调用，
 如果接收先被调用，它将被挂起直到发送被调用。</p>
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel.html">Channel()</a> 工厂函数与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 建造器通过一个可选的参数 <code>capacity</code>
 来指定 <em>缓冲区大小</em> 。缓冲允许发送者在被挂起前发送多个元素，
@@ -1984,7 +1984,7 @@ Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>类与继承 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1543,6 +1543,13 @@ val customer = Customer("Joe Smith")
 </code></pre>
 </div>
 <p><code>Any</code> 有三个方法：<code>equals()</code>、 <code>hashCode()</code> 与 <code>toString()</code>。因此，为所有 Kotlin 类都定义了这些方法。</p>
+<p>By default, Kotlin classes are final: they can’t be inherited.
+To make a class inheritable, mark it with the <code>open</code> keyword.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">open class Base //Class is open for inheritance
+
+</code></pre>
+</div>
 <p>如需声明一个显式的超类型，请在类头中把超类型放到冒号之后：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class Base(p: Int)
@@ -1789,7 +1796,7 @@ abstract class Rectangle : Polygon() {
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

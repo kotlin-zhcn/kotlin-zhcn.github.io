@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>JavaScript DCE - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1380,25 +1380,25 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="javascript-无用代码消除dce">JavaScript 无用代码消除（DCE）</h1>
-<p>The Kotlin/JS Gradle plugin includes a <a href="https://wikipedia.org/wiki/Dead_code_elimination"><em>dead code elimination</em></a> (<em>DCE</em>) tool.
-Dead code elimination is often also called <em>tree shaking</em>. It reduces the size or the resulting JavaScript code by
-removing unused properties, functions, and classes.</p>
-<p>Unused declarations can appear in cases like:</p>
+<p>Kotlin/JS Gradle 插件包含一个<a href="https://zh.wikipedia.org/wiki/%E6%AD%BB%E7%A2%BC%E5%88%AA%E9%99%A4"><em>无用代码消除</em></a>（<em>DCE</em>）工具。
+无用代码消除通常也称为 <em><span title="tree shaking">摇树</span></em>。
+通过删除未使用的属性、函数和类，它减小了大小或生成的 JavaScript 代码。</p>
+<p>在以下情况下会出现未使用的声明：</p>
 <ul>
-<li>A function is inlined and never gets called directly (which happens always except for few situations).</li>
-<li>A module uses a shared library. Its parts that you don't use still get into the resulting bundle without DCE.
-For example, the Kotlin standard library contains functions for manipulating lists, arrays, char sequences,
-adapters for DOM, and so on. Altogether, they comprise about 1.3 mb file. A simple "Hello, world" application only requires
-console routines, which is only few kilobytes for the entire file.</li>
+<li>函数是内联的，永远不会直接调用（除了少数情况总是发生）。</li>
+<li>模块使用共享库。没有 DCE 的情况下，未使用的组件仍会进入结果包。
+例如，Kotlin 标准库中包含用于操作列表、数组、字符序列、DOM 适配器的函数。
+它们总共构成了大约 1.3MB 的文件。
+一个简单的 "Hello, world" 应用程序仅需要控制台例程，整个程序只有几 KB。</li>
 </ul>
-<p>Kotlin/JS Gradle plugin handles DCE automatically when you build a production bundle, for example, with <code>browserProductionWebpack</code> task.
-The development bundling tasks don't include DCE.</p>
-<h2 id="excluding-declarations-from-dce">Excluding declarations from DCE</h2>
-<p>Sometimes you may need to keep a function or a class in the resulting JavaScript code even if you don't use it in your module,
-for example, if you're going to use it in the client JavaScript code.</p>
-<p>To keep certain declarations from elimination, add the <code>dceTask</code> block into the Gradle build script and
-list the declarations as the arguments of the <code>keep</code> function. An argument must be the declaration's fully qualified name
-with the module name as a prefix: <code>moduleName.dot.separated.package.name.declarationName</code></p>
+<p>Kotlin/JS Gradle 插件在构建生产包时会自动处理 DCE，例如：使用 <code>browserProductionWebpack</code> 任务。
+开发捆绑任务不包括 DCE。</p>
+<h2 id="从-dce-排除的声明">从 DCE 排除的声明</h2>
+<p>有时，即使未在模块中使用函数或类，也可能需要在结果 JavaScript 代码中保留一个函数或一个类，
+例如：如果要在客户端 JavaScript 代码中使用它，则可能会保留该函数或类。</p>
+<p>为了避免某些声明被删除，请将 <code>dceTask</code> 代码块添加到 Gradle 构建脚本中，并将这些声明列为 <code>keep</code> 函数的参数。
+参数必须是声明的完整限定名，并且模块名称为前缀：
+<code>moduleName.dot.separated.package.name.declarationName</code></p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {
@@ -1419,13 +1419,13 @@ with the module name as a prefix: <code>moduleName.dot.separated.package.name.de
 </code></pre>
 </div>
 </div>
-<p>Note that the names of functions with parameters are <a href="js-to-kotlin-interop.html#jsname-注解">mangled</a>
-in the generated JavaScript code. To keep such functions from elimination, use the mangled names in the <code>keep</code> arguments.</p>
-<h2 id="known-issue-dce-and-ktor">Known issue: DCE and ktor</h2>
-<p>In Kotlin 1.3.70, there is a known <a href="https://github.com/ktorio/ktor/issues/1339">issue</a> 
-of using <a href="https://ktor.io/">ktor</a> in Kotlin/JS projects. In some cases, you may get a type error like <code>&lt;something&gt; is not a function</code> 
-that comes from the <code>io.ktor:ktor-client-js:1.3.0</code> or <code>io.ktor:ktor-client-core:1.3.0</code> artifacts.
-To avoid this issue, add the following DCE configuration:</p>
+<p>请注意，带有参数的函数名称在生成的 JavaScript 代码中会被<a href="js-to-kotlin-interop.html#jsname-注解">修饰</a>。
+为了避免消除这些函数，请在 <code>keep</code> 参数中使用修饰的名称。</p>
+<h2 id="已知问题dce-与-ktor">已知问题：DCE 与 ktor</h2>
+<p>在 Kotlin 1.3.70 中，存在一个在 Kotlin/JS 项目中使用 <a href="https://ktor.io/">ktor</a> 的已知<a href="https://github.com/ktorio/ktor/issues/1339">问题</a>。
+在某些情况下，可能会遇到类型错误，例如：<code>&lt;something&gt; is not a function</code>
+这是来自 <code>io.ktor:ktor-client-js:1.3.0</code> 或 <code>io.ktor:ktor-client-core:1.3.0</code> 构件。
+为避免此问题，请添加以下 DCE 配置：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">kotlin.target.browser {
@@ -1506,7 +1506,7 @@ To avoid this issue, add the following DCE configuration:</p>
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

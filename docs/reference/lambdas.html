@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>高阶函数与 lambda 表达式 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1575,10 +1575,11 @@ val intFunction: (Int) -&gt; Int = IntTransformer()
 </div>
 <p>lambda 表达式总是括在花括号中，
 完整语法形式的参数声明放在花括号内，并有可选的类型标注，
-函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个（或可能是单个）表达式会视为返回值。</p>
+函数体跟在一个 <code>-&gt;</code> 符号之后。如果推断出的该 lambda 的返回类型不是 <code>Unit</code>，那么该 lambda 主体中的最后一个（或可能是单个）
+表达式会视为返回值。</p>
 <p>如果我们把所有可选标注都留下，看起来如下：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val sum = { x, y -&gt; x + y }
+<pre><code class="language-kotlin">val sum = { x: Int, y: Int -&gt; x + y }
 </code></pre>
 </div>
 <h3 id="passing-a-lambda-to-the-last-parameter">传递末尾的 lambda 表达式</h3>
@@ -1774,7 +1775,7 @@ html {       // 带接收者的 lambda 由此开始
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

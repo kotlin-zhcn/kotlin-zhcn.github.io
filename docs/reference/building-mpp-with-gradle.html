@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>使用 Gradle 构建多平台项目 - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -2695,7 +2695,7 @@ kotlin {
 对于每个构建变体，将会以相同的名称创建 Kotlin 构建项。</p>
 <p>然后，对于每个通过变体编译的 <a href="https://developer.android.com/studio/build/build-variants#sourcesets">Android 源集</a>，
 将在目标名称前面的那个源集名称下创建 Kotlin 源集，
-Kotlin 源集 <code>androidDebug</code> 用于 Android 源集 <code>debug</code>
+例如 Kotlin 源集 <code>androidDebug</code> 用于 Android 源集 <code>debug</code>
 与名为 <code>android</code> 的 Kotlin 目标。 这些 Kotlin 源集将相应地添加到变体编译项中。</p>
 <p>默认源集 <code>commonMain</code> 将添加到每个生产项（应用或库）变体的编译项中。
 类似地，<code>commonTest</code> 源集也将添加到单元测试的编译项，以及 instrumented 测试变体中。</p>
@@ -2715,12 +2715,12 @@ dependencies {
 </code></pre>
 </div>
 <h3 id="发布-android-库">发布 Android 库</h3>
-<p>To publish an Android library as a part of a multiplatform library, one needs to
-<a href="#发布多平台库">setup publishing for the library</a> and provide additional configuration for the
-Android library target.</p>
-<p>By default, no artifacts of an Android library are published. To publish artifacts produced by a set of
-<a href="https://developer.android.com/studio/build/build-variants">Android variants</a>, specify the variant names in the Android
-target block as follows:</p>
+<p>为了将 Android 库发布为多平台库的一部分，需要<!--
+--><a href="#发布多平台库">为库设定发布项</a>，并且为
+Android 库目标提供额外的配置项。</p>
+<p>默认情况下，不会发布 Android 库的构件。为了发布
+<a href="https://developer.android.com/studio/build/build-variants">Android 变体</a>生成的一系列构件，需要在 Android
+目标代码块中指定变体名称，如下所示：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
     android {
@@ -2729,12 +2729,12 @@ target block as follows:</p>
 }
 </code></pre>
 </div>
-<p>The example above will work for Android libraries with no product flavors. For a library with product flavors, the
-variant names also contain the flavors, like <code>fooBarDebug</code> or <code>fooBazRelease</code>.</p>
-<p>Note that if a library consumer defines variants that are missing in the library, they need to provide
-<a href="https://developer.android.com/studio/build/dependencies#resolve_matching_errors">matching fallbacks</a>. For example, if
-a library does not have or does not publish a <code>staging</code> build type, it will be necessary to provide a fallback for the
-consumers who have such a build type, specifying at least one of the build types that the library publishes:</p>
+<p>上面的例子将在没有产品类型的 Android 库上工作。对于有产品类型的库，变体<!--
+-->名称也要包含产品类型，例如 <code>fooBarDebug</code> 或是 <code>fooBazRelease</code>。</p>
+<p>注意，如果库用户定义了库中缺失的变体，则他们需要提供<!--
+--><a href="https://developer.android.com/studio/build/dependencies#resolve_matching_errors">备用的匹配</a>。例如，如果<!--
+-->库不具有，或者没有发布 <code>staging</code> 构建类型，那么有必要为<!--
+-->拥有这种构建类型的使用者提供备用的匹配，至少指定库发布项的一个构建类型：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">android {
@@ -2761,11 +2761,11 @@ consumers who have such a build type, specifying at least one of the build types
 </code></pre>
 </div>
 </div>
-<p>Similarly, a library consumer may need to provide matching fallbacks for custom product flavors if some are missing in
-the library publications.</p>
-<p>There is an option to publish variants grouped by the product flavor, so that the outputs of the different build
-types are placed in a single module, with the build type becoming a classifier for the artifacts (the release build
-type is still published with no classifier). This mode is disabled by default and can be enabled as follows:</p>
+<p>类似地，如果库发布项中缺失某些备用的匹配，那么库用户也许需要为自定义产品类型<!--
+-->提供它们。</p>
+<p>你可以选择发布按产品类型分组的变体，以便将不同构建类型的输出<!--
+-->放置在单独的模块中，并使构建类型成为构建的分类器（release 构建<!--
+-->类型不通过分类器发布）。这个模式默认是禁用的，不过可以通过以下方式启用：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-groovy">kotlin {
     android {
@@ -2774,8 +2774,8 @@ type is still published with no classifier). This mode is disabled by default an
 }
 </code></pre>
 </div>
-<p>It is not recommended to publish variants grouped by the product flavor in case they have different dependencies, as
-those will be merged into one dependencies list.</p>
+<p>不推荐发布按产品类型分组的变体，以免它们拥有不同的依赖项，因为<!--
+-->这些将被合并到一个依赖项列表中。</p>
 <h2 id="使用-kotlinnative-目标平台">使用 Kotlin/Native 目标平台</h2>
 <p>重要的是，注意某些 <a href="#已支持平台">Kotlin/Native 目标</a>仅能在适当的主机上被编译：</p>
 <ul>
@@ -2840,13 +2840,13 @@ ios("anotherIos")
 </code></pre>
 </div>
 <h3 id="构建最终原生二进制文件">构建最终原生二进制文件</h3>
-<p>By default, a Kotlin/Native target is compiled down to a <code>*.klib</code> library artifact, which can be consumed by Kotlin/Native itself as a
-dependency but cannot be executed or used as a native library. To declare final native binaries like executables or shared libraries a <code>binaries</code>
-property of a native target is used. This property represents a collection of native binaries built for this target in addition to the
-default <code>*.klib</code> artifact and provides a set of methods for declaring and configuring them.</p>
-<p>Note that the <code>kotlin-multiplaform</code> plugin doesn't create any production binaries by default. The only binary available by default
-is a debug executable allowing one to run tests from the <code>test</code> compilation.</p>
-<h4 id="declaring-binaries">Declaring binaries</h4>
+<p>默认情况下，Kotlin/Native 目标将被编译为 <code>*.klib</code> 库构件，它可以被 Kotlin/Native 自身作为<!--
+-->依赖项使用，但并不能被执行，或是用作原生库。为了声明像可执行文件或是链接库的最终原生二进制文件，
+需要使用原生目标的 <code>binaries</code> 属性。除默认 <code>*.klib</code> 构建外，
+这个属性还代表一个为这个目标构建的原生二进制文件集合，并且提供了一系列声明和配置它们的方法。</p>
+<p>注意，<code>kotlin-multiplaform</code> 插件默认不会创建任何生产二进制文件。默认情况下，
+唯一可用的二进制文件是调试可执行文件，它允许运行来自 <code>test</code> 编译项的测试。</p>
+<h4 id="声明二进制文件">声明二进制文件</h4>
 <p>A set of factory methods is used for declaring elements of the <code>binaries</code> collection. These methods allow one to specify what kinds of binaries are to be created and configure them. The following binary kinds are supported (note that not all the kinds are available for
 all native platforms):</p>
 <table>
@@ -2964,7 +2964,7 @@ an optimized binary without debug information). Consequently the following snipp
 </div>
 <p>The first argument in this example allows one to set a name prefix for the created binaries which is used to access them in the buildscript (see the <a href="#accessing-binaries">"Accessing binaries"</a> section).
 Also this prefix is used as a default name for the binary file. For example on Windows the sample above produces files <code>foo.exe</code> and <code>bar.exe</code>.</p>
-<h4 id="accessing-binaries">Accessing binaries</h4>
+<h4 id="访问二进制文件">访问二进制文件</h4>
 <p>The binaries DSL allows not only creating binaries but also accessing already created ones to configure them or get their properties
 (e.g. path to an output file). The <code>binaries</code> collection implements the
 <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DomainObjectSet.html"><code>DomainObjectSet</code></a> interface and provides methods like
@@ -3044,7 +3044,7 @@ binaries.findExecutable("foo", DEBUG)
 <pre><code>binaries.getTest("DEBUG")
 </code></pre>
 </blockquote>
-<h4 id="configuring-binaries">Configuring binaries</h4>
+<h4 id="配置二进制文件">配置二进制文件</h4>
 <p>Binaries have a set of properties allowing one to configure them. The following options are available:</p>
 <ul>
 <li><strong>Compilation.</strong> Each binary is built on basis of some compilation available in the same target. The default value of this parameter depends
@@ -3135,7 +3135,7 @@ binaries.findExecutable("foo", DEBUG)
 </code></pre>
 </div>
 </div>
-<h4 id="exporting-dependencies-to-binaries">Exporting dependencies to binaries</h4>
+<h4 id="导出依赖项为二进制文件">导出依赖项为二进制文件</h4>
 <p>When building an Objective-C framework or a native library (shared or static), it is often necessary to pack not just the
 classes of the current project, but also the classes of some of its dependencies. The Binaries DSL allows one to specify
 which dependencies will be exported to a binary using the <code>export</code> method. Note that only API dependencies of a corresponding source set can be exported.</p>
@@ -3228,7 +3228,7 @@ be added in the output framework. This behaviour can be changed by the <code>tra
 </code></pre>
 </div>
 </div>
-<h4 id="building-universal-frameworks">Building universal frameworks</h4>
+<h4 id="构建通用框架">构建通用框架</h4>
 <p>By default, an Objective-C framework produced by Kotlin/Native supports only one platform. However, such frameworks can be merged
 into a single universal (fat) binary using the <code>lipo</code> utility. Particularly, such an operation makes sense for 32-bit and 64-bit iOS
 frameworks. In this case the resulting universal framework can be used on both 32-bit and 64-bit devices.</p>
@@ -3302,7 +3302,7 @@ kotlin {
 </code></pre>
 </div>
 </div>
-<h3 id="cinterop-support">CInterop support</h3>
+<h3 id="c-互操作支持">C 互操作支持</h3>
 <p>Since Kotlin/Native provides <a href="native/c_interop.html">interoperability with native languages</a>,
 there is a DSL allowing one to configure this feature for a specific compilation.</p>
 <p>A compilation can interact with several native libraries. Interoperability with each of them can be configured in
@@ -3442,7 +3442,7 @@ using the <code>linkerOpts</code> property of the binary. See the <a href="#conf
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">

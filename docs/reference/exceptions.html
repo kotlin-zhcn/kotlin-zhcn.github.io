@@ -42,7 +42,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
     <title>异常：try、catch、finally、throw、Nothing - Kotlin 语言中文站</title>
 
-    <script src="/_assets/common.js?&amp;v=07db2933540bff717bd26a0958883834"></script>
+    <script src="/_assets/common.js?&amp;v=9466395ac618970d56dc28f3a74b2662"></script>
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=09757e6174985083b2ba2b1c7b8989da"/>
 </head>
 <body class="">
@@ -1437,7 +1437,7 @@ catch (IOException e) {
 </code></pre>
 </div>
 <p>这并不好，参见<a href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 第 77 条：<em>不要忽略异常</em>。</p>
-<p>Bruce Eckel 在<a href="http://www.mindview.net/Etc/Discussions/CheckedExceptions">《Java 是否需要受检的异常？》（Does Java need Checked Exceptions?）</a> 中指出：</p>
+<p>Bruce Eckel says about checked exceptions:</p>
 <blockquote>
 <p>通过一些小程序测试得出的结论是异常规范会同时提高开发者的生产力与代码质量，但是大型软件项目的经验表明一个不同的结论——生产力降低、代码质量很少或没有提高。</p>
 </blockquote>
@@ -1446,6 +1446,7 @@ catch (IOException e) {
 <li><a href="http://radio-weblogs.com/0122027/stories/2003/04/01/JavasCheckedExceptionsWereAMistake.html">《Java 的受检异常是一个错误》（Java's checked exceptions were a mistake）</a>（Rod Waldhoff）</li>
 <li><a href="http://www.artima.com/intv/handcuffs.html">《受检异常的烦恼》（The Trouble with Checked Exceptions）</a>（Anders Hejlsberg）</li>
 </ul>
+<p>If you want to alert callers of possible exceptions when calling Kotlin code from Java, Swift, or Objective-C, you can use the <code>@Throws</code> annotation. Read more about using this annotation <a href="https://kotlinlang.org/docs/reference/java-to-kotlin-interop.html#checked-exceptions">for Java</a> as well as <a href="https://kotlinlang.org/docs/reference/native/objc_interop.html#errors-and-exceptions">for Swift and Objective-C</a>.</p>
 <h2 id="nothing-类型">Nothing 类型</h2>
 <p>在 Kotlin 中 <code>throw</code> 是表达式，所以你可以使用它（比如）作为 Elvis 表达式的一部分：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1538,7 +1539,7 @@ val l = listOf(null)   // “l”具有类型 `List&lt;Nothing?&gt;
     </div>
 
 </footer>
-    <script src="/_assets/reference.js?&amp;v=f9da3703940597a05a36e798f03b0585"></script>
+    <script src="/_assets/reference.js?&amp;v=6403fd808facadc69e06df9f9d59c2b1"></script>
     <link rel="stylesheet" href="/_assets/reference.css?&amp;v=f414e05382b5610c35f35ce50b245906">
 <div class="search-popup _hidden" tabindex="1000">
     <div class="search-popup__content">
