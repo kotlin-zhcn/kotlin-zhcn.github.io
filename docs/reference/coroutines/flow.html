@@ -1672,7 +1672,7 @@ Done
 </code></pre>
 <!--- TEST -->
 <h3 id="流构建器">流构建器</h3>
-<p>先前示例中的 <code>flow { ... }</code> 构建器是最基础的一个。还有其它构建器<!--
+<p>先前示例中的 <code>flow { ... }</code> 构建器是最基础的一个。还有其他构建器<!--
 -->使流的声明更简单：</p>
 <ul>
 <li><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-of.html">flowOf</a> 构建器定义了一个发射固定值集的流。</li>
@@ -2283,48 +2283,48 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
 <h3 id="展平流">展平流</h3>
-<p>Flows represent asynchronously received sequences of values, so it is quite easy to get in a situation where 
-each value triggers a request for another sequence of values. For example, we can have the following
-function that returns a flow of two strings 500 ms apart:</p>
+<p>流表示异步接收的值序列，所以很容易遇到这样的情况：
+每个值都会触发对另一个值序列的请求。比如说，我们可以拥有下面这样一个返回间隔 500
+毫秒的两个字符串流的函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
     emit("$i: First") 
-    delay(500) // wait 500 ms
+    delay(500) // 等待 500 毫秒
     emit("$i: Second")    
 }
 </code></pre>
 </div>
 <!--- CLEAR -->
-<p>Now if we have a flow of three integers and call <code>requestFlow</code> for each of them like this:</p>
+<p>现在，如果我们有一个包含三个整数的流，并为每个整数调用 <code>requestFlow</code>，如下所示：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">(1..3).asFlow().map { requestFlow(it) }
 </code></pre>
 </div>
 <!--- CLEAR -->
-<p>Then we end up with a flow of flows (<code>Flow&lt;Flow&lt;String&gt;&gt;</code>) that needs to be <em>flattened</em> into a single flow for 
-further processing. Collections and sequences have <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/flatten.html">flatten</a> and <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/flat-map.html">flatMap</a>
-operators for this. However, due the asynchronous nature of flows they call for different <em>modes</em> of flattening, 
-as such, there is a family of flattening operators on flows.</p>
+<p>然后我们得到了一个包含流的流（<code>Flow&lt;Flow&lt;String&gt;&gt;</code>），需要将其进行<em>展平</em>为单个流以进行<!--
+-->下一步处理。集合与序列都拥有 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/flatten.html">flatten</a> 与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/flat-map.html">flatMap</a>
+操作符来做这件事。然而，由于流具有异步的性质，因此需要不同的展平<em>模式</em>，
+为此，存在一系列的流展平操作符。</p>
 <h4 id="flatmapconcat">flatMapConcat</h4>
-<p>Concatenating mode is implemented by <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html">flatMapConcat</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-concat.html">flattenConcat</a> operators. They are the most direct
-analogues of the corresponding sequence operators. They wait for the inner flow to complete before
-starting to collect the next one as the following example shows:</p>
+<p>连接模式由 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html">flatMapConcat</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-concat.html">flattenConcat</a> 操作符实现。它们<!--
+-->是相应序列操作符最相近的类似物。它们在等待内部流完成之前<!--
+-->开始收集下一个值，如下面的示例所示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
     emit("$i: First") 
-    delay(500) // wait 500 ms
+    delay(500) // 等待 500 毫秒
     emit("$i: Second")    
 }
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = System.currentTimeMillis() // remember the start time 
-    (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
+    val startTime = System.currentTimeMillis() // 记录开始时间
+    (1..3).asFlow().onEach { delay(100) } // 每 100 毫秒发射一个数字 
         .flatMapConcat { requestFlow(it) }                                                                           
-        .collect { value -&gt; // collect and print 
+        .collect { value -&gt; // 收集并打印
             println("$value at ${System.currentTimeMillis() - startTime} ms from start") 
         } 
 //sampleEnd
@@ -2332,9 +2332,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-23.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-23.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>The sequential nature of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html">flatMapConcat</a> is clearly seen in the output:</p>
+<p>在输出中可以清楚地看到 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html">flatMapConcat</a> 的顺序性质：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1: First at 121 ms from start
 1: Second at 622 ms from start
 2: First at 727 ms from start
@@ -2344,27 +2344,27 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
 <h4 id="flatmapmerge">flatMapMerge</h4>
-<p>Another flattening mode is to concurrently collect all the incoming flows and merge their values into
-a single flow so that values are emitted as soon as possible.
-It is implemented by <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-merge.html">flattenMerge</a> operators. They both accept an optional 
-<code>concurrency</code> parameter that limits the number of concurrent flows that are collected at the same time
-(it is equal to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-d-e-f-a-u-l-t_-c-o-n-c-u-r-r-e-n-c-y.html">DEFAULT_CONCURRENCY</a> by default).</p>
+<p>另一种展平模式是并发收集所有传入的流，并将它们的值合并到<!--
+-->一个单独的流，以便尽快的发射值。
+它由 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-merge.html">flattenMerge</a> 操作符实现。他们都接收可选的<!--
+-->用于限制并发收集的流的个数的 <code>concurrency</code> 参数<!--
+-->（默认情况下，它等于 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-d-e-f-a-u-l-t_-c-o-n-c-u-r-r-e-n-c-y.html">DEFAULT_CONCURRENCY</a>）。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
     emit("$i: First") 
-    delay(500) // wait 500 ms
+    delay(500) // 等待 500 毫秒
     emit("$i: Second")    
 }
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = System.currentTimeMillis() // remember the start time 
-    (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
+    val startTime = System.currentTimeMillis() // 记录开始时间
+    (1..3).asFlow().onEach { delay(100) } // 每 100 毫秒发射一个数字 
         .flatMapMerge { requestFlow(it) }                                                                           
-        .collect { value -&gt; // collect and print 
+        .collect { value -&gt; // 收集并打印
             println("$value at ${System.currentTimeMillis() - startTime} ms from start") 
         } 
 //sampleEnd
@@ -2372,9 +2372,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-24.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-24.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>The concurrent nature of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> is obvious:</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> 的并发性质很明显：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1: First at 136 ms from start
 2: First at 231 ms from start
 3: First at 333 ms from start
@@ -2384,31 +2384,31 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
 <blockquote>
-<p>Note that the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> calls its block of code (<code>{ requestFlow(it) }</code> in this example) sequentially, but 
-collects the resulting flows concurrently, it is the equivalent of performing a sequential 
-<code>map { requestFlow(it) }</code> first and then calling <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-merge.html">flattenMerge</a> on the result.</p>
+<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> 会顺序调用代码块（本示例中的 <code>{ requestFlow(it) }</code>），但是<!--
+-->并发收集结果流，相当于执行顺序是首先执行
+<code>map { requestFlow(it) }</code> 然后在其返回结果上调用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-merge.html">flattenMerge</a>。</p>
 </blockquote>
 <h4 id="flatmaplatest">flatMapLatest</h4>
-<p>In a similar way to the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect-latest.html">collectLatest</a> operator, that was shown in 
-<a href="#处理最新值">"Processing the latest value"</a> section, there is the corresponding "Latest" 
-flattening mode where a collection of the previous flow is cancelled as soon as new flow is emitted. 
-It is implemented by the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> operator.</p>
+<p>与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect-latest.html">collectLatest</a> 操作符类似（在<!--
+--><a href="#处理最新值">"处理最新值"</a> 小节中已经讨论过），也有相对应的“最新”<!--
+-->展平模式，在发出新流后立即取消先前流的收集。
+这由 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> 操作符来实现。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 fun requestFlow(i: Int): Flow&lt;String&gt; = flow {
     emit("$i: First") 
-    delay(500) // wait 500 ms
+    delay(500) // 等待 500 毫秒
     emit("$i: Second")    
 }
 
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
-    val startTime = System.currentTimeMillis() // remember the start time 
-    (1..3).asFlow().onEach { delay(100) } // a number every 100 ms 
+    val startTime = System.currentTimeMillis() // 记录开始时间
+    (1..3).asFlow().onEach { delay(100) } // 每 100 毫秒发射一个数字 
         .flatMapLatest { requestFlow(it) }                                                                           
-        .collect { value -&gt; // collect and print 
+        .collect { value -&gt; // 收集并打印
             println("$value at ${System.currentTimeMillis() - startTime} ms from start") 
         } 
 //sampleEnd
@@ -2416,9 +2416,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-25.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-25.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>The output here in this example is a good demonstration of how <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> works:</p>
+<p>该示例的输出很好的展示了 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> 的工作方式：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1: First at 142 ms from start
 2: First at 322 ms from start
 3: First at 425 ms from start
@@ -2426,15 +2426,15 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
 <blockquote>
-<p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> cancels all the code in its block (<code>{ requestFlow(it) }</code> in this example) on a new value. 
-It makes no difference in this particular example, because the call to <code>requestFlow</code> itself is fast, not-suspending,
-and cannot be cancelled. However, it would show up if we were to use suspending functions like <code>delay</code> in there.</p>
+<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> 在一个新值到来时取消了块中的所有代码 (本示例中的 <code>{ requestFlow(it) }</code>）。 
+这在该特定示例中不会有什么区别，由于调用 <code>requestFlow</code> 自身的速度是很快的，不会发生挂起，
+所以不会被取消。然而，如果我们要在块中调用诸如 <code>delay</code> 之类的挂起函数，这将会被表现出来。</p>
 </blockquote>
 <h3 id="流异常">流异常</h3>
-<p>Flow collection can complete with an exception when an emitter or code inside the operators throw an exception. 
-There are several ways to handle these exceptions.</p>
+<p>当运算符中的发射器或代码抛出异常时，流收集可以带有异常的完成。
+有几种处理异常的方法。</p>
 <h4 id="收集器-try-与-catch">收集器 try 与 catch</h4>
-<p>A collector can use Kotlin's <a href="https://kotlinlang.org/docs/reference/exceptions.html"><code>try/catch</code></a> block to handle exceptions:</p>
+<p>收集者可以使用 Kotlin 的 <a href="https://kotlinlang.org/docs/reference/exceptions.html"><code>try/catch</code></a> 块来处理异常：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2443,7 +2443,7 @@ import kotlinx.coroutines.flow.*
 fun foo(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         println("Emitting $i")
-        emit(i) // emit next value
+        emit(i) // 发射下一个值
     }
 }
 
@@ -2461,10 +2461,10 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-26.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-26.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code successfully catches an exception in <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> terminal operator and, 
-as we see, no more values are emitted after that:</p>
+<p>这段代码成功的在末端操作符 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 中捕获了异常，并且， 
+如我们所见，在这之后不再发出任何值：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Emitting 1
 1
 Emitting 2
@@ -2473,9 +2473,9 @@ Caught java.lang.IllegalStateException: Collected 2
 </code></pre>
 <!--- TEST -->
 <h4 id="一切都已捕获">一切都已捕获</h4>
-<p>The previous example actually catches any exception happening in the emitter or in any intermediate or terminal operators.
-For example, let's change the code so that emitted values are <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/map.html">mapped</a> to strings,
-but the corresponding code produces an exception:</p>
+<p>前面的示例实际上捕获了在发射器或任何过渡或末端操作符中发生的任何异常。
+例如，让我们修改代码以便将发出的值<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/map.html">映射</a>为字符串，
+但是相应的代码会产生一个异常：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2485,7 +2485,7 @@ fun foo(): Flow&lt;String&gt; =
     flow {
         for (i in 1..3) {
             println("Emitting $i")
-            emit(i) // emit next value
+            emit(i) // 发射下一个值
         }
     }
     .map { value -&gt;
@@ -2504,9 +2504,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-27.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-27.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This exception is still caught and collection is stopped:</p>
+<p>仍然会捕获该异常并停止收集：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Emitting 1
 string 1
 Emitting 2
@@ -2514,19 +2514,19 @@ Caught java.lang.IllegalStateException: Crashed on 2
 </code></pre>
 <!--- TEST -->
 <h3 id="异常透明性">异常透明性</h3>
-<p>But how can code of the emitter encapsulate its exception handling behavior?</p>
-<p>Flows must be <em>transparent to exceptions</em> and it is a violation of the exception transparency to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> values in the 
-<code>flow { ... }</code> builder from inside of a <code>try/catch</code> block. This guarantees that a collector throwing an exception
-can always catch it using <code>try/catch</code> as in the previous example.</p>
-<p>The emitter can use a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> operator that preserves this exception transparency and allows encapsulation
-of its exception handling. The body of the <code>catch</code> operator can analyze an exception
-and react to it in different ways depending on which exception was caught:</p>
+<p>但是，发射器的代码如何封装其异常处理行为？</p>
+<p>流必须<em>对异常透明</em>，即在 <code>flow { ... }</code> 构建器内部的 <code>try/catch</code>
+块中<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">发射</a>值是违反异常透明性的。这样可以保证收集器抛出的一个异常<!--
+-->能被像先前示例中那样的 <code>try/catch</code> 块捕获。</p>
+<p>发射器可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 操作符来保留此异常的透明性并允许封装<!--
+-->它的异常处理。catch 操作符的代码块可以分析异常<!--
+-->并根据捕获到的异常以不同的方式对其做出反应：</p>
 <ul>
-<li>Exceptions can be rethrown using <code>throw</code>.</li>
-<li>Exceptions can be turned into emission of values using <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> from the body of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a>.</li>
-<li>Exceptions can be ignored, logged, or processed by some other code.</li>
+<li>可以使用 <code>throw</code> 重新抛出异常。</li>
+<li>可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 代码块中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> 将异常转换为值发射出去。</li>
+<li>可以将异常忽略，或用日志打印，或使用一些其他代码处理它。</li>
 </ul>
-<p>For example, let us emit the text on catching an exception:</p>
+<p>例如，让我们在捕获异常的时候发射文本：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2535,27 +2535,27 @@ fun foo(): Flow&lt;String&gt; =
     flow {
         for (i in 1..3) {
             println("Emitting $i")
-            emit(i) // emit next value
+            emit(i) // 发射下一个值
         }
     }
     .map { value -&gt;
-        check(value &lt;= 1) { "Crashed on $value" }                 
+        check(value &lt;= 1) { "Crashed on $value" }
         "string $value"
     }
 
 fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart
     foo()
-        .catch { e -&gt; emit("Caught $e") } // emit on exception
+        .catch { e -&gt; emit("Caught $e") } // 发射一个异常
         .collect { value -&gt; println(value) }
 //sampleEnd
 }            
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-28.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-28.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>The output of the example is the same, even though we do not have <code>try/catch</code> around the code anymore.</p>
+<p>即使我们不再在代码的外层使用 <code>try/catch</code>，示例的输出也是相同的。</p>
 <!--- TEST  
 Emitting 1
 string 1
@@ -2563,9 +2563,9 @@ Emitting 2
 Caught java.lang.IllegalStateException: Crashed on 2
 -->
 <h4 id="透明捕获">透明捕获</h4>
-<p>The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> intermediate operator, honoring exception transparency, catches only upstream exceptions
-(that is an exception from all the operators above <code>catch</code>, but not below it).
-If the block in <code>collect { ... }</code> (placed below <code>catch</code>) throws an exception then it escapes:</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 过渡操作符遵循异常透明性，仅捕获上游异常<!--
+-->（<code>catch</code> 操作符上游的异常，但是它下面的不是）。
+如果 <code>collect { ... }</code> 块（位于 <code>catch</code> 之下）抛出一个异常，那么异常会逃逸：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2580,7 +2580,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; {
     foo()
-        .catch { e -&gt; println("Caught $e") } // does not catch downstream exceptions
+        .catch { e -&gt; println("Caught $e") } // 不会捕获下游异常
         .collect { value -&gt;
             check(value &lt;= 1) { "Collected $value" }                 
             println(value) 
@@ -2590,9 +2590,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-29.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-29.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>A "Caught …" message is not printed despite there being a <code>catch</code> operator:</p>
+<p>尽管有 <code>catch</code> 操作符，但不会打印“Caught …”消息：</p>
 <!--- TEST EXCEPTION  
 Emitting 1
 1
@@ -2601,9 +2601,9 @@ Exception in thread "main" java.lang.IllegalStateException: Collected 2
 	at ...
 -->
 <h4 id="声明式捕获">声明式捕获</h4>
-<p>We can combine the declarative nature of the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> operator with a desire to handle all the exceptions, by moving the body
-of the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> operator into <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html">onEach</a> and putting it before the <code>catch</code> operator. Collection of this flow must
-be triggered by a call to <code>collect()</code> without parameters:</p>
+<p>我们可以将 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 操作符的声明性与处理所有异常的期望相结合，将 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a>
+操作符的代码块移动到 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html">onEach</a> 中，并将其放到 <code>catch</code> 操作符之前。收集该流必须由调用<!--
+-->无参的 <code>collect()</code> 来触发：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2629,10 +2629,10 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-30.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-30.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>Now we can see that a "Caught …" message is printed and so we can catch all the exceptions without explicitly
-using a <code>try/catch</code> block:</p>
+<p>现在我们可以看到已经打印了“Caught …”消息，并且我们可以在没有显式使用
+<code>try/catch</code> 块的情况下捕获所有异常：</p>
 <!--- TEST EXCEPTION  
 Emitting 1
 1
@@ -2640,11 +2640,11 @@ Emitting 2
 Caught java.lang.IllegalStateException: Collected 2
 -->
 <h3 id="流完成">流完成</h3>
-<p>When flow collection completes (normally or exceptionally) it may need to execute an action. 
-As you may have already noticed, it can be done in two ways: imperative or declarative.</p>
+<p>当流收集完成时（普通情况或异常情况），它可能需要执行一个动作。
+你可能已经注意到，它可以通过两种方式完成：命令式或声明式。</p>
 <h4 id="命令式-finally-块">命令式 finally 块</h4>
-<p>In addition to <code>try</code>/<code>catch</code>, a collector can also use a <code>finally</code> block to execute an action 
-upon <code>collect</code> completion.</p>
+<p>除了 <code>try</code>/<code>catch</code> 之外，收集器还能使用 <code>finally</code> 块在 <code>collect</code>
+完成时执行一个动作。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2663,9 +2663,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-31.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-31.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>This code prints three numbers produced by the <code>foo()</code> flow followed by a "Done" string:</p>
+<p>这段代码打印出 <code>foo()</code> 流产生的三个数字，后面跟一个“Done”字符串：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 2
 3
@@ -2673,9 +2673,9 @@ Done
 </code></pre>
 <!--- TEST  -->
 <h4 id="声明式处理">声明式处理</h4>
-<p>For the declarative approach, flow has <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> intermediate operator that is invoked
-when the flow has completely collected.</p>
-<p>The previous example can be rewritten using an <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> operator and produces the same output:</p>
+<p>对于声明式，流拥有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 过渡操作符，它在流完全收集<!--
+-->时调用。</p>
+<p>可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 操作符重写前面的示例，并产生相同的输出：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2692,7 +2692,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-32.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-32.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST 
 1
@@ -2700,9 +2700,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 3
 Done
 -->
-<p>The key advantage of <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> is a nullable <code>Throwable</code> parameter of the lambda that can be used
-to determine whether the flow collection was completed normally or exceptionally. In the following
-example the <code>foo()</code> flow throws an exception after emitting the number 1:</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 的主要优点是其 lambda 表达式的可空参数
+<code>Throwable</code> 可以用于确定流收集是正常完成还是有异常发生。在下面的<!--
+-->示例中 <code>foo()</code> 流在发射数字 1 之后抛出了一个异常：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2723,20 +2723,20 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-33.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-33.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>As you may expect, it prints:</p>
+<p>如你所期望的，它打印了：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 Flow completed exceptionally
 Caught exception
 </code></pre>
 <!--- TEST -->
-<p>The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> operator, unlike <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a>, does not handle the exception. As we can see from the above
-example code, the exception still flows downstream. It will be delivered to further <code>onCompletion</code> operators
-and can be handled with a <code>catch</code> operator.</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 操作符与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 不同，它不处理异常。我们可以看到前面的<!--
+-->示例代码，异常仍然流向下游。它将被提供给后面的 <code>onCompletion</code>
+操作符，并可以由 <code>catch</code> 操作符处理。</p>
 <h4 id="仅限上游异常">仅限上游异常</h4>
-<p>Just like the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> operator, <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> only sees exceptions coming from upstream and does not
-see downstream exceptions. For example, run the following code:</p>
+<p>与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 操作符一样，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 仅能观察到来自上游的异常<!--
+-->而不能观察到下游的异常。例如，运行下面的代码：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2756,19 +2756,19 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-34.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-34.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>We can see the completion cause is null, yet collection failed with exception:</p>
+<p>我们可以看到完成的 cause 是 null，但收集失败并发生了异常：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 Flow completed with null
 Exception in thread "main" java.lang.IllegalStateException: Collected 2
 </code></pre>
 <!--- TEST EXCEPTION -->
 <h3 id="命令式还是声明式">命令式还是声明式</h3>
-<p>Now we know how to collect flow, and handle its completion and exceptions in both imperative and declarative ways.
-The natural question here is, which approach is preferred and why?
-As a library, we do not advocate for any particular approach and believe that both options
-are valid and should be selected according to your own preferences and code style.</p>
+<p>现在我们知道如何收集流，并以命令式与声明式的方式处理其完成及异常情况。
+这里有一个很自然的问题是，哪种方式应该是首选的？为什么？
+作为一个库，我们不主张采用任何特定的方式，并且相信这两种选择都是有效的，
+应该根据自己的喜好与代码风格进行选择。</p>
 <h3 id="启动流">启动流</h3>
 <p>It is easy to use flows to represent asynchronous events that are coming from some source.
 In this case, we need an analogue of the <code>addEventListener</code> function that registers a piece of code with a reaction
@@ -2848,7 +2848,7 @@ coroutine only without cancelling the whole scope or to <a href="https://kotlin.
 <p>对于熟悉响应式流（<a href="https://www.reactive-streams.org/">Reactive Streams</a>）或诸如 RxJava 与 Project Reactor 这样的响应式框架的人来说，
 Flow 的设计也许看起来会非常熟悉。</p>
 <p>确实，其设计灵感来源于响应式流以及其各种实现。但是 Flow 的主要目标是拥有尽可能简单的设计，
-对 Kotlin 以及挂起友好且遵从结构化并发。没有响应式的先驱及他们大量的工作，就不可能实现这一目标。您可以阅读 <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> 这篇文章来了解完成 Flow 的故事。</p>
+对 Kotlin 以及挂起友好且遵从结构化并发。没有响应式的先驱及他们大量的工作，就不可能实现这一目标。你可以阅读 <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> 这篇文章来了解完成 Flow 的故事。</p>
 <p>虽然有所不同，但从概念上讲，Flow <em>依然是</em>响应式流，并且可以将它转换为响应式（规范及符合 TCK）的发布者（Publisher），反之亦然。
 这些开箱即用的转换器可以在 <code>kotlinx.coroutines</code> 提供的相关响应式模块（<code>kotlinx-coroutines-reactive</code> 用于 Reactive Streams，<code>kotlinx-coroutines-reactor</code> 用于 Project Reactor，以及 <code>kotlinx-coroutines-rx2</code> 用于 RxJava2）中找到。
 集成模块包含 <code>Flow</code> 与其他实现之间的转换，与 Reactor 的 <code>Context</code> 集成以及与一系列响应式实体配合使用的挂起友好的使用方式。</p>

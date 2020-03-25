@@ -2847,75 +2847,75 @@ ios("anotherIos")
 <p>注意，<code>kotlin-multiplaform</code> 插件默认不会创建任何生产二进制文件。默认情况下，
 唯一可用的二进制文件是调试可执行文件，它允许运行来自 <code>test</code> 编译项的测试。</p>
 <h4 id="声明二进制文件">声明二进制文件</h4>
-<p>A set of factory methods is used for declaring elements of the <code>binaries</code> collection. These methods allow one to specify what kinds of binaries are to be created and configure them. The following binary kinds are supported (note that not all the kinds are available for
-all native platforms):</p>
+<p><code>binaries</code> 集合的元素通过一套工厂方法声明。这些方法允许指定要创建的二进制类型并对其进行配置。以下是受支持的二进制类型（注意，
+并不是所有类型都可用于所有原生平台）：</p>
 <table>
 <thead>
 <tr>
-<th><strong>Factory method</strong></th>
-<th><strong>Binary kind</strong></th>
-<th><strong>Available for</strong></th>
+<th><strong>工厂方法</strong></th>
+<th><strong>二进制类型</strong></th>
+<th><strong>可用于</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>executable</code></td>
-<td>a product executable</td>
-<td>all native targets</td>
+<td>产品可执行文件</td>
+<td>所有原生目标</td>
 </tr>
 <tr>
 <td><code>test</code></td>
-<td>a test executable</td>
-<td>all native targets</td>
+<td>测试可执行文件</td>
+<td>所有原生目标</td>
 </tr>
 <tr>
 <td><code>sharedLib</code></td>
-<td>a shared native library</td>
-<td>all native targets except <code>wasm32</code></td>
+<td>链接原生库</td>
+<td>除了 <code>wasm32</code> 以外的所有原生目标</td>
 </tr>
 <tr>
 <td><code>staticLib</code></td>
-<td>a static native library</td>
-<td>all native targets except <code>wasm32</code></td>
+<td>静态原生库</td>
+<td>除了 <code>wasm32</code> 以外的所有原生目标</td>
 </tr>
 <tr>
 <td><code>framework</code></td>
-<td>an Objective-C framework</td>
-<td>macOS, iOS, watchOS, and tvOS targets only</td>
+<td>Objective-C framework</td>
+<td>仅 macOS、iOS、watchOS 与 tvOS 目标</td>
 </tr>
 </tbody>
 </table>
-<p>Each factory method exists in several versions. Consider them by example of the <code>executable</code> method. All the same versions are available
-for all other factory methods.</p>
-<p>The simplest version doesn't require any additional parameters and creates one binary for each build type.
-Currently there a two build types available: <code>DEBUG</code> (produces a not optimized binary with a debug information) and <code>RELEASE</code> (produces
-an optimized binary without debug information). Consequently the following snippet creates two executable binaries: debug and release.</p>
+<p>每个工厂方法都有多个版本。通过 <code>executable</code> 方法的示例考虑他们。所有相同的版本<!--
+-->对所有其他的工厂方法都是可用的。</p>
+<p>最简单的版本不需要任何额外的参数，并且会为每个构建类型都创建二进制文件。
+目前有两个可用的构建类型：<code>DEBUG</code> （生成带有调试信息的、未优化的二进制文件） 与 <code>RELEASE</code> （生成<!--
+-->不带有调试信息的、经过优化的二进制文件）。</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">kotlin {
-    linuxX64 { // Use your target instead.
+    linuxX64 { // 更改为你所使用的目标。
         binaries {
             executable {
-                // Binary configuration.
+                // 二进制配置。
             }
         }
     }
 }
 </code></pre>
 </div>
-<p>A lambda expression accepted by the <code>executable</code> method in the example above is applied to each binary created and allows one to configure the binary
-(see the <a href="#configuring-binaries">corresponding section</a>). Note that this lambda can be dropped if there is no need for additional configuration:</p>
+<p>在上面例子中的 <code>executable</code> 方法接受的 lambda 表达式将应用于创建的每个二进制文件，并且允许配置二进制文件。
+（参见<a href="#配置二进制文件">相应部分</a>）。注意，如果不需要额外的配置，则可以删除这个 lambda：</p>
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">binaries {
     executable()
 }
 </code></pre>
 </div>
-<p>It is possible to specify which build types will be used to create binaries and which won't. In the following example only debug executable is created.</p>
+<p>可以指定哪些构建类型将用于创建二进制文件，哪些将不创建。以下的示例仅创建了调试可执行文件。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">binaries {
     executable([DEBUG]) {
-        // Binary configuration.
+        // 二进制配置。
     }
 }
 </code></pre>
@@ -2925,23 +2925,23 @@ an optimized binary without debug information). Consequently the following snipp
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">binaries {
     executable(listOf(DEBUG)) {
-        // Binary configuration.
+        // 二进制配置。
     }
 }
 </code></pre>
 </div>
 </div>
-<p>Finally the last factory method version allows customizing the binary name.</p>
+<p>最终，最后一个工厂方法版本允许自定义二进制文件名称。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">binaries {
     executable('foo', [DEBUG]) {
-        // Binary configuration.
+        // 二进制配置。
     }
 
-    // It's possible to drop the list of build types (all the available build types will be used in this case).
+    // 可以删除构建类型的列表（这种情况下，将使用所有可用的构建类型）。
     executable('bar') {
-        // Binary configuration.
+        // 二进制配置。
     }
 }
 </code></pre>
@@ -2951,19 +2951,19 @@ an optimized binary without debug information). Consequently the following snipp
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">binaries {
     executable("foo", listOf(DEBUG)) {
-        // Binary configuration.
+        // 二进制配置。
     }
 
-    // It's possible to drop the list of build types (all the available build types will be used in this case).
+    // 可以删除构建类型的列表（这种情况下，将使用所有可用的构建类型）。
     executable("bar") {
-        // Binary configuration.
+        // 二进制配置。
     }
 }
 </code></pre>
 </div>
 </div>
-<p>The first argument in this example allows one to set a name prefix for the created binaries which is used to access them in the buildscript (see the <a href="#accessing-binaries">"Accessing binaries"</a> section).
-Also this prefix is used as a default name for the binary file. For example on Windows the sample above produces files <code>foo.exe</code> and <code>bar.exe</code>.</p>
+<p>在这个示例中的第一个参数允许为创建的二进制文件设置名称前缀，该前缀用于在构建脚本中访问它们（参见 <a href="#访问二进制文件">“访问二进制文件”</a> 部分）。
+这个前缀也用作二进制文件的默认名称。例如在 Windows 平台上，上面的示例将生产出 <code>foo.exe</code> 与 <code>bar.exe</code> 文件。</p>
 <h4 id="访问二进制文件">访问二进制文件</h4>
 <p>The binaries DSL allows not only creating binaries but also accessing already created ones to configure them or get their properties
 (e.g. path to an output file). The <code>binaries</code> collection implements the
