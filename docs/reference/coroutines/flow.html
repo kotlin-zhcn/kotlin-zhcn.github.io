@@ -2770,80 +2770,80 @@ Exception in thread "main" java.lang.IllegalStateException: Collected 2
 作为一个库，我们不主张采用任何特定的方式，并且相信这两种选择都是有效的，
 应该根据自己的喜好与代码风格进行选择。</p>
 <h3 id="启动流">启动流</h3>
-<p>It is easy to use flows to represent asynchronous events that are coming from some source.
-In this case, we need an analogue of the <code>addEventListener</code> function that registers a piece of code with a reaction
-for incoming events and continues further work. The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html">onEach</a> operator can serve this role. 
-However, <code>onEach</code> is an intermediate operator. We also need a terminal operator to collect the flow. 
-Otherwise, just calling <code>onEach</code> has no effect.</p>
-<p>If we use the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> terminal operator after <code>onEach</code>, then the code after it will wait until the flow is collected:</p>
+<p>使用流表示来自一些源的异步事件是很简单的。
+在这个案例中，我们需要一个类似 <code>addEventListener</code> 的函数，该函数注册一段响应的代码<!--
+-->处理即将到来的事件，并继续进行进一步的处理。<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html">onEach</a> 操作符可以担任该角色。
+然而，<code>onEach</code> 是一个过渡操作符。我们也需要一个末端操作符来收集流。
+否则仅调用 <code>onEach</code> 是无效的。</p>
+<p>如果我们在 <code>onEach</code> 之后使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 末端操作符，那么后面的代码会一直等待直至流被收集：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-// Imitate a flow of events
+// 模仿事件流
 fun events(): Flow&lt;Int&gt; = (1..3).asFlow().onEach { delay(100) }
 
 fun main() = runBlocking&lt;Unit&gt; {
     events()
         .onEach { event -&gt; println("Event: $event") }
-        .collect() // &lt;--- Collecting the flow waits
+        .collect() // &lt;--- 等待流收集
     println("Done")
 }            
 //sampleEnd
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-35.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-35.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>As you can see, it prints:</p>
+<p>你可以看到它的输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Event: 1
 Event: 2
 Event: 3
 Done
 </code></pre>
 <!--- TEST -->
-<p>The <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> terminal operator comes in handy here. By replacing <code>collect</code> with <code>launchIn</code> we can
-launch a collection of the flow in a separate coroutine, so that execution of further code 
-immediately continues:</p>
+<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> 末端操作符可以在这里派上用场。使用 <code>launchIn</code> 替换 <code>collect</code> 我们可以<!--
+-->在单独的协程中启动流的收集，这样就可以立即继续<!--
+-->进一步执行代码：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-// Imitate a flow of events
+// 模仿事件流
 fun events(): Flow&lt;Int&gt; = (1..3).asFlow().onEach { delay(100) }
 
 //sampleStart
 fun main() = runBlocking&lt;Unit&gt; {
     events()
         .onEach { event -&gt; println("Event: $event") }
-        .launchIn(this) // &lt;--- Launching the flow in a separate coroutine
+        .launchIn(this) // &lt;--- 在单独的协程中执行流
     println("Done")
 }            
 //sampleEnd
 </code></pre>
 </div>
 <blockquote>
-<p>You can get the full code from <a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-36.kt">here</a>.</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-36.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>It prints:</p>
+<p>它打印了：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Done
 Event: 1
 Event: 2
 Event: 3
 </code></pre>
 <!--- TEST -->
-<p>The required parameter to <code>launchIn</code> must specify a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> in which the coroutine to collect the flow is 
-launched. In the above example this scope comes from the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a>
-coroutine builder, so while the flow is running, this <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> scope waits for completion of its child coroutine
-and keeps the main function from returning and terminating this example.</p>
-<p>In actual applications a scope will come from an entity with a limited 
-lifetime. As soon as the lifetime of this entity is terminated the corresponding scope is cancelled, cancelling
-the collection of the corresponding flow. This way the pair of <code>onEach { ... }.launchIn(scope)</code> works
-like the <code>addEventListener</code>. However, there is no need for the corresponding <code>removeEventListener</code> function, 
-as cancellation and structured concurrency serve this purpose.</p>
-<p>Note that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> also returns a <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>, which can be used to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">cancel</a> the corresponding flow collection
-coroutine only without cancelling the whole scope or to <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> it.</p>
+<p><code>launchIn</code> 必要的参数 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 指定了用哪一个协程来启动流的<!--
+-->收集。在先前的示例中这个作用域来自 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a>
+协程构建器，在这个流运行的时候，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 作用域等待它的子协程执行完毕<!--
+-->并防止 main 函数返回并终止此示例。</p>
+<p>在实际的应用中，作用域来自于一个寿命有限的<!--
+-->实体。在该实体的寿命终止后，相应的作用域就会被取消，即取消<!--
+-->相应流的收集。这种成对的 <code>onEach { ... }.launchIn(scope)</code> 工作方式<!--
+-->就像 <code>addEventListener</code> 一样。而且，这不需要相应的 <code>removeEventListener</code> 函数，
+因为取消与结构化并发可以达成这个目的。</p>
+<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> 也会返回一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，可以在不取消整个作用域的情况下仅<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">取消</a>相应的流收集<!--
+-->或对其进行 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a>。</p>
 <h3 id="flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</h3>
 <p>对于熟悉响应式流（<a href="https://www.reactive-streams.org/">Reactive Streams</a>）或诸如 RxJava 与 Project Reactor 这样的响应式框架的人来说，
 Flow 的设计也许看起来会非常熟悉。</p>
