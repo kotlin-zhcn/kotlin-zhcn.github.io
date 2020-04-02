@@ -1381,8 +1381,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 
 <h1 id="选择加入的要求">选择加入的要求</h1>
 <blockquote class="note">
-<p>要求选择加入的注解 <code>@RequiresOptIn</code> 与 <code>@OptIn</code> 在 Kotlin 1.3 中是 <em>实验性的</em>。
+<p>要求选择加入的注解 <code>@RequiresOptIn</code> 与 <code>@OptIn</code> 是 <em>实验性的</em>。 
 请参阅<a href="#experimental-status-of-the-opt-in-requirements">以下</a>用法详细信息。</p>
+</blockquote>
+<blockquote class="note">
+<p>1.3.70 中引入了 <code>@RequireOptIn</code> 与 <code>@OptIn</code> 注解以取代先前使用的 <code>@Experimental</code> 与 <code>@UseExperimental</code>；
+同时 <code>-Xopt-in</code> 编译器选项也取代了 <code>-Xuse-experimental</code>。</p>
 </blockquote>
 <p>Kotlin 标准库提供了一种机制，用于要求并明确同意使用 API 的某些元素。
 通过这种机制，库开发人员可以将使用其 API 需要选择加入的特定条件告知用户，
