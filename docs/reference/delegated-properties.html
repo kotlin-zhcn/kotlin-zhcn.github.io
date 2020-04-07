@@ -804,6 +804,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-dsl-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台 Gradle DSL 参考</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1544,18 +1553,52 @@ fun main() {
 如果 <code>someCondition</code> 失败，那么该变量根本不会计算。</p>
 <h2 id="属性委托要求">属性委托要求</h2>
 <p>这里我们总结了委托对象的要求。</p>
-<p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个名为 <code>getValue</code> 的函数，该函数接受以下参数：</p>
+<p>对于一个<strong>只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个操作符函数 <code>getValue()</code>，该函数具有以下参数：</p>
 <ul>
-<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是它的超类型；</li>
+<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是其超类型。</li>
 <li><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型。</li>
 </ul>
-<p>这个函数必须返回与属性相同的类型（或其子类型）。</p>
-<p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须<em>额外</em>提供一个名为 <code>setValue</code> 的函数，该函数接受以下参数：</p>
+<p><code>getValue()</code> 必须返回与属性相同的类型（或其子类型）。</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Resource
+
+class Owner {
+    val valResource: Resource by ResourceDelegate()
+}
+
+class ResourceDelegate {
+    operator fun getValue(thisRef: Owner, property: KProperty&lt;*&gt;): Resource {
+        return Resource()
+    }
+}
+</code></pre>
+</div>
+<p>对于一个<strong>可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须额外提供一个操作符函数 <code>setValue()</code>，
+该函数具有以下参数：</p>
 <ul>
-<li><code>thisRef</code> —— 同 <code>getValue()</code>；</li>
-<li><code>property</code> —— 同 <code>getValue()</code>；</li>
-<li>new value —— 必须与属性同类型或者是它的子类型。</li>
+<li><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是其超类型。</li>
+<li><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型。</li>
+<li><code>value</code> — 必须与属性类型相同（或者是其超类型）。</li>
 </ul>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">class Resource
+
+class Owner {
+    var varResource: Resource by ResourceDelegate()
+}
+
+class ResourceDelegate(private var resource: Resource = Resource()) {
+    operator fun getValue(thisRef: Owner, property: KProperty&lt;*&gt;): Resource {
+        return resource
+    }
+    operator fun setValue(thisRef: Owner, property: KProperty&lt;*&gt;, value: Any?) {
+        if (value is Resource) {
+            resource = value
+        }
+    }
+}
+</code></pre>
+</div>
 <p><code>getValue()</code> 或/与 <code>setValue()</code> 函数可以通过委托类的成员函数提供或者由扩展函数提供。
 当你需要委托属性到原本未提供的这些函数的对象时后者会更便利。
 两函数都需要用 <code>operator</code> 关键字来进行标记。</p>

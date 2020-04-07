@@ -804,6 +804,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-dsl-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台 Gradle DSL 参考</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1466,13 +1475,13 @@ object EmptyDeclarationProcessor : DeclarationProcessor() { /*……*/ }
 var declarationCount = 1
 </code></pre>
 </div>
-<p>例外：用于创建类实例的工厂函数可以与要创建的类具有相同的名称：</p>
+<p>例外：用于创建类实例的工厂函数可以与抽象返回类型具有相同的名称：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">abstract class Foo { /*……*/ }
+<pre><code class="language-kotlin">interface Foo { /*……*/ }
 
 class FooImpl : Foo { /*……*/ }
 
-fun FooImpl(): Foo { return FooImpl() }
+fun Foo(): Foo { return FooImpl() }
 </code></pre>
 </div>
 <h4 id="测试方法的名称">测试方法的名称</h4>
