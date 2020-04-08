@@ -987,6 +987,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/code-style-migration-guide.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编码风格约定</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1199,38 +1208,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/kotlin-doc.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">编写 Kotlin 代码文档</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/kapt.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">使用 Kapt</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/compiler-reference.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin 编译器选项</span>
-            </a>
-    </div>
-
-                    <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/using-gradle.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">使用 Gradle</span>
+                <span class="text">Gradle</span>
             </a>
     </div>
 
@@ -1239,7 +1221,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">使用 Maven</span>
+                <span class="text">Maven</span>
             </a>
     </div>
 
@@ -1248,16 +1230,16 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">使用 Ant</span>
+                <span class="text">Ant</span>
             </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/kotlin-osgi.html"
+            <a href="/docs/reference/compiler-reference.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">Kotlin 与 OSGi</span>
+                <span class="text">编译器选项</span>
             </a>
     </div>
 
@@ -1271,11 +1253,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/reference/code-style-migration-guide.html"
+            <a href="/docs/reference/kapt.html"
                class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
             >
                 <span class="marker"></span>
-                <span class="text">编码规范</span>
+                <span class="text">Kapt</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/kotlin-doc.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Dokka</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/kotlin-osgi.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">OSGi</span>
             </a>
     </div>
 
@@ -1389,47 +1389,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="使用-kotlin-进行-android-开发">使用 Kotlin 进行 Android 开发</h1>
-<p>Kotlin 非常适合开发 Android 应用程序，将现代语言的所有优势带入
-Android 平台而不会引入任何新的限制：</p>
+<p>Android mobile development has been Kotlin-first since Google I/O in 2019.</p>
+<p>Using Kotlin for Android development, you can benefit from:</p>
 <ul>
-<li><strong>兼容性</strong>：Kotlin 与 JDK 6 完全兼容，保障了 Kotlin 应用程序可以在较旧的
-Android 设备上运行而无任何问题。Kotlin 工具在 Android Studio 中会完全支持，并且兼容 Android 构建系统。</li>
-<li><strong>性能</strong>：由于非常相似的字节码结构，Kotlin 应用程序的运行速度与 Java 类似。
-随着 Kotlin 对内联函数的支持，使用 lambda 表达式的代码通常比用 Java 写的代码运行得更快。</li>
-<li><strong>互操作性</strong>：Kotlin 可与 Java 进行 100％ 的互操作，允许在 Kotlin 应用程序中使用所有现有的 Android 库
-。这包括注解处理，所以数据绑定与 Dagger 也是一样。</li>
-<li><strong>占用</strong>：Kotlin 具有非常紧凑的运行时库，可以通过使用 ProGuard 进一步减少。
-在<a href="https://blog.gouline.net/kotlin-production-tales-62b56057dc8a">实际应用程序</a>中，Kotlin 运行时<!--
--->只增加几百个方法以及 .apk 文件不到 100K 大小。</li>
-<li><strong>编译时长</strong>：Kotlin 支持高效的增量编译，所以对于<!--
--->清理构建会有额外的开销，<a href="https://medium.com/keepsafe-engineering/kotlin-vs-java-compilation-speed-e6c174b39b5d">增量构建通常与 Java 一样快或者更快</a>。</li>
-<li><strong>学习曲线</strong>：对于 Java 开发人员，Kotlin 入门很容易。包含在 Kotlin 插件中的自动 Java 到 Kotlin 的转换器<!--
--->有助于迈出第一步。<a href="https://www.kotlincn.net/docs/tutorials/koans.html">Kotlin 心印</a> 通过一系列互动练习提供了语言主要功能的指南。</li>
+<li><strong>Less code combined with greater readability</strong>. Spend less time writing your code and working to understand the code of others.</li>
+<li><strong>Mature language and environment</strong>. Since its creation in 2011, Kotlin has developed continuously, not only as a language 
+but as a whole ecosystem with robust tooling. Now it's seamlessly integrated in Android Studio and is actively used by many companies 
+for developing Android applications.</li>
+<li><strong>Kotlin support in Android Jetpack and other libraries</strong>. <a href="https://developer.android.com/kotlin/ktx">KTX extensions</a> add Kotlin language features, 
+such as coroutines, extension functions, lambdas, and named parameters, to existing Android libraries.</li>
+<li><strong>Interoperability with Java</strong>. You can use Kotlin along with the Java programming language in your applications without needing to migrate all your code 
+to Kotlin.</li>
+<li><strong>Support for multiplatform development</strong>. You can use Kotlin for developing not only Android but also <a href="https://www.jetbrains.com/lp/mobilecrossplatform/">iOS</a>, backend, and web applications. 
+Enjoy the benefits of sharing the common code among the platforms.</li>
+<li><strong>Code safety</strong>. Less code and better readability lead to fewer errors. The Kotlin compiler detects these remaining errors, making the code safe.</li>
+<li><strong>Easy learning</strong>. Kotlin is very easy to learn, especially for Java developers.</li>
+<li><strong>Big community</strong>. Kotlin has great support and many contributions from the community, which is growing all over the world. 
+According to Google, over 60% of the top 1000 apps on the Play Store use Kotlin.</li>
 </ul>
-<h2 id="kotlin-用于-android-的案例学习">Kotlin 用于 Android 的案例学习</h2>
-<p>Kotlin 已被一些大公司成功采用，其中一些公司分享了他们的经验：</p>
-<ul>
-<li>Pinterest 已经成功地<a href="https://www.youtube.com/watch?v=mDpnc45WwlI">将 Kotlin 引入了他们的应用程序中</a>，每个月有 1 亿 5 千万人使用。</li>
-<li>Basecamp 的 Android 应用程序是 <a href="https://m.signalvnoise.com/how-we-made-basecamp-3s-android-app-100-kotlin-35e4e1c0ef12">100％ Kotlin 代码</a>，他们报告了程序员幸福的<!--
--->巨大差异，以及工作质量与速度的巨大改善。</li>
-<li>Keepsafe 的 App Lock 应用程序也<a href="https://medium.com/keepsafe-engineering/lessons-from-converting-an-app-to-100-kotlin-68984a05dcb6">已转换为 100％ Kotlin</a>，
-使源代码行数减少 30％、方法数减少 10％。</li>
-</ul>
-<h2 id="kotlin-android-扩展">Kotlin Android 扩展</h2>
-<p><a href="https://www.kotlincn.net/docs/tutorials/android-plugin.html">Kotlin Android 扩展</a>是一个编译器扩展，
-可以让你摆脱代码中的 <code>findViewById()</code> 调用，并将其替换为合成的编译器生成的<!--
--->属性。</p>
-<h2 id="下一步">下一步</h2>
-<ul>
-<li>下载并安装 <a href="https://developer.android.com/studio/index.html">Android Studio</a>，其中包含开箱即用的 Kotlin 支持。</li>
-<li>按照 <a href="https://www.kotlincn.net/docs/tutorials/kotlin-android.html">Android 与 Kotlin 入门</a>教程<!--
--->创建你的第一个 Kotlin 应用程序。</li>
-<li>关于更深入的介绍，请查看本站的<a href="index.html">参考文档</a>及
-<a href="https://www.kotlincn.net/docs/tutorials/koans.html">Kotlin 心印</a>。</li>
-<li>另一个很好的资源是 <a href="https://leanpub.com/kotlin-for-android-developers">Kotlin for Android Developers</a>，
-这本书会引导你逐步完成在 Kotlin 中创建真正的 Android 应用程序的过程。</li>
-<li>检出 Google 的 <a href="https://developer.android.com/samples/index.html?language=kotlin">Kotlin 写的示例项目</a>。</li>
-</ul>
+<p>Many startups and Fortune 500 companies have already developed Android applications using Kotlin – see the list at <a href="https://developer.android.com/kotlin">the Google website for Kotlin developers</a>.</p>
+<p>If you want to start using Kotlin for Android development, read <a href="https://developer.android.com/kotlin/get-started">Google’s recommendation for getting started with Kotlin on Android</a>.</p>
+<p>If you're new to Android and want to learn to create applications with Kotlin, check out <a href="https://www.udacity.com/course/developing-android-apps-with-kotlin--ud9012">this Udacity course</a>.</p>
 
         </article>
     </div>
