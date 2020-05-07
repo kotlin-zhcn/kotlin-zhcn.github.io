@@ -1757,8 +1757,8 @@ fun main() {
 <p>将接收者作为返回值，你可以轻松地将 <code>apply</code> 包含到调用链中以进行更复杂的处理。</p>
 <h3 id="also"><code>also</code></h3>
 <p><strong>上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong>返回值</strong>是上下文对象本身。</p>
-<p><code>also</code> 对于执行一些将上下文对象作为参数的操作很有用。 对于不会改变上下文对象的操作，可使用 <code>also</code>，例如记录或打印调试信息。 通常，你可以在不破坏程序逻辑的情况下从调用链中删除 <code>also</code> 的调用。</p>
-<p>当你在代码中看到 <code>also</code> 时，可以将其理解为“<em>并且执行以下操作</em>”。</p>
+<p><code>also</code> 对于执行一些将上下文对象作为参数的操作很有用。 Use <code>also</code> for actions that need a reference rather to the object than to its properties and functions, or when you don't want to shadow <code>this</code> reference from an outer scope.</p>
+<p>当你在代码中看到 <code>also</code> 时，可以将其理解为“<em>并且用该对象执行以下操作</em>”。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1971,7 +1971,7 @@ fun main() {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=fcdb76a80e45be7f06f5ad22ca8ce2a3"></script>
-    <script src="/_assets/reference.js?&amp;v=f67b0a98cdf0cb4491b627077c31a0b3"></script>
+<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
+    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
 </body>
 </html>

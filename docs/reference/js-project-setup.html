@@ -1391,8 +1391,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="搭建-kotlinjs-项目">搭建 Kotlin/JS 项目</h1>
 <p>Kotlin/JS 项目使用 Gradle 作为构建系统。为了开发者轻松管理其 Kotlin/JS 项目，我们提供了 Kotlin/JS Gradle 插件。
 该插件提供项目配置工具以及用以自动执行 JavaScript 开发中常用的例程的帮助程序。
-举个例子，该插件会下载 <a href="https://yarnpkg.com/">Yarn</a> 软件包管理器，在后台管理 NPM 依赖，并使用 <a href="https://webpack.js.org/">Webpack</a>
-从 Kotlin 项目构建 JavaScript 包。</p>
+举个例子，该插件会下载 <a href="https://yarnpkg.com/">Yarn</a> 软件包管理器，在后台管理 <a href="https://www.npmjs.com/">npm</a> 依赖，并使用
+<a href="https://webpack.js.org/">webpack</a> 从 Kotlin 项目构建 JavaScript 包。</p>
 <table>
 <tbody>
 <tr>
@@ -1408,7 +1408,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </tbody>
 </table>
 <p><img alt="New project wizard" src="/assets/images/reference/js-project-setup/wizard.png"/></p>
-<p>另外，你可以在 <code>build.gradle</code> 文件中手动将 <code>org.jetbrains.kotlin.js</code> 插件应用于 Gradle 项目。
+<p>另外，你可以在 Gradle build file (<code>build.gradle</code> or <code>build.gradle.kts</code>) 中手动将 <code>org.jetbrains.kotlin.js</code> 插件应用于 Gradle 项目。
 如果你使用 Gradle Kotlin DSL，则可以使用插件 <code>kotlin(“js”)</code>。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
@@ -1436,7 +1436,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <p>在 <code>kotlin</code> 部分中，你可以管理以下方面：</p>
 <ul>
 <li><a href="#选择执行环境">选择执行环境</a>: 浏览器或 Node.js</li>
-<li><a href="#管理依赖">管理依赖</a>: Maven 和 NPM</li>
+<li><a href="#管理依赖">管理依赖</a>: Maven 和 npm</li>
 <li><a href="#配置-run-任务">配置 run 任务</a></li>
 <li><a href="#配置-test-任务">配置 test 任务</a></li>
 <li><a href="#配置-webpack-绑定">配置 webpack 绑定</a> 针对于浏览器项目</li>
@@ -1534,14 +1534,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 </div>
-<h3 id="npm-依赖">NPM 依赖</h3>
-<p>在 JavaScript 中，管理依赖项的常用方法是 <a href="https://www.npmjs.com/">NPM</a>。
+<h3 id="npm-依赖">npm 依赖</h3>
+<p>在 JavaScript 中，管理依赖项的常用方法是 <a href="https://www.npmjs.com/">npm</a>。
 它提供了最大的 JavaScript 模块公共<a href="https://www.npmjs.com/">存储库</a>以及用于下载它们的工具。</p>
-<p>Kotlin/JS 插件使你可以在 Gradle 构建脚本中声明 NPM 依赖项以及其他依赖项，并自动执行其他所有操作。
+<p>Kotlin/JS 插件使你可以在 Gradle 构建脚本中声明 npm 依赖项以及其他依赖项，并自动执行其他所有操作。
 它安装了 <a href="https://yarnpkg.com/lang/en/">Yarn</a> 程序包管理器，
-并使用它来将依赖项从 NPM 存储库下载项目的 <code>node_modules</code> 目录
-─── JavaScript 项目的 NPM 依赖项的一般位置。</p>
-<p>要声明 NPM 依赖项，将其名称与版本传给依赖项声明内的 <code>npm()</code> 函数。</p>
+并使用它来将依赖项从 npm 存储库下载项目的 <code>node_modules</code> 目录
+─── JavaScript 项目的 npm 依赖项的一般位置。</p>
+<p>要声明 npm 依赖项，将其名称与版本传给依赖项声明内的 <code>npm()</code> 函数。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
@@ -1558,12 +1558,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 </div>
-<p>安装 NPM 依赖项后，你可以按照<a href="http://www.kotlincn.net/docs/reference/js-interop.html">在 Kotlin 中调用 JS</a> 
+<p>安装 npm 依赖项后，你可以按照<a href="http://www.kotlincn.net/docs/reference/js-interop.html">在 Kotlin 中调用 JS</a> 
 中所述，在代码中使用其 API。</p>
 <h2 id="配置-run-任务">配置 run 任务</h2>
 <p>Kotlin/JS 插件提供了一个 <code>run</code> 任务，使你无需额外配置即可运行项目。
-它使用 <a href="https://webpack.js.org/configuration/dev-server/">Webpack DevServer</a> 来运行 Kotlin/JS 项目。
-如果要自定义 DevServer 配置，请更改其端口，请使用 Webpack 配置文件。</p>
+它使用 <a href="https://webpack.js.org/configuration/dev-server/">webpack DevServer</a> 来运行 Kotlin/JS 项目。
+如果要自定义 DevServer 配置，请更改其端口，请使用 webpack 配置文件。</p>
 <p>要运行项目，请执行标准生命周期的 <code>run</code> 任务：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew run
@@ -1625,18 +1625,41 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="配置-webpack-绑定">配置 Webpack 绑定</h2>
-<p>对于浏览器目标，Kotlin/JS 插件使用众所周知的 <a href="https://webpack.js.org/">Webpack</a> 模块捆绑器。
-为了配置项目捆绑，可以使用标准的 Webpack 配置文件。
-Webpack 配置功能在其<a href="https://webpack.js.org/concepts/configuration/">文档</a>中有很好的描述。
-对于 Kotlin/JS 项目，Webpack 配置文件位于项目根目录下的 
-<code>webpack.config.d</code> 目录中。</p>
-<p>为了构建可执行的 JavaScript 构件，Kotlin/JS 插件包含 <code>browserDevelopmentWebpack</code> 
-以及 <code>browserProductionWebpack</code> 任务。</p>
-<p>要使用 Webpack 构建项目构件，请执行 Gradle 任务 <code>browserProductionWebpack</code> 或 <code>browserDevelopmentWebpack</code>：</p>
+<p>对于浏览器目标，Kotlin/JS 插件使用众所周知的 <a href="https://webpack.js.org/">Webpack</a> 模块捆绑器。</p>
+<p>The Kotlin/JS Gradle plugin automatically generates a standard webpack configuration file 
+at build time which you can find the at <code>build/js/packages/projectName/webpack.config.js</code>.</p>
+<p>The most common webpack adjustments can be made directly via the
+<code>kotlin.target.browser.webpackTask</code> configuration block in the Gradle build file.</p>
+<p>If you want to make further adjustments to the webpack configuration, place your additional configuration files inside a directory
+called <code>webpack.config.d</code> in the root of your project. When building your project, all JS configuration files will automatically
+be merged into the <code>build/js/packages/projectName/webpack.config.js</code> file.
+To add a new <a href="https://webpack.js.org/loaders/">webpack loader</a>, for example, add the following to
+a <code>.js</code> file inside the <code>webpack.config.d</code>:</p>
+<div class="sample" mode="javascript" theme="idea">
+<pre><code class="language-javascript">config.module.rules.push({
+    test: /\.extension$/,
+    loader: 'loader-name'
+});
+</code></pre>
+</div>
+<p>All webpack configuration
+capabilities are well described in its <a href="https://webpack.js.org/concepts/configuration/">documentation</a>.</p>
+<p>为了通过 webpack 构建可执行的 JavaScript 构件，Kotlin/JS 插件包含 <code>browserDevelopmentWebpack</code> 以及
+<code>browserProductionWebpack</code> Gradle 任务。 Execute them to obtain artifacts for development or production respectively:</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew browserProductionWebpack
 </code></pre>
 </div>
+<h2 id="configuring-yarn">Configuring Yarn</h2>
+<p>To configure additional Yarn features, place a <code>.yarnrc</code> file in the root of your project.
+At build time, it gets picked up automatically.</p>
+<p>For example, to use a custom registry for npm packages, add the following line to a file called
+<code>.yarnrc</code> in the project root:</p>
+<div class="sample" mode="shell" theme="idea">
+<pre><code>registry "http://my.registry/api/npm/"
+</code></pre>
+</div>
+<p>To learn more about <code>.yarnrc</code>, please visit the <a href="https://classic.yarnpkg.com/en/docs/yarnrc/">official Yarn documentation</a>.</p>
 <h2 id="分发目标目录">分发目标目录</h2>
 <p>默认情况下，Kotlin/JS 项目构建的结果位于项目根目录下的 <code>/build/distribution</code> 目录中。</p>
 <p>要为项目分发文件设置另一个位置，请在构建脚本中的 <code>browser</code> 里添加 <code>distribution</code>，然后<!--
@@ -1738,7 +1761,7 @@ Webpack 配置功能在其<a href="https://webpack.js.org/concepts/configuration
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=fcdb76a80e45be7f06f5ad22ca8ce2a3"></script>
-    <script src="/_assets/reference.js?&amp;v=f67b0a98cdf0cb4491b627077c31a0b3"></script>
+<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
+    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
 </body>
 </html>

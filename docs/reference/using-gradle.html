@@ -1497,14 +1497,12 @@ plugins {
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">sourceSets["main"].java.srcDir("src/main/myJava")
-sourceSets["main"].withConvention(KotlinSourceSet::class) {
-    kotlin.srcDir("src/main/myKotlin")
+<pre><code class="language-kotlin">sourceSets.main {
+    java.srcDirs("src/main/myJava","src/main/myKotlin")}
 }
 </code></pre>
 </div>
 </div>
-<p>对于 Gradle Kotlin DSL，请改用 <code>java.sourceSets { …… }</code> 配置源集。</p>
 <h2 id="面向-javascript">面向 JavaScript</h2>
 <p>当面向 JavaScript 时，须应用不同的插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -2054,7 +2052,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=fcdb76a80e45be7f06f5ad22ca8ce2a3"></script>
-    <script src="/_assets/reference.js?&amp;v=f67b0a98cdf0cb4491b627077c31a0b3"></script>
+<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
+    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
 </body>
 </html>
