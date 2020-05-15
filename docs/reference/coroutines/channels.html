@@ -1890,9 +1890,9 @@ import kotlinx.coroutines.channels.*
 fun main() = runBlocking&lt;Unit&gt; {
     val tickerChannel = ticker(delayMillis = 100, initialDelayMillis = 0) //创建计时器通道
     var nextElement = withTimeoutOrNull(1) { tickerChannel.receive() }
-    println("Initial element is available immediately: $nextElement") // 初始尚未经过的延迟
+    println("Initial element is available immediately: $nextElement") // no initial delay
 
-    nextElement = withTimeoutOrNull(50) { tickerChannel.receive() } // 所有随后到来的元素都经过了 100 毫秒的延迟
+    nextElement = withTimeoutOrNull(50) { tickerChannel.receive() } // all subsequent elements have 100ms delay
     println("Next element is not ready in 50 ms: $nextElement")
 
     nextElement = withTimeoutOrNull(60) { tickerChannel.receive() }

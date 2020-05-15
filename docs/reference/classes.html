@@ -1467,7 +1467,7 @@ fun main() {
 <p>类也可以声明前缀有 <em class="keyword">constructor</em>的<strong>次构造函数</strong>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person {
-    var children: MutableList&lt;Person&gt; = mutableListOf&lt;Person&gt;();
+    var children: MutableList&lt;Person&gt; = mutableListOf&lt;&gt;()
     constructor(parent: Person) {
         parent.children.add(this)
     }
@@ -1479,7 +1479,7 @@ fun main() {
 -->用 <em class="keyword">this</em> 关键字即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person(val name: String) {
-    var children: MutableList&lt;Person&gt; = mutableListOf&lt;Person&gt;();
+    var children: MutableList&lt;Person&gt; = mutableListOf&lt;&gt;()
     constructor(name: String, parent: Person) : this(name) {
         parent.children.add(this)
     }

@@ -1453,7 +1453,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><a href="#命令式-finally-块">命令式 finally 块</a></li>
 <li><a href="#声明式处理">声明式处理</a></li>
-<li><a href="#仅限上游异常">仅限上游异常</a></li>
+<li><a href="#successful-completion">Successful completion</a></li>
 </ul>
 </li>
 <li><a href="#命令式还是声明式">命令式还是声明式</a></li>
@@ -1504,7 +1504,7 @@ fun main() {
 </code></pre>
 </div>
 <blockquote>
-<p>你可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-02.kt">这里</a>获取完整代码。</p>
+<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p>这段代码输出相同的数字，但在打印每个数字之前等待 100 毫秒。</p>
 <!--- TEST 
@@ -2743,9 +2743,9 @@ Caught exception
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 操作符与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 不同，它不处理异常。我们可以看到前面的<!--
 -->示例代码，异常仍然流向下游。它将被提供给后面的 <code>onCompletion</code>
 操作符，并可以由 <code>catch</code> 操作符处理。</p>
-<h4 id="仅限上游异常">仅限上游异常</h4>
-<p>与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 操作符一样，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 仅能观察到来自上游的异常<!--
--->而不能观察到下游的异常。例如，运行下面的代码：</p>
+<h4 id="successful-completion">Successful completion</h4>
+<p>Another difference with <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> operator is that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> sees all exceptions and receives
+a <code>null</code> exception only on successful completion of the upstream flow (without cancellation or failure).</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2767,9 +2767,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-34.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>我们可以看到完成的 cause 是 null，但收集失败并发生了异常：</p>
+<p>We can see the completion cause is not null, because the flow was aborted due to downstream exception:</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
-Flow completed with null
+Flow completed with java.lang.IllegalStateException: Collected 2
 Exception in thread "main" java.lang.IllegalStateException: Collected 2
 </code></pre>
 <!--- TEST EXCEPTION -->
@@ -2859,7 +2859,7 @@ Flow 的设计也许看起来会非常熟悉。</p>
 <p>确实，其设计灵感来源于响应式流以及其各种实现。但是 Flow 的主要目标是拥有尽可能简单的设计，
 对 Kotlin 以及挂起友好且遵从结构化并发。没有响应式的先驱及他们大量的工作，就不可能实现这一目标。你可以阅读 <a href="https://medium.com/@elizarov/reactive-streams-and-kotlin-flows-bfd12772cda4">Reactive Streams and Kotlin Flows</a> 这篇文章来了解完成 Flow 的故事。</p>
 <p>虽然有所不同，但从概念上讲，Flow <em>依然是</em>响应式流，并且可以将它转换为响应式（规范及符合 TCK）的发布者（Publisher），反之亦然。
-这些开箱即用的转换器可以在 <code>kotlinx.coroutines</code> 提供的相关响应式模块（<code>kotlinx-coroutines-reactive</code> 用于 Reactive Streams，<code>kotlinx-coroutines-reactor</code> 用于 Project Reactor，以及 <code>kotlinx-coroutines-rx2</code> 用于 RxJava2）中找到。
+这些开箱即用的转换器可以在 <code>kotlinx.coroutines</code> 提供的相关响应式模块（<code>kotlinx-coroutines-reactive</code> 用于 Reactive Streams，<code>kotlinx-coroutines-reactor</code> 用于 Project Reactor，以及 <code>kotlinx-coroutines-rx2</code>/<code>kotlinx-coroutines-rx3</code> 用于 RxJava2/RxJava3）中找到。
 集成模块包含 <code>Flow</code> 与其他实现之间的转换，与 Reactor 的 <code>Context</code> 集成以及与一系列响应式实体配合使用的挂起友好的使用方式。</p>
 <!-- stdlib references -->
 <!--- MODULE kotlinx-coroutines-core -->

@@ -1787,22 +1787,14 @@ activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a h
     // 继续运行……
 </code></pre>
 </div>
-<p>或者，我们可以在这个 <code>Activity</code> 类中实现 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 接口。最好的方法是<!--
--->使用具有默认工厂函数的委托。
-我们也可以将所需的调度器与作用域合并（我们在这个示例中使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a>）。</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">    class Activity : CoroutineScope by CoroutineScope(Dispatchers.Default) {
-    // 继续运行……
-</code></pre>
-</div>
-<p>现在，在这个 <code>Activity</code> 的作用域中启动协程，且没有明确<!--
--->指定它们的上下文。在示例中，我们启动了十个协程并延迟不同的时间：</p>
+<p>Now, we can launch coroutines in the scope of this <code>Activity</code> using the defined <code>scope</code>.
+For the demo, we launch ten coroutines that delay for a different time:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">    // 在 Activity 类中
     fun doSomething() {
         // 在示例中启动了 10 个协程，且每个都工作了不同的时长
         repeat(10) { i -&gt;
-            launch {
+            mainScope.launch {
                 delay((i + 1) * 200L) // 延迟 200 毫秒、400 毫秒、600 毫秒等等不同的时间
                 println("Coroutine $i is done")
             }
@@ -1816,21 +1808,19 @@ activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a h
 即使我们再等一会儿，activity 也不再打印消息。</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
-<pre><code class="language-kotlin">import kotlin.coroutines.*
-import kotlinx.coroutines.*
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
 
-class Activity : CoroutineScope by CoroutineScope(Dispatchers.Default) {
-
+class Activity {
+    private val mainScope = CoroutineScope(Dispatchers.Default) // use Default for test purposes
+    
     fun destroy() {
-        cancel() // Extension on CoroutineScope
+        mainScope.cancel()
     }
-    // 继续运行……
 
-    // class Activity continues
     fun doSomething() {
         // 在示例中启动了 10 个协程，且每个都工作了不同的时长
         repeat(10) { i -&gt;
-            launch {
+            mainScope.launch {
                 delay((i + 1) * 200L) // 延迟 200 毫秒、400 毫秒、600 毫秒等等不同的时间
                 println("Coroutine $i is done")
             }
@@ -1863,6 +1853,10 @@ Destroying activity!
 <!--- TEST -->
 <p>你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中单次调用了 <code>job.cancel()</code>。</p>
+<blockquote>
+<p>Note, that Android has first-party support for coroutine scope in all entities with the lifecycle.
+See <a href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">the corresponding documentation</a>.</p>
+</blockquote>
 <h3 id="线程局部数据">线程局部数据</h3>
 <p>有时，能够将一些线程局部数据传递到协程与协程之间是很方便的。 
 然而，由于它们不受任何特定线程的约束，如果手动完成，可能会导致出现样板代码。</p>
