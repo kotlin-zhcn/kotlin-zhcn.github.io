@@ -62,19 +62,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
-<!--
 <div class="global-nav banner-container">
     <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
         <div class="banner-item title">
-            Kotlin Heroes 编程挑战赛
+            Kotlin Heroes #4 编程挑战赛（北京时间 5-29 22:35）
         </div>
         <div class="banner-item underline">
-            参与！
+            立即报名！
         </div>
     </a>
     <div class="close-head-banner"></div>
-</div>
--->        </div>
+</div>        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
@@ -1506,7 +1504,7 @@ foo(strings = *arrayOf("a", "b", "c"))
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun printHello(name: String?): Unit {
     if (name != null)
-        println("Hello ${name}")
+        println("Hello $name")
     else
         println("Hi there!")
     // `return Unit` 或者 `return` 是可选的
@@ -1641,7 +1639,7 @@ val list = asList(-1, 0, *a, 4)
 <h3 id="成员函数">成员函数</h3>
 <p>成员函数是在类或对象内部定义的函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class Sample() {
+<pre><code class="language-kotlin">class Sample {
     fun foo() { print("Foo") }
 }
 </code></pre>
