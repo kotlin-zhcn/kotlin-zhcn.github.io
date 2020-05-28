@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=7e90473a2adfe3ce37fff7c89ed6a868">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=c06222c630c3128e0748d3348e5c1069">
 
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
@@ -1387,204 +1387,204 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <h1 id="kotlin-编译器选项">Kotlin 编译器选项</h1>
-<p>Each release of Kotlin includes compilers for the supported targets: 
-JVM, JavaScript, and native binaries for <a href="native-overview.html#目标平台">supported platforms</a>.</p>
-<p>These compilers are used by the IDE when you click the <strong>Compile</strong> or <strong>Run</strong> button for your Kotlin project.</p>
-<p>You can also run Kotlin compilers manually from the command line as described 
-in the <a href="/docs/tutorials/command-line.html">Working with command-line compiler</a> tutorial. For example:</p>
+<p>每个 Kotlin 版本都包含支持目标的编译器：
+用于<a href="native-overview.html#目标平台">所支持平台</a>的 JVM、JavaScript 与 Native 二进制文件。</p>
+<p>当单击 Kotlin 项目的 <strong>Compile</strong> 或 <strong>Run</strong> 按钮时，IDE 会使用这些编译器。</p>
+<p>还可以按照<a href="/docs/tutorials/command-line.html">使用命令行编译器</a>
+教程中所述在命令行手动运行 Kotlin 编译器。例如：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc hello.kt -include-runtime -d hello.jar
 </code></pre>
 </div>
 <h2 id="编译器选项">编译器选项</h2>
-<p>Kotlin compilers have a number of options for tailoring the compiling process.
-Compiler options for different targets are listed on this page together with a description of each one.</p>
-<p>There are several ways to set the compiler options and their values (<em>compiler arguments</em>):</p>
+<p>Kotlin 编译器具有许多用于定制编译过程的选项。
+此页面列出了针对不同目标的编译器选项，并提供了每个选项的描述。</p>
+<p>有几种方法可以设置编译器选项及其值（<em>编译器参数</em>）：</p>
 <ul>
-<li>In IntelliJ IDEA, write in the compiler arguments in the <strong>Additional command-line parameters</strong> text box in 
-<strong>Settings | Build, Execution, Deployment | Compilers | Kotlin Compiler</strong></li>
-<li>If you're using Gradle, specify the compiler arguments in the <code>kotlinOptions</code> property of the Kotlin compilation task.
-For details, see <a href="using-gradle.html#编译器选项">Using Gradle</a>.</li>
-<li>If you're using Maven, specify the compiler arguments in the <code>&lt;configuration&gt;</code> element of the Maven plugin node. 
-For details, see <a href="using-maven.html#指定编译器选项">Using Maven</a>.</li>
-<li>If you run a command-line compiler, add the compiler arguments directly to the utility call or write them into an <a href="#argfile">argfile</a>.</li>
+<li>在 IntelliJ IDEA 的 <strong>Settings | Build, Execution, Deployment | Compilers | Kotlin Compiler</strong> 窗口中，
+在 <strong>Additional command-line parameters</strong> 文本框中输入编译器参数。</li>
+<li>如果使用 Gradle，请在 Kotlin 编译任务的 <code>kotlinOptions</code> 属性中指定编译器参数。
+详情请参见<a href="using-gradle.html#编译器选项">使用 Gradle</a>。</li>
+<li>如果使用 Maven，请在 Maven 插件节点的 <code>&lt;configuration&gt;</code> 元素中指定编译器参数。
+详情请参见<a href="using-maven.html#指定编译器选项">使用 Maven</a>。</li>
+<li>如果运行命令行编译器，则将编译器参数直接添加到工具函数调用中，或将其写入 <a href="#argfile">argfile</a>。</li>
 </ul>
 <h2 id="公共选项">公共选项</h2>
-<p>The following options are common for all Kotlin compilers.</p>
+<p>以下选项对于所有 Kotlin 编译器都是通用的。</p>
 <h3 id="-version"><code>-version</code></h3>
-<p class="details-group">Display the compiler version.</p>
+<p class="details-group">显示编译器版本。</p>
 <h3 id="-nowarn"><code>-nowarn</code></h3>
-<p class="details-group">Suppress the compiler from displaying warnings during compilation.</p>
+<p class="details-group">禁止编译器在编译期间显示警告。</p>
 <h3 id="-werror"><code>-Werror</code></h3>
-<p class="details-group">Turn any warnings into a compilation error.</p>
+<p class="details-group">将所有警告转换为编译错误。</p>
 <h3 id="-verbose"><code>-verbose</code></h3>
-<p class="details-group">Enable verbose logging output which includes details of the compilation process.</p>
+<p class="details-group">启用详细的日志记录输出，其中包括编译过程的详细信息。</p>
 <h3 id="-script"><code>-script</code></h3>
-<p class="details-group">Evaluate a Kotlin script file. When called with this option, the compiler executes the first Kotlin script (<code>*.kts</code>) 
-file among the given arguments.</p>
+<p class="details-group">运行 Kotlin 脚本文件。
+使用此选项调用时，编译器将执行给定参数中的第一个 Kotlin 脚本文件（<code>*.kts</code>）。</p>
 <h3 id="-help--h"><code>-help</code> (<code>-h</code>)</h3>
-<p class="details-group">Display usage information and exit. Only standard options are shown.
-To show advanced options, use <code>-X</code>.</p>
+<p class="details-group">显示用法信息并退出。仅显示标准选项。
+要显示高级选项，请使用 <code>-X</code>。</p>
 <h3 id="-x"><code>-X</code></h3>
-<p class="details-group">Display information about the advanced options and exit. These options are currently unstable: 
-their names and behavior may be changed without notice.</p>
+<p class="details-group">显示有关高级选项的信息并退出。这些选项当前不稳定：
+它们的名称与行为可能会更改，恕不另行通知。</p>
 <h3 id="-kotlin-home-path"><code>-kotlin-home &lt;path&gt;</code></h3>
-<p class="details-group">Specify a custom path to the Kotlin compiler used for the discovery of runtime libraries.</p>
+<p class="details-group">指定用于发现运行时库的 Kotlin 编译器的自定义路径。</p>
 <h3 id="-p-pluginpluginidoptionnamevalue"><code>-P plugin:&lt;pluginId&gt;:&lt;optionName&gt;=&lt;value&gt;</code></h3>
-<p class="details-group">Pass an option to a Kotlin compiler plugin.
-Available plugins and their options are listed in <a href="compiler-plugins.html">Compiler plugins</a>.</p>
+<p class="details-group">将选项传递给 Kotlin 编译器插件。
+可用插件及其选项列在<a href="compiler-plugins.html">编译器插件</a>中。</p>
 <h3 id="-language-version-version"><code>-language-version &lt;version&gt;</code></h3>
-<p class="details-group">Provide source compatibility with the specified version of Kotlin.</p>
+<p class="details-group">提供与指定版本的 Kotlin 的源代码兼容性。</p>
 <h3 id="-api-version-version"><code>-api-version &lt;version&gt;</code></h3>
-<p class="details-group">Allow using declarations only from the specified version of Kotlin bundled libraries.</p>
+<p class="details-group">仅允许使用 Kotlin 捆绑库指定版本中的声明。</p>
 <h3 id="-progressive"><code>-progressive</code></h3>
-<p class="details-group">Enable the <a href="whatsnew13.html#渐进模式">progressive mode</a> for the compiler.</p>
-<p class="details-group">In the progressive mode, deprecations and bug fixes for unstable code take effect immediately,
-instead of going through a graceful migration cycle.
-Code written in the progressive mode is backwards compatible; however, code written in
-a non-progressive mode may cause compilation errors in the progressive mode.</p>
+<p class="details-group">为编译器启用<a href="whatsnew13.html#渐进模式">渐进模式</a>。</p>
+<p class="details-group">在渐进模式下，针对不稳定代码的弃用与错误修复将立即生效，
+而无需经历正常的迁移周期。
+以渐进模式编写的代码是向后兼容的。
+但是，以非渐进模式编写的代码可能会在渐进模式下导致编译错误。</p>
 <h3 id="argfile"><code>@&lt;argfile&gt;</code></h3>
-<p class="details-group">Read the compiler options from the given file. Such a file can contain compiler options with values 
-and paths to the source files. Options and paths should be separated by whitespaces. For example:</p>
+<p class="details-group">从给定文件中读取编译器选项。这样的文件可以包含带有值与源文件路径的编译器选项。
+选项与路径应由空格分隔。例如：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code>-include-runtime -d hello.jar
 hello.kt
 </code></pre>
 </div>
-<p class="details-group">To pass values that contain whitespaces, surround them with single (<strong>'</strong>) or double (<strong>"</strong>) quotes. If a value contains 
-quotation marks in it, escape them with a backslash (<strong>\</strong>).</p>
+<p class="details-group">要传递包含空格的值，请用单引号（<strong>'</strong>）或双引号（<strong>"</strong>）引起来。
+如果值中包含引号，请使用反斜杠（<strong>\</strong>）对其进行转义。</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code>-include-runtime -d 'My folder'
 </code></pre>
 </div>
-<p class="details-group">You can also pass multiple argument files, for example, to separate compiler options from source files.</p>
+<p class="details-group">还可以传递多个参数文件，例如，将编译器选项与源文件分开。</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc @compiler.options @classes
 </code></pre>
 </div>
-<p class="details-group">If the files reside in locations different from the current directory, use relative paths.</p>
+<p class="details-group">如果文件位于与当前目录不同的位置，请使用相对路径。</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ kotlinc @options/compiler.options hello.kt
 </code></pre>
 </div>
 <h2 id="kotlinjvm-编译器选项">Kotlin/JVM 编译器选项</h2>
-<p>The Kotlin compiler for JVM compiles Kotlin source files into Java class files. 
-The command-line tools for Kotlin to JVM compilation are <code>kotlinc</code> and <code>kotlinc-jvm</code>.
-You can also use them for executing Kotlin script files.</p>
-<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/JVM compiler has the options listed below.</p>
+<p>用于 JVM 的 Kotlin 编译器将 Kotlin 源文件编译为 Java 类文件。
+用于 Kotlin 到 JVM 编译的命令行工具是 <code>kotlinc</code> 与 <code>kotlinc-jvm</code>。
+也可以使用它们来执行 Kotlin 脚本文件。</p>
+<p>除了<a href="#公共选项">公共选项</a>外，Kotlin/JVM 编译器还具有以下列出的选项。</p>
 <h3 id="-classpath-path--cp-path"><code>-classpath &lt;path&gt;</code> (<code>-cp &lt;path&gt;</code>)</h3>
-<p class="details-group">Search for class files in the specified paths. Separate elements of the classpath with system path separators (<strong>;</strong> on Windows, <strong>:</strong> on macOS/Linux).
-The classpath can contain file and directory paths, ZIP, or JAR files.</p>
+<p class="details-group">在指定的路径中搜索类文件。用系统路径分隔符将类路径的各个元素分开（在Windows上是 <strong>;</strong> 在macOS/Linux上是 <strong>:</strong>）。
+类路径可以包含文件和目录路径、ZIP 或 JAR 文件。</p>
 <h3 id="-d-path"><code>-d &lt;path&gt;</code></h3>
-<p class="details-group">Place the generated class files into the specified location. The location can be a directory, a ZIP, or a JAR file.</p>
+<p class="details-group">将生成的类文件放置到指定位置。该位置可以是目录、ZIP 或 JAR 文件。</p>
 <h3 id="-include-runtime"><code>-include-runtime</code></h3>
-<p class="details-group">Include the Kotlin runtime into the resulting JAR file. Makes the resulting archive runnable on any Java-enabled 
-environment.</p>
+<p class="details-group">将 Kotlin 运行时包含在生成的 JAR 文件中。
+使生成的归档文件可在任何启用 Java 的环境中运行。</p>
 <h3 id="-jdk-home-path"><code>-jdk-home &lt;path&gt;</code></h3>
-<p class="details-group">Use a custom JDK home directory to include into the classpath if it differs from the default <code>JAVA_HOME</code>.</p>
+<p class="details-group">如果自定义 JDK 主目录与默认的 <code>JAVA_HOME</code> 不同，请使用它来将其包含在类路径中。</p>
 <h3 id="-jvm-target-version"><code>-jvm-target &lt;version&gt;</code></h3>
-<p class="details-group">Specify the target version of the generated JVM bytecode. Possible values are <code>1.6</code>, <code>1.8</code>, <code>9</code>, <code>10</code>, <code>11</code>, <code>12</code>, and <code>13</code>.
-The default value is <code>1.6</code>.</p>
+<p class="details-group">指定生成的 JVM 字节码的目标版本。可能的值为 <code>1.6</code>、<code>1.8</code>、<code>9</code>、<code>10</code>、<code>11</code>、<code>12</code>、<code>13</code>。
+默认值为 <code>1.6</code>。</p>
 <h3 id="-java-parameters"><code>-java-parameters</code></h3>
-<p class="details-group">Generate metadata for Java 1.8 reflection on method parameters.</p>
+<p class="details-group">为 Java 1.8 反射方法参数生成元数据。</p>
 <h3 id="-module-name-name"><code>-module-name &lt;name&gt;</code></h3>
-<p class="details-group">Set a custom name for the generated <code>.kotlin_module</code> file.</p>
+<p class="details-group">为生成的 <code>.kotlin_module</code> 文件设置自定义名称。</p>
 <h3 id="-no-jdk"><code>-no-jdk</code></h3>
-<p class="details-group">Don't automatically include the Java runtime into the classpath.</p>
+<p class="details-group">不要自动将 Java 运行时包含在类路径中。</p>
 <h3 id="-no-reflect"><code>-no-reflect</code></h3>
-<p class="details-group">Don't automatically include the Kotlin reflection (<code>kotlin-reflect.jar</code>) into the classpath.</p>
+<p class="details-group">不要自动将 Kotlin 反射（<code>kotlin-reflect.jar</code>）包含到类路径中。</p>
 <h3 id="-no-stdlib"><code>-no-stdlib</code></h3>
-<p class="details-group">Don't automatically include the Kotlin/JVM stdlib (<code>kotlin-stdlib.jar</code>) and Kotlin reflection (<code>kotlin-reflect.jar</code>)
-into the classpath.</p>
+<p class="details-group">不要自动将 Kotlin/JVM 标准库（<code>kotlin-stdlib.jar</code>）与
+Kotlin 反射（<code>kotlin-reflect.jar</code>）包含到类路径中。</p>
 <h3 id="-script-templates-classnames"><code>-script-templates &lt;classnames[,]&gt;</code></h3>
-<p class="details-group">Script definition template classes. Use fully qualified class names and separate them with commas (<strong>,</strong>).</p>
+<p class="details-group">脚本定义模板类。使用完全限定的类名，并用逗号（<strong>,</strong>）分隔。</p>
 <h2 id="kotlinjs-编译器选项">Kotlin/JS 编译器选项</h2>
-<p>The Kotlin compiler for JS compiles Kotlin source files into JavaScript code. 
-The command-line tool for Kotlin to JS compilation is <code>kotlinc-js</code>.</p>
-<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/JS compiler has the options listed below.</p>
+<p>JS 的 Kotlin 编译器将 Kotlin 源文件编译为 JavaScript 代码。
+Kotlin 到 JS 编译的命令行工具是 <code>kotlinc-js</code>。</p>
+<p>除了<a href="#公共选项">公共选项</a>外，Kotlin/JS 编译器还具有以下列出的选项。</p>
 <h3 id="-libraries-path"><code>-libraries &lt;path&gt;</code></h3>
-<p class="details-group">Paths to Kotlin libraries with <code>.meta.js</code> and <code>.kjsm</code> files, separated by the system path separator.</p>
+<p class="details-group">具有 <code>.meta.js</code> 与 <code>.kjsm</code> 文件的 Kotlin 库的路径，由系统路径分隔符分隔。</p>
 <h3 id="-main-callnocall"><code>-main {call|noCall}</code></h3>
-<p class="details-group">Define whether the <code>main</code> function should be called upon execution.</p>
+<p class="details-group">定义是否应在执行时调用 <code>main</code> 函数。</p>
 <h3 id="-meta-info"><code>-meta-info</code></h3>
-<p class="details-group">Generate <code>.meta.js</code> and <code>.kjsm</code> files with metadata. Use this option when creating a JS library.</p>
+<p class="details-group">使用元数据生成 <code>.meta.js</code> 与 <code>.kjsm</code> 文件。 创建 JS 库时使用此选项。</p>
 <h3 id="-module-kind-plainamdcommonjsumd"><code>-module-kind {plain|amd|commonjs|umd}</code></h3>
-<p class="details-group">The kind of JS module generated by the compiler:</p>
+<p class="details-group">编译器生成的 JS 模块类型：</p>
 <ul>
-<li><code>plain</code> - a plain JS module;</li>
-<li><code>commonjs</code> - a <a href="http://www.commonjs.org/">CommonJS</a> module;</li>
-<li><code>amd</code> - an <a href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">Asynchronous Module Definition</a> module;</li>
-<li><code>umd</code> - a <a href="https://github.com/umdjs/umd">Universal Module Definition</a> module.</li>
+<li><code>plain</code> ——普通的 JS 模块；</li>
+<li><code>commonjs</code> ——<a href="http://www.commonjs.org/">CommonJS</a> 模块；</li>
+<li><code>amd</code> ——<a href="https://en.wikipedia.org/wiki/Asynchronous_module_definition">异步模块定义</a>模块；</li>
+<li><code>umd</code> ——<a href="https://github.com/umdjs/umd">通用模块定义</a>模块。</li>
 </ul>
-<p class="details-group">To learn more about the different kinds of JS module and the distinctions between them,
-see <a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">this</a> article.</p>
+<p class="details-group">要了解有关不同类型的 JS 模块及其之间区别的更多信息，
+请参见<a href="https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/">这篇文章</a>。</p>
 <h3 id="-no-stdlib-1"><code>-no-stdlib</code></h3>
-<p class="details-group">Don't automatically include the default Kotlin/JS stdlib into the compilation dependencies.</p>
+<p class="details-group">不要自动将默认的 Kotlin/JS 标准库包含在编译依赖项中。</p>
 <h3 id="-output-filepath"><code>-output &lt;filepath&gt;</code></h3>
-<p class="details-group">Set the destination file for the compilation result. The value must be a path to a <code>.js</code> file including its name.</p>
+<p class="details-group">设置编译结果的目标文件。该值必须是包含其名称的 <code>.js</code> 文件的路径。</p>
 <h3 id="-output-postfix-filepath"><code>-output-postfix &lt;filepath&gt;</code></h3>
-<p class="details-group">Add the content of the specified file to the end of the output file.</p>
+<p class="details-group">将指定文件的内容添加到输出文件的末尾。</p>
 <h3 id="-output-prefix-filepath"><code>-output-prefix &lt;filepath&gt;</code></h3>
-<p class="details-group">Add the content of the specified file to the beginning of the output file.</p>
+<p class="details-group">将指定文件的内容添加到输出文件的开头。</p>
 <h3 id="-source-map"><code>-source-map</code></h3>
-<p class="details-group">Generate the source map.</p>
+<p class="details-group">生成源代码映射。</p>
 <h3 id="-source-map-base-dirs-path"><code>-source-map-base-dirs &lt;path&gt;</code></h3>
-<p class="details-group">Use the specified paths as base directories. Base directories are used for calculating relative paths in the source map.</p>
+<p class="details-group">使用指定的路径作为基本目录。基本目录用于计算源代码映射中的相对路径。</p>
 <h3 id="-source-map-embed-sources-alwaysneverinlining"><code>-source-map-embed-sources {always|never|inlining}</code></h3>
-<p class="details-group">Embed source files into the source map.</p>
+<p class="details-group">将源代码文件嵌入到源代码映射中。</p>
 <h3 id="-source-map-prefix"><code>-source-map-prefix</code></h3>
-<p class="details-group">Add the specified prefix to paths in the source map.</p>
+<p class="details-group">将指定的前缀添加到源代码映射中的路径。</p>
 <h2 id="kotlinnative-编译器选项">Kotlin/Native 编译器选项</h2>
-<p>Kotlin/Native compiler compiles Kotlin source files into native binaries for the <a href="native-overview.html#目标平台">supported platforms</a>. 
-The command-line tool for Kotlin/Native compilation is <code>kotlinc-native</code>.</p>
-<p>In addition to the <a href="#公共选项">common options</a>, Kotlin/Native compiler has the options listed below.</p>
+<p>Kotlin/Native 编译器将 Kotlin 源代码文件编译为用于<a href="native-overview.html#目标平台">所支持平台</a>的 Native 二进制文件。
+Kotlin/Native 编译的命令行工具是 <code>kotlinc-native</code>。</p>
+<p>除了<a href="#公共选项">公共选项</a>外，Kotlin/Native 编译器还具有以下列出的选项。</p>
 <h3 id="-enable-assertions--ea"><code>-enable-assertions</code> (<code>-ea</code>)</h3>
-<p class="details-group">Enable runtime assertions in the generated code.</p>
+<p class="details-group">在生成的代码中启用运行时断言。</p>
 <h3 id="-g"><code>-g</code></h3>
-<p class="details-group">Enable emitting debug information.</p>
+<p class="details-group">启用输出调试信息。</p>
 <h3 id="-generate-test-runner--tr"><code>-generate-test-runner</code> (<code>-tr</code>)</h3>
-<p class="details-group">Produce an application for running unit tests from the project.</p>
+<p class="details-group">生成一个用于运行项目中的单元测试的应用程序。</p>
 <h3 id="-generate-worker-test-runner--trw"><code>-generate-worker-test-runner</code> (<code>-trw</code>)</h3>
-<p class="details-group">Produce an application for running unit tests in a <a href="native/concurrency.html#worker">worker thread</a>.</p>
+<p class="details-group">生成一个用于在 <a href="native/concurrency.html#worker">Worker 线程</a>中运行单元测试的应用程序。</p>
 <h3 id="-generate-no-exit-test-runner--trn"><code>-generate-no-exit-test-runner</code> (<code>-trn</code>)</h3>
-<p class="details-group">Produce an application for running unit tests without an explicit process exit.</p>
+<p class="details-group">生成一个用于运行单元测试的应用程序，而无需显式退出进程。</p>
 <h3 id="-include-binary-path--ib-path"><code>-include-binary &lt;path&gt;</code> (<code>-ib &lt;path&gt;</code>)</h3>
-<p class="details-group">Pack external binary within the generated klib file.</p>
+<p class="details-group">在生成的 klib 文件中打包外部二进制文件。</p>
 <h3 id="-library-path--l-path"><code>-library &lt;path&gt;</code> (<code>-l &lt;path&gt;</code>)</h3>
-<p class="details-group">Link with the library. To learn about using libraries in Kotlin/native projects, see 
-<a href="native/libraries.html">Kotlin/Native libraries</a>.</p>
+<p class="details-group">与库链接。要了解有关在 Kotlin/native 项目中使用库的信息，
+请参见 <a href="native/libraries.html">Kotlin/Native 库</a>。</p>
 <h3 id="-library-version-version--lv"><code>-library-version &lt;version&gt;</code> (<code>-lv</code>)</h3>
-<p class="details-group">Set the library version.</p>
+<p class="details-group">设置库版本。</p>
 <h3 id="-list-targets"><code>-list-targets</code></h3>
-<p class="details-group">List the available hardware targets.</p>
+<p class="details-group">列出可用的硬件目标。</p>
 <h3 id="-manifest-path"><code>-manifest &lt;path&gt;</code></h3>
-<p class="details-group">Provide a manifest addend file.</p>
+<p class="details-group">提供清单附加文件。</p>
 <h3 id="-module-name-name-1"><code>-module-name &lt;name&gt;</code></h3>
-<p class="details-group">Specify a name for the compilation module.
-This option can also be used to specify a name prefix for the declarations exported to Objective-C:
-<a href="native/faq.html#q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">How do I specify a custom Objective-C prefix/name for my Kotlin framework?</a></p>
+<p class="details-group">指定编译模块的名称。
+此选项还可用于为导出到 Objective-C 的声明指定名称前缀：
+<a href="native/faq.html#q-how-do-i-specify-a-custom-objective-c-prefixname-for-my-kotlin-framework">如何为 Kotlin 框架指定自定义的 Objective-C 前缀/名称？</a></p>
 <h3 id="-native-library-path-nl-path"><code>-native-library &lt;path&gt;</code>(<code>-nl &lt;path&gt;</code>)</h3>
-<p class="details-group">Include the native bitcode library.</p>
+<p class="details-group">包含 Native Bitcode 库。</p>
 <h3 id="-no-default-libs"><code>-no-default-libs</code></h3>
-<p class="details-group">Disable linking user code with the <a href="native/platform_libs.html">default platform libraries</a> distributed with the compiler.</p>
+<p class="details-group">禁止将用户代码与编译器一起分发的<a href="native/platform_libs.html">默认平台库</a>链接。</p>
 <h3 id="-nomain"><code>-nomain</code></h3>
-<p class="details-group">Assume the <code>main</code> entry point to be provided by external libraries.</p>
+<p class="details-group">假定要由外部库提供的 <code>main</code> 入口点。</p>
 <h3 id="-nopack"><code>-nopack</code></h3>
-<p class="details-group">Don't pack the library into a klib file.</p>
+<p class="details-group">不要将库打包到 klib 文件中。</p>
 <h3 id="-linker-option"><code>-linker-option</code></h3>
-<p class="details-group">Pass an argument to the linker during binary building. This can be used for linking against some native library.</p>
+<p class="details-group">在二进制构建过程中，将参数传递给链接器。这可用于链接到某些 Native 库。</p>
 <h3 id="-linker-options-args"><code>-linker-options &lt;args&gt;</code></h3>
-<p class="details-group">Pass multiple arguments to the linker during binary building. Separate arguments with whitespaces.</p>
+<p class="details-group">在二进制构建过程中，将多个参数传递给链接器。用空格分隔参数。</p>
 <h3 id="-nostdlib"><code>-nostdlib</code></h3>
-<p class="details-group">Don't link with stdlib.</p>
+<p class="details-group">不要与标准库链接。</p>
 <h3 id="-opt"><code>-opt</code></h3>
-<p class="details-group">Enable compilation optimizations.</p>
+<p class="details-group">启用编译优化。</p>
 <h3 id="-output-name--o-name"><code>-output &lt;name&gt;</code> (<code>-o &lt;name&gt;</code>)</h3>
-<p class="details-group">Set the name for the output file.</p>
+<p class="details-group">设置输出文件的名称。</p>
 <h3 id="-entry-name--e-name"><code>-entry &lt;name&gt;</code> (<code>-e &lt;name&gt;</code>)</h3>
-<p class="details-group">Specify the qualified entry point name.</p>
+<p class="details-group">指定限定的入口点名称。</p>
 <h3 id="-produce-output--p"><code>-produce &lt;output&gt;</code> (<code>-p</code>)</h3>
-<p class="details-group">Specify output file kind:</p>
+<p class="details-group">指定输出文件的种类：</p>
 <ul>
 <li><code>program</code></li>
 <li><code>static</code></li>
@@ -1594,9 +1594,9 @@ This option can also be used to specify a name prefix for the declarations expor
 <li><code>bitcode</code></li>
 </ul>
 <h3 id="-repo-path--r-path"><code>-repo &lt;path&gt;</code> (<code>-r &lt;path&gt;</code>)</h3>
-<p class="details-group">Library search path. For more information, see <a href="native/libraries.html#库搜索顺序">Library search sequence</a>.</p>
+<p class="details-group">库搜索路径。有关更多信息，请参见<a href="native/libraries.html#库搜索顺序">库搜索顺序</a>。</p>
 <h3 id="-target-target"><code>-target &lt;target&gt;</code></h3>
-<p class="details-group">Set hardware target. To see the list of available targets, use the <a href="#-list-targets"><code>-list-targets</code></a> option.</p>
+<p class="details-group">设置硬件目标。要查看可用目标的列表，请使用 <a href="#-list-targets"><code>-list-targets</code></a> 选项。</p>
 
         </article>
     </div>
@@ -1626,7 +1626,7 @@ This option can also be used to specify a name prefix for the declarations expor
                 </li>
             </ul>
             <div class="global-footer-container">
-                <div class="global-footer-row">
+                <div class="global-footer-row-left">
                         <p class="terms-para"><a class="terms-kit"
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
@@ -1644,13 +1644,21 @@ This option can also be used to specify a name prefix for the declarations expor
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                 </div>
-                <div class="global-footer-row">
+                <div class="global-footer-row-right">
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
+                    </div>
+                    <div class="terms-sponsor">
                         由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
                         <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
-                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">Yuang Qiao</a>
+                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">乔禹昂</a>、
+                        <a href="https://github.com/SpielbergGao" class="testimonial-company-link" target="_blank" rel="nofollow">高金龙</a>、
+                        <a href="https://github.com/HoshinoTented" class="testimonial-company-link" target="_blank" rel="nofollow">HoshinoTented</a>、
+                        <a href="https://www.liuwj.me" class="testimonial-company-link" target="_blank" rel="nofollow">刘文俊</a>、
+                        <a href="https://github.com/Hiwensen" class="testimonial-company-link" target="_blank" rel="nofollow">常少威</a>、
+                        <a href="https://github.com/Yue-plus" class="testimonial-company-link" target="_blank" rel="nofollow">Yue-plus</a>、
+                        <a href="https://github.com/Guolianxing" class="testimonial-company-link" target="_blank" rel="nofollow">Guolianxing</a>
                         &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>

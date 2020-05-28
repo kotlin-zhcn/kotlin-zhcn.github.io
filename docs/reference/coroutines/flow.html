@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=7e90473a2adfe3ce37fff7c89ed6a868">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=c06222c630c3128e0748d3348e5c1069">
 
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
@@ -1451,7 +1451,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <ul>
 <li><a href="#命令式-finally-块">命令式 finally 块</a></li>
 <li><a href="#声明式处理">声明式处理</a></li>
-<li><a href="#successful-completion">Successful completion</a></li>
+<li><a href="#成功完成">成功完成</a></li>
 </ul>
 </li>
 <li><a href="#命令式还是声明式">命令式还是声明式</a></li>
@@ -2741,9 +2741,9 @@ Caught exception
 <p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 操作符与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 不同，它不处理异常。我们可以看到前面的<!--
 -->示例代码，异常仍然流向下游。它将被提供给后面的 <code>onCompletion</code>
 操作符，并可以由 <code>catch</code> 操作符处理。</p>
-<h4 id="successful-completion">Successful completion</h4>
-<p>Another difference with <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> operator is that <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> sees all exceptions and receives
-a <code>null</code> exception only on successful completion of the upstream flow (without cancellation or failure).</p>
+<h4 id="成功完成">成功完成</h4>
+<p>与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/catch.html">catch</a> 操作符的另一个不同点是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 能观察到所有异常并且<!--
+-->仅在上游流成功完成（没有取消或失败）的情况下接收一个 <code>null</code> 异常。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2765,7 +2765,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote>
 <p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-34.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>We can see the completion cause is not null, because the flow was aborted due to downstream exception:</p>
+<p>我们可以看到完成时 cause 不为空，因为流由于下游异常而中止：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 Flow completed with java.lang.IllegalStateException: Collected 2
 Exception in thread "main" java.lang.IllegalStateException: Collected 2
@@ -2893,7 +2893,7 @@ Flow 的设计也许看起来会非常熟悉。</p>
                 </li>
             </ul>
             <div class="global-footer-container">
-                <div class="global-footer-row">
+                <div class="global-footer-row-left">
                         <p class="terms-para"><a class="terms-kit"
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
@@ -2911,13 +2911,21 @@ Flow 的设计也许看起来会非常熟悉。</p>
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                 </div>
-                <div class="global-footer-row">
+                <div class="global-footer-row-right">
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
+                    </div>
+                    <div class="terms-sponsor">
                         由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
                         <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
-                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">Yuang Qiao</a>
+                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">乔禹昂</a>、
+                        <a href="https://github.com/SpielbergGao" class="testimonial-company-link" target="_blank" rel="nofollow">高金龙</a>、
+                        <a href="https://github.com/HoshinoTented" class="testimonial-company-link" target="_blank" rel="nofollow">HoshinoTented</a>、
+                        <a href="https://www.liuwj.me" class="testimonial-company-link" target="_blank" rel="nofollow">刘文俊</a>、
+                        <a href="https://github.com/Hiwensen" class="testimonial-company-link" target="_blank" rel="nofollow">常少威</a>、
+                        <a href="https://github.com/Yue-plus" class="testimonial-company-link" target="_blank" rel="nofollow">Yue-plus</a>、
+                        <a href="https://github.com/Guolianxing" class="testimonial-company-link" target="_blank" rel="nofollow">Guolianxing</a>
                         &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>

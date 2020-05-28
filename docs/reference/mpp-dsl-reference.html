@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=7e90473a2adfe3ce37fff7c89ed6a868">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=c06222c630c3128e0748d3348e5c1069">
 
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
@@ -1426,9 +1426,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <li><a href="#语言设置">语言设置</a></li>
 </ul>
 <h2 id="id-与版本">id 与版本</h2>
-<p>The fully qualified name of the Kotlin Multiplatform Gradle plugin is <code>org.jetbrains.kotlin.multiplatform</code>. 
-If you use the Kotlin Gradle DSL, you can apply the plugin with <code>kotlin(“multiplatform”)</code>.
-The plugin versions match the Kotlin release versions. The most recent version is 1.3.72.</p>
+<p>Kotlin 多平台 Gradle 插件的全限定名是 <code>org.jetbrains.kotlin.multiplatform</code>。
+如果你使用 Kotlin Gradle DSL，那么你可以通过 <code>kotlin("multiplatform")</code> 来应用插件。
+插件版本与 Kotlin 发行版本相匹配。最新的版本是：1.3.72。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1446,31 +1446,31 @@ The plugin versions match the Kotlin release versions. The most recent version i
 </div>
 </div>
 <h2 id="顶层块">顶层块</h2>
-<p><code>kotlin</code> is the top-level block for multiplatform project configuration in the Gradle build script.
-Inside <code>kotlin</code>, you can write the following blocks:</p>
+<p><code>kotlin</code> 是在 Gradle 构建脚本中用于配置多平台项目的顶层块。
+<code>kotlin</code> 块内，你可以使用以下块：</p>
 <table>
 <thead>
 <tr>
-<th><strong>Block</strong></th>
-<th><strong>Description</strong></th>
+<th><strong>块</strong></th>
+<th><strong>介绍</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><em>&lt;targetName&gt;</em></td>
-<td>Declares a particular target of a project. The names of available targets are listed in the <a href="#目标">Targets</a> section.</td>
+<td><em>&lt;目标名称&gt;</em></td>
+<td>声明项目的特定目标，所有可用的目标名称已陈列在<a href="#目标">目标</a>部分中.</td>
 </tr>
 <tr>
 <td><code>targets</code></td>
-<td>All targets of the project.</td>
+<td>项目的所有目标。</td>
 </tr>
 <tr>
 <td><code>presets</code></td>
-<td>All predefined targets. Use this for <a href="building-mpp-with-gradle.html#setting-up-targets">configuring multiple predefined targets</a> at once.</td>
+<td>所有预定义的目标。使用这个同时<a href="building-mpp-with-gradle.html#setting-up-targets">配置多个预定义目标</a>。</td>
 </tr>
 <tr>
 <td><code>sourceSets</code></td>
-<td>Configures predefined and declares custom <a href="building-mpp-with-gradle.html#configuring-source-sets">source sets</a> of the project.</td>
+<td>配置预定义和声明自定义项目的<a href="building-mpp-with-gradle.html#configuring-source-sets">源集</a>。</td>
 </tr>
 </tbody>
 </table>
@@ -2597,7 +2597,7 @@ In this case, their declarations follow the pattern <code>&lt;sourceSetName&gt;&
                 </li>
             </ul>
             <div class="global-footer-container">
-                <div class="global-footer-row">
+                <div class="global-footer-row-left">
                         <p class="terms-para"><a class="terms-kit"
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
@@ -2615,13 +2615,21 @@ In this case, their declarations follow the pattern <code>&lt;sourceSetName&gt;&
                             href="/foundation/kotlin-foundation.html">Kotlin 基金会</a>保护
                     </div>
                 </div>
-                <div class="global-footer-row">
+                <div class="global-footer-row-right">
                     <div class="terms-sponsor">
                         由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
+                    </div>
+                    <div class="terms-sponsor">
                         由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
                         <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
-                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">Yuang Qiao</a>
+                        <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">乔禹昂</a>、
+                        <a href="https://github.com/SpielbergGao" class="testimonial-company-link" target="_blank" rel="nofollow">高金龙</a>、
+                        <a href="https://github.com/HoshinoTented" class="testimonial-company-link" target="_blank" rel="nofollow">HoshinoTented</a>、
+                        <a href="https://www.liuwj.me" class="testimonial-company-link" target="_blank" rel="nofollow">刘文俊</a>、
+                        <a href="https://github.com/Hiwensen" class="testimonial-company-link" target="_blank" rel="nofollow">常少威</a>、
+                        <a href="https://github.com/Yue-plus" class="testimonial-company-link" target="_blank" rel="nofollow">Yue-plus</a>、
+                        <a href="https://github.com/Guolianxing" class="testimonial-company-link" target="_blank" rel="nofollow">Guolianxing</a>
                         &nbsp;<a href="/contribute.html#中文站翻译贡献者" class="testimonial-company-link" target="_blank" rel="nofollow">等</a>译
                     </div>
                 </div>
