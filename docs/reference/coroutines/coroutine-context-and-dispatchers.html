@@ -1852,8 +1852,8 @@ Destroying activity!
 <p>你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中单次调用了 <code>job.cancel()</code>。</p>
 <blockquote>
-<p>Note, that Android has first-party support for coroutine scope in all entities with the lifecycle.
-See <a href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">the corresponding documentation</a>.</p>
+<p>注意，Android 在所有具有生命周期的实体中都对协程作用域提供了一等的支持。
+请查看<a href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">相关文档</a>。</p>
 </blockquote>
 <h3 id="线程局部数据">线程局部数据</h3>
 <p>有时，能够将一些线程局部数据传递到协程与协程之间是很方便的。 

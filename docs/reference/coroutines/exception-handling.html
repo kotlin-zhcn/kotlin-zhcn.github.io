@@ -1408,10 +1408,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </ul>
 <!--- END -->
 <h2 id="异常处理">异常处理</h2>
-<p>This section covers exception handling and cancellation on exceptions.
-We already know that cancelled coroutine throws <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> in suspension points and that it
-is ignored by the coroutines' machinery. Here we look at what happens if an exception is thrown during cancellation or multiple children of the same
-coroutine throw an exception.</p>
+<p>本节内容涵盖了异常处理与在异常上取消。
+我们已经知道取消协程会在挂起点抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a><!--
+-->并且它会被协程的机制所忽略。在这里我们会看看在取消过程中抛出异常或同一个协程的<!--
+-->多个子协程抛出异常时会发生什么。</p>
 <h3 id="异常的传播">异常的传播</h3>
 <p>Coroutine builders come in two flavors: propagating exceptions automatically (<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>) or
 exposing them to users (<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>).
@@ -1683,8 +1683,8 @@ CoroutineExceptionHandler got java.io.IOException
 </code></pre>
 <!--- TEST-->
 <h3 id="监督">监督</h3>
-<p>As we have studied before, cancellation is a bidirectional relationship propagating through the whole
-hierarchy of coroutines. Let us take a look at the case when unidirectional cancellation is required.</p>
+<p>正如我们之前研究的那样，取消是在协程的整个层次结构中传播的双<!--
+-->向关系。让我们看一下需要单向取消的情况。</p>
 <p>此类需求的一个良好示例是在其作用域内定义作业的 UI 组件。如果任何一个 UI 的子作业<!--
 -->执行失败了，它并不总是有必要取消（有效地杀死）整个 UI 组件，
 但是如果 UI 组件被销毁了（并且它的作业也被取消了），由于它的结果不再被需要了，它有必要使所有的子作业执行失败。</p>
@@ -1780,9 +1780,9 @@ Caught assertion error
 <p>常规的作业和监督作业之间的另一个重要区别是异常处理。
 监督协程中的每一个子作业应该通过异常处理机制处理自身的异常。
 这种差异来自于子作业的执行失败不会传播给它的父作业的事实。
-It means that coroutines launched directly inside <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html">supervisorScope</a> <em>do</em> use the <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a>
-that is installed in their scope in the same way as root coroutines do
-(see <a href="#coroutineexceptionhandler">CoroutineExceptionHandler</a> section for details).</p>
+这意味着在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/supervisor-scope.html">supervisorScope</a> 内部直接启动的协程<em>确实</em>使用了<!--
+-->设置在它们作用域内的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a>，与父协程的方式相同<!--
+-->（查看 <a href="#coroutineexceptionhandler">CoroutineExceptionHandler</a> 小节以获知更多细节）。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlin.coroutines.*
 import kotlinx.coroutines.*
