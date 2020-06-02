@@ -851,7 +851,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </table>
             
 <h2 id="对象声明">对象声明</h2>
-<p>If you need a <em>singleton</em> - a class that only has got one instance - you can declare the class in the usual way, but use the <code>object</code> keyword instead of <code>class</code>:</p>
+<p>If you need a <em>singleton</em> - a class where only one instance exists - you can declare the class in the usual way, but use the <code>object</code> keyword instead of <code>class</code>:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">object CarFactory {
     val cars = mutableListOf&lt;Car&gt;()
@@ -864,7 +864,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>There will only ever be one instance of this class, and the instance (which is created the first time it is accessed, in a thread-safe manner) has got the same name as the class:</p>
+<p>There will only ever be one instance of this class, and the instance (which is created the first time it is accessed, in a thread-safe manner) will have the same name as the class itself:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val car = CarFactory.makeCar(150)
 println(CarFactory.cars.size)

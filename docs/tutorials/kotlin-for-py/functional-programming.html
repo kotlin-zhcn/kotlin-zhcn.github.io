@@ -851,23 +851,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </table>
             
 <h2 id="函数类型">函数类型</h2>
-<p>Like in Python, functions in Kotlin are first-class values - they can be assigned to variables and passed around as parameters. The type a function is a <em>function type</em>, which is indicated with a parenthesized parameter type list and an arrow to the return type. Consider this function:</p>
+<p>像在 Python 中一样，Kotlin 中的函数是一等值——它们可以分配给变量并作为参数传递。函数的类型是 <em>function type</em>，用括号括起来的参数类型列表和返回类型的箭头指示。参考以下函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun safeDivide(numerator: Int, denominator: Int) =
     if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 </code></pre>
 </div>
-<p>It takes two <code>Int</code> parameters and returns a <code>Double</code>, so its type is <code>(Int, Int) -&gt; Double</code>. We can reference the function itself by prefixing its name with <code>::</code>, and we can assign it to a variable (whose type would normally be inferred, but we show the type signature for demonstration):</p>
+<p>它带有两个 <code>Int</code> 参数并返回 <code>Double</code>，因此其类型为 <code>(Int, Int) -&gt; Double</code>。可以通过在函数名称前加上 <code>::</code> 来引用函数本身，并且可以将其分配给变量（通常会推断出其类型，但为了演示将显示类型签名）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val f: (Int, Int) -&gt; Double = ::safeDivide
 </code></pre>
 </div>
-<p>When you have a variable or parameter of function type (sometimes called a <em>function reference</em>), you can call it as if it were an ordinary function, and that will cause the referenced function to be called:</p>
+<p>当具有函数类型的变量或参数（有时称为 <em>函数引用</em>）时，可以像调用普通函数一样对其进行调用，这将导致引用的函数被调用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val quotient = f(3, 0)
 </code></pre>
 </div>
-<p>It is possible for a class to implement a function type as if it were an interface. It must then supply an operator function called <code>invoke</code> with the given signature, and instances of that class may then be assigned to a variable of that function type:</p>
+<p>类有可能像执行接口一样实现函数类型。然后，它必须提供一个具有给定签名的称为 <code>invoke</code> 的运算符函数，然后可以将该类的实例分配给该函数类型的变量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Divider : (Int, Int) -&gt; Double {
     override fun invoke(numerator: Int, denominator: Int): Double = ...
@@ -875,23 +875,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </code></pre>
 </div>
 <h2 id="函数字面值lambda-表达式与匿名函数">函数字面值：lambda 表达式与匿名函数</h2>
-<p>Like in Python, you can write <em>lambda expressions</em>: unnamed function declarations with a very compact syntax, which evaluate to callable function objects. In Kotlin, lambdas can contain multiple statements, which make them useful for <a href="functional-programming.html#接收者">more complex tasks</a> than the single-expression lambdas of Python. The last statement must be an expression, whose result will become the return value of the lambda (unless <code>Unit</code> is the return type of the variable/parameter that the lambda expression is assigned to, in which case the lambda has no return value). A lambda expression is enclosed in curly braces, and begins by listing its parameter names and possibly their types (unless the types can be inferred from context):</p>
+<p>像在 Python 中一样，可以编写 <em>lambda 表达式</em>：使用非常紧凑的语法声明并编写匿名函数，它计算可调用函数对象的值。在 Kotlin 中，lambdas 可以包含多个语句，这使得它们对于比 Python 的单表达式 lambdas 在处理<a href="functional-programming.html#接收者">更复杂的任务</a>时更有用。最后一个语句必须是一个表达式，它的结果将成为 lambda 的返回值（除非 <code>Unit</code> 是 lambda 表达式所赋值的变量或参数的返回类型，在这种情况下，lambda 没有返回值）。一个 lambda 表达式包含在花括号中，它首先列出了它的参数名和可能的类型（除非可以从上下文中推断出类型）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val safeDivide = { numerator: Int, denominator: Int -&gt;
     if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 }
 </code></pre>
 </div>
-<p>The type of <code>safeDivide</code> is <code>(Int, Int) -&gt; Double</code>. Note that unlike function type declarations, the parameter list of a lambda expression must not be enclosed in parentheses.</p>
-<p>Note that the other uses of curly braces in Kotlin, such as in function and class definitions and after <code>if</code>/<code>else</code>/<code>for</code>/<code>while</code> statements, are not lambda expressions (so it is <em>not</em> the case that <code>if</code> is a function that conditionally executes a lambda function).</p>
-<p>The return type of a lambda expression is inferred from the type of the last expression inside it (or from the function type of the variable/parameter that the lambda expression is assigned to). If a lambda expression is passed as a function parameter (which is the ordinary use) or assigned to a variable with a declared type, Kotlin can infer the parameter types too, and you only need to specify their names:</p>
+<p><code>safeDivide</code> 的类型是 <code>(Int, Int) -&gt; Double</code>。请注意，与函数类型声明不同，lambda 表达式的参数列表不得包含在括号中。</p>
+<p>请注意，Kotlin 中花括号的其他用法（例如在函数和类定义中以及在 <code>if</code>、<code>else</code>、<code>for</code>、<code>while</code> 语句之后）不是 lambda 表达式（因此，<code>if</code> 是有条件地执行 lambda 函数的函数的情况 <em>并非</em> 如此）。</p>
+<p>Lambda 表达式的返回类型是根据其中的最后一个表达式的类型（或从 Lambda 表达式所分配给的变量或参数的函数类型）推断出来的。如果将 lambda 表达式作为函数参数（通常使用）传递或分配给具有声明类型的变量，则 Kotlin 也可以推断参数类型，只需要指定其名称即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val safeDivide: (Int, Int) -&gt; Double = { numerator, denominator -&gt;
     if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 }
 </code></pre>
 </div>
-<p>Or:</p>
+<p>或：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun callAndPrint(function: (Int, Int) -&gt; Double) {
     println(function(2, 0))
@@ -902,12 +902,12 @@ callAndPrint({ numerator, denominator -&gt;
 })
 </code></pre>
 </div>
-<p>A parameterless lambda does not need the arrow. A one-parameter lambda can choose to omit the parameter name and the arrow, in which case the parameter will be called <code>it</code>:</p>
+<p>无参数 lambda 不需要箭头。单参数 lambda 可以选择省略参数名称和箭头，在这种情况下，该参数可通过 <code>it</code> 调用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val square: (Double) -&gt; Double = { it * it }
 </code></pre>
 </div>
-<p>If the type of the last parameter to a function is a function type and you want to supply a lambda expression, you can place the lambda expression <em>outside</em> of the parameter parentheses. If the lambda expression is the only parameter, you can omit the parentheses entirely. This is very useful for <a href="functional-programming.html#接收者">constructing DSLs</a>.</p>
+<p>如果函数的最后一个参数的类型是函数类型，并且您想提供 lambda 表达式，则可以将 lambda 表达式放在参数括号之外。如果 lambda 表达式是唯一的参数，则可以完全省略括号。这对于<a href="functional-programming.html#接收者">构建 DSL</a> 非常有用。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun callWithPi(function: (Double) -&gt; Double) {
     println(function(3.14))
@@ -916,26 +916,26 @@ callAndPrint({ numerator, denominator -&gt;
 callWithPi { it * it }
 </code></pre>
 </div>
-<p>If you want to be more explicit about the fact that you're creating a function, you can make an <em>anonymous function</em>, which is still an expression rather than a declaration:</p>
+<p>如果想更清楚地了解创建函数的事实，可以创建一个 <em>匿名函数</em>，该函数仍然是表达式而不是声明：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">callWithPi(fun(x: Double): Double { return x * x })
 </code></pre>
 </div>
-<p>Or:</p>
+<p>或：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">callWithPi(fun(x: Double) = x * x)
 </code></pre>
 </div>
-<p>Lambda expressions and anonymous functions are collectively called <em>function literals</em>.</p>
+<p>Lambda 表达式和匿名函数统称为 <em>函数字面值</em>。</p>
 <h2 id="集合推导">集合推导</h2>
-<p>Kotlin can get quite close to the compactness of Python's <code>list</code>/<code>dict</code>/<code>set</code> comprehensions. Assuming that <code>people</code> is a collection of <code>Person</code> objects with a <code>name</code> property:</p>
+<p>Kotlin 可以非常接近 Python 的 <code>list</code>、<code>dict</code>、<code>set</code> 理解的紧凑性。假设 <code>people</code> 是具有 <code>name</code> 属性的 <code>Person</code> 对象的集合：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val shortGreetings = people
     .filter { it.name.length &lt; 10 }
     .map { "Hello, ${it.name}!" }
 </code></pre>
 </div>
-<p>corresponds to</p>
+<p>相当于</p>
 <div class="sample" mode="python" theme="idea">
 <pre><code class="language-python">short_greetings = [
     f"Hello, {p.name}"  # In Python 2, this would be: "Hello, %s!" % p.name
@@ -944,12 +944,12 @@ callWithPi { it * it }
 ]
 </code></pre>
 </div>
-<p>In some ways, this is easier to read because the operations are specified in the order they are applied to the values. The result will be an immutable <code>List&lt;T&gt;</code>, where <code>T</code> is whichever type is produced by the transformations you use (in this case, <code>String</code>). If you need a mutable list, call <code>toMutableList()</code> at the end. If you want a set, call <code>toSet()</code> or <code>toMutableSet()</code> at the end. If you want to transform a collection into a map, call <code>associateBy()</code>, which takes two lambdas that specify how to extract the key and the value from each element: <code>people.associateBy({it.ssn}, {it.name})</code> (you can omit the second lambda if you want the entire element to be the value, and you can call <code>toMutableMap()</code> at the end if you want the result to be mutable).</p>
-<p>These transformations can also be applied to <code>Sequence&lt;T&gt;</code>, which is similar to Python's generators and allows for lazy evaluation. If you have a huge list and you want to process it lazily, you can call <code>asSequence()</code> on it.</p>
-<p>There's a vast collection of functional programming-style operations available in the <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html"><code>kotlin.collections</code> package</a>.</p>
+<p>在某些方面，这更易于阅读，因为操作是按照它们应用于值的顺序指定的。结果将是一个不变的 <code>List&lt;T&gt;</code>，其中 <code>T</code> 是使用的转换（在这种情况下为 <code>String</code>）生成的任何类型。如果需要可变列表，请在最后调用 <code>toMutableList()</code>。如果需要 Set，请在最后调用 <code>toSet()</code> 或 <code>toMutableSet()</code>。如果要将 Set 转换为 Map，请调用 <code>associateBy()</code>，它需要两个 lambda，用于指定如何从每个元素提取键和值：<code>people.associateBy({it.ssn}, {it.name})</code>（如果希望整个元素作为值，则可以省略第二个 lambda；如果希望结果可变，则可以在最后调用 <code>toMutableMap()</code>）。</p>
+<p>这些转换也可以应用于 <code>Sequence&lt;T&gt;</code>，它与 Python 的生成器类似，并且允许进行惰性求值。如果有一个庞大的列表，并且想要延迟处理它，则可以在其上调用 <code>asSequence()</code>。</p>
+<p><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html"><code>kotlin.collections</code> 包</a>中提供了大量功能编程风格的操作。</p>
 <h2 id="接收者">接收者</h2>
-<p>The signature of a member function or an <a href="extension-functionsproperties.html">extension function</a> begins with a <em>receiver</em>: the type upon which the function can be invoked. For example, the signature of <code>toString()</code> is <code>Any.() -&gt; String</code> - it can be called on any non-null object (the receiver), it takes no parameters, and it returns a <code>String</code>. It is possible to write a lambda function with such a signature - this is called a <em>function literal with receiver</em>, and is extremely useful for building DSLs.</p>
-<p>A function literal with receiver is perhaps easiest to think of as an extension function in the form of a lambda expression. The declaration looks like an ordinary lambda expression; what makes it take a receiver is the context - it must be passed to a function that takes a function with receiver as a parameter, or assigned to a variable/property whose type is a function type with receiver. The only way to use a function with receiver is to invoke it on an instance of the receiver class, as if it were a member function or extension function. For example:</p>
+<p>成员函数或<a href="extension-functionsproperties.html">扩展函数</a>的签名始于 <em>接收者</em>：可以在其上调用函数的类型。例如，<code>toString()</code> 的签名是 <code>Any.() -&gt; String</code>——可以在任何非空对象（接收者）上调用它，它不带任何参数，并且返回 <code>String</code>。可以使用这样的签名来编写 lambda 函数——这被称为 <em>带有接收者的函数字面值</em>，对于构建DSL非常有用。</p>
+<p>带接收者的函数文字可能最容易被认为是 lambda 表达式形式的扩展函数。该声明看起来像一个普通的 lambda 表达式。使其成为接收者的是上下文——必须将其传递给以接收者作为参数的函数，或者将其分配给类型为接收者的函数类型的变量或属性。将函数与接收者一起使用的唯一方法是在接收者类的实例上调用它，就像它是成员函数或扩展函数一样。例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Car(val horsepowers: Int)
 
@@ -959,9 +959,9 @@ val car = Car(120)
 println(car.boast())
 </code></pre>
 </div>
-<p>Inside a lambda expression with receiver, you can use <code>this</code> to refer to the receiver object (in this case, <code>car</code>). As usual, you can omit <code>this</code> if there are no naming conflicts, which is why we can simply say <code>$horsepowers</code> instead of <code>${this.horsepowers}</code>. So beware that in Kotlin, <code>this</code> can have different meanings depending on the context: if used inside (possibly nested) lambda expressions with receivers, it refers to the receiver object of the innermost enclosing lambda expression with receiver. If you need to "break out" of the function literal and get the "original" <code>this</code> (the instance the member function you're inside is executing on), mention the containing class name after <code>this@</code> - so if you're inside a function literal with receiver inside a member function of Car, use <code>this@Car</code>.</p>
-<p>As with other function literals, if the function takes one parameter (other than the receiver object that it is invoked on), the single parameter is implicitly called <code>it</code>, unless you declare another name. If it takes more than one parameter, you must declare their names.</p>
-<p>Here's a small DSL example for constructing tree structures:</p>
+<p>在带有接收者的 lambda 表达式中，您可以使用 <code>this</code> 来引用接收者对象（在本例中为 <code>car</code>）。像往常一样，如果没有命名冲突，则可以省略 <code>this</code>，这就是为什么可以简单地说 <code>$horsepowers</code> 而不是 <code>${this.horsepowers}</code> 的原因。因此请注意，在 Kotlin 中，<code>this</code> 取决于上下文可能具有不同的含义：如果在内部（可能嵌套的）lambda 表达式与接收者一起使用，它指的是最内部包含接收者的 lambda 表达式的接收者对象。如果需要“突破”函数文字并获取“原始”<code>this</code>（正在其中执行的成员函数的实例），请在 <code>this@</code> 之后提及包含的类名——如果在函数字面量内，而接收方在 Car 的成员函数内，请使用 <code>this@Car</code>。</p>
+<p>与其他函数字面值一样，如果函数采用一个参数（调用该参数的接收方对象除外），则除非您声明另一个名称，否则单个参数将隐式称为 <code>it</code>。如果使用多个参数，则必须声明其名称。</p>
+<p>这是一个用于构建树形结构的小型 DSL 示例：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class TreeNode(val name: String) {
     val children = mutableListOf&lt;TreeNode&gt;()
@@ -994,8 +994,8 @@ val t = tree("root") {
 }
 </code></pre>
 </div>
-<p>The block after <code>tree("root")</code> is the first function literal with receiver, which will be passed to <code>tree()</code> as the <code>initialize</code> parameter. According to the parameter list of <code>tree()</code>, the receiver is of type <code>TreeNode</code>, and therefore, <code>tree()</code> can call <code>initialize()</code> on <code>root</code>. <code>root</code> then becomes <code>this</code> inside the scope of that lambda expression, so when we call <code>node("math")</code>, it implicitly says <code>this.node("math")</code>, where <code>this</code> refers to the same <code>TreeNode</code> as <code>root</code>. The next block is passed to <code>TreeNode.node()</code>, and is invoked on the first child of the <code>root</code> node, namely <code>math</code>, and inside it, <code>this</code> will refer to <code>math</code>.</p>
-<p>If we had wanted to express the same thing in Python, it would have looked like this, and we would be hamstrung by the fact that lambda functions can only contain one expression, so we need explicit function definitions for everything but the oneliners:</p>
+<p>在 <code>tree("root")</code> 之后的块是带有接收者的第一个函数字面值，它将作为 <code>initialize</code> 参数传递给 <code>tree()</code>。根据 <code>tree()</code> 的参数列表，接收者的类型为 <code>TreeNode</code>，因此，<code>tree()</code> 可以在 <code>root</code> 上调用 <code>initialize()</code>。然后，<code>root</code> 在该 lambda 表达式的范围内变为 <code>this</code>，因此，当调用 <code>node("math")</code> 时，它隐式地表示为 <code>this.node("math")</code>，其中 <code>this</code> 与 <code>root</code> 所指的是相同的 <code>TreeNode</code>。下一个块传递给 <code>TreeNode.node()</code>，并在 <code>root</code> 节点的第一个子节点上调用，即 <code>math</code>，在其内部，<code>this</code> 将引用 <code>math</code>。</p>
+<p>如果想在 Python 中表达相同的内容，它将看起来像这样，而 lambda 函数只能包含一个表达式将会受阻，所以需要显式的函数定义来处理除单行之外的所有内容</p>
 <div class="sample" mode="python" theme="idea">
 <pre><code class="language-python">class TreeNode:
     def __init__(self, name):
@@ -1026,9 +1026,9 @@ def init_math(math):
 t = tree("root", init_root)
 </code></pre>
 </div>
-<p>The official docs also have a very cool example with a <a href="https://www.kotlincn.net/docs/reference/type-safe-builders.html"> DSL for constructing HTML documents</a>.</p>
+<p>官方文档还有一个非常酷的示例，其中包含<a href="https://www.kotlincn.net/docs/reference/type-safe-builders.html">用于构造 HTML 文档的 DSL</a>。</p>
 <h2 id="内联函数">内联函数</h2>
-<p>There's a little bit of runtime overhead associated with lambda functions: they are really objects, so they must be instantiated, and (like other functions) calling them takes a little bit of time too. If we use the <code>inline</code> keyword on a function, we tell the compiler to <em>inline</em> both the function and its lambda parameters (if any) - that is, the compiler will copy the code of the function (and its lambda parameters) into <em>every</em> callsite, thus eliminating the overhead of both the lambda instantiation and the calling of the function and the lambdas. This will happen unconditionally, unlike in C and C++, where <code>inline</code> is more of a hint to the compiler. This will cause the size of the compiled code to grow, but it may be worth it for certain small but frequently-called functions.</p>
+<p>Lambda 函数有一些运行时开销：它们实际上是对象，因此必须实例化，并且（与其他函数一样）调用它们也需要一点时间。如果在函数上使用 <code>inline</code> 关键字，则会告诉编译器内联函数和其 lambda 参数（如果有的话）——也就是说，编译器会将函数的代码（及其 lambda 参数）复制到每个调用站点中，这样就消除了 lambda 实例化以及函数和 lambda 调用的开销。这将无条件地发生，这与 C 和 C++ 中的 <code>inline</code> 更多地是对编译器的提示不同。这将导致已编译代码的大小增加，但是对于某些较小但经常调用的函数可能值得这样做。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline fun time(action: () -&gt; Unit): Long {
     val start = Instant.now().toEpochMilli()
@@ -1037,13 +1037,13 @@ t = tree("root", init_root)
 }
 </code></pre>
 </div>
-<p>Now, if you do:</p>
+<p>现在，如果这样做：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val t = time { println("Lots of code") }
 println(t)
 </code></pre>
 </div>
-<p>The compiler will generate something like this (except that <code>start</code> won't collide with any other identifiers with the same name):</p>
+<p>编译器将生成类似以下内容的代码（除了 <code>start</code> 不会与任何其他同名标识符冲突）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val start = Instant.now().toEpochMilli()
 println("Lots of code")
@@ -1051,24 +1051,24 @@ val t = Instant.now().toEpochMilli() - start
 println(t)
 </code></pre>
 </div>
-<p>In an inline function definition, you can use <code>noinline</code> in front of any function-typed parameter to prevent the lambda that will be passed to it from also being inlined.</p>
+<p>在内联函数定义中，可以在任何函数类型的参数前面使用 <code>noinline</code> 来防止将要传递给它的 lambda 内联。</p>
 <h2 id="不错的工具函数">不错的工具函数</h2>
 <h3 id="runlet-与-with"><code>run()</code>、<code>let()</code> 与 <code>with()</code></h3>
-<p><code>?.</code> is nice if you want to call a function on something that might be null. But what if you want to call a function that takes a non-null parameter, but the value you want to pass for that parameter might be null? Try <code>run()</code>, which is an extension function on <code>Any?</code> that takes a lambda with receiver as a parameter and invokes it on the value that it's called on, and use <code>?.</code> to call <code>run()</code> only if the object is non-null:</p>
+<p>如果想在可能为空的东西上调用函数，<code>?.</code> 很好。但是，如果要调用一个采用非空参数的函数，但要为该参数传递的值可能为空怎么办？尝试 <code>run()</code>，它是 <code>Any?</code> 上的扩展函数，该函数以带有接收者的 lambda 作为参数，并在其调用的值上调用它，而用 <code>?.</code> 来调用 <code>run()</code> 仅当该对象非空时才会调用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = maybeNull?.run { functionThatCanNotHandleNull(this) }
 </code></pre>
 </div>
-<p>If <code>maybeNull</code> is null, the function won't be called, and <code>result</code> will be null; otherwise, it will be the return value of <code>functionThatCanNotHandleNull(this)</code>, where <code>this</code> refers to  <code>maybeNull</code>. You can chain <code>run()</code> calls with <code>?.</code> - each one will be called on the previous result if it's not null:</p>
+<p>如果 <code>maybeNull</code> 为空，则不会调用该函数，而 <code>result</code> 为空。否则，它将是 <code>functionThatCanNotHandleNull(this)</code> 的返回值，其中 <code>this</code> 是指 <code>maybeNull</code>。可以使用 <code>?.</code> 链接 <code>run()</code> 调用——如果前一个结果不为空，那么每个 <code>run()</code> 都会调用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = maybeNull
     ?.run { firstFunction(this) }
     ?.run { secondFunction(this) }
 </code></pre>
 </div>
-<p>The first <code>this</code> refers to <code>maybeNull</code>, the second one refers to the result of <code>firstFunction()</code>, and <code>result</code> will be the result of <code>secondFunction()</code> (or null if <code>maybeNull</code> or any of the intermediate results were null).</p>
-<p>A syntactic variation of <code>run()</code> is <code>let()</code>, which takes an ordinary function type instead of a function type with receiver, so the expression that might be null will be referred to as <code>it</code> instead of <code>this</code>.</p>
-<p>Both <code>run()</code> and <code>let()</code> are also useful if you've got an expression that you need to use multiple times, but you don't care to come up with a variable name for it and make a null check:</p>
+<p>第一个 <code>this</code> 是指 <code>maybeNull</code>，第二个是 <code>firstFunction()</code> 的结果，<code>result</code> 将是 <code>secondFunction()</code> 的结果（如果 <code>maybeNull</code> 或任何中间结果为空，那么返回空）。</p>
+<p><code>run()</code> 的语法变体是 <code>let()</code>，它以普通函数类型而不是带有接收器的函数类型作为参数，因此可能为空的表达式将称为 <code>it</code> 而不是 <code>this</code>。 。</p>
+<p>如果有一个需要多次使用的表达式，但是不必为它提供一个变量名并进行空检测，<code>run()</code> 与 <code>let()</code> 都非常有用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = someExpression?.let {
    firstFunction(it)
@@ -1076,7 +1076,7 @@ println(t)
 }
 </code></pre>
 </div>
-<p>Yet another version is <code>with()</code>, which you can also use to avoid coming up with a variable name for an expression, but only if you know that its result will be non-null:</p>
+<p>还有一个版本是 <code>with()</code>，也可以使用它来避免为表达式提供变量名，但前提是知道其结果不为空：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = with(someExpression) {
    firstFunction(this)
@@ -1084,9 +1084,9 @@ println(t)
 }
 </code></pre>
 </div>
-<p>In the last line, there's an implicit <code>this.</code> in front of both <code>memberFunction()</code> and <code>memberProperty</code> (if these exist on the type of <code>someExpression</code>). The return value is that of the last expression.</p>
+<p>在最后一行，在 <code>memberFunction()</code> 与 <code>memberProperty</code> 之前都有一个隐含的<code>this.</code>（如果这些存在于 <code>someExpression</code> 类型）。返回值是最后一个表达式的值。</p>
 <h3 id="apply-与-also"><code>apply()</code> 与 <code>also()</code></h3>
-<p>If you don't care about the return value from the function, but you want to make one or more calls involving something that might be null and then keep on using that value, try <code>apply()</code>, which returns the value it's called on. This is particularly useful if you want to work with many members of the object in question:</p>
+<p>如果不关心函数的返回值，但是想进行一个或多个涉及空值的调用，然后继续使用该值，请尝试 <code>apply()</code>，它返回被调用的值。如果要使用所讨论对象的许多成员，这特别有用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">maybeNull?.apply {
     firstFunction(this)
@@ -1095,8 +1095,8 @@ println(t)
 }?.memberFunctionB()
 </code></pre>
 </div>
-<p>Inside the <code>apply</code> block, <code>this</code> refers to <code>maybeNull</code>. There's an implicit <code>this</code> in front of <code>memberPropertyA</code>, <code>memberPropertyB</code>, and <code>memberFunctionA</code> (unless these don't exist on <code>maybeNull</code>, in which case they'll be looked for in the containing scopes). Afterwards, <code>memberFunctionB()</code> is also invoked on <code>maybeNull</code>.</p>
-<p>If you find the <code>this</code> syntax to be confusing, you can use <code>also</code> instead, which takes ordinary lambdas:</p>
+<p>在 <code>apply</code> 块中，<code>this 是指 </code>maybeNull<code>。在 </code>memberPropertyA<code>，</code>memberPropertyB<code> 与 </code>memberFunctionA<code> 之前有一个隐含的 </code>this<code>（除非这些在 </code>maybeNull<code> 上不存在，在这种情况下将在包含的作用域中查找它们）。此后，也可以在 </code>maybeNull<code> 上调用 </code>memberFunctionB()`。</p>
+<p>如果发现 <code>this</code> 语法令人困惑，则可以改用 <code>also</code>，它以普通的 lambda 作为参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">maybeNull?.also {
     firstFunction(it)
@@ -1106,7 +1106,7 @@ println(t)
 </code></pre>
 </div>
 <h3 id="takeif-与-takeunless"><code>takeIf()</code> 与 <code>takeUnless()</code></h3>
-<p>If you want to use a value only if it satisfies a certain condition, try <code>takeIf()</code>, which returns the value it's called on if it satisfies the given predicate, and null otherwise. There's also <code>takeUnless()</code>, which inverts the logic. You can follow this with a <code>?.</code> to perform an operation on the value only if it satisfies the predicate. Below, we compute the square of some expression, but only if the expression value is at least 42:</p>
+<p>如果仅在满足特定条件时才使用值，请尝试 <code>takeIf()</code>，如果满足给定谓词，则返回它被调用的值，否则返回空值。还有 <code>takeUnless()</code>，其逻辑正好相反。可以在其后接一个 <code>?.</code>，以仅在满足谓词的情况下对该值执行运算。下面，计算某些表达式的平方，但前提是表达式的值至少为 42：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = someExpression.takeIf { it &gt;= 42 } ?.let { it * it }
 </code></pre>

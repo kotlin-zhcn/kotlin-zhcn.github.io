@@ -1409,29 +1409,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!--- END -->
 <h2 id="异常处理">异常处理</h2>
 <p>本节内容涵盖了异常处理与在异常上取消。
-我们已经知道取消协程会在挂起点抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a><!--
--->并且它会被协程的机制所忽略。在这里我们会看看在取消过程中抛出异常或同一个协程的<!--
+我们已经知道取消协程会在挂起点抛出 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>
+并且它会被协程的机制所忽略。在这里我们会看看在取消过程中抛出异常或同一个协程的<!--
 -->多个子协程抛出异常时会发生什么。</p>
 <h3 id="异常的传播">异常的传播</h3>
-<p>Coroutine builders come in two flavors: propagating exceptions automatically (<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>) or
-exposing them to users (<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>).
-When these builders are used to create a <em>root</em> coroutine, that is not a <em>child</em> of another coroutine,
-the former builder treat exceptions as <strong>uncaught</strong> exceptions, similar to Java's <code>Thread.uncaughtExceptionHandler</code>,
-while the latter are relying on the user to consume the final
-exception, for example via <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> or <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 
-(<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> and <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> are covered later in <a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/channels.md">Channels</a> section).</p>
+<p>协程构建器有两种形式：自动传播异常（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>）或<!--
+-->向用户暴露异常（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>）。
+当这些构建器用于创建一个<em>根</em>协程时，即该协程不是另一个协程的<em>子</em>协程，
+前者这类构建器将异常视为<strong>未捕获</strong>异常，类似 Java 的 <code>Thread.uncaughtExceptionHandler</code>，
+而后者则依赖用户来最终消费<!--
+-->异常，例如通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a><!--
+-->（<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 的相关内容包含于<a href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/channels.md">通道</a>章节）。</p>
 <p>可以通过一个使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 创建根协程的简单示例来进行演示：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
 fun main() = runBlocking {
-    val job = GlobalScope.launch { // root coroutine with launch
+    val job = GlobalScope.launch { // launch 根协程
         println("Throwing exception from launch")
         throw IndexOutOfBoundsException() // 我们将在控制台打印 Thread.defaultUncaughtExceptionHandler
     }
     job.join()
     println("Joined failed job")
-    val deferred = GlobalScope.async { // root coroutine with async
+    val deferred = GlobalScope.async { // async 根协程
         println("Throwing exception from async")
         throw ArithmeticException() // 没有打印任何东西，依赖用户去调用等待
     }
@@ -1598,9 +1598,9 @@ CoroutineExceptionHandler got java.lang.ArithmeticException
 </code></pre>
 <!--- TEST-->
 <h3 id="异常聚合">异常聚合</h3>
-<p>When multiple children of a coroutine fail with an exception the
-general rule is "the first exception wins", so the first exception gets handled.
-All additional exceptions that happen after the first one are attached to the first exception as suppressed ones.</p>
+<p>当协程的多个子协程因异常而失败时，<!--
+-->一般规则是“取第一个异常”，因此将处理第一个异常。<!--
+-->在第一个异常之后发生的所有其他异常都作为被抑制的异常绑定至第一个异常。</p>
 <!--- INCLUDE
 import kotlinx.coroutines.exceptions.*
 -->
@@ -1615,14 +1615,14 @@ fun main() = runBlocking {
     val job = GlobalScope.launch(handler) {
         launch {
             try {
-                delay(Long.MAX_VALUE) // it gets cancelled when another sibling fails with IOException
+                delay(Long.MAX_VALUE) // 当另一个同级的协程因 IOException  失败时，它将被取消
             } finally {
-                throw ArithmeticException() // the second exception
+                throw ArithmeticException() // 第二个异常
             }
         }
         launch {
             delay(100)
-            throw IOException() // the first exception
+            throw IOException() // 首个异常
         }
         delay(Long.MAX_VALUE)
     }
@@ -1644,7 +1644,7 @@ fun main() = runBlocking {
 <p>注意，这个机制当前只能在 Java 1.7 以上的版本中使用。
 在 JS 和原生环境下暂时会受到限制，但将来会被修复。</p>
 </blockquote>
-<p>Cancellation exceptions are transparent and are unwrapped by default:</p>
+<p>取消异常是透明的，默认情况下是未包装的：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import java.io.*
@@ -1655,10 +1655,10 @@ fun main() = runBlocking {
         println("CoroutineExceptionHandler got $exception")
     }
     val job = GlobalScope.launch(handler) {
-        val inner = launch { // all this stack of coroutines will get cancelled
+        val inner = launch { // 该栈内的协程都将被取消
             launch {
                 launch {
-                    throw IOException() // the original exception
+                    throw IOException() // 原始异常
                 }
             }
         }
@@ -1666,7 +1666,7 @@ fun main() = runBlocking {
             inner.join()
         } catch (e: CancellationException) {
             println("Rethrowing CancellationException with original cause")
-            throw e // cancellation exception is rethrown, yet the original IOException gets to the handler  
+            throw e // 取消异常被重新抛出，但原始 IOException 得到了处理
         }
     }
     job.join()
