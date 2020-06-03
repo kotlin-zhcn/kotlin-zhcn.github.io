@@ -62,6 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
+<!--
 <div class="global-nav banner-container">
     <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
         <div class="banner-item title">
@@ -72,7 +73,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </a>
     <div class="close-head-banner"></div>
-</div>        </div>
+</div>
+-->        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
@@ -862,31 +864,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <h2 id="搭建环境">搭建环境</h2>
-<p>在本教程中，将使用 IntelliJ IDEA。首先，安装一个最新版本的 IntelliJ IDEA。</p>
+<p>在本教程中将使用 IntelliJ IDEA。</p>
+<p>首先，安装一个最新版本的 IntelliJ IDEA。</p>
 <p>从 15 版开始，IntelliJ IDEA 内集成 Kotlin。</p>
 <p>可以从 <a href="http://www.jetbrains.com">JetBrains 官网</a>下载免费的<a href="http://www.jetbrains.com/idea/download/index.html">社区版</a>（或完整的<a href="http://www.jetbrains.com/idea/download/index.html">旗舰版</a>）。</p>
 <p>作为使用 IntelliJ IDEA 的替代方法，也可使用命令行编译器来编译和执行 Kotlin 应用程序。相关详细信息，请参见<a href="command-line.html">使用命令行编译器</a>。</p>
-<p>如果不熟悉JVM和Java，请查看 <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM 简明使用手册</a>。
+<p>如果不熟悉 JVM 和 Java，请查看 <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM 简明使用手册</a>。
 如果您不熟悉 IntelliJ IDEA，请参见 <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">IntelliJ IDEA 简明使用手册</a>。</p>
 <h2 id="创建一个新的项目">创建一个新的项目</h2>
 <p>安装好 IntelliJ IDEA 之后，就可以创建第一个 Kotlin 应用程序了。</p>
 <ol>
 <li>
-<p>从 <strong>File | New</strong> 开始创建一个新的项目。选择 <strong>Kotlin | JVM | IDEA</strong> 作为项目的类型。</p>
+<p>从 <strong>File | New</strong> 开始（如果这是你第一次使用 IntelliJ IDEA，从 <strong>Create New Project</strong> 开始）创建一个新的项目。选择 <strong>Kotlin | JVM | IDEA</strong> 作为项目的类型。</p>
 <p><img alt="新建 Kotlin 项目" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
 </li>
 <li>
 <p>为项目命名并为其选择 SDK 版本。</p>
 <p><img alt="Kotlin 项目名" src="/assets/images/tutorials/getting-started/project_name.png"/></p>
-<p>现在，你已经创建了一个新的项目以下是项目结构：</p>
+<p>现在，你已经创建了一个新的项目。以下是项目结构：</p>
 <p><img alt="Kotlin 文件夹解构" src="/assets/images/tutorials/getting-started/folders.png"/></p>
 </li>
 <li>
-<p>在源集文件夹下创建一个新的 Kotlin 文件。 它可以任意命名。 我们称之为 <em>app</em>。</p>
+<p>在 src 文件夹下创建一个新的 Kotlin 文件。 它可以任意命名。 我们称之为 <em>app</em>。</p>
 <p><img alt="新建 Kotlin 文件" src="/assets/images/tutorials/getting-started/new_file.png"/></p>
 </li>
 <li>
-<p>创建文件后，添加 <code>main</code> 函数，它是 Kotlin 应用程序的入口点。 IntelliJ IDEA 提供了一个快速完成此操作的模板。 只需输入 <em>main</em> 并按 Tab 键即可。</p>
+<p>创建文件后，添加 <code>main</code> 函数，它是 Kotlin 应用程序的入口。 IntelliJ IDEA 提供了一个快速完成此操作的模板。 只需输入 <em>main</em> 并按 <kbd> Tab </kbd> 键即可。</p>
 <p><img alt="Kotlin Main 函数" src="/assets/images/tutorials/getting-started/main.png"/></p>
 </li>
 <li>
@@ -895,7 +898,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </li>
 </ol>
 <h2 id="运行这个应用程序">运行这个应用程序</h2>
-<p>现在应用程序已准备好运行。 最简单的方法是单击菜单栏中的绿色 <strong>Run</strong> 图标，然后选择__Run'AppKt'__。</p>
+<p>现在应用程序已准备好运行。 最简单的方法是单击菜单栏中的绿色 <strong>Run</strong> 图标，然后选择 <strong>Run'AppKt'</strong> 。</p>
 <p><img alt="Kotlin 运行应用程序" src="/assets/images/tutorials/getting-started/run_default.png"/></p>
 <p>如果一切顺利，您将在 <strong>Run</strong> 工具窗口中看到结果。</p>
 <p><img alt="Kotlin 运行输出" src="/assets/images/tutorials/getting-started/run_window.png"/></p>

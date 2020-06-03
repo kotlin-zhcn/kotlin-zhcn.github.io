@@ -62,6 +62,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
+<!--
 <div class="global-nav banner-container">
     <a class="banner-text" href="https://www.jetbrains.com/promo/kotlin-heroes/" target="_blank">
         <div class="banner-item title">
@@ -72,7 +73,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </a>
     <div class="close-head-banner"></div>
-</div>        </div>
+</div>
+-->        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
@@ -1389,7 +1391,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <h1 id="kotlin-编译器选项">Kotlin 编译器选项</h1>
 <p>每个 Kotlin 版本都包含支持目标的编译器：
 用于<a href="native-overview.html#目标平台">所支持平台</a>的 JVM、JavaScript 与 Native 二进制文件。</p>
-<p>当单击 Kotlin 项目的 <strong>Compile</strong> 或 <strong>Run</strong> 按钮时，IDE 会使用这些编译器。</p>
+<p>当单击 Kotlin 项目的 <strong>Compile</strong> 或 <strong>运行(Run)</strong> 按钮时，IDE 会使用这些编译器。</p>
 <p>还可以按照<a href="/docs/tutorials/command-line.html">使用命令行编译器</a>
 教程中所述在命令行手动运行 Kotlin 编译器。例如：</p>
 <div class="sample" mode="shell" theme="idea">
@@ -1401,8 +1403,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 此页面列出了针对不同目标的编译器选项，并提供了每个选项的描述。</p>
 <p>有几种方法可以设置编译器选项及其值（<em>编译器参数</em>）：</p>
 <ul>
-<li>在 IntelliJ IDEA 的 <strong>Settings | Build, Execution, Deployment | Compilers | Kotlin Compiler</strong> 窗口中，
-在 <strong>Additional command-line parameters</strong> 文本框中输入编译器参数。</li>
+<li>在 IntelliJ IDEA 的 <strong>设置(Settings) | 构建、执行、部署(Build, Execution, Deployment) | 编译器(Compilers) | Kotlin Compiler</strong> 窗口中，
+在 <strong>附加命令行参数(Additional command-line parameters)</strong> 文本框中输入编译器参数。</li>
 <li>如果使用 Gradle，请在 Kotlin 编译任务的 <code>kotlinOptions</code> 属性中指定编译器参数。
 详情请参见<a href="using-gradle.html#编译器选项">使用 Gradle</a>。</li>
 <li>如果使用 Maven，请在 Maven 插件节点的 <code>&lt;configuration&gt;</code> 元素中指定编译器参数。
