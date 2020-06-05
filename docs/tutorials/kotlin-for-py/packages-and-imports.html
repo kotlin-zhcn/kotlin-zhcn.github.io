@@ -27,7 +27,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=c06222c630c3128e0748d3348e5c1069">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
 
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
@@ -853,43 +853,43 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             </table>
             
 <h2 id="包">包</h2>
-<p>Every Kotlin file should belong to a <em>package</em>. This is somewhat similar to modules in Python, but files need to explicitly declare which package they belong to, and a package implicitly comes into existence whenever any file declares itself to belong to that package (as opposed to explicitly defining a module with <code>__init__.py</code> and having all the files in that directory implicitly belong to the module). The package declaration must go on the top of the file:</p>
+<p>每个 Kotlin 文件都应属于一个 <em>包</em>。这有点类似于 Python 中的模块，但是文件需要显式声明它们属于哪个包，并且每当任何文件声明自己属于该包时，就隐式地存在一个包（与使用 <code>__init__.py</code> 显式定义一个模块相反）。并使该目录中的所有文件隐式属于该模块）。软件包声明必须放在文件顶部：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">package content.exercises
 </code></pre>
 </div>
-<p>If a file doesn't declare a package, it belongs to the nameless <em>default package</em>. This should be avoided, as it will make it hard to reference the symbols from that file in case of naming conflicts (you can't explicitly import the empty package).</p>
-<p>Package names customarily correspond to the directory structure - note that the source file name should <em>not</em> be a part of the package name (so if you follow this, file-level symbol names must be unique within an entire directory, not just within a file). However, this correspondence is not required, so if you're going to do interop with Java code and all your package names must start with the same prefix, e.g. <code>org.khanacademy</code>, you might be relieved to learn that you don't need to put all your code inside <code>org/khanacademy</code> (which is what Java would have forced you to do) - instead, you could start out with a directory called e.g. <code>content</code>, and the files inside it could declare that they belong to the package <code>org.khanacademy.content</code>. However, if you have a mixed project with both Kotlin and Java code, the convention is to use the Java-style package directories for Kotlin code too.</p>
-<p>While the dots suggest that packages are nested inside each other, that's not actually the case from a language standpoint. While it's a good idea to organize your code such that the "subpackages" of <code>content</code>, such as  <code>content.exercises</code> and <code>content.articles</code>, both contain content-related code, these three packages are unrelated from a language standpoint. However, if you use <em>modules</em> (as defined by your build system), it is typically the case that all "subpackages" go in the same module, in which case symbols with <a href="visibility-modifiers.html"><code>internal</code> visibility</a> are visible throughout the subpackages.</p>
-<p>Package names customarily contain only lowercase letters (no underscores) and the separating dots.</p>
+<p>如果文件没有声明包，则它属于无名 <em>默认包</em>。应该避免这种情况，因为在命名冲突的情况下，这将使引用该文件中的符号变得困难（不能显式导入空包）。</p>
+<p>程序包名称通常与目录结构相对应——请注意，源文件名 <em>不</em> 应该是程序包名称的一部分（因此，如果遵循此名称，则文件级符号名在整个目录中必须唯一，而不仅仅是在文件中）。但是，这种对应关系不是必需的，因此，如果要与 Java 代码进行互操作，并且所有包名称都必须以相同的前缀开头，例如：<code>org.khanacademy</code>，可能会发现不需要将所有代码都放在 <code>org/khanacademy</code> 中（这是 Java 会强迫执行的操作）而感到宽慰，——相反，可以从例如名为 <code>content</code> 的目录开始。并且其中的文件可以声明它们属于软件包 <code>org.khanacademy.content</code>。但是，如果有一个同时包含 Kotlin 与 Java 代码的项目，则约定也将 Java 风格的软件包目录也用于 Kotlin 代码。</p>
+<p>尽管这些点表明程序包彼此嵌套，但从语言角度来看实际上并非如此。虽然最好组织代码以使诸如 <code>content.exercises</code> 与 <code>content.articles</code> 之类的 <code>content</code> 的“子包”都包含与内容相关的代码，但是从语言的角度来看，这三个包是无关的。但是，如果使用 <em>模块</em>（由构建系统定义），通常所有“子包”都放在同一个模块中，在这种情况下，带有 <a href="visibility-modifiers.html"><code>internal</code> 可见性</a> 的符号在各个子包中都是可见的。</p>
+<p>程序包名称通常只包含小写字母（没有下划线）和分隔点。</p>
 <h2 id="导入">导入</h2>
-<p>In order to use something from a package, it is sufficient to use the package name to fully qualify the name of the symbol at the place where you use the symbol:</p>
+<p>为了使用包中的内容，只需在使用符号的地方使用包名称来完全限定符号的名称即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val exercise = content.exercises.Exercise()
 </code></pre>
 </div>
-<p>This quickly gets unwieldy, so you will typically <em>import</em> the symbols you need. You can import a specific symbol:</p>
+<p>这很快变得很笨拙，因此通常将 <em>导入</em> 所需的符号。可以导入特定的符号：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import content.exercises.Exercise
 </code></pre>
 </div>
-<p>Or an entire package, which will bring in all the symbols from that package:</p>
+<p>或一个完整的包装，它将带入该包中的所有符号：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import content.exercises.*
 </code></pre>
 </div>
-<p>With either version of the import, you can now simply do:</p>
+<p>无论使用哪个版本的导入，现在都可以执行以下操作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val exercise = Exercise()
 </code></pre>
 </div>
-<p>If there is a naming conflict, you should usually import just one of the symbols and fully qualify the usages of the other. If both are heavily used, you can rename the symbol at import time:</p>
+<p>如果存在命名冲突，通常应该只导入其中一个符号，并完全限定另一个符号的用法。如果两者都被大量使用，则可以在导入时重命名符号：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import content.exercises.Exercise as Ex
 </code></pre>
 </div>
-<p>In Kotlin, importing is a compile-time concept - importing something does not actually cause any code to run (unlike Python, where all top-level statements in a file are executed at import time). Therefore, circular imports are allowed, but they might suggest a design problem in your code. However, during execution, a class will be loaded the first time it (or any of its properties or functions) is referenced, and class loading causes <a href="objects-and-companion-objects.html#伴生对象">伴生对象</a> to be initialized - this can lead to runtime exceptions if you have circular dependencies.</p>
-<p>Every file implicitly imports its own package and a number of built-in Kotlin and Java packages.</p>
+<p>在 Kotlin 中，导入是一个编译期概念——导入内容实际上不会导致任何代码运行（与 Python 不同，在 Python 中，文件中的所有顶级语句都在导入时执行）。因此，允许循环导入，但是它们可能会在代码中提示设计问题。但是，在执行期间，将在首次引用类（或其任何属性或函数）时加载类，并且类加载会导致初始化<a href="objects-and-companion-objects.html#伴生对象">伴生对象</a>——如果具有循环依赖项，则可能导致运行时异常。</p>
+<p>每个文件都隐式导入其自己的程序包以及许多内置的 Kotlin 与 Java 程序包。</p>
 <hr/>
 <table>
 <tbody>
