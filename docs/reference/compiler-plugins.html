@@ -1701,8 +1701,8 @@ apply plugin: "kotlin-sam-with-receiver"
 </code></pre>
 </div>
 <h2 id="parcelable-实现生成器"><code>Parcelable</code> 实现生成器</h2>
-<p>Android Extensions plugin provides <a href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> implementation generator.</p>
-<p>Annotate the class with <code>@Parcelize</code>, and a <code>Parcelable</code> implementation will be generated automatically.</p>
+<p>Android 扩展插件提供了 <a href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> 实现生成器。</p>
+<p>用 <code>@Parcelize</code> 标注该类，然后会自动生成一个 <code>Parcelable</code> 实现。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.android.parcel.Parcelize
 
@@ -1710,9 +1710,9 @@ apply plugin: "kotlin-sam-with-receiver"
 class User(val firstName: String, val lastName: String, val age: Int): Parcelable
 </code></pre>
 </div>
-<p><code>@Parcelize</code> requires all serialized properties to be declared in the primary constructor. Android Extensions will issue a warning on each property 
-with a backing field declared in the class body. Also, <code>@Parcelize</code> can't be applied if some of the primary constructor parameters are not properties.</p>
-<p>If your class requires more advanced serialization logic, write it inside a companion class:</p>
+<p><code>@Parcelize</code> 要求在主构造函数中声明所有序列化的属性。Android 扩展程序会针对每个属性发出警告，并在类主体中声明一个幕后字段。
+此外，如果某些主要构造函数参数不是属性，则无法应用 <code>@Parcelize</code>。</p>
+<p>如果类需要更高级的序列化逻辑，请在伴生类中编写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Parcelize
 data class User(val firstName: String, val lastName: String, val age: Int) : Parcelable {
@@ -1729,25 +1729,25 @@ data class User(val firstName: String, val lastName: String, val age: Int) : Par
 </code></pre>
 </div>
 <h3 id="已支持类型">已支持类型</h3>
-<p><code>@Parcelize</code> supports a wide range of types:</p>
+<p><code>@Parcelize</code> 支持多种类型：</p>
 <ul>
-<li>primitive types (and their boxed versions);</li>
-<li>objects and enums;</li>
-<li><code>String</code>, <code>CharSequence</code>;</li>
-<li><code>Exception</code>;</li>
-<li><code>Size</code>, <code>SizeF</code>, <code>Bundle</code>, <code>IBinder</code>, <code>IInterface</code>, <code>FileDescriptor</code>;</li>
-<li><code>SparseArray</code>, <code>SparseIntArray</code>, <code>SparseLongArray</code>, <code>SparseBooleanArray</code>;</li>
-<li>all <code>Serializable</code> (yes, <code>Date</code> is supported too) and <code>Parcelable</code> implementations;</li>
-<li>collections of all supported types: <code>List</code> (mapped to <code>ArrayList</code>), <code>Set</code> (mapped to <code>LinkedHashSet</code>), <code>Map</code> (mapped to <code>LinkedHashMap</code>);
+<li>基本类型（及其装箱版）；</li>
+<li>对象与枚举；</li>
+<li><code>String</code>、<code>CharSequence</code>；</li>
+<li><code>Exception</code>；</li>
+<li><code>Size</code>、<code>SizeF</code>、<code>Bundle</code>、<code>IBinder</code>、<code>IInterface</code>、<code>FileDescriptor</code>；</li>
+<li><code>SparseArray</code>、<code>SparseIntArray</code>、<code>SparseLongArray</code>、<code>SparseBooleanArray</code>；</li>
+<li>所有 <code>Serializable</code>（是的，<code>Date</code> 也受支持）与 <code>Parcelable</code> 实现；</li>
+<li>所有已支持类型的集合：<code>List</code>（映射到 <code>ArrayList</code>），<code>Set</code> 映射到 <code>LinkedHashSet</code>，<code>Map</code> 映射到 <code>LinkedHashMap</code>；
     <ul>
-<li>Also a number of concrete implementations: <code>ArrayList</code>, <code>LinkedList</code>, <code>SortedSet</code>, <code>NavigableSet</code>, <code>HashSet</code>, <code>LinkedHashSet</code>, <code>TreeSet</code>, <code>SortedMap</code>, <code>NavigableMap</code>, <code>HashMap</code>, <code>LinkedHashMap</code>, <code>TreeMap</code>, <code>ConcurrentHashMap</code>;</li>
+<li>还有一些具体的实现：<code>ArrayList</code>、<code>LinkedList</code>、<code>SortedSet</code>、<code>NavigableSet</code>、<code>HashSet</code>、<code>LinkedHashSet</code>、<code>TreeSet</code>、<code>SortedMap</code>、<code>NavigableMap</code>、<code>HashMap</code>、<code>LinkedHashMap</code>、<code>TreeMap</code>、<code>ConcurrentHashMap</code>；</li>
 </ul>
 </li>
-<li>arrays of all supported types;</li>
-<li>nullable versions of all supported types.</li>
+<li>所有受支持的数组类型；</li>
+<li>所有受支持的类型的可空版本。</li>
 </ul>
 <h3 id="自定义-parceler">自定义 <code>Parceler</code></h3>
-<p>Even if your type is not supported directly, you can write a <code>Parceler</code> mapping object for it.</p>
+<p>即使不直接支持的类型，也可以为其编写 <code>Parceler</code> 映射对象。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class ExternalClass(val value: Int)
 
@@ -1760,7 +1760,7 @@ object ExternalClassParceler : Parceler&lt;ExternalClass&gt; {
 }
 </code></pre>
 </div>
-<p>External parcelers can be applied using <code>@TypeParceler</code> or <code>@WriteWith</code> annotations:</p>
+<p>可以使用 <code>@TypeParceler</code> 或 <code>@WriteWith</code> 标注应用外部包裹程序：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// Class-local parceler
 @Parcelize
