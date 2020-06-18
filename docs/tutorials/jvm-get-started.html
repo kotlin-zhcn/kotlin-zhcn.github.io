@@ -34,21 +34,21 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/curl.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/jvm-get-started.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="在 Kotlin/Native 中使用 C 库">
+    <meta property="og:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="在 Kotlin/Native 中使用 C 库">
+    <meta name="twitter:description" content="本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
 
 
-    <title>在应用中使用 C 语言互操作与 libcurl - Kotlin 语言中文站</title>
+    <title>以 IntelliJ IDEA 入门 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
@@ -148,12 +148,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/docs/tutorials/jvm-get-started.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">以 IntelliJ IDEA 入门</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">以 IntelliJ IDEA 入门</div>
+            </div>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -476,10 +474,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">在应用中使用 C 语言互操作与 libcurl</div>
-            </div>
+            <a href="/docs/tutorials/native/curl.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">在应用中使用 C 语言互操作与 libcurl</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -846,7 +846,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/native/curl.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/tutorials/jvm-get-started.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -854,378 +854,61 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                在应用中使用 C 语言互操作与 libcurl
+                以 IntelliJ IDEA 入门
             </h1>
             <table>
-                    <tr>
-                        <td>
-                            <strong>作者</strong>
-                        </td>
-                        <td>
-                            Hadi Hariri，乔禹昂（翻译）
-                        </td>
-                    </tr>
                     <tr>
                         <td>
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2019-04-15
+                            2020-01-23
                         </td>
                     </tr>
             </table>
-                在 Kotlin/Native 中使用 C 库
+                本教程将引导你使用 IntelliJ IDEA 创建一个简单的 Hello World 应用程序。
                 <br/>
                 <br/>
             
-<p>当编写一个原生应用程序时，我们时常需要访问某些没有被包含在 Kotlin 标准库中的函数，<!--
--->例如发起 HTTP 请求，读写磁盘等等。</p>
-<p>Kotlin/Native 给我们提供了操作 C 语言标准库的能力，这样就开放了存在于整个生态系统中<!--
--->几乎所有我们需要的功能。事实上，Kotlin/Native 已经预装了一套预制的<a href="https://github.com/JetBrains/kotlin-native/blob/master/PLATFORM_LIBS.md">多平台库</a><!--
--->来提供一些标准库不包含的通用功能。</p>
-<p>然而在本教程中，我们将看到如何使用一些诸如 <code>libcurl</code> 这样的具体的库。我们将学到</p>
-<ul>
-<li><a href="#生成绑定">创建 Kotlin 绑定器</a></li>
-<li><a href="#使用生成的-kotlin-api">使用生成的 Kotlin API</a></li>
-<li><a href="#在应用程序中连接库">在应用程序中连接库</a></li>
-</ul>
-<h2 id="生成绑定">生成绑定</h2>
-<p>调用 C 函数的互操作的理想方案是就好像我们调用 Kotlin 函数一样，也就是说，遵循相同的签名和约定。这也恰恰是
-<code>cinterop</code> 工具为我们提供的。它会为 C 库生成相应的 Kotlin 绑定，然后允许我们<!--
--->像使用 Kotlin 代码一样使用该库。</p>
-<p>为了生成这些绑定，我们需要创建一个库定义 <code>.def</code> 文件，其中包含一些我们需要生成的头信息。在我们的案例中，我们想使用著名 <code>libcurl</code>
-库来发起一些 HTTP 调用，所以我们将创建一个名为 <code>libcurl.def</code> 的文件，其中包含以下内容</p>
-<div auto-indent="false" class="sample" data-highlight-only="1" mode="c" theme="idea">
-<pre><code class="language-c">headers = curl/curl.h
-headerFilter = curl/*
-
-compilerOpts.linux = -I/usr/include -I/usr/include/x86_64-linux-gnu
-linkerOpts.osx = -L/opt/local/lib -L/usr/local/opt/curl/lib -lcurl
-linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -lcurl
-</code></pre>
-</div>
-<p>这个文件中正在进行一些操作，我们来逐个浏览它们。第一个条目是 <code>headers</code>，它是我们想要生成的头文件列表的
-Kotlin 存根。我们可以在这个条目中添加多个文件，用新行上的 <code>\</code> 分隔每个文件。在我们的例子中，我们只想要<code>curl.h</code>。我们引用的文件<!--
--->需要相对于定义文件所在的文件夹，或者在系统路径上可用（在我们的例子中它将是 <code>/usr/include/curl</code>）。</p>
-<p>第二行是 <code>headerFilter</code>。这用于表示我们想要导入的内容。在 C 中，当一个文件使用 <code>#include</code> 指示引用另一个文件的时候，
-所有的头文件都将被导入。有时这也许是不必要的，这时我们可以使用这个方法：<a href="https://en.wikipedia.org/wiki/Glob_(programming)">使用全局参数</a>，来进行微调。
-注意，<code>headerFilter</code> 是一个可选参数，主要仅在我们使用的库作为系统库安装时使用，我们不想获取外部依赖项<!--
--->（比如系统 <code>stdint.h</code> header）进入我们的互操作库。这也许对优化库的大小以及修正系统与 Kotlin/Native 提供的编译环境之间的潜在冲突是非常重要的。</p>
-<p>下一行是有关连接与编译配置项的，它可以根据不同的目标平台进行变化。在我们的案例中，我们将它定义为 macOS（使用 <code>.osx</code> 后缀）以及 Linux（使用 <code>.linux</code> 后缀）。
-没有后缀的参数也是可能的（例如 <code>linkerOpts =</code>），这将应用于所有平台。</p>
-<p>惯例是每个库都有自己的定义文件，经常被命名为与库中的相同。关于所有 <code>cinterop</code>
-的配置的更多信息，请查看<a href="/docs/reference/native/c_interop.html">互操作文档</a></p>
-<p>一旦我们准备好定义文件，我们就可以<!--
--->创建工程文件并在 IDE 中打开这个工程。</p>
-<p>虽然可以使用命令行<!--
--->或直接通过将它与脚本文件（即 sh 或 bat 文件）相结合，但我们应该注意到，
-对于拥有数百个文件以及库的大型项目来说，这不能很好地扩展。
-所以最好使用附带构建系统的 Kotlin/Native 编译器，它可以<!--
--->帮助下载与缓存 Kotlin/Native 编译器二进制文件与库<!--
--->传递依赖，以及运行该编译器并测试。
-Kotlin/Native 可以通过 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
--->插件来使用 <a href="https://gradle.org">Gradle</a> 构建系统。</p>
-<p><a href="/docs/tutorials/native/using-gradle.html">基本 Kotlin/Native 应用程序</a><!--
--->这篇教程涵盖了使用 Gradle 创建 IDE 兼容工程的<!--
--->基础知识。如果你正在寻找关于第一步的更多细节<!--
--->以及如何开始一个新的 Kotlin/Native 项目并在 IntelliJ IDEA 中打开它的说明，则请你阅读<!--
--->这篇教程，我们将看到关于在 Kotlin/Native 中进行高级的 C 互操作的相关用法<!--
--->以及使用
-<a href="/docs/reference/building-mpp-with-gradle.html">multiplatform</a><!--
--->（Kotlin 多平台插件）及 Gradle 进行构建。</p>
-<p>首先，让我们创建一个工程目录。在本教程中的所有路径都是相对于这个目录的。有时<!--
--->在添加任何新文件之前，都必须创建缺少的目录。</p>
-<p>我们将使用下面的
-<span class="multi-language-span" data-lang="groovy">
-<code>build.gradle</code>
-</span>
-<span class="multi-language-span" data-lang="kotlin">
-<code>build.gradle.kts</code>
-</span>
-Gradle 构建文件并添加以下内容：</p>
-<div class="multi-language-sample" data-lang="groovy" data-os="macos">
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
-<pre><code>plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  macosX64("native") {
-    compilations.main.cinterops {
-      interop 
-    }
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-wrapper {
-  gradleVersion = "5.3.1"
-  distributionType = "ALL"
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="groovy" data-os="linux">
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
-<pre><code>plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  linuxX64("native") {
-    compilations.main.cinterops {
-      interop 
-    }
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-wrapper {
-  gradleVersion = "5.3.1"
-  distributionType = "ALL"
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="groovy" data-os="windows">
-<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
-<pre><code>plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.3.21'
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  mingwX64("native") {
-    compilations.main.cinterops {
-      interop 
-    }
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-wrapper {
-  gradleVersion = "5.3.1"
-  distributionType = "ALL"
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin" data-os="macos">
-<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code>plugins {
-    kotlin("multiplatform") version "1.3.21"
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  macosX64("native") {
-    val main by compilations.getting
-    val interop by main.cinterops.creating
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-tasks.withType&lt;Wrapper&gt; {
-  gradleVersion = "5.3.1"
-  distributionType = Wrapper.DistributionType.ALL
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin" data-os="linux">
-<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code>plugins {
-    kotlin("multiplatform") version "1.3.21"
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  linuxX64("native") {
-    val main by compilations.getting
-    val interop by main.cinterops.creating
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-tasks.withType&lt;Wrapper&gt; {
-  gradleVersion = "5.3.1"
-  distributionType = Wrapper.DistributionType.ALL
-}
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin" data-os="windows">
-<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
-<pre><code>plugins {
-    kotlin("multiplatform") version "1.3.21"
-}
-
-repositories {
-    mavenCentral()
-}
-
-kotlin {
-  mingwX64("native") {
-    val main by compilations.getting
-    val interop by main.cinterops.creating
-    
-    binaries {
-      executable()
-    }
-  }
-}
-
-tasks.withType&lt;Wrapper&gt; {
-  gradleVersion = "5.3.1"
-  distributionType = Wrapper.DistributionType.ALL
-}
-</code></pre>
-</div>
-</div>
-<p>这个已经准备好的工程源文件可以直接在这里下载：
-<span class="multi-language-span" data-lang="groovy" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-macos-c.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="groovy" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-linux-c.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="groovy" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-groovy-windows-c.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="macos">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-macos-c.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="linux">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-linux-c.zip">GitHub</a>。
-</span>
-<span class="multi-language-span" data-lang="kotlin" data-os="windows">
-<a href="https://github.com/kotlin/web-site-samples/archive/mpp-kn-app-kotlin-windows-c.zip">GitHub</a>。
-</span></p>
-<p>该项目文件将 C 互操作配置为构建的附加步骤。
-让我们将 <code>interop.def</code> 文件移动到 <code>src/nativeInterop/cinterop</code> 目录。
-Gradle 建议使用约定而不是配置，
-比如说，这个源文件被期望位于 <code>src/nativeMain/kotlin</code> 文件夹。
-默认的，C 中的所有符号都被导入到 <code>interop</code> 包中，
-我们也许想要将整个包导入到我们的 <code>.kt</code> 文件。
-查看 <a href="/docs/reference/building-mpp-with-gradle.html">kotlin 多平台</a><!--
--->插件文档来学习所有不同的配置方式。</p>
-<h3 id="在-windows-上-curl">在 Windows 上 curl</h3>
-<p>你应该在 Windows 上使用 <code>curl</code> 库二进制文件来使示例工作。
-你可以在 Windows 上，从<a href="https://curl.haxx.se/download.html">源代码</a>构建 <code>curl</code>（你将需要 Visual Studio 或者 Windows SDK 命令行工具），关于更多
-细节，请查看这篇<a href="https://jonnyzzz.com/blog/2018/10/29/kn-libcurl-windows/">相关博客</a>。
-或者，你也可以考虑使用 <a href="https://www.msys2.org/">MinGW/MSYS2</a> <code>curl</code> 二进制文件。</p>
-<h2 id="使用生成的-kotlin-api">使用生成的 Kotlin API</h2>
-<p>现在我们有了自己的库以及 Kotlin 存根，我们可以在一个应用程序中使用它们。为了让事情简单，在本教程中，我们将转换最简单的一个
-<code>libcurl</code> 示例到 Kotlin。</p>
-<p>有问题的代码来自<a href="https://curl.haxx.se/libcurl/c/simple.html">示例</a>（为简洁起见删除了评论）</p>
-<div class="sample" mode="c" theme="idea">
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-#include &lt;curl/curl.h&gt;
-
-int main(void)
-{
-  CURL *curl;
-  CURLcode res;
-
-  curl = curl_easy_init();
-  if(curl) {
-    curl_easy_setopt(curl, CURLOPT_URL, "http://example.com");
-    curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
-
-    res = curl_easy_perform(curl);
-    if(res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
-    curl_easy_cleanup(curl);
-  }
-  return 0;
-}
-</code></pre>
-</div>
-<p>第一件事情是我们将需要一个定义了 <code>main</code> 函数的 Kotlin 文件，并起名为 <code>src/nativeMain/kotlin/hello.kt</code> 接下来将继续转译每一行</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import interop.*
-import kotlinx.cinterop.*
-
-fun main(args: Array&lt;String&gt;) {
-    val curl = curl_easy_init()
-    if (curl != null) {
-        curl_easy_setopt(curl, CURLOPT_URL, "http://example.com")
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L)
-        val res = curl_easy_perform(curl)
-        if (res != CURLE_OK) {
-            println("curl_easy_perform() failed ${curl_easy_strerror(res)?.toKString()}")
-        }
-        curl_easy_cleanup(curl)
-    }
-}
-</code></pre>
-</div>
-<p>我们可以看到，我们已经消除了 Kotlin 版本中的显式变量声明，但其他所有内容都是 C 版本的逐行转译。我们期望所有对
-<code>libcurl</code> 库的调用都可以转换为它们在 Kotlin 中的等价物。</p>
-<p>注意，出于本教程的目的，我们对逐行进行了直译。显然，我们可以用更 Kotlin 的惯用方式来编写这个例子。</p>
-<h2 id="编译与链接库">编译与链接库</h2>
-<p>下一步是编译我们的应用程序。<a href="basic-kotlin-native-app.html">基本 Kotlin/Native 应用程序</a>这篇教程涵盖了使用命令行编译 Kotlin/Native 应用程序的基础知识。
-在本案例中唯一不同的地方是 <code>cinterop</code> 生成的部分隐式包含在构建中：
-我们输入下面的命令：</p>
-<div class="multi-language-sample" data-os="linux">
-<div class="sample" data-highlight-only="" mode="bash" theme="idea">
-<pre><code class="language-bash">./gradlew runDebugExecutableNative
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-os="macos">
-<div class="sample" data-highlight-only="" mode="bash" theme="idea">
-<pre><code class="language-bash">./gradlew runDebugExecutableNative
-</code></pre>
-</div>
-</div>
-<div class="multi-language-sample" data-os="windows">
-<div class="sample" data-highlight-only="" mode="bash" theme="idea">
-<pre><code class="language-bash">gradlew.bat runDebugExecutableNative
-</code></pre>
-</div>
-</div>
-<p>如果在编译期间没有错误，我们应该看到程序执行的<!--
--->结果，它应该输出<!--
--->网站 <code>http://example.com</code> 的内容</p>
-<p><img alt="Output" src="/assets/images/tutorials/native/cinterop/output.png"/></p>
-<p>我们看到实际输出的原因是因为调用 <code>curl_easy_perform</code> 将结果打印到标准输出。我们应该使用
-<code>curl_easy_setopt</code> 隐藏它。</p>
-<p>有关使用 <code>libcurl</code> 的更完整示例，<a href="https://github.com/JetBrains/kotlin-native/tree/master/samples/libcurl">libcurl 在 Kotlin/Native 项目中的示例</a>展示了如何将代码抽象为 Kotlin
-类以及显示标题。它还演示了如何通过将它们组合到 shell 脚本或 Gradle 构建脚本中来使步骤更简洁一些。我们将在后续教程中介绍这些主题的更多细节。</p>
+<h2 id="搭建环境">搭建环境</h2>
+<p>在本教程中将使用 IntelliJ IDEA。首先，安装一个最新版本的 IntelliJ IDEA。</p>
+<p>从 15 版开始，IntelliJ IDEA 内集成 Kotlin。</p>
+<p>可以从 <a href="http://www.jetbrains.com">JetBrains 官网</a>下载免费的<a href="http://www.jetbrains.com/idea/download/index.html">社区版</a>（或完整的<a href="http://www.jetbrains.com/idea/download/index.html">旗舰版</a>）。</p>
+<p>作为使用 IntelliJ IDEA 的替代方法，也可使用命令行编译器来编译和执行 Kotlin 应用程序。相关详细信息，请参见<a href="command-line.html">使用命令行编译器</a>。</p>
+<p>如果不熟悉 JVM 和 Java，请查看 <a href="http://hadihariri.com/2013/12/29/jvm-minimal-survival-guide-for-the-dotnet-developer/">JVM 简明使用手册</a>。
+如果您不熟悉 IntelliJ IDEA，请参见 <a href="http://hadihariri.com/2014/01/06/intellij-idea-minimal-survival-guide/">IntelliJ IDEA 简明使用手册</a>。</p>
+<h2 id="创建一个新的项目">创建一个新的项目</h2>
+<p>安装好 IntelliJ IDEA 之后，就可以创建第一个 Kotlin 应用程序了。</p>
+<ol>
+<li>
+<p>从 <strong>File | New</strong> 开始（如果这是你第一次使用 IntelliJ IDEA，从 <strong>Create New Project</strong> 开始）创建一个新的项目。选择 <strong>Kotlin | JVM | IDEA</strong> 作为项目的类型。</p>
+<p><img alt="新建 Kotlin 项目" src="/assets/images/tutorials/getting-started/new_project_step1.png"/></p>
+</li>
+<li>
+<p>为项目命名并为其选择 SDK 版本。</p>
+<p><img alt="Kotlin 项目名" src="/assets/images/tutorials/getting-started/project_name.png"/></p>
+<p>现在，你已经创建了一个新的项目。以下是项目结构：</p>
+<p><img alt="Kotlin 文件夹解构" src="/assets/images/tutorials/getting-started/folders.png"/></p>
+</li>
+<li>
+<p>在 src 文件夹下创建一个新的 Kotlin 文件。 它可以任意命名。 我们称之为 <em>app</em>。</p>
+<p><img alt="新建 Kotlin 文件" src="/assets/images/tutorials/getting-started/new_file.png"/></p>
+</li>
+<li>
+<p>创建文件后，添加 <code>main</code> 函数，它是 Kotlin 应用程序的入口。 IntelliJ IDEA 提供了一个快速完成此操作的模板。 只需输入 <em>main</em> 并按 <kbd> Tab </kbd> 键即可。</p>
+<p><img alt="Kotlin Main 函数" src="/assets/images/tutorials/getting-started/main.png"/></p>
+</li>
+<li>
+<p>添加一行代码输出 “Hello，World！”。</p>
+<p><img alt="Kotlin Hello World" src="/assets/images/tutorials/getting-started/hello_world.png"/></p>
+</li>
+</ol>
+<h2 id="运行这个应用程序">运行这个应用程序</h2>
+<p>现在应用程序已准备好运行。 最简单的方法是单击菜单栏中的绿色 <strong>Run</strong> 图标，然后选择 <strong>Run'AppKt'</strong> 。</p>
+<p><img alt="Kotlin 运行应用程序" src="/assets/images/tutorials/getting-started/run_default.png"/></p>
+<p>如果一切顺利，您将在 <strong>Run</strong> 工具窗口中看到结果。</p>
+<p><img alt="Kotlin 运行输出" src="/assets/images/tutorials/getting-started/run_window.png"/></p>
+<p>恭喜！ 您现在正在运行第一个 Kotlin 应用程序。</p>
 
         </article>
     </div>
