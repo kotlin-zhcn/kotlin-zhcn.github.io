@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>接口 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1386,11 +1369,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 id="接口">接口</h1>
-<p>Kotlin 的接口可以既包含抽象方法的声明也包含<!--
+<h1 class="typo-header typo-h1" id="接口">接口</h1>
+<p class="typo-para">Kotlin 的接口可以既包含抽象方法的声明也包含<!--
 -->实现。与抽象类不同的是，接口无法保存状态。它可以有<!--
 -->属性但必须声明为抽象或提供访问器实现。</p>
-<p>使用关键字 <em class="keyword">interface</em> 来定义接口</p>
+<p class="typo-para">使用关键字 <em class="keyword">interface</em> 来定义接口</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface MyInterface {
     fun bar()
@@ -1400,8 +1383,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<h2 id="实现接口">实现接口</h2>
-<p>一个类或者对象可以实现一个或多个接口。</p>
+<h2 class="typo-header typo-h2" id="实现接口">实现接口</h2>
+<p class="typo-para">一个类或者对象可以实现一个或多个接口。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Child : MyInterface {
     override fun bar() {
@@ -1410,8 +1393,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<h2 id="接口中的属性">接口中的属性</h2>
-<p>你可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供<!--
+<h2 class="typo-header typo-h2" id="接口中的属性">接口中的属性</h2>
+<p class="typo-para">你可以在接口中定义属性。在接口中声明的属性要么是抽象的，要么提供<!--
 -->访问器的实现。在接口中声明的属性不能有幕后字段（backing field），因此接口中声明的访问器<!--
 -->不能引用它们。</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1431,8 +1414,8 @@ class Child : MyInterface {
 }
 </code></pre>
 </div>
-<h2 id="接口继承">接口继承</h2>
-<p>一个接口可以从其他接口派生，从而既提供基类型成员的实现也声明新的函数与属性。很自然地，实现这样接口的类只需定义所缺少的实现：</p>
+<h2 class="typo-header typo-h2" id="接口继承">接口继承</h2>
+<p class="typo-para">一个接口可以从其他接口派生，从而既提供基类型成员的实现也声明新的函数与属性。很自然地，实现这样接口的类只需定义所缺少的实现：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Named {
     val name: String
@@ -1453,8 +1436,8 @@ data class Employee(
 ) : Person
 </code></pre>
 </div>
-<h2 id="解决覆盖冲突">解决覆盖冲突</h2>
-<p>实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如</p>
+<h2 class="typo-header typo-h2" id="解决覆盖冲突">解决覆盖冲突</h2>
+<p class="typo-para">实现多个接口时，可能会遇到同一方法继承多个实现的问题。例如</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface A {
     fun foo() { print("A") }
@@ -1482,17 +1465,16 @@ class D : A, B {
 }
 </code></pre>
 </div>
-<p>上例中，接口 <em>A</em> 和 <em>B</em> 都定义了方法 <em>foo()</em> 和 <em>bar()</em>。 两者都实现了 <em>foo()</em>, 但是只有 <em>B</em> 实现了 <em>bar()</em> (<em>bar()</em> 在 <em>A</em> 中没有标记为抽象，
+<p class="typo-para">上例中，接口 <em>A</em> 和 <em>B</em> 都定义了方法 <em>foo()</em> 和 <em>bar()</em>。 两者都实现了 <em>foo()</em>, 但是只有 <em>B</em> 实现了 <em>bar()</em> (<em>bar()</em> 在 <em>A</em> 中没有标记为抽象，
 因为没有方法体时默认为抽象）。因为 <em>C</em> 是一个实现了 <em>A</em> 的具体类，所以必须要重写 <em>bar()</em> 并<!--
 -->实现这个抽象方法。</p>
-<p>然而，如果我们从 <em>A</em> 和 <em>B</em> 派生 <em>D</em>，我们需要实现<!--
+<p class="typo-para">然而，如果我们从 <em>A</em> 和 <em>B</em> 派生 <em>D</em>，我们需要实现<!--
 -->我们从多个接口继承的所有方法，并指明 <em>D</em> 应该如何实现它们。这一规则<!--
 -->既适用于继承单个实现（<em>bar()</em>）的方法也适用于继承多个实现（<em>foo()</em>）的方法。</p>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1501,10 +1483,10 @@ class D : A, B {
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1571,7 +1553,7 @@ class D : A, B {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

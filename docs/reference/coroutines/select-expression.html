@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Select 表达式（实验性的） - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1387,30 +1370,30 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <!--- TEST_NAME SelectGuideTest -->
-<p><strong>目录</strong></p>
+<p class="typo-para"><strong class="type-strong">目录</strong></p>
 <!--- TOC -->
-<ul>
-<li><a href="#select">select 表达式（实验性的）</a>
-<ul>
-<li><a href="#在通道中-select">在通道中 select</a></li>
-<li><a href="#通道关闭时-select">通道关闭时 select</a></li>
-<li><a href="#select-以发送">Select 以发送</a></li>
-<li><a href="#select-延迟值">Select 延迟值</a></li>
-<li><a href="#在延迟值通道上切换">在延迟值通道上切换</a></li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#select">select 表达式（实验性的）</a>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#在通道中-select">在通道中 select</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#通道关闭时-select">通道关闭时 select</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#select-以发送">Select 以发送</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#select-延迟值">Select 延迟值</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#在延迟值通道上切换">在延迟值通道上切换</a></li>
 </ul>
 </li>
 </ul>
 <!--- END -->
-<h2 id="select">select 表达式（实验性的）</h2>
-<p>select 表达式可以同时等待多个挂起函数，并 <em>选择</em>
+<h2 class="typo-header typo-h2" id="select">select 表达式（实验性的）</h2>
+<p class="typo-para">select 表达式可以同时等待多个挂起函数，并 <em>选择</em>
 第一个可用的。</p>
 <blockquote>
-<p>Select 表达式在 <code>kotlinx.coroutines</code> 中是一个实验性的特性。这些 API 在
+<p class="typo-para">Select 表达式在 <code>kotlinx.coroutines</code> 中是一个实验性的特性。这些 API 在
 <code>kotlinx.coroutines</code> 库即将到来的更新中可能会<!--
 -->发生改变。</p>
 </blockquote>
-<h3 id="在通道中-select">在通道中 select</h3>
-<p>我们现在有两个字符串生产者：<code>fizz</code> 和 <code>buzz</code> 。其中 <code>fizz</code> 每 300 毫秒生成一个“Fizz”字符串：</p>
+<h3 class="typo-header typo-h3" id="在通道中-select">在通道中 select</h3>
+<p class="typo-para">我们现在有两个字符串生产者：<code>fizz</code> 和 <code>buzz</code> 。其中 <code>fizz</code> 每 300 毫秒生成一个“Fizz”字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.fizz() = produce&lt;String&gt; {
     while (true) { // 每 300 毫秒发送一个 "Fizz"
@@ -1420,7 +1403,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>接着 <code>buzz</code> 每 500 毫秒生成一个 “Buzz!” 字符串：</p>
+<p class="typo-para">接着 <code>buzz</code> 每 500 毫秒生成一个 “Buzz!” 字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.buzz() = produce&lt;String&gt; {
     while (true) { // 每 500 毫秒发送一个"Buzz!"
@@ -1430,9 +1413,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 挂起函数，我们可以从两个通道接收 <em>其中一个</em> 的数据。
-但是 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html">select</a> 表达式允许我们使用其
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html">onReceive</a> 子句 <em>同时</em> 从两者接收：</p>
+<p class="typo-para">使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 挂起函数，我们可以从两个通道接收 <em>其中一个</em> 的数据。
+但是 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html">select</a> 表达式允许我们使用其
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html">onReceive</a> 子句 <em>同时</em> 从两者接收：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">suspend fun selectFizzBuzz(fizz: ReceiveChannel&lt;String&gt;, buzz: ReceiveChannel&lt;String&gt;) {
     select&lt;Unit&gt; { // &lt;Unit&gt; 意味着该 select 表达式不返回任何结果
@@ -1446,7 +1429,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>让我们运行代码 7 次：</p>
+<p class="typo-para">让我们运行代码 7 次：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1491,9 +1474,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-01.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的执行结果如下：</p>
+<p class="typo-para">这段代码的执行结果如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">fizz -&gt; 'Fizz'
 buzz -&gt; 'Buzz!'
 fizz -&gt; 'Fizz'
@@ -1503,9 +1486,9 @@ fizz -&gt; 'Fizz'
 buzz -&gt; 'Buzz!'
 </code></pre>
 <!--- TEST -->
-<h3 id="通道关闭时-select">通道关闭时 select</h3>
-<p>select 中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html">onReceive</a> 子句在已经关闭的通道执行会发生失败，并导致相应的
-<code>select</code> 抛出异常。我们可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 子句在关闭通道时执行<!--
+<h3 class="typo-header typo-h3" id="通道关闭时-select">通道关闭时 select</h3>
+<p class="typo-para">select 中的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/on-receive.html">onReceive</a> 子句在已经关闭的通道执行会发生失败，并导致相应的
+<code>select</code> 抛出异常。我们可以使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 子句在关闭通道时执行<!--
 -->特定操作。以下示例还显示了 <code>select</code> 是一个返回<!--
 -->其查询方法结果的表达式：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1526,10 +1509,10 @@ buzz -&gt; 'Buzz!'
     }
 </code></pre>
 </div>
-<p>注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 是一个仅在用于不可空元素的通道上<!--
+<p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 是一个仅在用于不可空元素的通道上<!--
 -->定义的扩展函数，以使关闭的通道与空值之间<!--
 -->不会出现意外的混乱。</p>
-<p>现在有一个生成四次“Hello”字符串的 <code>a</code> 通道，
+<p class="typo-para">现在有一个生成四次“Hello”字符串的 <code>a</code> 通道，
 和一个生成四次“World”字符串的 <code>b</code> 通道，我们在这两个通道上使用它：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1570,9 +1553,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-02.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的结果非常有趣，所以我们将在细节中分析它：</p>
+<p class="typo-para">这段代码的结果非常有趣，所以我们将在细节中分析它：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">a -&gt; 'Hello 0'
 a -&gt; 'Hello 1'
 b -&gt; 'World 0'
@@ -1583,17 +1566,17 @@ Channel 'a' is closed
 Channel 'a' is closed
 </code></pre>
 <!--- TEST -->
-<p>有几个结果可以通过观察得出。</p>
-<p>首先，<code>select</code> <em>偏向于</em> 第一个子句，当可以同时选到多个子句时，
+<p class="typo-para">有几个结果可以通过观察得出。</p>
+<p class="typo-para">首先，<code>select</code> <em>偏向于</em> 第一个子句，当可以同时选到多个子句时，
 第一个子句将被选中。在这里，两个通道都在不断地生成字符串，因此 <code>a</code> 通道<!--
 -->作为 select 中的第一个子句获胜。然而因为我们使用的是无缓冲通道，所以 <code>a</code> 在其调用
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html">send</a> 时会不时地被挂起，进而 <code>b</code> 也有机会发送。</p>
-<p>第二个观察结果是，当通道已经关闭时，
-会立即选择 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a>。</p>
-<h3 id="select-以发送">Select 以发送</h3>
-<p>Select 表达式具有 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html">onSend</a> 子句，可以很好的与<!--
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html">send</a> 时会不时地被挂起，进而 <code>b</code> 也有机会发送。</p>
+<p class="typo-para">第二个观察结果是，当通道已经关闭时，
+会立即选择 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a>。</p>
+<h3 class="typo-header typo-h3" id="select-以发送">Select 以发送</h3>
+<p class="typo-para">Select 表达式具有 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/on-send.html">onSend</a> 子句，可以很好的与<!--
 -->选择的偏向特性结合使用。</p>
-<p>我们来编写一个整数生成器的示例，当主通道上的<!--
+<p class="typo-para">我们来编写一个整数生成器的示例，当主通道上的<!--
 -->消费者无法跟上它时，它会将值发送到 <code>side</code> 通道上：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.produceNumbers(side: SendChannel&lt;Int&gt;) = produce&lt;Int&gt; {
@@ -1607,7 +1590,7 @@ Channel 'a' is closed
 }
 </code></pre>
 </div>
-<p>消费者将会非常缓慢，每个数值处理需要 250 毫秒：</p>
+<p class="typo-para">消费者将会非常缓慢，每个数值处理需要 250 毫秒：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1641,9 +1624,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-03.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>让我们看看会发生什么：</p>
+<p class="typo-para">让我们看看会发生什么：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Consuming 1
 Side channel has 2
 Side channel has 3
@@ -1657,8 +1640,8 @@ Consuming 10
 Done consuming
 </code></pre>
 <!--- TEST -->
-<h3 id="select-延迟值">Select 延迟值</h3>
-<p>延迟值可以使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句查询。
+<h3 class="typo-header typo-h3" id="select-延迟值">Select 延迟值</h3>
+<p class="typo-para">延迟值可以使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句查询。
 让我们启动一个异步函数，它在随机的延迟后<!--
 -->会延迟返回字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1668,7 +1651,7 @@ Done consuming
 }
 </code></pre>
 </div>
-<p>让我们随机启动十余个异步函数，每个都延迟随机的时间。</p>
+<p class="typo-para">让我们随机启动十余个异步函数，每个都延迟随机的时间。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.asyncStringsList(): List&lt;Deferred&lt;String&gt;&gt; {
     val random = Random(3)
@@ -1676,7 +1659,7 @@ Done consuming
 }
 </code></pre>
 </div>
-<p>现在 main 函数在等待第一个函数完成，并统计仍处于<!--
+<p class="typo-para">现在 main 函数在等待第一个函数完成，并统计仍处于<!--
 -->激活状态的延迟值的数量。注意，我们在这里使用 <code>select</code> 表达式事实上是作为一种 Kotlin DSL，
 所以我们可以用任意代码为它提供子句。在这种情况下，我们遍历一个<!--
 -->延迟值的队列，并为每个延迟值提供 <code>onAwait</code> 子句的调用。</p>
@@ -1714,17 +1697,17 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-04.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>该输出如下：</p>
+<p class="typo-para">该输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Deferred 4 produced answer 'Waited for 128 ms'
 11 coroutines are still active
 </code></pre>
 <!--- TEST -->
-<h3 id="在延迟值通道上切换">在延迟值通道上切换</h3>
-<p>我们现在来编写一个通道生产者函数，它消费一个产生延迟字符串的通道，并等待每个接收的<!--
+<h3 class="typo-header typo-h3" id="在延迟值通道上切换">在延迟值通道上切换</h3>
+<p class="typo-para">我们现在来编写一个通道生产者函数，它消费一个产生延迟字符串的通道，并等待每个接收的<!--
 -->延迟值，但它只在下一个延迟值到达或者通道关闭之前处于运行状态。此示例将
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句放在同一个 <code>select</code> 中：</p>
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/on-receive-or-null.html">onReceiveOrNull</a> 和 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/on-await.html">onAwait</a> 子句放在同一个 <code>select</code> 中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.switchMapDeferreds(input: ReceiveChannel&lt;Deferred&lt;String&gt;&gt;) = produce&lt;String&gt; {
     var current = input.receive() // 从第一个接收到的延迟值开始
@@ -1748,7 +1731,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<p>为了测试它，我们将用一个简单的异步函数，它在特定的延迟后返回特定的字符串：</p>
+<p class="typo-para">为了测试它，我们将用一个简单的异步函数，它在特定的延迟后返回特定的字符串：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.asyncString(str: String, time: Long) = async {
     delay(time)
@@ -1756,7 +1739,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<p>main 函数只是启动一个协程来打印 <code>switchMapDeferreds</code> 的结果并向它发送一些<!--
+<p class="typo-para">main 函数只是启动一个协程来打印 <code>switchMapDeferreds</code> 的结果并向它发送一些<!--
 -->测试数据：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1812,9 +1795,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-05.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-select-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的执行结果：</p>
+<p class="typo-para">这段代码的执行结果：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">BEGIN
 Replace
 END
@@ -1830,7 +1813,6 @@ Channel was closed
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1839,10 +1821,10 @@ Channel was closed
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1909,7 +1891,7 @@ Channel was closed
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>通道 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1387,32 +1370,32 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <!--- TEST_NAME ChannelsGuideTest -->
-<p><strong>目录</strong></p>
+<p class="typo-para"><strong class="type-strong">目录</strong></p>
 <!--- TOC -->
-<ul>
-<li><a href="#通道">通道</a>
-<ul>
-<li><a href="#通道基础">通道基础</a></li>
-<li><a href="#关闭与迭代通道">关闭与迭代通道</a></li>
-<li><a href="#构建通道生产者">构建通道生产者</a></li>
-<li><a href="#管道">管道</a></li>
-<li><a href="#使用管道的素数">使用管道的素数</a></li>
-<li><a href="#扇出">扇出</a></li>
-<li><a href="#扇入">扇入</a></li>
-<li><a href="#带缓冲的通道">带缓冲的通道</a></li>
-<li><a href="#通道是公平的">通道是公平的</a></li>
-<li><a href="#计时器通道">计时器通道</a></li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#通道">通道</a>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#通道基础">通道基础</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#关闭与迭代通道">关闭与迭代通道</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#构建通道生产者">构建通道生产者</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#管道">管道</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#使用管道的素数">使用管道的素数</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#扇出">扇出</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#扇入">扇入</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#带缓冲的通道">带缓冲的通道</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#通道是公平的">通道是公平的</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#计时器通道">计时器通道</a></li>
 </ul>
 </li>
 </ul>
 <!--- END -->
-<h2 id="通道">通道</h2>
-<p>延期的值提供了一种便捷的方法使单个值在多个协程之间进行相互传输。
+<h2 class="typo-header typo-h2" id="通道">通道</h2>
+<p class="typo-para">延期的值提供了一种便捷的方法使单个值在多个协程之间进行相互传输。
 通道提供了一种在流中传输值的方法。</p>
-<h3 id="通道基础">通道基础</h3>
-<p>一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/index.html">Channel</a> 是一个和 <code>BlockingQueue</code> 非常相似的概念。其中一个不同是<!--
--->它代替了阻塞的 <code>put</code> 操作并提供了挂起的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html">send</a>，还替代了<!--
--->阻塞的 <code>take</code> 操作并提供了挂起的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a>。</p>
+<h3 class="typo-header typo-h3" id="通道基础">通道基础</h3>
+<p class="typo-para">一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel/index.html">Channel</a> 是一个和 <code>BlockingQueue</code> 非常相似的概念。其中一个不同是<!--
+-->它代替了阻塞的 <code>put</code> 操作并提供了挂起的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/send.html">send</a>，还替代了<!--
+-->阻塞的 <code>take</code> 操作并提供了挂起的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a>。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
@@ -1432,9 +1415,9 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-01.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的输出如下：</p>
+<p class="typo-para">这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 4
 9
@@ -1443,11 +1426,11 @@ fun main() = runBlocking {
 Done!
 </code></pre>
 <!--- TEST -->
-<h3 id="关闭与迭代通道">关闭与迭代通道</h3>
-<p>和队列不同，一个通道可以通过被关闭来表明没有更多的元素将会进入通道。
+<h3 class="typo-header typo-h3" id="关闭与迭代通道">关闭与迭代通道</h3>
+<p class="typo-para">和队列不同，一个通道可以通过被关闭来表明没有更多的元素将会进入通道。
 在接收者中可以定期的使用 <code>for</code> 循环来从通道中<!--
 -->接收元素。</p>
-<p>从概念上来说，一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/close.html">close</a> 操作就像向通道发送了一个特殊的关闭指令。
+<p class="typo-para">从概念上来说，一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-send-channel/close.html">close</a> 操作就像向通道发送了一个特殊的关闭指令。
 这个迭代停止就说明关闭指令已经被接收了。所以这里保证<!--
 -->所有先前发送出去的元素都在通道关闭前被接收到。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1469,7 +1452,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-02.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST 
 1
@@ -1479,13 +1462,13 @@ fun main() = runBlocking {
 25
 Done!
 -->
-<h3 id="构建通道生产者">构建通道生产者</h3>
-<p>协程生成一系列元素的模式很常见。
+<h3 class="typo-header typo-h3" id="构建通道生产者">构建通道生产者</h3>
+<p class="typo-para">协程生成一系列元素的模式很常见。
 这是 <em>生产者——消费者</em> 模式的一部分，并且经常能在并发的代码中看到它。
 你可以将生产者抽象成一个函数，并且使通道作为它的参数，但这与<!--
 -->必须从函数中返回结果的常识相违悖。</p>
-<p>这里有一个名为 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 的便捷的协程构建器，可以很容易的在生产者端正确工作，
-并且我们使用扩展函数 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/consume-each.html">consumeEach</a> 在消费者端替代 <code>for</code> 循环：</p>
+<p class="typo-para">这里有一个名为 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 的便捷的协程构建器，可以很容易的在生产者端正确工作，
+并且我们使用扩展函数 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/consume-each.html">consumeEach</a> 在消费者端替代 <code>for</code> 循环：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
@@ -1504,7 +1487,7 @@ fun main() = runBlocking {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-03.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST 
 1
@@ -1514,8 +1497,8 @@ fun main() = runBlocking {
 25
 Done!
 -->
-<h3 id="管道">管道</h3>
-<p>管道是一种一个协程在流中开始生产可能无穷多个元素的模式：</p>
+<h3 class="typo-header typo-h3" id="管道">管道</h3>
+<p class="typo-para">管道是一种一个协程在流中开始生产可能无穷多个元素的模式：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.produceNumbers() = produce&lt;Int&gt; {
     var x = 1
@@ -1523,7 +1506,7 @@ Done!
 }
 </code></pre>
 </div>
-<p>并且另一个或多个协程开始消费这些流，做一些操作，并生产了一些额外的结果。
+<p class="typo-para">并且另一个或多个协程开始消费这些流，做一些操作，并生产了一些额外的结果。
 在下面的例子中，对这些数字仅仅做了平方操作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.square(numbers: ReceiveChannel&lt;Int&gt;): ReceiveChannel&lt;Int&gt; = produce {
@@ -1531,7 +1514,7 @@ Done!
 }
 </code></pre>
 </div>
-<p>主要的代码启动并连接了整个管道：</p>
+<p class="typo-para">主要的代码启动并连接了整个管道：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1560,7 +1543,7 @@ fun CoroutineScope.square(numbers: ReceiveChannel&lt;Int&gt;): ReceiveChannel&lt
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-04.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST 
 1
@@ -1571,12 +1554,12 @@ fun CoroutineScope.square(numbers: ReceiveChannel&lt;Int&gt;): ReceiveChannel&lt
 Done!
 -->
 <blockquote>
-<p>所有创建了协程的函数被定义在了 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的扩展上，
-所以我们可以依靠<a href="https://kotlinlang.org/docs/reference/coroutines/composing-suspending-functions.html#structured-concurrency-with-async">结构化并发</a>来确保<!--
+<p class="typo-para">所有创建了协程的函数被定义在了 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的扩展上，
+所以我们可以依靠<a class="typo-link" href="https://kotlinlang.org/docs/reference/coroutines/composing-suspending-functions.html#structured-concurrency-with-async">结构化并发</a>来确保<!--
 -->没有常驻在我们的应用程序中的全局协程。</p>
 </blockquote>
-<h3 id="使用管道的素数">使用管道的素数</h3>
-<p>让我们来展示一个极端的例子——在协程中使用一个管道来生成<!--
+<h3 class="typo-header typo-h3" id="使用管道的素数">使用管道的素数</h3>
+<p class="typo-para">让我们来展示一个极端的例子——在协程中使用一个管道来生成<!--
 -->素数。我们开启了一个数字的无限序列。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.numbersFrom(start: Int) = produce&lt;Int&gt; {
@@ -1585,7 +1568,7 @@ Done!
 }
 </code></pre>
 </div>
-<p>在下面的管道阶段中过滤了来源于流中的数字，删除了所有<!--
+<p class="typo-para">在下面的管道阶段中过滤了来源于流中的数字，删除了所有<!--
 -->可以被给定素数整除的数字。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = produce&lt;Int&gt; {
@@ -1593,15 +1576,15 @@ Done!
 }
 </code></pre>
 </div>
-<p>现在我们开启了一个从 2 开始的数字流管道，从当前的通道中取一个素数，
+<p class="typo-para">现在我们开启了一个从 2 开始的数字流管道，从当前的通道中取一个素数，
 并为每一个我们发现的素数启动一个流水线阶段：</p>
 <pre><code>numbersFrom(2) -&gt; filter(2) -&gt; filter(3) -&gt; filter(5) -&gt; filter(7) ……
 </code></pre>
-<p>下面的例子打印了前十个素数，
+<p class="typo-para">下面的例子打印了前十个素数，
 在主线程的上下文中运行整个管道。直到所有的协程在<!--
--->该主协程 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 的作用域中被启动完成。
+-->该主协程 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 的作用域中被启动完成。
 我们不必使用一个显式的列表来保存所有被我们已经启动的协程。
-我们使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/kotlin.coroutines.-coroutine-context/cancel-children.html">cancelChildren</a>
+我们使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/kotlin.coroutines.-coroutine-context/cancel-children.html">cancelChildren</a>
 扩展函数在我们打印了前十个素数以后<!--
 -->来取消所有的子协程。</p>
 <!--- CLEAR -->
@@ -1632,9 +1615,9 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-05.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的输出如下：</p>
+<p class="typo-para">这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">2
 3
 5
@@ -1647,19 +1630,19 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 29
 </code></pre>
 <!--- TEST -->
-<p>注意，你可以在标准库中使用
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/iterator.html"><code>iterator</code></a>
+<p class="typo-para">注意，你可以在标准库中使用
+<a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/iterator.html"><code>iterator</code></a>
 协程构建器来构建一个相似的管道。
 使用 <code>iterator</code> 替换 <code>produce</code>、<code>yield</code> 替换 <code>send</code>、<code>next</code> 替换 <code>receive</code>、
 <code>Iterator</code> 替换 <code>ReceiveChannel</code> 来摆脱协程作用域，你将不再需要 <code>runBlocking</code>。
-然而，如上所示，如果你在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文中运行它，使用通道的管道的好处在于<!--
+然而，如上所示，如果你在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 上下文中运行它，使用通道的管道的好处在于<!--
 -->它可以充分利用多核心 CPU。</p>
-<p>不过，这是一种非常不切实际的寻找素数的方法。在实践中，管道调用了另外的一些<!--
+<p class="typo-para">不过，这是一种非常不切实际的寻找素数的方法。在实践中，管道调用了另外的一些<!--
 -->挂起中的调用（就像异步调用远程服务）并且这些管道不能<!--
 -->内置使用 <code>sequence</code>/<code>iterator</code>，因为它们不被允许随意的挂起，不像
 <code>produce</code> 是完全异步的。</p>
-<h3 id="扇出">扇出</h3>
-<p>多个协程也许会接收相同的管道，在它们之间进行分布式工作。
+<h3 class="typo-header typo-h3" id="扇出">扇出</h3>
+<p class="typo-para">多个协程也许会接收相同的管道，在它们之间进行分布式工作。
 让我们启动一个定期产生整数的生产者协程
 （每秒十个数字）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1672,7 +1655,7 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 }
 </code></pre>
 </div>
-<p>接下来我们可以得到几个处理器协程。在这个示例中，它们只是打印它们的 id 和<!--
+<p class="typo-para">接下来我们可以得到几个处理器协程。在这个示例中，它们只是打印它们的 id 和<!--
 -->接收到的数字：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun CoroutineScope.launchProcessor(id: Int, channel: ReceiveChannel&lt;Int&gt;) = launch {
@@ -1682,7 +1665,7 @@ fun CoroutineScope.filter(numbers: ReceiveChannel&lt;Int&gt;, prime: Int) = prod
 }
 </code></pre>
 </div>
-<p>现在让我们启动五个处理器协程并让它们工作将近一秒。看看发生了什么：</p>
+<p class="typo-para">现在让我们启动五个处理器协程并让它们工作将近一秒。看看发生了什么：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1713,9 +1696,9 @@ fun CoroutineScope.launchProcessor(id: Int, channel: ReceiveChannel&lt;Int&gt;) 
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-06.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>该输出将类似于如下所示，尽管接收<!--
+<p class="typo-para">该输出将类似于如下所示，尽管接收<!--
 -->每个特定整数的处理器 id 可能会不同：</p>
 <pre><code>Processor #2 received 1
 Processor #4 received 2
@@ -1729,14 +1712,14 @@ Processor #1 received 9
 Processor #3 received 10
 </code></pre>
 <!--- TEST lines.size == 10 && lines.withIndex().all { (i, line) -> line.startsWith("Processor #") && line.endsWith(" received ${i + 1}") } -->
-<p>注意，取消生产者协程将关闭它的通道，从而最终终止<!--
+<p class="typo-para">注意，取消生产者协程将关闭它的通道，从而最终终止<!--
 -->处理器协程正在执行的此通道上的迭代。</p>
-<p>还有，注意我们如何使用 <code>for</code> 循环显式迭代通道以在 <code>launchProcessor</code> 代码中执行扇出。
+<p class="typo-para">还有，注意我们如何使用 <code>for</code> 循环显式迭代通道以在 <code>launchProcessor</code> 代码中执行扇出。
 与 <code>consumeEach</code> 不同，这个 <code>for</code> 循环是安全完美地使用多个协程的。如果其中一个处理器<!--
 -->协程执行失败，其它的处理器协程仍然会继续处理通道，而通过 <code>consumeEach</code>
 编写的处理器始终在正常或非正常完成时消耗（取消）底层通道。</p>
-<h3 id="扇入">扇入</h3>
-<p>多个协程可以发送到同一个通道。
+<h3 class="typo-header typo-h3" id="扇入">扇入</h3>
+<p class="typo-para">多个协程可以发送到同一个通道。
 比如说，让我们创建一个字符串的通道，和一个在这个通道中<!--
 -->以指定的延迟反复发送一个指定字符串的挂起函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1748,7 +1731,7 @@ Processor #3 received 10
 }
 </code></pre>
 </div>
-<p>现在，我们启动了几个发送字符串的协程，让我们看看会发生什么
+<p class="typo-para">现在，我们启动了几个发送字符串的协程，让我们看看会发生什么
 （在示例中，我们在主线程的上下文中作为主协程的子协程来启动它们）：</p>
 <!--- CLEAR -->
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1776,9 +1759,9 @@ suspend fun sendString(channel: SendChannel&lt;String&gt;, s: String, time: Long
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-07.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>输出如下：</p>
+<p class="typo-para">输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">foo
 foo
 BAR!
@@ -1787,14 +1770,14 @@ foo
 BAR!
 </code></pre>
 <!--- TEST -->
-<h3 id="带缓冲的通道">带缓冲的通道</h3>
-<p>到目前为止展示的通道都是没有缓冲区的。无缓冲的通道在发送者和接收者相遇时<!--
+<h3 class="typo-header typo-h3" id="带缓冲的通道">带缓冲的通道</h3>
+<p class="typo-para">到目前为止展示的通道都是没有缓冲区的。无缓冲的通道在发送者和接收者相遇时<!--
 -->传输元素（也称“对接”）。如果发送先被调用，则它将被挂起直到接收被调用，
 如果接收先被调用，它将被挂起直到发送被调用。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel.html">Channel()</a> 工厂函数与 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 建造器通过一个可选的参数 <code>capacity</code>
+<p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-channel.html">Channel()</a> 工厂函数与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 建造器通过一个可选的参数 <code>capacity</code>
 来指定 <em>缓冲区大小</em> 。缓冲允许发送者在被挂起前发送多个元素，
 就像 <code>BlockingQueue</code> 有指定的容量一样，当缓冲区被占满的时候将会引起阻塞。</p>
-<p>看看如下代码的表现：</p>
+<p class="typo-para">看看如下代码的表现：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
@@ -1816,9 +1799,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-08.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>使用缓冲通道并给 capacity 参数传入 <em>四</em> 它将打印“sending” <em>五</em> 次：</p>
+<p class="typo-para">使用缓冲通道并给 capacity 参数传入 <em>四</em> 它将打印“sending” <em>五</em> 次：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Sending 0
 Sending 1
 Sending 2
@@ -1826,9 +1809,9 @@ Sending 3
 Sending 4
 </code></pre>
 <!--- TEST -->
-<p>前四个元素被加入到了缓冲区并且发送者在试图发送第五个元素的时候被挂起。</p>
-<h3 id="通道是公平的">通道是公平的</h3>
-<p>发送和接收操作是 <em>公平的</em> 并且尊重调用它们的<!--
+<p class="typo-para">前四个元素被加入到了缓冲区并且发送者在试图发送第五个元素的时候被挂起。</p>
+<h3 class="typo-header typo-h3" id="通道是公平的">通道是公平的</h3>
+<p class="typo-para">发送和接收操作是 <em>公平的</em> 并且尊重调用它们的<!--
 -->多个协程。它们遵守先进先出原则，可以看到第一个协程调用 <code>receive</code>
 并得到了元素。在下面的例子中两个协程“乒”和“乓”都<!--
 -->从共享的“桌子”通道接收到这个“球”元素。</p>
@@ -1860,9 +1843,9 @@ suspend fun player(name: String, table: Channel&lt;Ball&gt;) {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-09.kt">这里</a>得到完整代码</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-09.kt">这里</a>得到完整代码</p>
 </blockquote>
-<p>“乒”协程首先被启动，所以它首先接收到了球。甚至虽然“乒”
+<p class="typo-para">“乒”协程首先被启动，所以它首先接收到了球。甚至虽然“乒”
 协程在将球发送会桌子以后立即开始接收，但是球还是被“乓”
 协程接收了，因为它一直在等待着接收球：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">ping Ball(hits=1)
@@ -1871,16 +1854,16 @@ ping Ball(hits=3)
 pong Ball(hits=4)
 </code></pre>
 <!--- TEST -->
-<p>注意，有时候通道执行时由于执行者的性质而看起来<!--
--->不那么公平。点击<a href="https://github.com/Kotlin/kotlinx.coroutines/issues/111">这个提案</a>来查看更多细节。</p>
-<h3 id="计时器通道">计时器通道</h3>
-<p>计时器通道是一种特别的会合通道，每次经过特定的延迟都会从该通道进行消费并产生 <code>Unit</code>。
-虽然它看起来似乎没用，它被用来构建分段来创建复杂的基于时间的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>
+<p class="typo-para">注意，有时候通道执行时由于执行者的性质而看起来<!--
+-->不那么公平。点击<a class="typo-link" href="https://github.com/Kotlin/kotlinx.coroutines/issues/111">这个提案</a>来查看更多细节。</p>
+<h3 class="typo-header typo-h3" id="计时器通道">计时器通道</h3>
+<p class="typo-para">计时器通道是一种特别的会合通道，每次经过特定的延迟都会从该通道进行消费并产生 <code>Unit</code>。
+虽然它看起来似乎没用，它被用来构建分段来创建复杂的基于时间的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>
 管道和进行窗口化操作以及其它时间相关的处理。
-可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html">select</a> 中使用计时器通道来进行“打勾”操作。</p>
-<p>使用工厂方法 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/ticker.html">ticker</a> 来创建这些通道。
-为了表明不需要其它元素，请使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/cancel.html">ReceiveChannel.cancel</a> 方法。</p>
-<p>现在让我们看看它是如何在实践中工作的：</p>
+可以在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.selects/select.html">select</a> 中使用计时器通道来进行“打勾”操作。</p>
+<p class="typo-para">使用工厂方法 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/ticker.html">ticker</a> 来创建这些通道。
+为了表明不需要其它元素，请使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/cancel.html">ReceiveChannel.cancel</a> 方法。</p>
+<p class="typo-para">现在让我们看看它是如何在实践中工作的：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.channels.*
@@ -1911,9 +1894,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-10.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-channel-10.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>它的打印如下：</p>
+<p class="typo-para">它的打印如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Initial element is available immediately: kotlin.Unit
 Next element is not ready in 50 ms: null
 Next element is ready in 100 ms: kotlin.Unit
@@ -1922,9 +1905,9 @@ Next element is available immediately after large consumer delay: kotlin.Unit
 Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
 </code></pre>
 <!--- TEST -->
-<p>请注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/ticker.html">ticker</a> 知道可能的消费者暂停，并且默认情况下会调整下一个生成的元素<!--
+<p class="typo-para">请注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/ticker.html">ticker</a> 知道可能的消费者暂停，并且默认情况下会调整下一个生成的元素<!--
 -->如果发生暂停则延迟，试图保持固定的生成元素率。</p>
-<p>给可选的 <code>mode</code> 参数传入 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-ticker-mode/-f-i-x-e-d_-d-e-l-a-y.html">TickerMode.FIXED_DELAY</a> 可以保持固定<!--
+<p class="typo-para">给可选的 <code>mode</code> 参数传入 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-ticker-mode/-f-i-x-e-d_-d-e-l-a-y.html">TickerMode.FIXED_DELAY</a> 可以保持固定<!--
 -->元素之间的延迟。</p>
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
@@ -1935,7 +1918,6 @@ Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1944,10 +1926,10 @@ Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -2014,7 +1996,7 @@ Next element is ready in 50ms after consumer pause in 150ms: kotlin.Unit
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Getting Started with Kotlin - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
         <aside class="g-3">
@@ -859,29 +842,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <table>
             </table>
             
-<p>It’s easy to get started with Kotlin using the Kotlin plugin integrated in <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>. 
+<p class="typo-para">It’s easy to get started with Kotlin using the Kotlin plugin integrated in <a class="typo-link" href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a>. 
 Benefit from code highlighting, code completion, refactoring, debugging, and other features available for Kotlin.</p>
-<p>If you want to <strong>start from scratch</strong>, you can <a href="jvm-get-started.html">create a basic Kotlin application</a>. 
+<p class="typo-para">If you want to <strong class="type-strong">start from scratch</strong>, you can <a class="typo-link" href="jvm-get-started.html">create a basic Kotlin application</a>. 
 Once you’ve created the application, you can dive deeper into Kotlin syntax:</p>
-<ul>
-<li>Add sample code from <a href="https://play.kotlinlang.org/byExample/overview">Kotlin examples</a></li>
-<li>Install the <a href="https://plugins.jetbrains.com/plugin/10081-edutools">EduTools plugin</a> for IDEA and complete exercises 
-from the <a href="https://www.jetbrains.com/help/education/learner-start-guide.html?section=Kotlin%20Koans">Kotlin Koans course</a></li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Add sample code from <a class="typo-link" href="https://play.kotlinlang.org/byExample/overview">Kotlin examples</a></li>
+<li class="typo-list__item">Install the <a class="typo-link" href="https://plugins.jetbrains.com/plugin/10081-edutools">EduTools plugin</a> for IDEA and complete exercises 
+from the <a class="typo-link" href="https://www.jetbrains.com/help/education/learner-start-guide.html?section=Kotlin%20Koans">Kotlin Koans course</a></li>
 </ul>
-<p>If you already <strong>have a Java project</strong>, you can:</p>
-<ul>
-<li><strong><a href="mixing-java-kotlin-intellij.html">Start adding Kotlin code to your project</a>.</strong><br/>
-Begin with a small class or function with the annotations required for proper <a href="../reference/java-interop.html">interoperability with Java code</a>.</li>
-<li><strong>Write some tests in Kotlin</strong> for your code.<br/>
+<p class="typo-para">If you already <strong class="type-strong">have a Java project</strong>, you can:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><strong class="type-strong"><a class="typo-link" href="mixing-java-kotlin-intellij.html">Start adding Kotlin code to your project</a>.</strong><br/>
+Begin with a small class or function with the annotations required for proper <a class="typo-link" href="../reference/java-interop.html">interoperability with Java code</a>.</li>
+<li class="typo-list__item"><strong class="type-strong">Write some tests in Kotlin</strong> for your code.<br/>
 Tests are a safe place to add Kotlin to the codebase because they are not bundled with your application during packaging.</li>
-<li><strong><a href="mixing-java-kotlin-intellij.html#converting-an-existing-java-file-to-kotlin-with-j2k">Convert Java code to Kotlin</a></strong>.<br/>
+<li class="typo-list__item"><strong class="type-strong"><a class="typo-link" href="mixing-java-kotlin-intellij.html#converting-an-existing-java-file-to-kotlin-with-j2k">Convert Java code to Kotlin</a></strong>.<br/>
 Extract small pieces of Java functionality and convert to Kotlin classes and functions using the Java-to-Kotlin converter.</li>
 </ul>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -890,10 +872,10 @@ Extract small pieces of Java functionality and convert to Kotlin classes and fun
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -960,7 +942,7 @@ Extract small pieces of Java functionality and convert to Kotlin classes and fun
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/tutorial.js?&amp;v=8ee6bb15892f329fdb2d95d7245e0677"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/tutorial.js?&amp;v=d126368e2f171f6d5b11127b873d1854"></script>
 </body>
 </html>

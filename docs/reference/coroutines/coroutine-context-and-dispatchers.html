@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>协程上下文与调度器 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1387,40 +1370,40 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </a>
                 
 <!--- TEST_NAME DispatcherGuideTest -->
-<p><strong>目录</strong></p>
+<p class="typo-para"><strong class="type-strong">目录</strong></p>
 <!--- TOC -->
-<ul>
-<li><a href="#协程上下文与调度器">协程上下文与调度器</a>
-<ul>
-<li><a href="#调度器与线程">调度器与线程</a></li>
-<li><a href="#非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</a></li>
-<li><a href="#调试协程与线程">调试协程与线程</a></li>
-<li><a href="#在不同线程间跳转">在不同线程间跳转</a></li>
-<li><a href="#上下文中的作业">上下文中的作业</a></li>
-<li><a href="#子协程">子协程</a></li>
-<li><a href="#父协程的职责">父协程的职责</a></li>
-<li><a href="#命名协程以用于调试">命名协程以用于调试</a></li>
-<li><a href="#组合上下文中的元素">组合上下文中的元素</a></li>
-<li><a href="#协程作用域">协程作用域</a></li>
-<li><a href="#线程局部数据">线程局部数据</a></li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#协程上下文与调度器">协程上下文与调度器</a>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#调度器与线程">调度器与线程</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#调试协程与线程">调试协程与线程</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#在不同线程间跳转">在不同线程间跳转</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#上下文中的作业">上下文中的作业</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#子协程">子协程</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#父协程的职责">父协程的职责</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#命名协程以用于调试">命名协程以用于调试</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#组合上下文中的元素">组合上下文中的元素</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#协程作用域">协程作用域</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#线程局部数据">线程局部数据</a></li>
 </ul>
 </li>
 </ul>
 <!--- END -->
-<h2 id="协程上下文与调度器">协程上下文与调度器</h2>
-<p>协程总是运行在一些以
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
+<h2 class="typo-header typo-h2" id="协程上下文与调度器">协程上下文与调度器</h2>
+<p class="typo-para">协程总是运行在一些以
+<a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
 类型为代表的上下文中，它们被定义在了 Kotlin 的标准库里。</p>
-<p>协程上下文是各种不同元素的集合。其中主元素是协程中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，
+<p class="typo-para">协程上下文是各种不同元素的集合。其中主元素是协程中的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，
 我们在前面的文档中见过它以及它的调度器，而本文将对它进行介绍。</p>
-<h3 id="调度器与线程">调度器与线程</h3>
-<p>协程上下文包含一个 <em>协程调度器</em> （参见 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>）它确定了哪些线程或与线程<!--
+<h3 class="typo-header typo-h3" id="调度器与线程">调度器与线程</h3>
+<p class="typo-para">协程上下文包含一个 <em>协程调度器</em> （参见 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>）它确定了哪些线程或与线程<!--
 -->相对应的协程执行。协程调度器可以将协程限制在<!--
 -->一个特定的线程执行，或将它分派到一个线程池，亦或是让它不受限地运行。</p>
-<p>所有的协程构建器诸如 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 和 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 接收一个可选的
-<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
+<p class="typo-para">所有的协程构建器诸如 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 和 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 接收一个可选的
+<a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 
 参数，它可以被用来显式的为一个新协程或其它上下文元素指定一个调度器。</p>
-<p>尝试下面的示例：</p>
+<p class="typo-para">尝试下面的示例：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1443,34 +1426,34 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-01.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>它执行后得到了如下输出（也许顺序会有所不同）：</p>
+<p class="typo-para">它执行后得到了如下输出（也许顺序会有所不同）：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Unconfined            : I'm working in thread main
 Default               : I'm working in thread DefaultDispatcher-worker-1
 newSingleThreadContext: I'm working in thread MyOwnThread
 main runBlocking      : I'm working in thread main
 </code></pre>
 <!--- TEST LINES_START_UNORDERED -->
-<p>当调用 <code>launch { …… }</code> 时不传参数，它从启动了它的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>
+<p class="typo-para">当调用 <code>launch { …… }</code> 时不传参数，它从启动了它的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>
 中承袭了上下文（以及调度器）。在这个案例中，它从 <code>main</code> 线程中的 <code>runBlocking</code>
 主协程承袭了上下文。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 是一个特殊的调度器且似乎也运行在 <code>main</code> 线程中，但实际上，
+<p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 是一个特殊的调度器且似乎也运行在 <code>main</code> 线程中，但实际上，
 它是一种不同的机制，这会在后文中讲到。</p>
-<p>当协程在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动时，使用的是由 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 代表的默认调度器。
+<p class="typo-para">当协程在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动时，使用的是由 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 代表的默认调度器。
 默认调度器使用共享的后台线程池。
 所以 <code>launch(Dispatchers.Default) { …… }</code> 与 <code>GlobalScope.launch { …… }</code> 使用相同的调度器。</p>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个线程。
+<p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 为协程的运行启动了一个线程。
 一个专用的线程是一种非常昂贵的资源。
-在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a>
+在真实的应用程序中两者都必须被释放，当不再需要的时候，使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-executor-coroutine-dispatcher/close.html">close</a>
 函数，或存储在一个顶层变量中使它在整个应用程序中被重用。</p>
-<h3 id="非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</h3>
-<p><a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器在调用它的线程启动了一个协程，但它仅仅只是运行到<!--
+<h3 class="typo-header typo-h3" id="非受限调度器-vs-受限调度器">非受限调度器 vs 受限调度器</h3>
+<p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-unconfined.html">Dispatchers.Unconfined</a> 协程调度器在调用它的线程启动了一个协程，但它仅仅只是运行到<!--
 -->第一个挂起点。挂起后，它恢复线程中的协程，而这完全由<!--
 -->被调用的挂起函数来决定。非受限的调度器非常适用于执行不<!--
 -->消耗 CPU 时间的任务，以及不更新局限于特定线程的任何共享数据（如UI）的协程。</p>
-<p>另一方面，该调度器默认继承了外部的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程的默认调度器，特别是，
+<p class="typo-para">另一方面，该调度器默认继承了外部的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a>。
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程的默认调度器，特别是，
 当它被限制在了调用者线程时，继承自它将会有效地限制协程<!--
 -->在该线程运行并且具有可预测的 FIFO 调度。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1493,32 +1476,32 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-02.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>执行后的输出：</p>
+<p class="typo-para">执行后的输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Unconfined      : I'm working in thread main
 main runBlocking: I'm working in thread main
 Unconfined      : After delay in thread kotlinx.coroutines.DefaultExecutor
 main runBlocking: After delay in thread main
 </code></pre>
 <!--- TEST LINES_START -->
-<p>所以，该协程的上下文继承自 <code>runBlocking {...}</code> 协程并在
-<code>main</code> 线程中运行，当 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 函数调用的时候，非受限的那个协程在<!--
+<p class="typo-para">所以，该协程的上下文继承自 <code>runBlocking {...}</code> 协程并在
+<code>main</code> 线程中运行，当 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 函数调用的时候，非受限的那个协程在<!--
 -->默认的执行者线程中恢复执行。</p>
 <blockquote>
-<p>非受限的调度器是一种高级机制，可以在某些极端情况下提供帮助<!--
+<p class="typo-para">非受限的调度器是一种高级机制，可以在某些极端情况下提供帮助<!--
 -->而不需要调度协程以便稍后执行或产生不希望的副作用，
 因为某些操作必须立即在协程中执行。
 非受限调度器不应该在通常的代码中使用。</p>
 </blockquote>
-<h3 id="调试协程与线程">调试协程与线程</h3>
-<p>协程可以在一个线程上挂起并在其它线程上恢复。
+<h3 class="typo-header typo-h3" id="调试协程与线程">调试协程与线程</h3>
+<p class="typo-para">协程可以在一个线程上挂起并在其它线程上恢复。
 甚至一个单线程的调度器也是难以<!--
 -->弄清楚协程在何时何地正在做什么事情。使用通常调试应用程序的方法是让<!--
 -->线程在每一个日志文件的日志声明中打印线程的名字。这种特性在日志框架中是<!--
 -->普遍受支持的。但是在使用协程时，单独的线程名称不会给出很多协程上下文信息，所以
 <code>kotlinx.coroutines</code> 包含了调试工具来让它更简单。</p>
-<p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码：</p>
+<p class="typo-para">使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1540,9 +1523,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-03.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这里有三个协程，包括 <code>runBlocking</code> 内的主协程 (#1) ，
+<p class="typo-para">这里有三个协程，包括 <code>runBlocking</code> 内的主协程 (#1) ，
 以及计算延期的值的另外两个协程 <code>a</code> (#2) 和 <code>b</code> (#3)。
 它们都在 <code>runBlocking</code> 上下文中执行并且被限制在了主线程内。
 这段代码的输出如下：</p>
@@ -1551,15 +1534,15 @@ fun main() = runBlocking&lt;Unit&gt; {
 [main @coroutine#1] The answer is 42
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p>这个 <code>log</code> 函数在方括号种打印了线程的名字，并且你可以看到它是 <code>main</code>
+<p class="typo-para">这个 <code>log</code> 函数在方括号种打印了线程的名字，并且你可以看到它是 <code>main</code>
 线程，并且附带了当前正在其上执行的协程的标识符。这个标识符<!--
 -->在调试模式开启时，将连续分配给所有创建的协程。</p>
 <blockquote>
-<p>当 JVM 以 <code>-ea</code> 参数配置运行时，调试模式也会开启。
-你可以在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-d-e-b-u-g_-p-r-o-p-e-r-t-y_-n-a-m-e.html">DEBUG_PROPERTY_NAME</a> 属性的文档中阅读有关调试工具的更多信息。</p>
+<p class="typo-para">当 JVM 以 <code>-ea</code> 参数配置运行时，调试模式也会开启。
+你可以在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-d-e-b-u-g_-p-r-o-p-e-r-t-y_-n-a-m-e.html">DEBUG_PROPERTY_NAME</a> 属性的文档中阅读有关调试工具的更多信息。</p>
 </blockquote>
-<h3 id="在不同线程间跳转">在不同线程间跳转</h3>
-<p>使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（参见<a href="#调试协程与线程">调试</a>）：</p>
+<h3 class="typo-header typo-h3" id="在不同线程间跳转">在不同线程间跳转</h3>
+<p class="typo-para">使用 <code>-Dkotlinx.coroutines.debug</code> JVM 参数运行下面的代码（参见<a class="typo-link" href="#调试协程与线程">调试</a>）：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1583,20 +1566,20 @@ fun main() {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-04.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>它演示了一些新技术。其中一个使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 来显式指定了一个上下文，并且<!--
--->另一个使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 函数来改变协程的上下文，而仍然驻留在相同的<!--
+<p class="typo-para">它演示了一些新技术。其中一个使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 来显式指定了一个上下文，并且<!--
+-->另一个使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 函数来改变协程的上下文，而仍然驻留在相同的<!--
 -->协程中，正如可以在下面的输出中所见到的：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">[Ctx1 @coroutine#1] Started in ctx1
 [Ctx2 @coroutine#1] Working in ctx2
 [Ctx1 @coroutine#1] Back to ctx1
 </code></pre>
 <!--- TEST -->
-<p>注意，在这个例子中，当我们不再需要某个在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 中创建的线程的时候，
+<p class="typo-para">注意，在这个例子中，当我们不再需要某个在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/new-single-thread-context.html">newSingleThreadContext</a> 中创建的线程的时候，
 它使用了 Kotlin 标准库中的 <code>use</code> 函数来释放该线程。</p>
-<h3 id="上下文中的作业">上下文中的作业</h3>
-<p>协程的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 是上下文的一部分，并且可以使用
+<h3 class="typo-header typo-h3" id="上下文中的作业">上下文中的作业</h3>
+<p class="typo-para">协程的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 是上下文的一部分，并且可以使用
 <code>coroutineContext [Job]</code> 表达式在上下文中检索它：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1609,21 +1592,21 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>在<a href="#调试协程与线程">调试模式</a>下，它将输出如下这些信息：</p>
+<p class="typo-para">在<a class="typo-link" href="#调试协程与线程">调试模式</a>下，它将输出如下这些信息：</p>
 <pre><code>My job is "coroutine#1":BlockingCoroutine{Active}@6d311334
 </code></pre>
 <!--- TEST lines.size == 1 && lines[0].startsWith("My job is \"coroutine#1\":BlockingCoroutine{Active}@") -->
-<p>请注意，<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 中的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html">isActive</a> 只是
+<p class="typo-para">请注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 中的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html">isActive</a> 只是
 <code>coroutineContext[Job]?.isActive == true</code> 的一种方便的快捷方式。</p>
-<h3 id="子协程">子协程</h3>
-<p>当一个协程被其它协程在 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 中启动的时候，
-它将通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> 来承袭上下文，并且<!--
--->这个新协程的 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 将会成为<!--
+<h3 class="typo-header typo-h3" id="子协程">子协程</h3>
+<p class="typo-para">当一个协程被其它协程在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 中启动的时候，
+它将通过 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/coroutine-context.html">CoroutineScope.coroutineContext</a> 来承袭上下文，并且<!--
+-->这个新协程的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 将会成为<!--
 -->父协程作业的 <em>子</em> 作业。当一个父协程被取消的时候，所有它的子协程<!--
 -->也会被递归的取消。</p>
-<p>然而，当使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 来启动一个协程时，则新协程的作业没有父作业。
+<p class="typo-para">然而，当使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 来启动一个协程时，则新协程的作业没有父作业。
 因此它与这个启动的作用域无关且独立运作。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1655,18 +1638,18 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-06.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码的输出如下：</p>
+<p class="typo-para">这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">job1: I run in GlobalScope and execute independently!
 job2: I am a child of the request coroutine
 job1: I am not affected by cancellation of the request
 main: Who has survived request cancellation?
 </code></pre>
 <!--- TEST -->
-<h3 id="父协程的职责">父协程的职责</h3>
-<p>一个父协程总是等待所有的子协程执行结束。父协程并不显式的跟踪<!--
--->所有子协程的启动，并且不必使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">Job.join</a> 在最后的时候等待它们：</p>
+<h3 class="typo-header typo-h3" id="父协程的职责">父协程的职责</h3>
+<p class="typo-para">一个父协程总是等待所有的子协程执行结束。父协程并不显式的跟踪<!--
+-->所有子协程的启动，并且不必使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">Job.join</a> 在最后的时候等待它们：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1689,9 +1672,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-07.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>结果如下所示：</p>
+<p class="typo-para">结果如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">request: I'm done and I don't explicitly join my children that are still active
 Coroutine 0 is done
 Coroutine 1 is done
@@ -1699,13 +1682,13 @@ Coroutine 2 is done
 Now processing of the request is complete
 </code></pre>
 <!--- TEST -->
-<h3 id="命名协程以用于调试">命名协程以用于调试</h3>
-<p>当协程经常打印日志并且你只需要关联来自同一个协程的日志记录时，
+<h3 class="typo-header typo-h3" id="命名协程以用于调试">命名协程以用于调试</h3>
+<p class="typo-para">当协程经常打印日志并且你只需要关联来自同一个协程的日志记录时，
 则自动分配的 id 是非常好的。然而，当一个协程与特定请求的处理相关联时<!--
 -->或做一些特定的后台任务，最好将其明确命名以用于调试目的。
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素与线程名具有相同的目的。当<a href="#调试协程与线程">调试模式</a><!--
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-name/index.html">CoroutineName</a> 上下文元素与线程名具有相同的目的。当<a class="typo-link" href="#调试协程与线程">调试模式</a><!--
 -->开启时，它被包含在正在执行此协程的线程名中。</p>
-<p>下面的例子演示了这一概念：</p>
+<p class="typo-para">下面的例子演示了这一概念：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1731,17 +1714,17 @@ fun main() = runBlocking(CoroutineName("main")) {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-08.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>程序执行使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
+<p class="typo-para">程序执行使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">[main @main#1] Started main coroutine
 [main @v1coroutine#2] Computing v1
 [main @v2coroutine#3] Computing v2
 [main @main#1] The answer for v1 / v2 = 42
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<h3 id="组合上下文中的元素">组合上下文中的元素</h3>
-<p>有时我们需要在协程上下文中定义多个元素。我们可以使用 <code>+</code> 操作符来实现。
+<h3 class="typo-header typo-h3" id="组合上下文中的元素">组合上下文中的元素</h3>
+<p class="typo-para">有时我们需要在协程上下文中定义多个元素。我们可以使用 <code>+</code> 操作符来实现。
 比如说，我们可以显式指定一个调度器来启动协程并且同时显式指定<!--
 -->一个命名：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
@@ -1757,23 +1740,23 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-09.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-09.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这段代码使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
+<p class="typo-para">这段代码使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">I'm working in thread DefaultDispatcher-worker-1 @test#2
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<h3 id="协程作用域">协程作用域</h3>
-<p>让我们将关于上下文，子协程以及作业的知识综合在一起。假设我们的应用程序拥有一个<!--
+<h3 class="typo-header typo-h3" id="协程作用域">协程作用域</h3>
+<p class="typo-para">让我们将关于上下文，子协程以及作业的知识综合在一起。假设我们的应用程序拥有一个<!--
 -->具有生命周期的对象，但这个对象并不是一个协程。举例来说，我们编写了一个 Android 应用程序<!--
 -->并在 Android 的 activity 上下文中启动了一组协程来使用异步操作拉取<!--
 -->并更新数据以及执行动画等等。所有这些协程必须在这个 activity 销毁的时候取消<!--
 -->以避免内存泄漏。当然，我们也可以手动操作上下文与作业，以结合 activity 的生命周期<!--
--->与它的协程，但是 <code>kotlinx.coroutines</code> 提供了一个封装：<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的抽象。
+-->与它的协程，但是 <code>kotlinx.coroutines</code> 提供了一个封装：<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的抽象。
 你应该已经熟悉了协程作用域，因为所有的协程构建器都声明为在它之上的扩展。</p>
-<p>我们通过创建一个 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 实例来管理协程的生命周期，并使它与
-activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 创建或者通过<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
-工厂函数。前者创建了一个通用作用域，而后者为使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> 作为默认调度器的 UI 应用程序
+<p class="typo-para">我们通过创建一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 实例来管理协程的生命周期，并使它与
+activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 创建或者通过<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
+工厂函数。前者创建了一个通用作用域，而后者为使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> 作为默认调度器的 UI 应用程序
 创建作用域：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Activity {
@@ -1785,7 +1768,7 @@ activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a h
     // 继续运行……
 </code></pre>
 </div>
-<p>Now, we can launch coroutines in the scope of this <code>Activity</code> using the defined <code>scope</code>.
+<p class="typo-para">Now, we can launch coroutines in the scope of this <code>Activity</code> using the defined <code>scope</code>.
 For the demo, we launch ten coroutines that delay for a different time:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">    // 在 Activity 类中
@@ -1801,7 +1784,7 @@ For the demo, we launch ten coroutines that delay for a different time:</p>
 } // Activity 类结束
 </code></pre>
 </div>
-<p>在 main 函数中我们创建 activity，调用测试函数 <code>doSomething</code>，并且在 500 毫秒后销毁这个 activity。
+<p class="typo-para">在 main 函数中我们创建 activity，调用测试函数 <code>doSomething</code>，并且在 500 毫秒后销毁这个 activity。
 这取消了从 <code>doSomething</code> 启动的所有协程。我们可以观察到这些是由于在销毁之后，
 即使我们再等一会儿，activity 也不再打印消息。</p>
 <!--- CLEAR -->
@@ -1840,28 +1823,28 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-10.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-10.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>这个示例的输出如下所示：</p>
+<p class="typo-para">这个示例的输出如下所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Launched coroutines
 Coroutine 0 is done
 Coroutine 1 is done
 Destroying activity!
 </code></pre>
 <!--- TEST -->
-<p>你可以看到，只有前两个协程打印了消息，而另一个协程在
+<p class="typo-para">你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中单次调用了 <code>job.cancel()</code>。</p>
 <blockquote>
-<p>注意，Android 在所有具有生命周期的实体中都对协程作用域提供了一等的支持。
-请查看<a href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">相关文档</a>。</p>
+<p class="typo-para">注意，Android 在所有具有生命周期的实体中都对协程作用域提供了一等的支持。
+请查看<a class="typo-link" href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">相关文档</a>。</p>
 </blockquote>
-<h3 id="线程局部数据">线程局部数据</h3>
-<p>有时，能够将一些线程局部数据传递到协程与协程之间是很方便的。 
+<h3 class="typo-header typo-h3" id="线程局部数据">线程局部数据</h3>
+<p class="typo-para">有时，能够将一些线程局部数据传递到协程与协程之间是很方便的。 
 然而，由于它们不受任何特定线程的约束，如果手动完成，可能会导致出现样板代码。</p>
-<p><a href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 扩展函数在这里会充当救兵。它创建了额外的上下文元素，
+<p class="typo-para"><a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/ThreadLocal.html"><code>ThreadLocal</code></a>，
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a> 扩展函数在这里会充当救兵。它创建了额外的上下文元素，
 且保留给定 <code>ThreadLocal</code> 的值，并在每次协程切换其上下文时恢复它。</p>
-<p>它很容易在下面的代码中演示：</p>
+<p class="typo-para">它很容易在下面的代码中演示：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 
@@ -1883,33 +1866,33 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote>
-<p>可以在<a href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-11.kt">这里</a>获取完整代码。</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-11.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p>在这个例子中我们使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 在后台线程池中启动了一个新的协程，所以<!--
+<p class="typo-para">在这个例子中我们使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 在后台线程池中启动了一个新的协程，所以<!--
 -->它工作在线程池中的不同线程中，但它仍然具有线程局部变量的值，
 我们指定使用 <code>threadLocal.asContextElement(value = "launch")</code>，
 无论协程执行在什么线程中都是没有问题的。
-因此，其输出如（<a href="#调试协程与线程">调试</a>）所示：</p>
+因此，其输出如（<a class="typo-link" href="#调试协程与线程">调试</a>）所示：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Pre-main, current thread: Thread[main @coroutine#1,5,main], thread local value: 'main'
 Launch start, current thread: Thread[DefaultDispatcher-worker-1 @coroutine#2,5,main], thread local value: 'launch'
 After yield, current thread: Thread[DefaultDispatcher-worker-2 @coroutine#2,5,main], thread local value: 'launch'
 Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value: 'main'
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p>这很容易忘记去设置相应的上下文元素。如果运行协程的线程不同，
+<p class="typo-para">这很容易忘记去设置相应的上下文元素。如果运行协程的线程不同，
 在协程中访问的线程局部变量则可能会产生意外的值。
-为了避免这种情况，建议使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/ensure-present.html">ensurePresent</a>
+为了避免这种情况，建议使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/ensure-present.html">ensurePresent</a>
 方法并且在不正确的使用时快速失败。</p>
-<p><code>ThreadLocal</code> 具有一流的支持，可以与任何 <code>kotlinx.coroutines</code> 提供的原语一起使用。
+<p class="typo-para"><code>ThreadLocal</code> 具有一流的支持，可以与任何 <code>kotlinx.coroutines</code> 提供的原语一起使用。
 但它有一个关键限制，即：当一个线程局部变量变化时，则这个新值不会传播给协程调用者<!--
 -->（因为上下文元素无法追踪所有 <code>ThreadLocal</code> 对象访问），并且下次挂起时更新的值将丢失。
-使用 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 在协程中更新线程局部变量，详见 <a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a>。</p>
-<p>另外，一个值可以存储在一个可变的域中，例如 <code>class Counter(var i: Int)</code>，是的，反过来，
+使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-context.html">withContext</a> 在协程中更新线程局部变量，详见 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/java.lang.-thread-local/as-context-element.html">asContextElement</a>。</p>
+<p class="typo-para">另外，一个值可以存储在一个可变的域中，例如 <code>class Counter(var i: Int)</code>，是的，反过来，
 可以存储在线程局部的变量中。然而，在这个案例中你完全有责任来进行同步<!--
 -->可能的对这个可变的域进行的并发的修改。</p>
-<p>对于高级的使用，例如，那些在内部使用线程局部传递数据的<!--
+<p class="typo-para">对于高级的使用，例如，那些在内部使用线程局部传递数据的<!--
 -->用于与日志记录 MDC 集成，以及事务上下文或任何其它库，请参见需要实现的
-<a href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> 接口的文档。</p>
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-thread-context-element/index.html">ThreadContextElement</a> 接口的文档。</p>
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
 <!--- END -->
@@ -1917,7 +1900,6 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1926,10 +1908,10 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1996,7 +1978,7 @@ Post-main, current thread: Thread[main @coroutine#1,5,main], thread local value:
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

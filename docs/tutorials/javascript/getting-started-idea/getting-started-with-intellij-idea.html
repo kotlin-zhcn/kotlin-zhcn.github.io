@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="本文介绍如何使用 IntelliJ IDEA 把 Kotlin 编译到 JavaScript">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>以 IntelliJ IDEA 入门 Kotlin 和 JavaScript - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
         <aside class="g-3">
@@ -881,28 +864,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
             
 <blockquote class="note">
-<p><strong>Warning</strong>: this tutorial is outdated for Kotlin 1.3.72.
+<p class="typo-para"><strong class="type-strong">Warning</strong>: this tutorial is outdated for Kotlin 1.3.72.
 We strongly recommend using Gradle for Kotlin/JS projects. For instructions on creating 
-Kotlin/JS projects with Gradle, see <a href="../setting-up.html">Setting up a Kotlin/JS project</a></p>
+Kotlin/JS projects with Gradle, see <a class="typo-link" href="../setting-up.html">Setting up a Kotlin/JS project</a></p>
 </blockquote>
 <blockquote>
-<p>在本教程中我们会学习如何</p>
+<p class="typo-para">在本教程中我们会学习如何</p>
 </blockquote>
-<ul>
-<li><a href="#创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</a></li>
-<li><a href="#调试程序">调试程序</a></li>
-<li><a href="#配置编译器选项">配置编译器选项</a></li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#调试程序">调试程序</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#配置编译器选项">配置编译器选项</a></li>
 </ul>
-<h2 id="创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</h2>
-<p>在创建面向 JavaScript 的新应用程序或模块时，我们需要选择 <code>Kotlin - JavaScript</code> 作为编译目标：</p>
-<p><img alt="First Step of Wizard" src="/assets/images/tutorials/javascript/getting-started-idea/first-step-wizard.png"/></p>
-<p>下一步会提示我们选择 Kotlin 运行时库。默认情况下，插件会选择与当前安装版本关联的 Kotlin 库。<!--
+<h2 class="typo-header typo-h2" id="创建编译到-javascript-的应用程序">创建编译到 JavaScript 的应用程序</h2>
+<p class="typo-para">在创建面向 JavaScript 的新应用程序或模块时，我们需要选择 <code>Kotlin - JavaScript</code> 作为编译目标：</p>
+<p class="typo-para"><img alt="First Step of Wizard" class="typo-image" src="/assets/images/tutorials/javascript/getting-started-idea/first-step-wizard.png"/></p>
+<p class="typo-para">下一步会提示我们选择 Kotlin 运行时库。默认情况下，插件会选择与当前安装版本关联的 Kotlin 库。<!--
 -->如果我们不需要修改，在输入项目名称和保存位置后<!--
 -->点击 Finish 即可。</p>
-<p><img alt="Selecting Runtime" src="/assets/images/tutorials/javascript/getting-started-idea/second-step-wizard.png"/></p>
-<p>当 IDE 完成项目创建之后，我们会看到这样的目录结构：</p>
-<p><img alt="Project Structure" src="/assets/images/tutorials/javascript/getting-started-idea/project-structure.png"/></p>
-<p>此时我们可以开始编写 Kotlin 代码了。在这个示例中，我们会编写一些代码，将字符串<!--
+<p class="typo-para"><img alt="Selecting Runtime" class="typo-image" src="/assets/images/tutorials/javascript/getting-started-idea/second-step-wizard.png"/></p>
+<p class="typo-para">当 IDE 完成项目创建之后，我们会看到这样的目录结构：</p>
+<p class="typo-para"><img alt="Project Structure" class="typo-image" src="/assets/images/tutorials/javascript/getting-started-idea/project-structure.png"/></p>
+<p class="typo-para">此时我们可以开始编写 Kotlin 代码了。在这个示例中，我们会编写一些代码，将字符串<!--
 -->输出到控制台窗口中。</p>
 <div class="sample" data-target-platform="js" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -911,8 +894,8 @@ Kotlin/JS projects with Gradle, see <a href="../setting-up.html">Setting up a Ko
 }
 </code></pre>
 </div>
-<p>我们现在需要一个 HTML 页面来加载代码，因此我们将创建一个名为 <code>index.html</code> 的文件。如果你想了解 Kotlin 是如何编译到 JavaScript 以及关于输出文件的更多信息，<!--
--->请查看 <a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a> 教程。</p>
+<p class="typo-para">我们现在需要一个 HTML 页面来加载代码，因此我们将创建一个名为 <code>index.html</code> 的文件。如果你想了解 Kotlin 是如何编译到 JavaScript 以及关于输出文件的更多信息，<!--
+-->请查看 <a class="typo-link" href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin 转 JavaScript</a> 教程。</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -927,46 +910,45 @@ Kotlin/JS projects with Gradle, see <a href="../setting-up.html">Setting up a Ko
 &lt;/html&gt;
 </code></pre>
 </div>
-<p>几个要点：</p>
-<ul>
-<li>应该先加载 <code>kotlin.js</code> 文件，因为我们的程序会使用到它。</li>
-<li>路径指向的是 IntelliJ IDEA 在编译程序时使用的默认输出位置，下面我们会看到如何修改它。</li>
+<p class="typo-para">几个要点：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">应该先加载 <code>kotlin.js</code> 文件，因为我们的程序会使用到它。</li>
+<li class="typo-list__item">路径指向的是 IntelliJ IDEA 在编译程序时使用的默认输出位置，下面我们会看到如何修改它。</li>
 </ul>
-<p>接下来要做的就是编译我们的程序（通过 Build|Build Project 菜单），当 JavaScript 文件生成完之后，我们就可以在浏览器中打开 <code>index.html</code> 文件，并在<!--
+<p class="typo-para">接下来要做的就是编译我们的程序（通过 Build|Build Project 菜单），当 JavaScript 文件生成完之后，我们就可以在浏览器中打开 <code>index.html</code> 文件，并在<!--
 -->控制台调试窗口中查看结果。</p>
-<h2 id="调试程序">调试程序</h2>
-<p><code>此功能仅在旗舰版中支持。</code></p>
-<p>为了使用 IntelliJ IDEA 调试应用程序，我们需要执行两个步骤：</p>
-<ol>
-<li>
-<p>安装 <a href="https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en">JetBrains Chrome 插件</a>以支持通过 Chrome 在 IntelliJ IDEA 中进行调试。<!--
+<h2 class="typo-header typo-h2" id="调试程序">调试程序</h2>
+<p class="typo-para"><code>此功能仅在旗舰版中支持。</code></p>
+<p class="typo-para">为了使用 IntelliJ IDEA 调试应用程序，我们需要执行两个步骤：</p>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">
+<p class="typo-para">安装 <a class="typo-link" href="https://chrome.google.com/webstore/detail/jetbrains-ide-support/hmhgeddbohgjknpmjagkdomcpobmllji?hl=en">JetBrains Chrome 插件</a>以支持通过 Chrome 在 IntelliJ IDEA 中进行调试。<!--
 -->这个插件对于使用 IntelliJ IDEA 开发的任意类型的 Web 应用程序都有用，而不仅仅是 Kotlin。</p>
 </li>
-<li>
-<p>配置 Kotlin 编译器，生成源码映射文件（source map），配置项可通过 <code>Preferences|Kotlin Compiler</code> 找到。</p>
+<li class="typo-list__item">
+<p class="typo-para">配置 Kotlin 编译器，生成源码映射文件（source map），配置项可通过 <code>Preferences|Kotlin Compiler</code> 找到。</p>
 </li>
 </ol>
-<p><img alt="SourceMaps" src="/assets/images/tutorials/javascript/getting-started-idea/compiler-options-sourcemaps.png"/></p>
-<p>完成后，我们只需右键单击 <code>index.html</code> 文件并选择 Debug 选项。这将启动 Chrome，然后代码会停在 IntelliJ IDEA 我们的代码中定义的断点处，<!--
+<p class="typo-para"><img alt="SourceMaps" class="typo-image" src="/assets/images/tutorials/javascript/getting-started-idea/compiler-options-sourcemaps.png"/></p>
+<p class="typo-para">完成后，我们只需右键单击 <code>index.html</code> 文件并选择 Debug 选项。这将启动 Chrome，然后代码会停在 IntelliJ IDEA 我们的代码中定义的断点处，<!--
 -->在这里我们可以对表达式进行求值，单步执行代码等。</p>
-<p><img alt="Debugger" src="/assets/images/tutorials/javascript/getting-started-idea/debugger.png"/></p>
-<p>你也可以使用标准的 Chrome 调试器调试 Kotlin 应用程序，只需要确保你已经生成了源码映射文件。</p>
-<h2 id="配置编译器选项">配置编译器选项</h2>
-<p>Kotlin 提供了一系列的编译器选项，它们也可以在 IntelliJ IDEA 中进行配置。除了刚刚介绍过的生成源码映射文件的选项，<!--
+<p class="typo-para"><img alt="Debugger" class="typo-image" src="/assets/images/tutorials/javascript/getting-started-idea/debugger.png"/></p>
+<p class="typo-para">你也可以使用标准的 Chrome 调试器调试 Kotlin 应用程序，只需要确保你已经生成了源码映射文件。</p>
+<h2 class="typo-header typo-h2" id="配置编译器选项">配置编译器选项</h2>
+<p class="typo-para">Kotlin 提供了一系列的编译器选项，它们也可以在 IntelliJ IDEA 中进行配置。除了刚刚介绍过的生成源码映射文件的选项，<!--
 -->我们还可以设置如下属性：</p>
-<ul>
-<li><strong>输出文件前缀</strong>：我们可以在编译器生成的输出文件前加上额外的 JavaScript 代码，为此，我们需要使用此选项指明我们想要包含的 JavaScript 文件的名称。</li>
-<li><strong>输出文件后缀</strong>：与上面相同，但是这个选项会把指定文件的内容附加到编译器输出的代码后面。</li>
-<li><strong>复制运行时库文件</strong>：指定我们希望将 <code>kotlin.js</code> 库输出到哪个子文件夹，默认情况下它是 <code>lib</code>，这就是为什么我们会在 HTML 中引用这个路径的原因。</li>
-<li><strong>模块类型</strong>：指定我们要遵循的模块标准，这将在<a href="../working-with-modules/working-with-modules.html">使用模块</a>教程中进行更深入的介绍。</li>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><strong class="type-strong">输出文件前缀</strong>：我们可以在编译器生成的输出文件前加上额外的 JavaScript 代码，为此，我们需要使用此选项指明我们想要包含的 JavaScript 文件的名称。</li>
+<li class="typo-list__item"><strong class="type-strong">输出文件后缀</strong>：与上面相同，但是这个选项会把指定文件的内容附加到编译器输出的代码后面。</li>
+<li class="typo-list__item"><strong class="type-strong">复制运行时库文件</strong>：指定我们希望将 <code>kotlin.js</code> 库输出到哪个子文件夹，默认情况下它是 <code>lib</code>，这就是为什么我们会在 HTML 中引用这个路径的原因。</li>
+<li class="typo-list__item"><strong class="type-strong">模块类型</strong>：指定我们要遵循的模块标准，这将在<a class="typo-link" href="../working-with-modules/working-with-modules.html">使用模块</a>教程中进行更深入的介绍。</li>
 </ul>
-<h2 id="小节">小节</h2>
-<p>在本教程中，我们已经了解了如何创建编译到 JavaScript 的 Kotlin 应用程序，调试它以及设置编译器选项。 在接下来的其他教程中，我们将介绍更深入的主题，例如与DOM交互等。</p>
+<h2 class="typo-header typo-h2" id="小节">小节</h2>
+<p class="typo-para">在本教程中，我们已经了解了如何创建编译到 JavaScript 的 Kotlin 应用程序，调试它以及设置编译器选项。 在接下来的其他教程中，我们将介绍更深入的主题，例如与DOM交互等。</p>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -975,10 +957,10 @@ Kotlin/JS projects with Gradle, see <a href="../setting-up.html">Setting up a Ko
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1045,7 +1027,7 @@ Kotlin/JS projects with Gradle, see <a href="../setting-up.html">Setting up a Ko
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/tutorial.js?&amp;v=8ee6bb15892f329fdb2d95d7245e0677"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/tutorial.js?&amp;v=d126368e2f171f6d5b11127b873d1854"></script>
 </body>
 </html>

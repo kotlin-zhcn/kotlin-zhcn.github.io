@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>使用 Gradle - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1386,11 +1369,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 id="使用-gradle">使用 Gradle</h1>
-<p>为了用 Gradle 构建 Kotlin 项目，需要<a href="#插件与版本">设置好 <em>kotlin-gradle</em> 插件</a>，<a href="#面向-jvm">将其应用</a>到你的项目中，并且<a href="#配置依赖">添加 <em>kotlin-stdlib</em> 依赖</a>。
-这些操作也可以在 IntelliJ IDEA 中通过调用 <strong>Project action</strong> 中的 <strong>Tools | Kotlin | Configure Kotlin</strong> 自动执行。</p>
-<h2 id="插件与版本">插件与版本</h2>
-<p>使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 应用 Kotlin Gradle 插件。
+<h1 class="typo-header typo-h1" id="使用-gradle">使用 Gradle</h1>
+<p class="typo-para">为了用 Gradle 构建 Kotlin 项目，需要<a class="typo-link" href="#插件与版本">设置好 <em>kotlin-gradle</em> 插件</a>，<a class="typo-link" href="#面向-jvm">将其应用</a>到你的项目中，并且<a class="typo-link" href="#配置依赖">添加 <em>kotlin-stdlib</em> 依赖</a>。
+这些操作也可以在 IntelliJ IDEA 中通过调用 <strong class="type-strong">Project action</strong> 中的 <strong class="type-strong">Tools | Kotlin | Configure Kotlin</strong> 自动执行。</p>
+<h2 class="typo-header typo-h2" id="插件与版本">插件与版本</h2>
+<p class="typo-para">使用 <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 应用 Kotlin Gradle 插件。
 Kotlin Gradle 插件 1.3.72 适用于 Gradle 4.9 及更高版本。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
@@ -1408,8 +1391,8 @@ Kotlin Gradle 插件 1.3.72 适用于 Gradle 4.9 及更高版本。</p>
 </code></pre>
 </div>
 </div>
-<p>需要将其中的占位符 <code>＜……＞</code> 替换为可在后续部分中找到的插件名之一。</p>
-<p>或者通过将依赖项 <code>kotlin-gradle-plugin</code> 添加到构建脚本类路径来应用插件：</p>
+<p class="typo-para">需要将其中的占位符 <code>＜……＞</code> 替换为可在后续部分中找到的插件名之一。</p>
+<p class="typo-para">或者通过将依赖项 <code>kotlin-gradle-plugin</code> 添加到构建脚本类路径来应用插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">buildscript {
@@ -1445,12 +1428,12 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>当通过 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 与 <a href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 使用 Kotlin Gradle 插件 1.1.1 及以上版本时，这不是必需的。</p>
-<h2 id="构建-kotlin-多平台项目">构建 Kotlin 多平台项目</h2>
-<p>使用 <code>kotlin-multiplatform</code> 插件构建<a href="multiplatform.html">多平台项目</a>在<!--
---><a href="building-mpp-with-gradle.html">以 Gradle 构建多平台项目</a>中详述。</p>
-<h2 id="面向-jvm">面向 JVM</h2>
-<p>如需面向 JVM 平台，请应用 Kotlin JVM 插件。自 Kotlin 1.1.1 起，可以使用 <a href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
+<p class="typo-para">当通过 <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 与 <a class="typo-link" href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 使用 Kotlin Gradle 插件 1.1.1 及以上版本时，这不是必需的。</p>
+<h2 class="typo-header typo-h2" id="构建-kotlin-多平台项目">构建 Kotlin 多平台项目</h2>
+<p class="typo-para">使用 <code>kotlin-multiplatform</code> 插件构建<a class="typo-link" href="multiplatform.html">多平台项目</a>在<!--
+--><a class="typo-link" href="building-mpp-with-gradle.html">以 Gradle 构建多平台项目</a>中详述。</p>
+<h2 class="typo-header typo-h2" id="面向-jvm">面向 JVM</h2>
+<p class="typo-para">如需面向 JVM 平台，请应用 Kotlin JVM 插件。自 Kotlin 1.1.1 起，可以使用 <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 来应用该插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1467,14 +1450,14 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>在这个代码块中的 <code>version</code> 应该是字面值，并且不能在其他构建脚本中应用。</p>
-<p>或者使用旧版 <code>apply plugin</code> 方式：</p>
+<p class="typo-para">在这个代码块中的 <code>version</code> 应该是字面值，并且不能在其他构建脚本中应用。</p>
+<p class="typo-para">或者使用旧版 <code>apply plugin</code> 方式：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">apply plugin: 'kotlin'
 </code></pre>
 </div>
-<p>不建议在 Gradle Kotlin DSL 中以 <code>apply</code> 的方式应用 Kotlin 插件。详见<a href="#使用-gradle-kotlin-dsl">下文</a>。</p>
-<p>Kotlin 源代码可以与同一个文件夹或不同文件夹中的 Java 源代码混用。默认约定是使用不同的文件夹：</p>
+<p class="typo-para">不建议在 Gradle Kotlin DSL 中以 <code>apply</code> 的方式应用 Kotlin 插件。详见<a class="typo-link" href="#使用-gradle-kotlin-dsl">下文</a>。</p>
+<p class="typo-para">Kotlin 源代码可以与同一个文件夹或不同文件夹中的 Java 源代码混用。默认约定是使用不同的文件夹：</p>
 <div auto-indent="false" class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">project
     - src
@@ -1483,7 +1466,7 @@ plugins {
             - java
 </code></pre>
 </div>
-<p>如果不使用默认约定，那么应该更新相应的 <em>sourceSets</em> 属性：</p>
+<p class="typo-para">如果不使用默认约定，那么应该更新相应的 <em>sourceSets</em> 属性：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">sourceSets {
@@ -1501,8 +1484,8 @@ plugins {
 </code></pre>
 </div>
 </div>
-<h2 id="面向-javascript">面向 JavaScript</h2>
-<p>当面向 JavaScript 时，须应用不同的插件：</p>
+<h2 class="typo-header typo-h2" id="面向-javascript">面向 JavaScript</h2>
+<p class="typo-para">当面向 JavaScript 时，须应用不同的插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
@@ -1519,7 +1502,7 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
+<p class="typo-para">这个插件只适用于 Kotlin 文件，因此建议将 Kotlin 和 Java 文件分开（如果是同一项目包含 Java 文件的情况）。与<!--
 -->面向 JVM 一样，如果不使用默认约定，需要使用 <em>sourceSets</em> 来指定源代码文件夹：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
@@ -1541,8 +1524,8 @@ plugins {
 </code></pre>
 </div>
 </div>
-<h2 id="面向-android">面向 Android</h2>
-<p>Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
+<h2 class="typo-header typo-h2" id="面向-android">面向 Android</h2>
+<p class="typo-para">Android 的 Gradle 模型与普通 Gradle 有点不同，所以如果我们要构建一个用 Kotlin 编写的 Android 项目，我们需要<!--
 -->用 <em>kotlin-android</em> 插件取代 <em>kotlin</em> 插件：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
@@ -1579,10 +1562,10 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>Kotlin Gradle 插件 1.3.72 适用于 Android Gradle 插件 3.0 及更高版本。</p>
-<p>不要忘记配置<a href="#配置依赖">标准库依赖关系</a>。</p>
-<h3 id="android-studio">Android Studio</h3>
-<p>如果使用 Android Studio，那么需要在 android 下添加以下内容：</p>
+<p class="typo-para">Kotlin Gradle 插件 1.3.72 适用于 Android Gradle 插件 3.0 及更高版本。</p>
+<p class="typo-para">不要忘记配置<a class="typo-link" href="#配置依赖">标准库依赖关系</a>。</p>
+<h3 class="typo-header typo-h3" id="android-studio">Android Studio</h3>
+<p class="typo-para">如果使用 Android Studio，那么需要在 android 下添加以下内容：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">android {
@@ -1605,9 +1588,9 @@ plugins {
 </code></pre>
 </div>
 </div>
-<p>这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 <code>src/main/java</code>。</p>
-<h2 id="配置依赖">配置依赖</h2>
-<p>除了上面显示的 <code>kotlin-gradle-plugin</code> 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
+<p class="typo-para">这让 Android Studio 知道该 kotlin 目录是源代码根目录，所以当项目模型加载到 IDE 中时，它会被正确识别。或者，你可以将 Kotlin 类放在 Java 源代码目录中，该目录通常位于 <code>src/main/java</code>。</p>
+<h2 class="typo-header typo-h2" id="配置依赖">配置依赖</h2>
+<p class="typo-para">除了上面显示的 <code>kotlin-gradle-plugin</code> 依赖之外，还需要添加 Kotlin 标准库的依赖：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">repositories {
@@ -1632,7 +1615,7 @@ dependencies {
 </code></pre>
 </div>
 </div>
-<p>Kotlin 标准库 <code>kotlin-stdlib</code> 面向 Java 6 及以上版本。还有扩展版本的标准库，增加了对 JDK 7 与 JDK 8 中某些特性支持。如需使用这些版本，请添加<!--
+<p class="typo-para">Kotlin 标准库 <code>kotlin-stdlib</code> 面向 Java 6 及以上版本。还有扩展版本的标准库，增加了对 JDK 7 与 JDK 8 中某些特性支持。如需使用这些版本，请添加<!--
 -->下列依赖之一而不是 <code>kotlin-stdlib</code>：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
@@ -1648,8 +1631,8 @@ implementation(kotlin("stdlib-jdk8"))
 </code></pre>
 </div>
 </div>
-<p>在 Kotlin 1.1.x 中，请使用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
-<p>如果是面向 JavaScript，请使用依赖项 <code>stdlib-js</code> 。</p>
+<p class="typo-para">在 Kotlin 1.1.x 中，请使用 <code>kotlin-stdlib-jre7</code> 与 <code>kotlin-stdlib-jre8</code>。</p>
+<p class="typo-para">如果是面向 JavaScript，请使用依赖项 <code>stdlib-js</code> 。</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">implementation "org.jetbrains.kotlin:kotlin-stdlib-js"
@@ -1662,7 +1645,7 @@ implementation(kotlin("stdlib-jdk8"))
 </code></pre>
 </div>
 </div>
-<p>如果项目中用到了 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a>或者测试设施，还需要添加相应的依赖项：</p>
+<p class="typo-para">如果项目中用到了 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect.full/index.html">Kotlin 反射</a>或者测试设施，还需要添加相应的依赖项：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">implementation "org.jetbrains.kotlin:kotlin-reflect"
@@ -1679,7 +1662,7 @@ testImplementation(kotlin("test-junit"))
 </code></pre>
 </div>
 </div>
-<p>自 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用<!--
+<p class="typo-para">自 Kotlin 1.1.2 起，使用 <code>org.jetbrains.kotlin</code> group 的依赖项默认使用<!--
 -->从已应用的插件获得的版本来解析。你可以用完整的依赖关系助记符：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
@@ -1693,32 +1676,32 @@ testImplementation(kotlin("test-junit"))
 </code></pre>
 </div>
 </div>
-<h2 id="注解处理">注解处理</h2>
-<p>Kotlin 通过 <em>Kotlin 注解处理工具</em>（<code>kapt</code>）支持注解处理。kapt 同 Gradle 合用的用法已在 <a href="kapt.html">kapt 页</a>描述。</p>
-<h2 id="增量编译">增量编译</h2>
-<p>Kotlin Gradle 插件支持支持增量编译。增量编译会跟踪多次构建之间源文件的变更，因此只会编译这些变更所影响的文件。</p>
-<p>Kotlin/JVM 与 Kotlin/JS 项目均支持增量编译。对于 Kotlin 1.1.1 起的 Kotlin/JVM 项目以及自 Kotlin 1.3.20 起的 Kotlin/JS 项目默认启用增量编译。</p>
-<p>有几种方法可以覆盖默认设置：</p>
-<ul>
-<li>
-<p>在 Gradle 配置文件中：在 <code>gradle.properties</code> 或者 <code>local.properties</code> 中，对于 Kotlin/JVM 项目添加一行 <code>kotlin.incremental=＜值＞</code>，对于 Kotlin/JS 项目添加一行 <code>kotlin.incremental.js=＜值＞</code>。<code>＜值＞</code> 是一个反应增量编译用法的布尔值。</p>
+<h2 class="typo-header typo-h2" id="注解处理">注解处理</h2>
+<p class="typo-para">Kotlin 通过 <em>Kotlin 注解处理工具</em>（<code>kapt</code>）支持注解处理。kapt 同 Gradle 合用的用法已在 <a class="typo-link" href="kapt.html">kapt 页</a>描述。</p>
+<h2 class="typo-header typo-h2" id="增量编译">增量编译</h2>
+<p class="typo-para">Kotlin Gradle 插件支持支持增量编译。增量编译会跟踪多次构建之间源文件的变更，因此只会编译这些变更所影响的文件。</p>
+<p class="typo-para">Kotlin/JVM 与 Kotlin/JS 项目均支持增量编译。对于 Kotlin 1.1.1 起的 Kotlin/JVM 项目以及自 Kotlin 1.3.20 起的 Kotlin/JS 项目默认启用增量编译。</p>
+<p class="typo-para">有几种方法可以覆盖默认设置：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">在 Gradle 配置文件中：在 <code>gradle.properties</code> 或者 <code>local.properties</code> 中，对于 Kotlin/JVM 项目添加一行 <code>kotlin.incremental=＜值＞</code>，对于 Kotlin/JS 项目添加一行 <code>kotlin.incremental.js=＜值＞</code>。<code>＜值＞</code> 是一个反应增量编译用法的布尔值。</p>
 </li>
-<li>
-<p>在 Gradle 命令行参数中：添加带有反应增量编译用法的布尔值的 <code>-Pkotlin.incremental</code> or <code>-Pkotlin.incremental.js</code> 参数。请注意，这样用法中，该参数必须添加到后续每个子构建，并且任何具有禁用增量编译的构建将使增量缓存失效。</p>
+<li class="typo-list__item">
+<p class="typo-para">在 Gradle 命令行参数中：添加带有反应增量编译用法的布尔值的 <code>-Pkotlin.incremental</code> or <code>-Pkotlin.incremental.js</code> 参数。请注意，这样用法中，该参数必须添加到后续每个子构建，并且任何具有禁用增量编译的构建将使增量缓存失效。</p>
 </li>
 </ul>
-<p>请注意，任何情况下首次构建都不会是增量的。</p>
-<h2 id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
-<p>Kotlin 插件支持 <a href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
-<p>如需禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
-<p>如果使用 <a href="kapt.html">kapt</a>，请注意默认情况下不会缓存注解处理任务。不过，可以手动为它们启用缓存。详见 <a href="kapt.html#gradle-构建缓存支持自-1220-起">kapt 页</a>。</p>
-<h2 id="编译器选项">编译器选项</h2>
-<p>要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
-<p>当面向 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于<!--
+<p class="typo-para">请注意，任何情况下首次构建都不会是增量的。</p>
+<h2 class="typo-header typo-h2" id="gradle-构建缓存支持自-1220-起">Gradle 构建缓存支持（自 1.2.20 起）</h2>
+<p class="typo-para">Kotlin 插件支持 <a class="typo-link" href="https://guides.gradle.org/using-build-cache/">Gradle 构建缓存</a>（需要 Gradle 4.3 及以上版本；低版本则禁用缓存）。</p>
+<p class="typo-para">如需禁用所有 Kotlin 任务的缓存，请将系统属性标志 <code>kotlin.caching.enabled</code> 设置为 <code>false</code>（运行构建带上参数 <code>-Dkotlin.caching.enabled=false</code>）。</p>
+<p class="typo-para">如果使用 <a class="typo-link" href="kapt.html">kapt</a>，请注意默认情况下不会缓存注解处理任务。不过，可以手动为它们启用缓存。详见 <a class="typo-link" href="kapt.html#gradle-构建缓存支持自-1220-起">kapt 页</a>。</p>
+<h2 class="typo-header typo-h2" id="编译器选项">编译器选项</h2>
+<p class="typo-para">要指定附加的编译选项，请使用 Kotlin 编译任务的 <code>kotlinOptions</code> 属性。</p>
+<p class="typo-para">当面向 JVM 时，对于生产代码这些任务称为 <code>compileKotlin</code> 而对于<!--
 -->测试代码称为 <code>compileTestKotlin</code>。对于自定义源文件集（source set）这些任务称呼取决于 <code>compile＜Name＞Kotlin</code> 模式。</p>
-<p>Android 项目中的任务名称包含<a href="https://developer.android.com/studio/build/build-variants.html">构建变体</a> 名称，并遵循 <code>compile&lt;BuildVariant&gt;Kotlin</code> 的模式，例如 <code>compileDebugKotlin</code>、 <code>compileReleaseUnitTestKotlin</code>。</p>
-<p>当面向 JavaScript 时，这些任务分别称为 <code>compileKotlin2Js</code> 与 <code>compileTestKotlin2Js</code>，以及对于自定义源文件集称为 <code>compile＜Name＞Kotlin2Js</code>。</p>
-<p>要配置单个任务，请使用其名称。示例：</p>
+<p class="typo-para">Android 项目中的任务名称包含<a class="typo-link" href="https://developer.android.com/studio/build/build-variants.html">构建变体</a> 名称，并遵循 <code>compile&lt;BuildVariant&gt;Kotlin</code> 的模式，例如 <code>compileDebugKotlin</code>、 <code>compileReleaseUnitTestKotlin</code>。</p>
+<p class="typo-para">当面向 JavaScript 时，这些任务分别称为 <code>compileKotlin2Js</code> 与 <code>compileTestKotlin2Js</code>，以及对于自定义源文件集称为 <code>compile＜Name＞Kotlin2Js</code>。</p>
+<p class="typo-para">要配置单个任务，请使用其名称。示例：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">compileKotlin {
@@ -1746,9 +1729,9 @@ compileKotlin.kotlinOptions.suppressWarnings = true
 </code></pre>
 </div>
 </div>
-<p>请注意，对于 Gradle Kotlin DSL，首先从项目的 <code>tasks</code> 中获取任务。</p>
-<p>相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCompileCommon</code>。</p>
-<p>也可以在项目中配置所有 Kotlin 编译任务：</p>
+<p class="typo-para">请注意，对于 Gradle Kotlin DSL，首先从项目的 <code>tasks</code> 中获取任务。</p>
+<p class="typo-para">相应地，为 JS 与 Common 目标使用类型 <code>Kotlin2JsCompile</code> 与 <code>KotlinCompileCommon</code>。</p>
+<p class="typo-para">也可以在项目中配置所有 Kotlin 编译任务：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -1767,8 +1750,8 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </code></pre>
 </div>
 </div>
-<p>对于 Gradle 任务的完整选项列表如下：</p>
-<h3 id="jvmjs-与-js-dce-的公共属性">JVM、JS 与 JS DCE 的公共属性</h3>
+<p class="typo-para">对于 Gradle 任务的完整选项列表如下：</p>
+<h3 class="typo-header typo-h3" id="jvmjs-与-js-dce-的公共属性">JVM、JS 与 JS DCE 的公共属性</h3>
 <table>
 <thead>
 <tr>
@@ -1805,7 +1788,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="jvm-与-js-的公共属性">JVM 与 JS 的公共属性</h3>
+<h3 class="typo-header typo-h3" id="jvm-与-js-的公共属性">JVM 与 JS 的公共属性</h3>
 <table>
 <thead>
 <tr>
@@ -1830,7 +1813,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="jvm-特有的属性">JVM 特有的属性</h3>
+<h3 class="typo-header typo-h3" id="jvm-特有的属性">JVM 特有的属性</h3>
 <table>
 <thead>
 <tr>
@@ -1879,7 +1862,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h3 id="js-特有的属性">JS 特有的属性</h3>
+<h3 class="typo-header typo-h3" id="js-特有的属性">JS 特有的属性</h3>
 <table>
 <thead>
 <tr>
@@ -1958,28 +1941,27 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 </tbody>
 </table>
-<h2 id="生成文档">生成文档</h2>
-<p>要生成 Kotlin 项目的文档，请使用 <a href="https://github.com/Kotlin/dokka">Dokka</a>；
-相关配置说明请参见 <a href="https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin">Dokka README</a>
+<h2 class="typo-header typo-h2" id="生成文档">生成文档</h2>
+<p class="typo-para">要生成 Kotlin 项目的文档，请使用 <a class="typo-link" href="https://github.com/Kotlin/dokka">Dokka</a>；
+相关配置说明请参见 <a class="typo-link" href="https://github.com/Kotlin/dokka/blob/master/README.md#using-the-maven-plugin">Dokka README</a>
 。Dokka 支持混合语言项目，并且可以生成多种格式的输出
 ，包括标准 JavaDoc。</p>
-<h2 id="osgi">OSGi</h2>
-<p>关于 OSGi 支持请参见 <a href="kotlin-osgi.html">Kotlin OSGi 页</a>。</p>
-<h2 id="使用-gradle-kotlin-dsl">使用 Gradle Kotlin DSL</h2>
-<p>使用 <a href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 时，请使用 <code>plugins { …… }</code> 块应用 Kotlin 插件。如果使用 <code>apply { plugin(……) }</code> 来应用的话，可能会遇到未解析的到由 Gradle Kotlin DSL 所生成扩展的引用问题。为了解决这个问题，可以注释掉出错的用法，运行 Gradle 任务 <code>kotlinDslAccessorsSnapshot</code>，然后解除该用法注释并重新运行构建或者重新将项目导入到 IDE 中。</p>
-<h2 id="示例">示例</h2>
-<p>以下示例显示了配置 Gradle 插件的不同可能性：</p>
-<ul>
-<li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/hello-world">Kotlin</a></li>
-<li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world">混用 Java 与 Kotlin</a></li>
-<li><a href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-mixed-java-kotlin-project">Android</a></li>
-<li><a href="https://github.com/JetBrains/kotlin/tree/master/libraries/tools/kotlin-gradle-plugin-integration-tests/src/test/resources/testProject/kotlin2JsProject">JavaScript</a></li>
+<h2 class="typo-header typo-h2" id="osgi">OSGi</h2>
+<p class="typo-para">关于 OSGi 支持请参见 <a class="typo-link" href="kotlin-osgi.html">Kotlin OSGi 页</a>。</p>
+<h2 class="typo-header typo-h2" id="使用-gradle-kotlin-dsl">使用 Gradle Kotlin DSL</h2>
+<p class="typo-para">使用 <a class="typo-link" href="https://github.com/gradle/kotlin-dsl">Gradle Kotlin DSL</a> 时，请使用 <code>plugins { …… }</code> 块应用 Kotlin 插件。如果使用 <code>apply { plugin(……) }</code> 来应用的话，可能会遇到未解析的到由 Gradle Kotlin DSL 所生成扩展的引用问题。为了解决这个问题，可以注释掉出错的用法，运行 Gradle 任务 <code>kotlinDslAccessorsSnapshot</code>，然后解除该用法注释并重新运行构建或者重新将项目导入到 IDE 中。</p>
+<h2 class="typo-header typo-h2" id="示例">示例</h2>
+<p class="typo-para">以下示例显示了配置 Gradle 插件的不同可能性：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/hello-world">Kotlin</a></li>
+<li class="typo-list__item"><a class="typo-link" href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/mixed-java-kotlin-hello-world">混用 Java 与 Kotlin</a></li>
+<li class="typo-list__item"><a class="typo-link" href="https://github.com/JetBrains/kotlin-examples/tree/master/gradle/android-mixed-java-kotlin-project">Android</a></li>
+<li class="typo-list__item"><a class="typo-link" href="https://github.com/JetBrains/kotlin/tree/master/libraries/tools/kotlin-gradle-plugin-integration-tests/src/test/resources/testProject/kotlin2JsProject">JavaScript</a></li>
 </ul>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1988,10 +1970,10 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -2058,7 +2040,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

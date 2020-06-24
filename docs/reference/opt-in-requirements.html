@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Opt-in Requirements - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1386,28 +1369,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 id="选择加入的要求">选择加入的要求</h1>
+<h1 class="typo-header typo-h1" id="选择加入的要求">选择加入的要求</h1>
 <blockquote class="note">
-<p>要求选择加入的注解 <code>@RequiresOptIn</code> 与 <code>@OptIn</code> 是 <em>实验性的</em>。 
-请参阅<a href="#experimental-status-of-the-opt-in-requirements">以下</a>用法详细信息。</p>
+<p class="typo-para">要求选择加入的注解 <code>@RequiresOptIn</code> 与 <code>@OptIn</code> 是 <em>实验性的</em>。 
+请参阅<a class="typo-link" href="#experimental-status-of-the-opt-in-requirements">以下</a>用法详细信息。</p>
 </blockquote>
 <blockquote class="note">
-<p>1.3.70 中引入了 <code>@RequireOptIn</code> 与 <code>@OptIn</code> 注解以取代先前使用的 <code>@Experimental</code> 与 <code>@UseExperimental</code>；
+<p class="typo-para">1.3.70 中引入了 <code>@RequireOptIn</code> 与 <code>@OptIn</code> 注解以取代先前使用的 <code>@Experimental</code> 与 <code>@UseExperimental</code>；
 同时 <code>-Xopt-in</code> 编译器选项也取代了 <code>-Xuse-experimental</code>。</p>
 </blockquote>
-<p>Kotlin 标准库提供了一种机制，用于要求并明确同意使用 API 的某些元素。
+<p class="typo-para">Kotlin 标准库提供了一种机制，用于要求并明确同意使用 API 的某些元素。
 通过这种机制，库开发人员可以将使用其 API 需要选择加入的特定条件告知用户，
 例如，如果某个 API 处于实验状态，并且将来可能会更改。</p>
-<p>为了避免潜在的问题，编译器会向此类 API 的用户发出警告，
+<p class="typo-para">为了避免潜在的问题，编译器会向此类 API 的用户发出警告，
 告知他们这些条件，并要求他们在使用 API 之前选择加入。</p>
-<h2 id="选择使用-api">选择使用 API</h2>
-<p>如果库作者将一个库的 API 声明标记为<a href="#requiring-opt-in-for-api"><em>要求选择加入</em></a>
+<h2 class="typo-header typo-h2" id="选择使用-api">选择使用 API</h2>
+<p class="typo-para">如果库作者将一个库的 API 声明标记为<a class="typo-link" href="#requiring-opt-in-for-api"><em>要求选择加入</em></a>
 你应该明确同意在代码中使用它。
 有多种方式可以选择加入使用此类 API，所有方法均不受技术限制。
 你可以自由选择最适合自己的方式。</p>
-<h3 id="传播选择加入">传播选择加入</h3>
-<p>在使用供第三方（库）使用的 API 时，你也可以把其选择加入的要求传播到自己的 API。
-为此，请在你的 API 主体声明中添加注解 <a href="#opt-in-requirement-annotations"><em>要求选择加入的注解</em></a>。
+<h3 class="typo-header typo-h3" id="传播选择加入">传播选择加入</h3>
+<p class="typo-para">在使用供第三方（库）使用的 API 时，你也可以把其选择加入的要求传播到自己的 API。
+为此，请在你的 API 主体声明中添加注解 <a class="typo-link" href="#opt-in-requirement-annotations"><em>要求选择加入的注解</em></a>。
 这可以让你使用带有此注解的 API 元素。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 库代码
@@ -1438,13 +1421,13 @@ fun displayDate() {
 }
 </code></pre>
 </div>
-<p>如本例所示，带注释的函数看起来是 <code>@MyDateTime</code> API 的一部分。
+<p class="typo-para">如本例所示，带注释的函数看起来是 <code>@MyDateTime</code> API 的一部分。
 因此，这种选择加入会将选择加入的要求传播到客户端代码；其客户将看到相同的警告消息，
 并且也必须同意。 
 要使用多个需要选择加入的API，请在声明中标记所有需要选择加入的注解。</p>
-<h3 id="非传播的用法">非传播的用法</h3>
-<p>在不公开其自身API的模块（例如应用程序）中，你可以选择使用 API 而无需将选择加入的要求传播到代码中。
-这种情况下，请使用 <a href="/api/latest/jvm/stdlib/kotlin/-opt-in/index.html">@OptIn</a> 标记你的声明，
+<h3 class="typo-header typo-h3" id="非传播的用法">非传播的用法</h3>
+<p class="typo-para">在不公开其自身API的模块（例如应用程序）中，你可以选择使用 API 而无需将选择加入的要求传播到代码中。
+这种情况下，请使用 <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin/-opt-in/index.html">@OptIn</a> 标记你的声明，
 并以要求选择加入的注解作为参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 库代码
@@ -1470,20 +1453,20 @@ fun displayDate() {
 }
 </code></pre>
 </div>
-<p>当有人调用函数 <code>getDate()</code> 时，不会通知他们函数主体中使用的选择加入 API 的要求。</p>
-<p>要在一个文件的所有函数和类中使用要求选择加入的 API，请在文件的顶部，
+<p class="typo-para">当有人调用函数 <code>getDate()</code> 时，不会通知他们函数主体中使用的选择加入 API 的要求。</p>
+<p class="typo-para">要在一个文件的所有函数和类中使用要求选择加入的 API，请在文件的顶部，
 文件包说明和导入声明前添加文件级注释 <code>@file:OptIn</code>。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin"> //客户端代码
  @file:OptIn(MyDateTime::class)
 </code></pre>
 </div>
-<h3 id="模块范围的选择加入">模块范围的选择加入</h3>
-<p>如果你不想在使用要求选择加入 API 的每个地方都添加注解，则可以为整个模块选择加入这些 API。
+<h3 class="typo-header typo-h3" id="模块范围的选择加入">模块范围的选择加入</h3>
+<p class="typo-para">如果你不想在使用要求选择加入 API 的每个地方都添加注解，则可以为整个模块选择加入这些 API。
 要选择在模块中使用 API，请使用参数 <code>-Xopt-in</code> 进行编译，
 使用 <code>-Xopt-in = org.mylibrary.OptInAnnotation</code> 指定该 API 使用的要求选择加入注解的标准名称。
 使用此参数进行编译的效果与模块中每个声明都有注解 <code>@OptIn(OptInAnnotation::class)</code> 的效果相同。</p>
-<p>如果使用 Gradle 构建模块，可以添加如下参数：</p>
+<p class="typo-para">如果使用 Gradle 构建模块，可以添加如下参数：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">compileKotlin {
@@ -1502,7 +1485,7 @@ fun displayDate() {
 </code></pre>
 </div>
 </div>
-<p>如果你的 Gradle 模块是多平台模块，请使用 <code>useExperimentalAnnotation</code> 方法：</p>
+<p class="typo-para">如果你的 Gradle 模块是多平台模块，请使用 <code>useExperimentalAnnotation</code> 方法：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
 <pre><code class="language-groovy">sourceSets {
@@ -1525,7 +1508,7 @@ fun displayDate() {
 </code></pre>
 </div>
 </div>
-<p>对于 Maven，它将是：</p>
+<p class="typo-para">对于 Maven，它将是：</p>
 <div class="sample" data-highlight-only="" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;build&gt;
     &lt;plugins&gt;
@@ -1544,11 +1527,11 @@ fun displayDate() {
 &lt;/build&gt;
 </code></pre>
 </div>
-<p>要在模块级别选择加入多个 API，请为每个要求选择加入的 API 添加以上描述的参数之一。</p>
-<h2 id="要求选择加入-api">要求选择加入 API</h2>
-<h3 id="要求选择加入的注解">要求选择加入的注解</h3>
-<p>如果想获得使用者使用你的模块 API 的明确同意，请创建一个注解类，作为_要求选择加入的注解_。
-这个类必须使用 <a href="/api/latest/jvm/stdlib/kotlin/-requires-opt-in/index.html">@RequiresOptIn</a> 注解：</p>
+<p class="typo-para">要在模块级别选择加入多个 API，请为每个要求选择加入的 API 添加以上描述的参数之一。</p>
+<h2 class="typo-header typo-h2" id="要求选择加入-api">要求选择加入 API</h2>
+<h3 class="typo-header typo-h3" id="要求选择加入的注解">要求选择加入的注解</h3>
+<p class="typo-para">如果想获得使用者使用你的模块 API 的明确同意，请创建一个注解类，作为_要求选择加入的注解_。
+这个类必须使用 <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin/-requires-opt-in/index.html">@RequiresOptIn</a> 注解：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@RequiresOptIn
 @Retention(AnnotationRetention.BINARY)
@@ -1556,19 +1539,19 @@ fun displayDate() {
 annotation class MyDateTime
 </code></pre>
 </div>
-<p>要求选择加入的注解必须满足以下几个要求：</p>
-<ul>
-<li><code>BINARY</code> <a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-retention/index.html">retention</a></li>
-<li><a href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/index.html">targets</a>中没有 <code>EXPRESSION</code> 与 <code>FILE</code></li>
-<li>没有参数</li>
+<p class="typo-para">要求选择加入的注解必须满足以下几个要求：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>BINARY</code> <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-retention/index.html">retention</a></li>
+<li class="typo-list__item"><a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.annotation/-annotation-target/index.html">targets</a>中没有 <code>EXPRESSION</code> 与 <code>FILE</code></li>
+<li class="typo-list__item">没有参数</li>
 </ul>
-<p>选择加入的要求可以具有以下两个严格<a href="/api/latest/jvm/stdlib/kotlin/-requires-opt-in/-level/index.html">级别</a>之一：</p>
-<ul>
-<li><code>RequiresOptIn.Level.ERROR</code>。选择加入是强制性的。 否则，使用标记 API 的代码将无法编译。 默认级别。</li>
-<li><code>RequiresOptIn.Level.WARNING</code>。选择加入不是强制性的，而是建议使用的。 没有它，编译器会发出警告。</li>
+<p class="typo-para">选择加入的要求可以具有以下两个严格<a class="typo-link" href="/api/latest/jvm/stdlib/kotlin/-requires-opt-in/-level/index.html">级别</a>之一：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>RequiresOptIn.Level.ERROR</code>。选择加入是强制性的。 否则，使用标记 API 的代码将无法编译。 默认级别。</li>
+<li class="typo-list__item"><code>RequiresOptIn.Level.WARNING</code>。选择加入不是强制性的，而是建议使用的。 没有它，编译器会发出警告。</li>
 </ul>
-<p>要设置所需的级别，请指定 <code>@RequiresOptIn</code> 注解的 <code>level</code> 参数。</p>
-<p>另外，你可以提供一个 <code>message</code> 来通知用户有关使用该 API 的特定条件。
+<p class="typo-para">要设置所需的级别，请指定 <code>@RequiresOptIn</code> 注解的 <code>level</code> 参数。</p>
+<p class="typo-para">另外，你可以提供一个 <code>message</code> 来通知用户有关使用该 API 的特定条件。
 编译器会将其显示给使用该 API 但未选择加入的用户。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@RequiresOptIn(level = RequiresOptIn.Level.WARNING, message = "This API is experimental. It can be incompatibly changed in the future.")
@@ -1577,11 +1560,11 @@ annotation class MyDateTime
 annotation class ExperimentalDateTime
 </code></pre>
 </div>
-<p>如果你发布了多个需要选择加入的独立功能，请为每个功能声明一个注解。
+<p class="typo-para">如果你发布了多个需要选择加入的独立功能，请为每个功能声明一个注解。
 这使你的用户可以更安全地使用 API：他们只能使用其明确接受的功能。
 这也使你可以独立地从功能中删除选择加入的要求。</p>
-<h3 id="标记-api-元素">标记 API 元素</h3>
-<p>要在使用 API 时要求选择加入，请给它的声明添加要求选择加入的注解。</p>
+<h3 class="typo-header typo-h3" id="标记-api-元素">标记 API 元素</h3>
+<p class="typo-para">要在使用 API 时要求选择加入，请给它的声明添加要求选择加入的注解。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@MyDateTime
 class DateProvider
@@ -1590,14 +1573,14 @@ class DateProvider
 fun getTime(): Time {}
 </code></pre>
 </div>
-<h2 id="实验-api-的选择加入要求">实验 API 的选择加入要求</h2>
-<p>如果要求选择加入实验状态的特性，请仔细处理 API 由实验状态到稳定状态的转换，
+<h2 class="typo-header typo-h2" id="实验-api-的选择加入要求">实验 API 的选择加入要求</h2>
+<p class="typo-para">如果要求选择加入实验状态的特性，请仔细处理 API 由实验状态到稳定状态的转换，
 以避免破坏客户端代码。</p>
-<p>API 结束实验并以稳定状态发布后，请从声明中删除其要求选择加入的注解。
+<p class="typo-para">API 结束实验并以稳定状态发布后，请从声明中删除其要求选择加入的注解。
 客户端将可以不受限制地使用它们。但是，你应该将注解类留在模块中，以便<!--
 -->与现有的客户端代码保持兼容。</p>
-<p>为了让 API 用户相应地更新其模块（从代码中删除注解并重新编译），
-请将注解标记为 <a href="/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a>
+<p class="typo-para">为了让 API 用户相应地更新其模块（从代码中删除注解并重新编译），
+请将注解标记为 <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin/-deprecated/index.html"><code>@Deprecated</code></a>
 并在弃用 message 中提供说明。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@Deprecated("This opt-in requirement is not used anymore. Remove its usages from your code.")
@@ -1605,18 +1588,17 @@ fun getTime(): Time {}
 annotation class ExperimentalDateTime
 </code></pre>
 </div>
-<h2 id="选择加入要求的实验状态">选择加入要求的实验状态</h2>
-<p>选择加入要求的机制在 Kotlin 1.3 中是实验性的。
+<h2 class="typo-header typo-h2" id="选择加入要求的实验状态">选择加入要求的实验状态</h2>
+<p class="typo-para">选择加入要求的机制在 Kotlin 1.3 中是实验性的。
 这意味着在将来的版本中，可能会以不兼容的方式进行更改。</p>
-<p>为了让使用注解 <code>@OptIn</code> 和 <code>@RequiresOptIn</code> 的用户了解其实验状态，
+<p class="typo-para">为了让使用注解 <code>@OptIn</code> 和 <code>@RequiresOptIn</code> 的用户了解其实验状态，
 编译器会在编译代码时发出警告：</p>
-<p><code>This class can only be used with the compiler argument '-Xopt-in=kotlin.RequiresOptIn'</code></p>
-<p>要移除警告，请添加编译器参数 <code>-Xopt-in=kotlin.RequiresOptIn</code>。</p>
+<p class="typo-para"><code>This class can only be used with the compiler argument '-Xopt-in=kotlin.RequiresOptIn'</code></p>
+<p class="typo-para">要移除警告，请添加编译器参数 <code>-Xopt-in=kotlin.RequiresOptIn</code>。</p>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1625,10 +1607,10 @@ annotation class ExperimentalDateTime
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1695,7 +1677,7 @@ annotation class ExperimentalDateTime
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/community.css?&amp;v=141e2b525844ee8f2264d7d8b5776d4f">
+<!-- Social Media tag Ends -->
 
 
-    <title>社区 - Kotlin 语言中文站</title>
+<link rel="stylesheet" href="/_assets/styles-v2.css?&amp;v=9f7da61ea694fc8c22f9ee183b180376">    <link rel="stylesheet" href="/_assets/community.css?&amp;v=dec8a2732fad9e7de6e7518da2dfe8d2">
+
+
+    <title>Community</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class="page__community page-restyled">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,59 +101,37 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/community/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                社区概述
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/community/">概述</a>
+                        <a class="kto-tabs__item" href="/user-groups/user-group-list.html">用户群组</a>
+                        <a class="kto-tabs__item" href="/community/events.html">活动</a>
+                        <a class="kto-tabs__item" href="/community/talks.html">会谈与演讲者</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/user-groups/user-group-list.html" class="nav-item">
-                            <span class="nav-item-text">
-                                用户群组
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/community/kotlin-nights.html" class="nav-item">
-                            <span class="nav-item-text">
-                                Kotlin 之夜
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/community/talks.html" class="nav-item">
-                            <span class="nav-item-text">
-                                会谈
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
-    <article role="main" class="page-content">
-        <h1 id="were-all-kotlin">We're all Kotlin</h1>
+    <article role="main" class="page-content page-content_next">
+        <h1 class="kto-header kto-header_size_l" id="were-all-kotlin">Get involved in the community!</h1>
         <p>
-            Every day there is more and more activity around Kotlin, and we want to help foster and grow the community
-            in any way we can. Here you can find online resources, as well as offline events and talks in your area.
-            And if you can't find one, create one. We're here to help!
-
+            Each day brings more activity and excitement related to Kotlin, and we want to support the community and help it grow in any way we can. Here you can find online resources and information about activities in your area.
         </p>
 
-        <h2 id="kotlin-real-life-activities">Kotlin Real-life Activities</h2>
+        <div class="page-community-panels page-community__panels">
+            <a href="/community/user-groups.html" target="_blank"
+               class="page-community-panels__item page-community-panels__item_type_makethkug">
+                <p class="page-community-panels__para">Join Kotlin User Groups movement</p>
+            </a>
+            <a href="/community/events.html"
+               class="page-community-panels__item page-community-panels__item_type_events">
+                <p class="page-community-panels__para">Find inspiration at a Kotlin event or host one yourself</p>
+            </a>
+            <a href="/contribute.html"
+               class="page-community-panels__item page-community-panels__item_type_contribution">
+                <p class="page-community-panels__para">Contribute to the language and ecosystem</p>
+            </a>
+        </div>
 
-        <ol>
-            <li><strong>Local Kotlin User Groups</strong> are a place to share experience between Kotlin programmers
-                and to get newcomers excited about the language. Successful user groups typically hold regular meetings.
-            </li>
-            <li><strong>Kotlin Nights</strong> are one-off events that usually include 3-4 talks on Kotlin.
-                The talks should be dedicated to technology, either to Kotlin or to some other compatible approaches,
-                and not be focused on marketing, sales or product promotion.
-            </li>
-        </ol>
-
-        <h2 id="kotlin-online-resources">Kotlin Online Resources</h2>
+        <h2 class="kto-header kto-header_size_m" id="kotlin-online-resources">Keep in touch</h2>
         <div>
             <div class="all-speak-kotlin">
                 <div class="all-speak-kotlin_links _left">
@@ -166,7 +143,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                         <div class="all-speak-kotlin_link _reddit" data-svg-id="reddit">
-        <a href="//www.reddit.com/r/Kotlin/" class="all-speak-kotlin_link-button">
+        <a href="https://www.reddit.com/r/Kotlin/" class="all-speak-kotlin_link-button">
             <span>Reddit</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
@@ -177,7 +154,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span>Slack</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
-            <div class="all-speak-kotlin_link-comment">get invite <a href="http://slack.kotlinlang.org/">here</a></div>
+            <div class="all-speak-kotlin_link-comment">get invite <a href="https://surveys.jetbrains.com/s3/kotlin-slack-sign-up">here</a></div>
     </div>
 
                         <div class="all-speak-kotlin_link _linkedin" data-svg-id="linkedin">
@@ -199,28 +176,28 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </div>
 
                         <div class="all-speak-kotlin_link _kotlin-forum" data-svg-id="kotlin_forum">
-        <a href="//discuss.kotlinlang.org/" class="all-speak-kotlin_link-button">
+        <a href="https://discuss.kotlinlang.org/" class="all-speak-kotlin_link-button">
             <span>Kotlin Forum</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
     </div>
 
                         <div class="all-speak-kotlin_link _stackoverflow" data-svg-id="stackoverflow">
-        <a href="//stackoverflow.com/questions/tagged/kotlin" class="all-speak-kotlin_link-button">
+        <a href="https://stackoverflow.com/questions/tagged/kotlin" class="all-speak-kotlin_link-button">
             <span>Stack Overflow</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
     </div>
 
                         <div class="all-speak-kotlin_link _twitter" data-svg-id="twitter">
-        <a href="//twitter.com/kotlin" class="all-speak-kotlin_link-button">
+        <a href="https://twitter.com/kotlin" class="all-speak-kotlin_link-button">
             <span>Twitter</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
     </div>
 
                         <div class="all-speak-kotlin_link _youtrack" data-svg-id="youtrack">
-        <a href="//youtrack.jetbrains.com/issues/KT" class="all-speak-kotlin_link-button">
+        <a href="https://youtrack.jetbrains.com/issues/KT" class="all-speak-kotlin_link-button">
             <span>Issue Tracker</span>
             <div class="all-speak-kotlin_link-pointer"></div>
         </a>
@@ -229,16 +206,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </div>
             </div>
         </div>
-<!--
-        <h2 id="kotlin-community-resources">Community-Maintained Resources</h2>
-
-        <ol>
-            <li><a href="https://kotlin.link/">Kotlin.link</a> — almost a complete list of links to Kotlin projects, libraries and other resources</li>
-            <li><a href="http://www.kotlinweekly.net/">Kotlin Weekly</a> — a weekly mailing list containing latest notable news and articles</li>
-            <li><a href="https://twitter.com/dailykotlin">The daily Kotlin</a> — Daily Kotlin news and tips</li>
-            <li><a href="https://kotlin-jobs.com/">Kotlin Jobs</a> — available jobs for Kotlin Developers </li>
-        </ol>
--->
     </article>
 
     <div class="scroll-down-hint"
@@ -247,7 +214,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
          data-aos="animate">
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -256,10 +222,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -326,7 +292,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/community.js?&amp;v=e1ff975cfc8cca68ad0b49f15e6109e5"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/community.js?&amp;v=5e80e7885bdfc90c8b413e6b1b698958"></script>
 </body>
 </html>

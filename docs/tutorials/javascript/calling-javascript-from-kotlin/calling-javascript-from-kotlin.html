@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="A look at how to work with JavaScript from Kotlin">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Calling JavaScript from Kotlin - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
         <aside class="g-3">
@@ -872,27 +855,27 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <br/>
                 <br/>
             
-<p>When targeting JavaScript with Kotlin, we can interoperate by</p>
-<ul>
-<li>Calling Kotlin from JavaScript</li>
-<li>Calling JavaScript from Kotlin</li>
+<p class="typo-para">When targeting JavaScript with Kotlin, we can interoperate by</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Calling Kotlin from JavaScript</li>
+<li class="typo-list__item">Calling JavaScript from Kotlin</li>
 </ul>
-<p>This tutorial is going to cover the second case. For more information about the first scenario please see</p>
-<ul>
-<li><a href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></li>
-<li><a href="../working-with-modules/working-with-modules.html">Working with Modules</a></li>
+<p class="typo-para">This tutorial is going to cover the second case. For more information about the first scenario please see</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="../kotlin-to-javascript/kotlin-to-javascript.html">Kotlin to JavaScript</a></li>
+<li class="typo-list__item"><a class="typo-link" href="../working-with-modules/working-with-modules.html">Working with Modules</a></li>
 </ul>
-<p>If you're new to working with Kotlin and JavaScript, it's recommended you read the previous tutorials first to get a 
+<p class="typo-para">If you're new to working with Kotlin and JavaScript, it's recommended you read the previous tutorials first to get a 
 better understanding of how things work under the covers.</p>
-<p>What we'll see in this tutorial is how to</p>
-<ul>
-<li><a href="#using-standard-library-functions">Use Standard Library Function to emit JavaScript</a></li>
-<li><a href="#working-with-strongly-typed-libraries">Work with strongly-typed libraries</a></li>
-<li><a href="#invoking-javascript-only-members">Invoke a member that does not exist in Kotlin</a></li>
-<li><a href="#creating-mappings-with-native">Create mappings with Dynamic and Native</a></li>
+<p class="typo-para">What we'll see in this tutorial is how to</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#using-standard-library-functions">Use Standard Library Function to emit JavaScript</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#working-with-strongly-typed-libraries">Work with strongly-typed libraries</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#invoking-javascript-only-members">Invoke a member that does not exist in Kotlin</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#creating-mappings-with-native">Create mappings with Dynamic and Native</a></li>
 </ul>
-<h2 id="using-standard-library-functions">Using Standard Library Functions</h2>
-<p>The Standard Library comes with a function named <code>js</code> which allows us to emit JavaScript easily from Kotlin.</p>
+<h2 class="typo-header typo-h2" id="using-standard-library-functions">Using Standard Library Functions</h2>
+<p class="typo-para">The Standard Library comes with a function named <code>js</code> which allows us to emit JavaScript easily from Kotlin.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
 
@@ -901,11 +884,11 @@ better understanding of how things work under the covers.</p>
 }
 </code></pre>
 </div>
-<p>The code above would emit a JavaScript message dialog as soon as the main function is executed. It's important to note that this is not merely an <code>eval</code>. The JavaScript
+<p class="typo-para">The code above would emit a JavaScript message dialog as soon as the main function is executed. It's important to note that this is not merely an <code>eval</code>. The JavaScript
 code is verified to be valid and injected into the generated code.</p>
-<h2 id="working-with-strongly-typed-libraries">Working with Strongly-Typed Libraries</h2>
-<p>Kotlin standard library ships with a series of headers for interacting with JavaScript libraries such as jQuery[1].</p>
-<p>For the case of jQuery, we can use the <code>jq</code> standard library function. This allows us to write jQuery directly without having to resort to invoking it using
+<h2 class="typo-header typo-h2" id="working-with-strongly-typed-libraries">Working with Strongly-Typed Libraries</h2>
+<p class="typo-para">Kotlin standard library ships with a series of headers for interacting with JavaScript libraries such as jQuery[1].</p>
+<p class="typo-para">For the case of jQuery, we can use the <code>jq</code> standard library function. This allows us to write jQuery directly without having to resort to invoking it using
 inline JavaScript.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
@@ -913,7 +896,7 @@ inline JavaScript.</p>
 }
 </code></pre>
 </div>
-<p>which would set the HTML of the <code>div</code> with id <code>message</code></p>
+<p class="typo-para">which would set the HTML of the <code>div</code> with id <code>message</code></p>
 <div class="sample" mode="xml" theme="idea">
 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
 &lt;html lang="en"&gt;
@@ -930,30 +913,30 @@ inline JavaScript.</p>
 &lt;/html&gt;
 </code></pre>
 </div>
-<h2 id="invoking-javascript-only-members">Invoking JavaScript-only members</h2>
-<p>There are cases in which we want to invoke some method that only exists in JavaScript. For instance, let's assume we want to use the <a href="https://datatables.net/">DataTables</a> jQuery plugin that creates a grid out of a table. This plugin requires
+<h2 class="typo-header typo-h2" id="invoking-javascript-only-members">Invoking JavaScript-only members</h2>
+<p class="typo-para">There are cases in which we want to invoke some method that only exists in JavaScript. For instance, let's assume we want to use the <a class="typo-link" href="https://datatables.net/">DataTables</a> jQuery plugin that creates a grid out of a table. This plugin requires
 us to invoke <code>Datatable()</code> on a DOM table element.</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">    $('#table').DataTable();
 </code></pre>
 </div>
-<p>If we were to try and do this using our <code>jq()</code> function, the code wouldn't compile</p>
+<p class="typo-para">If we were to try and do this using our <code>jq()</code> function, the code wouldn't compile</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#table").DataTable()
 }
 </code></pre>
 </div>
-<p>and we'd get an unresolved reference</p>
-<p><img alt="Unresolved Reference" src="/assets/images/tutorials/javascript/calling-javascript-from-kotlin/unresolved-reference.png"/></p>
-<p>In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a href="https://www.kotlincn.net/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
+<p class="typo-para">and we'd get an unresolved reference</p>
+<p class="typo-para"><img alt="Unresolved Reference" class="typo-image" src="/assets/images/tutorials/javascript/calling-javascript-from-kotlin/unresolved-reference.png"/></p>
+<p class="typo-para">In such cases, we can use the <code>asDynamic()</code> function to cast the return type <code>jq</code> to <a class="typo-link" href="https://www.kotlincn.net/docs/reference/dynamic-type.html">dynamic</a>. This will then satisfy the compiler.</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun main(args: Array&lt;String&gt;) {
     jq("#table").asDynamic().DataTable()
 }
 </code></pre>
 </div>
-<p>At runtime, the call will be mapped to the same member invocation.</p>
+<p class="typo-para">At runtime, the call will be mapped to the same member invocation.</p>
 <div class="sample" mode="js" theme="idea">
 <pre><code class="language-javascript">var workingWithJavaScript = function (Kotlin) {
   'use strict';
@@ -968,10 +951,10 @@ us to invoke <code>Datatable()</code> on a DOM table element.</p>
 }(kotlin);
 </code></pre>
 </div>
-<h2 id="creating-mappings-with-native">Creating mappings with Native</h2>
-<p>In the above scenario, <code>DataTable()</code> was transpiled to the same member name in JavaScript. What happens however when we want to map to something different? In fact, we're doing this with <code>jq</code> itself.
+<h2 class="typo-header typo-h2" id="creating-mappings-with-native">Creating mappings with Native</h2>
+<p class="typo-para">In the above scenario, <code>DataTable()</code> was transpiled to the same member name in JavaScript. What happens however when we want to map to something different? In fact, we're doing this with <code>jq</code> itself.
 If we notice the output of the code above, we see the <code>jq</code> has been transpiled to <code>$</code>. How does this happen?</p>
-<p>Kotlin allows us to map a function to something else in JavaScript by annotating it using the <code>@native</code> annotation. If we look at the standard library, we can see that the <code>jq</code> function has the following definition</p>
+<p class="typo-para">Kotlin allows us to map a function to something else in JavaScript by annotating it using the <code>@native</code> annotation. If we look at the standard library, we can see that the <code>jq</code> function has the following definition</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">@native("$")
 public fun jq(selector: String): JQuery = JQuery();
@@ -987,13 +970,12 @@ public fun jq(el: Element): JQuery = JQuery();
 public fun jq(): JQuery = JQuery();
 </code></pre>
 </div>
-<p>Using a combination of <code>dynamic</code> and <code>native</code> we can use third-party libraries that are available in JavaScript for which we do not currently have strongly-typed header definitions.</p>
-<p>[1] At some point these headers might be separated out into their own library as part of the <a href="https://github.com/kotlin/">Kotlinx project</a></p>
+<p class="typo-para">Using a combination of <code>dynamic</code> and <code>native</code> we can use third-party libraries that are available in JavaScript for which we do not currently have strongly-typed header definitions.</p>
+<p class="typo-para">[1] At some point these headers might be separated out into their own library as part of the <a class="typo-link" href="https://github.com/kotlin/">Kotlinx project</a></p>
 
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1002,10 +984,10 @@ public fun jq(): JQuery = JQuery();
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1072,7 +1054,7 @@ public fun jq(): JQuery = JQuery();
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/tutorial.js?&amp;v=8ee6bb15892f329fdb2d95d7245e0677"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/tutorial.js?&amp;v=d126368e2f171f6d5b11127b873d1854"></script>
 </body>
 </html>

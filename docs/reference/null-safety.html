@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=1000, initial-scale=1">
@@ -27,8 +27,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="apple-touch-icon" sizes="144x144"
       href="/assets/images/apple-touch-icon-144x144.png"/>
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=0c4ac5f64392e521edee1f0616eea4b8">
-
 <!-- Social Media tag Starts -->
 <!-- Place this data between the <head> tags of your website -->
 <!-- Open Graph data -->
@@ -45,21 +43,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta name="twitter:title" content="">
     <meta name="twitter:description" content="">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
-<!-- Social Media tag Ends -->    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=a6c486ad37c6933d0d81815ecf50d9c6">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>空安全 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
-<body class="">
+<body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
 <div class="global-layout">
-
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
@@ -102,29 +101,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>        </div>
     </div>
 </header>        <div class="g-layout global-content">
-        <nav class="docs-nav">
-                <div class="nav-item-wrap">
-                        <a href="/docs/reference/" class="nav-item is_active">
-                            <span class="nav-item-text">
-                                语言指南
-                            </span>
-                        </a>
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
                 </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/tutorials/" class="nav-item">
-                            <span class="nav-item-text">
-                                教程
-                            </span>
-                        </a>
-                </div>
-                <div class="nav-item-wrap">
-                        <a href="/docs/books.html" class="nav-item">
-                            <span class="nav-item-text">
-                                图书
-                            </span>
-                        </a>
-                </div>
-        </nav>
+            </nav>
 
     <div class="g-grid">
 
@@ -1386,29 +1369,29 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 id="空安全">空安全</h1>
-<h2 id="可空类型与非空类型">可空类型与非空类型</h2>
-<p>Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为<a href="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">《十亿美元的错误》</a>。</p>
-<p>许多编程语言（包括 Java）中最常见的陷阱之一，就是访问空引用的成员会导致空引用异常。在 Java 中，这等同于 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>
-<p>Kotlin 的类型系统旨在从我们的代码中消除 <code>NullPointerException</code>。NPE 的唯一可能的原因可能是：</p>
-<ul>
-<li>显式调用 <code>throw NullPointerException()</code>；</li>
-<li>使用了下文描述的 <code>!!</code> 操作符；</li>
-<li>有些数据在初始化时不一致，例如当：
-    <ul>
-<li>传递一个在构造函数中出现的未初始化的 <em class="keyword">this</em> 并用于其他地方（“泄漏 <em class="keyword">this</em>”）；</li>
-<li><a href="classes.html#派生类初始化顺序">超类的构造函数调用一个开放成员</a>，该成员在派生中类的实现使用了未初始化的状态；</li>
+<h1 class="typo-header typo-h1" id="空安全">空安全</h1>
+<h2 class="typo-header typo-h2" id="可空类型与非空类型">可空类型与非空类型</h2>
+<p class="typo-para">Kotlin 的类型系统旨在消除来自代码空引用的危险，也称为<a class="typo-link" href="https://en.wikipedia.org/wiki/Tony_Hoare#Apologies_and_retractions">《十亿美元的错误》</a>。</p>
+<p class="typo-para">许多编程语言（包括 Java）中最常见的陷阱之一，就是访问空引用的成员会导致空引用异常。在 Java 中，这等同于 <code>NullPointerException</code> 或简称 <code>NPE</code>。</p>
+<p class="typo-para">Kotlin 的类型系统旨在从我们的代码中消除 <code>NullPointerException</code>。NPE 的唯一可能的原因可能是：</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">显式调用 <code>throw NullPointerException()</code>；</li>
+<li class="typo-list__item">使用了下文描述的 <code>!!</code> 操作符；</li>
+<li class="typo-list__item">有些数据在初始化时不一致，例如当：
+    <ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">传递一个在构造函数中出现的未初始化的 <em class="keyword">this</em> 并用于其他地方（“泄漏 <em class="keyword">this</em>”）；</li>
+<li class="typo-list__item"><a class="typo-link" href="classes.html#派生类初始化顺序">超类的构造函数调用一个开放成员</a>，该成员在派生中类的实现使用了未初始化的状态；</li>
 </ul>
 </li>
-<li>Java 互操作：
-    <ul>
-<li>企图访问<a href="java-interop.html#空安全与平台类型">平台类型</a>的 <code>null</code> 引用的成员；</li>
-<li>用于具有错误可空性的 Java 互操作的泛型类型，例如一段 Java 代码可能会向 Kotlin 的 <code>MutableList&lt;String&gt;</code> 中加入 <code>null</code>，这意味着应该使用 <code>MutableList&lt;String?&gt;</code> 来处理它；</li>
-<li>由外部 Java 代码引发的其他问题。</li>
+<li class="typo-list__item">Java 互操作：
+    <ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">企图访问<a class="typo-link" href="java-interop.html#空安全与平台类型">平台类型</a>的 <code>null</code> 引用的成员；</li>
+<li class="typo-list__item">用于具有错误可空性的 Java 互操作的泛型类型，例如一段 Java 代码可能会向 Kotlin 的 <code>MutableList&lt;String&gt;</code> 中加入 <code>null</code>，这意味着应该使用 <code>MutableList&lt;String?&gt;</code> 来处理它；</li>
+<li class="typo-list__item">由外部 Java 代码引发的其他问题。</li>
 </ul>
 </li>
 </ul>
-<p>在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
+<p class="typo-para">在 Kotlin 中，类型系统区分一个引用可以容纳 <em class="keyword">null</em> （可空引用）还是不能容纳（非空引用）。
 例如，String 类型的常规变量不能容纳 <em class="keyword">null</em>：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1419,7 +1402,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>如果要允许为空，我们可以声明一个变量为可空字符串，写作 <code>String?</code>：</p>
+<p class="typo-para">如果要允许为空，我们可以声明一个变量为可空字符串，写作 <code>String?</code>：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1430,24 +1413,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>现在，如果你调用 <code>a</code> 的方法或者访问它的属性，它保证不会导致 <code>NPE</code>，这样你就可以放心地使用：</p>
+<p class="typo-para">现在，如果你调用 <code>a</code> 的方法或者访问它的属性，它保证不会导致 <code>NPE</code>，这样你就可以放心地使用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = a.length
 </code></pre>
 </div>
-<p>但是如果你想访问 <code>b</code> 的同一个属性，那么这是不安全的，并且编译器会报告一个错误：</p>
+<p class="typo-para">但是如果你想访问 <code>b</code> 的同一个属性，那么这是不安全的，并且编译器会报告一个错误：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = b.length // 错误：变量“b”可能为空
 </code></pre>
 </div>
-<p>但是我们还是需要访问该属性，对吧？有几种方式可以做到。</p>
-<h2 id="在条件中检测-null">在条件中检测 <em class="keyword">null</em></h2>
-<p>首先，你可以显式检测 <code>b</code> 是否为 <em class="keyword">null</em>，并分别处理两种可能：</p>
+<p class="typo-para">但是我们还是需要访问该属性，对吧？有几种方式可以做到。</p>
+<h2 class="typo-header typo-h2" id="在条件中检测-null">在条件中检测 <em class="keyword">null</em></h2>
+<p class="typo-para">首先，你可以显式检测 <code>b</code> 是否为 <em class="keyword">null</em>，并分别处理两种可能：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = if (b != null) b.length else -1
 </code></pre>
 </div>
-<p>编译器会跟踪所执行检测的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
+<p class="typo-para">编译器会跟踪所执行检测的信息，并允许你在 <em class="keyword">if</em> 内部调用 <code>length</code>。
 同时，也支持更复杂（更智能）的条件：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1463,11 +1446,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </code></pre>
 </div>
-<p>请注意，这只适用于 <code>b</code> 是不可变的情况（即在检测和使用之间没有修改过的局部变量
+<p class="typo-para">请注意，这只适用于 <code>b</code> 是不可变的情况（即在检测和使用之间没有修改过的局部变量
 ，或者不可覆盖并且有幕后字段的 <em class="keyword">val</em> 成员），因为否则可能会发生<!--
 -->在检测之后 <code>b</code> 又变为 <em class="keyword">null</em> 的情况。</p>
-<h2 id="安全的调用">安全的调用</h2>
-<p>你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
+<h2 class="typo-header typo-h2" id="安全的调用">安全的调用</h2>
+<p class="typo-para">你的第二个选择是安全调用操作符，写作 <code>?.</code>：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1479,15 +1462,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>如果 <code>b</code> 非空，就返回 <code>b.length</code>，否则返回 <em class="keyword">null</em>，这个表达式的类型是 <code>Int?</code>。</p>
-<p>安全调用在链式调用中很有用。例如，如果一个员工 Bob 可能会（或者不会）分配给一个部门，
+<p class="typo-para">如果 <code>b</code> 非空，就返回 <code>b.length</code>，否则返回 <em class="keyword">null</em>，这个表达式的类型是 <code>Int?</code>。</p>
+<p class="typo-para">安全调用在链式调用中很有用。例如，如果一个员工 Bob 可能会（或者不会）分配给一个部门，
 并且可能有另外一个员工是该部门的负责人，那么获取 Bob 所在部门负责人（如果有的话）的名字，我们写作：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">bob?.department?.head?.name
 </code></pre>
 </div>
-<p>如果任意一个属性（环节）为空，这个链式调用就会返回 <em class="keyword">null</em>。</p>
-<p>如果要只对非空值执行某个操作，安全调用操作符可以与 <a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html"><code>let</code></a> 一起使用：</p>
+<p class="typo-para">如果任意一个属性（环节）为空，这个链式调用就会返回 <em class="keyword">null</em>。</p>
+<p class="typo-para">如果要只对非空值执行某个操作，安全调用操作符可以与 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/let.html"><code>let</code></a> 一起使用：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
@@ -1499,26 +1482,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 }
 </code></pre>
 </div>
-<p>安全调用也可以出现在赋值的左侧。这样，如果调用链中的任何一个接收者为空都会跳过赋值，而右侧的表达式根本不会求值：</p>
+<p class="typo-para">安全调用也可以出现在赋值的左侧。这样，如果调用链中的任何一个接收者为空都会跳过赋值，而右侧的表达式根本不会求值：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 如果 `person` 或者 `person.department` 其中之一为空，都不会调用该函数：
 person?.department?.head = managersPool.getManager()
 </code></pre>
 </div>
-<h2 id="elvis-操作符">Elvis 操作符</h2>
-<p>当我们有一个可空的引用 <code>b</code> 时，我们可以说“如果 <code>b</code> 非空，我使用它；否则使用某个非空的值”：</p>
+<h2 class="typo-header typo-h2" id="elvis-操作符">Elvis 操作符</h2>
+<p class="typo-para">当我们有一个可空的引用 <code>b</code> 时，我们可以说“如果 <code>b</code> 非空，我使用它；否则使用某个非空的值”：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l: Int = if (b != null) b.length else -1
 </code></pre>
 </div>
-<p>除了完整的 <em class="keyword">if</em>-表达式，这还可以通过 Elvis 操作符表达，写作 <code>?:</code>：</p>
+<p class="typo-para">除了完整的 <em class="keyword">if</em>-表达式，这还可以通过 Elvis 操作符表达，写作 <code>?:</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = b?.length ?: -1
 </code></pre>
 </div>
-<p>如果 <code>?:</code> 左侧表达式非空，elvis 操作符就返回其左侧表达式，否则返回右侧表达式。
+<p class="typo-para">如果 <code>?:</code> 左侧表达式非空，elvis 操作符就返回其左侧表达式，否则返回右侧表达式。
 请注意，当且仅当左侧为空时，才会对右侧表达式求值。</p>
-<p>请注意，因为 <em class="keyword">throw</em> 和 <em class="keyword">return</em> 在 Kotlin 中都是表达式，所以它们也可以用在
+<p class="typo-para">请注意，因为 <em class="keyword">throw</em> 和 <em class="keyword">return</em> 在 Kotlin 中都是表达式，所以它们也可以用在
  elvis 操作符右侧。这可能会非常方便，例如，检测函数参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(node: Node): String? {
@@ -1528,24 +1511,24 @@ person?.department?.head = managersPool.getManager()
 }
 </code></pre>
 </div>
-<h2 id="-操作符"><code>!!</code> 操作符</h2>
-<p>第三种选择是为 NPE 爱好者准备的：非空断言运算符（<code>!!</code>）将任何值转换为非空<!--
+<h2 class="typo-header typo-h2" id="-操作符"><code>!!</code> 操作符</h2>
+<p class="typo-para">第三种选择是为 NPE 爱好者准备的：非空断言运算符（<code>!!</code>）将任何值转换为非空<!--
 -->类型，若该值为空则抛出异常。我们可以写 <code>b!!</code> ，这会返回一个非空的 <code>b</code> 值
 （例如：在我们例子中的 <code>String</code>）或者如果 <code>b</code> 为空，就会抛出一个 <code>NPE</code> 异常：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = b!!.length
 </code></pre>
 </div>
-<p>因此，如果你想要一个 NPE，你可以得到它，但是你必须显式要求它，否则它不会不期而至。</p>
-<h2 id="安全的类型转换">安全的类型转换</h2>
-<p>如果对象不是目标类型，那么常规类型转换可能会导致 <code>ClassCastException</code>。
+<p class="typo-para">因此，如果你想要一个 NPE，你可以得到它，但是你必须显式要求它，否则它不会不期而至。</p>
+<h2 class="typo-header typo-h2" id="安全的类型转换">安全的类型转换</h2>
+<p class="typo-para">如果对象不是目标类型，那么常规类型转换可能会导致 <code>ClassCastException</code>。
 另一个选择是使用安全的类型转换，如果尝试转换不成功则返回 <em class="keyword">null</em>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val aInt: Int? = a as? Int
 </code></pre>
 </div>
-<h2 id="可空类型的集合">可空类型的集合</h2>
-<p>如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 <code>filterNotNull</code> 来实现：</p>
+<h2 class="typo-header typo-h2" id="可空类型的集合">可空类型的集合</h2>
+<p class="typo-para">如果你有一个可空类型元素的集合，并且想要过滤非空元素，你可以使用 <code>filterNotNull</code> 来实现：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val nullableList: List&lt;Int?&gt; = listOf(1, 2, null, 4)
 val intList: List&lt;Int&gt; = nullableList.filterNotNull()
@@ -1555,7 +1538,6 @@ val intList: List&lt;Int&gt; = nullableList.filterNotNull()
         </article>
     </div>
         </div>
-
 </div>
 
 <footer role="contentinfo" class="global-footer">
@@ -1564,10 +1546,10 @@ val intList: List&lt;Int&gt; = nullableList.filterNotNull()
         <div class="g-layout">
             <ul class="terms-social">
                 <li class="terms-social__item terms-social__item_blog">
-                    <a target="_blank" class="link" href="http://blog.jetbrains.com/kotlin">博客</a>
+                    <a target="_blank" class="link" href="https://blog.jetbrains.com/kotlin/">博客</a>
                 </li>
                 <li class="terms-social__item terms-social__item_forum">
-                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org">论坛</a>
+                    <a target="_blank" class="link" href="https://discuss.kotlinlang.org/">论坛</a>
                 </li>
                 <li class="terms-social__item terms-social__item_bug-tracker">
                     <a target="_blank" class="link" href="https://youtrack.jetbrains.com/issues/KT">问题跟踪</a>
@@ -1634,7 +1616,7 @@ val intList: List&lt;Int&gt; = nullableList.filterNotNull()
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=b72536267657675565fa52482c2a3e7c"></script>
-    <script src="/_assets/reference.js?&amp;v=90922ee310c467eb490d86f3748977e3"></script>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>
