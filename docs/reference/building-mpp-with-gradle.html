@@ -1398,7 +1398,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="typo-list__item"><a class="typo-link" href="#运行测试">运行测试</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#发布多平台库">发布多平台库</a>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><a class="typo-link" href="#实验性的元数据发布模式">实验性的元数据发布模式</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#元数据发布">元数据发布</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#目标消歧义">目标消歧义</a></li>
 </ul>
 </li>
@@ -2188,8 +2188,7 @@ Kotlin 元数据包中具有相应的依赖。通常，
 </code></pre>
 </div>
 </div>
-<p class="typo-para">同样的，如果以实验性的<a class="typo-link" href="#实验性的元数据发布模式">Gradle 元数据发布模式</a>发布了一个多平台库，并且该项目<!--
--->也设置为使用元数据，那么只需要为公共源集指定一次依赖。
+<p class="typo-para">同样的，如果<a class="typo-link" href="#元数据发布">发布了带有 Gradle 元数据</a>的一个多平台库，那么只需要为公共源集指定一次依赖。
 除此以外，应该为每个特定平台的源集<!--
 -->提供库的相应平台模块（除了公共模块），如上所示。</p>
 <p class="typo-para">指定依赖的另一种方式是在顶层使用 Gradle 内置 DSL，其配置名称遵循<!--
@@ -2442,20 +2441,17 @@ publishing {
 </code></pre>
 </div>
 </div>
-<h3 class="typo-header typo-h3" id="实验性的元数据发布模式">实验性的元数据发布模式</h3>
+<p class="typo-para"><a class="typo-link" name="实验性的元数据发布模式"></a></p>
+<h3 class="typo-header typo-h3" id="元数据发布">元数据发布</h3>
 <p class="typo-para">Gradle 模块元数据提供了丰富的发布与解析依赖项的特性，这些特性用于 Kotlin
 多平台项目来为构建作者简化依赖配置。特别是多平台库的发布项<!--
--->可能包含一个特殊的 “根” 模块，它基于整个库，并且<!--
+-->包含一个特殊的 “根” 模块，它基于整个库，并且<!--
 -->在添加为依赖项时自动解析到适当的特定平台构件中，如下所述。</p>
-<p class="typo-para">Gradle 5.3 或更高的版本，依赖项解析期间总是使用模块元数据，但在默认情况下，发布项不会<!--
+<p class="typo-para">In Gradle 6.0 and above, the module metadata is always used during dependency resolution and included in publications.</p>
+<p class="typo-para">In earlier Gradle versions starting from 5.3，依赖项解析期间使用模块元数据，但在默认情况下，发布项不会<!--
 -->包含任何模块元数据。为了启用发布模块元数据，需要添加
-<code>enableFeaturePreview("GRADLE_METADATA")</code> 到根项目的 <code>settings.gradle</code> 文件。对于更旧的 Gradle 版本，
-模块元数据的使用也需要这个。</p>
-<blockquote class="note">
-<p class="typo-para">注意通过 Gradle 5.3 或更高版本发布的模块元数据不能被低于
-5.3 的 Gradle 所读取。</p>
-</blockquote>
-<p class="typo-para">随着启用 Gradle 元数据，一个额外的名为 <code>kotlinMultiplatform</code> 的 “根” 发布项将添加到项目的<!--
+<code>enableFeaturePreview("GRADLE_METADATA")</code> 到根项目的 <code>settings.gradle</code> 文件。</p>
+<p class="typo-para">When publications include module metadata，一个额外的名为 <code>kotlinMultiplatform</code> 的 “根” 发布项将添加到项目的<!--
 -->发布项中。这个发布项的默认构件 ID 与没有任何额外后缀的项目名称相匹配。
 为了配置这个发布项，可以通过 <code>maven-publish</code> 插件的 <code>publishing { …… }</code> DSL 访问：</p>
 <div class="multi-language-sample" data-lang="groovy">
@@ -2532,8 +2528,6 @@ publishing {
 </code></pre>
 </div>
 </div>
-<p class="typo-para">这需要使用者的 Gradle 构建可以读取 Gradle 模块元数据，要么使用 Gradle 5.3+，要么<!--
--->在 <code>settings.gradle</code> 中通过 <code>enableFeaturePreview("GRADLE_METADATA")</code> 显式地启用它</p>
 <h3 class="typo-header typo-h3" id="目标消歧义">目标消歧义</h3>
 <p class="typo-para">在一个多平台库中，对于单个平台可能拥有多个目标。例如，这些目标<!--
 -->可能提供了相同的 API，并且在运行时调用的实现库中有所不同，例如测试框架或日志解决方案。</p>

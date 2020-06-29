@@ -843,13 +843,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </table>
             
 <h2 class="typo-header typo-h2" id="函数类型">函数类型</h2>
-<p class="typo-para">像在 Python 中一样，Kotlin 中的函数是一等值——它们可以分配给变量并作为参数传递。函数的类型是 <em>function type</em>，用括号括起来的参数类型列表和返回类型的箭头指示。参考以下函数：</p>
+<p class="typo-para">像在 Python 中一样，Kotlin 中的函数是一等值——它们可以赋值给变量并作为参数传递。函数的类型是 <em>function type</em>，用括号括起来的参数类型列表和返回类型的箭头指示。参考以下函数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun safeDivide(numerator: Int, denominator: Int) =
     if (denominator == 0) 0.0 else numerator.toDouble() / denominator
 </code></pre>
 </div>
-<p class="typo-para">它带有两个 <code>Int</code> 参数并返回 <code>Double</code>，因此其类型为 <code>(Int, Int) -&gt; Double</code>。可以通过在函数名称前加上 <code>::</code> 来引用函数本身，并且可以将其分配给变量（通常会推断出其类型，但为了演示将显示类型签名）：</p>
+<p class="typo-para">它带有两个 <code>Int</code> 参数并返回 <code>Double</code>，因此其类型为 <code>(Int, Int) -&gt; Double</code>。可以通过在函数名称前加上 <code>::</code> 来引用函数本身，并且可以将其赋值给变量（通常会推断出其类型，但为了演示将显示类型签名）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val f: (Int, Int) -&gt; Double = ::safeDivide
 </code></pre>
@@ -859,7 +859,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <pre><code class="language-kotlin">val quotient = f(3, 0)
 </code></pre>
 </div>
-<p class="typo-para">类有可能像执行接口一样实现函数类型。然后，它必须提供一个具有给定签名的称为 <code>invoke</code> 的运算符函数，然后可以将该类的实例分配给该函数类型的变量：</p>
+<p class="typo-para">类有可能像执行接口一样实现函数类型。然后，它必须提供一个具有给定签名的称为 <code>invoke</code> 的运算符函数，然后可以将该类的实例赋值给该函数类型的变量：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Divider : (Int, Int) -&gt; Double {
     override fun invoke(numerator: Int, denominator: Int): Double = ...
@@ -876,7 +876,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p class="typo-para"><code>safeDivide</code> 的类型是 <code>(Int, Int) -&gt; Double</code>。请注意，与函数类型声明不同，lambda 表达式的参数列表不得包含在括号中。</p>
 <p class="typo-para">请注意，Kotlin 中花括号的其他用法（例如在函数和类定义中以及在 <code>if</code>、<code>else</code>、<code>for</code>、<code>while</code> 语句之后）不是 lambda 表达式（因此，<code>if</code> 是有条件地执行 lambda 函数的函数的情况 <em>并非</em> 如此）。</p>
-<p class="typo-para">Lambda 表达式的返回类型是根据其中的最后一个表达式的类型（或从 Lambda 表达式所分配给的变量或参数的函数类型）推断出来的。如果将 lambda 表达式作为函数参数（通常使用）传递或分配给具有声明类型的变量，那么 Kotlin 也可以推断参数类型，只需要指定其名称即可：</p>
+<p class="typo-para">Lambda 表达式的返回类型是根据其中的最后一个表达式的类型（或从 Lambda 表达式所赋值给的变量或参数的函数类型）推断出来的。如果将 lambda 表达式作为函数参数（通常使用）传递或赋值给具有声明类型的变量，那么 Kotlin 也可以推断参数类型，只需要指定其名称即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val safeDivide: (Int, Int) -&gt; Double = { numerator, denominator -&gt;
     if (denominator == 0) 0.0 else numerator.toDouble() / denominator
@@ -941,7 +941,7 @@ callWithPi { it * it }
 <p class="typo-para"><a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html"><code>kotlin.collections</code> 包</a>中提供了大量功能编程风格的操作。</p>
 <h2 class="typo-header typo-h2" id="接收者">接收者</h2>
 <p class="typo-para">成员函数或<a class="typo-link" href="extension-functionsproperties.html">扩展函数</a>的签名始于 <em>接收者</em>：可以在其上调用函数的类型。例如，<code>toString()</code> 的签名是 <code>Any.() -&gt; String</code>——可以在任何非空对象（接收者）上调用它，它不带任何参数，并且返回 <code>String</code>。可以使用这样的签名来编写 lambda 函数——这被称为 <em>带有接收者的函数字面值</em>，对于构建DSL非常有用。</p>
-<p class="typo-para">带接收者的函数文字可能最容易被认为是 lambda 表达式形式的扩展函数。该声明看起来像一个普通的 lambda 表达式。使其成为接收者的是上下文——必须将其传递给以接收者作为参数的函数，或者将其分配给类型为接收者的函数类型的变量或属性。将函数与接收者一起使用的唯一方法是在接收者类的实例上调用它，就像它是成员函数或扩展函数一样。例如：</p>
+<p class="typo-para">带接收者的函数文字可能最容易被认为是 lambda 表达式形式的扩展函数。该声明看起来像一个普通的 lambda 表达式。使其成为接收者的是上下文——必须将其传递给以接收者作为参数的函数，或者将其赋值给类型为接收者的函数类型的变量或属性。将函数与接收者一起使用的唯一方法是在接收者类的实例上调用它，就像它是成员函数或扩展函数一样。例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Car(val horsepowers: Int)
 
