@@ -1688,7 +1688,7 @@ fun main() = runBlocking {
             println("First child is failing")
             throw AssertionError("First child is cancelled")
         }
-        // 启动第两个子作业
+        // 启动第二个子作业
         val secondChild = launch {
             firstChild.join()
             // 取消了第一个子作业且没有传播给第二个子作业

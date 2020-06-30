@@ -1755,7 +1755,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 -->与它的协程，但是 <code>kotlinx.coroutines</code> 提供了一个封装：<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的抽象。
 你应该已经熟悉了协程作用域，因为所有的协程构建器都声明为在它之上的扩展。</p>
 <p class="typo-para">我们通过创建一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 实例来管理协程的生命周期，并使它与
-activit 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 创建或者通过<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
+activity 的生命周期相关联。<code>CoroutineScope</code> 可以通过 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope.html">CoroutineScope()</a> 创建或者通过<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-main-scope.html">MainScope()</a>
 工厂函数。前者创建了一个通用作用域，而后者为使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-main.html">Dispatchers.Main</a> 作为默认调度器的 UI 应用程序
 创建作用域：</p>
 <div class="sample" data-highlight-only="" theme="idea">
