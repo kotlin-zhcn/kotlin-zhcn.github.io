@@ -1374,20 +1374,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 该插件提供项目配置工具以及用以自动执行 JavaScript 开发中常用的例程的帮助程序。
 举个例子，该插件会下载 <a class="typo-link" href="https://yarnpkg.com/">Yarn</a> 软件包管理器，在后台管理 <a class="typo-link" href="https://www.npmjs.com/">npm</a> 依赖，并使用
 <a class="typo-link" href="https://webpack.js.org/">webpack</a> 从 Kotlin 项目构建 JavaScript 包。</p>
-<table>
-<tbody>
-<tr>
-<td>要在 IntelliJ IDEA 中创建 Kotlin/JS 项目，请转至 **File</td>
-<td>New</td>
-<td>Project**，</td>
-</tr>
-<tr>
-<td>并选择 **Gradle</td>
-<td>Kotlin/JS for browser** 或 <strong class="type-strong">Kotlin/JS for Node.js</strong>。请不要勾选 <strong class="type-strong">Java</strong> 复选框。</td>
-<td> </td>
-</tr>
-</tbody>
-</table>
+<p class="typo-para">要在 IntelliJ IDEA 中创建 Kotlin/JS 项目，请转至 <strong class="type-strong">文件(File) | 新建(New) | 项目(Project)</strong>，
+并勾选 <strong class="type-strong">Gradle | Kotlin/JS for browser</strong> 或 <strong class="type-strong">Kotlin/JS for Node.js</strong>。请不要勾选 <strong class="type-strong">Java</strong> 复选框。</p>
 <p class="typo-para"><img alt="New project wizard" class="typo-image" src="/assets/images/reference/js-project-setup/wizard.png"/></p>
 <p class="typo-para">另外，你可以在 Gradle build file (<code>build.gradle</code> or <code>build.gradle.kts</code>) 中手动将 <code>org.jetbrains.kotlin.js</code> 插件应用于 Gradle 项目。
 如果你使用 Gradle Kotlin DSL，则可以使用插件 <code>kotlin(“js”)</code>。</p>
@@ -1607,15 +1595,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <h2 class="typo-header typo-h2" id="配置-webpack-绑定">配置 Webpack 绑定</h2>
 <p class="typo-para">对于浏览器目标，Kotlin/JS 插件使用众所周知的 <a class="typo-link" href="https://webpack.js.org/">Webpack</a> 模块捆绑器。</p>
-<p class="typo-para">The Kotlin/JS Gradle plugin automatically generates a standard webpack configuration file 
-at build time which you can find the at <code>build/js/packages/projectName/webpack.config.js</code>.</p>
-<p class="typo-para">The most common webpack adjustments can be made directly via the
-<code>kotlin.target.browser.webpackTask</code> configuration block in the Gradle build file.</p>
-<p class="typo-para">If you want to make further adjustments to the webpack configuration, place your additional configuration files inside a directory
-called <code>webpack.config.d</code> in the root of your project. When building your project, all JS configuration files will automatically
-be merged into the <code>build/js/packages/projectName/webpack.config.js</code> file.
-To add a new <a class="typo-link" href="https://webpack.js.org/loaders/">webpack loader</a>, for example, add the following to
-a <code>.js</code> file inside the <code>webpack.config.d</code>:</p>
+<p class="typo-para">Kotlin/JS Gradle 插件会在构建时自动生成一个标准的 webpack 配置文件，
+可以在 <code>build/js/packages/projectName/webpack.config.js</code> 中找到该文件。</p>
+<p class="typo-para">最常见的 webpack 调整可以直接通过 Gradle 构建文件中的
+<code>kotlin.target.browser.webpackTask</code> 配置块进行。</p>
+<p class="typo-para">如果要进一步调整 webpack 配置，请将其他配置文件放在项目根目录中名为 <code>webpack.config.d</code> 的目录中。
+在构建项目时，所有 JS 配置文件都会自动被合并到
+<code>build/js/packages/projectName/webpack.config.js</code> 文件中。
+例如，要添加新的 <a class="typo-link" href="https://webpack.js.org/loaders/">webpack loader</a>，
+请将以下内容添加到 <code>webpack.config.d</code> 中的 <code>.js</code> 文件中：</p>
 <div class="sample" mode="javascript" theme="idea">
 <pre><code class="language-javascript">config.module.rules.push({
     test: /\.extension$/,
@@ -1623,24 +1611,24 @@ a <code>.js</code> file inside the <code>webpack.config.d</code>:</p>
 });
 </code></pre>
 </div>
-<p class="typo-para">All webpack configuration
-capabilities are well described in its <a class="typo-link" href="https://webpack.js.org/concepts/configuration/">documentation</a>.</p>
+<p class="typo-para">所有 webpack 配置功能在其
+<a class="typo-link" href="https://webpack.js.org/concepts/configuration/">文档</a> 中都有详细说明。</p>
 <p class="typo-para">为了通过 webpack 构建可执行的 JavaScript 构件，Kotlin/JS 插件包含 <code>browserDevelopmentWebpack</code> 以及
-<code>browserProductionWebpack</code> Gradle 任务。 Execute them to obtain artifacts for development or production respectively:</p>
+<code>browserProductionWebpack</code> Gradle 任务。执行它们分别获得用于开发或生产的构件：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">./gradlew browserProductionWebpack
 </code></pre>
 </div>
-<h2 class="typo-header typo-h2" id="configuring-yarn">Configuring Yarn</h2>
-<p class="typo-para">To configure additional Yarn features, place a <code>.yarnrc</code> file in the root of your project.
-At build time, it gets picked up automatically.</p>
-<p class="typo-para">For example, to use a custom registry for npm packages, add the following line to a file called
-<code>.yarnrc</code> in the project root:</p>
+<h2 class="typo-header typo-h2" id="配置-yarn">配置 Yarn</h2>
+<p class="typo-para">要配置其他 Yarn 特性，请将 <code>.yarnrc</code> 文件放在项目的根目录中。
+在构建时，它会被自动拾取。</p>
+<p class="typo-para">例如，要将自定义 registry 用于 npm 软件包，
+请将以下行添加到项目根目录中名为 <code>.yarnrc</code> 的文件中：</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code>registry "http://my.registry/api/npm/"
 </code></pre>
 </div>
-<p class="typo-para">To learn more about <code>.yarnrc</code>, please visit the <a class="typo-link" href="https://classic.yarnpkg.com/en/docs/yarnrc/">official Yarn documentation</a>.</p>
+<p class="typo-para">要了解有关 <code>.yarnrc</code> 的更多信息，请访问 <a class="typo-link" href="https://classic.yarnpkg.com/en/docs/yarnrc/">Yarn 官方文档</a>。</p>
 <h2 class="typo-header typo-h2" id="分发目标目录">分发目标目录</h2>
 <p class="typo-para">默认情况下，Kotlin/JS 项目构建的结果位于项目根目录下的 <code>/build/distribution</code> 目录中。</p>
 <p class="typo-para">要为项目分发文件设置另一个位置，请在构建脚本中的 <code>browser</code> 里添加 <code>distribution</code>，然后<!--
