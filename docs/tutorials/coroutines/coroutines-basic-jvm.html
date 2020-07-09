@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>你的第一个 Kotlin 协程程序 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -958,7 +961,7 @@ fun main(args: Array&lt;String&gt;) {
 <p class="typo-para">主线程（通过 <code>main()</code> 函数运行的线程）必须等到我们的协程完成，否则程序会在 <code>Hello</code> 被打印之前终止。</p>
 <p class="typo-para"><em>练习：尝试从上面的程序中删除 <code>sleep()</code> 并查看结果。</em></p>
 <p class="typo-para">如果我们直接在 <code>main()</code> 中尝试使用诸如 <code>delay()</code> 这样的非阻塞函数，我们将得到一个编译错误：</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">挂起函数只被允许在协程或另一个挂起函数中调用</p>
 </blockquote>
 <p class="typo-para">这是因为我们不在任何协程中。我们可以在 <code>runBlocking {}</code> 包装中使用 delay，它启动了一个协程并等待直到它结束：</p>
@@ -1014,7 +1017,7 @@ println(c.get())
 </code></pre>
 </div>
 <p class="typo-para">这里我们简单从每个协程等待并取得它的执行结果，接下来将使用标准库的 <code>sum()</code> 函数来将所有结果叠加到一起。但编译器理所当然地抱怨道：</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">挂起函数只被允许在协程或另一个挂起函数中调用</p>
 </blockquote>
 <p class="typo-para"><code>await()</code> 不能在协程外调用，因为它需要挂起直至计算结束，并且只有协程可以被无阻塞的挂起。因此，让我们将它们放到协程中：</p>
@@ -1047,7 +1050,7 @@ println(c.get())
 </code></pre>
 </div>
 <p class="typo-para">弹出一个熟悉的错误：</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">挂起函数只被允许在协程或另一个挂起函数中调用</p>
 </blockquote>
 <p class="typo-para">让我们深入了解它的含义。协程的最大优点是它们可以 <em>挂起</em> 而不会阻塞一个线程。编译器必须发出一些特殊代码才能实现这一点，所以在这段代码中我们需要显式地将函数标记为 <em>可挂起</em> 。我们对它使用了 <code>suspend</code> 修饰符：</p>

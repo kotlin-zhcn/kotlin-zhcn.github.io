@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 1.3 的新特性 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1556,7 +1559,7 @@ fun main() {
 <p class="typo-para">启用渐进模式可能需要重写一些代码，但不会太多——所有在渐进模式启用的修复都已经过精心挑选、通过审核并提供迁移辅助工具。
 我们希望对于任何积极维护、即将快速更新到最新语言版本的代码库来说，渐进模式都是一个不错的选择。</p>
 <h2 class="typo-header typo-h2" id="内联类">内联类</h2>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">内联类在 Kotlin 1.3 起才可用，并且目前是<strong class="type-strong">实验性</strong>的。详见其<a class="typo-link" href="inline-classes.html#内联类的实验性状态">参考文档</a>。</p>
 </blockquote>
 <p class="typo-para">Kotlin 1.3 引入了一种新的声明方式——<code>inline class</code>。内联类可以看作是普通类的受限版，尤其是内联类必须有且只有一个属性：</p>
@@ -1579,7 +1582,7 @@ fun main() {
 </div>
 <p class="typo-para">详见内联类的<a class="typo-link" href="inline-classes.html">参考文档</a>。</p>
 <h2 class="typo-header typo-h2" id="无符号整型">无符号整型</h2>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">无符号整数仅在 Kotlin 1.3 起才可用，并且目前是<strong class="type-strong">实验性</strong>的。详见其<a class="typo-link" href="basic-types.html#无符号整型的实验性状态">参考文档</a>。</p>
 </blockquote>
 <p class="typo-para">Kotlin 1.3 引入了无符号整型类型：</p>
@@ -1616,7 +1619,7 @@ println("x: $x, y: $y, z: $z, range: $range")
 </div>
 <p class="typo-para">详见其<a class="typo-link" href="basic-types.html#无符号整型">参考文档</a>。</p>
 <h2 class="typo-header typo-h2" id="jvmdefault">@JvmDefault</h2>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para"><code>@JvmDefault</code> 仅在 Kotlin 1.3 起才可用，并且目前是<strong class="type-strong">实验性</strong>的。详见其<a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考文档页</a>。</p>
 </blockquote>
 <p class="typo-para">Kotlin 兼容很多 Java 版本，其中包括不支持默认方法的 Java 6 与 Java 7。为了方便起见，Kotlin 编译器可以变通突破这个限制，不过这个变通方法与 Java 8 引入的 <code>default</code> 方法并不兼容。</p>
@@ -1629,7 +1632,7 @@ println("x: $x, y: $y, z: $z, range: $range")
 }
 </code></pre>
 </div>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">警告！以 <code>@JvmDefault</code> 注解标注的 API 会对二进制兼容性产生严重影响。在生产中使用 <code>@JvmDefault</code> 之前，请务必仔细阅读其<a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.jvm/-jvm-default/index.html">参考文档页</a>。</p>
 </blockquote>
 <h1 class="typo-header typo-h1" id="标准库">标准库</h1>
@@ -1720,11 +1723,11 @@ Kotlin 1.3 为集合、映射以及对象数组提供了类似的扩展。</p>
 <h2 class="typo-header typo-h2" id="kotlinxserialization">kotlinx.serialization</h2>
 <p class="typo-para"><a class="typo-link" href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a> 是一个在 Kotlin 中为（反）序列化对象提供多平台支持的库。以前，它是一个独立项目，不过自 Kotlin 1.3 起，它与其他编译器插件一样随 Kotlin 编译器发行版一起发行。其主要区别在于，无需人为关注序列化 IDE 插件与正在使用的 Kotlin IDE 插件是否兼容了：现在 Kotlin IDE 插件已经包含了序列化支持！</p>
 <p class="typo-para">详见<a class="typo-link" href="https://github.com/Kotlin/kotlinx.serialization#current-project-status">这里</a>。</p>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">请注意，尽管 kotlinx.serialization 现在随 Kotlin 编译器发行版一起发行，但它仍是一个<strong class="type-strong">实验性的</strong>特性。</p>
 </blockquote>
 <h2 class="typo-header typo-h2" id="脚本更新">脚本更新</h2>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">请注意，脚本支持是一项<strong class="type-strong">实验性的</strong>特性，这意味着不会对 API 提供兼容性保证。</p>
 </blockquote>
 <p class="typo-para">Kotlin 1.3 继续发展与改进脚本 API，为脚本定制引入了一些实验性支持，例如添加外部属性、提供静态或动态依赖等等。</p>

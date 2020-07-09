@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>编码规范 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1393,7 +1396,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 -->省略了公共根包的包结构。例如，如果项目中的所有代码都位于 <code>org.example.kotlin</code> 包及其<!--
 -->子包中，那么 <code>org.example.kotlin</code> 包的文件应该直接放在源代码根目录下，而
 <code>org.example.kotlin.network.socket</code> 中的文件应该放在源代码根目录下的 <code>network/socket</code> 子目录中。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para"><strong class="type-strong">对于 JVM 平台</strong>：Kotlin 源文件应当与 Java 源文件位于同一源文件根目录下，
 并遵循相同的目录结构（每个文件应存储在与其 package 语句对应的目录中<!--
 -->。</p>
@@ -1627,7 +1630,7 @@ class FooImpl : Foo() {
 </code></pre>
 </div>
 <p class="typo-para">构造函数参数使用常规缩进（4 个空格）。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">理由：这确保了在主构造函数中声明的属性与
 在类体中声明的属性具有相同的缩进。</p>
 </blockquote>
@@ -1698,7 +1701,7 @@ package foo.bar
 </code></pre>
 </div>
 <p class="typo-para">函数参数使用常规缩进（4 个空格）。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">理由：与构造函数参数一致</p>
 </blockquote>
 <p class="typo-para">对于由单个表达式构成的函数体，优先使用表达式形式。</p>
@@ -1749,7 +1752,7 @@ fun foo() = 1        // 良好
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">理由：对齐整齐并且将条件与语句体分隔清楚</p>
 </blockquote>
 <p class="typo-para">将 <code>else</code>、 <code>catch</code>、 <code>finally</code> 关键字以及 do/while 循环的 <code>while</code> 关键字与<!--

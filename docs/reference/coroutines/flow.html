@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>异步流 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1459,7 +1462,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码输出如下：</p>
@@ -1484,7 +1487,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码输出相同的数字，但在打印每个数字之前等待 100 毫秒。</p>
@@ -1512,7 +1515,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码将会在等待一秒之后打印数字。</p>
@@ -1550,7 +1553,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码在不阻塞主线程的情况下每等待 100 毫秒打印一个数字。在主线程中运行一个<!--
@@ -1571,7 +1574,7 @@ I'm not blocked 3
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> 函数 <em>发射</em> 值。</li>
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 函数 <em>收集</em> 值。</li>
 </ul>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">我们可以在 <code>foo</code> 的 <code>flow { ... }</code> 函数体内使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 代替 <code>Thread.sleep</code>
 以观察主线程在本案例中被阻塞了。</p>
 </blockquote>
@@ -1602,7 +1605,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">打印如下：</p>
@@ -1650,7 +1653,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">注意，在 <code>foo()</code> 函数中流仅发射两个数字，产生以下输出：</p>
@@ -1681,7 +1684,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST
@@ -1718,7 +1721,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它产生以下三行，每一行每秒出现一次：</p>
@@ -1754,7 +1757,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-09.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1794,7 +1797,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-10.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出清楚地表明，<code>numbers()</code> 函数中对 <code>flow {...}</code> 函数体的执行在<!--
@@ -1827,7 +1830,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-11.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">打印单个数字：</p>
@@ -1862,7 +1865,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-12.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">执行：</p>
@@ -1914,7 +1917,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-13.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">运行这段代码：</p>
@@ -1954,7 +1957,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-14.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码产生如下的异常：</p>
@@ -1992,7 +1995,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-15.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">注意，当收集发生在主线程中，<code>flow { ... }</code> 是如何在后台线程中工作的：</p>
@@ -2038,7 +2041,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-16.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它会产生这样的结果，整个收集过程大约需要 1200 毫秒（3 个数字，每个花费 400 毫秒）：</p>
@@ -2077,7 +2080,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-17.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它产生了相同的数字，只是更快了，由于我们高效地创建了处理流水线，
@@ -2089,7 +2092,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 Collected in 1071 ms
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，当必须更改 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a> 时，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow-on.html">flowOn</a> 操作符使用了相同的缓冲机制，
 但是我们在这里显式地请求缓冲而不改变执行上下文。</p>
 </blockquote>
@@ -2124,7 +2127,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-18.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">我们看到，虽然第一个数字仍在处理中，但第二个和第三个数字已经产生，因此<!--
@@ -2166,7 +2169,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-19.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">由于 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect-latest.html">collectLatest</a> 的函数体需要花费 300 毫秒，但是新值每 100 秒发射一次，我们看到该代码块<!--
@@ -2197,7 +2200,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-20.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">示例打印如下：</p>
@@ -2214,7 +2217,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p class="typo-para">例如，先前示例中的数字如果每 300 毫秒更新一次，但字符串每 400 毫秒更新一次，
 然后使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/zip.html">zip</a> 操作符合并它们，但仍会产生相同的结果，
 尽管每 400 毫秒打印一次结果：</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">我们在本示例中使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-each.html">onEach</a> 过渡操作符来延时每次元素发射并使<!--
 -->该流更具说明性以及更简洁。</p>
 </blockquote>
@@ -2235,7 +2238,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-21.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -2261,7 +2264,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-22.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">我们得到了完全不同的输出，其中，<code>nums</code> 或 <code>strs</code> 流中的每次发射都会打印一行：</p>
@@ -2321,7 +2324,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-23.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">在输出中可以清楚地看到 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-concat.html">flatMapConcat</a> 的顺序性质：</p>
@@ -2361,7 +2364,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-24.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> 的并发性质很明显：</p>
@@ -2373,7 +2376,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 3: Second at 833 ms from start
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-merge.html">flatMapMerge</a> 会顺序调用代码块（本示例中的 <code>{ requestFlow(it) }</code>），但是<!--
 -->并发收集结果流，相当于执行顺序是首先执行
 <code>map { requestFlow(it) }</code> 然后在其返回结果上调用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flatten-merge.html">flattenMerge</a>。</p>
@@ -2405,7 +2408,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-25.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">该示例的输出很好的展示了 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> 的工作方式：</p>
@@ -2415,7 +2418,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 3: Second at 931 ms from start
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flat-map-latest.html">flatMapLatest</a> 在一个新值到来时取消了块中的所有代码 (本示例中的 <code>{ requestFlow(it) }</code>）。 
 这在该特定示例中不会有什么区别，由于调用 <code>requestFlow</code> 自身的速度是很快的，不会发生挂起，
 所以不会被取消。然而，如果我们要在块中调用诸如 <code>delay</code> 之类的挂起函数，这将会被表现出来。</p>
@@ -2450,7 +2453,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-26.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码成功的在末端操作符 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 中捕获了异常，并且， 
@@ -2493,7 +2496,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-27.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">仍然会捕获该异常并停止收集：</p>
@@ -2542,7 +2545,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }            
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-28.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">即使我们不再在代码的外层使用 <code>try/catch</code>，示例的输出也是相同的。</p>
@@ -2579,7 +2582,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-29.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">尽管有 <code>catch</code> 操作符，但不会打印“Caught …”消息：</p>
@@ -2618,7 +2621,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }            
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-30.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">现在我们可以看到已经打印了“Caught …”消息，并且我们可以在没有显式使用
@@ -2652,7 +2655,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-31.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码打印出 <code>foo()</code> 流产生的三个数字，后面跟一个“Done”字符串：</p>
@@ -2681,7 +2684,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }            
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-32.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST 
@@ -2712,7 +2715,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-33.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">如你所期望的，它打印了：</p>
@@ -2745,7 +2748,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-34.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">我们可以看到完成时 cause 不为空，因为流由于下游异常而中止：</p>
@@ -2783,7 +2786,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-35.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">你可以看到它的输出：</p>
@@ -2813,7 +2816,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-36.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它打印了：</p>

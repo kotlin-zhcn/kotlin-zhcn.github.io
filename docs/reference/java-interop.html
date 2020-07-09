@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 中调用 Java - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1492,7 +1495,7 @@ Set&lt;@NotNull String&gt; toSet(@NotNull Collection&lt;@NotNull String&gt; elem
 </code></pre>
 </div>
 <p class="typo-para">标注类型参数适用于面向 Java 8 或更高版本环境，并且要求可空性注解支持 <code>TYPE_USE</code> 目标（<code>org.jetbrains.annotations</code> 15 或以上版本支持）。</p>
-<blockquote class="note">
+<blockquote class="note typo-quote">
 <p class="typo-para">注：由于当前的技术限制，IDE 无法正确识别用作依赖的已编译 Java 库中类型参数上的这些注解。</p>
 </blockquote>
 <h3 class="typo-header typo-h3" id="jsr-305-支持">JSR-305 支持</h3>
@@ -1576,7 +1579,7 @@ interface A {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意：本例中的类型只在启用了严格模式时出现，否则仍是平台类型。参见 <a class="typo-link" href="#undermigration-注解自-1160-起"><code>@UnderMigration</code> 注解</a>与<a class="typo-link" href="#编译器配置">编译器配置</a>两节。</p>
 </blockquote>
 <p class="typo-para">也支持包级的默认可空性：</p>
@@ -1644,7 +1647,7 @@ public class Test {}
 </li>
 </ul>
 <p class="typo-para">其中 <code>strict</code>、 <code>warn</code> 与 <code>ignore</code> 值的含义与 <code>MigrationStatus</code> 中的相同，并且只有 <code>strict</code> 模式会影响注解声明中的类型在 Kotlin 中的呈现。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意：内置的 JSR-305 注解 <a class="typo-link" href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nonnull.html"><code>@Nonnull</code></a>、 <a class="typo-link" href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/Nullable.html"><code>@Nullable</code></a> 与 <a class="typo-link" href="https://aalmiray.github.io/jsr-305/apidocs/javax/annotation/CheckForNull.html"><code>@CheckForNull</code></a> 总是启用并影响所注解的声明在 Kotlin 中呈现，无论如何配置编译器的 <code>-Xjsr305</code> 标志。</p>
 </blockquote>
 <p class="typo-para">例如，将 <code>-Xjsr305=ignore -Xjsr305=under-migration:ignore -Xjsr305=@org.library.MyNullable:warn</code> 添加到<!--

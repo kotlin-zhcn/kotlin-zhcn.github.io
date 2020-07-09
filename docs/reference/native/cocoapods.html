@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>CocoaPods 集成 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1389,7 +1392,7 @@ CocoaPods dependency. Such a representation provides the following advantages:</
 <a class="typo-link" href="https://github.com/JetBrains/kotlin-native/tree/master/samples/cocoapods"><code>cocoapods</code></a> sample.</p>
 <h2 class="typo-header typo-h2" id="cocoapods-gradle-plugin">CocoaPods Gradle plugin</h2>
 <p class="typo-para">The CocoaPods support is implemented in a separate Gradle plugin: <code>org.jetbrains.kotlin.native.cocoapods</code>.</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para"><strong class="type-strong">Note:</strong> The plugin is based on the multiplatform project model and requires applying the
 <code>org.jetbrains.kotlin.multiplatform</code> plugin. See details about the multiplatform plugin at
 the <a class="typo-link" href="https://kotlinlang.org/docs/reference/building-mpp-with-gradle.html">corresponding page</a>.</p>
@@ -1446,7 +1449,7 @@ and configure the targets, and specify the required podspec fields.</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para">Run the <code>podspec</code> task. The podspec file described above will be generated.</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">In order to avoid compatibility issues during an Xcode build, the plugin requires using
  a <a class="typo-link" href="https://docs.gradle.org/current/userguide/gradle_wrapper.html">Gradle wrapper</a>. 
  To generate the wrapper automatically during execution of the <code>podspec</code> task,
@@ -1489,7 +1492,7 @@ add dependencies on CocoaPods libraries.</p>
 In the example above, it's <code>cocoapods.AFNetworking</code>.</p>
 <p class="typo-para">The dependencies declared in this way are added in the podspec file and downloaded during
 the execution of <code>pod install</code>.</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para"><strong class="type-strong">Important:</strong> To correctly import the dependencies into the Kotlin/Native module, the
 Podfile must contain either <a class="typo-link" href="https://guides.cocoapods.org/syntax/podfile.html#use_modular_headers_bang"><code>use_modular_headers!</code></a>
 or <a class="typo-link" href="https://guides.cocoapods.org/syntax/podfile.html#use_frameworks_bang"><code>use_frameworks!</code></a>

@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>异常处理与监督 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1427,7 +1430,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下（<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/docs/coroutine-context-and-dispatchers.md#调试协程与线程">调试</a>）：</p>
@@ -1458,7 +1461,7 @@ their exceptions to their parent coroutine, which also delegates to the parent, 
 so the <code>CoroutineExceptionHandler</code> installed in their context is never used. 
 In addition to that, <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> builder always catches all exceptions and represents them in the resulting <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/index.html">Deferred</a> object, 
 so its <code>CoroutineExceptionHandler</code> has no effect either.</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">Coroutines running in supervision scope do not propagate exceptions to their parent and are
 excluded from this rule. A further <a class="typo-link" href="#supervision">Supervision</a> section of this document gives more details.</p>
 </blockquote>
@@ -1481,7 +1484,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1518,7 +1521,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1531,7 +1534,7 @@ Parent is not cancelled
 这个行为无法被覆盖，并且用于为<!--
 --><a class="typo-link" href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/composing-suspending-functions.md#structured-concurrency-with-async">结构化的并发（structured concurrency）</a> 提供稳定的协程层级结构。
 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 的实现并不是用于子协程。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">在本例中，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 总是被设置在由 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a>
 启动的协程中。将异常处理者设置在
 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 主作用域内启动的协程中是没有意义的，尽管子协程已经设置了异常处理者，
@@ -1570,7 +1573,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1613,17 +1616,17 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意：上面的代码将只在 JDK7 以上支持 <code>suppressed</code> 异常的环境中才能正确工作。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">CoroutineExceptionHandler got java.io.IOException with suppressed [java.lang.ArithmeticException]
 </code></pre>
 <!--- TEST-->
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，这个机制当前只能在 Java 1.7 以上的版本中使用。
 在 JS 和原生环境下暂时会受到限制，但将来会被修复。</p>
 </blockquote>
@@ -1657,7 +1660,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-exceptions-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1709,7 +1712,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1749,7 +1752,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1785,7 +1788,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-supervision-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>

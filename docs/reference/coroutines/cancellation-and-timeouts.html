@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>取消与超时 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1412,7 +1415,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">程序执行后的输出如下：</p>
@@ -1457,7 +1460,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">运行示例代码，并且我们可以看到它连续打印出了“I'm sleeping”，甚至在调用取消后，
@@ -1501,7 +1504,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">你可以看到，现在循环被取消了。<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/is-active.html">isActive</a> 是一个可以被使用在
@@ -1540,7 +1543,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a> 和 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/cancel-and-join.html">cancelAndJoin</a> 等待了所有的终结动作执行完毕，
@@ -1587,7 +1590,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST
@@ -1620,7 +1623,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">运行后得到如下输出：</p>
@@ -1655,7 +1658,7 @@ fun main() = runBlocking {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">运行这段代码时不再抛出异常：</p>

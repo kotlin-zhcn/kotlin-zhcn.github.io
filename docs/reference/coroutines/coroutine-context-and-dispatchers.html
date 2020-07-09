@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>协程上下文与调度器 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1425,7 +1428,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它执行后得到了如下输出（也许顺序会有所不同）：</p>
@@ -1475,7 +1478,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">执行后的输出：</p>
@@ -1488,7 +1491,7 @@ main runBlocking: After delay in thread main
 <p class="typo-para">所以，该协程的上下文继承自 <code>runBlocking {...}</code> 协程并在
 <code>main</code> 线程中运行，当 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 函数调用的时候，非受限的那个协程在<!--
 -->默认的执行者线程中恢复执行。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">非受限的调度器是一种高级机制，可以在某些极端情况下提供帮助<!--
 -->而不需要调度协程以便稍后执行或产生不希望的副作用，
 因为某些操作必须立即在协程中执行。
@@ -1522,7 +1525,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这里有三个协程，包括 <code>runBlocking</code> 内的主协程 (#1) ，
@@ -1537,7 +1540,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p class="typo-para">这个 <code>log</code> 函数在方括号种打印了线程的名字，并且你可以看到它是 <code>main</code>
 线程，并且附带了当前正在其上执行的协程的标识符。这个标识符<!--
 -->在调试模式开启时，将连续分配给所有创建的协程。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">当 JVM 以 <code>-ea</code> 参数配置运行时，调试模式也会开启。
 你可以在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-d-e-b-u-g_-p-r-o-p-e-r-t-y_-n-a-m-e.html">DEBUG_PROPERTY_NAME</a> 属性的文档中阅读有关调试工具的更多信息。</p>
 </blockquote>
@@ -1565,7 +1568,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">它演示了一些新技术。其中一个使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 来显式指定了一个上下文，并且<!--
@@ -1591,7 +1594,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">在<a class="typo-link" href="#调试协程与线程">调试模式</a>下，它将输出如下这些信息：</p>
@@ -1637,7 +1640,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码的输出如下：</p>
@@ -1671,7 +1674,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">结果如下所示：</p>
@@ -1713,7 +1716,7 @@ fun main() = runBlocking(CoroutineName("main")) {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">程序执行使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
@@ -1739,7 +1742,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-09.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这段代码使用了 <code>-Dkotlinx.coroutines.debug</code> JVM 参数，输出如下所示：</p>
@@ -1822,7 +1825,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-10.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">这个示例的输出如下所示：</p>
@@ -1834,7 +1837,7 @@ Destroying activity!
 <!--- TEST -->
 <p class="typo-para">你可以看到，只有前两个协程打印了消息，而另一个协程在
 <code>Activity.destroy()</code> 中单次调用了 <code>job.cancel()</code>。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，Android 在所有具有生命周期的实体中都对协程作用域提供了一等的支持。
 请查看<a class="typo-link" href="https://developer.android.com/topic/libraries/architecture/coroutines#lifecyclescope">相关文档</a>。</p>
 </blockquote>
@@ -1865,7 +1868,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 }
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-context-11.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">在这个例子中我们使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-dispatchers/-default.html">Dispatchers.Default</a> 在后台线程池中启动了一个新的协程，所以<!--

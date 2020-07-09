@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=65cb788bcde2557dd59fd936611d07d3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>共享的可变状态与并发 - Kotlin 语言中文站</title>
@@ -90,6 +90,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             <a href="/community/" class="nav-item ">
                 社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
             </a>
             <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
                 演练
@@ -1447,7 +1450,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-01.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST LINES_START
@@ -1493,7 +1496,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-02.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST LINES_START
@@ -1543,7 +1546,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-03.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -1596,7 +1599,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-04.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -1646,7 +1649,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -1700,7 +1703,7 @@ fun main() = runBlocking {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -1800,7 +1803,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 //sampleEnd
 </code></pre>
 </div>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-sync-07.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST ARBITRARY_TIME
@@ -1813,7 +1816,7 @@ Counter = 100000
 但只能通过消息互相影响（避免任何锁定）。</p>
 <p class="typo-para">actor 在高负载下比锁更有效，因为在这种情况下它总是有工作要做，而且根本不<!--
 -->需要切换到不同的上下文。</p>
-<blockquote>
+<blockquote class="typo-quote">
 <p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a> 协程构建器是一个双重的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 协程构建器。一个 actor 与它<!--
 -->接收消息的通道相关联，而一个 producer 与它<!--
 -->发送元素的通道相关联。</p>
