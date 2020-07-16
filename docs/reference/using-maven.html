@@ -1421,12 +1421,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             &lt;executions&gt;
                 &lt;execution&gt;
                     &lt;id&gt;compile&lt;/id&gt;
-                    &lt;goals&gt; &lt;goal&gt;compile&lt;/goal&gt; &lt;/goals&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;compile&lt;/goal&gt;
+                    &lt;/goals&gt;
                 &lt;/execution&gt;
 
                 &lt;execution&gt;
                     &lt;id&gt;test-compile&lt;/id&gt;
-                    &lt;goals&gt; &lt;goal&gt;test-compile&lt;/goal&gt; &lt;/goals&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;test-compile&lt;/goal&gt;
+                    &lt;/goals&gt;
                 &lt;/execution&gt;
             &lt;/executions&gt;
         &lt;/plugin&gt;
@@ -1436,7 +1440,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <h2 class="typo-header typo-h2" id="同时编译-kotlin-与-java-源代码">同时编译 Kotlin 与 Java 源代码</h2>
 <p class="typo-para">要编译混合代码应用程序，必须在 Java 编译器之前调用 Kotlin 编译器。
-按照 maven 的方式，这意味着应该使用以下方法在 maven-compiler-plugin 之前运行 kotlin-maven-plugin，确保 pom.xml 文件中的 kotlin 插件位于 maven-compiler-plugin 上面：</p>
+In maven terms that means that <code>kotlin-maven-plugin</code> should run before <code>maven-compiler-plugin</code> using the following method.
+Make sure that the <code>kotlin</code> plugin comes before the <code>maven-compiler-plugin</code> in your <code>pom.xml</code> file:</p>
 <div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;build&gt;
     &lt;plugins&gt;
@@ -1447,7 +1452,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             &lt;executions&gt;
                 &lt;execution&gt;
                     &lt;id&gt;compile&lt;/id&gt;
-                    &lt;goals&gt; &lt;goal&gt;compile&lt;/goal&gt; &lt;/goals&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;compile&lt;/goal&gt;
+                    &lt;/goals&gt;
                     &lt;configuration&gt;
                         &lt;sourceDirs&gt;
                             &lt;sourceDir&gt;${project.basedir}/src/main/kotlin&lt;/sourceDir&gt;
@@ -1485,12 +1492,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 &lt;execution&gt;
                     &lt;id&gt;java-compile&lt;/id&gt;
                     &lt;phase&gt;compile&lt;/phase&gt;
-                    &lt;goals&gt; &lt;goal&gt;compile&lt;/goal&gt; &lt;/goals&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;compile&lt;/goal&gt;
+                    &lt;/goals&gt;
                 &lt;/execution&gt;
                 &lt;execution&gt;
                     &lt;id&gt;java-test-compile&lt;/id&gt;
                     &lt;phase&gt;test-compile&lt;/phase&gt;
-                    &lt;goals&gt; &lt;goal&gt;testCompile&lt;/goal&gt; &lt;/goals&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;testCompile&lt;/goal&gt;
+                    &lt;/goals&gt;
+                    &lt;configuration&gt;
+                        &lt;skip&gt;${maven.test.skip}&lt;/skip&gt;
+                    &lt;/configuration&gt;
                 &lt;/execution&gt;
             &lt;/executions&gt;
         &lt;/plugin&gt;

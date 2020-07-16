@@ -1474,11 +1474,21 @@ apply plugin: "kotlin-spring" // 取代 "kotlin-allopen"
 }
 </code></pre>
 </div>
-<p class="typo-para">在 Maven 中，则启用 <code>spring</code> 插件：</p>
+<p class="typo-para">In Maven, the <code>spring</code> plugin is provided by the <code>kotlin-maven-allopen</code> plugin dependency, so to enable it:</p>
 <div auto-indent="false" class="sample" mode="xml" theme="idea">
-<pre><code class="language-xml">&lt;compilerPlugins&gt;
-    &lt;plugin&gt;spring&lt;/plugin&gt;
-&lt;/compilerPlugins&gt;
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;compilerPlugins&gt;
+        &lt;plugin&gt;spring&lt;/plugin&gt;
+    &lt;/compilerPlugins&gt;
+&lt;/configuration&gt;
+
+&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+        &lt;artifactId&gt;kotlin-maven-allopen&lt;/artifactId&gt;
+        &lt;version&gt;${kotlin.version}&lt;/version&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
 </code></pre>
 </div>
 <p class="typo-para">该插件指定了以下注解：

@@ -1409,6 +1409,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </code></pre>
 </div>
+<h2 class="typo-header typo-h2" id="implicit-this">Implicit <code>this</code></h2>
+<p class="typo-para">When you call a member function on <code>this</code>, you can skip the <code>this.</code> part.
+If you have a non-member function with the same name, use this with caution, because in some cases it can be called instead:</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    fun printLine() { println("Top-level function") }
+    
+    class A {
+        fun printLine() { println("Member function") }
+
+        fun invokePrintLine(omitThis: Boolean = false)  { 
+            if (omitThis) printLine()
+            else this.printLine()
+        }
+    }
+    
+    A().invokePrintLine() // Member function
+    A().invokePrintLine(omitThis = true) // Top-level function
+//sampleEnd()
+}
+</code></pre>
+</div>
 
         </article>
     </div>

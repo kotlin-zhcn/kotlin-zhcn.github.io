@@ -1469,8 +1469,8 @@ fun main() {
 fun main() {
 //sampleStart
     val bob = Person("Bob", 31)
-    val people = listOf&lt;Person&gt;(Person("Adam", 20), bob, bob)
-    val people2 = listOf&lt;Person&gt;(Person("Adam", 20), Person("Bob", 31), bob)
+    val people = listOf(Person("Adam", 20), bob, bob)
+    val people2 = listOf(Person("Adam", 20), Person("Bob", 31), bob)
     println(people == people2)
     bob.age = 32
     println(people == people2)
@@ -1478,7 +1478,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p class="typo-para"><a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><code>MutableList</code></a> 是可以进行写操作的 <code>List</code>，例如用于在特定位置添加或删除元素。</p>
+<p class="typo-para"><a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-list/index.html"><code>MutableList&lt;T&gt;</code></a> 是可以进行写操作的 <code>List</code>，例如用于在特定位置添加或删除元素。</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
