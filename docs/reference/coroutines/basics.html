@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>基础 - Kotlin 语言中文站</title>
@@ -1639,7 +1639,7 @@ World!
 fun main() = runBlocking {
     repeat(100_000) { // 启动大量的协程
         launch {
-            delay(1000L)
+            delay(5000L)
             print(".")
         }
     }
@@ -1650,7 +1650,7 @@ fun main() = runBlocking {
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-basic-08.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <!--- TEST lines.size == 1 && lines[0] == ".".repeat(100_000) -->
-<p class="typo-para">它启动了 10 万个协程，并且在一秒钟后，每个协程都输出一个点。</p>
+<p class="typo-para">它启动了 10 万个协程，并且在 5 秒钟后，每个协程都输出一个点。</p>
 <p class="typo-para">现在，尝试使用线程来实现。会发生什么？（很可能你的代码会产生某种内存不足的错误）</p>
 <h3 class="typo-header typo-h3" id="全局协程像守护线程">全局协程像守护线程</h3>
 <p class="typo-para">以下代码在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一个长期运行的协程，该协程每秒输出“I'm sleeping”两次，之后<!--
@@ -1732,11 +1732,11 @@ I'm sleeping 2 ...
                 </div>
                 <div class="global-footer-row-right">
                     <div class="terms-sponsor">
-                        由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
+                        Kotlin 语言与 Kotlin 官方英文站由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
                     </div>
                     <div class="terms-sponsor">
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
+                        本站由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
                         <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
                         <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">乔禹昂</a>、
                         <a href="https://github.com/SpielbergGao" class="testimonial-company-link" target="_blank" rel="nofollow">高金龙</a>、

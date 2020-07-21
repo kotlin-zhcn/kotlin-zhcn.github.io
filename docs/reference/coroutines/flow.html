@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=16ad4aafe1dcb08cb541a4af33ffb4fe">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>异步流 - Kotlin 语言中文站</title>
@@ -1386,7 +1386,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 <li class="typo-list__item"><a class="typo-link" href="#流是冷的">流是冷的</a></li>
-<li class="typo-list__item"><a class="typo-link" href="#流取消">流取消</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#流取消基础">流取消基础</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#流构建器">流构建器</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#过渡流操作符">过渡流操作符</a>
 <ul class="typo-list typo-list_type_simple">
@@ -1442,6 +1442,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="typo-list__item"><a class="typo-link" href="#命令式还是声明式">命令式还是声明式</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#启动流">启动流</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#flow-cancellation-checks">Flow cancellation checks</a>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#making-busy-flow-cancellable">Making busy flow cancellable</a></li>
+</ul>
+</li>
 <li class="typo-list__item"><a class="typo-link" href="#flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</a></li>
 </ul>
 </li>
@@ -1452,13 +1457,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 -->多个计算好的值呢？这正是 Kotlin 流（Flow）的用武之地。</p>
 <h3 class="typo-header typo-h3" id="表示多个值">表示多个值</h3>
 <p class="typo-para">在 Kotlin 中可以使用<a class="typo-link" href="https://kotlinlang.org/docs/reference/collections-overview.html">集合</a>来表示多个值。 
-比如说，我们可以拥有一个函数 <code>foo()</code>，它返回一个包含三个数字的 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>，
+比如说，我们有一个 <code>simple</code> 函数，它返回一个包含三个数字的 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a>，
 然后使用 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/for-each.html">forEach</a> 打印它们：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
-<pre><code class="language-kotlin">fun foo(): List&lt;Int&gt; = listOf(1, 2, 3)
+<pre><code class="language-kotlin">fun simple(): List&lt;Int&gt; = listOf(1, 2, 3)
  
 fun main() {
-    foo().forEach { value -&gt; println(value) } 
+    simple().forEach { value -&gt; println(value) } 
 }
 </code></pre>
 </div>
@@ -1475,7 +1480,7 @@ fun main() {
 <p class="typo-para">如果使用一些消耗 CPU 资源的阻塞代码计算数字<!--
 -->（每次计算需要 100 毫秒）那么我们可以使用 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.sequences/index.html">Sequence</a> 来表示数字：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
-<pre><code class="language-kotlin">fun foo(): Sequence&lt;Int&gt; = sequence { // 序列构建器
+<pre><code class="language-kotlin">fun simple(): Sequence&lt;Int&gt; = sequence { // 序列构建器
     for (i in 1..3) {
         Thread.sleep(100) // 假装我们正在计算
         yield(i) // 产生下一个值
@@ -1483,7 +1488,7 @@ fun main() {
 }
 
 fun main() {
-    foo().forEach { value -&gt; println(value) } 
+    simple().forEach { value -&gt; println(value) } 
 }
 </code></pre>
 </div>
@@ -1498,19 +1503,19 @@ fun main() {
 -->
 <h4 class="typo-header typo-h4" id="挂起函数">挂起函数</h4>
 <p class="typo-para">然而，计算过程阻塞运行该代码的主线程。
-当这些值由异步代码计算时，我们可以使用 <code>suspend</code> 修饰符标记函数 <code>foo</code>，
+当这些值由异步代码计算时，我们可以使用 <code>suspend</code> 修饰符标记函数 <code>simple</code>，
 这样它就可以在不阻塞的情况下执行其工作并将结果作为列表返回：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*                 
                            
 //sampleStart
-suspend fun foo(): List&lt;Int&gt; {
+suspend fun simple(): List&lt;Int&gt; {
     delay(1000) // 假装我们在这里做了一些异步的事情
     return listOf(1, 2, 3)
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo().forEach { value -&gt; println(value) } 
+    simple().forEach { value -&gt; println(value) } 
 }
 //sampleEnd
 </code></pre>
@@ -1532,7 +1537,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 import kotlinx.coroutines.flow.*
 
 //sampleStart               
-fun foo(): Flow&lt;Int&gt; = flow { // 流构建器
+fun simple(): Flow&lt;Int&gt; = flow { // 流构建器
     for (i in 1..3) {
         delay(100) // 假装我们在这里做了一些有用的事情
         emit(i) // 发送下一个值
@@ -1548,7 +1553,7 @@ fun main() = runBlocking&lt;Unit&gt; {
         }
     }
     // 收集这个流
-    foo().collect { value -&gt; println(value) } 
+    simple().collect { value -&gt; println(value) } 
 }
 //sampleEnd
 </code></pre>
@@ -1570,12 +1575,12 @@ I'm not blocked 3
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">名为 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> 的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 类型构建器函数。</li>
 <li class="typo-list__item"><code>flow { ... }</code> 构建块中的代码可以挂起。</li>
-<li class="typo-list__item">函数 <code>foo()</code> 不再标有 <code>suspend</code> 修饰符。</li>
+<li class="typo-list__item">函数 <code>simple</code> 不再标有 <code>suspend</code> 修饰符。</li>
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> 函数 <em>发射</em> 值。</li>
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 函数 <em>收集</em> 值。</li>
 </ul>
 <blockquote class="typo-quote">
-<p class="typo-para">我们可以在 <code>foo</code> 的 <code>flow { ... }</code> 函数体内使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 代替 <code>Thread.sleep</code>
+<p class="typo-para">我们可以在 <code>simple</code> 的 <code>flow { ... }</code> 函数体内使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 代替 <code>Thread.sleep</code>
 以观察主线程在本案例中被阻塞了。</p>
 </blockquote>
 <h3 class="typo-header typo-h3" id="流是冷的">流是冷的</h3>
@@ -1586,7 +1591,7 @@ I'm not blocked 3
 import kotlinx.coroutines.flow.*
 
 //sampleStart      
-fun foo(): Flow&lt;Int&gt; = flow { 
+fun simple(): Flow&lt;Int&gt; = flow { 
     println("Flow started")
     for (i in 1..3) {
         delay(100)
@@ -1595,8 +1600,8 @@ fun foo(): Flow&lt;Int&gt; = flow {
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    println("Calling foo...")
-    val flow = foo()
+    println("Calling simple function...")
+    val flow = simple()
     println("Calling collect...")
     flow.collect { value -&gt; println(value) } 
     println("Calling collect again...")
@@ -1609,7 +1614,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-05.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">打印如下：</p>
-<pre><code class="code _highlighted" data-lang="text/plain">Calling foo...
+<pre><code class="code _highlighted" data-lang="text/plain">Calling simple function...
 Calling collect...
 Flow started
 1
@@ -1622,21 +1627,20 @@ Flow started
 3
 </code></pre>
 <!--- TEST -->
-<p class="typo-para">这是返回一个流的 <code>foo()</code> 函数没有标记 <code>suspend</code> 修饰符的主要原因。
-通过它自己，<code>foo()</code> 会尽快返回且不会进行任何等待。该流在每次收集的时候启动，
+<p class="typo-para">这是返回一个流的 <code>simple</code> 函数没有标记 <code>suspend</code> 修饰符的主要原因。
+通过它自己，<code>simple()</code> 调用会尽快返回且不会进行任何等待。该流在每次收集的时候启动，
 这就是为什么当我们再次调用 <code>collect</code> 时我们会看到“Flow started”。</p>
-<h3 class="typo-header typo-h3" id="流取消">流取消</h3>
-<p class="typo-para">流采用与协程同样的协作取消。然而，流的基础设施未引入<!--
--->其他取消点。取消完全透明。像往常一样，流的收集可以在<!--
--->当流在一个可取消的挂起函数（例如 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>）中挂起的时候取消，否则不能取消。</p>
-<p class="typo-para">下面的示例展示了当 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout-or-null.html">withTimeoutOrNull</a> 块中代码在运行的时候流是如何在超时的情况下取消<!--
+<h3 class="typo-header typo-h3" id="流取消基础">流取消基础</h3>
+<p class="typo-para">流采用与协程同样的协作取消。像往常一样，流的收集可以在<!--
+-->当流在一个可取消的挂起函数（例如 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>）中挂起的时候取消。
+以下示例展示了当 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout-or-null.html">withTimeoutOrNull</a> 块中代码在运行的时候流是如何在超时的情况下取消<!--
 -->并停止执行其代码的：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart           
-fun foo(): Flow&lt;Int&gt; = flow { 
+fun simple(): Flow&lt;Int&gt; = flow { 
     for (i in 1..3) {
         delay(100)          
         println("Emitting $i")
@@ -1646,7 +1650,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; {
     withTimeoutOrNull(250) { // 在 250 毫秒后超时
-        foo().collect { value -&gt; println(value) } 
+        simple().collect { value -&gt; println(value) } 
     }
     println("Done")
 }
@@ -1656,7 +1660,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-06.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p class="typo-para">注意，在 <code>foo()</code> 函数中流仅发射两个数字，产生以下输出：</p>
+<p class="typo-para">注意，在 <code>simple</code> 函数中流仅发射两个数字，产生以下输出：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Emitting 1
 1
 Emitting 2
@@ -1664,6 +1668,7 @@ Emitting 2
 Done
 </code></pre>
 <!--- TEST -->
+<p class="typo-para">See <a class="typo-link" href="#flow-cancellation-checks">Flow cancellation checks</a> section for more details.</p>
 <h3 class="typo-header typo-h3" id="流构建器">流构建器</h3>
 <p class="typo-para">先前示例中的 <code>flow { ... }</code> 构建器是最基础的一个。还有其他构建器<!--
 -->使流的声明更简单：</p>
@@ -1882,11 +1887,11 @@ Filter 5
 <!--- TEST -->
 <h3 class="typo-header typo-h3" id="流上下文">流上下文</h3>
 <p class="typo-para">流的收集总是在调用协程的上下文中发生。例如，如果有一个流
-<code>foo</code>，然后以下代码在它的编写者指定的上下文中<!--
--->运行，而无论流 <code>foo</code> 的实现细节如何：</p>
+<code>simple</code>，然后以下代码在它的编写者指定的上下文中<!--
+-->运行，而无论流 <code>simple</code> 的实现细节如何：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">withContext(context) {
-    foo.collect { value -&gt;
+    simple().collect { value -&gt;
         println(value) // 运行在指定上下文中
     }
 }
@@ -1895,7 +1900,7 @@ Filter 5
 <!--- CLEAR -->
 <p class="typo-para">流的该属性称为 <em>上下文保存</em> 。</p>
 <p class="typo-para">所以默认的，<code>flow { ... }</code> 构建器中的代码运行在相应流的收集器<!--
--->提供的上下文中。举例来说，考虑打印线程的 <code>foo</code> 的实现，
+-->提供的上下文中。举例来说，考虑打印线程的一个 <code>simple</code> 函数的实现，
 它被调用并发射三个数字：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1904,15 +1909,15 @@ import kotlinx.coroutines.flow.*
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
            
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
-    log("Started foo flow")
+fun simple(): Flow&lt;Int&gt; = flow {
+    log("Started simple flow")
     for (i in 1..3) {
         emit(i)
     }
 }  
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo().collect { value -&gt; log("Collected $value") } 
+    simple().collect { value -&gt; log("Collected $value") } 
 }            
 //sampleEnd
 </code></pre>
@@ -1921,13 +1926,13 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-13.kt">这里</a>获取完整代码。</p>
 </blockquote>
 <p class="typo-para">运行这段代码：</p>
-<pre><code class="code _highlighted" data-lang="text/plain">[main @coroutine#1] Started foo flow
+<pre><code class="code _highlighted" data-lang="text/plain">[main @coroutine#1] Started simple flow
 [main @coroutine#1] Collected 1
 [main @coroutine#1] Collected 2
 [main @coroutine#1] Collected 3
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p class="typo-para">由于 <code>foo().collect</code> 是在主线程调用的，则 <code>foo</code> 的流主体也是在主线程调用的。
+<p class="typo-para">由于 <code>simple().collect</code> 是在主线程调用的，则 <code>simple</code> 的流主体也是在主线程调用的。
 这是快速运行或异步代码的理想默认形式，它不关心执行的上下文并且不会<!--
 -->阻塞调用者。</p>
 <h4 class="typo-header typo-h4" id="withcontext-发出错误">withContext 发出错误</h4>
@@ -1941,7 +1946,7 @@ Kotlin 协程中改变代码的上下文，但是 <code>flow {...}</code> 构建
 import kotlinx.coroutines.flow.*
                       
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     // 在流构建器中更改消耗 CPU 代码的上下文的错误方式
     kotlinx.coroutines.withContext(Dispatchers.Default) {
         for (i in 1..3) {
@@ -1952,7 +1957,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo().collect { value -&gt; println(value) } 
+    simple().collect { value -&gt; println(value) } 
 }            
 //sampleEnd
 </code></pre>
@@ -1963,7 +1968,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <p class="typo-para">这段代码产生如下的异常：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Exception in thread "main" java.lang.IllegalStateException: Flow invariant is violated:
 		Flow was collected in [CoroutineId(1), "coroutine#1":BlockingCoroutine{Active}@5511c7f8, BlockingEventLoop@2eac3323],
-		but emission happened in [CoroutineId(1), "coroutine#1":DispatchedCoroutine{Active}@2dae0000, DefaultDispatcher].
+		but emission happened in [CoroutineId(1), "coroutine#1":DispatchedCoroutine{Active}@2dae0000, Dispatchers.Default].
 		Please refer to 'flow' documentation or use 'flowOn' instead
 	at ...
 </code></pre>
@@ -1979,7 +1984,7 @@ import kotlinx.coroutines.flow.*
 fun log(msg: String) = println("[${Thread.currentThread().name}] $msg")
            
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         Thread.sleep(100) // 假装我们以消耗 CPU 的方式进行计算
         log("Emitting $i")
@@ -1988,7 +1993,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 }.flowOn(Dispatchers.Default) // 在流构建器中改变消耗 CPU 代码上下文的正确方式
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo().collect { value -&gt;
+    simple().collect { value -&gt;
         log("Collected $value") 
     } 
 }            
@@ -2014,7 +2019,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <h3 class="typo-header typo-h3" id="缓冲">缓冲</h3>
 <p class="typo-para">从收集流所花费的时间来看，将流的不同部分运行在不同的协程中<!--
 -->将会很有帮助，特别是当涉及到长时间运行的异步操作时。例如，考虑一种情况，
-<code>foo()</code> 流的发射很慢，它每花费 100 毫秒才产生一个元素；而收集器也非常慢， 
+一个 <code>simple</code> 流的发射很慢，它每花费 100 毫秒才产生一个元素；而收集器也非常慢， 
 需要花费 300 毫秒来处理元素。让我们看看从该流收集三个数字要花费多长时间：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -2022,7 +2027,7 @@ import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         delay(100) // 假装我们异步等待了 100 毫秒
         emit(i) // 发射下一个值
@@ -2031,7 +2036,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; { 
     val time = measureTimeMillis {
-        foo().collect { value -&gt; 
+        simple().collect { value -&gt; 
             delay(300) // 假装我们花费 300 毫秒来处理它
             println(value) 
         } 
@@ -2051,14 +2056,14 @@ fun main() = runBlocking&lt;Unit&gt; {
 Collected in 1220 ms
 </code></pre>
 <!--- TEST ARBITRARY_TIME -->
-<p class="typo-para">我们可以在流上使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/buffer.html">buffer</a> 操作符来并发运行 <code>foo()</code> 中发射元素的代码以及收集的代码，
+<p class="typo-para">我们可以在流上使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/buffer.html">buffer</a> 操作符来并发运行这个 <code>simple</code> 流中发射元素的代码以及收集的代码，
 而不是顺序运行它们：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         delay(100) // 假装我们异步等待了 100 毫秒
         emit(i) // 发射下一个值
@@ -2068,7 +2073,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
+        simple()
             .buffer() // 缓冲发射项，无需等待
             .collect { value -&gt; 
                 delay(300) // 假装我们花费 300 毫秒来处理它
@@ -2105,7 +2110,7 @@ Collected in 1071 ms
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         delay(100) // 假装我们异步等待了 100 毫秒
         emit(i) // 发射下一个值
@@ -2115,7 +2120,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
+        simple()
             .conflate() // 合并发射项，不对每个值进行处理
             .collect { value -&gt; 
                 delay(300) // 假装我们花费 300 毫秒来处理它
@@ -2147,7 +2152,7 @@ Collected in 758 ms
 import kotlinx.coroutines.flow.*
 import kotlin.system.*
 
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         delay(100) // 假装我们异步等待了 100 毫秒
         emit(i) // 发射下一个值
@@ -2157,7 +2162,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 fun main() = runBlocking&lt;Unit&gt; { 
 //sampleStart
     val time = measureTimeMillis {
-        foo()
+        simple()
             .collectLatest { value -&gt; // 取消并重新发射最后一个值
                 println("Collecting $value") 
                 delay(300) // 假装我们花费 300 毫秒来处理它
@@ -2433,7 +2438,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i) // 发射下一个值
@@ -2442,7 +2447,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; {
     try {
-        foo().collect { value -&gt;         
+        simple().collect { value -&gt;         
             println(value)
             check(value &lt;= 1) { "Collected $value" }
         }
@@ -2474,7 +2479,7 @@ Caught java.lang.IllegalStateException: Collected 2
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;String&gt; = 
+fun simple(): Flow&lt;String&gt; = 
     flow {
         for (i in 1..3) {
             println("Emitting $i")
@@ -2488,7 +2493,7 @@ fun foo(): Flow&lt;String&gt; =
 
 fun main() = runBlocking&lt;Unit&gt; {
     try {
-        foo().collect { value -&gt; println(value) }
+        simple().collect { value -&gt; println(value) }
     } catch (e: Throwable) {
         println("Caught $e")
     } 
@@ -2524,7 +2529,7 @@ Caught java.lang.IllegalStateException: Crashed on 2
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow&lt;String&gt; = 
+fun simple(): Flow&lt;String&gt; = 
     flow {
         for (i in 1..3) {
             println("Emitting $i")
@@ -2538,7 +2543,7 @@ fun foo(): Flow&lt;String&gt; =
 
 fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart
-    foo()
+    simple()
         .catch { e -&gt; emit("Caught $e") } // 发射一个异常
         .collect { value -&gt; println(value) }
 //sampleEnd
@@ -2564,7 +2569,7 @@ Caught java.lang.IllegalStateException: Crashed on 2
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i)
@@ -2572,7 +2577,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo()
+    simple()
         .catch { e -&gt; println("Caught $e") } // 不会捕获下游异常
         .collect { value -&gt;
             check(value &lt;= 1) { "Collected $value" }                 
@@ -2601,7 +2606,7 @@ Exception in thread "main" java.lang.IllegalStateException: Collected 2
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     for (i in 1..3) {
         println("Emitting $i")
         emit(i)
@@ -2610,7 +2615,7 @@ fun foo(): Flow&lt;Int&gt; = flow {
 
 fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart
-    foo()
+    simple()
         .onEach { value -&gt;
             check(value &lt;= 1) { "Collected $value" }                 
             println(value) 
@@ -2643,11 +2648,11 @@ Caught java.lang.IllegalStateException: Collected 2
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = (1..3).asFlow()
+fun simple(): Flow&lt;Int&gt; = (1..3).asFlow()
 
 fun main() = runBlocking&lt;Unit&gt; {
     try {
-        foo().collect { value -&gt; println(value) }
+        simple().collect { value -&gt; println(value) }
     } finally {
         println("Done")
     }
@@ -2658,7 +2663,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 <blockquote class="typo-quote">
 <p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-31.kt">这里</a>获取完整代码。</p>
 </blockquote>
-<p class="typo-para">这段代码打印出 <code>foo()</code> 流产生的三个数字，后面跟一个“Done”字符串：</p>
+<p class="typo-para">这段代码打印出 <code>simple</code> 流产生的三个数字，后面跟一个“Done”字符串：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 2
 3
@@ -2673,11 +2678,11 @@ Done
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-fun foo(): Flow&lt;Int&gt; = (1..3).asFlow()
+fun simple(): Flow&lt;Int&gt; = (1..3).asFlow()
 
 fun main() = runBlocking&lt;Unit&gt; {
 //sampleStart
-    foo()
+    simple()
         .onCompletion { println("Done") }
         .collect { value -&gt; println(value) }
 //sampleEnd
@@ -2695,19 +2700,19 @@ Done
 -->
 <p class="typo-para"><a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/on-completion.html">onCompletion</a> 的主要优点是其 lambda 表达式的可空参数
 <code>Throwable</code> 可以用于确定流收集是正常完成还是有异常发生。在下面的<!--
--->示例中 <code>foo()</code> 流在发射数字 1 之后抛出了一个异常：</p>
+-->示例中 <code>simple</code> 流在发射数字 1 之后抛出了一个异常：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = flow {
+fun simple(): Flow&lt;Int&gt; = flow {
     emit(1)
     throw RuntimeException()
 }
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo()
+    simple()
         .onCompletion { cause -&gt; if (cause != null) println("Flow completed exceptionally") }
         .catch { cause -&gt; println("Caught exception") }
         .collect { value -&gt; println(value) }
@@ -2735,10 +2740,10 @@ Caught exception
 import kotlinx.coroutines.flow.*
 
 //sampleStart
-fun foo(): Flow&lt;Int&gt; = (1..3).asFlow()
+fun simple(): Flow&lt;Int&gt; = (1..3).asFlow()
 
 fun main() = runBlocking&lt;Unit&gt; {
-    foo()
+    simple()
         .onCompletion { cause -&gt; println("Flow completed with $cause") }
         .collect { value -&gt;
             check(value &lt;= 1) { "Collected $value" }                 
@@ -2837,6 +2842,101 @@ Event: 3
 因为取消与结构化并发可以达成这个目的。</p>
 <p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> 也会返回一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，可以在不取消整个作用域的情况下仅<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">取消</a>相应的流收集<!--
 -->或对其进行 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a>。</p>
+<h3 class="typo-header typo-h3" id="flow-cancellation-checks">Flow cancellation checks</h3>
+<p class="typo-para">For convenience, the <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> builder performs additional <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/ensure-active.html">ensureActive</a> checks for cancellation on each emitted value. 
+It means that a busy loop emitting from a <code>flow { ... }</code> is cancellable:</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+
+//sampleStart           
+fun foo(): Flow&lt;Int&gt; = flow { 
+    for (i in 1..5) {
+        println("Emitting $i") 
+        emit(i) 
+    }
+}
+
+fun main() = runBlocking&lt;Unit&gt; {
+    foo().collect { value -&gt; 
+        if (value == 3) cancel()  
+        println(value)
+    } 
+}
+//sampleEnd
+</code></pre>
+</div>
+<blockquote class="typo-quote">
+<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-37.kt">here</a>.</p>
+</blockquote>
+<p class="typo-para">We get only numbers up to 3 and a <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> after trying to emit number 4:</p>
+<pre><code class="code _highlighted" data-lang="text/plain">Emitting 1
+1
+Emitting 2
+2
+Emitting 3
+3
+Emitting 4
+Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@6d7b4f4c
+</code></pre>
+<!--- TEST EXCEPTION -->
+<p class="typo-para">However, most other flow operators do not do additional cancellation checks on their own for performance reasons. 
+For example, if you use <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/kotlin.ranges.-int-range/as-flow.html">IntRange.asFlow</a> extension to write the same busy loop and don't suspend anywhere, 
+then there are no checks for cancellation:</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+
+//sampleStart           
+fun main() = runBlocking&lt;Unit&gt; {
+    (1..5).asFlow().collect { value -&gt; 
+        if (value == 3) cancel()  
+        println(value)
+    } 
+}
+//sampleEnd
+</code></pre>
+</div>
+<blockquote class="typo-quote">
+<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-38.kt">here</a>.</p>
+</blockquote>
+<p class="typo-para">All numbers from 1 to 5 are collected and cancellation gets detected only before return from <code>runBlocking</code>:</p>
+<pre><code class="code _highlighted" data-lang="text/plain">1
+2
+3
+4
+5
+Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@3327bd23
+</code></pre>
+<!--- TEST EXCEPTION -->
+<h4 class="typo-header typo-h4" id="making-busy-flow-cancellable">Making busy flow cancellable</h4>
+<p class="typo-para">In the case where you have a busy loop with coroutines you must explicitly check for cancellation.
+You can add <code>.onEach { currentCoroutineContext().ensureActive() }</code>, but there is a ready-to-use
+<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/cancellable.html">cancellable</a> operator provided to do that:</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.*
+
+//sampleStart           
+fun main() = runBlocking&lt;Unit&gt; {
+    (1..5).asFlow().cancellable().collect { value -&gt; 
+        if (value == 3) cancel()  
+        println(value)
+    } 
+}
+//sampleEnd
+</code></pre>
+</div>
+<blockquote class="typo-quote">
+<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-39.kt">here</a>.</p>
+</blockquote>
+<p class="typo-para">With the <code>cancellable</code> operator only the numbers from 1 to 3 are collected:</p>
+<pre><code class="code _highlighted" data-lang="text/plain">1
+2
+3
+Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@5ec0a365
+</code></pre>
+<!--- TEST EXCEPTION -->
 <h3 class="typo-header typo-h3" id="flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</h3>
 <p class="typo-para">对于熟悉响应式流（<a class="typo-link" href="https://www.reactive-streams.org/">Reactive Streams</a>）或诸如 RxJava 与 Project Reactor 这样的响应式框架的人来说，
 Flow 的设计也许看起来会非常熟悉。</p>
@@ -2898,11 +2998,11 @@ Flow 的设计也许看起来会非常熟悉。</p>
                 </div>
                 <div class="global-footer-row-right">
                     <div class="terms-sponsor">
-                        由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
+                        Kotlin 语言与 Kotlin 官方英文站由 <a href="http://jetbrains.com" class="sponsor sponsor_jetbrains jetbrains-logo _logo-jetbrains"
                                                       target="_blank">JetBrains</a> 赞助及开发；
                     </div>
                     <div class="terms-sponsor">
-                        由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
+                        本站由<a href="https://hltj.me/" class="testimonial-company-link" target="_blank" rel="nofollow">灰蓝天际</a>、
                         <a href="http://tanfujun.com" class="testimonial-company-link" target="_blank" rel="nofollow">晓_晨DEV</a>、
                         <a href="https://github.com/qiaoyuang" class="testimonial-company-link" target="_blank" rel="nofollow">乔禹昂</a>、
                         <a href="https://github.com/SpielbergGao" class="testimonial-company-link" target="_blank" rel="nofollow">高金龙</a>、
