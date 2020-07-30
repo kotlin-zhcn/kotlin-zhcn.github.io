@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/js-overview.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/compatibility-guide-14.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
-    <title>Kotlin 用于 JavaScript 开发 - Kotlin 语言中文站</title>
+    <title>Compatibility Guide for Kotlin 1.4 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
@@ -144,10 +144,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">Kotlin 用于 JavaScript 开发</div>
-            </div>
+            <a href="/docs/reference/js-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于 JavaScript 开发</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -1364,7 +1366,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/js-overview.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/compatibility-guide-14.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1372,62 +1374,461 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 class="typo-header typo-h1" id="kotlin-javascript-概述">Kotlin JavaScript 概述</h1>
-<p class="typo-para">Kotlin 提供了 JavaScript 作为目标平台的能力。它通过将 Kotlin 转换为 JavaScript 来实现。目前的实现目标是 ECMAScript 5.1，但也有最终目标为 ECMAScript 2015 的计划。</p>
-<p class="typo-para">当你选择 JavaScript 目标时，作为项目一部分的任何 Kotlin 代码以及 Kotlin 附带的标准库都会转换为 JavaScript。然而，这不包括使用的 JDK 和任何 JVM 或 Java 框架或库。任何不是 Kotlin 的文件会在编译期间忽略掉。</p>
-<p class="typo-para">Kotlin 编译器努力遵循以下目标：</p>
+<h1 class="typo-header typo-h1" id="compatibility-guide-for-kotlin-14">Compatibility Guide for Kotlin 1.4</h1>
+<p class="typo-para"><a class="typo-link" href="evolution/kotlin-evolution.html"><em>Keeping the Language Modern</em> and <em>Comfortable Updates</em></a> are among the fundamental principles in Kotlin Language Design.
+The former says that constructs which obstruct language evolution should be removed, and the latter says that this
+removal should be well-communicated beforehand to make code migration as smooth as possible.</p>
+<p class="typo-para">While most of the language changes were already announced through other channels, like update changelogs or compiler warnings,
+this document summarizes them all, providing a complete reference for migration from Kotlin 1.3 to Kotlin 1.4.</p>
+<h2 class="typo-header typo-h2" id="basic-terms">Basic terms</h2>
+<p class="typo-para">In this document we introduce several kinds of compatibility:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">提供最佳大小的输出</li>
-<li class="typo-list__item">提供可读的 JavaScript 输出</li>
-<li class="typo-list__item">提供与现有模块系统的互操作性</li>
-<li class="typo-list__item">在标准库中提供相同的功能，无论是 JavaScript 还是 JVM 目标（尽最大可能程度）。</li>
+<li class="typo-list__item"><em>source</em>: source-incompatible change stops code that used to compile fine (without errors or warnings) from compiling anymore</li>
+<li class="typo-list__item"><em>binary</em>: two binary artifacts are said to be binary-compatible if interchanging them doesn't lead to loading or linkage errors</li>
+<li class="typo-list__item"><em>behavioral</em>: a change is said to be behavioral-incompatible if the same program demonstrates different behavior before and after applying the change</li>
 </ul>
-<h2 class="typo-header typo-h2" id="如何使用">如何使用</h2>
-<p class="typo-para">你可能希望在以下情景中将 Kotlin 编译为 JavaScript：</p>
+<p class="typo-para">Remember that those definitions are given only for pure Kotlin. Compatibility of Kotlin code from the other languages perspective
+(for example, from Java) is out of the scope of this document.</p>
+<h3 class="typo-header typo-h3" id="unexpected-behavior-with-in-infix-operator-and-concurrenthashmap">Unexpected behavior with <code>in</code> infix operator and <code>ConcurrentHashMap</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-18053">KT-18053</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will outlaw auto operator <code>contains</code> coming from the implementors of <code>java.util.Map</code> written in Java</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">
-<p class="typo-para">创建面向客户端 JavaScript 的 Kotlin 代码</p>
+<li class="typo-list__item">&lt; 1.4: introduce warning for problematic operators at call-site</li>
+<li class="typo-list__item">&gt;= 1.4: raise this warning to an error,
+ <code>-XXLanguage:-ProhibitConcurrentHashMapContains</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="prohibit-access-to-protected-members-inside-public-inline-members">Prohibit access to protected members inside public inline members</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21178">KT-21178</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will prohibit access to protected members from public inline members.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">
-<p class="typo-para"><strong class="typo-strong">与 DOM 元素交互</strong>。Kotlin 提供了一系列静态类型的接口来与文档对象模型（Document Object Model）交互，允许创建和更新 DOM 元素。</p>
-</li>
-<li class="typo-list__item">
-<p class="typo-para"><strong class="typo-strong">与图形如 WebGL 交互</strong>。你可以使用 Kotlin 在网页上用 WebGL 创建图形元素。</p>
-</li>
+<li class="typo-list__item">&lt; 1.4: introduce warning at call-site for problematic cases</li>
+<li class="typo-list__item">1.4: raise this warning to an error,
+ <code>-XXLanguage:-ProhibitProtectedCallFromInline</code> can be used to temporarily revert to pre-1.4 behavior</li>
 </ul>
-</li>
-<li class="typo-list__item">
-<p class="typo-para">创建面向服务器端 JavaScript 的 Kotlin 代码</p>
+</blockquote>
+<h3 class="typo-header typo-h3" id="contracts-on-calls-with-implicit-receivers">Contracts on calls with implicit receivers</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28672">KT-28672</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core Language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: smart casts from contracts will be available on calls with implicit receivers in 1.4</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><strong class="typo-strong">使用服务器端技术</strong>。你可以使用 Kotlin 与服务器端 JavaScript（如 Node.js）进行交互</li>
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-ContractsOnCallsWithImplicitReceiver</code> can be used to temporarily revert to pre-1.4 behavior</li>
 </ul>
-</li>
-</ul>
-<p class="typo-para">Kotlin 可以与现有的第三方库和框架（如 jQuery 或 ReactJS）一起使用。要使用强类型
-API 访问第三方框架，可以使用 <a class="typo-link" href="https://github.com/kotlin/dukat">dukat</a> 工具将 TypeScript 定义从 <a class="typo-link" href="http://definitelytyped.org/">Definitely Typed</a>
-类型定义仓库转换为 Kotlin。或者，你可以使用<!--
---><a class="typo-link" href="dynamic-type.html">动态类型</a>访问任何框架，而无需强类型。</p>
-<p class="typo-para">Kotlin 兼容 CommonJS、AMD 和 UMD，直截了当<a class="typo-link" href="https://www.kotlincn.net/docs/tutorials/javascript/working-with-modules/working-with-modules.html">与不同的模块系统交互</a>。</p>
-<h2 class="typo-header typo-h2" id="kotlinjs-今天与明天">Kotlin/JS 今天与明天</h2>
-<p class="typo-para">想进一步了解 Kotlin/JS 吗？</p>
-<p class="typo-para">在这个短片中，Kotlin 开发者布道师 Sebastian Aigner 将为你解释 Kotlin/JS 的主要优点、分享一些技巧与使用场景，并介绍 Kotlin/JS 的计划与即将发布的特性。</p>
-<iframe allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/fZUL8_kgHXg" width="560"></iframe>
-<h2 class="typo-header typo-h2" id="kotlinjs-入门">Kotlin/JS 入门</h2>
-<p class="typo-para">要了解如何开始使用 Kotlin 用于 JavaScript 开发，请参阅<a class="typo-link" href="/docs/reference/js-project-setup.html">搭建 Kotlin/JS 项目</a>。</p>
-<h2 class="typo-header typo-h2" id="kotlinjs-实践实验室">Kotlin/JS 实践实验室</h2>
-<p class="typo-para">实践实验室是一种长形式的教程，通过一个与特定主题相关的独立项目来帮助了解一种技术。</p>
-<p class="typo-para">它们包括示例项目，这些示例项目可用作自己的项目的起点，并包含有用的代码片段与模式。</p>
-<p class="typo-para">对于 Kotlin/JS，当前有以下实践实验：</p>
+</blockquote>
+<h3 class="typo-header typo-h3" id="inconsistent-behavior-of-floating-point-number-comparisons">Inconsistent behavior of floating-point number comparisons</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22723">KT-22723</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, Kotlin compiler will use IEEE 754 standard to compare floating-point numbers</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">
-<p class="typo-para"><a class="typo-link" href="https://play.kotlinlang.org/hands-on/Building%20Web%20Applications%20with%20React%20and%20Kotlin%20JS/01_Introduction">使用 React 与 Kotlin/JS 构建 Web 应用程序</a>将指导完成使用 React 框架构建简单 Web 应用程序的过程，展示用于 HTML 的类型安全的 Kotlin DSL 如何使构建响应式 DOM 元素更加方便，并说明了如何使用第三方 React 组件，以及如何从 API 获取信息，同时使用纯 Kotlin/JS 编写整个应用程序逻辑。</p>
-</li>
-<li class="typo-list__item">
-<p class="typo-para"><a class="typo-link" href="https://play.kotlinlang.org/hands-on/Full%20Stack%20Web%20App%20with%20Kotlin%20Multiplatform/01_Introduction">使用 Kotlin Multiplatform 构建全栈 Web 应用</a>通过构建使用通用代码、序列化与其他多平台范式的客户端服务器应用程序，讲授了构建针对 Kotlin/JVM 与 Kotlin/JS 的应用程序的概念。它还简要介绍了如何将 Ktor 作为服务器与客户端框架使用。</p>
-</li>
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-ProperIeee754Comparisons</code> can be used to temporarily revert to pre-1.4 behavior</li>
 </ul>
-<h2 class="typo-header typo-h2" id="加入-kotlinjs-社区">加入 Kotlin/JS 社区</h2>
-<p class="typo-para">还可以在官方 <a class="typo-link" href="https://surveys.jetbrains.com/s3/kotlin-slack-sign-up">Kotlin Slack</a> 中加入 <a class="typo-link" href="https://kotlinlang.slack.com/archives/C0B8L3U69">#javascript</a> 频道，并与社区和团队聊天。</p>
+</blockquote>
+<h3 class="typo-header typo-h3" id="no-smart-cast-on-the-last-expression-in-a-generic-lambda">No smart cast on the last expression in a generic lambda</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-15020">KT-15020</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core Language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: smart casts for last expressions in lambdas will be correctly applied since 1.4</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="do-not-depend-on-the-order-of-lambda-arguments-to-coerce-result-to-unit">Do not depend on the order of lambda arguments to coerce result to <code>Unit</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-36045">KT-36045</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, lambda arguments will be resolved independently without implicit coercion to <code>Unit</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="wrong-common-supertype-between-raw-and-integer-literal-type-leads-to-unsound-code">Wrong common supertype between raw and integer literal type leads to unsound code</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35681">KT-35681</a></p>
+<p class="typo-para"><strong class="typo-strong">Components</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, common supertype between raw <code>Comparable</code> type and integer literal type will be more specific</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="type-safety-problem-because-several-equal-type-variables-are-instantiated-with-a-different-types">Type safety problem because several equal type variables are instantiated with a different types</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35679">KT-35679</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, Kotlin compiler will prohibit instantiating equal type variables with different types</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="type-safety-problem-because-of-incorrect-subtyping-for-intersection-types">Type safety problem because of incorrect subtyping for intersection types</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22474">KT-22474</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: in Kotlin 1.4, subtyping for intersection types will be refined to work more correctly</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="no-type-mismatch-with-an-empty-when-expression-inside-lambda">No type mismatch with an empty <code>when</code> expression inside lambda</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-17995">KT-17995</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, there will be a type mismatch for empty <code>when</code> expression if it's used  as the last expression in a lambda</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="return-type-any-inferred-for-lambda-with-early-return-with-integer-literal-in-one-of-possible-return-values">Return type <code>Any</code> inferred for lambda with early return with integer literal in one of possible return values</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20226">KT-20226</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, integer type returning from a lambda will be more specific for cases when there is early return</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="proper-capturing-of-star-projections-with-recursive-types">Proper capturing of star projections with recursive types</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-33012">KT-33012</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, more candidates will become applicable because capturing for recursive types will work more correctly</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="common-supertype-calculation-with-non-proper-type-and-flexible-one-leads-to-incorrect-results">Common supertype calculation with non-proper type and flexible one leads to incorrect results</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-37054">KT-37054</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, common supertype between flexible types will be more specific protecting from runtime errors</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="type-safety-problem-because-of-lack-of-captured-conversion-against-nullable-type-argument">Type safety problem because of lack of captured conversion against nullable type argument</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35487">KT-35487</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, subtyping between captured and nullable types will be more correct protecting from runtime errors</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="the-instance-field-of-a-companion-object-more-visible-than-the-companion-object-class-itself">The <code>INSTANCE</code> field of a companion object more visible than the companion object class itself</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-11567">KT-11567</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, if a companion object is private, then its field <code>INSTANCE</code> will be also private</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: the compiler generates object <code>INSTANCE</code> with a deprecated flag</li>
+<li class="typo-list__item">&gt;= 1.4: companion object <code>INSTANCE</code> field has proper visibility</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="outer-finally-block-inserted-before-return-is-not-excluded-from-thecatch-interval-of-the-inner-try-block-without-finally">Outer <code>finally</code> block inserted before <code>return</code> is not excluded from the<code>catch</code> interval of the inner <code>try</code> block without <code>finally</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-31923">KT-31923</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, the catch interval will be computed properly for nested <code>try/catch</code> blocks</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-ProperFinally</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="use-the-boxed-version-of-an-inline-class-in-return-type-position-for-covariant-and-generic-specialized-overrides">Use the boxed version of an inline class in return type position for covariant and generic-specialized overrides</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-30419">KT-30419</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, functions using covariant and generic-specialized overrides will return boxed values of inline classes</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="do-not-declare-checked-exceptions-in-jvm-bytecode-when-using-delegation-to-kotlin-interfaces">Do not declare checked exceptions in JVM bytecode when using delegation to Kotlin interfaces</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35834">KT-35834</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will not generate checked exceptions during interface delegation to Kotlin interfaces</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-DoNotGenerateThrowsForDelegatedKotlinMembers</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="changed-behavior-of-signature-polymorphic-calls-to-methods-with-a-single-vararg-parameter-to-avoid-wrapping-the-argument-into-another-array">Changed behavior of signature-polymorphic calls to methods with a single vararg parameter to avoid wrapping the argument into another array</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35469">KT-35469</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will not wrap the argument into another array on a signature-polymorphic call</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="incorrect-generic-signature-in-annotations-when-kclass-is-used-as-a-generic-parameter">Incorrect generic signature in annotations when KClass is used as a generic parameter</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35207">KT-35207</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will fix incorrect type mapping in annotations when KClass is used as a generic parameter</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="forbid-spread-operator-in-signature-polymorphic-calls">Forbid spread operator in signature-polymorphic calls</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-35226">KT-35226</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.4 will prohibit the use of spread operator (*) on signature-polymorphic calls</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: report a warning on the use of a spread operator in signature-polymorphic calls</li>
+<li class="typo-list__item">&gt;= 1.5: raise this warning to an error,
+<code>-XXLanguage:-ProhibitSpreadOnSignaturePolymorphicCall</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="change-initialization-order-of-default-values-for-tail-recursive-optimized-functions">Change initialization order of default values for tail-recursive optimized functions</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-31540">KT-31540</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Since Kotlin 1.4, the initialization order for tail-recursive functions will be the same as for regular functions</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: report a warning at declaration-site for problematic functions</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-ProperComputationOrderOfTailrecDefaultParameters</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="do-not-generate-constantvalue-attribute-for-non-const-vals">Do not generate <code>ConstantValue</code> attribute for non-<code>const</code> <code>val</code>s</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16615">KT-16615</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Since Kotlin 1.4, the compiler will not generate the <code>ConstantValue</code> attribute for <code>val</code>s annotated with <code>@JvmField</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: report a warning through an IntelliJ IDEA inspection</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-NoConstantValueAttributeForNonConstVals</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="generated-overloads-for-jvmoverloads-on-open-methods-should-be-final">Generated overloads for <code>@JvmOverloads</code> on <code>open</code> methods should be <code>final</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-33240">KT-33240</a></p>
+<p class="typo-para"><strong class="typo-strong">Components</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: overloads for functions with <code>@JvmOverloads</code> will be generated as <code>final</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+ <code>-XXLanguage:-GenerateJvmOverloadsAsFinal</code> can be used to temporarily revert to pre-1.4 behavior</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="lambdas-returning-kotlinresult-now-return-boxed-value-instead-of-unboxed">Lambdas returning <code>kotlin.Result</code> now return boxed value instead of unboxed</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-39198">KT-39198</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, lambdas returning values of <code>kotlin.Result</code> type will return boxed value instead of unboxed</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="comparing-floating-point-values-in-arraylist-operations-contains-indexof-lastindexof-ieee-754-or-total-order">Comparing floating point values in array/list operations <code>contains</code>, <code>indexOf</code>, <code>lastIndexOf</code>: IEEE 754 or total order</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28753">KT-28753</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: the <code>List</code> implementation returned from <code>Double/FloatArray.asList()</code> will implement <code>contains</code>, <code>indexOf</code>, and <code>lastIndexOf</code>, so that they use total order equality</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="gradually-change-the-return-type-of-collection-min-and-max-functions-to-non-nullable">Gradually change the return type of collection <code>min</code> and <code>max</code> functions to non-nullable</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38854">KT-38854</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: return type of collection <code>min</code> and <code>max</code> functions will be changed to non-nullable in 1.6</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">1.4: introduce <code>...OrNull</code> functions as synonyms and deprecate the affected API (see details in the issue)</li>
+<li class="typo-list__item">1.5.x: raise the deprecation level of the affected API to error</li>
+<li class="typo-list__item">&gt;=1.6: reintroduce the affected API but with non-nullable return type</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="deprecate-appendln-in-favor-of-appendline">Deprecate <code>appendln</code> in favor of <code>appendLine</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38754">KT-38754</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: <code>StringBuilder.appendln()</code> will be deprecated in favor of <code>StringBuilder.appendLine()</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">1.4: introduce <code>appendLine</code> function as a replacement for <code>appendln</code> and deprecate <code>appendln</code></li>
+<li class="typo-list__item">&gt;=1.5: raise the deprecation level to error</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="deprecate-conversions-of-floating-point-types-to-short-and-byte">Deprecate conversions of floating-point types to <code>Short</code> and <code>Byte</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-30360">KT-30360</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, conversions of floating-point types to <code>Short</code> and <code>Byte</code> will be deprecated</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">1.4: deprecate <code>Double.toShort()/toByte()</code> and <code>Float.toShort()/toByte()</code> and propose replacement</li>
+<li class="typo-list__item">&gt;=1.5: raise the deprecation level to error</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="fail-fast-in-regexfindall-on-an-invalid-startindex">Fail fast in <code>Regex.findAll</code> on an invalid <code>startIndex</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28356">KT-28356</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, <code>findAll</code> will be improved to check that <code>startIndex</code> is in the range of the valid position indices of the input char sequence at the moment of entering <code>findAll</code>, and throw <code>IndexOutOfBoundsException</code> if it's not</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="remove-deprecated-kotlincoroutinesexperimental">Remove deprecated <code>kotlin.coroutines.experimental</code></h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-36083">KT-36083</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, the deprecated <code>kotlin.coroutines.experimental</code> API is removed from stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: <code>kotlin.coroutines.experimental</code> is deprecated with the <code>ERROR</code> level</li>
+<li class="typo-list__item">&gt;= 1.4: <code>kotlin.coroutines.experimental</code> is removed from stdlib. On the JVM, a separate compatibility artifact is provided (see details in the issue).</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="remove-deprecated-mod-operator">Remove deprecated <code>mod</code> operator</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-26654">KT-26654</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, <code>mod</code> operator on numeric types is removed from stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: <code>mod</code> is deprecated with the <code>ERROR</code> level</li>
+<li class="typo-list__item">&gt;= 1.4: <code>mod</code> is removed from stdlib</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="hide-throwableaddsuppressed-member-and-prefer-extension-instead">Hide <code>Throwable.addSuppressed</code> member and prefer extension instead</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38777">KT-38777</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: <code>Throwable.addSuppressed()</code> extension function is now preferred over the <code>Throwable.addSuppressed()</code> member function</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="capitalize-should-convert-digraphs-to-title-case"><code>capitalize</code> should convert digraphs to title case</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38817">KT-38817</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: <code>String.capitalize()</code> function now capitalizes digraphs from the <a class="typo-link" href="https://en.wikipedia.org/wiki/Gaj%27s_Latin_alphabet">Serbo-Croatian Gaj's Latin alphabet</a>
+in the title case (<code>ǅ</code> instead of <code>Ǆ</code>)</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: digraphs are capitalized in the upper case (<code>Ǆ</code>)</li>
+<li class="typo-list__item">&gt;= 1.4: digraphs are capitalized in the title case (<code>ǅ</code>)</li>
+</ul>
+</blockquote>
 
         </article>
     </div>

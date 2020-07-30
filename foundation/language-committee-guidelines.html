@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">
 
     <title>Language Committee Guidelines - Kotlin 语言中文站</title>
 
@@ -271,11 +271,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">All Kotlin code should be linked and run against the Standard Library of at least the same version as specified by the -api-version upon compilation.</p>
 <h2 class="typo-header typo-h2" id="type-inference-and-overload-resolution-algorithms">Type inference and overload resolution algorithms</h2>
 <p class="typo-para">Improvements in type inference algorithms may result in more precise static types known for some expressions, this may cause changes in overload resolution and even in signatures of declarations that don't specify return types explicitly.</p>
-<p class="typo-para"><strong class="type-strong">Overloads of the same function should be intended to do the same thing</strong>. Language improvements may cause a different overload to be selected in a new language version.</p>
-<p class="typo-para"><strong class="type-strong">Declarations sensitive to API/ABI stability (e.g. public APIs) should specify return types explicitly</strong>. Language improvements may cause a different type to be inferred for a given body expression. Also, some innocuous-looking changes in the source code, done by the user, may cause similar effects.</p>
+<p class="typo-para"><strong class="typo-strong">Overloads of the same function should be intended to do the same thing</strong>. Language improvements may cause a different overload to be selected in a new language version.</p>
+<p class="typo-para"><strong class="typo-strong">Declarations sensitive to API/ABI stability (e.g. public APIs) should specify return types explicitly</strong>. Language improvements may cause a different type to be inferred for a given body expression. Also, some innocuous-looking changes in the source code, done by the user, may cause similar effects.</p>
 <h2 class="typo-header typo-h2" id="non-public-api">Non-public API</h2>
-<p class="typo-para"><strong class="type-strong">Internal declarations have no separate compilation guarantees</strong>. While sometimes accessible from other languages (e.g. Java), declarations marked <strong class="type-strong">internal</strong> in Kotlin should not be called from outside the module they are declared in.</p>
-<p class="typo-para"><strong class="type-strong">Private and synthetic declarations should not be relied upon</strong>. On some platforms, reflection has access to declarations marked private and synthetic. We do not provide any compatibility guarantees for code that relies on such access.</p>
+<p class="typo-para"><strong class="typo-strong">Internal declarations have no separate compilation guarantees</strong>. While sometimes accessible from other languages (e.g. Java), declarations marked <strong class="typo-strong">internal</strong> in Kotlin should not be called from outside the module they are declared in.</p>
+<p class="typo-para"><strong class="typo-strong">Private and synthetic declarations should not be relied upon</strong>. On some platforms, reflection has access to declarations marked private and synthetic. We do not provide any compatibility guarantees for code that relies on such access.</p>
 <h2 class="typo-header typo-h2" id="impedance-mismatches-across-language-boundaries">Impedance Mismatches Across Language Boundaries</h2>
 <p class="typo-para">A Kotlin API exposed to another language may yield values that work in that language differently from Kotlin. For example, Kotlin's unsigned integers will look signed for Java clients, and the programmer that works with the same API in the Java code will be surprised by getting different result. While an undesirable situation, this is sometimes inevitable, and should not be considered a breaking change (it does not fall under the intuitive definition of one anyway).</p>
 
@@ -311,6 +311,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

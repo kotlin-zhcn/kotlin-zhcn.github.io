@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>操作符重载 - Kotlin 语言中文站</title>
@@ -1380,25 +1380,25 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">另外，我们描述为不同操作符规范操作符重载的约定。</p>
 <h2 class="typo-header typo-h2" id="一元操作">一元操作</h2>
 <h3 class="typo-header typo-h3" id="一元前缀操作符">一元前缀操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>+a</code></td>
-<td><code>a.unaryPlus()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>+a</code></td>
+<td class="typo-table__column"><code>a.unaryPlus()</code></td>
 </tr>
-<tr>
-<td><code>-a</code></td>
-<td><code>a.unaryMinus()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>-a</code></td>
+<td class="typo-table__column"><code>a.unaryMinus()</code></td>
 </tr>
-<tr>
-<td><code>!a</code></td>
-<td><code>a.not()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>!a</code></td>
+<td class="typo-table__column"><code>a.not()</code></td>
 </tr>
 </tbody>
 </table>
@@ -1425,21 +1425,21 @@ fun main() {
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="递增与递减">递增与递减</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a++</code></td>
-<td><code>a.inc()</code> + 见下文</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a++</code></td>
+<td class="typo-table__column"><code>a.inc()</code> + 见下文</td>
 </tr>
-<tr>
-<td><code>a--</code></td>
-<td><code>a.dec()</code> + 见下文</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a--</code></td>
+<td class="typo-table__column"><code>a.dec()</code> + 见下文</td>
 </tr>
 </tbody>
 </table>
@@ -1465,37 +1465,37 @@ fun main() {
 </ul>
 <h2 class="typo-header typo-h2" id="二元操作">二元操作</h2>
 <h3 class="typo-header typo-h3" id="arithmetic">算术运算符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a + b</code></td>
-<td><code>a.plus(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a + b</code></td>
+<td class="typo-table__column"><code>a.plus(b)</code></td>
 </tr>
-<tr>
-<td><code>a - b</code></td>
-<td><code>a.minus(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a - b</code></td>
+<td class="typo-table__column"><code>a.minus(b)</code></td>
 </tr>
-<tr>
-<td><code>a * b</code></td>
-<td><code>a.times(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a * b</code></td>
+<td class="typo-table__column"><code>a.times(b)</code></td>
 </tr>
-<tr>
-<td><code>a / b</code></td>
-<td><code>a.div(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a / b</code></td>
+<td class="typo-table__column"><code>a.div(b)</code></td>
 </tr>
-<tr>
-<td><code>a % b</code></td>
-<td><code>a.rem(b)</code>、 <code>a.mod(b)</code> （已弃用）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a % b</code></td>
+<td class="typo-table__column"><code>a.rem(b)</code>、 <code>a.mod(b)</code> （已弃用）</td>
 </tr>
-<tr>
-<td><code>a..b </code></td>
-<td><code>a.rangeTo(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a..b </code></td>
+<td class="typo-table__column"><code>a.rangeTo(b)</code></td>
 </tr>
 </tbody>
 </table>
@@ -1511,117 +1511,117 @@ Kotlin 1.1 中被弃用。</p>
 }
 </code></pre>
 <h3 class="typo-header typo-h3" id="in">“In”操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a in b</code></td>
-<td><code>b.contains(a)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a in b</code></td>
+<td class="typo-table__column"><code>b.contains(a)</code></td>
 </tr>
-<tr>
-<td><code>a !in b</code></td>
-<td><code>!b.contains(a)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a !in b</code></td>
+<td class="typo-table__column"><code>!b.contains(a)</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">对于 <code>in</code> 和 <code>!in</code>，过程是相同的，但是参数的顺序是相反的。</p>
 <h3 class="typo-header typo-h3" id="indexed">索引访问操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a[i]</code></td>
-<td><code>a.get(i)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i]</code></td>
+<td class="typo-table__column"><code>a.get(i)</code></td>
 </tr>
-<tr>
-<td><code>a[i, j]</code></td>
-<td><code>a.get(i, j)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i, j]</code></td>
+<td class="typo-table__column"><code>a.get(i, j)</code></td>
 </tr>
-<tr>
-<td><code>a[i_1, ……,  i_n]</code></td>
-<td><code>a.get(i_1, ……,  i_n)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i_1, ……,  i_n]</code></td>
+<td class="typo-table__column"><code>a.get(i_1, ……,  i_n)</code></td>
 </tr>
-<tr>
-<td><code>a[i] = b</code></td>
-<td><code>a.set(i, b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i] = b</code></td>
+<td class="typo-table__column"><code>a.set(i, b)</code></td>
 </tr>
-<tr>
-<td><code>a[i, j] = b</code></td>
-<td><code>a.set(i, j, b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i, j] = b</code></td>
+<td class="typo-table__column"><code>a.set(i, j, b)</code></td>
 </tr>
-<tr>
-<td><code>a[i_1, ……,  i_n] = b</code></td>
-<td><code>a.set(i_1, ……, i_n, b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a[i_1, ……,  i_n] = b</code></td>
+<td class="typo-table__column"><code>a.set(i_1, ……, i_n, b)</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">方括号转换为调用带有适当数量参数的 <code>get</code> 和 <code>set</code>。</p>
 <h3 class="typo-header typo-h3" id="invoke">调用操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a()</code></td>
-<td><code>a.invoke()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a()</code></td>
+<td class="typo-table__column"><code>a.invoke()</code></td>
 </tr>
-<tr>
-<td><code>a(i)</code></td>
-<td><code>a.invoke(i)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a(i)</code></td>
+<td class="typo-table__column"><code>a.invoke(i)</code></td>
 </tr>
-<tr>
-<td><code>a(i, j)</code></td>
-<td><code>a.invoke(i, j)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a(i, j)</code></td>
+<td class="typo-table__column"><code>a.invoke(i, j)</code></td>
 </tr>
-<tr>
-<td><code>a(i_1, ……,  i_n)</code></td>
-<td><code>a.invoke(i_1, ……,  i_n)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a(i_1, ……,  i_n)</code></td>
+<td class="typo-table__column"><code>a.invoke(i_1, ……,  i_n)</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">圆括号转换为调用带有适当数量参数的 <code>invoke</code>。</p>
 <h3 class="typo-header typo-h3" id="assignments">广义赋值</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a += b</code></td>
-<td><code>a.plusAssign(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a += b</code></td>
+<td class="typo-table__column"><code>a.plusAssign(b)</code></td>
 </tr>
-<tr>
-<td><code>a -= b</code></td>
-<td><code>a.minusAssign(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a -= b</code></td>
+<td class="typo-table__column"><code>a.minusAssign(b)</code></td>
 </tr>
-<tr>
-<td><code>a *= b</code></td>
-<td><code>a.timesAssign(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a *= b</code></td>
+<td class="typo-table__column"><code>a.timesAssign(b)</code></td>
 </tr>
-<tr>
-<td><code>a /= b</code></td>
-<td><code>a.divAssign(b)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a /= b</code></td>
+<td class="typo-table__column"><code>a.divAssign(b)</code></td>
 </tr>
-<tr>
-<td><code>a %= b</code></td>
-<td><code>a.remAssign(b)</code>, <code>a.modAssign(b)</code>（已弃用）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a %= b</code></td>
+<td class="typo-table__column"><code>a.remAssign(b)</code>, <code>a.modAssign(b)</code>（已弃用）</td>
 </tr>
 </tbody>
 </table>
@@ -1638,21 +1638,21 @@ Kotlin 1.1 中被弃用。</p>
 </ul>
 <p class="typo-para"><em>注意</em>：赋值在 Kotlin 中<em>不是</em>表达式。</p>
 <h3 class="typo-header typo-h3" id="equals">相等与不等操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a == b</code></td>
-<td><code>a?.equals(b) ?: (b === null)</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a == b</code></td>
+<td class="typo-table__column"><code>a?.equals(b) ?: (b === null)</code></td>
 </tr>
-<tr>
-<td><code>a != b</code></td>
-<td><code>!(a?.equals(b) ?: (b === null))</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a != b</code></td>
+<td class="typo-table__column"><code>!(a?.equals(b) ?: (b === null))</code></td>
 </tr>
 </tbody>
 </table>
@@ -1661,29 +1661,29 @@ Kotlin 1.1 中被弃用。</p>
 <p class="typo-para">这个 <code>==</code> 操作符有些特殊：它被翻译成一个复杂的表达式，用于筛选 <code>null</code> 值。
 <code>null == null</code>  总是 true，对于非空的 <code>x</code>，<code>x == null</code> 总是 false 而不会调用 <code>x.equals()</code>。</p>
 <h3 class="typo-header typo-h3" id="comparison">比较操作符</h3>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>表达式</th>
 <th>翻译为</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>a &gt; b</code></td>
-<td><code>a.compareTo(b) &gt; 0</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a &gt; b</code></td>
+<td class="typo-table__column"><code>a.compareTo(b) &gt; 0</code></td>
 </tr>
-<tr>
-<td><code>a &lt; b</code></td>
-<td><code>a.compareTo(b) &lt; 0</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a &lt; b</code></td>
+<td class="typo-table__column"><code>a.compareTo(b) &lt; 0</code></td>
 </tr>
-<tr>
-<td><code>a &gt;= b</code></td>
-<td><code>a.compareTo(b) &gt;= 0</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a &gt;= b</code></td>
+<td class="typo-table__column"><code>a.compareTo(b) &gt;= 0</code></td>
 </tr>
-<tr>
-<td><code>a &lt;= b</code></td>
-<td><code>a.compareTo(b) &lt;= 0</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>a &lt;= b</code></td>
+<td class="typo-table__column"><code>a.compareTo(b) &lt;= 0</code></td>
 </tr>
 </tbody>
 </table>
@@ -1726,6 +1726,8 @@ Kotlin 1.1 中被弃用。</p>
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

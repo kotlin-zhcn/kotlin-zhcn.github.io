@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 库 - Kotlin 语言中文站</title>
@@ -1387,7 +1387,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p class="typo-para">上述命令会由 <code>qux.kt</code> 与 <code>bar.klib</code> 生成 <code>program.kexe</code></p>
 <h2 class="typo-header typo-h2" id="cinterop-工具细节">cinterop 工具细节</h2>
-<p class="typo-para"><strong class="type-strong">cinterop</strong> 工具为原生库生成 <code>.klib</code> 包装作为其主要输出。
+<p class="typo-para"><strong class="typo-strong">cinterop</strong> 工具为原生库生成 <code>.klib</code> 包装作为其主要输出。
 例如，使用 Kotlin/Native 发行版中提供的简单 <code>libgit2.def</code> 原生库定义文件</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code class="language-bash">$ cinterop -def samples/gitchurn/src/nativeInterop/cinterop/libgit2.def -compiler-option -I/usr/local/include -o libgit2
@@ -1396,7 +1396,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">会得到 <code>libgit2.klib</code>。</p>
 <p class="typo-para">更多详情请参见 <a class="typo-link" href="c_interop.html">INTEROP.md</a></p>
 <h2 class="typo-header typo-h2" id="klib-实用程序">klib 实用程序</h2>
-<p class="typo-para"><strong class="type-strong">klib</strong> 库管理实用程序可以探查与安装库。</p>
+<p class="typo-para"><strong class="typo-strong">klib</strong> 库管理实用程序可以探查与安装库。</p>
 <p class="typo-para">可以使用以下命令。</p>
 <p class="typo-para">列出库的内容：</p>
 <div class="sample" mode="shell" theme="idea">
@@ -1490,7 +1490,7 @@ Hello, Kotlin world!
 <h2 class="typo-header typo-h2" id="库格式">库格式</h2>
 <p class="typo-para">Kotlin/Native 是包含预定义目录结构的 zip 文件，
 具有以下布局：</p>
-<p class="typo-para"><strong class="type-strong">foo.klib</strong> 当解压为 <strong class="type-strong">foo/</strong> 时会有：</p>
+<p class="typo-para"><strong class="typo-strong">foo.klib</strong> 当解压为 <strong class="typo-strong">foo/</strong> 时会有：</p>
 <pre><code class="code _highlighted" data-lang="text/x-yaml">  - foo/
     - targets/
       - $platform/
@@ -1540,6 +1540,8 @@ Hello, Kotlin world!
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

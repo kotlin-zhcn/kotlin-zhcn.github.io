@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin/Native 开发 Apple Framework - Kotlin 语言中文站</title>
@@ -1017,29 +1017,29 @@ tasks.withType&lt;Wrapper&gt; {
 <p class="typo-para"><code>macOS X64</code> 是单独的，Kotlin/Native 支持 iOS <code>arm32</code>、<code>arm64</code> 与 <code>X64</code>
 目标平台。我们可以使用各自的函数替代 <code>macosX64</code>，
 如表所示：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>目标 平台/设备</th>
 <th>Gradle 函数</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>macOS x86_64</td>
-<td><code>macosX64()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">macOS x86_64</td>
+<td class="typo-table__column"><code>macosX64()</code></td>
 </tr>
-<tr>
-<td>iOS ARM 32</td>
-<td><code>iosArm32()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">iOS ARM 32</td>
+<td class="typo-table__column"><code>iosArm32()</code></td>
 </tr>
-<tr>
-<td>iOS ARM 64</td>
-<td><code>iosArm64()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">iOS ARM 64</td>
+<td class="typo-table__column"><code>iosArm64()</code></td>
 </tr>
-<tr>
-<td>iOS Simulator (x86_64)</td>
-<td><code>iosX64()</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">iOS Simulator (x86_64)</td>
+<td class="typo-table__column"><code>iosX64()</code></td>
 </tr>
 </tbody>
 </table>
@@ -1109,39 +1109,39 @@ __attribute__((swift_name("KotlinMutableDictionary")))
 <p class="typo-para">Kotlin 类在 Objective-C 中拥有一个 <code>KotlinBase</code> 基类，该类在这里继承自
 <code>NSObject</code> 类。我们同样也有集合与异常的包装器。
 大多数的集合类型都从另一边映射到了相似的集合类型：</p>
-<table class="wide zebra">
+<table class="wide zebra typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>Kotlin</th>
 <th>Swift</th>
 <th>Objective-C</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>List</td>
-<td>Array</td>
-<td>NSArray</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">List</td>
+<td class="typo-table__column">Array</td>
+<td class="typo-table__column">NSArray</td>
 </tr>
-<tr>
-<td>MutableList</td>
-<td>NSMutableArray</td>
-<td>NSMutableArray</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">MutableList</td>
+<td class="typo-table__column">NSMutableArray</td>
+<td class="typo-table__column">NSMutableArray</td>
 </tr>
-<tr>
-<td>Set</td>
-<td>Set</td>
-<td>NSSet</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Set</td>
+<td class="typo-table__column">Set</td>
+<td class="typo-table__column">NSSet</td>
 </tr>
-<tr>
-<td>Map</td>
-<td>Dictionary</td>
-<td>NSDictionary</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Map</td>
+<td class="typo-table__column">Dictionary</td>
+<td class="typo-table__column">NSDictionary</td>
 </tr>
-<tr>
-<td>MutableMap</td>
-<td>NSMutableDictionary</td>
-<td>NSMutableDictionary</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">MutableMap</td>
+<td class="typo-table__column">NSMutableDictionary</td>
+<td class="typo-table__column">NSMutableDictionary</td>
 </tr>
 </tbody>
 </table>
@@ -1150,9 +1150,9 @@ __attribute__((swift_name("KotlinMutableDictionary")))
 之间的映射。我们在 Objective-C 中拥有一个基类名为 <code>DemoNumber</code>，
 而在 Swift 中是 <code>KotlinNumber</code>。它继承自 <code>NSNumber</code>。
 这里有每个作为子类的 Kotlin 数字类型：</p>
-<table class="wide zebra">
+<table class="wide zebra typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>Kotlin</th>
 <th>Swift</th>
 <th>Objective-C</th>
@@ -1160,77 +1160,77 @@ __attribute__((swift_name("KotlinMutableDictionary")))
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>-</code></td>
-<td><code>KotlinNumber</code></td>
-<td><code>&lt;Package&gt;Number</code></td>
-<td><code>-</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>-</code></td>
+<td class="typo-table__column"><code>KotlinNumber</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Number</code></td>
+<td class="typo-table__column"><code>-</code></td>
 </tr>
-<tr>
-<td><code>Byte</code></td>
-<td><code>KotlinByte</code></td>
-<td><code>&lt;Package&gt;Byte</code></td>
-<td><code>char</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Byte</code></td>
+<td class="typo-table__column"><code>KotlinByte</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Byte</code></td>
+<td class="typo-table__column"><code>char</code></td>
 </tr>
-<tr>
-<td><code>UByte</code></td>
-<td><code>KotlinUByte</code></td>
-<td><code>&lt;Package&gt;UByte</code></td>
-<td><code>unsigned char</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>UByte</code></td>
+<td class="typo-table__column"><code>KotlinUByte</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;UByte</code></td>
+<td class="typo-table__column"><code>unsigned char</code></td>
 </tr>
-<tr>
-<td><code>Short</code></td>
-<td><code>KotlinShort</code></td>
-<td><code>&lt;Package&gt;Short</code></td>
-<td><code>short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Short</code></td>
+<td class="typo-table__column"><code>KotlinShort</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Short</code></td>
+<td class="typo-table__column"><code>short</code></td>
 </tr>
-<tr>
-<td><code>UShort</code></td>
-<td><code>KotlinUShort</code></td>
-<td><code>&lt;Package&gt;UShort</code></td>
-<td><code>unsigned short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>UShort</code></td>
+<td class="typo-table__column"><code>KotlinUShort</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;UShort</code></td>
+<td class="typo-table__column"><code>unsigned short</code></td>
 </tr>
-<tr>
-<td><code>Int</code></td>
-<td><code>KotlinInt</code></td>
-<td><code>&lt;Package&gt;Int</code></td>
-<td><code>int</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Int</code></td>
+<td class="typo-table__column"><code>KotlinInt</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Int</code></td>
+<td class="typo-table__column"><code>int</code></td>
 </tr>
-<tr>
-<td><code>UInt</code></td>
-<td><code>KotlinUInt</code></td>
-<td><code>&lt;Package&gt;UInt</code></td>
-<td><code>unsigned int</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>UInt</code></td>
+<td class="typo-table__column"><code>KotlinUInt</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;UInt</code></td>
+<td class="typo-table__column"><code>unsigned int</code></td>
 </tr>
-<tr>
-<td><code>Long</code></td>
-<td><code>KotlinLong</code></td>
-<td><code>&lt;Package&gt;Long</code></td>
-<td><code>long long</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Long</code></td>
+<td class="typo-table__column"><code>KotlinLong</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Long</code></td>
+<td class="typo-table__column"><code>long long</code></td>
 </tr>
-<tr>
-<td><code>ULong</code></td>
-<td><code>KotlinULong</code></td>
-<td><code>&lt;Package&gt;ULong</code></td>
-<td><code>unsigned long long</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>ULong</code></td>
+<td class="typo-table__column"><code>KotlinULong</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;ULong</code></td>
+<td class="typo-table__column"><code>unsigned long long</code></td>
 </tr>
-<tr>
-<td><code>Float</code></td>
-<td><code>KotlinFloat</code></td>
-<td><code>&lt;Package&gt;Float</code></td>
-<td><code>float</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Float</code></td>
+<td class="typo-table__column"><code>KotlinFloat</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Float</code></td>
+<td class="typo-table__column"><code>float</code></td>
 </tr>
-<tr>
-<td><code>Double</code></td>
-<td><code>KotlinDouble</code></td>
-<td><code>&lt;Package&gt;Double</code></td>
-<td><code>double</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Double</code></td>
+<td class="typo-table__column"><code>KotlinDouble</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Double</code></td>
+<td class="typo-table__column"><code>double</code></td>
 </tr>
-<tr>
-<td><code>Boolean</code></td>
-<td><code>KotlinBoolean</code></td>
-<td><code>&lt;Package&gt;Boolean</code></td>
-<td><code>BOOL/Bool</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Boolean</code></td>
+<td class="typo-table__column"><code>KotlinBoolean</code></td>
+<td class="typo-table__column"><code>&lt;Package&gt;Boolean</code></td>
+<td class="typo-table__column"><code>BOOL/Bool</code></td>
 </tr>
 </tbody>
 </table>
@@ -1470,6 +1470,8 @@ Kotlin 对象集成了 Objective-C/Swift 的引用计数。Kotlin
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

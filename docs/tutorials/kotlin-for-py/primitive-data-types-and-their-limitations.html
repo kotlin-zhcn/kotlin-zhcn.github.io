@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>原生数据类型及其表示范围 - Kotlin 语言中文站</title>
@@ -848,9 +848,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para"><em>原生数据类型</em> 是 Kotlin 中最基本的类型。所有其他类型均由这些类型及其数组组成。它们的表现（在内存与 CPU 时间方面都）非常高效，因为它们映射到可由 CPU 直接操作的小字节组。</p>
 <h2 class="typo-header typo-h2" id="整型">整型</h2>
 <p class="typo-para">与 Python 中任意大的整数相反，Kotlin 中的整数类型具有 <em>大小限制</em>。该限制取决于类型，而类型决定了该数字在内存中占用多少比特：</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>类型</th>
 <th>比特数</th>
 <th>最小值</th>
@@ -858,29 +858,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>Long</code></td>
-<td>64</td>
-<td>-9223372036854775808</td>
-<td>9223372036854775807</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Long</code></td>
+<td class="typo-table__column">64</td>
+<td class="typo-table__column">-9223372036854775808</td>
+<td class="typo-table__column">9223372036854775807</td>
 </tr>
-<tr>
-<td><code>Int</code></td>
-<td>32</td>
-<td>-2147483648</td>
-<td>2147483647</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Int</code></td>
+<td class="typo-table__column">32</td>
+<td class="typo-table__column">-2147483648</td>
+<td class="typo-table__column">2147483647</td>
 </tr>
-<tr>
-<td><code>Short</code></td>
-<td>16</td>
-<td>-32768</td>
-<td>32767</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Short</code></td>
+<td class="typo-table__column">16</td>
+<td class="typo-table__column">-32768</td>
+<td class="typo-table__column">32767</td>
 </tr>
-<tr>
-<td><code>Byte</code></td>
-<td>8</td>
-<td>-128</td>
-<td>127</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Byte</code></td>
+<td class="typo-table__column">8</td>
+<td class="typo-table__column">-128</td>
+<td class="typo-table__column">127</td>
 </tr>
 </tbody>
 </table>
@@ -919,44 +919,44 @@ println(-mostNegative)
 <p class="typo-para">当对两个不同类型的整数使用算术运算符时，结果将“升级”为最大类型。请注意，结果仍有可能溢出。</p>
 <p class="typo-para">简而言之：<em>请仔细考虑整数的声明，并绝对肯定该值永远不会大于该类型的限制！</em> 如果需要无限制大小的整数，请使用非原始类型 <code>BigInteger</code>。</p>
 <h2 class="typo-header typo-h2" id="浮点数与其他类型">浮点数与其他类型</h2>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>类型</th>
 <th>比特数</th>
 <th>注释</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>Double</code></td>
-<td>64</td>
-<td>16~17 位有效数字（与 Python 中的 <code>float</code> 相同）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Double</code></td>
+<td class="typo-table__column">64</td>
+<td class="typo-table__column">16~17 位有效数字（与 Python 中的 <code>float</code> 相同）</td>
 </tr>
-<tr>
-<td><code>Float</code></td>
-<td>32</td>
-<td>6~7 位有效数字</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Float</code></td>
+<td class="typo-table__column">32</td>
+<td class="typo-table__column">6~7 位有效数字</td>
 </tr>
-<tr>
-<td><code>Char</code></td>
-<td>16</td>
-<td>UTF-16 代码单元（请参阅<a class="typo-link" href="strings.html">字符串</a>——在大多数情况下，这是一个 Unicode 字符，但也可能只是 Unicode 字符的一半）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Char</code></td>
+<td class="typo-table__column">16</td>
+<td class="typo-table__column">UTF-16 代码单元（请参阅<a class="typo-link" href="strings.html">字符串</a>——在大多数情况下，这是一个 Unicode 字符，但也可能只是 Unicode 字符的一半）</td>
 </tr>
-<tr>
-<td><code>Boolean</code></td>
-<td>8</td>
-<td><code>true</code> 或 <code>false</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Boolean</code></td>
+<td class="typo-table__column">8</td>
+<td class="typo-table__column"><code>true</code> 或 <code>false</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">浮点数的作用与 Python 中的相似，但根据所需的位数，分为两种类型。如果需要更高的精度，或者需要处理货币金额（或必须具有精确结果的其他情况），请使用非原始类型 <code>BigDecimal</code>。</p>
 <hr class="typo-hr"/>
-<table>
+<table class="typo-table">
 <tbody>
-<tr>
-<td><a class="typo-link" href="declaring-variables.html">← 上一节：声明变量</a></td>
-<td><a class="typo-link" href="strings.html">下一节：字符串 →</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><a class="typo-link" href="declaring-variables.html">← 上一节：声明变量</a></td>
+<td class="typo-table__column"><a class="typo-link" href="strings.html">下一节：字符串 →</a></td>
 </tr>
 </tbody>
 </table>
@@ -995,6 +995,8 @@ println(-mostNegative)
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

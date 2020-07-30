@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>委托属性 - Kotlin 语言中文站</title>
@@ -1445,7 +1445,7 @@ fun main() {
 }
 </code></pre>
 </div>
-<p class="typo-para">默认情况下，对于 lazy 属性的求值是<strong class="type-strong">同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程<!--
+<p class="typo-para">默认情况下，对于 lazy 属性的求值是<strong class="typo-strong">同步锁的（synchronized）</strong>：该值只在一个线程中计算，并且所有线程<!--
 -->会看到相同的值。如果初始化委托的同步锁不是必需的，这样多个线程<!--
 -->可以同时执行，那么将 <code>LazyThreadSafetyMode.PUBLICATION</code> 作为参数传递给 <code>lazy()</code> 函数。
 而如果你确定初始化将总是发生在与属性使用位于相同的线程，
@@ -1537,7 +1537,7 @@ fun main() {
 如果 <code>someCondition</code> 失败，那么该变量根本不会计算。</p>
 <h2 class="typo-header typo-h2" id="属性委托要求">属性委托要求</h2>
 <p class="typo-para">这里我们总结了委托对象的要求。</p>
-<p class="typo-para">对于一个<strong class="type-strong">只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个操作符函数 <code>getValue()</code>，该函数具有以下参数：</p>
+<p class="typo-para">对于一个<strong class="typo-strong">只读</strong>属性（即 <em class="keyword">val</em> 声明的），委托必须提供一个操作符函数 <code>getValue()</code>，该函数具有以下参数：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是其超类型。</li>
 <li class="typo-list__item"><code>property</code> —— 必须是类型 <code>KProperty&lt;*&gt;</code> 或其超类型。</li>
@@ -1557,7 +1557,7 @@ class ResourceDelegate {
 }
 </code></pre>
 </div>
-<p class="typo-para">对于一个<strong class="type-strong">可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须额外提供一个操作符函数 <code>setValue()</code>，
+<p class="typo-para">对于一个<strong class="typo-strong">可变</strong>属性（即 <em class="keyword">var</em> 声明的），委托必须额外提供一个操作符函数 <code>setValue()</code>，
 该函数具有以下参数：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><code>thisRef</code> —— 必须与 <em>属性所有者</em> 类型（对于扩展属性——指被扩展的类型）相同或者是其超类型。</li>
@@ -1727,6 +1727,8 @@ class C {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

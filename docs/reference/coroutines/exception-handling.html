@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>异常处理与监督 - Kotlin 语言中文站</title>
@@ -1373,7 +1373,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </a>
                 
 <!--- TEST_NAME ExceptionsGuideTest -->
-<p class="typo-para"><strong class="type-strong">目录</strong></p>
+<p class="typo-para"><strong class="typo-strong">目录</strong></p>
 <!--- TOC -->
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><a class="typo-link" href="#异常处理">异常处理</a>
@@ -1402,7 +1402,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">协程构建器有两种形式：自动传播异常（<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/actor.html">actor</a>）或<!--
 -->向用户暴露异常（<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a>）。
 当这些构建器用于创建一个<em>根</em>协程时，即该协程不是另一个协程的<em>子</em>协程，
-前者这类构建器将异常视为<strong class="type-strong">未捕获</strong>异常，类似 Java 的 <code>Thread.uncaughtExceptionHandler</code>，
+前者这类构建器将异常视为<strong class="typo-strong">未捕获</strong>异常，类似 Java 的 <code>Thread.uncaughtExceptionHandler</code>，
 而后者则依赖用户来最终消费<!--
 -->异常，例如通过 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/await.html">await</a> 或 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a><!--
 -->（<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/produce.html">produce</a> 与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.channels/-receive-channel/receive.html">receive</a> 的相关内容包含于<a class="typo-link" href="https://github.com/Kotlin/kotlinx.coroutines/blob/master/docs/channels.md">通道</a>章节）。</p>
@@ -1442,7 +1442,7 @@ Caught ArithmeticException
 </code></pre>
 <!--- TEST EXCEPTION-->
 <h3 class="typo-header typo-h3" id="coroutineexceptionhandler">CoroutineExceptionHandler</h3>
-<p class="typo-para">It is possible to customize the default behavior of printing <strong class="type-strong">uncaught</strong> exceptions to the console.
+<p class="typo-para">It is possible to customize the default behavior of printing <strong class="typo-strong">uncaught</strong> exceptions to the console.
 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> context element on a <em>root</em> coroutine can be used as generic <code>catch</code> block for
 this root coroutine and all its children where custom exception handling may take place.
 It is similar to <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.uncaughtExceptionHandler</code></a>.
@@ -1455,7 +1455,7 @@ log the exception, show some kind of error message, terminate, and/or restart th
 <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setDefaultUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.defaultUncaughtExceptionHandler</code></a> 
 一样，在没有更多的指定的异常处理者被注册的时候被使用。
 在 Android 中， <code>uncaughtExceptionPreHandler</code> 被设置在全局协程异常处理者中。</p>
-<p class="typo-para"><code>CoroutineExceptionHandler</code> is invoked only on <strong class="type-strong">uncaught</strong> exceptions — exceptions that were not handled in any other way.
+<p class="typo-para"><code>CoroutineExceptionHandler</code> is invoked only on <strong class="typo-strong">uncaught</strong> exceptions — exceptions that were not handled in any other way.
 In particular, all <em>children</em> coroutines (coroutines created in the context of another <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>) delegate handling of
 their exceptions to their parent coroutine, which also delegates to the parent, and so on until the root,
 so the <code>CoroutineExceptionHandler</code> installed in their context is never used. 
@@ -1835,6 +1835,8 @@ The scope is completed
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

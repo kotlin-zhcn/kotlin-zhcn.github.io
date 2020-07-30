@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>函数 - Kotlin 语言中文站</title>
@@ -925,11 +925,11 @@ countAndPrintArgs(*numbers.toIntArray())
 <p class="typo-para">Kotlin 继承了 Java 烦躁的数组系统，因此原始类型具有自己的数组类型与转换函数，而其他任何类型都使用通用 <code>Array</code> 类型，可以使用 <code>.toTypedArray()</code> 转换为该类型。</p>
 <p class="typo-para">但是，不能将 Map 展开到函数调用中，然后期望将 Map 中的值传递给以键命名的参数——必须在编译时知道参数的名称。如果需要运行时定义的参数名称，那么函数必须采用 Map 或采用 <code>vararg kwargs: Pair&lt;String, X&gt;</code>（其中 <code>X</code> 是参数类型的“最低公分母”，在最坏的情况下 <code>Any?</code>——做好必须强制转换参数值的准备，并注意将失去类型安全性）。可以调用这样的函数：<code>foo("bar" to 42, "test" to "hello")</code>，因为 <code>to</code> 是创建 <code>Pair</code> 的<a class="typo-link" href="classes.html#中缀函数">中缀函数</a>。</p>
 <hr class="typo-hr"/>
-<table>
+<table class="typo-table">
 <tbody>
-<tr>
-<td><a class="typo-link" href="loops.html">← 上一节：循环</a></td>
-<td><a class="typo-link" href="classes.html">下一节：类 →</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><a class="typo-link" href="loops.html">← 上一节：循环</a></td>
+<td class="typo-table__column"><a class="typo-link" href="classes.html">下一节：类 →</a></td>
 </tr>
 </tbody>
 </table>
@@ -968,6 +968,8 @@ countAndPrintArgs(*numbers.toIntArray())
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

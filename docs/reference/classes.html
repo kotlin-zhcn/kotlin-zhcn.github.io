@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>类与继承 - Kotlin 语言中文站</title>
@@ -1387,7 +1387,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="构造函数">构造函数</h3>
-<p class="typo-para">在 Kotlin 中的一个类可以有一个<strong class="type-strong">主构造函数</strong>以及一个或多个<strong class="type-strong">次构造函数</strong>。主<!--
+<p class="typo-para">在 Kotlin 中的一个类可以有一个<strong class="typo-strong">主构造函数</strong>以及一个或多个<strong class="typo-strong">次构造函数</strong>。主<!--
 -->构造函数是类头的一部分：它跟在类名（与可选的类型参数）后。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person constructor(firstName: String) { /*……*/ }
@@ -1400,7 +1400,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </code></pre>
 </div>
 <p class="typo-para">主构造函数不能包含任何的代码。初始化的代码可以放<!--
--->到以 <em class="keyword">init</em> 关键字作为前缀的<strong class="type-strong">初始化块（initializer blocks）</strong>中。</p>
+-->到以 <em class="keyword">init</em> 关键字作为前缀的<strong class="typo-strong">初始化块（initializer blocks）</strong>中。</p>
 <p class="typo-para">在实例初始化期间，初始化块按照它们出现在<!--
 -->类体中的顺序执行，与属性初始化器交织在一起：</p>
 <div class="sample" theme="idea">
@@ -1448,7 +1448,7 @@ fun main() {
 </div>
 <p class="typo-para">更多详情，参见<a class="typo-link" href="visibility-modifiers.html#构造函数">可见性修饰符</a></p>
 <h4 class="typo-header typo-h4" id="次构造函数">次构造函数</h4>
-<p class="typo-para">类也可以声明前缀有 <em class="keyword">constructor</em>的<strong class="type-strong">次构造函数</strong>：</p>
+<p class="typo-para">类也可以声明前缀有 <em class="keyword">constructor</em>的<strong class="typo-strong">次构造函数</strong>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person {
     var children: MutableList&lt;Person&gt; = mutableListOf&lt;&gt;()
@@ -1500,7 +1500,7 @@ fun main() {
 </code></pre>
 </div>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">注意</strong>：在 JVM 上，如果主构造函数的所有的参数都有默认值，编译器会生成
+<p class="typo-para"><strong class="typo-strong">注意</strong>：在 JVM 上，如果主构造函数的所有的参数都有默认值，编译器会生成
 一个额外的无参构造函数，它将使用默认值。这使得
 Kotlin 更易于使用像 Jackson 或者 JPA 这样的通过无参构造函数创建类的实例的库。</p>
 </blockquote>
@@ -1579,7 +1579,7 @@ class Circle() : Shape() {
 </div>
 <p class="typo-para"><code>Circle.draw()</code> 函数上必须加上 <em class="keyword">override</em> 修饰符。如果没写，编译器将会报错。
 如果函数没有标注 <em class="keyword">open</em> 如 <code>Shape.fill()</code>，那么子类中不允许定义相同签名的函数，
-不论加不加 <strong class="type-strong">override</strong>。将 <em class="keyword">open</em> 修饰符添加到 final 类（即没有 <em class="keyword">open</em> 的类）的成员上不起作用。</p>
+不论加不加 <strong class="typo-strong">override</strong>。将 <em class="keyword">open</em> 修饰符添加到 final 类（即没有 <em class="keyword">open</em> 的类）的成员上不起作用。</p>
 <p class="typo-para">标记为 <em class="keyword">override</em> 的成员本身是开放的，也就是说，它可以在子类中覆盖。如果你想禁止再次覆盖，使用 <em class="keyword">final</em> 关键字：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">open class Rectangle() : Shape() {
@@ -1762,6 +1762,8 @@ abstract class Rectangle : Polygon() {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

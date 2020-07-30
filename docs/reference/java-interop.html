@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 中调用 Java - Kotlin 语言中文站</title>
@@ -1659,135 +1659,135 @@ public class Test {}
 <p class="typo-para">Kotlin 特殊处理一部分 Java 类型。这样的类型不是“按原样”从 Java 加载，而是 <em>映射</em> 到相应的 Kotlin 类型。
 映射只发生在编译期间，运行时表示保持不变。
 Java 的原生类型映射到相应的 Kotlin 类型（请记住<a class="typo-link" href="#空安全与平台类型">平台类型</a>）：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Java 类型</strong></th>
-<th><strong class="type-strong">Kotlin 类型</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Java 类型</strong></th>
+<th><strong class="typo-strong">Kotlin 类型</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>byte</code></td>
-<td><code>kotlin.Byte</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>byte</code></td>
+<td class="typo-table__column"><code>kotlin.Byte</code></td>
 </tr>
-<tr>
-<td><code>short</code></td>
-<td><code>kotlin.Short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>short</code></td>
+<td class="typo-table__column"><code>kotlin.Short</code></td>
 </tr>
-<tr>
-<td><code>int</code></td>
-<td><code>kotlin.Int</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>int</code></td>
+<td class="typo-table__column"><code>kotlin.Int</code></td>
 </tr>
-<tr>
-<td><code>long</code></td>
-<td><code>kotlin.Long</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>long</code></td>
+<td class="typo-table__column"><code>kotlin.Long</code></td>
 </tr>
-<tr>
-<td><code>char</code></td>
-<td><code>kotlin.Char</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>char</code></td>
+<td class="typo-table__column"><code>kotlin.Char</code></td>
 </tr>
-<tr>
-<td><code>float</code></td>
-<td><code>kotlin.Float</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>float</code></td>
+<td class="typo-table__column"><code>kotlin.Float</code></td>
 </tr>
-<tr>
-<td><code>double</code></td>
-<td><code>kotlin.Double</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>double</code></td>
+<td class="typo-table__column"><code>kotlin.Double</code></td>
 </tr>
-<tr>
-<td><code>boolean</code></td>
-<td><code>kotlin.Boolean</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>boolean</code></td>
+<td class="typo-table__column"><code>kotlin.Boolean</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">一些非原生的内置类型也会作映射：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Java 类型</strong></th>
-<th><strong class="type-strong">Kotlin 类型</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Java 类型</strong></th>
+<th><strong class="typo-strong">Kotlin 类型</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>java.lang.Object</code></td>
-<td><code>kotlin.Any!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Object</code></td>
+<td class="typo-table__column"><code>kotlin.Any!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Cloneable</code></td>
-<td><code>kotlin.Cloneable!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Cloneable</code></td>
+<td class="typo-table__column"><code>kotlin.Cloneable!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Comparable</code></td>
-<td><code>kotlin.Comparable!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Comparable</code></td>
+<td class="typo-table__column"><code>kotlin.Comparable!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Enum</code></td>
-<td><code>kotlin.Enum!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Enum</code></td>
+<td class="typo-table__column"><code>kotlin.Enum!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Annotation</code></td>
-<td><code>kotlin.Annotation!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Annotation</code></td>
+<td class="typo-table__column"><code>kotlin.Annotation!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.CharSequence</code></td>
-<td><code>kotlin.CharSequence!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.CharSequence</code></td>
+<td class="typo-table__column"><code>kotlin.CharSequence!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.String</code></td>
-<td><code>kotlin.String!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.String</code></td>
+<td class="typo-table__column"><code>kotlin.String!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Number</code></td>
-<td><code>kotlin.Number!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Number</code></td>
+<td class="typo-table__column"><code>kotlin.Number!</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Throwable</code></td>
-<td><code>kotlin.Throwable!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Throwable</code></td>
+<td class="typo-table__column"><code>kotlin.Throwable!</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">Java 的装箱原始类型映射到可空的 Kotlin 类型：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Java type</strong></th>
-<th><strong class="type-strong">Kotlin type</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Java type</strong></th>
+<th><strong class="typo-strong">Kotlin type</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>java.lang.Byte</code></td>
-<td><code>kotlin.Byte?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Byte</code></td>
+<td class="typo-table__column"><code>kotlin.Byte?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Short</code></td>
-<td><code>kotlin.Short?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Short</code></td>
+<td class="typo-table__column"><code>kotlin.Short?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Integer</code></td>
-<td><code>kotlin.Int?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Integer</code></td>
+<td class="typo-table__column"><code>kotlin.Int?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Long</code></td>
-<td><code>kotlin.Long?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Long</code></td>
+<td class="typo-table__column"><code>kotlin.Long?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Character</code></td>
-<td><code>kotlin.Char?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Character</code></td>
+<td class="typo-table__column"><code>kotlin.Char?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Float</code></td>
-<td><code>kotlin.Float?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Float</code></td>
+<td class="typo-table__column"><code>kotlin.Float?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Double</code></td>
-<td><code>kotlin.Double?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Double</code></td>
+<td class="typo-table__column"><code>kotlin.Double?</code></td>
 </tr>
-<tr>
-<td><code>java.lang.Boolean</code></td>
-<td><code>kotlin.Boolean?</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>java.lang.Boolean</code></td>
+<td class="typo-table__column"><code>kotlin.Boolean?</code></td>
 </tr>
 </tbody>
 </table>
@@ -1795,82 +1795,82 @@ Java 的原生类型映射到相应的 Kotlin 类型（请记住<a class="typo-l
 例如，<code>List&lt;java.lang.Integer&gt;</code> 在 Kotlin 中会成为 <code>List&lt;Int!&gt;</code>。</p>
 <p class="typo-para">集合类型在 Kotlin 中可以是只读的或可变的，因此 Java 集合类型作如下映射：
 （下表中的所有 Kotlin 类型都驻留在 <code>kotlin.collections</code>包中）:</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Java 类型</strong></th>
-<th><strong class="type-strong">Kotlin 只读类型</strong></th>
-<th><strong class="type-strong">Kotlin 可变类型</strong></th>
-<th><strong class="type-strong">加载的平台类型</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Java 类型</strong></th>
+<th><strong class="typo-strong">Kotlin 只读类型</strong></th>
+<th><strong class="typo-strong">Kotlin 可变类型</strong></th>
+<th><strong class="typo-strong">加载的平台类型</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>Iterator&lt;T&gt;</code></td>
-<td><code>Iterator&lt;T&gt;</code></td>
-<td><code>MutableIterator&lt;T&gt;</code></td>
-<td><code>(Mutable)Iterator&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Iterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>Iterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableIterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Iterator&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>Iterable&lt;T&gt;</code></td>
-<td><code>Iterable&lt;T&gt;</code></td>
-<td><code>MutableIterable&lt;T&gt;</code></td>
-<td><code>(Mutable)Iterable&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Iterable&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>Iterable&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableIterable&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Iterable&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>Collection&lt;T&gt;</code></td>
-<td><code>Collection&lt;T&gt;</code></td>
-<td><code>MutableCollection&lt;T&gt;</code></td>
-<td><code>(Mutable)Collection&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Collection&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>Collection&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableCollection&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Collection&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>Set&lt;T&gt;</code></td>
-<td><code>Set&lt;T&gt;</code></td>
-<td><code>MutableSet&lt;T&gt;</code></td>
-<td><code>(Mutable)Set&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Set&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>Set&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableSet&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Set&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>List&lt;T&gt;</code></td>
-<td><code>List&lt;T&gt;</code></td>
-<td><code>MutableList&lt;T&gt;</code></td>
-<td><code>(Mutable)List&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>List&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>List&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableList&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)List&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>ListIterator&lt;T&gt;</code></td>
-<td><code>ListIterator&lt;T&gt;</code></td>
-<td><code>MutableListIterator&lt;T&gt;</code></td>
-<td><code>(Mutable)ListIterator&lt;T&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>ListIterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>ListIterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>MutableListIterator&lt;T&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)ListIterator&lt;T&gt;!</code></td>
 </tr>
-<tr>
-<td><code>Map&lt;K, V&gt;</code></td>
-<td><code>Map&lt;K, V&gt;</code></td>
-<td><code>MutableMap&lt;K, V&gt;</code></td>
-<td><code>(Mutable)Map&lt;K, V&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Map&lt;K, V&gt;</code></td>
+<td class="typo-table__column"><code>Map&lt;K, V&gt;</code></td>
+<td class="typo-table__column"><code>MutableMap&lt;K, V&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Map&lt;K, V&gt;!</code></td>
 </tr>
-<tr>
-<td><code>Map.Entry&lt;K, V&gt;</code></td>
-<td><code>Map.Entry&lt;K, V&gt;</code></td>
-<td><code>MutableMap.MutableEntry&lt;K,V&gt;</code></td>
-<td><code>(Mutable)Map.(Mutable)Entry&lt;K, V&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Map.Entry&lt;K, V&gt;</code></td>
+<td class="typo-table__column"><code>Map.Entry&lt;K, V&gt;</code></td>
+<td class="typo-table__column"><code>MutableMap.MutableEntry&lt;K,V&gt;</code></td>
+<td class="typo-table__column"><code>(Mutable)Map.(Mutable)Entry&lt;K, V&gt;!</code></td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">Java 的数组按<a class="typo-link" href="java-interop.html#java-数组">下文</a>所述映射：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Java 类型</strong></th>
-<th><strong class="type-strong">Kotlin 类型</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Java 类型</strong></th>
+<th><strong class="typo-strong">Kotlin 类型</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>int[]</code></td>
-<td><code>kotlin.IntArray!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>int[]</code></td>
+<td class="typo-table__column"><code>kotlin.IntArray!</code></td>
 </tr>
-<tr>
-<td><code>String[]</code></td>
-<td><code>kotlin.Array&lt;(out) String&gt;!</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>String[]</code></td>
+<td class="typo-table__column"><code>kotlin.Array&lt;(out) String&gt;!</code></td>
 </tr>
 </tbody>
 </table>
@@ -2105,6 +2105,8 @@ executor.execute { println("This runs in a thread pool") }
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>函数：infix、vararg、tailrec - Kotlin 语言中文站</title>
@@ -1405,7 +1405,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <pre><code class="language-kotlin">fun read(b: Array&lt;Byte&gt;, off: Int = 0, len: Int = b.size) { /*……*/ }
 </code></pre>
 </div>
-<p class="typo-para">默认值通过类型后面的 <strong class="type-strong">=</strong> 及给出的值来定义。</p>
+<p class="typo-para">默认值通过类型后面的 <strong class="typo-strong">=</strong> 及给出的值来定义。</p>
 <p class="typo-para">覆盖方法总是使用与基类型方法相同的默认参数值。
 当覆盖一个带有默认参数值的方法时，必须从签名中省略默认参数值：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1473,7 +1473,7 @@ foo { println("hello") }        // 使用两个默认值 bar = 0 与 baz = 1
 </code></pre>
 </div>
 <p class="typo-para">当一个函数调用混用位置参数与具名参数时，所有位置参数都要放在第一个具名参数之前。例如，允许调用 <code>f(1, y = 2)</code> 但不允许 <code>f(x = 1, 2)</code>。</p>
-<p class="typo-para">可以通过使用<strong class="type-strong">星号</strong>操作符将<a class="typo-link" href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以具名形式传入：</p>
+<p class="typo-para">可以通过使用<strong class="typo-strong">星号</strong>操作符将<a class="typo-link" href="#可变数量的参数varargs">可变数量参数（<em class="keyword">vararg</em>）</a> 以具名形式传入：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun foo(vararg strings: String) { /*……*/ }
 
@@ -1481,7 +1481,7 @@ foo(strings = *arrayOf("a", "b", "c"))
 </code></pre>
 </div>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">对于 JVM 平台</strong>：在调用 Java 函数时不能使用具名参数语法，因为 Java 字节码并不<!--
+<p class="typo-para"><strong class="typo-strong">对于 JVM 平台</strong>：在调用 Java 函数时不能使用具名参数语法，因为 Java 字节码并不<!--
 -->总是保留函数参数的名称。</p>
 </blockquote>
 <h3 class="typo-header typo-h3" id="返回-unit-的函数">返回 Unit 的函数</h3>
@@ -1503,7 +1503,7 @@ foo(strings = *arrayOf("a", "b", "c"))
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="单表达式函数">单表达式函数</h3>
-<p class="typo-para">当函数返回单个表达式时，可以省略花括号并且在 <strong class="type-strong">=</strong> 符号之后指定代码体即可：</p>
+<p class="typo-para">当函数返回单个表达式时，可以省略花括号并且在 <strong class="typo-strong">=</strong> 符号之后指定代码体即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun double(x: Int): Int = x * 2
 </code></pre>
@@ -1538,7 +1538,7 @@ Kotlin 不推断具有块代码体的函数的返回类型，因为这样的函�
 -->具名参数语法传递其后的参数的值，或者，如果参数具有函数类型，则通过在括号外部<!--
 -->传一个 lambda。</p>
 <p class="typo-para">当我们调用 <code>vararg</code>-函数时，我们可以一个接一个地传参，例如 <code>asList(1, 2, 3)</code>，或者，如果我们已经有一个数组<!--
--->并希望将其内容传给该函数，我们使用<strong class="type-strong">伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
+-->并希望将其内容传给该函数，我们使用<strong class="typo-strong">伸展（spread）</strong>操作符（在数组前面加 <code>*</code>）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val a = arrayOf(1, 2, 3)
 val list = asList(-1, 0, *a, 4)
@@ -1708,6 +1708,8 @@ private fun findFixPoint(): Double {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

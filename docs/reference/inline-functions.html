@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>内联函数与具体化的类型参数 - Kotlin 语言中文站</title>
@@ -1553,7 +1553,7 @@ var bar: Bar
 <h2 class="typo-header typo-h2" id="public-inline-restrictions">公有 API 内联函数的限制</h2>
 <p class="typo-para">当一个内联函数是 <code>public</code> 或 <code>protected</code> 而不是 <code>private</code> 或 <code>internal</code> 声明的一部分时，就会认为它是一个<a class="typo-link" href="visibility-modifiers.html#模块">模块级</a>的公有 API。可以在其他模块中调用它，并且也可以在调用处内联这样的调用。</p>
 <p class="typo-para">这带来了一些由模块做这样变更时导致的二进制兼容的风险——声明一个内联函数但调用它的模块在它修改后并没有重新编译。</p>
-<p class="typo-para">为了消除这种由<strong class="type-strong">非</strong>公有 API 变更引入的不兼容的风险，公有 API 内联函数体内不允许使用非公有声明，即，不允许使用 <code>private</code> 与 <code>internal</code> 声明以及其部件。</p>
+<p class="typo-para">为了消除这种由<strong class="typo-strong">非</strong>公有 API 变更引入的不兼容的风险，公有 API 内联函数体内不允许使用非公有声明，即，不允许使用 <code>private</code> 与 <code>internal</code> 声明以及其部件。</p>
 <p class="typo-para">一个 <code>internal</code> 声明可以由 <code>@PublishedApi</code> 标注，这会允许它在公有 API 内联函数中使用。当一个 <code>internal</code> 内联函数标记有 <code>@PublishedApi</code> 时，也会像公有函数一样检测其函数体。</p>
 
         </article>
@@ -1588,6 +1588,8 @@ var bar: Bar
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

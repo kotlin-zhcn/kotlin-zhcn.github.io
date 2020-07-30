@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Compatibility Guide for Kotlin 1.3 - Kotlin 语言中文站</title>
@@ -1373,7 +1373,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </a>
                 
 <h1 class="typo-header typo-h1" id="compatibility-guide-for-kotlin-13">Compatibility Guide for Kotlin 1.3</h1>
-<p class="typo-para"><em>Keeping the Language Modern</em> and <em>Comfortable Updates</em> are among the fundamental principles in Kotlin Language Design. The former says that constructions which obstruct language evolution should be removed, and the latter says that this removal should be well-communicated beforehand to make code migration as smooth as possible.</p>
+<p class="typo-para"><a class="typo-link" href="evolution/kotlin-evolution.html"><em>Keeping the Language Modern</em> and <em>Comfortable Updates</em></a> are among the fundamental principles in Kotlin Language Design. The former says that constructs which obstruct language evolution should be removed, and the latter says that this removal should be well-communicated beforehand to make code migration as smooth as possible.</p>
 <p class="typo-para">While most of the language changes were already announced through other channels, like update changelogs or compiler warnings, this document summarizes them all, providing a complete reference for migration from Kotlin 1.2 to Kotlin 1.3</p>
 <h2 class="typo-header typo-h2" id="basic-terms">Basic terms</h2>
 <p class="typo-para">In this document we introduce several kinds of compatibility:</p>
@@ -1385,11 +1385,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">One has to remember that those definitions are given only for pure Kotlin. Compatibility of Kotlin code from the other languages perspective (e.g. from Java) is out of the scope of this document.</p>
 <h3 class="typo-header typo-h3" id="evaluation-order-of-constructor-arguments-regarding-clinit-call">Evaluation order of constructor arguments regarding <code>&lt;clinit&gt;</code> call</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19532">KT-19532</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Kotlin/JVM</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: evaluation order with respect to class initialization is changed in 1.3</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19532">KT-19532</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: evaluation order with respect to class initialization is changed in 1.3</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: old behavior (see details in the Issue)</li>
 <li class="typo-list__item">&gt;= 1.3: behavior changed,
@@ -1398,11 +1398,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="missing-getter-targeted-annotations-on-annotation-constructor-parameters">Missing getter-targeted annotations on annotation constructor parameters</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-25287">KT-25287</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Kotlin/JVM</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: getter-target annotations on annotations constructor parameters will be properly written to classfiles in 1.3</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-25287">KT-25287</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: getter-target annotations on annotations constructor parameters will be properly written to classfiles in 1.3</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: getter-target annotations on annotation constructor parameters are not applied</li>
 <li class="typo-list__item">&gt;=1.3: getter-target annotations on annotation constructor parameters are properly applied and written to the generated code</li>
@@ -1410,11 +1410,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="missing-errors-in-class-constructors-get-annotations">Missing errors in class constructor’s <code>@get:</code> annotations</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19628">KT-19628</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: errors in getter-target annotations will be reported properly in 1.3</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19628">KT-19628</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: errors in getter-target annotations will be reported properly in 1.3</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: compilation errors in getter-target annotations were not reported, causing incorrect code to be compiled fine.</li>
 <li class="typo-list__item">1.2.x: errors reported only by tooling, the compiler still compiles such code without any warnings</li>
@@ -1423,11 +1423,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="nullability-assertions-on-access-to-java-types-annotated-with-notnull">Nullability assertions on access to Java types annotated with <code>@NotNull</code></h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20830">KT-20830</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Kotlin/JVM</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: nullability assertions for Java-types annotated with not-null annotations will be generated more aggressively, causing code which passes <code>null</code> here to fail faster.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20830">KT-20830</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: nullability assertions for Java-types annotated with not-null annotations will be generated more aggressively, causing code which passes <code>null</code> here to fail faster.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: the compiler could miss such assertions when type inference was involved, allowing potential <code>null</code> propagation during compilation against binaries (see Issue for details).</li>
 <li class="typo-list__item">&gt;=1.3: the compiler generates missed assertions. This can case code which was (erroneously) passing <code>null</code>s here fail faster.<br/>
@@ -1436,11 +1436,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="unsound-smartcasts-on-enum-members">Unsound smartcasts on enum members</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20772">KT-20772</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: a smartcast on a member of one enum entry will be correctly applied to only this enum entry</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20772">KT-20772</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: a smartcast on a member of one enum entry will be correctly applied to only this enum entry</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: a smartcast on a member of one enum entry could lead to an unsound smartcast on the same member of other enum entries.</li>
 <li class="typo-list__item">&gt;=1.3: smartcast will be properly applied only to the member of one enum entry. <br/>
@@ -1449,11 +1449,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="val-backing-field-reassignment-in-getter"><code>val</code> backing field reassignment in getter</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16681">KT-16681</a></p>
-<p class="typo-para"><strong class="type-strong">Components</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: reassignment of the backing field of <code>val</code>-property in its getter is now prohibited</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16681">KT-16681</a></p>
+<p class="typo-para"><strong class="typo-strong">Components</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: reassignment of the backing field of <code>val</code>-property in its getter is now prohibited</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: Kotlin compiler allowed to modify backing field of <code>val</code> in its getter. Not only it violates Kotlin semantic, but also generates ill-behaved JVM bytecode which reassigns <code>final</code> field.</li>
 <li class="typo-list__item">1.2.X: deprecation warning is reported on code which reassigns backing field of <code>val</code></li>
@@ -1462,11 +1462,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="array-capturing-before-the-for-loop-where-it-is-iterated">Array capturing before the <code>for</code>-loop where it is iterated</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21354">KT-21354</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Kotlin/JVM</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: if an expression in for-loop range is a local variable updated in a loop body, this change affects loop execution. This is inconsistent with iterating over other containers, such as ranges, character sequences, and collections.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21354">KT-21354</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: if an expression in for-loop range is a local variable updated in a loop body, this change affects loop execution. This is inconsistent with iterating over other containers, such as ranges, character sequences, and collections.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: described code patterns are compiled fine, but updates to local variable affect loop execution</li>
 <li class="typo-list__item">1.2.X: deprecation warning reported if a range expression in a for-loop is an array-typed local variable which is assigned in a loop body</li>
@@ -1475,11 +1475,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="nested-classifiers-in-enum-entries">Nested classifiers in enum entries</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16310">KT-16310</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, nested classifiers (classes, object, interfaces, annotation classes, enum classes) in enum entries are prohibited</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16310">KT-16310</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, nested classifiers (classes, object, interfaces, annotation classes, enum classes) in enum entries are prohibited</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: nested classifiers in enum entries are compiled fine, but may fail with exception at runtime</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on the nested classifiers</li>
@@ -1488,11 +1488,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="data-class-overriding-copy">Data class overriding <code>copy</code></h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19618">KT-19618</a></p>
-<p class="typo-para"><strong class="type-strong">Components</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, data classes are prohibited to override <code>copy()</code></p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19618">KT-19618</a></p>
+<p class="typo-para"><strong class="typo-strong">Components</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, data classes are prohibited to override <code>copy()</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: data classes overriding <code>copy()</code> are compiled fine but may fail at runtime/expose strange behavior</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on data classes overriding <code>copy()</code></li>
@@ -1501,11 +1501,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="inner-classes-inheriting-throwable-that-capture-generic-parameters-from-the-outer-class">Inner classes inheriting <code>Throwable</code> that capture generic parameters from the outer class</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-17981">KT-17981</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, inner classes are not allowed to inherit <code>Throwable</code></p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-17981">KT-17981</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, inner classes are not allowed to inherit <code>Throwable</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: inner classes inheriting <code>Throwable</code> are compiled fine. If such inner classes happen to capture generic parameters, it could lead to strange code patterns which fail at runtime.</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on inner classes inheriting <code>Throwable</code></li>
@@ -1514,11 +1514,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="visibility-rules-regarding-complex-class-hierarchies-with-companion-objects">Visibility rules regarding complex class hierarchies with companion objects</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21515">KT-21515</a>, <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-25333">KT-25333</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, rules of visibility by short names are stricter for complex class hierarchies involving companion objects and nested classifiers.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21515">KT-21515</a>, <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-25333">KT-25333</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, rules of visibility by short names are stricter for complex class hierarchies involving companion objects and nested classifiers.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: old visibility rules (see Issue for details)</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on short names which are not going to be accessible anymore. Tooling suggests automated migration by adding full name.</li>
@@ -1527,11 +1527,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="non-constant-vararg-annotation-parameters">Non-constant vararg annotation parameters</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23153">KT-23153</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, setting non-constant values as vararg annotation parameters is prohibited</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23153">KT-23153</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, setting non-constant values as vararg annotation parameters is prohibited</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: the compiler allows to pass non-constant value for vararg annotation parameter, but actually drops that value during bytecode generation, leading to non-obvious behavior</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on such code patterns</li>
@@ -1540,11 +1540,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="local-annotation-classes">Local annotation classes</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23277">KT-23277</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3 local annotation classes are not supported</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23277">KT-23277</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3 local annotation classes are not supported</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: the compiler compiled local annotation classes fine</li>
 <li class="typo-list__item">1.2.X: deprecation warnings reported on local annotation classes</li>
@@ -1553,11 +1553,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="smartcasts-on-local-delegated-properties">Smartcasts on local delegated properties</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22517">KT-22517</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3 smartcasts on local delegated properties are not allowed</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22517">KT-22517</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3 smartcasts on local delegated properties are not allowed</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: the compiler allowed to smartcast local delegated property, which could lead to unsound smartcast in case of ill-behaved delegates</li>
 <li class="typo-list__item">1.2.X: smartcasts on local delegated properries are reported as deprecated (the compiler issues warnings)</li>
@@ -1566,11 +1566,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="mod-operator-convention"><code>mod</code> operator convention</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-24197">KT-24197</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3 declaration of <code>mod</code> operator is prohibited, as well as calls which resolve to such declarations</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-24197">KT-24197</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3 declaration of <code>mod</code> operator is prohibited, as well as calls which resolve to such declarations</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">1.1.X, 1.2.X: report warnings on declarations of <code>operator mod</code>, as well as on calls which resolve to it</li>
 <li class="typo-list__item">1.3.X: elevate warnings to error, but still allow to resolve to <code>operator mod</code> declarations</li>
@@ -1579,11 +1579,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="passing-single-element-to-vararg-in-named-form">Passing single element to vararg in named form</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20588">KT-20588</a>, <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20589">KT-20589</a>. See also <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20171">KT-20171</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: in Kotlin 1.3, assigning single element to vararg is deprecated and should be replaced with consecutive spread and array construction.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issues</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20588">KT-20588</a>, <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20589">KT-20589</a>. See also <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-20171">KT-20171</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: in Kotlin 1.3, assigning single element to vararg is deprecated and should be replaced with consecutive spread and array construction.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: assigning one value element to vararg in named form compiles fine and is treated as assigning <em>single</em> element to array, causing non-obvious behavior when assigning array to vararg</li>
 <li class="typo-list__item">1.2.X: deprecation warnings are reported on such assignments, users are suggested to switch to consecutive spread and array construction.</li>
@@ -1593,11 +1593,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="retention-of-annotations-with-target-expression">Retention of annotations with target <code>EXPRESSION</code></h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-13762">KT-13762</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, only <code>SOURCE</code> retention is allowed for annotations with target <code>EXPRESSION</code></p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-13762">KT-13762</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, only <code>SOURCE</code> retention is allowed for annotations with target <code>EXPRESSION</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: annotations with target <code>EXPRESSION</code> and retention other than <code>SOURCE</code> are allowed, but silently ignored at use-sites</li>
 <li class="typo-list__item">1.2.X: deprecation warnings are reported on declarations of such annotations</li>
@@ -1606,11 +1606,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="annotations-with-target-parameter-shouldnt-be-applicable-to-parameters-type">Annotations with target <code>PARAMETER</code> shouldn't be applicable to parameter's type</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-9580">KT-9580</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: Core language</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Source</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, error about wrong annotation target will be properly reported when annotation with target <code>PARAMETER</code> is applied to parameter's type</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-9580">KT-9580</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, error about wrong annotation target will be properly reported when annotation with target <code>PARAMETER</code> is applied to parameter's type</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.2: aforementioned code patterns are compiled fine; annotations are silently ignored and not present in the bytecode</li>
 <li class="typo-list__item">1.2.X: deprecation warnings are reported on such usages</li>
@@ -1619,11 +1619,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="arraycopyofrange-throws-an-exception-when-indices-are-out-of-bounds-instead-of-enlarging-the-returned-array"><code>Array.copyOfRange</code> throws an exception when indices are out of bounds instead of enlarging the returned array</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19489">KT-19489</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: kotlin-stdlib (JVM)</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, ensure that the <code>toIndex</code> argument of <code>Array.copyOfRange</code>, which represents the exclusive end of the range being copied, is not greater than the array size and throw <code>IllegalArgumentException</code> if it is.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-19489">KT-19489</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, ensure that the <code>toIndex</code> argument of <code>Array.copyOfRange</code>, which represents the exclusive end of the range being copied, is not greater than the array size and throw <code>IllegalArgumentException</code> if it is.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: in case <code>toIndex</code> in the invocation of <code>Array.copyOfRange</code> is greater than the array size, the missing elements in range fill be filled with <code>null</code>s, violating soundness of the Kotlin type system.</li>
 <li class="typo-list__item">&gt;=1.3: check that <code>toIndex</code> is in the array bounds, and throw exception if it isn't</li>
@@ -1631,11 +1631,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="progressions-of-ints-and-longs-with-a-step-of-intmin_value-and-longmin_value-are-outlawed-and-wont-be-allowed-to-be-instantiated">Progressions of ints and longs with a step of <code>Int.MIN_VALUE</code> and <code>Long.MIN_VALUE</code> are outlawed and won’t be allowed to be instantiated</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-17176">KT-17176</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: kotlin-stdlib (JVM)</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, prohibit step value for integer progressions being the minimum negative value of its integer type (<code>Long</code> or <code>Int</code>), so that calling <code>IntProgression.fromClosedRange(0, 1, step = Int.MIN_VALUE)</code> will throw <code>IllegalArgumentException</code></p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-17176">KT-17176</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, prohibit step value for integer progressions being the minimum negative value of its integer type (<code>Long</code> or <code>Int</code>), so that calling <code>IntProgression.fromClosedRange(0, 1, step = Int.MIN_VALUE)</code> will throw <code>IllegalArgumentException</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: it was possible to create an <code>IntProgression</code> with <code>Int.MIN_VALUE</code> step, which yields two values <code>[0, -2147483648]</code>, which is non-obvious behavior</li>
 <li class="typo-list__item">&gt;=1.3: throw <code>IllegalArgumentException</code> if the step is the minimum negative value of its integer type</li>
@@ -1643,11 +1643,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="check-for-index-overflow-in-operations-on-very-long-sequences">Check for index overflow in operations on very long sequences</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16097">KT-16097</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: kotlin-stdlib (JVM)</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, make sure <code>index</code>, <code>count</code> and similar methods do not overflow for long sequences. See the Issue for the full list of affected methods.</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-16097">KT-16097</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, make sure <code>index</code>, <code>count</code> and similar methods do not overflow for long sequences. See the Issue for the full list of affected methods.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: calling such methods on very long sequences could produce negative results due to integer overflow</li>
 <li class="typo-list__item">&gt;=1.3: detect overflow in such methods and throw exception immediately</li>
@@ -1655,11 +1655,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="unify-split-by-an-empty-match-regex-result-across-the-platforms">Unify split by an empty match regex result across the platforms</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21049">KT-21049</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: kotlin-stdlib (JVM)</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Behavioral</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: since Kotlin 1.3, unify behavior of <code>split</code> method by empty match regex across all platforms</p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21049">KT-21049</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.3, unify behavior of <code>split</code> method by empty match regex across all platforms</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: behavior of described calls is different when comparing JS, JRE 6, JRE 7 versus JRE 8+</li>
 <li class="typo-list__item">&gt;=1.3: unify behavior across the platforms</li>
@@ -1667,16 +1667,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="discontinued-deprecated-artifacts-in-the-compiler-distribution">Discontinued deprecated artifacts in the compiler distribution</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23799">KT-23799</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: other</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Binary</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: Kotlin 1.3 discontinues the following deprecated binary artifacts:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-23799">KT-23799</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: other</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Binary</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.3 discontinues the following deprecated binary artifacts:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><code>kotlin-runtime</code>: use <code>kotlin-stdlib</code> instead</li>
 <li class="typo-list__item"><code>kotlin-stdlib-jre7/8</code>: use <code>kotlin-stdlib-jdk7/8</code> instead</li>
 <li class="typo-list__item"><code>kotlin-jslib</code> in the compiler distribution: use <code>kotlin-stdlib-js</code> instead</li>
 </ul>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">1.2.X: the artifacts were marked as deprecated, the compiler reported warning on usage of those artifacts</li>
 <li class="typo-list__item">&gt;=1.3: the artifacts are discontinued</li>
@@ -1684,11 +1684,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </blockquote>
 <h3 class="typo-header typo-h3" id="annotations-in-stdlib">Annotations in stdlib</h3>
 <blockquote class="typo-quote">
-<p class="typo-para"><strong class="type-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21784">KT-21784</a></p>
-<p class="typo-para"><strong class="type-strong">Component</strong>: kotlin-stdlib (JVM)</p>
-<p class="typo-para"><strong class="type-strong">Incompatible change type</strong>: Binary</p>
-<p class="typo-para"><strong class="type-strong">Short summary</strong>: Kotlin 1.3 removes annotations from the package <code>org.jetbrains.annotations</code> from stdlib and moves them to the separate artifacts shipped with the compiler: <code>annotations-13.0.jar</code> and <code>mutability-annotations-compat.jar</code></p>
-<p class="typo-para"><strong class="type-strong">Deprecation cycle</strong>:</p>
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-21784">KT-21784</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: Binary</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Kotlin 1.3 removes annotations from the package <code>org.jetbrains.annotations</code> from stdlib and moves them to the separate artifacts shipped with the compiler: <code>annotations-13.0.jar</code> and <code>mutability-annotations-compat.jar</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt;1.3: annotations were shipped with the stdlib artifact</li>
 <li class="typo-list__item">&gt;=1.3: annotations ship in separate artifacts</li>
@@ -1727,6 +1727,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

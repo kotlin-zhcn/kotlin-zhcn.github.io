@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin/Native 开发动态库 - Kotlin 语言中文站</title>
@@ -1231,65 +1231,65 @@ typedef void*              libnative_KNativePtr;
 <p class="typo-para">Kotlin 在已创建的 <code>libnative_api.h</code> 文件中为<!--
 -->所有的声明都添加了 <code>libnative_</code> 前缀。让我们以<!--
 -->更容易阅读的方式来查看类型的映射：</p>
-<table class="zebra">
+<table class="zebra typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>Kotlin 定义。</th>
 <th>C 类型</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>libnative_KBoolean</code></td>
-<td><code>bool</code> 或 <code>_Bool</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KBoolean</code></td>
+<td class="typo-table__column"><code>bool</code> 或 <code>_Bool</code></td>
 </tr>
-<tr>
-<td><code>libnative_KChar</code></td>
-<td><code>unsigned short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KChar</code></td>
+<td class="typo-table__column"><code>unsigned short</code></td>
 </tr>
-<tr>
-<td><code>libnative_KByte</code></td>
-<td><code>signed char</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KByte</code></td>
+<td class="typo-table__column"><code>signed char</code></td>
 </tr>
-<tr>
-<td><code>libnative_KShort</code></td>
-<td><code>short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KShort</code></td>
+<td class="typo-table__column"><code>short</code></td>
 </tr>
-<tr>
-<td><code>libnative_KInt</code></td>
-<td><code>int</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KInt</code></td>
+<td class="typo-table__column"><code>int</code></td>
 </tr>
-<tr>
-<td><code>libnative_KLong</code></td>
-<td><code>long long</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KLong</code></td>
+<td class="typo-table__column"><code>long long</code></td>
 </tr>
-<tr>
-<td><code>libnative_KUByte</code></td>
-<td><code>unsigned char</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KUByte</code></td>
+<td class="typo-table__column"><code>unsigned char</code></td>
 </tr>
-<tr>
-<td><code>libnative_KUShort</code></td>
-<td><code>unsigned short</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KUShort</code></td>
+<td class="typo-table__column"><code>unsigned short</code></td>
 </tr>
-<tr>
-<td><code>libnative_KUInt</code></td>
-<td><code>unsigned int</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KUInt</code></td>
+<td class="typo-table__column"><code>unsigned int</code></td>
 </tr>
-<tr>
-<td><code>libnative_KULong</code></td>
-<td><code>unsigned long long</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KULong</code></td>
+<td class="typo-table__column"><code>unsigned long long</code></td>
 </tr>
-<tr>
-<td><code>libnative_KFloat</code></td>
-<td><code>float</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KFloat</code></td>
+<td class="typo-table__column"><code>float</code></td>
 </tr>
-<tr>
-<td><code>libnative_KDouble</code></td>
-<td><code>double</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KDouble</code></td>
+<td class="typo-table__column"><code>double</code></td>
 </tr>
-<tr>
-<td><code>libnative_KNativePtr</code></td>
-<td><code>void*</code></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>libnative_KNativePtr</code></td>
+<td class="typo-table__column"><code>void*</code></td>
 </tr>
 </tbody>
 </table>
@@ -1515,6 +1515,8 @@ iOS、Android 以及其他平台。</p>
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

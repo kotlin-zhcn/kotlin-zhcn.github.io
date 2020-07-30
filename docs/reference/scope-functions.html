@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>作用域函数 - Kotlin 语言中文站</title>
@@ -1577,7 +1577,7 @@ fun main() {
 <h2 class="typo-header typo-h2" id="几个函数">几个函数</h2>
 <p class="typo-para">为了帮助你为你的场景选择合适的作用域函数，我们会详细地描述它们并且提供一些使用建议。从技术角度来说，作用域函数在很多场景里是可以互换的，所以这些示例展示了定义通用使用风格的约定用法。</p>
 <h3 class="typo-header typo-h3" id="let"><code>let</code></h3>
-<p class="typo-para"><strong class="type-strong">上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。<strong class="type-strong">返回值</strong>是 lambda 表达式的结果。</p>
+<p class="typo-para"><strong class="typo-strong">上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。<strong class="typo-strong">返回值</strong>是 lambda 表达式的结果。</p>
 <p class="typo-para"><code>let</code> 可用于在调用链的结果上调用一个或多个函数。例如，以下代码打印对集合的两个操作的结果：</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1644,7 +1644,7 @@ fun main() {
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="with"><code>with</code></h3>
-<p class="typo-para">一个非扩展函数：<strong class="type-strong">上下文对象</strong>作为参数传递，但是在 lambda 表达式内部，它可以作为接收者（<code>this</code>）使用。 <strong class="type-strong">返回值</strong>是 lambda 表达式结果。</p>
+<p class="typo-para">一个非扩展函数：<strong class="typo-strong">上下文对象</strong>作为参数传递，但是在 lambda 表达式内部，它可以作为接收者（<code>this</code>）使用。 <strong class="typo-strong">返回值</strong>是 lambda 表达式结果。</p>
 <p class="typo-para">我们建议使用 <code>with</code> 来调用上下文对象上的函数，而不使用 lambda 表达式结果。 在代码中，<code>with</code> 可以理解为“<em>对于这个对象，执行以下操作。</em>”</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1673,7 +1673,7 @@ fun main() {
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="run"><code>run</code></h3>
-<p class="typo-para"><strong class="type-strong">上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong class="type-strong">返回值</strong> 是 lambda 表达式结果。</p>
+<p class="typo-para"><strong class="typo-strong">上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong class="typo-strong">返回值</strong> 是 lambda 表达式结果。</p>
 <p class="typo-para"><code>run</code> 和 <code>with</code> 做同样的事情，但是调用方式和 <code>let</code> 一样——作为上下文对象的扩展函数.</p>
 <p class="typo-para">当 lambda 表达式同时包含对象初始化和返回值的计算时，<code>run</code> 很有用。</p>
 <div class="sample" theme="idea">
@@ -1722,7 +1722,7 @@ fun main() {
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="apply"><code>apply</code></h3>
-<p class="typo-para"><strong class="type-strong">上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong class="type-strong">返回值</strong> 是上下文对象本身。</p>
+<p class="typo-para"><strong class="typo-strong">上下文对象</strong> 作为接收者（<code>this</code>）来访问。 <strong class="typo-strong">返回值</strong> 是上下文对象本身。</p>
 <p class="typo-para">对于不返回值且主要在接收者（<code>this</code>）对象的成员上运行的代码块使用 <code>apply</code>。<code>apply</code> 的常见情况是对象配置。这样的调用可以理解为“<em>将以下赋值操作应用于对象</em>”。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">data class Person(var name: String, var age: Int = 0, var city: String = "")
@@ -1740,7 +1740,7 @@ fun main() {
 </div>
 <p class="typo-para">将接收者作为返回值，你可以轻松地将 <code>apply</code> 包含到调用链中以进行更复杂的处理。</p>
 <h3 class="typo-header typo-h3" id="also"><code>also</code></h3>
-<p class="typo-para"><strong class="type-strong">上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong class="type-strong">返回值</strong>是上下文对象本身。</p>
+<p class="typo-para"><strong class="typo-strong">上下文对象</strong>作为 lambda 表达式的参数（<code>it</code>）来访问。 <strong class="typo-strong">返回值</strong>是上下文对象本身。</p>
 <p class="typo-para"><code>also</code> 对于执行一些将上下文对象作为参数的操作很有用。 对于需要引用对象而不是其属性与函数的操作，或者不想屏蔽来自外部作用域的 <code>this</code> 引用时，请使用 <code>also</code>。</p>
 <p class="typo-para">当你在代码中看到 <code>also</code> 时，可以将其理解为“<em>并且用该对象执行以下操作</em>”。</p>
 <div class="sample" theme="idea">
@@ -1756,9 +1756,9 @@ fun main() {
 </div>
 <h2 class="typo-header typo-h2" id="函数选择">函数选择</h2>
 <p class="typo-para">为了帮助你选择合适的作用域函数，我们提供了它们之间的主要区别表。</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>函数</th>
 <th>对象引用</th>
 <th>返回值</th>
@@ -1766,41 +1766,41 @@ fun main() {
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>let</code></td>
-<td><code>it</code></td>
-<td>Lambda 表达式结果</td>
-<td>是</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>let</code></td>
+<td class="typo-table__column"><code>it</code></td>
+<td class="typo-table__column">Lambda 表达式结果</td>
+<td class="typo-table__column">是</td>
 </tr>
-<tr>
-<td><code>run</code></td>
-<td><code>this</code></td>
-<td>Lambda 表达式结果</td>
-<td>是</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>run</code></td>
+<td class="typo-table__column"><code>this</code></td>
+<td class="typo-table__column">Lambda 表达式结果</td>
+<td class="typo-table__column">是</td>
 </tr>
-<tr>
-<td><code>run</code></td>
-<td>-</td>
-<td>Lambda 表达式结果</td>
-<td>不是：调用无需上下文对象</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>run</code></td>
+<td class="typo-table__column">-</td>
+<td class="typo-table__column">Lambda 表达式结果</td>
+<td class="typo-table__column">不是：调用无需上下文对象</td>
 </tr>
-<tr>
-<td><code>with</code></td>
-<td><code>this</code></td>
-<td>Lambda 表达式结果</td>
-<td>不是：把上下文对象当做参数</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>with</code></td>
+<td class="typo-table__column"><code>this</code></td>
+<td class="typo-table__column">Lambda 表达式结果</td>
+<td class="typo-table__column">不是：把上下文对象当做参数</td>
 </tr>
-<tr>
-<td><code>apply</code></td>
-<td><code>this</code></td>
-<td>上下文对象</td>
-<td>是</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>apply</code></td>
+<td class="typo-table__column"><code>this</code></td>
+<td class="typo-table__column">上下文对象</td>
+<td class="typo-table__column">是</td>
 </tr>
-<tr>
-<td><code>also</code></td>
-<td><code>it</code></td>
-<td>上下文对象</td>
-<td>是</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>also</code></td>
+<td class="typo-table__column"><code>it</code></td>
+<td class="typo-table__column">上下文对象</td>
+<td class="typo-table__column">是</td>
 </tr>
 </tbody>
 </table>
@@ -1913,6 +1913,8 @@ fun main() {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>使用 Gradle 构建多平台项目 - Kotlin 语言中文站</title>
@@ -2836,39 +2836,39 @@ ios("anotherIos")
 <h4 class="typo-header typo-h4" id="声明二进制文件">声明二进制文件</h4>
 <p class="typo-para"><code>binaries</code> 集合的元素通过一套工厂方法声明。这些方法允许指定要创建的二进制类型并对其进行配置。以下是受支持的二进制类型（注意，
 并不是所有类型都可用于所有原生平台）：</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">工厂方法</strong></th>
-<th><strong class="type-strong">二进制类型</strong></th>
-<th><strong class="type-strong">可用于</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">工厂方法</strong></th>
+<th><strong class="typo-strong">二进制类型</strong></th>
+<th><strong class="typo-strong">可用于</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>executable</code></td>
-<td>产品可执行文件</td>
-<td>所有原生目标</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>executable</code></td>
+<td class="typo-table__column">产品可执行文件</td>
+<td class="typo-table__column">所有原生目标</td>
 </tr>
-<tr>
-<td><code>test</code></td>
-<td>测试可执行文件</td>
-<td>所有原生目标</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>test</code></td>
+<td class="typo-table__column">测试可执行文件</td>
+<td class="typo-table__column">所有原生目标</td>
 </tr>
-<tr>
-<td><code>sharedLib</code></td>
-<td>链接原生库</td>
-<td>除了 <code>wasm32</code> 以外的所有原生目标</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>sharedLib</code></td>
+<td class="typo-table__column">链接原生库</td>
+<td class="typo-table__column">除了 <code>wasm32</code> 以外的所有原生目标</td>
 </tr>
-<tr>
-<td><code>staticLib</code></td>
-<td>静态原生库</td>
-<td>除了 <code>wasm32</code> 以外的所有原生目标</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>staticLib</code></td>
+<td class="typo-table__column">静态原生库</td>
+<td class="typo-table__column">除了 <code>wasm32</code> 以外的所有原生目标</td>
 </tr>
-<tr>
-<td><code>framework</code></td>
-<td>Objective-C framework</td>
-<td>仅 macOS、iOS、watchOS 与 tvOS 目标</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>framework</code></td>
+<td class="typo-table__column">Objective-C framework</td>
+<td class="typo-table__column">仅 macOS、iOS、watchOS 与 tvOS 目标</td>
 </tr>
 </tbody>
 </table>
@@ -3034,21 +3034,21 @@ binaries.findExecutable("foo", DEBUG)
 <h4 class="typo-header typo-h4" id="配置二进制文件">配置二进制文件</h4>
 <p class="typo-para">二进制文件具有一套属性，允许配置它们。可用的选项有这些：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><strong class="type-strong">编译项。</strong> 每个二进制都是基于相同目标中一些可用的编译项构建的。这个参数的默认值依赖<!--
+<li class="typo-list__item"><strong class="typo-strong">编译项。</strong> 每个二进制都是基于相同目标中一些可用的编译项构建的。这个参数的默认值依赖<!--
 -->于二进制类型：<code>Test</code> 二进制文件基于 <code>test</code> 编译项，而其他二进制文件基于 <code>main</code> 编译项。</li>
-<li class="typo-list__item"><strong class="type-strong">链接器选项。</strong> 选项将在二进制文件的构建期间被传递到系统链接器中。可以使用这个设置链接到某些原生库。</li>
-<li class="typo-list__item"><strong class="type-strong">输出文件名称。</strong> 默认情况下，输出文件名称基于二进制文件名称前缀，如果没有指定前缀，则基于项目名称。
+<li class="typo-list__item"><strong class="typo-strong">链接器选项。</strong> 选项将在二进制文件的构建期间被传递到系统链接器中。可以使用这个设置链接到某些原生库。</li>
+<li class="typo-list__item"><strong class="typo-strong">输出文件名称。</strong> 默认情况下，输出文件名称基于二进制文件名称前缀，如果没有指定前缀，则基于项目名称。
  但可以使用 <code>baseName</code> 属性来单独配置输出文件名称。注意，最终文件名称将通过添加系统相关的前缀与后缀到这个基础名称形成。
  例如 Linux 共享库与基础名称 <code>foo</code> 将产出 <code>libfoo.so</code>。</li>
-<li class="typo-list__item"><strong class="type-strong">入口点</strong>（仅用于可执行的二进制文件）。默认情况下，Kotlin/Native 程序的入口点是位于根包的 <code>main</code>
+<li class="typo-list__item"><strong class="typo-strong">入口点</strong>（仅用于可执行的二进制文件）。默认情况下，Kotlin/Native 程序的入口点是位于根包的 <code>main</code>
  函数。这个设置允许改变这个默认值，并使用自定义的函数作为入口点。例如它可以用于将 <code>main</code>
  函数从根包中移出。</li>
-<li class="typo-list__item"><strong class="type-strong">访问输出文件。</strong></li>
-<li class="typo-list__item"><strong class="type-strong">访问链接任务。</strong></li>
-<li class="typo-list__item"><strong class="type-strong">访问运行任务</strong>（仅用于可执行的二进制文件）。<code>kotlin-multiplatform</code> 插件为主机平台（Windows、Linux 与 macOS）的所有可执行二进制文件创建运行任务。
+<li class="typo-list__item"><strong class="typo-strong">访问输出文件。</strong></li>
+<li class="typo-list__item"><strong class="typo-strong">访问链接任务。</strong></li>
+<li class="typo-list__item"><strong class="typo-strong">访问运行任务</strong>（仅用于可执行的二进制文件）。<code>kotlin-multiplatform</code> 插件为主机平台（Windows、Linux 与 macOS）的所有可执行二进制文件创建运行任务。
  这些任务的名称基于二进制文件名称，例如 <code>runReleaseExecutable&lt;目标名称&gt;</code>
  或 <code>runFooDebugExecutable&lt;目标名称&gt;</code>。可以使用可执行二进制文件的 <code>runTask</code> 属性来访问运行任务。</li>
-<li class="typo-list__item"><strong class="type-strong">Framework 类型</strong>（仅用于 Objective-C frameworks）。默认情况下，通过 Kotlin/Native 构建的 framework 包含动态库。但可以<!--
+<li class="typo-list__item"><strong class="typo-strong">Framework 类型</strong>（仅用于 Objective-C frameworks）。默认情况下，通过 Kotlin/Native 构建的 framework 包含动态库。但可以<!--
 -->把它替换为静态库。</li>
 </ul>
 <p class="typo-para">下面的例子演示了如何使用这些设置。</p>
@@ -3402,6 +3402,8 @@ kotlin {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

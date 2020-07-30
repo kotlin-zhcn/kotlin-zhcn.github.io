@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>对象表达式、对象声明与伴生对象 - Kotlin 语言中文站</title>
@@ -1483,7 +1483,7 @@ val ab: A = object : A(1), B {
 }
 </code></pre>
 </div>
-<p class="typo-para"><strong class="type-strong">注意</strong>：对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。</p>
+<p class="typo-para"><strong class="typo-strong">注意</strong>：对象声明不能在局部作用域（即直接嵌套在函数内部），但是它们可以嵌套到其他对象声明或非内部类中。</p>
 <h3 class="typo-header typo-h3" id="伴生对象">伴生对象</h3>
 <p class="typo-para">类内部的对象声明可以用 <em class="keyword">companion</em> 关键字标记：</p>
 <div class="sample" data-highlight-only="" theme="idea">
@@ -1546,8 +1546,8 @@ val f: Factory&lt;MyClass&gt; = MyClass
 <h3 class="typo-header typo-h3" id="对象表达式和对象声明之间的语义差异">对象表达式和对象声明之间的语义差异</h3>
 <p class="typo-para">对象表达式和对象声明之间有一个重要的语义差别：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">对象表达式是在使用他们的地方<strong class="type-strong">立即</strong>执行（及初始化）的；</li>
-<li class="typo-list__item">对象声明是在第一次被访问到时<strong class="type-strong">延迟</strong>初始化的；</li>
+<li class="typo-list__item">对象表达式是在使用他们的地方<strong class="typo-strong">立即</strong>执行（及初始化）的；</li>
+<li class="typo-list__item">对象声明是在第一次被访问到时<strong class="typo-strong">延迟</strong>初始化的；</li>
 <li class="typo-list__item">伴生对象的初始化是在相应的类被加载（解析）时，与 Java 静态初始化器的语义相匹配。</li>
 </ul>
 
@@ -1583,6 +1583,8 @@ val f: Factory&lt;MyClass&gt; = MyClass
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

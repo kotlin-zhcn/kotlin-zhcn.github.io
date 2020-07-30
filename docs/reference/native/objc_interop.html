@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>与 Objective-C 及 Swift 互操作 - Kotlin 语言中文站</title>
@@ -1388,9 +1388,9 @@ framework (see "Targets and output kinds" section in <a class="typo-link" href="
 See <a class="typo-link" href="https://github.com/JetBrains/kotlin-native/tree/master/samples/calculator">calculator sample</a> for an example.</p>
 <h2 class="typo-header typo-h2" id="mappings">Mappings</h2>
 <p class="typo-para">The table below shows how Kotlin concepts are mapped to Swift/Objective-C and vice versa.</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>Kotlin</th>
 <th>Swift</th>
 <th>Objective-C</th>
@@ -1398,143 +1398,143 @@ See <a class="typo-link" href="https://github.com/JetBrains/kotlin-native/tree/m
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>class</code></td>
-<td><code>class</code></td>
-<td><code>@interface</code></td>
-<td><a class="typo-link" href="#name-translation">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>class</code></td>
+<td class="typo-table__column"><code>class</code></td>
+<td class="typo-table__column"><code>@interface</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#name-translation">note</a></td>
 </tr>
-<tr>
-<td><code>interface</code></td>
-<td><code>protocol</code></td>
-<td><code>@protocol</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>interface</code></td>
+<td class="typo-table__column"><code>protocol</code></td>
+<td class="typo-table__column"><code>@protocol</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>constructor</code>/<code>create</code></td>
-<td>Initializer</td>
-<td>Initializer</td>
-<td><a class="typo-link" href="#initializers">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>constructor</code>/<code>create</code></td>
+<td class="typo-table__column">Initializer</td>
+<td class="typo-table__column">Initializer</td>
+<td class="typo-table__column"><a class="typo-link" href="#initializers">note</a></td>
 </tr>
-<tr>
-<td>Property</td>
-<td>Property</td>
-<td>Property</td>
-<td><a class="typo-link" href="#top-level-functions-and-properties">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Property</td>
+<td class="typo-table__column">Property</td>
+<td class="typo-table__column">Property</td>
+<td class="typo-table__column"><a class="typo-link" href="#top-level-functions-and-properties">note</a></td>
 </tr>
-<tr>
-<td>Method</td>
-<td>Method</td>
-<td>Method</td>
-<td><a class="typo-link" href="#top-level-functions-and-properties">note</a> <a class="typo-link" href="#method-names-translation">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Method</td>
+<td class="typo-table__column">Method</td>
+<td class="typo-table__column">Method</td>
+<td class="typo-table__column"><a class="typo-link" href="#top-level-functions-and-properties">note</a> <a class="typo-link" href="#method-names-translation">note</a></td>
 </tr>
-<tr>
-<td><code>@Throws</code></td>
-<td><code>throws</code></td>
-<td><code>error:(NSError**)error</code></td>
-<td><a class="typo-link" href="#errors-and-exceptions">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>@Throws</code></td>
+<td class="typo-table__column"><code>throws</code></td>
+<td class="typo-table__column"><code>error:(NSError**)error</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#errors-and-exceptions">note</a></td>
 </tr>
-<tr>
-<td>Extension</td>
-<td>Extension</td>
-<td>Category member</td>
-<td><a class="typo-link" href="#category-members">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Extension</td>
+<td class="typo-table__column">Extension</td>
+<td class="typo-table__column">Category member</td>
+<td class="typo-table__column"><a class="typo-link" href="#category-members">note</a></td>
 </tr>
-<tr>
-<td><code>companion</code> member &lt;-</td>
-<td>Class method or property</td>
-<td>Class method or property</td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>companion</code> member &lt;-</td>
+<td class="typo-table__column">Class method or property</td>
+<td class="typo-table__column">Class method or property</td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>null</code></td>
-<td><code>nil</code></td>
-<td><code>nil</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>null</code></td>
+<td class="typo-table__column"><code>nil</code></td>
+<td class="typo-table__column"><code>nil</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>Singleton</code></td>
-<td><code>Singleton()</code></td>
-<td><code>[Singleton singleton]</code></td>
-<td><a class="typo-link" href="#kotlin-singletons">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Singleton</code></td>
+<td class="typo-table__column"><code>Singleton()</code></td>
+<td class="typo-table__column"><code>[Singleton singleton]</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#kotlin-singletons">note</a></td>
 </tr>
-<tr>
-<td>Primitive type</td>
-<td>Primitive type / <code>NSNumber</code></td>
-<td> </td>
-<td><a class="typo-link" href="#nsnumber">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Primitive type</td>
+<td class="typo-table__column">Primitive type / <code>NSNumber</code></td>
+<td class="typo-table__column"> </td>
+<td class="typo-table__column"><a class="typo-link" href="#nsnumber">note</a></td>
 </tr>
-<tr>
-<td><code>Unit</code> return type</td>
-<td><code>Void</code></td>
-<td><code>void</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Unit</code> return type</td>
+<td class="typo-table__column"><code>Void</code></td>
+<td class="typo-table__column"><code>void</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>String</code></td>
-<td><code>String</code></td>
-<td><code>NSString</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>String</code></td>
+<td class="typo-table__column"><code>String</code></td>
+<td class="typo-table__column"><code>NSString</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>String</code></td>
-<td><code>NSMutableString</code></td>
-<td><code>NSMutableString</code></td>
-<td><a class="typo-link" href="#nsmutablestring">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>String</code></td>
+<td class="typo-table__column"><code>NSMutableString</code></td>
+<td class="typo-table__column"><code>NSMutableString</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#nsmutablestring">note</a></td>
 </tr>
-<tr>
-<td><code>List</code></td>
-<td><code>Array</code></td>
-<td><code>NSArray</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>List</code></td>
+<td class="typo-table__column"><code>Array</code></td>
+<td class="typo-table__column"><code>NSArray</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>MutableList</code></td>
-<td><code>NSMutableArray</code></td>
-<td><code>NSMutableArray</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>MutableList</code></td>
+<td class="typo-table__column"><code>NSMutableArray</code></td>
+<td class="typo-table__column"><code>NSMutableArray</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>Set</code></td>
-<td><code>Set</code></td>
-<td><code>NSSet</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Set</code></td>
+<td class="typo-table__column"><code>Set</code></td>
+<td class="typo-table__column"><code>NSSet</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>MutableSet</code></td>
-<td><code>NSMutableSet</code></td>
-<td><code>NSMutableSet</code></td>
-<td><a class="typo-link" href="#collections">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>MutableSet</code></td>
+<td class="typo-table__column"><code>NSMutableSet</code></td>
+<td class="typo-table__column"><code>NSMutableSet</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#collections">note</a></td>
 </tr>
-<tr>
-<td><code>Map</code></td>
-<td><code>Dictionary</code></td>
-<td><code>NSDictionary</code></td>
-<td> </td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>Map</code></td>
+<td class="typo-table__column"><code>Dictionary</code></td>
+<td class="typo-table__column"><code>NSDictionary</code></td>
+<td class="typo-table__column"> </td>
 </tr>
-<tr>
-<td><code>MutableMap</code></td>
-<td><code>NSMutableDictionary</code></td>
-<td><code>NSMutableDictionary</code></td>
-<td><a class="typo-link" href="#collections">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>MutableMap</code></td>
+<td class="typo-table__column"><code>NSMutableDictionary</code></td>
+<td class="typo-table__column"><code>NSMutableDictionary</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#collections">note</a></td>
 </tr>
-<tr>
-<td>Function type</td>
-<td>Function type</td>
-<td>Block pointer type</td>
-<td><a class="typo-link" href="#function-types">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Function type</td>
+<td class="typo-table__column">Function type</td>
+<td class="typo-table__column">Block pointer type</td>
+<td class="typo-table__column"><a class="typo-link" href="#function-types">note</a></td>
 </tr>
-<tr>
-<td>Suspend functions</td>
-<td>Unsupported</td>
-<td>Unsupported</td>
-<td><a class="typo-link" href="#unsupported">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Suspend functions</td>
+<td class="typo-table__column">Unsupported</td>
+<td class="typo-table__column">Unsupported</td>
+<td class="typo-table__column"><a class="typo-link" href="#unsupported">note</a></td>
 </tr>
-<tr>
-<td>Inline classes</td>
-<td>Unsupported</td>
-<td>Unsupported</td>
-<td><a class="typo-link" href="#unsupported">note</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Inline classes</td>
+<td class="typo-table__column">Unsupported</td>
+<td class="typo-table__column">Unsupported</td>
+<td class="typo-table__column"><a class="typo-link" href="#unsupported">note</a></td>
 </tr>
 </tbody>
 </table>
@@ -1786,6 +1786,8 @@ Currently, following features are not properly exposed in generated framework he
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

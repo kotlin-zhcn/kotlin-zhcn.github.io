@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>可见性修饰符 - Kotlin 语言中文站</title>
@@ -873,11 +873,11 @@ private const val secretValue = 3.14
 <p class="typo-para">属性的类型以及用于参数的类型和函数的返回类型，必须与属性/函数本身“至少一样可见”。例如，公有函数不能将私有类型作为参数。</p>
 <p class="typo-para">可见性级别仅影响 <em>符号</em> 的 <em>词法可见性</em> ——也就是说，编译器允许键入符号。它不会影响 <em>实例</em> 的使用位置：例如，公有顶级函数很可能会返回私有类的实例，只要返回类型没有提及私有类名称，而是它的公有基类即可。私有类（可能是 <code>Any</code>）或私有类实现的公有接口。当对某个子类进行<a class="typo-link" href="inheritance.html#子类化">子类化</a>时，子类也继承了它的私有成员，但是在该子类中不能直接访问它——但是，如果调用碰巧访问了私有成员的继承的公有函数，那也没关系。</p>
 <hr class="typo-hr"/>
-<table>
+<table class="typo-table">
 <tbody>
-<tr>
-<td><a class="typo-link" href="packages-and-imports.html">← 上一节：包与导入</a></td>
-<td><a class="typo-link" href="inheritance.html">下一节：继承 →</a></td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><a class="typo-link" href="packages-and-imports.html">← 上一节：包与导入</a></td>
+<td class="typo-table__column"><a class="typo-link" href="inheritance.html">下一节：继承 →</a></td>
 </tr>
 </tbody>
 </table>
@@ -916,6 +916,8 @@ private const val secretValue = 3.14
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

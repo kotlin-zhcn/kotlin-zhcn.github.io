@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 1.2 的新特性 - Kotlin 语言中文站</title>
@@ -1382,14 +1382,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="typo-list__item"><a class="typo-link" href="#javascript-后端">JavaScript 后端</a></li>
 </ul>
 <h2 class="typo-header typo-h2" id="多平台项目实验性的">多平台项目（实验性的）</h2>
-<p class="typo-para">多平台项目是 Kotlin 1.2 中的一个新的<strong class="type-strong">实验性的</strong>特性，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：</p>
+<p class="typo-para">多平台项目是 Kotlin 1.2 中的一个新的<strong class="typo-strong">实验性的</strong>特性，允许你在支持 Kotlin 的目标平台——JVM、JavaScript 以及（将来的）Native 之间重用代码。在多平台项目中，你有三种模块：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">一个<em>公共</em>模块包含平台无关代码，以及无实现的依赖平台的 API 声明。</li>
 <li class="typo-list__item"><em>平台</em>模块包含通用模块中的平台相关声明在指定平台的实现，以及其他平台相关代码。</li>
 <li class="typo-list__item">常规模块面向指定的平台，既可以是平台模块的依赖，也可以依赖平台模块。</li>
 </ul>
 <p class="typo-para">当你为指定平台编译多平台项目时，既会生成公共代码也会生成平台相关代码。</p>
-<p class="typo-para">多平台项目支持的一个主要特点是可以通过<strong class="type-strong">预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
+<p class="typo-para">多平台项目支持的一个主要特点是可以通过<strong class="typo-strong">预期声明与实际声明</strong>来表达公共代码对平台相关部分的依赖关系。一个预期声明指定一个 API（类、接口、注解、顶层声明等）。一个实际声明要么是该 API 的平台相关实现，要么是一个引用到在一个外部库中该 API 的一个既有实现的别名。这是一个示例：</p>
 <p class="typo-para">在公共代码中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">// 预期平台相关 API:
@@ -1718,7 +1718,7 @@ fun main(args: Array&lt;String&gt;) {
 <h3 class="typo-header typo-h3" id="破坏性变更平台类型-xequalsnull-的一致行为">破坏性变更：平台类型 x.equals(null) 的一致行为</h3>
 <p class="typo-para">在映射到 Java 原生类型
 （<code>Int!</code>、 <code>Boolean!</code>、 <code>Short!</code>、 <code>Long!</code>、 <code>Float!</code>、 <code>Double!</code>、 <code>Char!</code>）的平台类型上调用 <code>x.equals(null)</code>，当 <code>x</code> 为 <code>null</code> 时错误地返回了 <code>true</code>。
-自 Kotlin 1.2 起，在平台类型的空值上调用 <code>x.equals(……)</code> 都会<strong class="type-strong">抛出 NPE</strong>
+自 Kotlin 1.2 起，在平台类型的空值上调用 <code>x.equals(……)</code> 都会<strong class="typo-strong">抛出 NPE</strong>
 （但 <code>x == ...</code> 不会）。</p>
 <p class="typo-para">要返回到 1.2 之前的行为，请将标志 <code>-Xno-exception-on-explicit-equals-for-boxed-null</code> 传给编译器。</p>
 <h3 class="typo-header typo-h3" id="破坏性变更修正平台-null-透过内联扩展接收者逃逸">破坏性变更：修正平台 null 透过内联扩展接收者逃逸</h3>
@@ -1774,6 +1774,8 @@ fun main(args: Array&lt;String&gt;) {
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

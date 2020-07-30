@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Kotlin 编译器选项 - Kotlin 语言中文站</title>
@@ -1375,7 +1375,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h1 class="typo-header typo-h1" id="kotlin-编译器选项">Kotlin 编译器选项</h1>
 <p class="typo-para">每个 Kotlin 版本都包含支持目标的编译器：
 用于<a class="typo-link" href="native-overview.html#目标平台">所支持平台</a>的 JVM、JavaScript 与 Native 二进制文件。</p>
-<p class="typo-para">当单击 Kotlin 项目的 <strong class="type-strong">Compile</strong> 或 <strong class="type-strong">运行(Run)</strong> 按钮时，IDE 会使用这些编译器。</p>
+<p class="typo-para">当单击 Kotlin 项目的 <strong class="typo-strong">Compile</strong> 或 <strong class="typo-strong">运行(Run)</strong> 按钮时，IDE 会使用这些编译器。</p>
 <p class="typo-para">还可以按照<a class="typo-link" href="/docs/tutorials/command-line.html">使用命令行编译器</a>
 教程中所述在命令行手动运行 Kotlin 编译器。例如：</p>
 <div class="sample" mode="shell" theme="idea">
@@ -1387,8 +1387,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 此页面列出了针对不同目标的编译器选项，并提供了每个选项的描述。</p>
 <p class="typo-para">有几种方法可以设置编译器选项及其值（<em>编译器参数</em>）：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">在 IntelliJ IDEA 的 <strong class="type-strong">设置(Settings) | 构建、执行、部署(Build, Execution, Deployment) | 编译器(Compilers) | Kotlin Compiler</strong> 窗口中，
-在 <strong class="type-strong">附加命令行参数(Additional command-line parameters)</strong> 文本框中输入编译器参数。</li>
+<li class="typo-list__item">在 IntelliJ IDEA 的 <strong class="typo-strong">设置(Settings) | 构建、执行、部署(Build, Execution, Deployment) | 编译器(Compilers) | Kotlin Compiler</strong> 窗口中，
+在 <strong class="typo-strong">附加命令行参数(Additional command-line parameters)</strong> 文本框中输入编译器参数。</li>
 <li class="typo-list__item">如果使用 Gradle，请在 Kotlin 编译任务的 <code>kotlinOptions</code> 属性中指定编译器参数。
 详情请参见<a class="typo-link" href="using-gradle.html#编译器选项">使用 Gradle</a>。</li>
 <li class="typo-list__item">如果使用 Maven，请在 Maven 插件节点的 <code>&lt;configuration&gt;</code> 元素中指定编译器参数。
@@ -1437,8 +1437,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 hello.kt
 </code></pre>
 </div>
-<p class="details-group typo-para">要传递包含空格的值，请用单引号（<strong class="type-strong">'</strong>）或双引号（<strong class="type-strong">"</strong>）引起来。
-如果值中包含引号，请使用反斜杠（<strong class="type-strong">\</strong>）对其进行转义。</p>
+<p class="details-group typo-para">要传递包含空格的值，请用单引号（<strong class="typo-strong">'</strong>）或双引号（<strong class="typo-strong">"</strong>）引起来。
+如果值中包含引号，请使用反斜杠（<strong class="typo-strong">\</strong>）对其进行转义。</p>
 <div class="sample" mode="shell" theme="idea">
 <pre><code>-include-runtime -d 'My folder'
 </code></pre>
@@ -1459,7 +1459,7 @@ hello.kt
 也可以使用它们来执行 Kotlin 脚本文件。</p>
 <p class="typo-para">除了<a class="typo-link" href="#公共选项">公共选项</a>外，Kotlin/JVM 编译器还具有以下列出的选项。</p>
 <h3 class="typo-header typo-h3" id="-classpath-path--cp-path"><code>-classpath &lt;path&gt;</code> (<code>-cp &lt;path&gt;</code>)</h3>
-<p class="details-group typo-para">在指定的路径中搜索类文件。用系统路径分隔符将类路径的各个元素分开（在Windows上是 <strong class="type-strong">;</strong> 在macOS/Linux上是 <strong class="type-strong">:</strong>）。
+<p class="details-group typo-para">在指定的路径中搜索类文件。用系统路径分隔符将类路径的各个元素分开（在Windows上是 <strong class="typo-strong">;</strong> 在macOS/Linux上是 <strong class="typo-strong">:</strong>）。
 类路径可以包含文件和目录路径、ZIP 或 JAR 文件。</p>
 <h3 class="typo-header typo-h3" id="-d-path"><code>-d &lt;path&gt;</code></h3>
 <p class="details-group typo-para">将生成的类文件放置到指定位置。该位置可以是目录、ZIP 或 JAR 文件。</p>
@@ -1483,7 +1483,7 @@ hello.kt
 <p class="details-group typo-para">不要自动将 Kotlin/JVM 标准库（<code>kotlin-stdlib.jar</code>）与
 Kotlin 反射（<code>kotlin-reflect.jar</code>）包含到类路径中。</p>
 <h3 class="typo-header typo-h3" id="-script-templates-classnames"><code>-script-templates &lt;classnames[,]&gt;</code></h3>
-<p class="details-group typo-para">脚本定义模板类。使用完全限定的类名，并用逗号（<strong class="type-strong">,</strong>）分隔。</p>
+<p class="details-group typo-para">脚本定义模板类。使用完全限定的类名，并用逗号（<strong class="typo-strong">,</strong>）分隔。</p>
 <h2 class="typo-header typo-h2" id="kotlinjs-编译器选项">Kotlin/JS 编译器选项</h2>
 <p class="typo-para">JS 的 Kotlin 编译器将 Kotlin 源文件编译为 JavaScript 代码。
 Kotlin 到 JS 编译的命令行工具是 <code>kotlinc-js</code>。</p>
@@ -1616,6 +1616,8 @@ Kotlin/Native 编译的命令行工具是 <code>kotlinc-native</code>。</p>
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

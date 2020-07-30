@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>基本类型：数字、字符串、数组 - Kotlin 语言中文站</title>
@@ -1380,9 +1380,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="typo-header typo-h2" id="数字">数字</h2>
 <p class="typo-para">Kotlin 提供了一组表示数字的内置类型。
 对于整数，有四种不同大小的类型，因此值的范围也不同。</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>类型</th>
 <th>大小（比特数）</th>
 <th>最小值</th>
@@ -1390,29 +1390,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Byte</td>
-<td>8</td>
-<td>-128</td>
-<td>127</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Byte</td>
+<td class="typo-table__column">8</td>
+<td class="typo-table__column">-128</td>
+<td class="typo-table__column">127</td>
 </tr>
-<tr>
-<td>Short</td>
-<td>16</td>
-<td>-32768</td>
-<td>32767</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Short</td>
+<td class="typo-table__column">16</td>
+<td class="typo-table__column">-32768</td>
+<td class="typo-table__column">32767</td>
 </tr>
-<tr>
-<td>Int</td>
-<td>32</td>
-<td>-2,147,483,648 (-2<sup>31</sup>)</td>
-<td>2,147,483,647 (2<sup>31</sup> - 1)</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Int</td>
+<td class="typo-table__column">32</td>
+<td class="typo-table__column">-2,147,483,648 (-2<sup>31</sup>)</td>
+<td class="typo-table__column">2,147,483,647 (2<sup>31</sup> - 1)</td>
 </tr>
-<tr>
-<td>Long</td>
-<td>64</td>
-<td>-9,223,372,036,854,775,808 (-2<sup>63</sup>)</td>
-<td>9,223,372,036,854,775,807 (2<sup>63</sup> - 1)</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Long</td>
+<td class="typo-table__column">64</td>
+<td class="typo-table__column">-9,223,372,036,854,775,808 (-2<sup>63</sup>)</td>
+<td class="typo-table__column">9,223,372,036,854,775,807 (2<sup>63</sup> - 1)</td>
 </tr>
 </tbody>
 </table>
@@ -1430,9 +1430,9 @@ val oneByte: Byte = 1
 根据 <a class="typo-link" href="https://zh.wikipedia.org/wiki/IEEE_754">IEEE 754 标准</a>，
 两种浮点类型的<em>十进制位数</em>（即可以存储多少位十进制数）不同。
 <code>Float</code> 反映了 IEEE 754 <em>单精度</em>，而 <code>Double</code> 提供了<em>双精度</em>。</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
+<tr class="typo-table__row">
 <th>类型</th>
 <th>大小（比特数）</th>
 <th>有效数字比特数</th>
@@ -1441,19 +1441,19 @@ val oneByte: Byte = 1
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>Float</td>
-<td>32</td>
-<td>24</td>
-<td>8</td>
-<td>6-7</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Float</td>
+<td class="typo-table__column">32</td>
+<td class="typo-table__column">24</td>
+<td class="typo-table__column">8</td>
+<td class="typo-table__column">6-7</td>
 </tr>
-<tr>
-<td>Double</td>
-<td>64</td>
-<td>53</td>
-<td>11</td>
-<td>15-16</td>
+<tr class="typo-table__row">
+<td class="typo-table__column">Double</td>
+<td class="typo-table__column">64</td>
+<td class="typo-table__column">53</td>
+<td class="typo-table__column">11</td>
+<td class="typo-table__column">15-16</td>
 </tr>
 </tbody>
 </table>
@@ -1556,7 +1556,7 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 </code></pre>
 </div>
 <p class="typo-para">所以相等性会在所有地方悄无声息地失去，更别说同一性了。</p>
-<p class="typo-para">因此较小的类型<strong class="type-strong">不能</strong>隐式转换为较大的类型。
+<p class="typo-para">因此较小的类型<strong class="typo-strong">不能</strong>隐式转换为较大的类型。
 这意味着在不进行显式转换的情况下我们不能把 <code>Byte</code> 型值赋给一个 <code>Int</code> 变量。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">fun main() {
@@ -1640,9 +1640,9 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 <li class="typo-list__item"><code>shl(bits)</code> – 有符号左移</li>
 <li class="typo-list__item"><code>shr(bits)</code> – 有符号右移</li>
 <li class="typo-list__item"><code>ushr(bits)</code> – 无符号右移</li>
-<li class="typo-list__item"><code>and(bits)</code> – 位<strong class="type-strong">与</strong></li>
-<li class="typo-list__item"><code>or(bits)</code> – 位<strong class="type-strong">或</strong></li>
-<li class="typo-list__item"><code>xor(bits)</code> – 位<strong class="type-strong">异或</strong></li>
+<li class="typo-list__item"><code>and(bits)</code> – 位<strong class="typo-strong">与</strong></li>
+<li class="typo-list__item"><code>or(bits)</code> – 位<strong class="typo-strong">或</strong></li>
+<li class="typo-list__item"><code>xor(bits)</code> – 位<strong class="typo-strong">异或</strong></li>
 <li class="typo-list__item"><code>inv()</code> – 位非</li>
 </ul>
 <h3 class="typo-header typo-h3" id="浮点数比较">浮点数比较</h3>
@@ -1655,7 +1655,7 @@ print(b == a) // 惊！这将输出“false”鉴于 Long 的 equals() 会检测
 <p class="typo-para">当其中的操作数 <code>a</code> 与 <code>b</code> 都是静态已知的 <code>Float</code> 或 <code>Double</code> 或者它们对应的可空类型（声明为<!--
 -->该类型，或者推断为该类型，或者<a class="typo-link" href="typecasts.html#智能转换">智能类型转换</a>的结果是该类型），两数字所形成的操作<!--
 -->或者区间遵循 IEEE 754 浮点运算标准。</p>
-<p class="typo-para">然而，为了支持泛型场景并提供全序支持，当这些操作数<strong class="type-strong">并非</strong>静态类型为<!--
+<p class="typo-para">然而，为了支持泛型场景并提供全序支持，当这些操作数<strong class="typo-strong">并非</strong>静态类型为<!--
 -->浮点数（例如是 <code>Any</code>、 <code>Comparable&lt;……&gt;</code>、 类型参数）时，这些操作使用<!--
 -->为 <code>Float</code> 与 <code>Double</code> 实现的不符合标准的 <code>equals</code> 与 <code>compareTo</code>，这会出现：</p>
 <ul class="typo-list typo-list_type_simple">
@@ -1924,6 +1924,8 @@ ${'$'}9.99
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

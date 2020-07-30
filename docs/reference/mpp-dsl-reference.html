@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>以 Gradle 构建多平台项目 - Kotlin 语言中文站</title>
@@ -1434,29 +1434,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h2 class="typo-header typo-h2" id="顶层块">顶层块</h2>
 <p class="typo-para"><code>kotlin</code> 是在 Gradle 构建脚本中用于配置多平台项目的顶层块。
 <code>kotlin</code> 块内，你可以使用以下块：</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">块</strong></th>
-<th><strong class="type-strong">介绍</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">块</strong></th>
+<th><strong class="typo-strong">介绍</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><em>&lt;目标名称&gt;</em></td>
-<td>声明项目的特定目标，所有可用的目标名称已陈列在<a class="typo-link" href="#目标">目标</a>部分中.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><em>&lt;目标名称&gt;</em></td>
+<td class="typo-table__column">声明项目的特定目标，所有可用的目标名称已陈列在<a class="typo-link" href="#目标">目标</a>部分中.</td>
 </tr>
-<tr>
-<td><code>targets</code></td>
-<td>项目的所有目标。</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>targets</code></td>
+<td class="typo-table__column">项目的所有目标。</td>
 </tr>
-<tr>
-<td><code>presets</code></td>
-<td>所有预定义的目标。使用这个同时<a class="typo-link" href="building-mpp-with-gradle.html#setting-up-targets">配置多个预定义目标</a>。</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>presets</code></td>
+<td class="typo-table__column">所有预定义的目标。使用这个同时<a class="typo-link" href="building-mpp-with-gradle.html#setting-up-targets">配置多个预定义目标</a>。</td>
 </tr>
-<tr>
-<td><code>sourceSets</code></td>
-<td>配置预定义和声明自定义项目的<a class="typo-link" href="building-mpp-with-gradle.html#configuring-source-sets">源集</a>。</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>sourceSets</code></td>
+<td class="typo-table__column">配置预定义和声明自定义项目的<a class="typo-link" href="building-mpp-with-gradle.html#configuring-source-sets">源集</a>。</td>
 </tr>
 </tbody>
 </table>
@@ -1465,109 +1465,109 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 --><a class="typo-link" href="building-mpp-with-gradle.html#supported-platforms">已支持平台</a>打包软件。多平台项目的目标<!--
 -->在 <code>kotlin</code> 块中的相应代码块中描述，例如：<code>jvm</code>、<code>android</code> 以及 <code>iosArm64</code>。
 以下是可用目标的完整列表：</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">名称</strong></th>
-<th><strong class="type-strong">描述</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">名称</strong></th>
+<th><strong class="typo-strong">描述</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>jvm</code></td>
-<td>Java 虚拟机</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>jvm</code></td>
+<td class="typo-table__column">Java 虚拟机</td>
 </tr>
-<tr>
-<td><code>js</code></td>
-<td>JavaScript</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>js</code></td>
+<td class="typo-table__column">JavaScript</td>
 </tr>
-<tr>
-<td><code>android</code></td>
-<td>Android（APK）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>android</code></td>
+<td class="typo-table__column">Android（APK）</td>
 </tr>
-<tr>
-<td><code>androidNativeArm32</code></td>
-<td><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 ARM（ARM32）平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>androidNativeArm32</code></td>
+<td class="typo-table__column"><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 ARM（ARM32）平台</td>
 </tr>
-<tr>
-<td><code>androidNativeArm64</code></td>
-<td><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 ARM64 平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>androidNativeArm64</code></td>
+<td class="typo-table__column"><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 ARM64 平台</td>
 </tr>
-<tr>
-<td><code>androidNativeX86</code></td>
-<td><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 x86 平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>androidNativeX86</code></td>
+<td class="typo-table__column"><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 x86 平台</td>
 </tr>
-<tr>
-<td><code>androidNativeX64</code></td>
-<td><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 x86_64 平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>androidNativeX64</code></td>
+<td class="typo-table__column"><a class="typo-link" href="https://developer.android.com/ndk">Android NDK</a> 基于 x86_64 平台</td>
 </tr>
-<tr>
-<td><code>iosArm32</code></td>
-<td>Apple iOS 基于 ARM（ARM32）平台（Apple iPhone 5 或更早）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>iosArm32</code></td>
+<td class="typo-table__column">Apple iOS 基于 ARM（ARM32）平台（Apple iPhone 5 或更早）</td>
 </tr>
-<tr>
-<td><code>iosArm64</code></td>
-<td>Apple iOS 基于 ARM64 平台（Apple iPhone 5s 或更新）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>iosArm64</code></td>
+<td class="typo-table__column">Apple iOS 基于 ARM64 平台（Apple iPhone 5s 或更新）</td>
 </tr>
-<tr>
-<td><code>iosX64</code></td>
-<td>Apple iOS 64-bit 模拟器</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>iosX64</code></td>
+<td class="typo-table__column">Apple iOS 64-bit 模拟器</td>
 </tr>
-<tr>
-<td><code>watchosArm32</code></td>
-<td>Apple watchOS 基于 ARM（ARM32）平台（Apple Watch Series 3 或更早）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>watchosArm32</code></td>
+<td class="typo-table__column">Apple watchOS 基于 ARM（ARM32）平台（Apple Watch Series 3 或更早）</td>
 </tr>
-<tr>
-<td><code>watchosArm64</code></td>
-<td>Apple watchOS 基于 ARM64_32 平台（Apple Watch Series 4 或更新）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>watchosArm64</code></td>
+<td class="typo-table__column">Apple watchOS 基于 ARM64_32 平台（Apple Watch Series 4 或更新）</td>
 </tr>
-<tr>
-<td><code>watchosX86</code></td>
-<td>Apple watchOS 模拟器</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>watchosX86</code></td>
+<td class="typo-table__column">Apple watchOS 模拟器</td>
 </tr>
-<tr>
-<td><code>tvosArm64</code></td>
-<td>Apple tvOS 基于 ARM64 平台（Apple TV 4th generation 或更新）</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>tvosArm64</code></td>
+<td class="typo-table__column">Apple tvOS 基于 ARM64 平台（Apple TV 4th generation 或更新）</td>
 </tr>
-<tr>
-<td><code>tvosX64</code></td>
-<td>Apple tvOS 模拟器</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>tvosX64</code></td>
+<td class="typo-table__column">Apple tvOS 模拟器</td>
 </tr>
-<tr>
-<td><code>linuxArm64</code></td>
-<td>Linux 基于 ARM64 平台，例如：树莓派</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linuxArm64</code></td>
+<td class="typo-table__column">Linux 基于 ARM64 平台，例如：树莓派</td>
 </tr>
-<tr>
-<td><code>linuxArm32Hfp</code></td>
-<td>Linux 基于 hard-float ARM（ARM32）平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linuxArm32Hfp</code></td>
+<td class="typo-table__column">Linux 基于 hard-float ARM（ARM32）平台</td>
 </tr>
-<tr>
-<td><code>linuxMips32</code></td>
-<td>Linux 基于 MIPS 平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linuxMips32</code></td>
+<td class="typo-table__column">Linux 基于 MIPS 平台</td>
 </tr>
-<tr>
-<td><code>linuxMipsel32</code></td>
-<td>Linux 基于 little-endian MIPS（mipsel）平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linuxMipsel32</code></td>
+<td class="typo-table__column">Linux 基于 little-endian MIPS（mipsel）平台</td>
 </tr>
-<tr>
-<td><code>linuxX64</code></td>
-<td>Linux 基于 x86_64 平台</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linuxX64</code></td>
+<td class="typo-table__column">Linux 基于 x86_64 平台</td>
 </tr>
-<tr>
-<td><code>macosX64</code></td>
-<td>Apple macOS</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>macosX64</code></td>
+<td class="typo-table__column">Apple macOS</td>
 </tr>
-<tr>
-<td><code>mingwX64</code></td>
-<td>64-bit 微软 Windows</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>mingwX64</code></td>
+<td class="typo-table__column">64-bit 微软 Windows</td>
 </tr>
-<tr>
-<td><code>mingwX86</code></td>
-<td>32-bit 微软 Windows</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>mingwX86</code></td>
+<td class="typo-table__column">32-bit 微软 Windows</td>
 </tr>
-<tr>
-<td><code>wasm32</code></td>
-<td>WebAssembly</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>wasm32</code></td>
+<td class="typo-table__column">WebAssembly</td>
 </tr>
 </tbody>
 </table>
@@ -1587,49 +1587,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <h3 class="typo-header typo-h3" id="公共目标配置">公共目标配置</h3>
 <p class="typo-para">In any target block, you can use the following declarations:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>attributes</code></td>
-<td>Attributes used for <a class="typo-link" href="building-mpp-with-gradle.html#disambiguating-targets">disambiguating targets</a> for a single platform.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>attributes</code></td>
+<td class="typo-table__column">Attributes used for <a class="typo-link" href="building-mpp-with-gradle.html#disambiguating-targets">disambiguating targets</a> for a single platform.</td>
 </tr>
-<tr>
-<td><code>preset</code></td>
-<td>The preset that the target has been created from, if any.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>preset</code></td>
+<td class="typo-table__column">The preset that the target has been created from, if any.</td>
 </tr>
-<tr>
-<td><code>platformType</code></td>
-<td>Designates the Kotlin platform of this target. Avaiable values: <code>jvm</code>, <code>androidJvm</code>, <code>js</code>, <code>native</code>, <code>common</code>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>platformType</code></td>
+<td class="typo-table__column">Designates the Kotlin platform of this target. Avaiable values: <code>jvm</code>, <code>androidJvm</code>, <code>js</code>, <code>native</code>, <code>common</code>.</td>
 </tr>
-<tr>
-<td><code>artifactsTaskName</code></td>
-<td>The name of the task that builds the resulting artifacts of this target.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>artifactsTaskName</code></td>
+<td class="typo-table__column">The name of the task that builds the resulting artifacts of this target.</td>
 </tr>
-<tr>
-<td><code>components</code></td>
-<td>The components used to setup Gradle publications.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>components</code></td>
+<td class="typo-table__column">The components used to setup Gradle publications.</td>
 </tr>
 </tbody>
 </table>
 <h3 class="typo-header typo-h3" id="jvm-目标">JVM 目标</h3>
 <p class="typo-para">In addition to <a class="typo-link" href="#公共目标配置">common target configuration</a>, jvm targets have a specific function:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>withJava()</code></td>
-<td>Includes Java sources into the JVM target’s compilations.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>withJava()</code></td>
+<td class="typo-table__column">Includes Java sources into the JVM target’s compilations.</td>
 </tr>
 </tbody>
 </table>
@@ -1647,54 +1647,54 @@ For more information, see <a class="typo-link" href="building-mpp-with-gradle.ht
 </div>
 <h3 class="typo-header typo-h3" id="javascript-目标">JavaScript 目标</h3>
 <p class="typo-para">The <code>js</code> block describes the configuration of JavaScript targets. It can contain one of two blocks depending on the target execution environment:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>browser</code></td>
-<td>Configuration of the browser target.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>browser</code></td>
+<td class="typo-table__column">Configuration of the browser target.</td>
 </tr>
-<tr>
-<td><code>nodejs</code></td>
-<td>Configuration of the Node.js target.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>nodejs</code></td>
+<td class="typo-table__column">Configuration of the Node.js target.</td>
 </tr>
 </tbody>
 </table>
 <p class="typo-para">For details about configuring Kotlin/JS projects, see <a class="typo-link" href="https://kotlinlang.org/docs/reference/js-project-setup.html">Setting up a Kotlin/JS project</a>.</p>
 <h4 class="typo-header typo-h4" id="browser">Browser</h4>
 <p class="typo-para"><code>browser</code> can contain the following configuration blocks:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>testRuns</code></td>
-<td>Configuration of test execution.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>testRuns</code></td>
+<td class="typo-table__column">Configuration of test execution.</td>
 </tr>
-<tr>
-<td><code>runTask</code></td>
-<td>Configuration of project running.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>runTask</code></td>
+<td class="typo-table__column">Configuration of project running.</td>
 </tr>
-<tr>
-<td><code>webpackTask</code></td>
-<td>Configuration of project bundling with <a class="typo-link" href="https://webpack.js.org/">Webpack</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>webpackTask</code></td>
+<td class="typo-table__column">Configuration of project bundling with <a class="typo-link" href="https://webpack.js.org/">Webpack</a>.</td>
 </tr>
-<tr>
-<td><code>dceTask</code></td>
-<td>Configuration of <a class="typo-link" href="javascript-dce.html">Dead Code Elimination</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>dceTask</code></td>
+<td class="typo-table__column">Configuration of <a class="typo-link" href="javascript-dce.html">Dead Code Elimination</a>.</td>
 </tr>
-<tr>
-<td><code>distribution</code></td>
-<td>Path to output files.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>distribution</code></td>
+<td class="typo-table__column">Path to output files.</td>
 </tr>
 </tbody>
 </table>
@@ -1715,21 +1715,21 @@ For more information, see <a class="typo-link" href="building-mpp-with-gradle.ht
 </div>
 <h4 class="typo-header typo-h4" id="nodejs">Node.js</h4>
 <p class="typo-para"><code>nodejs</code> can contain configurations of test and run tasks:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>testRuns</code></td>
-<td>Configuration of test execution.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>testRuns</code></td>
+<td class="typo-table__column">Configuration of test execution.</td>
 </tr>
-<tr>
-<td><code>runTask</code></td>
-<td>Configuration of project running.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>runTask</code></td>
+<td class="typo-table__column">Configuration of project running.</td>
 </tr>
 </tbody>
 </table>
@@ -1744,53 +1744,53 @@ For more information, see <a class="typo-link" href="building-mpp-with-gradle.ht
 </div>
 <h3 class="typo-header typo-h3" id="native-目标">Native 目标</h3>
 <p class="typo-para">For native targets, the following specific blocks are available:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>binaries</code></td>
-<td>Configuration of <a class="typo-link" href="#binaries">binaries</a> to produce.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>binaries</code></td>
+<td class="typo-table__column">Configuration of <a class="typo-link" href="#binaries">binaries</a> to produce.</td>
 </tr>
-<tr>
-<td><code>cinterops</code></td>
-<td>Configuration of <a class="typo-link" href="#cinterops">interop with C libraries</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>cinterops</code></td>
+<td class="typo-table__column">Configuration of <a class="typo-link" href="#cinterops">interop with C libraries</a>.</td>
 </tr>
 </tbody>
 </table>
 <h4 class="typo-header typo-h4" id="binaries">Binaries</h4>
 <p class="typo-para">There are the following kinds of binaries:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>executable</code></td>
-<td>Product executable.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>executable</code></td>
+<td class="typo-table__column">Product executable.</td>
 </tr>
-<tr>
-<td><code>test</code></td>
-<td>Test executable.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>test</code></td>
+<td class="typo-table__column">Test executable.</td>
 </tr>
-<tr>
-<td><code>sharedLib</code></td>
-<td>Shared library.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>sharedLib</code></td>
+<td class="typo-table__column">Shared library.</td>
 </tr>
-<tr>
-<td><code>staticLib</code></td>
-<td>Static library.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>staticLib</code></td>
+<td class="typo-table__column">Static library.</td>
 </tr>
-<tr>
-<td><code>framework</code></td>
-<td>Objective-C framework.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>framework</code></td>
+<td class="typo-table__column">Objective-C framework.</td>
 </tr>
 </tbody>
 </table>
@@ -1807,45 +1807,45 @@ For more information, see <a class="typo-link" href="building-mpp-with-gradle.ht
 </code></pre>
 </div>
 <p class="typo-para">For binaries configuration, the following parameters are available:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>compilation</code></td>
-<td>The compilation from which the binary is built. By default, <code>test</code> binaries are based on the <code>test</code> compilation while other binaries - on the <code>main</code> compilation.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compilation</code></td>
+<td class="typo-table__column">The compilation from which the binary is built. By default, <code>test</code> binaries are based on the <code>test</code> compilation while other binaries - on the <code>main</code> compilation.</td>
 </tr>
-<tr>
-<td><code>linkerOpts</code></td>
-<td>Options passed to a system linker during binary building.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linkerOpts</code></td>
+<td class="typo-table__column">Options passed to a system linker during binary building.</td>
 </tr>
-<tr>
-<td><code>baseName</code></td>
-<td>Custom base name for the output file. The final file name will be formed by adding system-dependent prefix and postfix to this base name.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>baseName</code></td>
+<td class="typo-table__column">Custom base name for the output file. The final file name will be formed by adding system-dependent prefix and postfix to this base name.</td>
 </tr>
-<tr>
-<td><code>entryPoint</code></td>
-<td>The entry point function for executable binaries. By default, it's <code>main()</code> in the root package.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>entryPoint</code></td>
+<td class="typo-table__column">The entry point function for executable binaries. By default, it's <code>main()</code> in the root package.</td>
 </tr>
-<tr>
-<td><code>outputFile</code></td>
-<td>Access to the output file.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>outputFile</code></td>
+<td class="typo-table__column">Access to the output file.</td>
 </tr>
-<tr>
-<td><code>linkTask</code></td>
-<td>Access to the link task.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>linkTask</code></td>
+<td class="typo-table__column">Access to the link task.</td>
 </tr>
-<tr>
-<td><code>runTask</code></td>
-<td>Access to the run task for executable binaries. For targets other than <code>linuxX64</code>, <code>macosX64</code>, or <code>mingwX64</code> the value is <code>null</code>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>runTask</code></td>
+<td class="typo-table__column">Access to the run task for executable binaries. For targets other than <code>linuxX64</code>, <code>macosX64</code>, or <code>mingwX64</code> the value is <code>null</code>.</td>
 </tr>
-<tr>
-<td><code>isStatic</code></td>
-<td>For Objective-C frameworks. Includes a static library instead of a dynamic one.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>isStatic</code></td>
+<td class="typo-table__column">For Objective-C frameworks. Includes a static library instead of a dynamic one.</td>
 </tr>
 </tbody>
 </table>
@@ -1923,29 +1923,29 @@ For more information, see <a class="typo-link" href="building-mpp-with-gradle.ht
 <h4 class="typo-header typo-h4" id="cinterops">CInterops</h4>
 <p class="typo-para"><code>cinterops</code> is a collection of descriptions for interop with native libraries.
 To provide an interop with a library, add an entry to <code>cinterops</code> and define its parameters:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>defFile</code></td>
-<td><code>def</code> file describing the native API.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>defFile</code></td>
+<td class="typo-table__column"><code>def</code> file describing the native API.</td>
 </tr>
-<tr>
-<td><code>packageName</code></td>
-<td>Package prefix for the generated Kotlin API.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>packageName</code></td>
+<td class="typo-table__column">Package prefix for the generated Kotlin API.</td>
 </tr>
-<tr>
-<td><code>compilerOpts</code></td>
-<td>Options to pass to the compiler by the cinterop tool.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compilerOpts</code></td>
+<td class="typo-table__column">Options to pass to the compiler by the cinterop tool.</td>
 </tr>
-<tr>
-<td><code>includeDirs</code></td>
-<td>Directories to look for headers.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>includeDirs</code></td>
+<td class="typo-table__column">Directories to look for headers.</td>
 </tr>
 </tbody>
 </table>
@@ -2016,21 +2016,21 @@ To provide an interop with a library, add an entry to <code>cinterops</code> and
 <h3 class="typo-header typo-h3" id="android-目标">Android 目标</h3>
 <p class="typo-para">The Kotlin multiplatform plugin contains two specific functions for android targets.
 Two functions help you configure <a class="typo-link" href="https://developer.android.com/studio/build/build-variants">build variants</a>:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>publishLibraryVariants()</code></td>
-<td>Specifies build variants to publish. For usage instructions, see <a class="typo-link" href="building-mpp-with-gradle.html#publishing-android-libraries">Publishing Android libraries</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>publishLibraryVariants()</code></td>
+<td class="typo-table__column">Specifies build variants to publish. For usage instructions, see <a class="typo-link" href="building-mpp-with-gradle.html#publishing-android-libraries">Publishing Android libraries</a>.</td>
 </tr>
-<tr>
-<td><code>publishAllLibraryVariants()</code></td>
-<td>Publishes all build variants.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>publishAllLibraryVariants()</code></td>
+<td class="typo-table__column">Publishes all build variants.</td>
 </tr>
 </tbody>
 </table>
@@ -2056,25 +2056,25 @@ For instructions on creating and configuring source sets, see <a class="typo-lin
 <h3 class="typo-header typo-h3" id="预定义源集">预定义源集</h3>
 <p class="typo-para">Predefined source sets are set up automatically upon creation of a multiplatform project.
 Available predefined source sets are the following:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>commonMain</code></td>
-<td>Code and resources shared between all platforms. Available in all multiplatform projects. Used in all main compilations of a project.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>commonMain</code></td>
+<td class="typo-table__column">Code and resources shared between all platforms. Available in all multiplatform projects. Used in all main compilations of a project.</td>
 </tr>
-<tr>
-<td><code>commonTest</code></td>
-<td>Test code and resources shared between all platforms. Available in all multiplatform projects. Used in all test compilations of a project.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>commonTest</code></td>
+<td class="typo-table__column">Test code and resources shared between all platforms. Available in all multiplatform projects. Used in all test compilations of a project.</td>
 </tr>
-<tr>
-<td><em>&lt;targetName&gt;&lt;compilationName&gt;</em></td>
-<td>Target-specific sources for a compilation. <em>&lt;targetName&gt;</em> is the name of a predefined target and <em>&lt;compilationName&gt;</em> is the name of a compilation for this target. Examples: <code>jsTest</code>, <code>jvmMain</code>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><em>&lt;targetName&gt;&lt;compilationName&gt;</em></td>
+<td class="typo-table__column">Target-specific sources for a compilation. <em>&lt;targetName&gt;</em> is the name of a predefined target and <em>&lt;compilationName&gt;</em> is the name of a compilation for this target. Examples: <code>jsTest</code>, <code>jvmMain</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -2128,33 +2128,33 @@ If using Kotlin Gradle DSL, mark custom source sets <code>by creating</code>.</p
 connect it with other source sets as described in <a class="typo-link" href="building-mpp-with-gradle.html#connecting-source-sets">Connecting source sets</a>.</p>
 <h3 class="typo-header typo-h3" id="源集参数">源集参数</h3>
 <p class="typo-para">Configurations of source sets are stored inside the corresponding blocks of <code>sourceSets</code>. A source set has the following parameters:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>kotlin.srcDir</code></td>
-<td>Location of Kotlin source files inside the source set directory.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>kotlin.srcDir</code></td>
+<td class="typo-table__column">Location of Kotlin source files inside the source set directory.</td>
 </tr>
-<tr>
-<td><code>resources.srcDir</code></td>
-<td>Location of resources inside the source set directory.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>resources.srcDir</code></td>
+<td class="typo-table__column">Location of resources inside the source set directory.</td>
 </tr>
-<tr>
-<td><code>dependsOn</code></td>
-<td>Connection with another source set. The instructions on connecting source sets are provided in <a class="typo-link" href="building-mpp-with-gradle.html#connecting-source-sets">Connecting source sets</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>dependsOn</code></td>
+<td class="typo-table__column">Connection with another source set. The instructions on connecting source sets are provided in <a class="typo-link" href="building-mpp-with-gradle.html#connecting-source-sets">Connecting source sets</a>.</td>
 </tr>
-<tr>
-<td><code>dependencies</code></td>
-<td><a class="typo-link" href="#依赖项">依赖项</a> of the source set.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>dependencies</code></td>
+<td class="typo-table__column"><a class="typo-link" href="#依赖项">依赖项</a> of the source set.</td>
 </tr>
-<tr>
-<td><code>languageSettings</code></td>
-<td><a class="typo-link" href="building-mpp-with-gradle.html#语言设置">语言设置</a> applied to the source set.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>languageSettings</code></td>
+<td class="typo-table__column"><a class="typo-link" href="building-mpp-with-gradle.html#语言设置">语言设置</a> applied to the source set.</td>
 </tr>
 </tbody>
 </table>
@@ -2200,21 +2200,21 @@ From <code>compilations</code>, you can refer to a compilation by its name.</p>
 <h3 class="typo-header typo-h3" id="预定义编译项">预定义编译项</h3>
 <p class="typo-para">Predefined compilations are created automatically for each target of a project except for Android targets.
 Available predefined compilations are the following:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>main</code></td>
-<td>Compilation for production sources.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>main</code></td>
+<td class="typo-table__column">Compilation for production sources.</td>
 </tr>
-<tr>
-<td><code>test</code></td>
-<td>Compilation for tests.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>test</code></td>
+<td class="typo-table__column">Compilation for tests.</td>
 </tr>
 </tbody>
 </table>
@@ -2293,53 +2293,53 @@ If using Kotlin Gradle DSL, mark custom compilations <code>by creating</code>.</
 </div>
 <h3 class="typo-header typo-h3" id="编译项参数">编译项参数</h3>
 <p class="typo-para">A compilation has the following parameters:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>defaultSourceSet</code></td>
-<td>The compilation’s default source set.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>defaultSourceSet</code></td>
+<td class="typo-table__column">The compilation’s default source set.</td>
 </tr>
-<tr>
-<td><code>kotlinSourceSets</code></td>
-<td>Source sets participating in the compilation.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>kotlinSourceSets</code></td>
+<td class="typo-table__column">Source sets participating in the compilation.</td>
 </tr>
-<tr>
-<td><code>allKotlinSourceSets</code></td>
-<td>Source sets participating in the compilation and their connections via <code>dependsOn()</code>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>allKotlinSourceSets</code></td>
+<td class="typo-table__column">Source sets participating in the compilation and their connections via <code>dependsOn()</code>.</td>
 </tr>
-<tr>
-<td><code>kotlinOptions</code></td>
-<td>Compiler options applied to the compilation. For the list of available options, see <a class="typo-link" href="using-gradle.html#compiler-options">Compiler options</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>kotlinOptions</code></td>
+<td class="typo-table__column">Compiler options applied to the compilation. For the list of available options, see <a class="typo-link" href="using-gradle.html#compiler-options">Compiler options</a>.</td>
 </tr>
-<tr>
-<td><code>compileKotlinTask</code></td>
-<td>Gradle task for compiling Kotlin sources.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compileKotlinTask</code></td>
+<td class="typo-table__column">Gradle task for compiling Kotlin sources.</td>
 </tr>
-<tr>
-<td><code>compileKotlinTaskName</code></td>
-<td>Name of <code>compileKotlinTask</code>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compileKotlinTaskName</code></td>
+<td class="typo-table__column">Name of <code>compileKotlinTask</code>.</td>
 </tr>
-<tr>
-<td><code>compileAllTaskName</code></td>
-<td>Name of the Gradle task for compiling all sources of a compilation.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compileAllTaskName</code></td>
+<td class="typo-table__column">Name of the Gradle task for compiling all sources of a compilation.</td>
 </tr>
-<tr>
-<td><code>output</code></td>
-<td>The compilation output.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>output</code></td>
+<td class="typo-table__column">The compilation output.</td>
 </tr>
-<tr>
-<td><code>compileDependencyFiles</code></td>
-<td>Compile-time dependency files (classpath) of the compilation.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compileDependencyFiles</code></td>
+<td class="typo-table__column">Compile-time dependency files (classpath) of the compilation.</td>
 </tr>
-<tr>
-<td><code>runtimeDependencyFiles</code></td>
-<td>Runtime dependency files (classpath) of the compilation.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>runtimeDependencyFiles</code></td>
+<td class="typo-table__column">Runtime dependency files (classpath) of the compilation.</td>
 </tr>
 </tbody>
 </table>
@@ -2401,29 +2401,29 @@ If using Kotlin Gradle DSL, mark custom compilations <code>by creating</code>.</
 <h2 class="typo-header typo-h2" id="依赖项">依赖项</h2>
 <p class="typo-para">The dependencies block of the source set declaration contains the dependencies of this source set.
 There are four kinds of dependencies:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>api</code></td>
-<td>Dependencies used in the API of the current module.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>api</code></td>
+<td class="typo-table__column">Dependencies used in the API of the current module.</td>
 </tr>
-<tr>
-<td><code>implementation</code></td>
-<td>Dependencies used in the module but not exposed outside it.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>implementation</code></td>
+<td class="typo-table__column">Dependencies used in the module but not exposed outside it.</td>
 </tr>
-<tr>
-<td><code>compileOnly</code></td>
-<td>Dependencies used only for compilation of the current module.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>compileOnly</code></td>
+<td class="typo-table__column">Dependencies used only for compilation of the current module.</td>
 </tr>
-<tr>
-<td><code>runtimeOnly</code></td>
-<td>Dependencies available at runtime but not visible during compilation of any module.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>runtimeOnly</code></td>
+<td class="typo-table__column">Dependencies available at runtime but not visible during compilation of any module.</td>
 </tr>
 </tbody>
 </table>
@@ -2488,33 +2488,33 @@ In this case, their declarations follow the pattern <code>&lt;sourceSetName&gt;&
 </div>
 <h2 class="typo-header typo-h2" id="语言设置">语言设置</h2>
 <p class="typo-para">The languageSettings block of a source set defines certain aspects of project analysis and build. The following language settings are available:</p>
-<table>
+<table class="typo-table">
 <thead>
-<tr>
-<th><strong class="type-strong">Name</strong></th>
-<th><strong class="type-strong">Description</strong></th>
+<tr class="typo-table__row">
+<th><strong class="typo-strong">Name</strong></th>
+<th><strong class="typo-strong">Description</strong></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>languageVersion</code></td>
-<td>Provides source compatibility with the specified version of Kotlin.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>languageVersion</code></td>
+<td class="typo-table__column">Provides source compatibility with the specified version of Kotlin.</td>
 </tr>
-<tr>
-<td><code>apiVersion</code></td>
-<td>Allows using declarations only from the specified version of Kotlin bundled libraries.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>apiVersion</code></td>
+<td class="typo-table__column">Allows using declarations only from the specified version of Kotlin bundled libraries.</td>
 </tr>
-<tr>
-<td><code>enableLanguageFeature</code></td>
-<td>Enables the specified language feature. The available values correspond to the language features that are currently experimental or have been introduced as such at some point.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>enableLanguageFeature</code></td>
+<td class="typo-table__column">Enables the specified language feature. The available values correspond to the language features that are currently experimental or have been introduced as such at some point.</td>
 </tr>
-<tr>
-<td><code>useExperimentalAnnotation</code></td>
-<td>Allows using the specified <a class="typo-link" href="opt-in-requirements.html">opt-in annotation</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>useExperimentalAnnotation</code></td>
+<td class="typo-table__column">Allows using the specified <a class="typo-link" href="opt-in-requirements.html">opt-in annotation</a>.</td>
 </tr>
-<tr>
-<td><code>progressiveMode</code></td>
-<td>Enables the <a class="typo-link" href="whatsnew13.html#progressive-mode">progressive mode</a>.</td>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>progressiveMode</code></td>
+<td class="typo-table__column">Enables the <a class="typo-link" href="whatsnew13.html#progressive-mode">progressive mode</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -2587,6 +2587,8 @@ In this case, their declarations follow the pattern <code>&lt;sourceSetName&gt;&
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">

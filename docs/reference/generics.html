@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=dbefdd681ed7e15807333c1fd8b76952">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>泛型：in、out、where - Kotlin 语言中文站</title>
@@ -1394,8 +1394,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">Java 类型系统中最棘手的部分之一是通配符类型（参见 <a class="typo-link" href="http://www.angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html">Java Generics FAQ</a>）。
 而 Kotlin 中没有。 相反，它有两个其他的东西：声明处型变（declaration-site variance）与类型投影（type projections）。</p>
 <p class="typo-para">首先，让我们思考为什么 Java 需要那些神秘的通配符。在 <a class="typo-link" href="http://www.oracle.com/technetwork/java/effectivejava-136174.html">《Effective Java》第三版</a> 解释了该问题——第 31 条：<em>利用有限制通配符来提升 API 的灵活性</em>。
-首先，Java 中的泛型是<strong class="type-strong">不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong class="type-strong">不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
-为什么这样？ 如果 List 不是<strong class="type-strong">不型变的</strong>，它就没<!--
+首先，Java 中的泛型是<strong class="typo-strong">不型变的</strong>，这意味着 <code>List&lt;String&gt;</code> 并<strong class="typo-strong">不是</strong> <code>List&lt;Object&gt;</code> 的子类型。
+为什么这样？ 如果 List 不是<strong class="typo-strong">不型变的</strong>，它就没<!--
 -->比 Java 的数组好到哪去，因为如下代码会通过编译然后导致运行时异常：</p>
 <div class="sample" mode="java" theme="idea">
 <pre><code class="language-java">// Java
@@ -1433,22 +1433,22 @@ interface Collection&lt;E&gt; …… {
 }
 </code></pre>
 </div>
-<p class="typo-para"><strong class="type-strong">通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> <em>或者 <code>E</code> 的 一些子类型</em>对象的集合，而不只是 <code>E</code> 自身。
-这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）<strong class="type-strong">读取</strong> <code>E</code>，但<strong class="type-strong">不能写入</strong>，
+<p class="typo-para"><strong class="typo-strong">通配符类型参数</strong> <code>? extends E</code> 表示此方法接受 <code>E</code> <em>或者 <code>E</code> 的 一些子类型</em>对象的集合，而不只是 <code>E</code> 自身。
+这意味着我们可以安全地从其中（该集合中的元素是 E 的子类的实例）<strong class="typo-strong">读取</strong> <code>E</code>，但<strong class="typo-strong">不能写入</strong>，
 因为我们不知道什么对象符合那个未知的 <code>E</code> 的子类型。
 反过来，该限制可以让<code>Collection&lt;String&gt;</code>表示为<code>Collection&lt;? extends Object&gt;</code>的子类型。
-简而言之，带 <strong class="type-strong">extends</strong> 限定（<strong class="type-strong">上界</strong>）的通配符类型使得类型是<strong class="type-strong">协变的（covariant）</strong>。</p>
+简而言之，带 <strong class="typo-strong">extends</strong> 限定（<strong class="typo-strong">上界</strong>）的通配符类型使得类型是<strong class="typo-strong">协变的（covariant）</strong>。</p>
 <p class="typo-para">理解为什么这个技巧能够工作的关键相当简单：如果只能从集合中获取项目，那么使用 <code>String</code> 的集合，
 并且从其中读取 <code>Object</code> 也没问题 。反过来，如果只能向集合中 <em>放入</em> 项目，就可以用
-<code>Object</code> 集合并向其中放入 <code>String</code>：在 Java 中有 <code>List&lt;? super String&gt;</code> 是 <code>List&lt;Object&gt;</code> 的一个<strong class="type-strong">超类</strong>。</p>
-<p class="typo-para">后者称为<strong class="type-strong">逆变性（contravariance）</strong>，并且对于 <code>List &lt;? super String&gt;</code> 你只能调用接受 String 作为参数的方法
+<code>Object</code> 集合并向其中放入 <code>String</code>：在 Java 中有 <code>List&lt;? super String&gt;</code> 是 <code>List&lt;Object&gt;</code> 的一个<strong class="typo-strong">超类</strong>。</p>
+<p class="typo-para">后者称为<strong class="typo-strong">逆变性（contravariance）</strong>，并且对于 <code>List &lt;? super String&gt;</code> 你只能调用接受 String 作为参数的方法
 （例如，你可以调用 <code>add(String)</code> 或者 <code>set(int, String)</code>），当然<!--
 -->如果调用函数返回 <code>List&lt;T&gt;</code> 中的 <code>T</code>，你得到的并非一个 <code>String</code> 而是一个 <code>Object</code>。</p>
-<p class="typo-para">Joshua Bloch 称那些你只能从中<strong class="type-strong">读取</strong>的对象为<strong class="type-strong">生产者</strong>，并称那些你只能<strong class="type-strong">写入</strong>的对象为<strong class="type-strong">消费者</strong>。他建议：“<em>为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型</em>”，并提出了以下助记符：</p>
+<p class="typo-para">Joshua Bloch 称那些你只能从中<strong class="typo-strong">读取</strong>的对象为<strong class="typo-strong">生产者</strong>，并称那些你只能<strong class="typo-strong">写入</strong>的对象为<strong class="typo-strong">消费者</strong>。他建议：“<em>为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型</em>”，并提出了以下助记符：</p>
 <p class="typo-para"><em>PECS 代表生产者-Extens，消费者-Super（Producer-Extends, Consumer-Super）。</em></p>
 <p class="typo-para"><em>注意</em>：如果你使用一个生产者对象，如 <code>List&lt;? extends Foo&gt;</code>，在该对象上不允许调用 <code>add()</code> 或 <code>set()</code>。但这并不意味着<!--
--->该对象是<strong class="type-strong">不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
-根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong class="type-strong">类型安全</strong>。不可变性完全是另一回事。</p>
+-->该对象是<strong class="typo-strong">不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
+根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong class="typo-strong">类型安全</strong>。不可变性完全是另一回事。</p>
 <h3 class="typo-header typo-h3" id="声明处型变">声明处型变</h3>
 <p class="typo-para">假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
 <div class="sample" mode="java" theme="idea">
@@ -1468,8 +1468,8 @@ void demo(Source&lt;String&gt; strs) {
 </code></pre>
 </div>
 <p class="typo-para">为了修正这一点，我们必须声明对象的类型为 <code>Source&lt;? extends Object&gt;</code>，这是毫无意义的，因为我们可以像以前一样在该对象上调用所有相同的方法，所以更复杂的类型并没有带来价值。但编译器并不知道。</p>
-<p class="typo-para">在 Kotlin 中，有一种方法向编译器解释这种情况。这称为<strong class="type-strong">声明处型变</strong>：我们可以标注 <code>Source</code> 的<strong class="type-strong">类型参数</strong> <code>T</code> 来确保它仅从 <code>Source&lt;T&gt;</code> 成员中<strong class="type-strong">返回</strong>（生产），并从不被消费。
-为此，我们提供 <strong class="type-strong">out</strong> 修饰符：</p>
+<p class="typo-para">在 Kotlin 中，有一种方法向编译器解释这种情况。这称为<strong class="typo-strong">声明处型变</strong>：我们可以标注 <code>Source</code> 的<strong class="typo-strong">类型参数</strong> <code>T</code> 来确保它仅从 <code>Source&lt;T&gt;</code> 成员中<strong class="typo-strong">返回</strong>（生产），并从不被消费。
+为此，我们提供 <strong class="typo-strong">out</strong> 修饰符：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Source&lt;out T&gt; {
     fun nextT(): T
@@ -1481,13 +1481,13 @@ fun demo(strs: Source&lt;String&gt;) {
 }
 </code></pre>
 </div>
-<p class="typo-para">一般原则是：当一个类 <code>C</code> 的类型参数 <code>T</code> 被声明为 <strong class="type-strong">out</strong> 时，它就只能出现在 <code>C</code> 的成员的<strong class="type-strong">输出</strong>-位置，但回报是 <code>C&lt;Base&gt;</code> 可以安全地作为
+<p class="typo-para">一般原则是：当一个类 <code>C</code> 的类型参数 <code>T</code> 被声明为 <strong class="typo-strong">out</strong> 时，它就只能出现在 <code>C</code> 的成员的<strong class="typo-strong">输出</strong>-位置，但回报是 <code>C&lt;Base&gt;</code> 可以安全地作为
 <code>C&lt;Derived&gt;</code>的超类。</p>
-<p class="typo-para">简而言之，他们说类 <code>C</code> 是在参数 <code>T</code> 上是<strong class="type-strong">协变的</strong>，或者说 <code>T</code> 是一个<strong class="type-strong">协变的</strong>类型参数。
-你可以认为 <code>C</code> 是 <code>T</code> 的<strong class="type-strong">生产者</strong>，而不是 <code>T</code> 的<strong class="type-strong">消费者</strong>。</p>
-<p class="typo-para"><strong class="type-strong">out</strong>修饰符称为<strong class="type-strong">型变注解</strong>，并且由于它在类型参数声明处提供，所以我们称之为<strong class="type-strong">声明处型变</strong>。
-这与 Java 的<strong class="type-strong">使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
-<p class="typo-para">另外除了 <strong class="type-strong">out</strong>，Kotlin 又补充了一个型变注释：<strong class="type-strong">in</strong>。它使得一个类型参数<strong class="type-strong">逆变</strong>：只可以被消费而不可以<!--
+<p class="typo-para">简而言之，他们说类 <code>C</code> 是在参数 <code>T</code> 上是<strong class="typo-strong">协变的</strong>，或者说 <code>T</code> 是一个<strong class="typo-strong">协变的</strong>类型参数。
+你可以认为 <code>C</code> 是 <code>T</code> 的<strong class="typo-strong">生产者</strong>，而不是 <code>T</code> 的<strong class="typo-strong">消费者</strong>。</p>
+<p class="typo-para"><strong class="typo-strong">out</strong>修饰符称为<strong class="typo-strong">型变注解</strong>，并且由于它在类型参数声明处提供，所以我们称之为<strong class="typo-strong">声明处型变</strong>。
+这与 Java 的<strong class="typo-strong">使用处型变</strong>相反，其类型用途通配符使得类型协变。</p>
+<p class="typo-para">另外除了 <strong class="typo-strong">out</strong>，Kotlin 又补充了一个型变注释：<strong class="typo-strong">in</strong>。它使得一个类型参数<strong class="typo-strong">逆变</strong>：只可以被消费而不可以<!--
 -->被生产。逆变类型的一个很好的例子是 <code>Comparable</code>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Comparable&lt;in T&gt; {
@@ -1501,12 +1501,12 @@ fun demo(x: Comparable&lt;Number&gt;) {
 }
 </code></pre>
 </div>
-<p class="typo-para">我们相信 <strong class="type-strong">in</strong> 和 <strong class="type-strong">out</strong> 两词是自解释的（因为它们已经在 C# 中成功使用很长时间了），
+<p class="typo-para">我们相信 <strong class="typo-strong">in</strong> 和 <strong class="typo-strong">out</strong> 两词是自解释的（因为它们已经在 C# 中成功使用很长时间了），
 因此上面提到的助记符不是真正需要的，并且可以将其改写为更高的目标：</p>
-<p class="typo-para"><strong class="type-strong"><a class="typo-link" href="https://zh.wikipedia.org/wiki/%E5%AD%98%E5%9C%A8%E4%B8%BB%E4%B9%89">存在性（The Existential）</a> 转换：消费者 in, 生产者 out!</strong> :-)</p>
+<p class="typo-para"><strong class="typo-strong"><a class="typo-link" href="https://zh.wikipedia.org/wiki/%E5%AD%98%E5%9C%A8%E4%B8%BB%E4%B9%89">存在性（The Existential）</a> 转换：消费者 in, 生产者 out!</strong> :-)</p>
 <h2 class="typo-header typo-h2" id="类型投影">类型投影</h2>
 <h3 class="typo-header typo-h3" id="使用处型变类型投影">使用处型变：类型投影</h3>
-<p class="typo-para">将类型参数 T 声明为 <em>out</em> 非常方便，并且能避免使用处子类型化的麻烦，但是有些类实际上<strong class="type-strong">不能</strong>限制为只返回 <code>T</code>！
+<p class="typo-para">将类型参数 T 声明为 <em>out</em> 非常方便，并且能避免使用处子类型化的麻烦，但是有些类实际上<strong class="typo-strong">不能</strong>限制为只返回 <code>T</code>！
 一个很好的例子是 Array：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Array&lt;T&gt;(val size: Int) {
@@ -1532,18 +1532,18 @@ copy(ints, any)
 //   ^ 其类型为 Array&lt;Int&gt; 但此处期望 Array&lt;Any&gt;
 </code></pre>
 </div>
-<p class="typo-para">这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong class="type-strong">不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--
--->另一个的子类型。为什么？ 再次重复，因为 copy <strong class="type-strong">可能</strong>做坏事，也就是说，例如它可能尝试<strong class="type-strong">写</strong>一个 String 到 <code>from</code>，
+<p class="typo-para">这里我们遇到同样熟悉的问题：<code>Array &lt;T&gt;</code> 在 <code>T</code> 上是<strong class="typo-strong">不型变的</strong>，因此 <code>Array &lt;Int&gt;</code> 和 <code>Array &lt;Any&gt;</code> 都不是<!--
+-->另一个的子类型。为什么？ 再次重复，因为 copy <strong class="typo-strong">可能</strong>做坏事，也就是说，例如它可能尝试<strong class="typo-strong">写</strong>一个 String 到 <code>from</code>，
 并且如果我们实际上传递一个 <code>Int</code> 的数组，一段时间后将会抛出一个 <code>ClassCastException</code> 异常。</p>
-<p class="typo-para">那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong class="type-strong">写</strong>到 <code>from</code>，我们可以：</p>
+<p class="typo-para">那么，我们唯一要确保的是 <code>copy()</code> 不会做任何坏事。我们想阻止它<strong class="typo-strong">写</strong>到 <code>from</code>，我们可以：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun copy(from: Array&lt;out Any&gt;, to: Array&lt;Any&gt;) { …… }
 </code></pre>
 </div>
-<p class="typo-para">这里发生的事情称为<strong class="type-strong">类型投影</strong>：我们说<code>from</code>不仅仅是一个数组，而是一个受限制的（<strong class="type-strong">投影的</strong>）数组：我们只可以调用返回类型为类型参数
-<code>T</code> 的方法，如上，这意味着我们只能调用 <code>get()</code>。这就是我们的<strong class="type-strong">使用处型变</strong>的用法，并且是对应于 Java 的 <code>Array&lt;? extends Object&gt;</code>、
+<p class="typo-para">这里发生的事情称为<strong class="typo-strong">类型投影</strong>：我们说<code>from</code>不仅仅是一个数组，而是一个受限制的（<strong class="typo-strong">投影的</strong>）数组：我们只可以调用返回类型为类型参数
+<code>T</code> 的方法，如上，这意味着我们只能调用 <code>get()</code>。这就是我们的<strong class="typo-strong">使用处型变</strong>的用法，并且是对应于 Java 的 <code>Array&lt;? extends Object&gt;</code>、
 但使用更简单些的方式。</p>
-<p class="typo-para">你也可以使用 <strong class="type-strong">in</strong> 投影一个类型：</p>
+<p class="typo-para">你也可以使用 <strong class="typo-strong">in</strong> 投影一个类型：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun fill(dest: Array&lt;in String&gt;, value: String) { …… }
 </code></pre>
@@ -1552,7 +1552,7 @@ copy(ints, any)
 <h3 class="typo-header typo-h3" id="星投影">星投影</h3>
 <p class="typo-para">有时你想说，你对类型参数一无所知，但仍然希望以安全的方式使用它。
 这里的安全方式是定义泛型类型的这种投影，该泛型类型的每个具体实例化将是该投影的子类型。</p>
-<p class="typo-para">Kotlin 为此提供了所谓的<strong class="type-strong">星投影</strong>语法：</p>
+<p class="typo-para">Kotlin 为此提供了所谓的<strong class="typo-strong">星投影</strong>语法：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">对于 <code>Foo &lt;out T : TUpper&gt;</code>，其中 <code>T</code> 是一个具有上界 <code>TUpper</code> 的协变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;out TUpper&gt;</code>。 这意味着当 <code>T</code> 未知时，你可以安全地从 <code>Foo &lt;*&gt;</code> <em>读取</em> <code>TUpper</code> 的值。</li>
 <li class="typo-list__item">对于 <code>Foo &lt;in T&gt;</code>，其中 <code>T</code> 是一个逆变类型参数，<code>Foo &lt;*&gt;</code> 等价于 <code>Foo &lt;in Nothing&gt;</code>。 这意味着当 <code>T</code> 未知时，没有什么可以以安全的方式<em>写入</em> <code>Foo &lt;*&gt;</code>。</li>
@@ -1567,7 +1567,7 @@ copy(ints, any)
 </ul>
 <p class="typo-para"><em>注意</em>：星投影非常像 Java 的原始类型，但是安全。</p>
 <h2 class="typo-header typo-h2" id="泛型函数">泛型函数</h2>
-<p class="typo-para">不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称<strong class="type-strong">之前</strong>：</p>
+<p class="typo-para">不仅类可以有类型参数。函数也可以有。类型参数要放在函数名称<strong class="typo-strong">之前</strong>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; singletonList(item: T): List&lt;T&gt; {
     // ……
@@ -1578,7 +1578,7 @@ fun &lt;T&gt; T.basicToString(): String {  // 扩展函数
 }
 </code></pre>
 </div>
-<p class="typo-para">要调用泛型函数，在调用处函数名<strong class="type-strong">之后</strong>指定类型参数即可：</p>
+<p class="typo-para">要调用泛型函数，在调用处函数名<strong class="typo-strong">之后</strong>指定类型参数即可：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val l = singletonList&lt;Int&gt;(1)
 </code></pre>
@@ -1589,21 +1589,21 @@ fun &lt;T&gt; T.basicToString(): String {  // 扩展函数
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="泛型约束">泛型约束</h2>
-<p class="typo-para">能够替换给定类型参数的所有可能类型的集合可以由<strong class="type-strong">泛型约束</strong>限制。</p>
+<p class="typo-para">能够替换给定类型参数的所有可能类型的集合可以由<strong class="typo-strong">泛型约束</strong>限制。</p>
 <h3 class="typo-header typo-h3" id="上界">上界</h3>
-<p class="typo-para">最常见的约束类型是与 Java 的 <em>extends</em> 关键字对应的 <strong class="type-strong">上界</strong>：</p>
+<p class="typo-para">最常见的约束类型是与 Java 的 <em>extends</em> 关键字对应的 <strong class="typo-strong">上界</strong>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T : Comparable&lt;T&gt;&gt; sort(list: List&lt;T&gt;) {  …… }
 </code></pre>
 </div>
-<p class="typo-para">冒号之后指定的类型是<strong class="type-strong">上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如：</p>
+<p class="typo-para">冒号之后指定的类型是<strong class="typo-strong">上界</strong>：只有 <code>Comparable&lt;T&gt;</code> 的子类型可以替代 <code>T</code>。 例如：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">sort(listOf(1, 2, 3)) // OK。Int 是 Comparable&lt;Int&gt; 的子类型
 sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt; 不是 Comparable&lt;HashMap&lt;Int, String&gt;&gt; 的子类型
 </code></pre>
 </div>
 <p class="typo-para">默认的上界（如果没有声明）是 <code>Any?</code>。在尖括号中只能指定一个上界。
-如果同一类型参数需要多个上界，我们需要一个单独的 <strong class="type-strong">where</strong>-子句：</p>
+如果同一类型参数需要多个上界，我们需要一个单独的 <strong class="typo-strong">where</strong>-子句：</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; copyWhenGreater(list: List&lt;T&gt;, threshold: T): List&lt;String&gt;
     where T : CharSequence,
@@ -1662,6 +1662,8 @@ sort(listOf(HashMap&lt;Int, String&gt;())) // 错误：HashMap&lt;Int, String&gt
                               href="/contribute.html">为 Kotlin 做贡献</a></p>
                     <p class="terms-para"><a class="terms-kit"
                                              href="/eap/">抢先体验预览</a></p>
+                    <p class="terms-para"><a class="terms-kit"
+                                             href="/security.html">安全性</a></p>
                         <p class="terms-para"><a class="terms-kit"
                               href=/assets/kotlin-media-kit.pdf>宣传资料</a></p>
                     <div class="terms-copyright">
