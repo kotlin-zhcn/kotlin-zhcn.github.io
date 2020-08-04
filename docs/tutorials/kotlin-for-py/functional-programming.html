@@ -76,7 +76,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">1.3.72</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -941,7 +941,7 @@ callWithPi { it * it }
 </div>
 <p class="typo-para">在某些方面，这更易于阅读，因为操作是按照它们应用于值的顺序指定的。结果将是一个不变的 <code>List&lt;T&gt;</code>，其中 <code>T</code> 是使用的转换（在这种情况下为 <code>String</code>）生成的任何类型。如果需要可变列表，请在最后调用 <code>toMutableList()</code>。如果需要 Set，请在最后调用 <code>toSet()</code> 或 <code>toMutableSet()</code>。如果要将 Set 转换为 Map，请调用 <code>associateBy()</code>，它需要两个 lambda，用于指定如何从每个元素提取键和值：<code>people.associateBy({it.ssn}, {it.name})</code>（如果希望整个元素作为值，那么可以省略第二个 lambda；如果希望结果可变，那么可以在最后调用 <code>toMutableMap()</code>）。</p>
 <p class="typo-para">这些转换也可以应用于 <code>Sequence&lt;T&gt;</code>，它与 Python 的生成器类似，并且允许进行惰性求值。如果有一个庞大的列表，并且想要延迟处理它，那么可以在其上调用 <code>asSequence()</code>。</p>
-<p class="typo-para"><a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html"><code>kotlin.collections</code> 包</a>中提供了大量功能编程风格的操作。</p>
+<p class="typo-para"><a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/index.html"><code>kotlin.collections</code> 包</a>中提供了大量函数式编程风格的操作。</p>
 <h2 class="typo-header typo-h2" id="接收者">接收者</h2>
 <p class="typo-para">成员函数或<a class="typo-link" href="extension-functionsproperties.html">扩展函数</a>的签名始于 <em>接收者</em>：可以在其上调用函数的类型。例如，<code>toString()</code> 的签名是 <code>Any.() -&gt; String</code>——可以在任何非空对象（接收者）上调用它，它不带任何参数，并且返回 <code>String</code>。可以使用这样的签名来编写 lambda 函数——这被称为 <em>带有接收者的函数字面值</em>，对于构建DSL非常有用。</p>
 <p class="typo-para">带接收者的函数文字可能最容易被认为是 lambda 表达式形式的扩展函数。该声明看起来像一个普通的 lambda 表达式。使其成为接收者的是上下文——必须将其传递给以接收者作为参数的函数，或者将其赋值给类型为接收者的函数类型的变量或属性。将函数与接收者一起使用的唯一方法是在接收者类的实例上调用它，就像它是成员函数或扩展函数一样。例如：</p>
