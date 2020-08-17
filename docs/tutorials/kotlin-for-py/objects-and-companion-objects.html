@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>对象与伴生对象 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -908,7 +908,7 @@ fun start(vehicle: Vehicle) = println(vehicle.drive())
 </code></pre>
 </div>
 <p class="typo-para">如果超类型具有构造函数，那么必须在超类型名称之后用括号将其调用。可以根据需要指定多个超类型（但通常，最多只有一个超类）。</p>
-<p class="typo-para">由于匿名类没有名称，因此不能将其用作返回类型——如果确实返回了匿名对象，则该函数的返回类型必须为 <code>Any</code>。</p>
+<p class="typo-para">由于匿名类没有名称，因此不能将其用作返回类型——如果确实返回了匿名对象，那么该函数的返回类型必须为 <code>Any</code>。</p>
 <p class="typo-para">尽管使用了 <code>object</code> 关键字，但无论何时对对象表达式求值，都会创建一个匿名类的新实例。</p>
 <p class="typo-para">对象表达式的主体可以访问并可能修改包含它的作用域的局部变量。</p>
 <hr class="typo-hr"/>

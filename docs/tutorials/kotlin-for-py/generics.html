@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>泛型 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -846,17 +846,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </table>
             
 <h2 class="typo-header typo-h2" id="泛型类型参数">泛型类型参数</h2>
-<p class="typo-para">One might think that static typing would make it very impractical to make collection classes or any other class that needs to contain members whose types vary with each usage. Generics to the rescue: they allow you to specify a "placeholder" type in a class or function that must be filled in whenever the class or function is used. For example, a node in a linked list needs to contain data of some type that is not known when we write the class, so we introduce a <em>generic type parameter</em> <code>T</code> (they are conventionally given single-letter names):</p>
+<p class="typo-para">可能有人认为静态类型会使创建集合类或需要包含其类型随每次使用而变化的成员的任何其他类变得非常不切实际。通用方法：它们可以在类或函数中指定“占位符”类型，每当使用类或函数时，都必须填写该类型。例如，链表中的节点需要包含某种类型的数据，而这些类型的数据在编写该类时是未知的，因此引入了 <em>泛型类型参数</em> <code>T</code>（通常指定为单字母名称）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class TreeNode&lt;T&gt;(val value: T?, val next: TreeNode&lt;T&gt;? = null)
 </code></pre>
 </div>
-<p class="typo-para">Whenever you create an instance of this class, you must specify an actual type in place of <code>T</code>, unless the compiler can infer it from the constructor parameters: <code>TreeNode("foo")</code> or <code>TreeNode&lt;String&gt;(null)</code>. Every use of this instance will act as if it were an instance of a class that looks like this:</p>
+<p class="typo-para">每当创建此类的实例时，都必须指定一个实际的类型代替 <code>T</code>，除非编译器可以从构造函数参数 <code>TreeNode("foo")</code> 或 <code>TreeNode&lt;String&gt;(null)</code> 中推断出类型。每次使用此实例都会像看起来像是一个类的实例一样：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class TreeNode&lt;String&gt;(val value: String?, val next: TreeNode&lt;String&gt;? = null)
 </code></pre>
 </div>
-<p class="typo-para">Member properties and member functions inside a generic class may for the most part use the class' generic type parameters as if they were ordinary types, without having to redeclare them. It is also possible to make functions that take more generic parameters than the class does, and to make generic functions inside nongeneric classes, and to make generic top-level functions (which is what we'll do in the next example). Note the different placement of the generic type parameter in generic function declarations:</p>
+<p class="typo-para">泛型类中的成员属性与成员函数在很大程度上可以像使用普通类型一样使用类的泛型类型参数，而不必重新声明它们。还可以使函数接受比类更多的泛型参数，使泛型函数驻留在非泛型类中，以及使泛型顶层函数成为泛型（将在下一个示例中执行这一操作）。请注意泛型函数声明中泛型类型参数的不同位置：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; makeLinkedList(vararg elements: T): TreeNode&lt;T&gt;? {
     var node: TreeNode&lt;T&gt;? = null
@@ -868,47 +868,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="约束">约束</h2>
-<p class="typo-para">You can restrict the types that can be used for a generic type parameter, by specifying that it must be an instance of a specific type or of a subclass thereof. If you've got a class or interface called <code>Vehicle</code>, you can do:</p>
+<p class="typo-para">通过指定泛型类型参数必须是特定类型或其子类的实例，可以限制可用于泛型类型参数的类型。如果有一个名为 <code>Vehicle</code> 的类或接口，那么可以这样做：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class TreeNode&lt;T : Vehicle&gt;
 </code></pre>
 </div>
-<p class="typo-para">Now, you may not create a <code>TreeNode</code> of a type that is not a subclass/implementor of <code>Vehicle</code>. Inside the class, whenever you've got a value of type <code>T</code>, you may access all the public members of <code>Vehicle</code> on it.</p>
-<p class="typo-para">If you want to impose additional constraints, you must use a separate <code>where</code> clause, in which case the type parameter must be a subclass of the given class (if you specify a class, and you can specify at most one) <em>and</em> implement all the given interfaces. You may then access all the public members of all the given types whenever you've got a value of type <code>T</code>:</p>
+<p class="typo-para">现在，可能无法创建类型不是 <code>Vehicle</code> 的子类/实现的 <code>TreeNode</code>。在类内部，只要获得类型为 <code>T</code> 的值，就可以访问其上所有 <code>Vehicle</code> 的公共成员。</p>
+<p class="typo-para">如果要施加其他约束，那么必须使用单独的 <code>where</code> 子句，在这种情况下，类型参数必须是给定类的子类（如果指定了一个类，并且最多可以指定一个），<em>并且</em> 实现所有给定的接口。然后，只要获得类型 <code>T</code> 的值，就可以访问所有给定类型的所有公共成员：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class TreeNode&lt;T&gt; where T : Vehicle, T : HasWheels
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="型变">型变</h2>
 <h3 class="typo-header typo-h3" id="简介">简介</h3>
-<p class="typo-para">Pop quiz: if <code>Apple</code> is a subtype of <code>Fruit</code>, and <code>Bowl</code> is a generic container class, is <code>Bowl&lt;Apple&gt;</code> a subtype of <code>Bowl&lt;Fruit&gt;</code>? The answer is - perhaps surprisingly - <em>no</em>. The reason is that if it were a subtype, we would be able to break the type system like this:</p>
+<p class="typo-para">流行测验：如果 <code>Apple</code> 是 <code>Fruit</code> 的子类型，并且 <code>Bowl</code> 是通用容器类，那么 <code>Bowl&lt;Apple&gt;</code> 是否为 <code>Bowl&lt;Fruit&gt;</code> 的子类型？答案为——也许令人惊讶——<em>否</em>。原因是，如果它是子类型，将能够像这样破坏类型系统：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun add(bowl: Bowl&lt;Fruit&gt;, fruit: Fruit) = bowl.add(fruit)
 
 val bowl = Bowl&lt;Apple&gt;()
-add(bowl, Pear()) // Doesn't actually compile!
-val apple = bowl.get() // Boom!
+add(bowl, Pear()) // 实际上不编译！
+val apple = bowl.get() // 裂开！
 </code></pre>
 </div>
-<p class="typo-para">If the second-to-last line compiled, it would allow us to put a pear into what is ostensibly a bowl of only apples, and your code would explode when it tried to extract the "apple" from the bowl. However, it's frequently useful to be able to let the type hierarchy of a generic type parameter "flow" to the generic class. As we saw above, though, some care must be taken - the solution is to restrict the direction in which you can move data in and out of the generic object.</p>
+<p class="typo-para">如果编译到倒数第二行，这将使可以在一个表面上只有一个苹果的盘子中放入一个梨，当尝试从盘子中提取“苹果”时，这代码就会裂开。但是，通常让泛型类型参数的类型层次结构“流”到泛型类通常很有用。但是，正如在上面看到的，必须注意一些问题——解决方案是限制将数据移入与移出通用对象的方向。</p>
 <h3 class="typo-header typo-h3" id="声明处协变与逆变">声明处协变与逆变</h3>
-<p class="typo-para">If you have an instance of <code>Generic&lt;Subtype&gt;</code>, and you want to refer to it as a <code>Generic&lt;Supertype&gt;</code>, you can safely <em>get</em> instances of the generic type parameter from it - these will truly be instances of <code>Subtype</code> (because they come from an instance of <code>Generic&lt;Subtype&gt;</code>), but they will appear to you as instances of <code>Supertype</code> (because you've told the compiler that you have a <code>Generic&lt;Supertype&gt;</code>). This is safe; it is called <em>covariance</em>, and Kotlin lets you do <em>declaration-site covariance</em> by putting <code>out</code> in front of the generic type parameter. If you do, you may only use that type parameter as a return type, not as a parameter type. Here is the simplest useful covariant interface:</p>
+<p class="typo-para">如果有 <code>Generic&lt;Subtype&gt;</code> 的实例，并且想将其称为 <code>Generic&lt;Supertype&gt;</code>，那么可以安全地从中 <em>获取</em> 泛型类型参数的实例——这些将确实是 <code>Subtype</code> 的实例。（因为它们来自 <code>Generic&lt;Subtype&gt;</code> 的实例），但是它们看起来是 <code>Supertype</code> 的实例（因为已经告诉编译器具有 <code>Generic&lt;Supertype&gt;</code>）。这很安全；它被称为 <em>协变</em>，而 Kotlin 可以通过在泛型参数前面放置 <code>out</code> 来进行 <em>声明处协变</em>。如果这样做，那么只能将该类型参数用作返回类型，而不能用作参数类型。这是最简单有用的协变接口：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Producer&lt;out T&gt; {
     fun get(): T
 }
 </code></pre>
 </div>
-<p class="typo-para">It is safe to treat a <code>Producer&lt;Apple&gt;</code> as if it were a <code>Producer&lt;Fruit&gt;</code> - the only thing it will ever produce is <code>Apple</code> instances, but that's okay, because an <code>Apple</code> is a <code>Fruit</code>.</p>
-<p class="typo-para">Conversely, if you have an instance of <code>Generic&lt;Supertype&gt;</code>, and you want to refer to it as a <code>Generic&lt;Subtype&gt;</code> (which you can't do with nongeneric classes), you can safely <em>give</em> instances of the generic type parameter to it - the compiler will require those instances to be of the type <code>Subtype</code>, which will be acceptable to the real instance because it can handle any <code>Supertype</code>. This is called <em>contravariance</em>, and Kotlin lets you do <em>declaration-site contravariance</em> by putting <code>in</code> in front of the generic type parameter. If you do, you may only use that type parameter as a parameter type, not as a return type. Here is the simplest useful contravariant interface:</p>
+<p class="typo-para">将 <code>Producer&lt;Apple&gt;</code> 视为 <code>Producer&lt;Fruit&gt;</code> 是安全的——它将产生的唯一东西是 <code>Apple</code> 实例，但这没关系，因为 <code>Apple</code> 是 <code>Fruit</code>。</p>
+<p class="typo-para">相反，如果有  <code>Generic&lt;Supertype&gt;</code> 的实例，并且想将其引用为 <code>Generic&lt;Subtype&gt;</code>（不能使用非泛型类），那么可以安全地为其 <em>提供</em> 泛型类型参数的实例——编译器将要求这些实例的类型为 <code>Subtype</code>，这对于实际实例是可接受的，因为它可以处理任何 <code>Supertype</code>。这被称为 <em>逆变</em>，而 Kotlin 可以通过在泛型参数的前面加 <code>in</code> 来进行 <em>声明处逆变</em>。如果这样做，那么只能将该类型参数用作参数类型，而不能用作返回类型。这是最简单有用的逆变接口：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">interface Consumer&lt;in T&gt; {
     fun add(item: T)
 }
 </code></pre>
 </div>
-<p class="typo-para">It is safe to treat a <code>Consumer&lt;Fruit&gt;</code> as a <code>Consumer&lt;Apple&gt;</code> - you are then restricted to only adding <code>Apple</code> instances to it, but that's okay, because it is capable of receiving any <code>Fruit</code>.</p>
-<p class="typo-para">With these two interfaces, we can make a more versatile fruit bowl. The bowl itself needs to both produce and consume its generic type, so it can neither be covariant nor contravariant, but it can implement our covariant and contravariant interfaces:</p>
+<p class="typo-para">将 <code>Consumer &lt;Fruit&gt;</code> 视为 <code>Consumer &lt;Apple&gt;</code> 是安全的——然后，只能在其中添加 <code>Apple</code> 实例，但这没关系，因为它能够接收任何 <code>Fruit</code>。</p>
+<p class="typo-para">通过这两个接口，可以制作出更多用途的果盘。盘子本身需要产生与使用其泛型，所以它既不能是协变的也不能是逆变的，但是它可以实现协变与逆变接口：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Bowl&lt;T&gt; : Producer&lt;T&gt;, Consumer&lt;T&gt; {
     private val items = mutableListOf&lt;T&gt;()
@@ -917,66 +917,66 @@ val apple = bowl.get() // Boom!
 }
 </code></pre>
 </div>
-<p class="typo-para">Now, you can treat a bowl of <code>T</code> as a producer of any superclass of <code>T</code>, and as a consumer of any subclass of <code>T</code>:</p>
+<p class="typo-para">现在，可以将盘子 <code>T</code> 视为 <code>T</code> 的任何超类的生产者，以及 <code>T</code> 的任何子类的消费者：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val p: Producer&lt;Fruit&gt; = Bowl&lt;Apple&gt;()
 val c: Consumer&lt;Apple&gt; = Bowl&lt;Fruit&gt;()
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="型变方向">型变方向</h3>
-<p class="typo-para">If the parameters or return types of the members of a variant type are themselves variant, it gets a bit complicated. Function types in parameters and return types make it even more challenging. If you're wondering whether it's safe to use a variant type parameter <code>T</code> in a particular position, ask yourself:</p>
+<p class="typo-para">如果变量类型的成员的参数或返回类型本身就是变量，那将会变得有些复杂。参数中的函数类型和返回类型使其更具挑战性。如果想在特定位置使用变体类型参数 <code>T</code> 是否安全，请问自己：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">If <code>T</code> is covariant: is it okay that the user of my class thinks that <code>T</code> in this position is a <code>Supertype</code>, while in reality, it's a <code>Subtype</code>?</li>
-<li class="typo-list__item">If <code>T</code> is contravariant: is it okay that the user of my class thinks that <code>T</code> in this position is a <code>Subtype</code>, while in reality, it's a <code>Supertype</code>?</li>
+<li class="typo-list__item">如果 <code>T</code> 是协变的：类的用户认为处于这个位置的 <code>T</code> 是 <code>Supertype</code>，而实际上是 <code>Subtype</code> 这样可以吗？</li>
+<li class="typo-list__item">如果 <code>T</code> 是逆变的：类的用户认为处于这个位置的 <code>T</code> 是 <code>Subtype</code>，而实际上是 <code>Supertype</code> 这样可以吗？</li>
 </ul>
-<p class="typo-para">These considerations lead to the following rules. A covariant type parameter <code>T</code> (which the user of an object might think is <code>Fruit</code>, while the object in reality is tied to <code>Apple</code>) may be used as:</p>
+<p class="typo-para">这些注意事项导致以下规则。协变类型参数 <code>T</code>（对象的用户可能认为这是 <code>Fruit</code>，而实际上该对象是 <code>Apple</code>）可以用作：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">
 <p class="typo-para"><code>val v: T</code></p>
-<p class="typo-para">A read-only property type (the user is expecting a <code>Fruit</code>, and gets an <code>Apple</code>)</p>
+<p class="typo-para">只读属性类型（用户期望获得 <code>Fruit</code>，并获得 <code>Apple</code>）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>val p: Producer&lt;T&gt;</code></p>
-<p class="typo-para">The covariant type parameter of a read-only property type (the user is expecting a producer of <code>Fruit</code>, and gets a producer of <code>Apple</code>)</p>
+<p class="typo-para">只读属性类型的协变类型参数（用户期望 <code>Fruit</code> 的生产者，而得到 <code>Apple</code> 的生产者）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(): T</code></p>
-<p class="typo-para">A return type (as we've already seen)</p>
+<p class="typo-para">返回类型（正如所见）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(): Producer&lt;T&gt;</code></p>
-<p class="typo-para">The covariant type parameter of a return type (the user is expecting that the returned value will produce a <code>Fruit</code>, so it's okay if it really produces an <code>Apple</code>)</p>
+<p class="typo-para">返回类型的协变类型参数（用户期望返回的值将产生一个 <code>Fruit</code>，所以如果它确实产生一个 <code>Apple</code> 也是可以的）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(consumer: Consumer&lt;T&gt;)</code></p>
-<p class="typo-para">The contravariant type parameter of a parameter type (the user is passing a consumer that can handle any <code>Fruit</code>, and it will be given an <code>Apple</code>)</p>
+<p class="typo-para">参数类型的逆变类型参数（用户传递了可以处理任何 <code>Fruit</code> 的消费者，用户将得到一个 <code>Apple</code>）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(function: (T) -&gt; Unit)</code></p>
-<p class="typo-para">The parameter type of a function-typed parameter (the user is passing a function that can handle any <code>Fruit</code>, and it will be given an <code>Apple</code>)</p>
+<p class="typo-para">函数类型参数的参数类型（用户正在传递可以处理任何 <code>Fruit</code> 的函数，用户将获得一个 <code>Apple</code>）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(function: (Producer&lt;T&gt;) -&gt; Unit)</code></p>
-<p class="typo-para">The covariant type parameter of the parameter type of a function-typed parameter (the user is passing a function that can handle any <code>Fruit</code> producer, and it will be given an <code>Apple</code> producer)</p>
+<p class="typo-para">函数类型参数的参数类型的协变类型参数（用户正在传递可以处理任何 <code>Fruit</code> 生产者的函数，用户将获得 <code>Apple</code> 生产者）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(function: () -&gt; Consumer&lt;T&gt;)</code></p>
-<p class="typo-para">The contravariant type parameter of the return type of a function-typed parameter (the user is passing a function that will return a consumer of any <code>Fruit</code>, and the returned consumer will be given <code>Apple</code> instances)</p>
+<p class="typo-para">函数类型参数的返回类型的逆变类型参数（用户传递的函数将返回任何 <code>Fruit</code> 的消费者，为返回的消费者提供 <code>Apple</code> 实例）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(): () -&gt; T</code></p>
-<p class="typo-para">The return type of a function-typed return type (the user expects the returned function to return <code>Fruit</code>, so it's okay if it really returns <code>Apple</code>)</p>
+<p class="typo-para">函数类型的返回类型的返回类型（用户希望返回的函数返回 <code>Fruit</code>，因此，如果它确实返回 <code>Apple</code> 也是可以的）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(): () -&gt; Producer&lt;T&gt;</code></p>
-<p class="typo-para">The covariant type parameter of the return type of a function-typed return type (the user expects the returned function to return something that produces <code>Fruit</code>, so it's okay if it really produces <code>Apple</code>)</p>
+<p class="typo-para">函数类型的返回类型的返回类型的协变量类型参数（用户希望返回的函数返回产生 <code>Fruit</code> 的内容，因此如果它确实产生 <code>Apple</code>，也是可以的）</p>
 </li>
 <li class="typo-list__item">
 <p class="typo-para"><code>fun f(): (Consumer&lt;T&gt;) -&gt; Unit</code></p>
-<p class="typo-para">The contravariant type parameter of a parameter of a function-typed return type (the user will call the returned function with something that can consume any <code>Fruit</code>, so it's okay to return a function that expects to receive something that can handle <code>Apple</code>)</p>
+<p class="typo-para">函数类型返回类型的参数的变量类型参数（用户将使用可能消耗任何 <code>Fruit</code> 的东西来调用返回的函数，因此可以返回希望接收到可以处理 <code>Apple</code> 的东西的函数）</p>
 </li>
 </ul>
-<p class="typo-para">A contravariant type parameter may be used in the converse situations. It is left as an exercise to the reader to figure out the justifications for why these member signatures are legal:</p>
+<p class="typo-para">在逆变的情况下可以使用协变类型参数。至于这些成员的签名为何合法，则留给读者自行解答:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><code>val c: Consumer&lt;T&gt;</code></li>
 <li class="typo-list__item"><code>fun f(item: T)</code></li>
@@ -990,7 +990,7 @@ val c: Consumer&lt;Apple&gt; = Bowl&lt;Fruit&gt;()
 <li class="typo-list__item"><code>fun f(): () -&gt; Consumer&lt;T&gt;</code></li>
 </ul>
 <h3 class="typo-header typo-h3" id="类型投影使用处协变与逆变">类型投影（使用处协变与逆变）</h3>
-<p class="typo-para">If you're using a generic class whose type parameters haven't been declared in a variant way (either because its authors didn't think of it, or because the type parameters can't have either variance kind because they are used both as parameter types and return types), you can still use it in a variant way thanks to <em>type projection</em>. The term "projection" refers to the fact that when you do this, you might restrict yourself to using only some of its members - so you're in a sense only seeing a partial, or "projected" version of the class. Let's look again at our <code>Bowl</code> class, but without the variant interfaces this time:</p>
+<p class="typo-para">如果使用的泛型类的类型参数没有以不同的方式声明（要么是因为作者没有想到，要么是因为类型参数不能具有任何一种型变类型，因为它们既用作参数类型又用作返回类型），由于 <em>类型投影</em>，仍然可以以其他方式使用它。术语“投影”是指这样的事实：执行此操作时，可能会限制自己仅使用其某些成员——因此，从某种意义上讲，只能看到类的部分或“投影”版本。再次关注 <code>Bowl</code> 类，但是这次没有变量接口：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Bowl&lt;T&gt; {
     private val items = mutableListOf&lt;T&gt;()
@@ -999,45 +999,45 @@ val c: Consumer&lt;Apple&gt; = Bowl&lt;Fruit&gt;()
 }
 </code></pre>
 </div>
-<p class="typo-para">Because <code>T</code> is used as a parameter type, it can't be covariant, and because it's used as a return type, it can't be contravariant. But if we only want to use the <code>get()</code> function, we can project it covariantly with <code>out</code>:</p>
+<p class="typo-para">因为 <code>T</code> 用作参数类型，所以它不能是协变的，并且因为它用作返回类型，所以它不能是逆变的。但是，如果只想使用 <code>get()</code> 函数，那么可以使用 <code>out</code> 进行协变地投影：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; moveCovariantly(from: Bowl&lt;out T&gt;, to: Bowl&lt;T&gt;) {
     to.add(from.get())
 }
 </code></pre>
 </div>
-<p class="typo-para">Here, we're saying that the type parameter of <code>from</code> must be a subtype of the type parameter of <code>to</code>. This function will accept e.g. a <code>Bowl&lt;Apple&gt;</code> as <code>from</code> and <code>Bowl&lt;Fruit&gt;</code> as <code>to</code>. The price we're paying for using the <code>out</code> projection is that we can't call <code>add()</code> on <code>from()</code>, since we don't know its true type parameter and we would therefore risk adding incompatible fruits to it.</p>
-<p class="typo-para">We could do a similar thing with contravariant projection by using <code>in</code>:</p>
+<p class="typo-para">在这里的 <code>from</code> 的类型参数必须是 <code>to</code> 的类型参数的子类型。此函数将接受例如 <code>Bowl&lt;Apple&gt;</code> 作为 <code>from</code>，而 <code>Bowl&lt;Fruit&gt;</code> 作为 <code>to</code>。而使用 <code>out</code> 投影而付出的代价是，无法在 <code>from()</code> 上调用 <code>add()</code>，因为不知道其真实类型参数，因此可能会给它添加不兼容的水果。</p>
+<p class="typo-para">可以通过使用 <code>in</code> 来对逆变投影做类似的事情：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; moveContravariantly(from: Bowl&lt;T&gt;, to: Bowl&lt;in T&gt;) {
     to.add(from.get())
 }
 </code></pre>
 </div>
-<p class="typo-para">Now, the type parameter of <code>to</code> must be a supertype of that of <code>from</code>. This time, we're losing the ability to call <code>get()</code> on <code>to</code>.</p>
-<p class="typo-para">The same type parameter can be used in both covariant and contravariant projections (because it's the generic classes that are being projected, not the type parameter):</p>
+<p class="typo-para">现在，<code>to</code> 的类型参数必须是 <code>from</code> 的类型参数的超类型。这次，将失去在 <code>to</code> 上调用 <code>get()</code> 的能力。</p>
+<p class="typo-para">相同的类型参数可以用于协变与逆变投影（因为被投影的是泛型类，而不是类型参数）</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; moveContravariantly(from: Bowl&lt;out T&gt;, to: Bowl&lt;in T&gt;) {
     to.add(from.get())
 }
 </code></pre>
 </div>
-<p class="typo-para">While doing so was not useful in this particular example, one could get interesting effects by adding an unprojected parameter type <code>via: Bowl&lt;T&gt;</code>, in which case the generic type parameter of <code>via</code> would be forced to be "in-between" those of <code>from</code> and <code>to</code>.</p>
-<p class="typo-para">If you don't have any idea (or don't care) what the generic type might be, you can use a <em>star-projection</em>:</p>
+<p class="typo-para">虽然这样做在这个特殊的例子中没有用处，但可以通过添加未投影的参数类型 <code>via: Bowl&lt;T&gt;</code> 来获得有趣的效果，在这种情况下，<code>via</code> 的泛型参数将被强制为“在 <code>from</code> 与 <code>to</code> 之间”。</p>
+<p class="typo-para">如果不知道（或不在乎）泛型类型是什么，可以使用 <em>星投影</em>：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun printSize(items: List&lt;*&gt;) = println(items.size)
 </code></pre>
 </div>
-<p class="typo-para">When using a generic type where you have star-projected one or more of its type parameters, you can:</p>
+<p class="typo-para">如果使用的泛型类型中有一个或多个类型参数是星投影的，可以：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">Use any members that don't mention the star-projected type parameter(s) at all</li>
-<li class="typo-list__item">Use any members that return the star-projected type parameter(s), but the return type will appear to be <code>Any?</code> (unless the type parameter is constrained, in which case you'll get the type mentioned in the constraint)</li>
-<li class="typo-list__item">Not use any members that take a star-projected type as a parameter</li>
+<li class="typo-list__item">使用任何未提及的成员的所有星投影类型参数</li>
+<li class="typo-list__item">使用任何返回星投影类型参数的成员，但是返回类型将显示为 <code>Any?</code>。（除非类型参数受到约束，在这种情况下，将获得约束中提到的类型）</li>
+<li class="typo-list__item">不要使用任何采用星投影类型作为参数的成员</li>
 </ul>
 <h2 class="typo-header typo-h2" id="具体化的类型参数">具体化的类型参数</h2>
-<p class="typo-para">Sadly, Kotlin has inherited Java's limitation on generics: they are strictly a compile-time concept - the generic type information is <em>erased</em> at runtime. Therefore, you can not say <code>T()</code> to construct a new instance of a generic type; you can not at runtime check if an object is an instance of a generic type parameter; and if you try to cast between generic types, the compiler can't guarantee the correctness of it.</p>
-<p class="typo-para">Luckily, Kotlin has got <em>reified type parameters</em>, which alleviates some of these problems. By writing <code>reified</code> in front of a generic type parameter, it does become available at runtime, and you'll get to write <code>T::class</code> to get the <a class="typo-link" href="member-references-and-reflection.html#由类引用获取成员引用">class metadata</a>. You can only do this in inline functions (because an inline function will be compiled into its callsite, where the type information <em>is</em> available at runtime), but it still goes a long way. For example, you can make an inline wrapper function for a big function that has got a less elegant signature.</p>
-<p class="typo-para">In the example below, we assume that there is a <code>DbModel</code> base class, and that every subclass has got a parameterless primary constructor. In the inline function, <code>T</code> is reified, so we can get the class metadata. We pass this to the function that does the real work of talking to the database.</p>
+<p class="typo-para">可悲的是，Kotlin 继承了 Java 对泛型的限制：严格来说，它们是一个编译时概念——泛型类型信息在运行时被 <em>擦除</em>。因此，不能使用 <code>T()</code> 来构造泛型的新实例；无法在运行时检测对象是否为泛型类型参数的实例；如果尝试在泛型类型之间进行转换，编译器将无法保证其正确性。</p>
+<p class="typo-para">幸运的是，Kotlin 有 <em>具体化的类型参数</em>，从而缓解了其中的一些问题。通过在泛型参数前面编写 <code>reified</code>，它在运行时确实可用，并且需要编写 <code>T::class</code> 来获取<a class="typo-link" href="member-references-and-reflection.html#由类引用获取成员引用">类元数据</a>。只能在内联函数中这样做（因为内联函数将被编译到它的调用处，其中类型信息在运行时 <em>可用</em>），但它仍然需要很长时间。例如，可以为签名不太优雅的大型函数创建内联包装器函数。</p>
+<p class="typo-para">在下面的示例中，假设有一个 <code>DbModel</code> 基类，并且每个子类都有一个无参数的主构造函数。在内联函数中， <code>T</code> 被具体化了，因此可以获得类元数据。将其传递给执行与数据库通信的实际工作的函数。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline fun &lt;reified T : DbModel&gt; loadFromDb(id: String): T =
     loadFromDb(T::class, id)
@@ -1052,7 +1052,7 @@ fun &lt;T : DbModel&gt; loadFromDb(cls: KClass&lt;T&gt;, id: String): T {
 }
 </code></pre>
 </div>
-<p class="typo-para">Now, you can say <code>loadFromDb&lt;Exercise&gt;("x01234567")</code> to load an object from the <code>Exercise</code> database table.</p>
+<p class="typo-para">现在，可以使用 <code>loadFromDb&lt;Exercise&gt;("x01234567")</code> 从 <code>Exercise</code> 数据库表中加载对象。</p>
 <hr class="typo-hr"/>
 <table class="typo-table">
 <tbody>

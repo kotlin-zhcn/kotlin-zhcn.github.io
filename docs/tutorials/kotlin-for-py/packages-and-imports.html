@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>包与导入 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -881,7 +881,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <pre><code class="language-kotlin">import content.exercises.Exercise as Ex
 </code></pre>
 </div>
-<p class="typo-para">在 Kotlin 中，导入是一个编译期概念——导入内容实际上不会导致任何代码运行（与 Python 不同，在 Python 中，文件中的所有顶级语句都在导入时执行）。因此，允许循环导入，但是它们可能会在代码中提示设计问题。但是，在执行期间，将在首次引用类（或其任何属性或函数）时加载类，并且类加载会导致初始化<a class="typo-link" href="objects-and-companion-objects.html#伴生对象">伴生对象</a>——如果具有循环依赖项，那么可能导致运行时异常。</p>
+<p class="typo-para">在 Kotlin 中，导入是一个编译期概念——导入内容实际上不会导致任何代码运行（与 Python 不同，在 Python 中，文件中的所有顶层语句都在导入时执行）。因此，允许循环导入，但是它们可能会在代码中提示设计问题。但是，在执行期间，将在首次引用类（或其任何属性或函数）时加载类，并且类加载会导致初始化<a class="typo-link" href="objects-and-companion-objects.html#伴生对象">伴生对象</a>——如果具有循环依赖项，那么可能导致运行时异常。</p>
 <p class="typo-para">每个文件都隐式导入其自己的程序包以及许多内置的 Kotlin 与 Java 程序包。</p>
 <hr class="typo-hr"/>
 <table class="typo-table">

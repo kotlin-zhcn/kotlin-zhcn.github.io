@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>异步流 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1442,9 +1442,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li class="typo-list__item"><a class="typo-link" href="#命令式还是声明式">命令式还是声明式</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#启动流">启动流</a></li>
-<li class="typo-list__item"><a class="typo-link" href="#flow-cancellation-checks">Flow cancellation checks</a>
+<li class="typo-list__item"><a class="typo-link" href="#流取消检测">流取消检测</a>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><a class="typo-link" href="#making-busy-flow-cancellable">Making busy flow cancellable</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#让繁忙的流可取消">让繁忙的流可取消</a></li>
 </ul>
 </li>
 <li class="typo-list__item"><a class="typo-link" href="#flow-and-reactive-streams">流（Flow）与响应式流（Reactive Streams）</a></li>
@@ -1932,7 +1932,7 @@ fun main() = runBlocking&lt;Unit&gt; {
 [main @coroutine#1] Collected 3
 </code></pre>
 <!--- TEST FLEXIBLE_THREAD -->
-<p class="typo-para">由于 <code>simple().collect</code> 是在主线程调用的，则 <code>simple</code> 的流主体也是在主线程调用的。
+<p class="typo-para">由于 <code>simple().collect</code> 是在主线程调用的，那么 <code>simple</code> 的流主体也是在主线程调用的。
 这是快速运行或异步代码的理想默认形式，它不关心执行的上下文并且不会<!--
 -->阻塞调用者。</p>
 <h4 class="typo-header typo-h4" id="withcontext-发出错误">withContext 发出错误</h4>
@@ -2842,9 +2842,9 @@ Event: 3
 因为取消与结构化并发可以达成这个目的。</p>
 <p class="typo-para">注意，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/launch-in.html">launchIn</a> 也会返回一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，可以在不取消整个作用域的情况下仅<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/cancel.html">取消</a>相应的流收集<!--
 -->或对其进行 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/join.html">join</a>。</p>
-<h3 class="typo-header typo-h3" id="flow-cancellation-checks">Flow cancellation checks</h3>
-<p class="typo-para">For convenience, the <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> builder performs additional <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/ensure-active.html">ensureActive</a> checks for cancellation on each emitted value. 
-It means that a busy loop emitting from a <code>flow { ... }</code> is cancellable:</p>
+<h3 class="typo-header typo-h3" id="流取消检测">流取消检测</h3>
+<p class="typo-para">为方便起见，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">流</a>构建器对每个发射值执行附加的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/ensure-active.html">ensureActive</a> 检测以进行取消。
+这意味着从 <code>flow { ... }</code> 发出的繁忙循环是可以取消的：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2867,9 +2867,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote class="typo-quote">
-<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-37.kt">here</a>.</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-37.kt">这里</a>获取完整的代码。</p>
 </blockquote>
-<p class="typo-para">We get only numbers up to 3 and a <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a> after trying to emit number 4:</p>
+<p class="typo-para">仅得到不超过 3 的数字，在尝试发出 4 之后抛出 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>；</p>
 <pre><code class="code _highlighted" data-lang="text/plain">Emitting 1
 1
 Emitting 2
@@ -2880,9 +2880,9 @@ Emitting 4
 Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@6d7b4f4c
 </code></pre>
 <!--- TEST EXCEPTION -->
-<p class="typo-para">However, most other flow operators do not do additional cancellation checks on their own for performance reasons. 
-For example, if you use <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/kotlin.ranges.-int-range/as-flow.html">IntRange.asFlow</a> extension to write the same busy loop and don't suspend anywhere, 
-then there are no checks for cancellation:</p>
+<p class="typo-para">但是，出于性能原因，大多数其他流操作不会自行执行其他取消检测。
+例如，如果使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/kotlin.ranges.-int-range/as-flow.html">IntRange.asFlow</a> 扩展来编写相同的繁忙循环，
+并且没有在任何地方暂停，那么就没有取消的检测；</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2898,9 +2898,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote class="typo-quote">
-<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-38.kt">here</a>.</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-38.kt">这里</a>获取完整的代码。</p>
 </blockquote>
-<p class="typo-para">All numbers from 1 to 5 are collected and cancellation gets detected only before return from <code>runBlocking</code>:</p>
+<p class="typo-para">收集从 1 到 5 的所有数字，并且仅在从 <code>runBlocking</code> 返回之前检测到取消：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 2
 3
@@ -2909,10 +2909,10 @@ fun main() = runBlocking&lt;Unit&gt; {
 Exception in thread "main" kotlinx.coroutines.JobCancellationException: BlockingCoroutine was cancelled; job="coroutine#1":BlockingCoroutine{Cancelled}@3327bd23
 </code></pre>
 <!--- TEST EXCEPTION -->
-<h4 class="typo-header typo-h4" id="making-busy-flow-cancellable">Making busy flow cancellable</h4>
-<p class="typo-para">In the case where you have a busy loop with coroutines you must explicitly check for cancellation.
-You can add <code>.onEach { currentCoroutineContext().ensureActive() }</code>, but there is a ready-to-use
-<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/cancellable.html">cancellable</a> operator provided to do that:</p>
+<h4 class="typo-header typo-h4" id="让繁忙的流可取消">让繁忙的流可取消</h4>
+<p class="typo-para">在协程处于繁忙循环的情况下，必须明确检测是否取消。
+可以添加 <code>.onEach { currentCoroutineContext().ensureActive() }</code>，
+但是这里提供了一个现成的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/cancellable.html">cancellable</a> 操作符来执行此操作：</p>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
@@ -2928,9 +2928,9 @@ fun main() = runBlocking&lt;Unit&gt; {
 </code></pre>
 </div>
 <blockquote class="typo-quote">
-<p class="typo-para">You can get the full code from <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-39.kt">here</a>.</p>
+<p class="typo-para">可以在<a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-flow-39.kt">这里</a>获取完整的代码。</p>
 </blockquote>
-<p class="typo-para">With the <code>cancellable</code> operator only the numbers from 1 to 3 are collected:</p>
+<p class="typo-para">使用 <code>cancellable</code> 操作符，仅收集从 1 到 3 的数字：</p>
 <pre><code class="code _highlighted" data-lang="text/plain">1
 2
 3

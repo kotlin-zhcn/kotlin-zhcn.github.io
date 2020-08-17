@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>可见性修饰符 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -846,7 +846,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </table>
             
 <p class="typo-para">Kotlin 允许通过 <em>可见性修饰符</em>（可以放置在符号声明上）强制执行符号可见性（Python 仅通过下划线约定来实现）。如果不提供可见性修饰符，那么会获得默认的 <em>可见性</em> 级别，该级别为 <em>public</em> 。</p>
-<p class="typo-para">可见性修饰符的含义取决于它是应用于顶级声明还是应用于类内的声明。对于顶级声明：</p>
+<p class="typo-para">可见性修饰符的含义取决于它是应用于顶层声明还是应用于类内的声明。对于顶层声明：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item"><code>public</code>（或省略）：此符号在整个代码库中可见</li>
 <li class="typo-list__item"><code>internal</code>：此符号仅在与声明该符号的文件属于同一 <em>模块</em>（由 IDE 或构建工具定义的源代码分组）的文件内部可见</li>
@@ -871,7 +871,7 @@ private const val secretValue = 3.14
 <p class="typo-para">构造函数也可以具有可见性修饰符。如果要在主要构造函数上放置一个（如果有许多次要构造函数，它们全部调用了不想公开的复杂主要构造函数，那么可能要这样做），需要包括 <code>constructor</code> 关键字：<code>class Person private constructor(val name: String)</code>。</p>
 <p class="typo-para">可见性修饰符不能放在局部变量上，因为它们的可见性始终限于包含块。</p>
 <p class="typo-para">属性的类型以及用于参数的类型和函数的返回类型，必须与属性/函数本身“至少一样可见”。例如，公有函数不能将私有类型作为参数。</p>
-<p class="typo-para">可见性级别仅影响 <em>符号</em> 的 <em>词法可见性</em> ——也就是说，编译器允许键入符号。它不会影响 <em>实例</em> 的使用位置：例如，公有顶级函数很可能会返回私有类的实例，只要返回类型没有提及私有类名称，而是它的公有基类即可。私有类（可能是 <code>Any</code>）或私有类实现的公有接口。当对某个子类进行<a class="typo-link" href="inheritance.html#子类化">子类化</a>时，子类也继承了它的私有成员，但是在该子类中不能直接访问它——但是，如果调用碰巧访问了私有成员的继承的公有函数，那也没关系。</p>
+<p class="typo-para">可见性级别仅影响 <em>符号</em> 的 <em>词法可见性</em> ——也就是说，编译器允许键入符号。它不会影响 <em>实例</em> 的使用位置：例如，公有顶层函数很可能会返回私有类的实例，只要返回类型没有提及私有类名称，而是它的公有基类即可。私有类（可能是 <code>Any</code>）或私有类实现的公有接口。当对某个子类进行<a class="typo-link" href="inheritance.html#子类化">子类化</a>时，子类也继承了它的私有成员，但是在该子类中不能直接访问它——但是，如果调用碰巧访问了私有成员的继承的公有函数，那也没关系。</p>
 <hr class="typo-hr"/>
 <table class="typo-table">
 <tbody>

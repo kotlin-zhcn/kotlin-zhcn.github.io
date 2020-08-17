@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>编写文档 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -845,7 +845,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <table>
             </table>
             
-<p class="typo-para">Kotlin's documentation syntax is called <em>KDoc</em>. A KDoc block is placed above the construct it describes, and begins with <code>/**</code> and ends with <code>*/</code> (possibly on one line; if not, each intermediate lines should start with an aligned asterisk). The first block of text is the summary; then, you can use <em>block tags</em> to provide information about specific parts of the construct. Some block tags are <code>@param</code> for function parameters and generic type parameters, and <code>@return</code> for the return value. You can link to identifiers inside brackets. All the text outside of links and block tag names is in Markdown format.</p>
+<p class="typo-para">Kotlin 的文档语法称为 <em>KDoc</em>。 一个 KDoc 块放置在它描述的结构上方，并以 <code>/**</code> 开始，以 <code>*/</code> 结束（可能在一行上；如果没有，则每个中间行应以对齐的星号开头）。文本的第一块是摘要。然后，可以使用 <em>块标签</em> 提供有关构造的特定部分的信息。一些块标签是用于函数参数和泛型类型参数的 <code>@param</code>，以及用于返回值的 <code>@return</code>。可以链接到方括号内的标识符。链接与块标签名称之外的所有文本均为 Markdown 格式。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">/**
  * Squares a number.
@@ -857,9 +857,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 fun square(number: Double) = number * number
 </code></pre>
 </div>
-<p class="typo-para">Package-level documentation can be provided in a separate Markdown file.</p>
-<p class="typo-para">Unlike docstrings, KDoc blocks are not available to the program at runtime.</p>
-<p class="typo-para">You can generate separate documentation files in HTML format from KDoc by using a tool called <a class="typo-link" href="https://github.com/Kotlin/dokka/blob/master/README.md">Dokka</a>.</p>
+<p class="typo-para">包级文档可以在单独的 Markdown 文件中提供。</p>
+<p class="typo-para">与文档字符串不同，KDoc 在运行时对程序不可用。</p>
+<p class="typo-para">可以使用名为 <a class="typo-link" href="https://github.com/Kotlin/dokka/blob/master/README.md">Dokka</a> 的工具从 KDoc 生成 HTML 格式的单独文档文件。</p>
 <hr class="typo-hr"/>
 <p class="typo-para"><a class="typo-link" href="scoped-resource-usage.html">← 上一节：作用域内资源用法</a></p>
 <hr class="typo-hr"/>

@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>函数式编程 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1023,7 +1023,7 @@ t = tree("root", init_root)
 </div>
 <p class="typo-para">官方文档还有一个非常酷的示例，其中包含<a class="typo-link" href="https://www.kotlincn.net/docs/reference/type-safe-builders.html">用于构造 HTML 文档的 DSL</a>。</p>
 <h2 class="typo-header typo-h2" id="内联函数">内联函数</h2>
-<p class="typo-para">Lambda 函数有一些运行时开销：它们实际上是对象，因此必须实例化，并且（与其他函数一样）调用它们也需要一点时间。如果在函数上使用 <code>inline</code> 关键字，那么会告诉编译器内联函数和其 lambda 参数（如果有的话）——也就是说，编译器会将函数的代码（及其 lambda 参数）复制到每个调用站点中，这样就消除了 lambda 实例化以及函数和 lambda 调用的开销。这将无条件地发生，这与 C 和 C++ 中的 <code>inline</code> 更多地是对编译器的提示不同。这将导致已编译代码的大小增加，但是对于某些较小但经常调用的函数可能值得这样做。</p>
+<p class="typo-para">Lambda 函数有一些运行时开销：它们实际上是对象，因此必须实例化，并且（与其他函数一样）调用它们也需要一点时间。如果在函数上使用 <code>inline</code> 关键字，那么会告诉编译器内联函数和其 lambda 参数（如果有的话）——也就是说，编译器会将函数的代码（及其 lambda 参数）复制到每个调用处，这样就消除了 lambda 实例化以及函数和 lambda 调用的开销。这将无条件地发生，这与 C 和 C++ 中的 <code>inline</code> 更多地是对编译器的提示不同。这将导致已编译代码的大小增加，但是对于某些较小但经常调用的函数可能值得这样做。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">inline fun time(action: () -&gt; Unit): Long {
     val start = Instant.now().toEpochMilli()
@@ -1062,7 +1062,7 @@ println(t)
 </code></pre>
 </div>
 <p class="typo-para">第一个 <code>this</code> 是指 <code>maybeNull</code>，第二个是 <code>firstFunction()</code> 的结果，<code>result</code> 将是 <code>secondFunction()</code> 的结果（如果 <code>maybeNull</code> 或任何中间结果为空，那么返回空）。</p>
-<p class="typo-para"><code>run()</code> 的语法变体是 <code>let()</code>，它以普通函数类型而不是带有接收器的函数类型作为参数，因此可能为空的表达式将称为 <code>it</code> 而不是 <code>this</code>。 。</p>
+<p class="typo-para"><code>run()</code> 的语法变体是 <code>let()</code>，它以普通函数类型而不是带有接收者的函数类型作为参数，因此可能为空的表达式将称为 <code>it</code> 而不是 <code>this</code>。 。</p>
 <p class="typo-para">如果有一个需要多次使用的表达式，但是不必为它提供一个变量名并进行空检测，<code>run()</code> 与 <code>let()</code> 都非常有用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val result = someExpression?.let {

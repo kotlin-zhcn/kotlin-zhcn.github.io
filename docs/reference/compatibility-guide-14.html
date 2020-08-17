@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>Compatibility Guide for Kotlin 1.4 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1581,6 +1581,92 @@ disable several new language features.</li>
 disable several new language features.</li>
 </ul>
 </blockquote>
+<h3 class="typo-header typo-h3" id="preserve-intersection-type-for-covariant-types-after-unchecked-cast">Preserve intersection type for covariant types after unchecked cast</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-37280">KT-37280</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, uchecked casts of covariant types produce the intersection type for smart casts,
+ not the type of the unchecked cast.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="type-variable-leaks-from-builder-inference-because-of-using-this-expression">Type variable leaks from builder inference because of using <code>this</code> expression</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-32126">KT-32126</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, using <code>this</code> inside builder functions like <code>sequence {}</code> is prohibited if there are no other proper constraints</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="wrong-overload-resolution-for-contravariant-types-with-nullable-type-arguments">Wrong overload resolution for contravariant types with nullable type arguments</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-31670">KT-31670</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, if two overloads of a function that takes contravariant type arguments differ only
+by the nullability of the type (such as <code>In&lt;T&gt;</code> and <code>In&lt;T?&gt;</code>), the nullable type is considered more specific.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="builder-inference-with-non-nested-recursive-constraints">Builder inference with non-nested recursive constraints</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-34975">KT-34975</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, builder functions such as <code>sequence {}</code> with type that depends on a recursive
+constraint inside the passed lambda cause a compiler error.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="eager-type-variable-fixation-leads-to-a-contradictory-constraint-system">Eager type variable fixation leads to a contradictory constraint system</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-25175">KT-25175</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, the type inference in certain cases works less eagerly allowing to find the 
+constraint system that is not contradictory.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: old behavior (see details in the issue)</li>
+<li class="typo-list__item">&gt;= 1.4: behavior changed,
+<code>-XXLanguage:-NewInference</code> can be used to temporarily revert to pre-1.4 behavior. Note that this flag will also
+disable several new language features.</li>
+</ul>
+<h3 class="typo-header typo-h3" id="prohibit-tailrec-modifier-onopen-functions">Prohibit <code>tailrec</code> modifier on<code>open</code> functions</h3>
+</blockquote>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-18541">KT-18541</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Core language</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: source</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: since Kotlin 1.4, functions can't have <code>open</code> and <code>tailrec</code> modifiers at the same time.</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: report a warning on functions that have <code>open</code> and <code>tailrec</code> modifiers together (error in the progressive mode).</li>
+<li class="typo-list__item">&gt;= 1.4: raise this warning to an error.</li>
+</ul>
+</blockquote>
 <h3 class="typo-header typo-h3" id="the-instance-field-of-a-companion-object-more-visible-than-the-companion-object-class-itself">The <code>INSTANCE</code> field of a companion object more visible than the companion object class itself</h3>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-11567">KT-11567</a></p>
@@ -1719,6 +1805,19 @@ disable several new language features.</li>
 <li class="typo-list__item">&gt;= 1.4: behavior changed</li>
 </ul>
 </blockquote>
+<h3 class="typo-header typo-h3" id="unify-exceptions-from-null-checks">Unify exceptions from null checks</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22275">KT-22275</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Starting from Kotlin 1.4, all runtime null checks will throw a <code>java.lang.NullPointerException</code></p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: runtime null checks throw different exceptions, such as <code>KotlinNullPointerException</code>, <code>IllegalStateException</code>, 
+<code>IllegalArgumentException</code>, and <code>TypeCastException</code></li>
+<li class="typo-list__item">&gt;= 1.4: all runtime null checks throw a <code>java.lang.NullPointerException</code></li>
+</ul>
+</blockquote>
 <h3 class="typo-header typo-h3" id="comparing-floating-point-values-in-arraylist-operations-contains-indexof-lastindexof-ieee-754-or-total-order">Comparing floating point values in array/list operations <code>contains</code>, <code>indexOf</code>, <code>lastIndexOf</code>: IEEE 754 or total order</h3>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28753">KT-28753</a></p>
@@ -1827,19 +1926,6 @@ in the title case (<code>ǅ</code> instead of <code>Ǆ</code>)</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt; 1.4: digraphs are capitalized in the upper case (<code>Ǆ</code>)</li>
 <li class="typo-list__item">&gt;= 1.4: digraphs are capitalized in the title case (<code>ǅ</code>)</li>
-</ul>
-</blockquote>
-<h3 class="typo-header typo-h3" id="unify-exceptions-from-null-checks">Unify exceptions from null checks</h3>
-<blockquote class="typo-quote">
-<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-22275">KT-22275</a></p>
-<p class="typo-para"><strong class="typo-strong">Component</strong>: Kotlin/JVM</p>
-<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
-<p class="typo-para"><strong class="typo-strong">Short summary</strong>: Starting from Kotlin 1.4, all runtime null checks will throw a <code>java.lang.NullPointerException</code></p>
-<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">&lt; 1.4: runtime null checks throw different exceptions, such as <code>KotlinNullPointerException</code>, <code>IllegalStateException</code>, 
-<code>IllegalArgumentException</code>, and <code>TypeCastException</code></li>
-<li class="typo-list__item">&gt;= 1.4: all runtime null checks throw a <code>java.lang.NullPointerException</code></li>
 </ul>
 </blockquote>
 

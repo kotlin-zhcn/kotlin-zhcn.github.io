@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=f1d24920a50fb25b88bd97bcf29748e9">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=e44e3d4fd9246ec9985fe88b4baf2a72">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>成员引用与反射 - Kotlin 语言中文站</title>
@@ -75,8 +75,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version" data-nosnippet="">1.3.72</a>
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.3.72" target="_blank" class="global-header-logo__version">v1.3.72</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -846,7 +846,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </table>
             
 <h2 class="typo-header typo-h2" id="属性引用">属性引用</h2>
-<p class="typo-para">Consider this class:</p>
+<p class="typo-para">思考此类：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">class Person(val name: String, var age: Int) {
     fun present() = "I'm $name, and I'm $age years old"
@@ -854,13 +854,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 }
 </code></pre>
 </div>
-<p class="typo-para">You can get reference to its <code>name</code> property like this:</p>
+<p class="typo-para">可以像这样获取其 <code>name</code> 属性的引用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val prop = Person::name
 </code></pre>
 </div>
-<p class="typo-para">The result is an object which represents a reference to the property (the "Platonic ideal" property, not a property on a particular instance). There's a type hierarchy for property objects: the base interface is <code>KProperty</code>, which lets you get metadata about the property, such as its name and type. If you want to use the property object to read or modify the property's value in an object, you need to use a subinterface that specifies what kind of property it is. Immutable properties typically are <code>KProperty1&lt;R, V&gt;</code>, and mutable properties typically are <code>KMutableProperty1&lt;R, V&gt;</code>. Both of these are generic interfaces, with <code>R</code> being the receiver type (the type on which the property is declared, in this case <code>Person</code>) and <code>V</code> being the type of the property's value.</p>
-<p class="typo-para">Given an <code>R</code> instance, <code>KProperty1&lt;R, V&gt;</code> will let you read the value that the property has in that instance by calling <code>get()</code>, and <code>KMutableProperty1&lt;R, V&gt;</code> will also let you change the property value in the instance by calling <code>set()</code>. Using this, we can start writing functions that manipulate properties without knowing in advance which property (or which class) they are going to deal with:</p>
+<p class="typo-para">结果是一个对象，该对象表示对该属性的引用（“柏拉图理想”属性，而不是特定实例上的属性）。属性对象有一个类型层次结构：基本接口是 <code>KProperty</code>，它能够获取有关属性的元数据，例如名称与类型。如果要使用属性对象读取或修改对象中属性的值那么需要使用一个子接口来指定它是什么类型的属性。不可变属性通常是 <code>KProperty1&lt;R, V&gt;</code>，可变属性通常是 <code>KMutableProperty1&lt;R, V&gt;</code>。这两个都是通用接口，其中 <code>R</code> 是接收者类型（在该类型中声明属性，在这种情况下是 <code>Person</code>），而 <code>V</code> 是属性值的类型。</p>
+<p class="typo-para">给定一个 <code>R</code> 实例，<code>KProperty1&lt;R, V&gt;</code> 将允许通过调用 <code>get()</code> 来读取该实例中该属性具有的值，而  <code>KMutableProperty1&lt;R, V&gt;</code> 还可以通过调用 <code>set()</code> 来更改实例中的属性值。使用该实例，可以开始编写用于操作属性的函数，而无需事先知道它们将要处理哪个属性（或哪个类）：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;T&gt; printProperty(instance: T, prop: KProperty1&lt;T, *&gt;) {
     println("${prop.name} = ${prop.get(instance)}")
@@ -878,10 +878,10 @@ printProperty(person, Person::name)
 incrementProperty(person, Person::age)
 </code></pre>
 </div>
-<p class="typo-para">You can also get a reference to a top-level property by just prefixing the property name with <code>::</code> (e.g. <code>::foo</code>), and its type will be <code>KProperty0&lt;V&gt;</code> or <code>KMutableProperty0&lt;V&gt;</code>.</p>
+<p class="typo-para">还可以通过在属性名称前面加上 <code>::</code>（例如：<code>::foo</code>）来获得对顶层属性的引用，其类型将为 <code>KProperty0&lt;V&gt;</code> 或 <code>KMutableProperty0&lt;V&gt;</code>。</p>
 <h2 class="typo-header typo-h2" id="函数引用">函数引用</h2>
-<p class="typo-para">Functions act similarly to properties, but can be referenced as two different kinds of types.</p>
-<p class="typo-para">If you want to look at the metadata of a function (e.g. its name), use <code>KFunction&lt;V&gt;</code> or one of its subinterfaces, where <code>V</code> is the function's return type. Here's a basic example:</p>
+<p class="typo-para">函数的作用类似于属性，但可以作为两种不同类型引用。</p>
+<p class="typo-para">如果要查看函数的元数据（例如：函数名称），请使用 <code>KFunction&lt;V&gt;</code> 或其子接口之一，其中 <code>V</code> 是函数的返回类型。 这是一个基本示例：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val person = Person("Lisa", 32)
 val g: KFunction&lt;String&gt; = Person::greet
@@ -889,9 +889,9 @@ println(g.name)
 println(g.call(person, "Anne"))
 </code></pre>
 </div>
-<p class="typo-para">Invoking <code>call()</code> on a function object will call the function. If it is a member function, the first parameter must be the <em>receiver</em> (the object on which the function is to be invoked, in this case <code>person</code>), and the remaining parameters must be the ordinary function parameters (in this case <code>"Anne"</code>).</p>
-<p class="typo-para">Since the parameter types are not encoded as generic type parameters in <code>KFunction&lt;V&gt;</code>, you won't get compile-time type validation of the parameters you pass. In order to encode the parameter types, use one of the subinterfaces <code>KFunction1&lt;A, V&gt;</code>, <code>KFunction2&lt;A, B, V&gt;</code>, <code>KFunction3&lt;A, B, C, V&gt;</code>, and so on, depending on how many parameters the function has got. Keep in mind that if you are referencing a member function, the first generic type parameter is the receiver type. For example, <code>KFunction3&lt;A, B, C, V&gt;</code> may reference either an ordinary function that takes <code>A</code>, <code>B</code>, and <code>C</code> as parameters and returns <code>V</code>, or it may reference a member function on <code>A</code> that takes <code>B</code> and <code>C</code> as parameters and returns <code>V</code>. When you use any of these types, you can call the function through its reference as if the reference were a function, e.g. <code>function(a, b)</code>, and this call will be type-safe.</p>
-<p class="typo-para">You can also reference a member property directly on an object, in which case you get a member function reference that is already bound to its receiver, so that you don't need the receiver type in the signature. Here's an example of both approaches:</p>
+<p class="typo-para">在函数对象上调用 <code>call()</code> 将调用该函数。如果它是成员函数那么第一个参数必须是 <em>接收者</em>（要在其上调用函数的对象，在本例中为 <code>person</code>），其余参数必须为普通函数参数（在本例中为 <code>"Anne"</code>）。</p>
+<p class="typo-para">由于在 <code>KFunction&lt;V&gt;</code> 中未将参数类型编码为泛型参数，因此无法对传递的参数进行编译时类型验证。为了对参数类型进行编码，请使用以下子接口之一：<code>KFunction1&lt;A, V&gt;</code>、<code>KFunction2&lt;A, B, V&gt;</code>、<code>KFunction3&lt;A, B, C, V&gt;</code>、依此类推，这取决于函数有多少个参数。请记住，如果要引用成员函数那么第一个泛型类型参数是接收者类型。例如：<code>KFunction3&lt;A, B, C, V&gt;</code> 可以引用一个普通函数，该函数以 <code>A</code>、<code>B</code>、<code>C</code> 为参数并返回 <code>V</code>，也可以引用 <code>A</code> 上的一个成员函数，该函数以 <code>B</code>、<code>C</code> 为参数并返回 <code>V</code>。当使用这些类型中的任何一种时，都可以通过其引用来调用该函数，就好像该引用是一个函数一样。例如：<code>function(a, b)</code>，并且此调用将是类型安全的。</p>
+<p class="typo-para">还可以直接在对象上引用成员属性，在这种情况下，将获得已绑定到其接收者的成员函数引用，因此在签名中不需要接收者类型。这是这两种方法的示例：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun &lt;A, V&gt; callAndPrintOneParam(function: KFunction1&lt;A, V&gt;, a: A): V {
     val result = function(a)
@@ -910,36 +910,36 @@ callAndPrintOneParam(p::greet, "Alice")
 callAndPrintTwoParam(Person::greet, person, "Lisa")
 </code></pre>
 </div>
-<p class="typo-para">If you only want to call the function and don't care about the metadata, use a function type, e.g. <code>(A, B) -&gt; V</code> for an ordinary function reference or a bound member function reference, or <code>A.(B, C) -&gt; V</code> for an unbound member function reference on <code>A</code>. Note that <code>KFunction&lt;V&gt;</code> and its subinterfaces are only available for declared functions (obtained either by explicitly referencing it in the code, or through reflection, as shown later) - only function types are available for function literals (lambda expressions or anonymous functions).</p>
-<p class="typo-para">You can get a reference to an top-level function by prefixing the function name with <code>::</code> (e.g. <code>::foo</code>).</p>
+<p class="typo-para">如果只想调用函数而不关心元数据，请使用函数类型，例如：<code>(A, B) -&gt; V</code> 用于普通函数引用或绑定成员函数引用，或 <code>A.(B, C) -&gt; V</code> 用于 <code>A</code> 上的未绑定成员函数引用。请注意，<code>KFunction&lt;V&gt;</code> 及其子接口仅可用于已声明的函数（通过在代码中显式引用它或通过反射来获得，如稍后所示）——只有函数类型可用于函数字面量（lambda 表达式或匿名函数）。</p>
+<p class="typo-para">可以在函数名称前加上 <code>::</code>（例如：<code>::foo</code>），以获得对顶层函数的引用。</p>
 <h2 class="typo-header typo-h2" id="由类引用获取成员引用">由类引用获取成员引用</h2>
-<p class="typo-para">While it is possible in Kotlin to dynamically create new classes at runtime or to add members to a class, it's tricky and slow, and generally discouraged. However, it is easy to dynamically inspect an object to see e.g. what properties and functions it contains and which annotations exist on them. This is called <em>reflection</em>, and it's not very performant, so avoid it unless you really need it.</p>
-<p class="typo-para">Kotlin has got its own reflection library (<code>kotlin-reflect.jar</code> must be included in your build). When targeting the JVM, you can also use the Java reflection facilities. Note that the Kotlin reflection isn't quite feature-complete yet - in particular, you can't use it to inspect built-in classes like <code>String</code>.</p>
-<p class="typo-para">Warning: using reflection is usually the wrong way to solve problems in Kotlin! In particular, if you have several classes that all have some common properties/functions and you want to write a function that can take an instance of any of those classes and use those properties, the correct approach is to define an interface with the common properties/functions and make all the relevant classes implement it; the function can then take that interface as a parameter. If you don't control those classes, you can use the <a class="typo-link" href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter pattern</a> and write wrapper classes that implement the interface - this is very easy thanks to Kotlin's <a class="typo-link" href="inheritance.html#委托">delegation feature</a>. You can also get a lot of leverage out of using generics in clever ways.</p>
-<p class="typo-para">Appending <code>::class</code> to a class name will give you a <code>KClass&lt;C&gt;</code> metadata object for that class. The generic type parameter <code>C</code> is the class itself, so you can use <code>KClass&lt;*&gt;</code> if you're writing a function that can work with metadata for any class, or you can make a generic function with a type parameter <code>T</code> and parameter type <code>KClass&lt;T&gt;</code>. From this, you can obtain references to the members of the class. The most interesting properties on <code>KClass</code> are probably <code>primaryConstructor</code>, <code>constructors</code>, <code>memberProperties</code>, <code>declaredMemberProperties</code>, <code>memberFunctions</code>, and <code>declaredMemberFunctions</code>. The difference between e.g. <code>memberProperties</code> and <code>declaredMemberProperties</code> is that the former includes inherited properties, while the latter only includes the properties that have been declared in the class' own body.</p>
-<p class="typo-para">In this example, using <code>Person</code> and <code>callAndPrintTwoParam()</code> from the previous section, we locate a member function reference by name and call it:</p>
+<p class="typo-para">尽管在 Kotlin 中可以在运行时动态创建新类或将成员添加到类中，但这既棘手又缓慢，并且通常不鼓励这样做。然而，动态地探查一个对象是很容易的，例如：看它包含什么属性和函数，以及它们上面有什么注解。这被称为 <em>反射</em>，它不是很高效，因此除非真正需要它，否则请避免使用它。</p>
+<p class="typo-para">Kotlin 有自己的反射库（构建中必须包含 <code>kotlin-reflect.jar</code>）。以 JVM 为目标时，还可以使用 Java 反射工具。请注意，Kotlin 反射特性还不是很完善——特别是，不能使用它来探查诸如 <code>String</code> 之类的内置类。</p>
+<p class="typo-para">警告：使用反射通常是解决 Kotlin 问题的错误方法！特别是，如果有几个都具有某些公共属性/函数的类，并且想要编写一个可以接受任何这些类的实例并使用这些属性的函数那么正确的方法是用通用的属性/函数定义一个接口，并使所有相关的类都实现它；然后，该函数可以将该接口作为参数。如果不控制这些类那么可以使用<a class="typo-link" href="https://zh.wikipedia.org/wiki/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F">适配器模式</a>并编写实现该接口的包装器类——由于 Kotlin 的<a class="typo-link" href="inheritance.html#委托">委托特性</a>，这非常容易。通过巧妙地使用泛型，还可以获得很多优势。</p>
+<p class="typo-para">在类名后附加 <code>::class</code> 将提供该类的 <code>KClass&lt;C&gt;</code> 元数据对象。通用类型参数 <code>C</code> 是类本身，因此，如果要编写可用于任何类的元数据的函数那么可以使用 <code>KClass&lt;*&gt;</code>，或者可以使用类型参数 <code>T</code> 与参数类型 <code>KClass&lt;T&gt;</code> 来创建泛型函数。由此，可以获得对类成员的引用。<code>KClass</code> 上最有趣的属性可能是 <code>primaryConstructor</code>、<code>constructors</code>、<code>memberProperties</code>、<code>declaredMemberProperties</code>、<code>memberFunctions</code> 与 <code>declaredMemberFunctions</code>。例如：<code>memberProperties</code> 与 <code>declaredMemberProperties</code> 之间的区别在于前者包括继承的属性，而后者只包括已经在类自己的主体中声明的属性。</p>
+<p class="typo-para">在此示例中，使用上一节中的 <code>Person</code> 与 <code>callAndPrintTwoParam()</code>，按名称查找成员函数引用并对其进行调用：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val f = Person::class.memberFunctions.single { it.name == "greet" } as KFunction2&lt;Person, String, String&gt;
 callAndPrintTwoParam(f, person, "Lisa")
 </code></pre>
 </div>
-<p class="typo-para">The signature of <code>greet()</code> is <code>KFunction2&lt;Person, String, String&gt;</code> because it's a function on <code>Person</code> that takes a <code>String</code> and returns a <code>String</code>.</p>
-<p class="typo-para">Constructor references are effectively factory functions for creating new instances of a class, which might come in handy:</p>
+<p class="typo-para"><code>greet()</code> 的签名为 <code>KFunction2&lt;Person, String, String&gt;</code>，因为它是 <code>Person</code> 上的一个函数，它接受 <code>String</code> 并返回 <code>String</code>。</p>
+<p class="typo-para">构造函数引用实际上是工厂函数，用于创建类的新实例，这可能会派上用场：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val ctor = Person::class.primaryConstructor!! as (String, Int) -&gt; Person
 val newPerson = ctor("Karen", 45)
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="java-风格反射">Java 风格反射</h2>
-<p class="typo-para">If you're targeting the JVM platform, you can also use Java's reflection system directly. In this example, we grab a function reference from an object's class by specifying the function's name as a string (if the function takes parameters, you also need to specify their types), and then we call it. Note that we didn't mention <code>String</code> anywhere - this technique works without knowing what the object's class is, but it will raise an exception if the object's class doesn't have the requested function. However, Java-style function references do not have type information, so you won't get verification of the parameter types, and you must cast the return value:</p>
+<p class="typo-para">如果以 JVM 平台为目标，那么还可以直接使用 Java 的反射系统。在此示例中，通过将函数名称指定为字符串来从对象的类中获取函数引用（如果函数带有参数，那么还需要指定其类型），然后调用它。注意，在任何地方都没有提到 <code>String</code> ——这种技术在不知道对象的类是什么的情况下起作用，但是如果对象的类没有所请求的函数，将会引发异常。但是，Java 风格的函数引用没有类型信息，因此将无法验证参数类型，并且必须强制转换返回值：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">val s = "Hello world"
 val length = s.javaClass.getMethod("length")
 val x = length.invoke(s) as Int
 </code></pre>
 </div>
-<p class="typo-para">If you don't have an instance of the class, you can get the class metadata with <code>String::class.java</code> (but you can't invoke any of its members until you have an instance).</p>
-<p class="typo-para">If you need to look up the class dynamically as well, you can use <code>Class.forName()</code> and supply the fully-qualified name of the class.</p>
+<p class="typo-para">如果没有该类的实例，那么可以使用 <code>String::class.java</code> 获取该类的元数据（但是只有在拥有实例后才能调用其任何成员）。</p>
+<p class="typo-para">如果还需要动态查找该类，那么可以使用 <code>Class.forName()</code> 并提供该类的全限定名称。</p>
 <hr class="typo-hr"/>
 <table class="typo-table">
 <tbody>
