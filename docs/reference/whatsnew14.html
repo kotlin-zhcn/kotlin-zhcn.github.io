@@ -1,0 +1,3043 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1000, initial-scale=1">
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5W8DZRW');</script>
+<!-- End Google Tag Manager -->
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//resources.jetbrains.com">
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="Shortcut Icon" href="/assets/images/favicon.ico" type="image/x-icon"/>
+<link rel="apple-touch-icon" href="/assets/images/apple-touch-icon.png"/>
+<link rel="apple-touch-icon" sizes="72x72"
+      href="/assets/images/apple-touch-icon-72x72.png"/>
+<link rel="apple-touch-icon" sizes="114x114"
+      href="/assets/images/apple-touch-icon-114x114.png"/>
+<link rel="apple-touch-icon" sizes="144x144"
+      href="/assets/images/apple-touch-icon-144x144.png"/>
+
+<!-- Social Media tag Starts -->
+<!-- Place this data between the <head> tags of your website -->
+<!-- Open Graph data -->
+<meta property="og:title" content=""/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://www.kotlincn.net/docs/reference/whatsnew14.html"/>
+<meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
+    <meta property="og:description" content="">
+<meta property="og:site_name" content="Kotlin"/>
+
+<!-- Twitter Card data -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@kotlin">
+<meta name="twitter:title" content="">
+    <meta name="twitter:description" content="">
+<meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
+<!-- Social Media tag Ends -->
+
+
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9fd19d0e1fddd9585c5461203e2d99b3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+
+
+    <title>Kotlin 1.4 的新特性&#34; - Kotlin 语言中文站</title>
+
+    <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
+</head>
+<body class=" page-old-styled ">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5W8DZRW" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<div class="global-layout">
+    <div class="global-header-panel banner-nav">
+        <div class="g-layout">
+<div class="global-nav banner-container">
+    <a class="banner-text" href="https://item.jd.com/12898592.html" target="_blank">
+        <div class="banner-item title">
+            新书上架：《深入理解Kotlin协程》（中文社区负责人霍丙乾著）
+        </div>
+        <div class="banner-item underline">
+            立即购买
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+</div>        </div>
+    </div>
+<header class="global-header">
+    <div class="global-header-panel">
+        <div class="g-layout" data-nosnippet="true">
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" target="_blank" class="global-header-logo__version">v1.4.0</a>
+<nav class="global-nav">
+    <div class="nav-links">
+            <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
+                博客
+            </a>
+            <a href="https://discuss.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
+                论坛
+            </a>
+            <a href="/docs/reference/" class="nav-item ">
+                学习
+            </a>
+            <a href="/community/" class="nav-item ">
+                社区
+            </a>
+            <a href="/education/" class="nav-item ">
+                教学
+            </a>
+            <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
+                演练
+            </a>
+    </div>
+    <div class="search-button">
+        <div class="icon"></div>
+    </div>
+</nav>        </div>
+    </div>
+</header>        <div class="g-layout global-content">
+            <nav class="docs-nav-new">
+                <div class="kto-tabs">
+                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
+                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
+                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
+                </div>
+            </nav>
+
+    <div class="g-grid">
+
+        <aside class="g-3">
+            <div class="js-side-tree-nav">
+                    <nav class="side-tree-nav">
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="概述">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">概述</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/server-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于服务器端开发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/android-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于 Android 开发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于 JavaScript 开发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于原生开发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/data-science-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 用于数据科学</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">协程</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/multiplatform.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="新特性">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">新特性</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">1.4 的新特性</div>
+            </div>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew13.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.3 的新特性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew12.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.2 的新特性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew11.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">1.1 的新特性</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="开始">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">开始</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/basic-syntax.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基本语法</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/idioms.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">习惯用法</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coding-conventions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编码规范</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="基础">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">基础</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/basic-types.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基本类型</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/packages.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">包与导入</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/control-flow.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">控制流</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/returns.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">返回与跳转</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="类与对象">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">类与对象</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">类与继承</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/properties.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">属性与字段</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/interfaces.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">接口</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/fun-interfaces.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">函数式（SAM）接口</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/visibility-modifiers.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">可见性修饰符</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/extensions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">扩展</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/data-classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">数据类</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/sealed-classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">密封类</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/generics.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">泛型</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/nested-classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">嵌套类</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/enum-classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">枚举类</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/object-declarations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">对象</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/type-aliases.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">类型别名</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/inline-classes.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">内联类</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/delegation.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">委托</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/delegated-properties.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">委托属性</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="函数与 Lambda 表达式">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">函数与 Lambda 表达式</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">函数</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/lambdas.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Lambda 表达式</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/inline-functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">内联函数</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="集合">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">集合</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collections-overview.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">集合概述</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/constructing-collections.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">构造集合</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/iterators.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">迭代器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/ranges.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">区间与数列</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/sequences.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">序列</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-operations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">操作概述</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-transformations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">转换</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-filtering.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">过滤</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-plus-minus.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">加减操作符</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-grouping.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">分组</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-parts.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">取集合的一部分</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-elements.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">取单个元素</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-ordering.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">排序</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-aggregate.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">聚合操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/collection-write.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">集合写操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/list-operations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">List 相关操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/set-operations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Set 相关操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/map-operations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Map 相关操作</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="协程">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">协程</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/coroutines-guide.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">协程指南</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/basics.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">基础</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/cancellation-and-timeouts.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">取消与超时</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/composing-suspending-functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">组合挂起函数</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/coroutine-context-and-dispatchers.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">协程上下文与调度器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/flow.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">异步流</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/channels.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">通道</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/exception-handling.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">异常处理与监督</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/shared-mutable-state-and-concurrency.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">共享的可变状态与并发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/coroutines/select-expression.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Select 表达式（实验性的）</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="多平台程序设计">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">多平台程序设计</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-intro.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin Multiplatform</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-create-lib.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Create a multiplatform library</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-discover-project.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Discover your project</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-share-on-platforms.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Share code on platforms</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-connect-to-apis.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Connect to platform-specific APIs</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-set-up-targets.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Set up targets manually</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-add-dependencies.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Add dependencies</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-configure-compilations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Configure compilations</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-run-tests.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Run tests</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-publish-lib.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Publish a multiplatform library</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-build-native-binaries.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Build final native binaries</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-supported-platforms.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Supported platforms</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/mpp-dsl-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">多平台 Gradle DSL 参考</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/migrating-multiplatform-project-to-14.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Migrating to Kotlin 1.4</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="更多语言结构">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">更多语言结构</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/multi-declarations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">解构声明</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/typecasts.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">类型检测与转换</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/this-expressions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">This 表达式</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/equality.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">相等性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/operator-overloading.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">操作符重载</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/null-safety.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">空安全</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/exceptions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">异常</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/annotations.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">注解</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/reflection.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">反射</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/serialization.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">序列化</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/scope-functions.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">作用域函数</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/type-safe-builders.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">类型安全的构建器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/opt-in-requirements.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">选择加入要求</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="核心库">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">核心库</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="https://kotlinlang.org/api/latest/jvm/stdlib/index.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">标准库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="https://kotlinlang.org/api/latest/kotlin.test/index.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">kotlin.test</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="参考">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">参考</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/keyword-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">关键字与操作符</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/grammar.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">语法</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/code-style-migration-guide.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编码风格约定</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="Java 互操作">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">Java 互操作</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/java-interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 中调用 Java</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/java-to-kotlin-interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Java 中调用 Kotlin</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="JavaScript">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">JavaScript</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-project-setup.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">搭建项目</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/dynamic-type.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">动态类型</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 中调用 JavaScript</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-to-kotlin-interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">JavaScript 中调用 Kotlin</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-modules.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">JavaScript 模块</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-reflection.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">JavaScript 反射</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/javascript-dce.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">JavaScript DCE</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-ir-compiler.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">IR 编译器</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/js-external-declarations-with-dukat.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">用 Dukat 生成外部声明</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="原生">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">原生</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/concurrency.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">并发</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/immutability.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">不可变性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/libraries.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/platform_libs.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">平台库</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/c_interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 C 语言互操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/objc_interop.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 Objective-C 及 Swift 互操作</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/cocoapods.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">CocoaPods 集成</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/gradle_plugin.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Gradle 插件</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/debugging.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">调试</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/native/faq.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">FAQ</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="工具">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">工具</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/using-gradle.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Gradle</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/using-maven.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Maven</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/using-ant.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Ant</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compiler-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编译器选项</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compiler-plugins.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">编译器插件</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/kapt.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kapt</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/kotlin-doc.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Dokka</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/kotlin-osgi.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">OSGi</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="演进">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">演进</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/kotlin-evolution.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 语言演进</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/evolution/components-stability.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 组件的稳定性</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compatibility-guide-13.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 1.3 的兼容性指南</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/compatibility-guide-14.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 1.4 的兼容性指南</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="常见问题">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">常见问题</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/faq.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">FAQ</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/comparison-to-java.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 Java 比较</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/comparison-to-scala.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">与 Scala 比较【官方已删除】</span>
+            </a>
+    </div>
+
+    </div>
+
+    </nav>
+
+
+                <ul>
+                  <li><a href="/docs/kotlin-docs.pdf" class="reference-pdf-link">
+                    <span class="icon"></span>
+                    <span class="text">完整 Kotlin 参考（PDF）</span>
+                  </a></li>
+                  <li><a href="https://www.gitbook.com/download/pdf/book/hltj/kotlin-reference-chinese" class="reference-pdf-link">
+                    <span class="icon"></span>
+                    <span class="text">完整 Kotlin 参考（字大PDF）</span>
+                  </a></li>
+                  <li><a href="https://www.gitbook.com/download/epub/book/hltj/kotlin-reference-chinese" class="reference-pdf-link">
+                    <span class="icon"></span>
+                    <span class="text">完整 Kotlin 参考（ePUB）</span>
+                  </a></li>
+                  <li><a href="https://www.gitbook.com/download/mobi/book/hltj/kotlin-reference-chinese" class="reference-pdf-link">
+                    <span class="icon"></span>
+                    <span class="text">完整 Kotlin 参考（Mobi）</span>
+                  </a></li>
+                </ul>
+            </div>
+        </aside>
+
+        <article role="main" class="page-content g-9">
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/whatsnew14.md"
+   class="page-link-to-github"
+   target="_blank"
+   title="在 GitHub 上编辑本页">
+        <i class="github-icon"></i>
+        <span class="text">改进翻译</span>
+</a>
+                
+<h1 class="typo-header typo-h1" id="kotlin-140-的新特性">Kotlin 1.4.0 的新特性</h1>
+<p class="typo-para">In Kotlin 1.4.0, we ship a number of improvements in all of its components, with the <a class="typo-link" href="https://blog.jetbrains.com/kotlin/2020/08/kotlin-1-4-released-with-a-focus-on-quality-and-performance/">focus on quality and performance</a>.
+Below you will find the list of the most important changes in Kotlin 1.4.0.</p>
+<p class="typo-para"><a class="typo-link" href="#language-features-and-improvements"><strong class="typo-strong">Language features and improvements</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#sam-conversions-for-kotlin-interfaces">SAM conversions for Kotlin interfaces</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#explicit-api-mode-for-library-authors">Explicit API mode for library authors</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#mixing-named-and-positional-arguments">Mixing named and positional arguments</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#trailing-comma">Trailing comma</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#callable-reference-improvements">Callable reference improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#using-break-and-continue-inside-when-expressions-included-in-loops"><code>break</code> and <code>continue</code> inside <code>when</code> included in loops</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#new-tools-in-the-ide"><strong class="typo-strong">New tools in the IDE</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-flexible-project-wizard">New flexible Project Wizard</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#coroutine-debugger">Coroutine Debugger</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#new-compiler"><strong class="typo-strong">New compiler</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-more-powerful-type-inference-algorithm">New, more powerful type inference algorithm</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#unified-backends-and-extensibility">New JVM and JS IR backends</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#kotlinjvm"><strong class="typo-strong">Kotlin/JVM</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-jvm-ir-backend">New JVM IR backend</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-modes-for-generating-default-methods">New modes for generating default methods in interfaces</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#unified-exception-type-for-null-checks">Unified exception type for null checks</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#type-annotations-in-the-jvm-bytecode">Type annotations in the JVM bytecode</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#kotlinjs"><strong class="typo-strong">Kotlin/JS</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-gradle-dsl">New Gradle DSL</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-js-ir-backend">New JS IR backend</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#kotlinnative"><strong class="typo-strong">Kotlin/Native</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#support-for-kotlins-suspending-functions-in-swift-and-objective-c">Support for suspending functions in Swift and Objective-C</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#objective-c-generics-support-by-default">Objective-C generics support by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#exception-handling-in-objective-cswift-interop">Exception handling in Objective-C/Swift interop</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#generate-release-dsyms-on-apple-targets-by-default">Generate release <code>.dSYM</code>s on Apple targets by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#performance-improvements">Performance improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#simplified-management-of-cocoapods-dependencies">Simplified management of CocoaPods dependencies</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#kotlin-multiplatform"><strong class="typo-strong">Kotlin Multiplatform</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#sharing-code-in-several-targets-with-the-hierarchical-project-structure">Sharing code in several targets with the hierarchical project structure</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#leveraging-native-libs-in-the-hierarchical-structure">Leveraging native libs in the hierarchical structure</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#specifying-dependencies-only-once">Specifying kotlinx dependencies only once</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#gradle-project-improvements"><strong class="typo-strong">Gradle project improvements</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#dependency-on-the-standard-library-added-by-default">Dependency on the standard library is now added by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#minimum-gradle-version-for-kotlin-projects">Kotlin projects require a recent version of Gradle</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#improved-gradlekts-support-in-the-ide">Improved support for Kotlin Gradle DSL in the IDE</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#standard-library"><strong class="typo-strong">Standard library</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#common-exception-processing-api">Common exception processing API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-functions-for-arrays-and-collections">New functions for arrays and collections</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#functions-for-string-manipulations">Functions for string manipulations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#bit-operations">Bit operations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#delegated-properties-improvements">Delegated properties improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#converting-from-ktype-to-java-type">Converting from KType to Java Type</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#proguard-configurations-for-kotlin-reflection">Proguard configurations for Kotlin reflection</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#improving-the-existing-api">Improving the existing API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#module-info-descriptors-for-stdlib-artifacts">module-info descriptors for stdlib artifacts</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#deprecations">Deprecations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#exclusion-of-the-deprecated-experimental-coroutines">Exclusion of the deprecated experimental coroutines</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#stable-json-serialization"><strong class="typo-strong">Stable JSON serialization</strong></a></p>
+<p class="typo-para"><a class="typo-link" href="#scripting-and-repl"><strong class="typo-strong">Scripting and REPL</strong></a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-dependencies-resolution-api">New dependencies resolution API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-repl-api">New REPL API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#compiled-scripts-cache">Compiled scripts cache</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#artifacts-renaming">Artifacts renaming</a></li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#migrating-to-kotlin-140"><strong class="typo-strong">Migrating to Kotlin 1.4.0</strong></a></p>
+<h2 class="typo-header typo-h2" id="language-features-and-improvements">Language features and improvements</h2>
+<p class="typo-para">Kotlin 1.4.0 comes with a variety of different language features and improvements. They include:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#sam-conversions-for-kotlin-interfaces">SAM conversions for Kotlin interfaces</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#mixing-named-and-positional-arguments">Mixing named and positional arguments</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#trailing-comma">Trailing comma</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#callable-reference-improvements">Callable reference improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#using-break-and-continue-inside-when-expressions-included-in-loops"><code>break</code> and <code>continue</code> inside <code>when</code> included in loops</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#explicit-api-mode-for-library-authors">Explicit API mode for library authors</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="sam-conversions-for-kotlin-interfaces">SAM conversions for Kotlin interfaces</h3>
+<p class="typo-para">Before Kotlin 1.4.0, you could apply SAM (Single Abstract Method) conversions only <a class="typo-link" href="java-interop.html#sam-conversions">when working with Java methods and Java
+interfaces from Kotlin</a>. From now on, you can use SAM conversions for Kotlin interfaces as well.
+To do so, mark a Kotlin interface explicitly as functional with the <code>fun</code> modifier.</p>
+<p class="typo-para">SAM conversion applies if you pass a lambda as an argument when an interface with only one single abstract method is expected
+as a parameter. In this case, the compiler automatically converts the lambda to an instance of the class that implements the abstract member function.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun interface IntPredicate {
+    fun accept(i: Int): Boolean
+}
+
+val isEven = IntPredicate { it % 2 == 0 }
+
+fun main() { 
+    println("Is 7 even? - ${isEven.accept(7)}")
+}
+</code></pre>
+</div>
+<p class="typo-para">Learn more about <a class="typo-link" href="fun-interfaces.html">Kotlin functional interfaces and SAM conversions</a>.</p>
+<h3 class="typo-header typo-h3" id="explicit-api-mode-for-library-authors">Explicit API mode for library authors</h3>
+<p class="typo-para">Kotlin compiler offers <em>explicit API mode</em> for library authors. In this mode, the compiler performs additional checks that
+help make the library’s API clearer and more consistent. It adds the following requirements for declarations exposed
+to the library’s public API:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Visibility modifiers are required for declarations if the default visibility exposes them to the public API.
+This helps ensure that no declarations are exposed to the public API unintentionally.</li>
+<li class="typo-list__item">Explicit type specifications are required for properties and functions that are exposed to the public API.
+This guarantees that API users are aware of the types of API members they use.</li>
+</ul>
+<p class="typo-para">Depending on your configuration, these explicit APIs can produce errors (<em>strict</em> mode) or warnings (<em>warning</em> mode).
+Certain kinds of declarations are excluded from such checks for the sake of readability and common sense:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">primary constructors</li>
+<li class="typo-list__item">properties of data classes</li>
+<li class="typo-list__item">property getters and setters</li>
+<li class="typo-list__item"><code>override</code> methods</li>
+</ul>
+<p class="typo-para">Explicit API mode analyzes only the production sources of a module.</p>
+<p class="typo-para">To compile your module in the explicit API mode, add the following lines to your Gradle build script:</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {    
+    // for strict mode
+    explicitApi() 
+    // or
+    explicitApi = 'strict'
+    
+    // for warning mode
+    explicitApiWarning()
+    // or
+    explicitApi = 'warning'
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin {    
+    // for strict mode
+    explicitApi() 
+    // or
+    explicitApi = ExplicitApiMode.Strict
+    
+    // for warning mode
+    explicitApiWarning()
+    // or
+    explicitApi = ExplicitApiMode.Warning
+}
+</code></pre>
+</div>
+</div>
+<p class="typo-para">When using the command-line compiler, switch to explicit API mode by adding  the <code>-Xexplicit-api</code> compiler option
+with the value <code>strict</code> or <code>warning</code>.</p>
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash">-Xexplicit-api={strict|warning}
+</code></pre>
+</div>
+<p class="typo-para">For more details about the explicit API mode, see the <a class="typo-link" href="https://github.com/Kotlin/KEEP/blob/master/proposals/explicit-api-mode.md">KEEP</a>.</p>
+<h3 class="typo-header typo-h3" id="mixing-named-and-positional-arguments">Mixing named and positional arguments</h3>
+<p class="typo-para">In Kotlin 1.3, when you called a function with <a class="typo-link" href="functions.html#named-arguments">named arguments</a>, you had to place all the
+arguments without names (positional arguments) before the first named argument. For example, you could call <code>f(1, y = 2)</code>, 
+but you couldn't call <code>f(x = 1, 2)</code>.</p>
+<p class="typo-para">It was really annoying when all the arguments were in their correct positions but you wanted to specify a name for one argument in the middle.
+It was especially helpful for making absolutely clear which attribute a boolean or <code>null</code> value belongs to.</p>
+<p class="typo-para">In Kotlin 1.4, there is no such limitation – you can now specify a name for an argument in the middle of a set of positional 
+arguments. Moreover, you can mix positional and named arguments any way you like, as long as they remain in the correct order.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun reformat(
+    str: String,
+    uppercaseFirstLetter: Boolean = true,
+    wordSeparator: Character = ' '
+) {
+    // ...
+}
+
+//Function call with a named argument in the middle
+reformat('This is a String!', uppercaseFirstLetter = false , '-')
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="trailing-comma">Trailing comma</h3>
+<p class="typo-para">With Kotlin 1.4 you can now add a trailing comma in enumerations such as argument 
+and parameter lists, <code>when</code> entries, and components of destructuring declarations.
+With a trailing comma, you can add new items and change their order without adding or removing commas.</p>
+<p class="typo-para">This is especially helpful if you use multi-line syntax for parameters or values. After adding a trailing comma, you can 
+then easily swap lines with parameters or values.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun reformat(
+    str: String,
+    uppercaseFirstLetter: Boolean = true,
+    wordSeparator: Character = ' ', //trailing comma
+) {
+    // ...
+}
+</code></pre>
+</div>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val colors = listOf(
+    "red",
+    "green",
+    "blue", //trailing comma
+)
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="callable-reference-improvements">Callable reference improvements</h3>
+<p class="typo-para">Kotlin 1.4 supports more cases for using callable references:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">References to functions with default argument values</li>
+<li class="typo-list__item">Function references in <code>Unit</code>-returning functions</li>
+<li class="typo-list__item">References that adapt based on the number of arguments in a function</li>
+<li class="typo-list__item">Suspend conversion on callable references</li>
+</ul>
+<h4 class="typo-header typo-h4" id="references-to-functions-with-default-argument-values">References to functions with default argument values</h4>
+<p class="typo-para">Now you can use callable references to functions with default argument values. If the callable reference 
+to the function <code>foo</code> takes no arguments, the default value <code>0</code> is used.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun foo(i: Int = 0): String = "$i!"
+
+fun apply(func: () -&gt; String): String = func()
+
+fun main() {
+    println(apply(::foo))
+}
+</code></pre>
+</div>
+<p class="typo-para">Previously, you had to write additional overloads for the function <code>apply</code> to use the default argument values.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// some new overload
+fun applyInt(func: (Int) -&gt; String): String = func(0) 
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="function-references-in-unit-returning-functions">Function references in <code>Unit</code>-returning functions</h4>
+<p class="typo-para">In Kotlin 1.4, you can use callable references to functions returning any type in <code>Unit</code>-returning functions. 
+Before Kotlin 1.4, you could only use lambda arguments in this case. Now you can use both lambda arguments and callable references.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(f: () -&gt; Unit) { }
+fun returnsInt(): Int = 42
+
+fun main() {
+    foo { returnsInt() } // this was the only way to do it  before 1.4
+    foo(::returnsInt) // starting from 1.4, this also works
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="references-that-adapt-based-on-the-number-of-arguments-in-a-function">References that adapt based on the number of arguments in a function</h4>
+<p class="typo-para">Now you can adapt callable references to functions when passing a variable number of arguments (<code>vararg</code>) . 
+You can pass any number of parameters of the same type at the end of the list of passed arguments.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun foo(x: Int, vararg y: String) {}
+
+fun use0(f: (Int) -&gt; Unit) {}
+fun use1(f: (Int, String) -&gt; Unit) {}
+fun use2(f: (Int, String, String) -&gt; Unit) {}
+
+fun test() {
+    use0(::foo) 
+    use1(::foo) 
+    use2(::foo) 
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="suspend-conversion-on-callable-references">Suspend conversion on callable references</h4>
+<p class="typo-para">In addition to suspend conversion on lambdas, Kotlin now supports suspend conversion on callable references starting from version 1.4.0.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun call() {}
+fun takeSuspend(f: suspend () -&gt; Unit) {}
+
+fun test() {
+    takeSuspend { call() } // OK before 1.4
+    takeSuspend(::call) // In Kotlin 1.4, it also works
+}
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="using-break-and-continue-inside-when-expressions-included-in-loops">Using <code>break</code> and <code>continue</code> inside <code>when</code> expressions included in loops</h3>
+<p class="typo-para">In Kotlin 1.3, you could not use unqualified <code>break</code> and <code>continue</code> inside <code>when</code> expressions included in loops. The reason was that these keywords were reserved for possible <a class="typo-link" href="https://en.wikipedia.org/wiki/Switch_statement#Fallthrough">fall-through behavior</a> in <code>when</code> expressions.</p>
+<p class="typo-para">That’s why if you wanted to use <code>break</code> and <code>continue</code> inside <code>when</code> expressions in loops, you had to <a class="typo-link" href="returns.html#break-and-continue-labels">label</a> them, which became rather cumbersome.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun test(xs: List&lt;Int&gt;) {
+    LOOP@for (x in xs) {
+        when (x) {
+            2 -&gt; continue@LOOP
+            17 -&gt; break@LOOP
+            else -&gt; println(x)
+        }
+    }
+}
+</code></pre>
+</div>
+<p class="typo-para">In Kotlin 1.4, you can use <code>break</code> and <code>continue</code> without labels inside <code>when</code> expressions included in loops. They behave as expected by terminating the nearest enclosing loop or proceeding to its next step.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">fun test(xs: List&lt;Int&gt;) {
+    for (x in xs) {
+        when (x) {
+            2 -&gt; continue
+            17 -&gt; break
+            else -&gt; println(x)
+        }
+    }
+}
+</code></pre>
+</div>
+<p class="typo-para">The fall-through behavior inside <code>when</code> is subject to further design.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="new-tools-in-the-ide">New tools in the IDE</h2>
+<p class="typo-para">With Kotlin 1.4, you can use the new tools in IntelliJ IDEA to simplify Kotlin development:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-flexible-project-wizard">New flexible Project Wizard</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#coroutine-debugger">Coroutine Debugger</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-flexible-project-wizard">New flexible Project Wizard</h3>
+<p class="typo-para">With the flexible new Kotlin Project Wizard, you have a place to easily create and configure different types of Kotlin 
+projects, including multiplatform projects, which can be difficult to configure without a UI.</p>
+<p class="typo-para"><img alt="Kotlin Project Wizard – Multiplatform project" class="typo-image" src="/assets/images/reference/whats-new/mpp-project-1-wn.png"/></p>
+<p class="typo-para">The new Kotlin Project Wizard is both simple and flexible:</p>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item"><em>Select the project template</em>, depending on what you’re trying to do. More templates will be added in the future.</li>
+<li class="typo-list__item"><em>Select the build system</em> – Gradle (Kotlin or Groovy DSL), Maven, or IntelliJ IDEA.<br/>
+ The Kotlin Project Wizard will only show the build systems supported on the selected project template.</li>
+<li class="typo-list__item"><em>Preview the project structure</em> directly on the main screen.</li>
+</ol>
+<p class="typo-para">Then you can finish creating your project or, optionally, <em>configure the project</em> on the next screen:</p>
+<ol class="typo-list typo-list_type_ordered" start="4">
+<li class="typo-list__item"><em>Add/remove modules and targets</em> supported for this project template.</li>
+<li class="typo-list__item"><em>Configure module and target settings</em>, for example, the target JVM version, target template, and test framework.</li>
+</ol>
+<p class="typo-para"><img alt="Kotlin Project Wizard - Configure targets" class="typo-image" src="/assets/images/reference/whats-new/mpp-project-2-wn.png"/></p>
+<p class="typo-para">In the future, we are going to make the Kotlin Project Wizard even more flexible by adding more configuration options and templates.</p>
+<p class="typo-para">You can try out the new Kotlin Project Wizard by working through these tutorials:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="../tutorials/jvm-get-started.html">Create a console application based on Kotlin/JVM</a></li>
+<li class="typo-list__item"><a class="typo-link" href="../tutorials/javascript/setting-up.html">Create a Kotlin/JS application for React</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="coroutine-debugger">Coroutine Debugger</h3>
+<p class="typo-para">Many people already use <a class="typo-link" href="coroutines/coroutines-guide.html">coroutines</a> for asynchronous programming. But when it came to debugging, working with coroutines before Kotlin 1.4, 
+ could be a real pain. Since coroutines jumped between threads, 
+it was difficult to understand what a specific coroutine was doing and check its context. In some cases, tracking steps 
+over breakpoints simply didn’t work. As a result, you had to rely on logging or mental effort to debug code that used coroutines.</p>
+<p class="typo-para">In Kotlin 1.4, debugging coroutines is now much more convenient with the new functionality shipped with the Kotlin plugin.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">Debugging works for versions 1.3.8 or later of <code>kotlinx-coroutines-core</code>.</p>
+</blockquote>
+<p class="typo-para">The <strong class="typo-strong">Debug Tool Window</strong> now contains a new <strong class="typo-strong">Coroutines</strong> tab. In this tab, you can find information about both currently 
+running and suspended coroutines. The coroutines are grouped by the dispatcher they are running on.</p>
+<p class="typo-para"><img alt="Debugging coroutines" class="typo-image" src="/assets/images/reference/whats-new/coroutine-debugger-wn.png"/></p>
+<p class="typo-para">Now you can:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Easily check the state of each coroutine.</li>
+<li class="typo-list__item">See the values of local and captured variables for both running and suspended coroutines.</li>
+<li class="typo-list__item">See a full coroutine creation stack, as well as a call stack inside the coroutine. The stack includes all frames with 
+variable values, even those that would be lost during standard debugging.</li>
+</ul>
+<p class="typo-para">If you need a full report containing the state of each coroutine and its stack, right-click inside the <strong class="typo-strong">Coroutines</strong> tab, and then
+click <strong class="typo-strong">Get Coroutines Dump</strong>. Currently, the coroutines dump is rather simple, but we’re going to make it more readable 
+and helpful in future versions of Kotlin.</p>
+<p class="typo-para"><img alt="Coroutines Dump" class="img-responsive typo-image" src="/assets/images/reference/whats-new/coroutines-dump-wn.png" width="400"/></p>
+<p class="typo-para">Learn more about debugging coroutines in <a class="typo-link" href="https://blog.jetbrains.com/kotlin/2020/07/kotlin-1-4-rc-debugging-coroutines/">this blog post</a>
+and <a class="typo-link" href="https://www.jetbrains.com/help/idea/debug-kotlin-coroutines.html">IntelliJ IDEA documentation</a>.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="new-compiler">New compiler</h2>
+<p class="typo-para">The new Kotlin compiler is going to be really fast; it will unify all the supported platforms and provide 
+an API for compiler extensions. It's a long-term project, and we've already completed several steps in Kotlin 1.4.0:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-more-powerful-type-inference-algorithm">New, more powerful type inference algorithm</a> is enabled by default.</li>
+<li class="typo-list__item"><a class="typo-link" href="#unified-backends-and-extensibility">New JVM and JS IR backends</a> are now in <a class="typo-link" href="evolution/components-stability.html">Alpha</a>. They will become the default once we stabilize them.</li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-more-powerful-type-inference-algorithm">New more powerful type inference algorithm</h3>
+<p class="typo-para">Kotlin 1.4 uses a new, more powerful type inference algorithm. This new algorithm was already available to try in 
+Kotlin 1.3 by specifying a compiler option, and now it’s used by default. You can find the full list of issues fixed in 
+the new algorithm in <a class="typo-link" href="https://youtrack.jetbrains.com/issues/KT?q=Tag:%20fixed-in-new-inference%20">YouTrack</a>. Here
+you can find some of the most noticeable improvements:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#more-cases-where-type-is-inferred-automatically">More cases where type is inferred automatically</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#smart-casts-for-a-lambdas-last-expression">Smart casts for a lambda’s last expression</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#smart-casts-for-callable-references">Smart casts for callable references</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#better-inference-for-delegated-properties">Better inference for delegated properties</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#sam-conversion-for-java-interfaces-with-different-arguments">SAM conversion for Java interfaces with different arguments</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#java-sam-interfaces-in-kotlin">Java SAM interfaces in Kotlin</a></li>
+</ul>
+<h4 class="typo-header typo-h4" id="more-cases-where-type-is-inferred-automatically">More cases where type is inferred automatically</h4>
+<p class="typo-para">The new inference algorithm infers types for many cases where the old algorithm required you to specify them explicitly. 
+For instance, in the following example the type of the lambda parameter <code>it</code> is correctly inferred to <code>String?</code>:</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">//sampleStart
+val rulesMap: Map&lt;String, (String?) -&gt; Boolean&gt; = mapOf(
+    "weak" to { it != null },
+    "medium" to { !it.isNullOrBlank() },
+    "strong" to { it != null &amp;&amp; "^[a-zA-Z0-9]+$".toRegex().matches(it) }
+)
+//sampleEnd
+
+fun main() {
+    println(rulesMap.getValue("weak")("abc!"))
+    println(rulesMap.getValue("strong")("abc"))
+    println(rulesMap.getValue("strong")("abc!"))
+}
+</code></pre>
+</div>
+<p class="typo-para">In Kotlin 1.3, you needed to introduce an explicit lambda parameter or replace <code>to</code> with a <code>Pair</code> constructor with 
+explicit generic arguments to make it work.</p>
+<h4 class="typo-header typo-h4" id="smart-casts-for-a-lambdas-last-expression">Smart casts for a lambda’s last expression</h4>
+<p class="typo-para">In Kotlin 1.3, the last expression inside a lambda wasn’t  smart cast unless you specified the expected type. Thus, in the 
+following example, Kotlin 1.3 infers <code>String?</code> as the type of the <code>result</code> variable:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">val result = run {
+    var str = currentValue()
+    if (str == null) {
+        str = "test"
+    }
+    str // the Kotlin compiler knows that str is not null here
+}
+// The type of 'result' is String? in Kotlin 1.3 and String in Kotlin 1.4
+</code></pre>
+</div>
+<p class="typo-para">In Kotlin 1.4, thanks to the new inference algorithm, the last expression inside a lambda gets smart cast, and this new, 
+more precise type is used to infer the resulting lambda type. Thus, the type of the <code>result</code> variable becomes <code>String</code>.</p>
+<p class="typo-para">In Kotlin 1.3, you often needed to add explicit casts (either <code>!!</code> or type casts like <code>as String</code>) to make such cases work, 
+and now these casts have become unnecessary.</p>
+<h4 class="typo-header typo-h4" id="smart-casts-for-callable-references">Smart casts for callable references</h4>
+<p class="typo-para">In Kotlin 1.3, you couldn’t access a member reference of a smart cast type. Now in Kotlin 1.4 you can:</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">import kotlin.reflect.KFunction
+
+sealed class Animal
+class Cat : Animal() {
+    fun meow() {
+        println("meow")
+    }
+}
+
+class Dog : Animal() {
+    fun woof() {
+        println("woof")
+    }
+}
+
+//sampleStart
+fun perform(animal: Animal) {
+    val kFunction: KFunction&lt;*&gt; = when (animal) {
+        is Cat -&gt; animal::meow
+        is Dog -&gt; animal::woof
+    }
+    kFunction.call()
+}
+//sampleEnd
+
+fun main() {
+    perform(Cat())
+}
+</code></pre>
+</div>
+<p class="typo-para">You can use different member references <code>animal::meow</code> and <code>animal::woof</code> after the animal variable has been smart cast 
+to specific types <code>Cat</code> and <code>Dog</code>. After type checks, you can access member references corresponding to subtypes.</p>
+<h4 class="typo-header typo-h4" id="better-inference-for-delegated-properties">Better inference for delegated properties</h4>
+<p class="typo-para">The type of a delegated property wasn’t taken into account while analyzing the delegate expression which follows the <code>by</code> 
+keyword. For instance, the following code didn’t compile before, but now the compiler correctly infers the types of the 
+<code>old</code> and <code>new</code> parameters as <code>String?</code>:</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">import kotlin.properties.Delegates
+
+fun main() {
+    var prop: String? by Delegates.observable(null) { p, old, new -&gt;
+        println("$old → $new")
+    }
+    prop = "abc"
+    prop = "xyz"
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="sam-conversion-for-java-interfaces-with-different-arguments">SAM conversion for Java interfaces with different arguments</h4>
+<p class="typo-para">Kotlin has supported SAM conversions for Java interfaces from the beginning, but there was one case that wasn’t supported, 
+which was sometimes annoying when working with existing Java libraries. If you called a Java method that took two SAM interfaces 
+as parameters, both arguments needed to be either lambdas or regular objects. You couldn't pass one argument as a lambda and 
+another as an object.</p>
+<p class="typo-para">The new algorithm fixes this issue, and you can pass a lambda instead of a SAM interface in any case, 
+which is the way you’d naturally expect it to work.</p>
+<div class="sample" data-highlight-only="" mode="java" theme="idea">
+<pre><code class="language-java">// FILE: A.java
+public class A {
+    public static void foo(Runnable r1, Runnable r2) {}
+}
+</code></pre>
+</div>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">// FILE: test.kt
+fun test(r1: Runnable) {
+    A.foo(r1) {}  // Works in Kotlin 1.4
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="java-sam-interfaces-in-kotlin">Java SAM interfaces in Kotlin</h4>
+<p class="typo-para">In Kotlin 1.4, you can use Java SAM interfaces in Kotlin and apply SAM conversions to them.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">import java.lang.Runnable
+
+fun foo(r: Runnable) {}
+
+fun test() { 
+    foo { } // OK
+}
+</code></pre>
+</div>
+<p class="typo-para">In Kotlin 1.3, you would have had to declare the function <code>foo</code> above in Java code to perform a SAM conversion.</p>
+<h3 class="typo-header typo-h3" id="unified-backends-and-extensibility">Unified backends and extensibility</h3>
+<p class="typo-para">In Kotlin, we have three backends that generate executables: Kotlin/JVM, Kotlin/JS, and Kotlin/Native. Kotlin/JVM and Kotlin/JS 
+don't share much code since they were developed independently of each other. Kotlin/Native is based on a new 
+infrastructure built around an intermediate representation (IR) for Kotlin code.</p>
+<p class="typo-para">We are now migrating Kotlin/JVM and Kotlin/JS to the same IR. As a result, all three backends
+share a lot of logic and have a unified pipeline. This allows us to implement most features, optimizations, and bug fixes 
+only once for all platforms. Both new IR-based back-ends are in <a class="typo-link" href="evolution/components-stability.html">Alpha</a>.</p>
+<p class="typo-para">A common backend infrastructure also opens the door for multiplatform compiler extensions. You will be able to plug into the 
+pipeline and add custom processing and transformations that will automatically work for all platforms.</p>
+<p class="typo-para">We encourage you to use our new <a class="typo-link" href="#new-jvm-ir-backend">JVM IR</a> and <a class="typo-link" href="#new-js-ir-backend">JS IR</a> backends, which are currently in Alpha, and 
+share your feedback with us.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="kotlinjvm">Kotlin/JVM</h2>
+<p class="typo-para">Kotlin 1.4.0 includes a number of JVM-specific improvements, such as:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-jvm-ir-backend">New JVM IR backend</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-modes-for-generating-default-methods">New modes for generating default methods in interfaces</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#unified-exception-type-for-null-checks">Unified exception type for null checks</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#type-annotations-in-the-jvm-bytecode">Type annotations in the JVM bytecode</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-jvm-ir-backend">New JVM IR backend</h3>
+<p class="typo-para">Along with Kotlin/JS, we are migrating Kotlin/JVM to the <a class="typo-link" href="#unified-backends-and-extensibility">unified IR backend</a>, 
+which allows us to implement most features and bug fixes once for all platforms. You will also be able to benefit from this 
+by creating multiplatform extensions that will work for all platforms.</p>
+<p class="typo-para">Kotlin 1.4.0 does not provide a public API for such extensions yet, but we are working closely with our partners, 
+including <a class="typo-link" href="https://developer.android.com/jetpack/compose">Jetpack Compose</a>, who are already building their compiler plugins 
+using our new backend.</p>
+<p class="typo-para">We encourage you to try out the new Kotlin/JVM backend, which is currently in Alpha, and to file any issues and feature requests to our <a class="typo-link" href="https://youtrack.jetbrains.com/issues/KT">issue tracker</a>. 
+This will help us to unify the compiler pipelines and bring compiler extensions like Jetpack Compose to the Kotlin community more quickly.</p>
+<p class="typo-para">To enable the new JVM IR backend, specify an additional compiler option in your Gradle build script:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">kotlinOptions.useIR = true
+</code></pre>
+</div>
+<blockquote class="note typo-quote">
+<p class="typo-para">If you <a class="typo-link" href="https://developer.android.com/jetpack/compose/setup?hl=en">enable Jetpack Compose</a>, you will automatically be 
+opted in to the new JVM backend without needing to specify the compiler option in <code>kotlinOptions</code>.</p>
+</blockquote>
+<p class="typo-para">When using the command-line compiler, add the compiler option <code>-Xuse-ir</code>.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">You can use code compiled by the new JVM IR backend only if you've enabled the new backend. Otherwise, you will get an error.
+Considering this, we don't recommend that library authors switch to the new backend in production.</p>
+</blockquote>
+<h3 class="typo-header typo-h3" id="new-modes-for-generating-default-methods">New modes for generating default methods</h3>
+<p class="typo-para">When compiling Kotlin code to targets JVM 1.8 and above, you could compile non-abstract methods of Kotlin interfaces into
+Java's <code>default</code> methods. For this purpose, there was a mechanism that includes the <code>@JvmDefault</code> annotation for marking
+such methods and the <code>-Xjvm-default</code> compiler option that enables processing of this annotation.</p>
+<p class="typo-para">In 1.4.0, we've added a new mode for generating default methods: <code>-Xjvm-default=all</code> compiles <em>all</em> non-abstract methods of Kotlin
+interfaces to <code>default</code> Java methods. For compatibility with the code that uses the interfaces compiled without <code>default</code>, 
+we also added <code>all-compatibility</code> mode.</p>
+<p class="typo-para">For more information about default methods in the Java interop, see the <a class="typo-link" href="java-to-kotlin-interop.html#default-methods-in-interfaces">documentation</a> and 
+<a class="typo-link" href="https://blog.jetbrains.com/kotlin/2020/07/kotlin-1-4-m3-generating-default-methods-in-interfaces/">this blog post</a>.</p>
+<h3 class="typo-header typo-h3" id="unified-exception-type-for-null-checks">Unified exception type for null checks</h3>
+<p class="typo-para">Starting from Kotlin 1.4.0, all runtime null checks will throw a <code>java.lang.NullPointerException</code> instead of <code>KotlinNullPointerException</code>,
+<code>IllegalStateException</code>, <code>IllegalArgumentException</code>, and <code>TypeCastException</code>. This applies to: the <code>!!</code> operator, parameter
+null checks in the method preamble, platform-typed expression null checks, and the <code>as</code> operator with a non-null type.
+This doesn’t apply to <code>lateinit</code> null checks and explicit library function calls like <code>checkNotNull</code> or <code>requireNotNull</code>.</p>
+<p class="typo-para">This change increases the number of possible null check optimizations that can be performed either by the Kotlin compiler
+or by various kinds of bytecode processing tools, such as the Android <a class="typo-link" href="https://developer.android.com/studio/build/shrink-code">R8 optimizer</a>.</p>
+<p class="typo-para">Note that from a developer’s perspective, things won’t change that much: the Kotlin code will throw exceptions with the
+same error messages as before. The type of exception changes, but the information passed stays the same.</p>
+<h3 class="typo-header typo-h3" id="type-annotations-in-the-jvm-bytecode">Type annotations in the JVM bytecode</h3>
+<p class="typo-para">Kotlin can now generate type annotations in the JVM bytecode (target version 1.8+), so that they become available in Java reflection at runtime.
+To emit the type annotation in the bytecode, follow these steps:</p>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">Make sure that your declared annotation has a proper annotation target (Java’s <code>ElementType.TYPE_USE</code> or Kotlin’s
+<code>AnnotationTarget.TYPE</code>) and retention (<code>AnnotationRetention.RUNTIME</code>).</li>
+<li class="typo-list__item">Compile the annotation class declaration to JVM bytecode target version 1.8+. You can specify it with <code>-jvm-target=1.8</code>
+compiler option.</li>
+<li class="typo-list__item">Compile the code that uses the annotation to JVM bytecode target version 1.8+ (<code>-jvm-target=1.8</code>) and add the
+<code>-Xemit-jvm-type-annotations</code> compiler option.</li>
+</ol>
+<p class="typo-para">Note that the type annotations from the standard library aren’t emitted in the bytecode for now because the standard library is compiled
+with the target version 1.6.</p>
+<p class="typo-para">So far, only the basic cases are supported:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Type annotations on method parameters, method return types and property types;</li>
+<li class="typo-list__item">Invariant projections of type arguments, such as <code>Smth&lt;@Ann Foo&gt;</code>, <code>Array&lt;@Ann Foo&gt;</code>.</li>
+</ul>
+<p class="typo-para">In the following example, the <code>@Foo</code> annotation on the <code>String</code> type can be emitted to the bytecode and then used by the
+library code:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">@Target(AnnotationTarget.TYPE)
+annotation class Foo
+
+class A {
+    fun foo(): @Foo String = "OK"
+}
+</code></pre>
+</div>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="kotlinjs">Kotlin/JS</h2>
+<p class="typo-para">On the JS platform, Kotlin 1.4.0 provides the following improvements:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-gradle-dsl">New Gradle DSL</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-js-ir-backend">New JS IR backend</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-gradle-dsl">New Gradle DSL</h3>
+<p class="typo-para">The <code>kotlin.js</code> Gradle plugin comes with an adjusted Gradle DSL, which provides a number of new configuration options and is more closely aligned to the DSL used by the <code>kotlin-multiplatform</code> plugin. Some of the most impactful changes include:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Explicit toggles for the creation of executable files via <code>binaries.executable()</code>. Read more about the executing Kotlin/JS and its environment <a class="typo-link" href="js-project-setup.html#choosing-execution-environment">here</a>.</li>
+<li class="typo-list__item">Configuration of webpack's CSS and style loaders from within the Gradle configuration via <code>cssSupport</code>. Read more about using them <a class="typo-link" href="js-project-setup.html#configuring-css">here</a>.</li>
+<li class="typo-list__item">Improved management for npm dependencies, with mandatory version numbers or <a class="typo-link" href="https://docs.npmjs.com/misc/semver#versions">semver</a> version ranges, as well as support for <em>development</em>, <em>peer</em>, and <em>optional</em> npm dependencies using <code>devNpm</code>, <code>optionalNpm</code> and <code>peerNpm</code>. Read more about dependency management for npm packages directly from Gradle <a class="typo-link" href="js-project-setup.html#npm-dependencies">here</a>.</li>
+<li class="typo-list__item">Stronger integrations for <a class="typo-link" href="https://github.com/Kotlin/dukat">Dukat</a>, the generator for Kotlin external declarations. External declarations can now be generated at build time, or can be manually generated via a Gradle task. Read more about how to use the integration <a class="typo-link" href="js-external-declarations-with-dukat.html">here</a>.</li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-js-ir-backend">New JS IR backend</h3>
+<p class="typo-para">The <a class="typo-link" href="js-ir-compiler.html">IR backend for Kotlin/JS</a>, which currently has <a class="typo-link" href="evolution/components-stability.html">Alpha</a> stability, provides some new functionality specific to the Kotlin/JS target which is focused around the generated code size through dead code elimination, and improved interoperation with JavaScript and TypeScript, among others.</p>
+<p class="typo-para">To enable the Kotlin/JS IR backend, set the key <code>kotlin.js.compiler=ir</code> in your <code>gradle.properties</code>, or pass the <code>IR</code> compiler type to the <code>js</code> function of your Gradle build script:</p>
+<!--suppress ALL -->
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    js(IR) { // or: LEGACY, BOTH
+        // . . .
+    }
+    binaries.executable()
+}
+</code></pre>
+</div>
+<p class="typo-para">For more detailed information about how to configure the Kotlin/JS IR compiler backend, check out the <a class="typo-link" href="js-ir-compiler.html">documentation</a>.</p>
+<p class="typo-para">With the new <a class="typo-link" href="js-to-kotlin-interop.html#jsexport-annotation"><code>@JsExport</code></a> annotation and the ability to <strong class="typo-strong"><a class="typo-link" href="js-ir-compiler.html#preview-generation-of-typescript-declaration-files-dts">generate TypeScript definitions</a> from Kotlin code</strong>, the Kotlin/JS IR compiler backend improves JavaScript &amp; TypeScript interoperability. This also makes it easier to integrate Kotlin/JS code with existing tooling, to create <strong class="typo-strong">hybrid applications</strong> and leverage code-sharing functionality in multiplatform projects.</p>
+<p class="typo-para">Learn more about the available features in the Kotlin/JS IR compiler backend in the <a class="typo-link" href="js-ir-compiler.html">documentation</a>.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="kotlinnative">Kotlin/Native</h2>
+<p class="typo-para">In 1.4.0, Kotlin/Native got a significant number of new features and improvements, including:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#support-for-kotlins-suspending-functions-in-swift-and-objective-c">Support for suspending functions in Swift and Objective-C</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#objective-c-generics-support-by-default">Objective-C generics support by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#exception-handling-in-objective-cswift-interop">Exception handling in Objective-C/Swift interop</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#generate-release-dsyms-on-apple-targets-by-default">Generate release <code>.dSYM</code>s on Apple targets by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#performance-improvements">Performance improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#simplified-management-of-cocoapods-dependencies">Simplified management of CocoaPods dependencies</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="support-for-kotlins-suspending-functions-in-swift-and-objective-c">Support for Kotlin’s suspending functions in Swift and Objective-C</h3>
+<p class="typo-para">In 1.4.0, we add the basic support for suspending functions in Swift and Objective-C. Now, when you compile a Kotlin module
+into an Apple framework, suspending functions are available in it as functions with callbacks (<code>completionHandler</code> in 
+the Swift/Objective-C terminology). When you have such functions in the generated framework’s header, you can call them
+from your Swift or Objective-C code and even override them.</p>
+<p class="typo-para">For example, if you write this Kotlin function:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">suspend fun queryData(id: Int): String = ...
+</code></pre>
+</div>
+<p class="typo-para">…then you can call it from Swift like so:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-swift">queryData(id: 17) { result, error in
+   if let e = error {
+       print("ERROR: \(e)")
+   } else {
+       print(result!)
+   }
+}
+</code></pre>
+</div>
+<p class="typo-para">For more information about using suspending functions in Swift and Objective-C, see the <a class="typo-link" href="native/objc_interop.html">documentation</a>.</p>
+<h3 class="typo-header typo-h3" id="objective-c-generics-support-by-default">Objective-C generics support by default</h3>
+<p class="typo-para">Previous versions of Kotlin provided experimental support for generics in Objective-C interop. Since 1.4.0, Kotlin/Native 
+generates Apple frameworks with generics from Kotlin code by default. In some cases, this may break existing Objective-C
+or Swift code calling Kotlin frameworks. To have the framework header written without generics, add the <code>-Xno-objc-generics</code> compiler option.</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    targets.withType&lt;org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget&gt; {
+        binaries.all {
+            freeCompilerArgs += "-Xno-objc-generics"
+        }
+    }
+}
+</code></pre>
+</div>
+<p class="typo-para">Please note that all specifics and limitations listed in the <a class="typo-link" href="native/objc_interop.html#generics">documentation</a> are still valid.</p>
+<h3 class="typo-header typo-h3" id="exception-handling-in-objective-cswift-interop">Exception handling in Objective-C/Swift interop</h3>
+<p class="typo-para">In 1.4.0, we slightly change the Swift API generated from Kotlin with respect to the way exceptions are translated. There is
+a fundamental difference in error handling between Kotlin and Swift. All Kotlin exceptions are unchecked, while Swift has
+only checked errors. Thus, to make Swift code aware of expected exceptions, Kotlin functions should be marked with a <code>@Throws</code>
+annotation specifying a list of potential exception classes.</p>
+<p class="typo-para">When compiling to Swift or the Objective-C framework, functions that have or are inheriting <code>@Throws</code> annotation are represented
+as <code>NSError*</code>-producing methods in Objective-C and as <code>throws</code> methods in Swift.</p>
+<p class="typo-para">Previously, any exceptions other than <code>RuntimeException</code> and <code>Error</code> were propagated as <code>NSError</code>. Now this behavior changes: 
+now <code>NSError</code> is thrown only for exceptions that are instances of classes specified as parameters of <code>@Throws</code> annotation 
+(or their subclasses). Other Kotlin exceptions that reach Swift/Objective-C are considered unhandled and cause program termination.</p>
+<h3 class="typo-header typo-h3" id="generate-release-dsyms-on-apple-targets-by-default">Generate release <code>.dSYM</code>s on Apple targets by default</h3>
+<p class="typo-para">Starting with 1.4.0, the Kotlin/Native compiler produces <a class="typo-link" href="https://developer.apple.com/documentation/xcode/building_your_app_to_include_debugging_information">debug symbol files</a>
+(<code>.dSYM</code>s) for release binaries on Darwin platforms by default. This can be disabled with the <code>-Xadd-light-debug=disable</code>
+compiler option. On other platforms, this option is disabled by default. To toggle this option in Gradle, use:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    targets.withType&lt;org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget&gt; {
+        binaries.all {
+            freeCompilerArgs += "-Xadd-light-debug={enable|disable}"
+        }
+    }
+}
+</code></pre>
+</div>
+<p class="typo-para">For more information about crash report symbolication, see the <a class="typo-link" href="native/ios_symbolication.html">documentation</a>.</p>
+<h3 class="typo-header typo-h3" id="performance-improvements">Performance improvements</h3>
+<p class="typo-para">Kotlin/Native has received a number of performance improvements that speed up both the development process and execution.
+Here are some examples:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">To improve the speed of object allocation, we now offer the <a class="typo-link" href="https://github.com/microsoft/mimalloc">mimalloc</a>
+memory allocator as an alternative to the system allocator. mimalloc works up to two times faster on some benchmarks.
+Currently, the usage of mimalloc in Kotlin/Native is experimental; you can switch to it using the <code>-Xallocator=mimalloc</code> compiler option.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">We’ve reworked how C interop libraries are built. With the new tooling, Kotlin/Native produces interop libraries up to
+4 times as fast as before, and artifacts are 25% to 30% the size they used to be.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Overall runtime performance has improved because of optimizations in GC. This improvement will be especially apparent
+in projects with a large number of long-lived objects. <code>HashMap</code> and <code>HashSet</code> collections now work faster by escaping redundant boxing.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">In 1.3.70 we introduced two new features for improving the performance of Kotlin/Native compilation:
+<a class="typo-link" href="https://blog.jetbrains.com/kotlin/2020/03/kotlin-1-3-70-released/#kotlin-native">caching project dependencies and running the compiler from the Gradle daemon</a>.
+Since that time, we’ve managed to fix numerous issues and improve the overall stability of these features.</p>
+</li>
+</ul>
+<h3 class="typo-header typo-h3" id="simplified-management-of-cocoapods-dependencies">Simplified management of CocoaPods dependencies</h3>
+<p class="typo-para">Previously, once you integrated your project with the dependency manager CocoaPods, you could build an iOS, macOS, watchOS, 
+or tvOS part of your project only in Xcode, separate from other parts of your multiplatform project. These other parts could 
+be built in Intellij IDEA.</p>
+<p class="typo-para">Moreover, every time you added a dependency on an Objective-C library stored in CocoaPods (Pod library), you had to switch 
+from IntelliJ IDEA to Xcode, call <code>pod install</code>, and run the Xcode build there.</p>
+<p class="typo-para">Now you can manage Pod dependencies right in Intellij IDEA while enjoying the benefits it provides for working with code, 
+such as code highlighting and completion. You can also build the whole Kotlin project with Gradle, without having to 
+switch to Xcode. This means you only have to go to Xcode when you need to write Swift/Objective-C code or run your application 
+on a simulator or device.</p>
+<p class="typo-para">Now you can also work with Pod libraries stored locally.</p>
+<p class="typo-para">Depending on your needs, you can add dependencies between:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">A Kotlin project and Pod libraries stored remotely in the CocoaPods repository or stored locally on your machine.</li>
+<li class="typo-list__item">A Kotlin Pod (Kotlin project used as a CocoaPods dependency) and an Xcode project with one or more targets.</li>
+</ul>
+<p class="typo-para">Complete the initial configuration, and when you add a new dependency to <code>cocoapods</code>, just re-import the project in IntelliJ IDEA. 
+The new dependency will be added automatically. No additional steps are required.</p>
+<p class="typo-para">Learn <a class="typo-link" href="native/cocoapods.html">how to add dependencies</a>.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="kotlin-multiplatform">Kotlin Multiplatform</h2>
+<blockquote class="note typo-quote">
+<p class="typo-para">多平台项目处于 <a class="typo-link" href="evolution/components-stability.html">Alpha</a> 版。语言特性与工具都可能在未来的 Kotlin 版本中发生变化。</p>
+</blockquote>
+<p class="typo-para"><a class="typo-link" href="multiplatform.html">Kotlin Multiplatform</a> reduces time spent writing and maintaining the same code for <a class="typo-link" href="mpp-supported-platforms.html">different platforms</a> 
+while retaining the flexibility and benefits of native programming. We continue investing our effort in multiplatform features
+and improvements:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#sharing-code-in-several-targets-with-the-hierarchical-project-structure">Sharing code in several targets with the hierarchical project structure</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#leveraging-native-libs-in-the-hierarchical-structure">Leveraging native libs in the hierarchical structure</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#specifying-dependencies-only-once">Specifying kotlinx dependencies only once</a></li>
+</ul>
+<blockquote class="note typo-quote">
+<p class="typo-para">Multiplatform projects require Gradle 6.0 or later.</p>
+</blockquote>
+<h3 class="typo-header typo-h3" id="sharing-code-in-several-targets-with-the-hierarchical-project-structure">Sharing code in several targets with the hierarchical project structure</h3>
+<p class="typo-para">With the new hierarchical project structure support, you can share code among <a class="typo-link" href="mpp-supported-platforms.html">several platforms</a>
+ in a <a class="typo-link" href="mpp-discover-project.html">multiplatform project</a>.</p>
+<p class="typo-para">Previously, any code added to a multiplatform project could be placed either in a platform-specific source set, which is 
+limited to one target and can’t be reused by any other platform, or in a common source set, like <code>commonMain</code> or <code>commonTest</code>, 
+which is shared across all the platforms in the project. In the common source set, you could only call a platform-specific 
+API by using an <a class="typo-link" href="mpp-connect-to-apis.html"><code>expect</code> declaration that needs platform-specific <code>actual</code> implementations</a>.</p>
+<p class="typo-para">This made it easy to <a class="typo-link" href="mpp-share-on-platforms.html#share-code-on-all-platforms">share code on all platforms</a>, but it was 
+not so easy to <a class="typo-link" href="mpp-share-on-platforms.html#share-code-on-similar-platforms">share between only some of the targets</a>, 
+especially similar ones that could potentially reuse a lot of the common logic and third-party APIs.</p>
+<p class="typo-para">For example, in a typical multiplatform project targeting iOS, there are two iOS-related targets: one for iOS ARM64 devices, 
+and the other for the x64 simulator. They have separate platform-specific source sets, but in practice, there is rarely 
+a need for different code for the device and simulator, and their dependencies are much alike. So iOS-specific code could 
+be shared between them.</p>
+<p class="typo-para">Apparently, in this setup, it would be desirable to have a <em>shared source set for two iOS targets</em>, with Kotlin/Native 
+code that could still directly call any of the APIs that are common to both the iOS device and the simulator.</p>
+<p class="typo-para"><img alt="Code shared for iOS targets" class="img-responsive typo-image" src="/assets/images/reference/mpp/iosmain-hierarchy.png" width="400"/></p>
+<p class="typo-para">Now you can do this with the <a class="typo-link" href="mpp-share-on-platforms.html#share-code-on-similar-platforms">hierarchical project structure support</a>, which infers and adapts the API and language features 
+available in each source set based on which targets consume them.</p>
+<p class="typo-para">For common combinations of targets, you can create a hierarchical structure with <a class="typo-link" href="mpp-share-on-platforms.html#use-target-shortcuts">target shortcuts</a>.</p>
+<p class="typo-para">For example, create two iOS targets and the shared source set shown above with the <code>ios()</code> shortcut:</p>
+<div class="sample" data-highlight-only="" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    ios() // iOS device and simulator targets; iosMain and iosTest source sets
+}
+</code></pre>
+</div>
+<p class="typo-para">For other combinations of targets, <a class="typo-link" href="mpp-share-on-platforms.html#configure-the-hierarchical-structure-manually">create a hierarchy manually</a> 
+by connecting the source sets with the <code>dependsOn</code> relation.</p>
+<p class="typo-para"><img alt="Hierarchical structure" class="typo-image" src="/assets/images/reference/mpp/hierarchical-structure.png"/></p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    sourceSets {
+        desktopMain {
+            dependsOn(commonMain)
+        }
+        linuxX64Main {
+            dependsOn(desktopMain)
+        }
+        mingwX64Main {
+            dependsOn(desktopMain)
+        }
+        macosX64Main {
+            dependsOn(desktopMain)
+        }
+    }
+}
+
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin{
+    sourceSets {
+        val desktopMain by creating {
+            dependsOn(commonMain)
+        }
+        val linuxX64Main by getting {
+            dependsOn(desktopMain)
+        }
+        val mingwX64Main by getting {
+            dependsOn(desktopMain)
+        }
+        val macosX64Main by getting {
+            dependsOn(desktopMain)
+        }
+    }
+}
+</code></pre>
+</div>
+</div>
+<p class="typo-para">Thanks to the hierarchical project structure, libraries can also provide common APIs for a subset of targets. Learn more
+about <a class="typo-link" href="mpp-share-on-platforms.html#share-code-in-libraries">sharing code in libraries</a>.</p>
+<h3 class="typo-header typo-h3" id="leveraging-native-libs-in-the-hierarchical-structure">Leveraging native libs in the hierarchical structure</h3>
+<p class="typo-para">You can use platform-dependent libraries, such as <code>Foundation</code>, <code>UIKit</code>, and <code>posix</code>, in source sets shared among several 
+native targets. This can help you share more native code without being limited by platform-specific dependencies.</p>
+<p class="typo-para">No additional steps are required – everything is done automatically. IntelliJ IDEA will help you detect common declarations 
+that you can use in the shared code.</p>
+<p class="typo-para">Learn more about <a class="typo-link" href="mpp-share-on-platforms.html#use-native-libraries-in-the-hierarchical-structure">usage of platform-dependent libraries</a>.</p>
+<h3 class="typo-header typo-h3" id="specifying-dependencies-only-once">Specifying dependencies only once</h3>
+<p class="typo-para">From now on, instead of specifying dependencies on different variants of the same library in shared and platform-specific 
+source sets where it is used, you should specify a dependency only once in the shared source set.</p>
+<div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
+            }
+        }
+    }
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
+            }
+        }
+    }
+}
+
+</code></pre>
+</div>
+</div>
+<p class="typo-para">Don’t use kotlinx library artifact names with suffixes specifying the platform, such as  <code>-common</code>, <code>-native</code>, or similar, 
+as they are NOT supported anymore. Instead, use the library base artifact name, which in the example above is <code>kotlinx-coroutines-core</code>.</p>
+<p class="typo-para">However, the change doesn’t currently affect:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">The <code>stdlib</code> library – starting from Kotlin 1.4.0, <a class="typo-link" href="#dependency-on-the-standard-library-added-by-default">the <code>stdlib</code> dependency is added automatically</a>.</li>
+<li class="typo-list__item">The <code>kotlin.test</code> library – you should still use <code>test-common</code> and <code>test-annotations-common</code>. These dependencies will be
+addressed later.</li>
+</ul>
+<p class="typo-para">If you need a dependency only for a specific platform, you can still use platform-specific variants of standard and kotlinx 
+libraries with such suffixes as <code>-jvm</code> or<code> -js</code>, for example <code>kotlinx-coroutines-core-jvm</code>.</p>
+<p class="typo-para">Learn more about <a class="typo-link" href="using-gradle.html#configuring-dependencies">configuring dependencies</a>.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="gradle-project-improvements">Gradle project improvements</h2>
+<p class="typo-para">Besides Gradle project features and improvements that are specific to <a class="typo-link" href="#kotlin-multiplatform">Kotlin Multiplatform</a>, <a class="typo-link" href="#kotlinjvm">Kotlin/JVM</a>, 
+<a class="typo-link" href="#kotlinnative">Kotlin/Native</a>, and <a class="typo-link" href="#kotlinjs">Kotlin/JS</a>, there are several changes applicable to all Kotlin Gradle projects:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#dependency-on-the-standard-library-added-by-default">Dependency on the standard library is now added by default</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#minimum-gradle-version-for-kotlin-projects">Kotlin projects require a recent version of Gradle</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#improved-gradlekts-support-in-the-ide">Improved support for Kotlin Gradle DSL in the IDE</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="dependency-on-the-standard-library-added-by-default">Dependency on the standard library added by default</h3>
+<p class="typo-para">You no longer need to declare a dependency on the <code>stdlib</code> library in any Kotlin Gradle project, including a multiplatform one.
+The dependency is added by default.</p>
+<p class="typo-para">The automatically added standard library will be the same version of the Kotlin Gradle plugin, 
+since they have the same versioning.</p>
+<p class="typo-para">For platform-specific source sets, the corresponding platform-specific variant of the library is used, while a common standard 
+library is added to the rest. The Kotlin Gradle plugin will select the appropriate JVM standard library depending on 
+the <code>kotlinOptions.jvmTarget</code> <a class="typo-link" href="using-gradle.html#compiler-options">compiler option</a> of your Gradle build script.</p>
+<p class="typo-para">Learn how to <a class="typo-link" href="using-gradle.html#dependency-on-the-standard-library">change the default behavior</a>.</p>
+<h3 class="typo-header typo-h3" id="minimum-gradle-version-for-kotlin-projects">Minimum Gradle version for Kotlin projects</h3>
+<p class="typo-para">To enjoy the new features in your Kotlin projects, update Gradle to the <a class="typo-link" href="https://gradle.org/releases/">latest version</a>. 
+Multiplatform projects require Gradle 6.0 or later, while other Kotlin projects work with Gradle 5.4 or later.</p>
+<h3 class="typo-header typo-h3" id="improved-gradlekts-support-in-the-ide">Improved *.gradle.kts support in the IDE</h3>
+<p class="typo-para">In 1.4.0, we continued improving the IDE support for Gradle Kotlin DSL scripts (<code>*.gradle.kts</code> files). Here is what the new
+version brings:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para"><em>Explicit loading of script configurations</em> for better performance. Previously, the changes you make to the build script
+were loaded automatically in the background. To improve the performance, we've disabled the automatic loading of build script
+configuration in 1.4.0. Now the IDE loads the changes only when you explicitly apply them.</p>
+<p class="typo-para">In Gradle versions earlier than 6.0, you need to manually load the script configuration by clicking <strong class="typo-strong">Load Configuration</strong> in the editor.</p>
+<p class="typo-para"><img alt="*.gradle.kts – Load Configuration" class="typo-image" src="/assets/images/reference/whats-new/gradle-kts-load-config.png"/></p>
+<p class="typo-para">In Gradle 6.0 and above, you can explicitly apply changes by clicking <strong class="typo-strong">Load Gradle Changes</strong> or by reimporting the
+Gradle project.</p>
+<p class="typo-para">We’ve added one more action in IntelliJ IDEA 2020.1 with Gradle 6.0 and above – <strong class="typo-strong">Load Script Configurations</strong>, which loads changes
+to the script configurations without updating the whole project. This takes much less time than reimporting the whole project.</p>
+<p class="typo-para"><img alt="*.gradle.kts – Load Script Changes and Load Gradle Changes" class="typo-image" src="/assets/images/reference/whats-new/gradle-kts.png"/></p>
+<p class="typo-para">You should also <strong class="typo-strong">Load Script Configurations</strong> for newly created scripts or when you open a project with new Kotlin plugin for the first time.</p>
+<p class="typo-para">With Gradle 6.0 and above, you are now able to load all scripts at once as opposed to the previous implementation where
+they were loaded individually. Since each request requires the Gradle configuration phase to be executes, this could be
+resource-intensive for large Gradle projects.</p>
+<p class="typo-para">Currently, such loading is limited to <code>build.gradle.kts</code> and <code>settings.gradle.kts</code> files (please vote for the related <a class="typo-link" href="https://github.com/gradle/gradle/issues/12640">issue</a>).
+To enable highlighting for <code>init.gradle.kts</code> or applied <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:script_plugins">script plugins</a>,
+use the old mechanism – adding them to standalone scripts. Configuration for that scripts will be loaded separately when you need it.
+You can also enable auto-reload for such scripts.</p>
+<p class="typo-para"><img alt="*.gradle.kts – Add to standalone scripts" class="typo-image" src="/assets/images/reference/whats-new/gradle-kts-standalone.png"/></p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><em>Better error reporting</em>. Previously you could only see errors from the Gradle Daemon in separate log files. Now the
+Gradle Daemon returns all the information about errors directly and shows it in the Build tool window. This saves you both
+time and effort.</p>
+</li>
+</ul>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="standard-library">Standard library</h2>
+<p class="typo-para">Here is the list of the most significant changes to the Kotlin standard library in 1.4.0:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#common-exception-processing-api">Common exception processing API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-functions-for-arrays-and-collections">New functions for arrays and collections</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#functions-for-string-manipulations">Functions for string manipulations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#bit-operations">Bit operations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#delegated-properties-improvements">Delegated properties improvements</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#converting-from-ktype-to-java-type">Converting from KType to Java Type</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#proguard-configurations-for-kotlin-reflection">Proguard configurations for Kotlin reflection</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#improving-the-existing-api">Improving the existing API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#module-info-descriptors-for-stdlib-artifacts">module-info descriptors for stdlib artifacts</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#deprecations">Deprecations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#exclusion-of-the-deprecated-experimental-coroutines">Exclusion of the deprecated experimental coroutines</a></li>
+</ul>
+<h3 class="typo-header typo-h3" id="common-exception-processing-api">Common exception processing API</h3>
+<p class="typo-para">The following API elements have been moved to the common library:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>Throwable.stackTraceToString()</code> extension function, which returns the detailed description of this throwable with its
+stack trace, and <code>Throwable.printStackTrace()</code>, which prints this description to the standard error output.</li>
+<li class="typo-list__item"><code>Throwable.addSuppressed()</code> function, which lets you specify the exceptions that were suppressed in order to deliver
+the exception, and the <code>Throwable.suppressedExceptions</code> property, which returns a list of all the suppressed exceptions.</li>
+<li class="typo-list__item"><code>@Throws</code> annotation, which lists exception types that will be checked when the function is compiled to a platform method
+(on JVM or native platforms).</li>
+</ul>
+<h3 class="typo-header typo-h3" id="new-functions-for-arrays-and-collections">New functions for arrays and collections</h3>
+<h4 class="typo-header typo-h4" id="collections">Collections</h4>
+<p class="typo-para">In 1.4.0, the standard library includes a number of useful functions for working with <strong class="typo-strong">collections</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para"><code>setOfNotNull()</code>, which makes a set consisting of all the non-null items among the provided arguments.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      val set = setOfNotNull(null, 1, 2, 0, null)
+      println(set)
+  //sampleEnd
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>shuffled()</code> for sequences.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      val numbers = (0 until 50).asSequence()
+      val result = numbers.map { it * 2 }.shuffled().take(5)
+      println(result.toList()) //five random even numbers below 100
+  //sampleEnd
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>*Indexed()</code> counterparts for <code>onEach()</code> and <code>flatMap()</code>.
+The operation that they apply to the collection elements has the element index as a parameter.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      listOf("a", "b", "c", "d").onEachIndexed {
+          index, item -&gt; println(index.toString() + ":" + item)
+      }
+  
+     val list = listOf("hello", "kot", "lin", "world")
+            val kotlin = list.flatMapIndexed { index, item -&gt;
+                if (index in 1..2) item.toList() else emptyList() 
+            }
+  //sampleEnd
+            println(kotlin)
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>*OrNull()</code> counterparts <code>randomOrNull()</code>, <code>reduceOrNull()</code>, and <code>reduceIndexedOrNull()</code>. 
+They return <code>null</code> on empty collections.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+       val empty = emptyList&lt;Int&gt;()
+       empty.reduceOrNull { a, b -&gt; a + b }
+       //empty.reduce { a, b -&gt; a + b } // Exception: Empty collection can't be reduced.
+  //sampleEnd
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>runningFold()</code>, its synonym <code>scan()</code>, and <code>runningReduce()</code> apply the given operation to the collection elements sequentially,
+ similarly to<code>fold()</code> and <code>reduce()</code>; the difference is that these new functions return the whole sequence of intermediate results.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      val numbers = mutableListOf(0, 1, 2, 3, 4, 5)
+      val runningReduceSum = numbers.runningReduce { sum, item -&gt; sum + item }
+      val runningFoldSum = numbers.runningFold(10) { sum, item -&gt; sum + item }
+  //sampleEnd
+      println(runningReduceSum.toString())
+      println(runningFoldSum.toString())
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>sumOf()</code> takes a selector function and returns a sum of its values for all elements of a collection.
+<code>sumOf()</code> can produce sums of the types <code>Int</code>, <code>Long</code>, <code>Double</code>, <code>UInt</code>, and <code>ULong</code>. On the JVM, <code>BigInteger</code> and <code>BigDecimal</code> are also available.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  data class OrderItem(val name: String, val price: Double, val count: Int)
+    
+  fun main() {
+  //sampleStart
+      val order = listOf&lt;OrderItem&gt;(
+          OrderItem("Cake", price = 10.0, count = 1),
+          OrderItem("Coffee", price = 2.5, count = 3),
+          OrderItem("Tea", price = 1.5, count = 2))
+    
+      val total = order.sumOf { it.price * it.count} // Double
+      val count = order.sumOf { it.count } // Int
+  //sampleEnd
+      println("You've ordered $count items that cost $total in total")
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">The <code>min()</code> and <code>max()</code> functions have been renamed to <code>minOrNull()</code> and <code>maxOrNull()</code> to comply with the naming
+convention used across the Kotlin collections API. An <code>*OrNull</code> suffix in the function name means that it returns <code>null</code>
+if the receiver collection is empty. The same applies to <code>minBy()</code>, <code>maxBy()</code>, <code>minWith()</code>, <code>maxWith()</code> – in 1.4, 
+they have <code>*OrNull()</code> synonyms.</li>
+<li class="typo-list__item">
+<p class="typo-para">The new <code>minOf()</code> and <code>maxOf()</code> extension functions return the minimum and the maximum value of the given selector function
+on the collection items.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  data class OrderItem(val name: String, val price: Double, val count: Int)
+    
+  fun main() {
+  //sampleStart
+      val order = listOf&lt;OrderItem&gt;(
+          OrderItem("Cake", price = 10.0, count = 1),
+          OrderItem("Coffee", price = 2.5, count = 3),
+          OrderItem("Tea", price = 1.5, count = 2))
+      val highestPrice = order.maxOf { it.price }
+  //sampleEnd
+      println("The most expensive item in the order costs $highestPrice")
+  }
+</code></pre>
+</div>
+<p class="typo-para">There are also <code>minOfWith()</code> and <code>maxOfWith()</code>, which take a <code>Comparator</code> as an argument, and <code>*OrNull()</code> versions
+of all four functions that return <code>null</code> on empty collections.</p>
+</li>
+<li class="typo-list__item">New overloads for <code>flatMap</code> and <code>flatMapTo</code> let you use transformations with return types that don’t match the receiver type, namely:
+    <ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Transformations to <code>Sequence</code> on <code>Iterable</code>, <code>Array</code>, and <code>Map</code></li>
+<li class="typo-list__item">Transformations to <code>Iterable</code> on <code>Sequence</code></li>
+</ul>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      val list = listOf("kot", "lin")
+      val lettersList = list.flatMap { it.asSequence() }
+      val lettersSeq = list.asSequence().flatMap { it.toList() }    
+  //sampleEnd
+      println(lettersList)
+      println(lettersSeq.toList())
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item"><code>removeFirst()</code> and <code>removeLast()</code> shortcuts for removing elements from mutable lists, and <code>*orNull()</code> counterparts
+of these functions.</li>
+</ul>
+<h4 class="typo-header typo-h4" id="arrays">Arrays</h4>
+<p class="typo-para">To provide a consistent experience when working with different container types, we’ve also added new functions for <strong class="typo-strong">arrays</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>shuffle()</code> puts the array elements in a random order.</li>
+<li class="typo-list__item"><code>onEach()</code> performs the given action on each array element and returns the array itself.</li>
+<li class="typo-list__item"><code>associateWith()</code> and <code>associateWithTo()</code> build maps with the array elements as keys.</li>
+<li class="typo-list__item"><code>reverse()</code> for array subranges reverses the order of the elements in the subrange.</li>
+<li class="typo-list__item"><code>sortDescending()</code> for array subranges sorts the elements in the subrange in descending order.</li>
+<li class="typo-list__item"><code>sort()</code> and <code>sortWith()</code> for array subranges are now available in the common library.</li>
+</ul>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    var language = ""
+    val letters = arrayOf("k", "o", "t", "l", "i", "n")
+    val fileExt = letters.onEach { language += it }
+       .filterNot { it in "aeuio" }.take(2)
+       .joinToString(prefix = ".", separator = "")
+    println(language) // "kotlin"
+    println(fileExt) // ".kt"
+
+    letters.shuffle()
+    letters.reverse(0, 3)
+    letters.sortDescending(2, 5)
+    println(letters.contentToString()) // [k, o, t, l, i, n]
+//sampleEnd
+}
+</code></pre>
+</div>
+<p class="typo-para">Additionally, there are new functions for conversions between <code>CharArray</code>/<code>ByteArray</code> and <code>String</code>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>ByteArray.decodeToString()</code> and <code>String.encodeToByteArray()</code></li>
+<li class="typo-list__item"><code>CharArray.concatToString()</code> and <code>String.toCharArray()</code></li>
+</ul>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+	val str = "kotlin"
+    val array = str.toCharArray()
+    println(array.concatToString())
+//sampleEnd
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="arraydeque">ArrayDeque</h4>
+<p class="typo-para">We've also added the <code>ArrayDeque</code> class – an implementation of a double-ended queue.
+Double-ended queue lets you can add or remove elements both at the beginning and the end of the queue in an amortized
+constant time. You can use a double-ended queue by default when you need a queue or a stack in your code.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+    val deque = ArrayDeque(listOf(1, 2, 3))
+
+    deque.addFirst(0)
+    deque.addLast(4)
+    println(deque) // [0, 1, 2, 3, 4]
+
+    println(deque.first()) // 0
+    println(deque.last()) // 4
+
+    deque.removeFirst()
+    deque.removeLast()
+    println(deque) // [1, 2, 3]
+}
+</code></pre>
+</div>
+<p class="typo-para">The <code>ArrayDeque</code> implementation uses a resizable array underneath: it stores the contents in a circular buffer, an <code>Array</code>,
+and resizes this <code>Array</code> only when it becomes full.</p>
+<h3 class="typo-header typo-h3" id="functions-for-string-manipulations">Functions for string manipulations</h3>
+<p class="typo-para">The standard library in 1.4.0 includes a number of improvements in the API for string manipulation:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>StringBuilder</code> has useful new extension functions: <code>set()</code>, <code>setRange()</code>, <code>deleteAt()</code>, <code>deleteRange()</code>, <code>appendRange()</code>,
+and others.
+    <div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      val sb = StringBuilder("Bye Kotlin 1.3.72")
+      sb.deleteRange(0, 3)
+      sb.insertRange(0, "Hello", 0 ,5)
+      sb.set(15, '4')
+      sb.setRange(17, 19, "0")
+      print(sb.toString())
+  //sampleEnd
+  }
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">Some existing functions of <code>StringBuilder</code> are available in the common library. Among them are <code>append()</code>, <code>insert()</code>,
+<code>substring()</code>, <code>setLength()</code>, and more.</li>
+<li class="typo-list__item">
+<p class="typo-para">New functions <code>Appendable.appendLine()</code> and <code>StringBuilder.appendLine()</code> have been added to the common library. They
+replace the JVM-only <code>appendln()</code> functions of these classes.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">  fun main() {
+  //sampleStart
+      println(buildString {
+          appendLine("Hello,")
+          appendLine("world")
+      })
+  //sampleEnd
+  }
+</code></pre>
+</div>
+</li>
+</ul>
+<h3 class="typo-header typo-h3" id="bit-operations">Bit operations</h3>
+<p class="typo-para">New functions for bit manipulations:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>countOneBits()</code></li>
+<li class="typo-list__item"><code>countLeadingZeroBits()</code></li>
+<li class="typo-list__item"><code>countTrailingZeroBits()</code></li>
+<li class="typo-list__item"><code>takeHighestOneBit()</code></li>
+<li class="typo-list__item"><code>takeLowestOneBit()</code></li>
+<li class="typo-list__item"><code>rotateLeft()</code> and <code>rotateRight()</code> (experimental)</li>
+</ul>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+//sampleStart
+    val number = "1010000".toInt(radix = 2)
+    println(number.countOneBits())
+    println(number.countTrailingZeroBits())
+    println(number.takeHighestOneBit().toString(2))
+//sampleEnd
+}
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="delegated-properties-improvements">Delegated properties improvements</h3>
+<p class="typo-para">In 1.4.0, we have added new features to improve your experience with delegated properties in Kotlin:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Now a property can be delegated to another property.</li>
+<li class="typo-list__item">A new interface <code>PropertyDelegateProvider</code> helps create delegate providers in a single declaration.</li>
+<li class="typo-list__item"><code>ReadWriteProperty</code> now extends <code>ReadOnlyProperty</code> so you can use both of them for read-only properties.</li>
+</ul>
+<p class="typo-para">Aside from the new API, we've made some optimizations that reduce the resulting bytecode size. These optimizations are
+described in <a class="typo-link" href="https://blog.jetbrains.com/kotlin/2019/12/what-to-expect-in-kotlin-1-4-and-beyond/#delegated-properties">this blog post</a>.</p>
+<p class="typo-para">For more information about delegated properties, see the <a class="typo-link" href="delegated-properties.html">documentation</a>.</p>
+<h3 class="typo-header typo-h3" id="converting-from-ktype-to-java-type">Converting from KType to Java Type</h3>
+<p class="typo-para">A new extension property <code>KType.javaType</code> (currently experimental) in the stdlib helps you obtain a <code>java.lang.reflect.Type</code>
+from a Kotlin type without using the whole <code>kotlin-reflect</code> dependency.</p>
+<div class="sample" data-min-compiler-version="1.4" theme="idea">
+<pre><code class="language-kotlin">import kotlin.reflect.javaType
+import kotlin.reflect.typeOf
+
+@OptIn(ExperimentalStdlibApi::class)
+inline fun &lt;reified T&gt; accessReifiedTypeArg() {
+   val kType = typeOf&lt;T&gt;()
+   println("Kotlin type: $kType")
+   println("Java type: ${kType.javaType}")
+}
+
+@OptIn(ExperimentalStdlibApi::class)
+fun main() {
+   accessReifiedTypeArg&lt;String&gt;()
+   // Kotlin type: kotlin.String
+   // Java type: class java.lang.String
+  
+   accessReifiedTypeArg&lt;List&lt;String&gt;&gt;()
+   // Kotlin type: kotlin.collections.List&lt;kotlin.String&gt;
+   // Java type: java.util.List&lt;java.lang.String&gt;
+}
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="proguard-configurations-for-kotlin-reflection">Proguard configurations for Kotlin reflection</h3>
+<p class="typo-para">Starting from 1.4.0, we have embedded Proguard/R8 configurations for Kotlin Reflection in <code>kotlin-reflect.jar</code>. With this
+in place, most Android projects using R8 or Proguard should work with kotlin-reflect without needing any additional configuration.
+You no longer need to copy-paste the Proguard rules for kotlin-reflect internals. But note that you still need to explicitly 
+list all the APIs you’re going to reflect on.</p>
+<h3 class="typo-header typo-h3" id="improving-the-existing-api">Improving the existing API</h3>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Several functions now work on null receivers, for example:
+    <ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><code>toBoolean()</code> on strings</li>
+<li class="typo-list__item"><code>contentEquals()</code>, <code>contentHashcode()</code>, <code>contentToString()</code> on arrays</li>
+</ul>
+</li>
+<li class="typo-list__item">
+<p class="typo-para"><code>NaN</code>, <code>NEGATIVE_INFINITY</code>, and <code>POSITIVE_INFINITY</code> in <code>Double</code> and <code>Float</code> are now defined as <code>const</code>, so you can use
+them as annotation arguments.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">New constants <code>SIZE_BITS</code> and <code>SIZE_BYTES</code> in <code>Double</code> and <code>Float</code> contain the number of bits and bytes used
+to represent an instance of the type in binary form.</p>
+</li>
+<li class="typo-list__item">The <code>maxOf()</code> and <code>minOf()</code> top-level functions can accept a variable number of arguments (<code>vararg</code>).</li>
+</ul>
+<h3 class="typo-header typo-h3" id="module-info-descriptors-for-stdlib-artifacts">module-info descriptors for stdlib artifacts</h3>
+<p class="typo-para">Kotlin 1.4.0 adds <code>module-info.java</code> module information to default standard library artifacts. This lets you use them with 
+<a class="typo-link" href="https://docs.oracle.com/en/java/javase/11/tools/jlink.html"><strong class="typo-strong">jlink</strong> tool</a>, which generates custom Java runtime images
+containing only the platform modules that are required for your app.
+You could already use jlink with Kotlin standard library artifacts, but you had to use separate artifacts to do so – the
+ones with the “modular” classifier – and the whole setup wasn’t straightforward.<br/>
+In Android, make sure you use the Android Gradle plugin version 3.2 or higher, which can correctly process jar files with module-info.</p>
+<h3 class="typo-header typo-h3" id="deprecations">Deprecations</h3>
+<h4 class="typo-header typo-h4" id="toshort-and-tobyte-of-double-and-float">toShort() and toByte() of Double and Float</h4>
+<p class="typo-para">We've deprecated the functions <code>toShort()</code> and <code>toByte()</code> on <code>Double</code> and <code>Float</code> because they could lead to unexpected results
+because of the narrow value range and smaller variable size.</p>
+<p class="typo-para">To convert floating-point numbers to <code>Byte</code> or <code>Short</code>, use the two-step conversion: first, convert them to <code>Int</code>, and then 
+convert them again to the target type.</p>
+<h4 class="typo-header typo-h4" id="contains-indexof-and-lastindexof-on-floating-point-arrays">contains(), indexOf(), and lastIndexOf() on floating-point arrays</h4>
+<p class="typo-para">We've deprecated the <code>contains()</code>, <code>indexOf()</code>, and <code>lastIndexOf()</code> extension functions of <code>FloatArray</code> and <code>DoubleArray</code>
+because they use the <a class="typo-link" href="https://en.wikipedia.org/wiki/IEEE_754">IEEE 754</a> standard equality, which contradicts the total
+order equality in some corner cases. See <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28753">this issue</a> for details.</p>
+<h4 class="typo-header typo-h4" id="min-and-max-collection-functions">min() and max() collection functions</h4>
+<p class="typo-para">We've deprecated the <code>min()</code> and <code>max()</code> collection functions in favor of <code>minOrNull()</code> and <code>maxOrNull()</code>, which more
+properly reflect their behavior – returning <code>null</code> on empty collections.
+See <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38854">this issue</a> for details.</p>
+<h3 class="typo-header typo-h3" id="exclusion-of-the-deprecated-experimental-coroutines">Exclusion of the deprecated experimental coroutines</h3>
+<p class="typo-para">The <code>kotlin.coroutines.experimental</code> API was deprecated in favor of kotlin.coroutines in 1.3.0. In 1.4.0, we’re completing
+the deprecation cycle for <code>kotlin.coroutines.experimental</code> by removing it from the standard library. For those who still
+use it on the JVM, we've provided a compatibility artifact <code>kotlin-coroutines-experimental-compat.jar</code> with all the experimental
+coroutines APIs. We've published it to Maven, and we include it in the Kotlin distribution alongside the standard library.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="stable-json-serialization">Stable JSON serialization</h2>
+<p class="typo-para">With Kotlin 1.4.0, we are shipping the first stable version of <a class="typo-link" href="https://github.com/Kotlin/kotlinx.serialization">kotlinx.serialization</a></p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">1.0.0-RC. Now we are pleased to declare the JSON serialization API in <code>kotlinx-serialization-core</code> (previously known as <code>kotlinx-serialization-runtime</code>)
+stable. Libraries for other serialization formats remain experimental, along with some advanced parts of the core library.</li>
+</ul>
+<p class="typo-para">We have significantly reworked the API for JSON serialization to make it more consistent and easier to use. From now on,
+we'll continue developing the JSON serialization API in a backward-compatible manner.
+However, if you have used previous versions of it, you'll need to rewrite some of your code when migrating to 1.0.0-RC.
+To help you with this, we also offer the <a class="typo-link" href="https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serialization-guide.md">Kotlin Serialization Guide</a> –
+the complete set of documentation for <code>kotlinx.serialization</code>. It will guide you through the process of using the most
+important features and it can help you address any issues that you might face.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para"><strong class="typo-strong">Note</strong>: <code>kotlinx-serialization</code> 1.0.0-RC only works with Kotlin compiler 1.4. Earlier compiler versions are not compatible.</p>
+</blockquote>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="scripting-and-repl">Scripting and REPL</h2>
+<p class="typo-para">In 1.4.0, scripting in Kotlin benefits from a number of functional and performance improvements along with other updates.
+Here are some of the key changes:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#new-dependencies-resolution-api">New dependencies resolution API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#new-repl-api">New REPL API</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#compiled-scripts-cache">Compiled scripts cache</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#artifacts-renaming">Artifacts renaming</a></li>
+</ul>
+<p class="typo-para">To help you become more familiar with scripting in Kotlin, we’ve prepared a <a class="typo-link" href="https://github.com/Kotlin/kotlin-script-examples">project with examples</a>.
+It contains examples of the standard scripts (<code>*.main.kts</code>) and examples of uses of the Kotlin Scripting API and custom
+script definitions. Please give it a try and share your feedback using our <a class="typo-link" href="https://youtrack.jetbrains.com/issues/KT">issue tracker</a>.</p>
+<h3 class="typo-header typo-h3" id="new-dependencies-resolution-api">New dependencies resolution API</h3>
+<p class="typo-para">In 1.4.0, we’ve introduced a new API for resolving external dependencies (such as Maven artifacts), along with implementations
+for it. This API is published in the new artifacts <code>kotlin-scripting-dependencies</code> and <code>kotlin-scripting-dependencies-maven</code>.
+The previous dependency resolution functionality in <code>kotlin-script-util</code> library is now deprecated.</p>
+<h3 class="typo-header typo-h3" id="new-repl-api">New REPL API</h3>
+<p class="typo-para">The new experimental REPL API is now a part of the Kotlin Scripting API. There are also several implementations of it in
+the published artifacts, and some have advanced functionality, such as code completion. We use this API in the 
+<a class="typo-link" href="https://blog.jetbrains.com/kotlin/2020/05/kotlin-kernel-for-jupyter-notebook-v0-8/">Kotlin Jupyter kernel</a>
+and now you can try it in your own custom shells and REPLs.</p>
+<h3 class="typo-header typo-h3" id="compiled-scripts-cache">Compiled scripts cache</h3>
+<p class="typo-para">The Kotlin Scripting API now provides the ability to implement a compiled scripts cache, significantly speeding up subsequent
+executions of unchanged scripts. Our default advanced script implementation <code>kotlin-main-kts</code> already has its own cache.</p>
+<h3 class="typo-header typo-h3" id="artifacts-renaming">Artifacts renaming</h3>
+<p class="typo-para">In order to avoid confusion about artifact names, we’ve renamed <code>kotlin-scripting-jsr223-embeddable</code> and <code>kotlin-scripting-jvm-host-embeddable</code>
+to just <code>kotlin-scripting-jsr223</code> and <code>kotlin-scripting-jvm-host</code>. These artifacts depend on the <code>kotlin-compiler-embeddable</code>
+artifact, which shades the bundled third-party libraries to avoid usage conflicts. With this renaming, we’re making the usage of
+<code>kotlin-compiler-embeddable</code> (which is safer in general) the default for scripting artifacts.
+If, for some reason, you need artifacts that depend on the unshaded <code>kotlin-compiler</code>, use the artifact versions with the 
+<code>-unshaded</code> suffix, such as <code>kotlin-scripting-jsr223-unshaded</code>. Note that this renaming affects only the scripting artifacts
+that are supposed to be used directly; names of other artifacts remain unchanged.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+<h2 class="typo-header typo-h2" id="migrating-to-kotlin-140">Migrating to Kotlin 1.4.0</h2>
+<p class="typo-para">The Kotlin plugin’s migration tools help you migrate your projects from earlier versions of Kotlin to 1.4.0.</p>
+<p class="typo-para">Just change the Kotlin version to <code>1.4.0</code> and re-import your Gradle or Maven project. The IDE will then ask you about migration.</p>
+<p class="typo-para">If you agree, it will run migration code inspections that will check your code and suggest corrections for anything that doesn't work 
+or that is not recommended in 1.4.0.</p>
+<p class="typo-para"><img alt="Run migration" class="img-responsive typo-image" src="/assets/images/reference/whats-new/run-migration-wn.png" width="300"/></p>
+<p class="typo-para">Code inspections have different <a class="typo-link" href="https://www.jetbrains.com/help/idea/configuring-inspection-severities.html">severity levels</a>, 
+to help you decide which suggestions to accept and which to ignore.</p>
+<p class="typo-para"><img alt="Migration inspections" class="typo-image" src="/assets/images/reference/whats-new/migration-inspection-wn.png"/></p>
+<h3 class="typo-header typo-h3" id="migrating-multiplatform-projects">Migrating multiplatform projects</h3>
+<p class="typo-para">To help you start using the new features of <a class="typo-link" href="#kotlin-multiplatform">Kotlin multiplatform</a> in existing projects, we
+publish the <a class="typo-link" href="migrating-multiplatform-project-to-14.html">migration guide for multiplatform projects</a>.</p>
+<p class="typo-para"><a class="typo-link" href="#"><strong class="typo-strong">Back to top</strong></a></p>
+
+        </article>
+    </div>
+        </div>
+<footer role="contentinfo" class="global-footer">
+
+    <div class="global-footer-terms">
+        <div class="g-footer-layout">
+
+            <div class="footer-info-block">
+                <ul class="terms-social">
+                    <li class="terms-social__item">
+                        <a target="_blank" class="link visually-hidden" href="https://github.com/JetBrains/kotlin">
+                            <img src="/assets/github-logo.svg" alt="GitHub logo"/></a>
+                    </li>
+                    <li class="terms-social__item terms-social__item_twitter">
+                        <a target="_blank" class="link" href="https://twitter.com/kotlin">
+                            <img src="/assets/twitter-logo.svg" alt="Twitter logo" height="16"/>
+                        </a>
+                    </li>
+                    <li class="terms-social__item terms-social__item_slack">
+                        <a target="_blank" class="link" href="https://surveys.jetbrains.com/s3/kotlin-slack-sign-up">
+                            <img src="/assets/slack-logo.svg" alt="Slack logo"/>
+                        </a>
+                    </li>
+                    <li class="terms-social__item terms-social__item_reddit">
+                        <a target="_blank" class="link" href="https://www.reddit.com/r/Kotlin/">
+                            <img src="/assets/reddit-logo.svg" alt="Reddit logo"/>
+                        </a>
+                    </li>
+                    <li class="terms-social__item terms-social__item_bug-stackoverflow">
+                        <a target="_blank" class="link" href="https://stackoverflow.com/questions/tagged/kotlin">
+                            <img src="/assets/stackoverflow-logo.svg" alt="Stack Overflow logo"/>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="global-footer-row">
+                    <a class="terms-kit" href="/contribute.html">向 Kotlin 贡献</a>
+                    <span class="divider"></span>
+                    <a class="terms-kit" href="/releases.html">发布版本</a>
+                    <span class="divider"></span>
+                    <a class="terms-kit" href=/assets/kotlin-media-kit.pdf>宣传资料</a>
+                    <span class="divider"></span>
+                    <a class="terms-kit" href="/security.html">安全</a>
+                    <span class="divider"></span>
+                    <a class="terms-kit"
+                       target="_blank"
+                       href="https://blog.jetbrains.com/kotlin/">博客</a>
+                    <span class="divider"></span>
+                    <a class="terms-kit"
+                       target="_blank"
+                       href="https://youtrack.jetbrains.com/issues/KT">问题追踪</a>
+                </div>
+
+                <div class="license-footer-row">
+                    <div class="terms-foundation">
+                        <span>Kotlin™ 商标受
+                            <a class="terms-foundation_link"
+                               href="https://kotlinlang.org/foundation/kotlin-foundation.html">
+                        Kotlin 基金会
+                            </a>保护并采用 <a class="terms-foundation_link"
+                                                           href="https://github.com/JetBrains/kotlin-web-site/blob/master/LICENSE">
+                                Apache 2 授权许可。</a> <span class="terms-sponsor-mobile"> Kotlin 与 Kotlin 官方英文站由 <a
+                                    href="http://jetbrains.com"
+                                    class="terms-foundation_link"
+                                    target="_blank">JetBrains</a> 支持与开发</span>
+                            <span class="terms-sponsor-mobile">
+                                本站由<a href="https://hltj.me/" target="_blank" rel="nofollow">灰蓝天际</a>、
+                                <a href="http://tanfujun.com" target="_blank" rel="nofollow">晓_晨DEV</a>、
+                                <a href="https://github.com/qiaoyuang" target="_blank" rel="nofollow">乔禹昂</a>、
+                                <a href="https://github.com/SpielbergGao" target="_blank" rel="nofollow">高金龙</a>、
+                                <a href="https://github.com/HoshinoTented" target="_blank" rel="nofollow">HoshinoTented</a>、
+                                <a href="https://www.liuwj.me" target="_blank" rel="nofollow">刘文俊</a>、
+                                <a href="https://github.com/Hiwensen" target="_blank" rel="nofollow">常少威</a>、
+                                <a href="https://github.com/Yue-plus" target="_blank" rel="nofollow">Yue-plus</a>、
+                                <a href="https://github.com/Guolianxing" target="_blank" rel="nofollow">Guolianxing</a>
+                                &nbsp;<a href="/contribute.html#中文站翻译贡献者" target="_blank" rel="nofollow">等</a>译
+                            </span>
+                        </span>
+                    </div>
+
+                    <div class="jetbrains-link-mobile">
+                        <a href="http://jetbrains.com" target="_blank"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sponsored-block">
+                <div class="terms-sponsor">
+                    <!-- <a href="http://jetbrains.com" target="_blank">
+                        <div class="jetbrains-link"></div>
+                    </a> -->
+                    <span>Kotlin 与 Kotlin 官方英文站由 <a href="http://jetbrains.com"
+                                                        class="terms-foundation_link"
+                                                        target="_blank">JetBrains</a> 支持与开发</span>
+                    <span>
+                        本站由<a href="https://hltj.me/" target="_blank" rel="nofollow">灰蓝天际</a>、
+                        <a href="http://tanfujun.com" target="_blank" rel="nofollow">晓_晨DEV</a>、
+                        <a href="https://github.com/qiaoyuang" target="_blank" rel="nofollow">乔禹昂</a>、
+                        <a href="https://github.com/SpielbergGao" target="_blank" rel="nofollow">高金龙</a>、
+                        <a href="https://github.com/HoshinoTented" target="_blank" rel="nofollow">HoshinoTented</a>、
+                        <a href="https://www.liuwj.me" target="_blank" rel="nofollow">刘文俊</a>、
+                        <a href="https://github.com/Hiwensen" target="_blank" rel="nofollow">常少威</a>、
+                        <a href="https://github.com/Yue-plus" target="_blank" rel="nofollow">Yue-plus</a>、
+                        <a href="https://github.com/Guolianxing" target="_blank" rel="nofollow">Guolianxing</a>
+                        &nbsp;<a href="/contribute.html#中文站翻译贡献者" target="_blank" rel="nofollow">等</a>译
+                    </span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</footer></div>
+
+<div class="search-popup _hidden" tabindex="1000">
+    <div class="search-popup__content">
+        <div class="search-popup__controls">
+            <div class="search-popup__input"></div>
+            <div class="search-popup__close">
+                <div class="search-popup__close-icon-wrapper">
+                    <div class="search-popup__close-icon"></div>
+                </div>
+                <div class="search-popup__close-text">esc</div>
+            </div>
+        </div>
+        <div class="search-popup__results"></div>
+    </div>
+</div>
+<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+    <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
+</body>
+</html>
