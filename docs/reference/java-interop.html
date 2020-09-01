@@ -62,13 +62,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
+    <a class="banner-text" href="https://item.jd.com/12695637.html" target="_blank">
+        <div class="banner-item" style="margin-right:0px;">新书上架：</div>
+        <div class="banner-item title" style="margin-right:0px;">
+            《Kotlin编程实践》
+        </div>
+        <div class="banner-item" style="margin-right:8px;">本站译者乔禹昂著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
+    </a>
     <a class="banner-text" href="https://item.jd.com/12898592.html" target="_blank">
-        <div class="banner-item title">
-            新书上架：《深入理解Kotlin协程》（中文社区负责人霍丙乾著）
+        <div class="banner-item title" style="margin-right:0px;">
+            《深入理解Kotlin协程》
         </div>
-        <div class="banner-item underline">
-            立即购买
-        </div>
+        <div class="banner-item" style="margin-right:8px;">中文社区负责人霍丙乾著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
 </div>        </div>
@@ -2189,7 +2196,8 @@ javaObj.removeIndicesVarArg(*array)
 <p class="typo-para">要访问<a class="typo-link" href="#已映射类型">已映射</a>到 Kotlin 类型的 Java 类型的静态成员，请使用 Java 类型的完整限定名：<code>java.lang.Integer.bitCount(foo)</code>。</p>
 <h2 class="typo-header typo-h2" id="java-反射">Java 反射</h2>
 <p class="typo-para">Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 <code>instance::class.java</code>,
-<code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。</p>
+<code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。
+You may also use <code>ClassName::class.javaObjectType</code> for getting primitive types wrappers.</p>
 <p class="typo-para">其他支持的情况包括为一个 Kotlin 属性获取一个 Java 的 getter/setter 方法或者幕后字段、为一个 Java 字段获取一个 <code>KProperty</code>、为一个 <code>KFunction</code> 获取一个 Java 方法或者构造函数，反之亦然。</p>
 <h2 class="typo-header typo-h2" id="sam-转换">SAM 转换</h2>
 <p class="typo-para">Kotlin 支持 Java 以及 <a class="typo-link" href="fun-interfaces.html">Kotlin 接口</a>的 SAM 转换。

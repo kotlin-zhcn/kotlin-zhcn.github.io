@@ -62,13 +62,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
+    <a class="banner-text" href="https://item.jd.com/12695637.html" target="_blank">
+        <div class="banner-item" style="margin-right:0px;">新书上架：</div>
+        <div class="banner-item title" style="margin-right:0px;">
+            《Kotlin编程实践》
+        </div>
+        <div class="banner-item" style="margin-right:8px;">本站译者乔禹昂著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
+    </a>
     <a class="banner-text" href="https://item.jd.com/12898592.html" target="_blank">
-        <div class="banner-item title">
-            新书上架：《深入理解Kotlin协程》（中文社区负责人霍丙乾著）
+        <div class="banner-item title" style="margin-right:0px;">
+            《深入理解Kotlin协程》
         </div>
-        <div class="banner-item underline">
-            立即购买
-        </div>
+        <div class="banner-item" style="margin-right:8px;">中文社区负责人霍丙乾著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
 </div>        </div>
@@ -1530,11 +1537,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 用于<a class="typo-link" href="native-overview.html#目标平台">所支持平台</a>的 JVM、JavaScript 与 Native 二进制文件。</p>
 <p class="typo-para">当单击 Kotlin 项目的 <strong class="typo-strong">Compile</strong> 或 <strong class="typo-strong">运行(Run)</strong> 按钮时，IDE 会使用这些编译器。</p>
 <p class="typo-para">还可以按照<a class="typo-link" href="/docs/tutorials/command-line.html">使用命令行编译器</a>
-教程中所述在命令行手动运行 Kotlin 编译器。例如：</p>
-<div class="sample" mode="shell" theme="idea">
-<pre><code class="language-bash">$ kotlinc hello.kt -include-runtime -d hello.jar
-</code></pre>
-</div>
+教程中所述在命令行手动运行 Kotlin 编译器</p>
 <h2 class="typo-header typo-h2" id="编译器选项">编译器选项</h2>
 <p class="typo-para">Kotlin 编译器具有许多用于定制编译过程的选项。
 此页面列出了针对不同目标的编译器选项，并提供了每个选项的描述。</p>
@@ -1546,8 +1549,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 详情请参见<a class="typo-link" href="using-gradle.html#编译器选项">使用 Gradle</a>。</li>
 <li class="typo-list__item">如果使用 Maven，请在 Maven 插件节点的 <code>&lt;configuration&gt;</code> 元素中指定编译器参数。
 详情请参见<a class="typo-link" href="using-maven.html#指定编译器选项">使用 Maven</a>。</li>
-<li class="typo-list__item">如果运行命令行编译器，则将编译器参数直接添加到工具函数调用中，或将其写入 <a class="typo-link" href="#argfile">argfile</a>。</li>
+<li class="typo-list__item">如果运行命令行编译器，则将编译器参数直接添加到工具函数调用中，或将其写入 <a class="typo-link" href="#argfile">argfile</a>。
+ For example:</li>
 </ul>
+<div class="sample" mode="shell" theme="idea">
+<pre><code class="language-bash">$ kotlinc hello.kt -include-runtime -d hello.jar
+</code></pre>
+</div>
+<blockquote class="note typo-quote">
+<p class="typo-para"><strong class="typo-strong">Note</strong>: On Windows, when you pass compiler arguments that contain delimiter characters (whitespace, <code>=</code>, <code>;</code>, <code>,</code>),
+surround these arguments with double quotes (<code>"</code>).</p>
+<pre><code>$ kotlinc.bat hello.kt -include-runtime -d "My Folder\hello.jar"
+</code></pre>
+</blockquote>
 <h2 class="typo-header typo-h2" id="公共选项">公共选项</h2>
 <p class="typo-para">以下选项对于所有 Kotlin 编译器都是通用的。</p>
 <h3 class="typo-header typo-h3" id="-version"><code>-version</code></h3>
@@ -1622,7 +1636,7 @@ hello.kt
 <h3 class="typo-header typo-h3" id="-jdk-home-path"><code>-jdk-home &lt;path&gt;</code></h3>
 <p class="details-group typo-para">如果自定义 JDK 主目录与默认的 <code>JAVA_HOME</code> 不同，请使用它来将其包含在类路径中。</p>
 <h3 class="typo-header typo-h3" id="-jvm-target-version"><code>-jvm-target &lt;version&gt;</code></h3>
-<p class="details-group typo-para">指定生成的 JVM 字节码的目标版本。可能的值为 <code>1.6</code>、<code>1.8</code>、<code>9</code>、<code>10</code>、<code>11</code>、<code>12</code>、<code>13</code>。
+<p class="details-group typo-para">指定生成的 JVM 字节码的目标版本。可能的值为 <code>1.6</code>、<code>1.8</code>、<code>9</code>、<code>10</code>、<code>11</code>、<code>12</code>、<code>13</code>、<code>14</code>。
 默认值为 <code>1.6</code>。</p>
 <h3 class="typo-header typo-h3" id="-java-parameters"><code>-java-parameters</code></h3>
 <p class="details-group typo-para">为 Java 1.8 反射方法参数生成元数据。</p>

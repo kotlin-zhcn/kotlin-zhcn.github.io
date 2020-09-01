@@ -62,13 +62,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <div class="global-header-panel banner-nav">
         <div class="g-layout">
 <div class="global-nav banner-container">
+    <a class="banner-text" href="https://item.jd.com/12695637.html" target="_blank">
+        <div class="banner-item" style="margin-right:0px;">新书上架：</div>
+        <div class="banner-item title" style="margin-right:0px;">
+            《Kotlin编程实践》
+        </div>
+        <div class="banner-item" style="margin-right:8px;">本站译者乔禹昂著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
+    </a>
     <a class="banner-text" href="https://item.jd.com/12898592.html" target="_blank">
-        <div class="banner-item title">
-            新书上架：《深入理解Kotlin协程》（中文社区负责人霍丙乾著）
+        <div class="banner-item title" style="margin-right:0px;">
+            《深入理解Kotlin协程》
         </div>
-        <div class="banner-item underline">
-            立即购买
-        </div>
+        <div class="banner-item" style="margin-right:8px;">中文社区负责人霍丙乾著</div>
+        <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
 </div>        </div>
@@ -2029,13 +2036,13 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 <tr class="typo-table__row">
 <td class="typo-table__column"><code>apiVersion</code></td>
 <td class="typo-table__column">只允许使用来自捆绑库的指定版本中的声明</td>
-<td class="typo-table__column">"1.0"、 "1.1"、 "1.2"、 "1.3"、 "1.4 (EXPERIMENTAL)"</td>
+<td class="typo-table__column">"1.2 (DEPRECATED)"、 "1.3"、 "1.4"、 "1.5 (EXPERIMENTAL)"</td>
 <td class="typo-table__column"> </td>
 </tr>
 <tr class="typo-table__row">
 <td class="typo-table__column"><code>languageVersion</code></td>
 <td class="typo-table__column">提供与指定 Kotlin 版本源代码级兼容</td>
-<td class="typo-table__column">"1.0"、 "1.1"、 "1.2"、 "1.3"、 "1.4 (EXPERIMENTAL)"</td>
+<td class="typo-table__column">"1.2 (DEPRECATED)"、 "1.3"、 "1.4"、 "1.5 (EXPERIMENTAL)"</td>
 <td class="typo-table__column"> </td>
 </tr>
 </tbody>
@@ -2065,9 +2072,9 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 </tr>
 <tr class="typo-table__row">
 <td class="typo-table__column"><code>jvmTarget</code></td>
-<td class="typo-table__column">生成的 JVM 字节码的目标版本（1.6、 1.8、 9、 10、 11、 12 或 13）</td>
-<td class="typo-table__column">"1.6"、 "1.8"、 "9"、 "10"、 "11"、 "12"、 "13"</td>
-<td class="typo-table__column">"1.8"</td>
+<td class="typo-table__column">生成的 JVM 字节码的目标版本</td>
+<td class="typo-table__column">"1.6"、 "1.8"、 "9"、 "10"、 "11"、 "12"、 "13"、 "14"</td>
+<td class="typo-table__column">"1.6"</td>
 </tr>
 <tr class="typo-table__row">
 <td class="typo-table__column"><code>noJdk</code></td>
@@ -2086,6 +2093,12 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 <td class="typo-table__column">不要自动在类路径中包含 Kotlin 运行时与 Kotlin 反射</td>
 <td class="typo-table__column"> </td>
 <td class="typo-table__column">true</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><code>useIR</code></td>
+<td class="typo-table__column">Use the IR backend</td>
+<td class="typo-table__column"> </td>
+<td class="typo-table__column">false</td>
 </tr>
 </tbody>
 </table>
