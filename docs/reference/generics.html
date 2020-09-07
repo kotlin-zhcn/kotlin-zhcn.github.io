@@ -1605,7 +1605,7 @@ interface Collection&lt;E&gt; …… {
 （例如，你可以调用 <code>add(String)</code> 或者 <code>set(int, String)</code>），当然<!--
 -->如果调用函数返回 <code>List&lt;T&gt;</code> 中的 <code>T</code>，你得到的并非一个 <code>String</code> 而是一个 <code>Object</code>。</p>
 <p class="typo-para">Joshua Bloch 称那些你只能从中<strong class="typo-strong">读取</strong>的对象为<strong class="typo-strong">生产者</strong>，并称那些你只能<strong class="typo-strong">写入</strong>的对象为<strong class="typo-strong">消费者</strong>。他建议：“<em>为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型</em>”，并提出了以下助记符：</p>
-<p class="typo-para"><em>PECS 代表生产者-Extens，消费者-Super（Producer-Extends, Consumer-Super）。</em></p>
+<p class="typo-para"><em>PECS 代表生产者-Extends、消费者-Super（Producer-Extends, Consumer-Super）。</em></p>
 <p class="typo-para"><em>注意</em>：如果你使用一个生产者对象，如 <code>List&lt;? extends Foo&gt;</code>，在该对象上不允许调用 <code>add()</code> 或 <code>set()</code>。但这并不意味着<!--
 -->该对象是<strong class="typo-strong">不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong class="typo-strong">类型安全</strong>。不可变性完全是另一回事。</p>
