@@ -78,12 +78,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
+    <!--
+    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+        <div class="banner-item title">
+            Join our Kotlin 1.4 Online Event on October 12–15 →
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+    -->
 </div>        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout" data-nosnippet="true">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" target="_blank" class="global-header-logo__version">v1.4.0</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1547,6 +1555,7 @@ this document summarizes them all, providing a complete reference for migration 
 </ul>
 <p class="typo-para">Remember that those definitions are given only for pure Kotlin. Compatibility of Kotlin code from the other languages perspective
 (for example, from Java) is out of the scope of this document.</p>
+<h2 class="typo-header typo-h2" id="language-and-stdlib">Language and stdlib</h2>
 <h3 class="typo-header typo-h3" id="unexpected-behavior-with-in-infix-operator-and-concurrenthashmap">Unexpected behavior with <code>in</code> infix operator and <code>ConcurrentHashMap</code></h3>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-18053">KT-18053</a></p>
@@ -1973,10 +1982,11 @@ disable several new language features.</li>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt; 1.4: runtime null checks throw different exceptions, such as <code>KotlinNullPointerException</code>, <code>IllegalStateException</code>, 
 <code>IllegalArgumentException</code>, and <code>TypeCastException</code></li>
-<li class="typo-list__item">&gt;= 1.4: all runtime null checks throw a <code>java.lang.NullPointerException</code></li>
+<li class="typo-list__item">&gt;= 1.4: all runtime null checks throw a <code>java.lang.NullPointerException</code>.
+<code>-Xno-unified-null-checks</code> can be used to temporarily revert to pre-1.4 behavior</li>
 </ul>
 </blockquote>
-<h3 class="typo-header typo-h3" id="comparing-floating-point-values-in-arraylist-operations-contains-indexof-lastindexof-ieee-754-or-total-order">Comparing floating point values in array/list operations <code>contains</code>, <code>indexOf</code>, <code>lastIndexOf</code>: IEEE 754 or total order</h3>
+<h3 class="typo-header typo-h3" id="comparing-floating-point-values-in-arraylist-operations-contains-indexof-lastindexof-ieee-754-or-total-order">Comparing floating-point values in array/list operations <code>contains</code>, <code>indexOf</code>, <code>lastIndexOf</code>: IEEE 754 or total order</h3>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-28753">KT-28753</a></p>
 <p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib (JVM)</p>
@@ -2065,7 +2075,7 @@ disable several new language features.</li>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38777">KT-38777</a></p>
 <p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
-<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
 <p class="typo-para"><strong class="typo-strong">Short summary</strong>: <code>Throwable.addSuppressed()</code> extension function is now preferred over the <code>Throwable.addSuppressed()</code> member function</p>
 <p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
@@ -2077,13 +2087,39 @@ disable several new language features.</li>
 <blockquote class="typo-quote">
 <p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38817">KT-38817</a></p>
 <p class="typo-para"><strong class="typo-strong">Component</strong>: kotlin-stdlib</p>
-<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavior</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
 <p class="typo-para"><strong class="typo-strong">Short summary</strong>: <code>String.capitalize()</code> function now capitalizes digraphs from the <a class="typo-link" href="https://en.wikipedia.org/wiki/Gaj%27s_Latin_alphabet">Serbo-Croatian Gaj's Latin alphabet</a>
 in the title case (<code>ǅ</code> instead of <code>Ǆ</code>)</p>
 <p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">&lt; 1.4: digraphs are capitalized in the upper case (<code>Ǆ</code>)</li>
 <li class="typo-list__item">&gt;= 1.4: digraphs are capitalized in the title case (<code>ǅ</code>)</li>
+</ul>
+</blockquote>
+<h2 class="typo-header typo-h2" id="tools">Tools</h2>
+<h3 class="typo-header typo-h3" id="compiler-arguments-with-delimiter-characters-must-be-passed-in-double-quotes-on-windows">Compiler arguments with delimiter characters must be passed in double quotes on Windows</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-30211">KT-30211</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: CLI</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: on Windows, <code>kotlinc.bat</code> arguments that contain delimiter characters (whitespace, <code>=</code>, <code>;</code>, <code>,</code>) now
+require double quotes (<code>"</code>)</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: all compiler arguments are passed without quotes</li>
+<li class="typo-list__item">&gt;= 1.4: compiler arguments that contain delimiter characters (whitespace, <code>=</code>, <code>;</code>, <code>,</code>) require double quotes (<code>"</code>)</li>
+</ul>
+</blockquote>
+<h3 class="typo-header typo-h3" id="kapt-names-of-synthetic-annotations-methods-for-properties-have-changed">KAPT: Names of synthetic <code>$annotations()</code> methods for properties have changed</h3>
+<blockquote class="typo-quote">
+<p class="typo-para"><strong class="typo-strong">Issue</strong>: <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-36926">KT-36926</a></p>
+<p class="typo-para"><strong class="typo-strong">Component</strong>: KAPT</p>
+<p class="typo-para"><strong class="typo-strong">Incompatible change type</strong>: behavioral</p>
+<p class="typo-para"><strong class="typo-strong">Short summary</strong>: names of synthetic <code>$annotations()</code> methods generated by KAPT for properties have changed in 1.4</p>
+<p class="typo-para"><strong class="typo-strong">Deprecation cycle</strong>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">&lt; 1.4: names of synthetic <code>$annotations()</code> methods for properties follow the template <code>&lt;propertyName&gt;@annotations()</code></li>
+<li class="typo-list__item">&gt;= 1.4: names of synthetic <code>$annotations()</code> methods for properties include the <code>get</code> prefix: <code>get&lt;PropertyName&gt;@annotations()</code></li>
 </ul>
 </blockquote>
 
@@ -2216,7 +2252,7 @@ in the title case (<code>ǅ</code> instead of <code>Ǆ</code>)</p>
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+<script src="/_assets/common.js?&amp;v=c8ac9ac3e4effac4f1d0be407b8e1bbe"></script>
     <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

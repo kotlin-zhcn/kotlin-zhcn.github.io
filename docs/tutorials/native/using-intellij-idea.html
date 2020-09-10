@@ -34,14 +34,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://www.kotlincn.net/docs/tutorials/native/using-intellij-idea.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
-    <meta property="og:description" content="看看如何使用 IntelliJ IDEA 创建 Kotlin/Native 应用程序">
+    <meta property="og:description" content="This tutorial demonstrates how to use IntelliJ IDEA for creating a Kotlin/Native application.">
 <meta property="og:site_name" content="Kotlin"/>
 
 <!-- Twitter Card data -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@kotlin">
 <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="看看如何使用 IntelliJ IDEA 创建 Kotlin/Native 应用程序">
+    <meta name="twitter:description" content="This tutorial demonstrates how to use IntelliJ IDEA for creating a Kotlin/Native application.">
 <meta name="twitter:image:src" content="https://www.kotlincn.net/assets/images/twitter-card/kotlin_800x320.png">
 <!-- Social Media tag Ends -->
 
@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/_assets/styles.css?&amp;v=9fd19d0e1fddd9585c5461203e2d99b3">    <link rel="stylesheet" href="/_assets/tutorial.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
-    <title>使用 IntelliJ IDEA 的 Hello Kotlin/Native - Kotlin 语言中文站</title>
+    <title>Get started with Kotlin/Native using IntelliJ IDEA - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
 </head>
@@ -78,12 +78,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
+    <!--
+    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+        <div class="banner-item title">
+            Join our Kotlin 1.4 Online Event on October 12–15 →
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+    -->
 </div>        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout" data-nosnippet="true">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" target="_blank" class="global-header-logo__version">v1.4.0</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -390,7 +398,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
                 <div class="marker"></div>
-                <div class="text">使用 IntelliJ IDEA 的 Hello Kotlin/Native</div>
+                <div class="text">使用 IntelliJ IDEA 的 Kotlin/Native 入门</div>
             </div>
     </div>
 
@@ -847,7 +855,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="text">改进翻译</span>
 </a>
             <h1>
-                使用 IntelliJ IDEA 的 Hello Kotlin/Native
+                Get started with Kotlin/Native using IntelliJ IDEA
             </h1>
             <table>
                     <tr>
@@ -855,37 +863,155 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                             <strong>最近更新</strong>
                         </td>
                         <td>
-                            2020-01-15
+                            2020-08-20
                         </td>
                     </tr>
             </table>
-                看看如何使用 IntelliJ IDEA 创建 Kotlin/Native 应用程序
+                This tutorial demonstrates how to use IntelliJ IDEA for creating a Kotlin/Native application.
                 <br/>
                 <br/>
             
 <!--- To become a How-To. Need to change type to new "HowTo" --->
-<h2 class="typo-header typo-h2" id="在-intellij-idea-中创建一个新的-kotlinnative-项目">在 IntelliJ IDEA 中创建一个新的 Kotlin/Native 项目</h2>
-<p class="typo-para">以下内容适用于 <a class="typo-link" href="https://www.jetbrains.com/idea">IntelliJ IDEA 社区版和旗舰版</a>。</p>
-<p class="typo-para">从 IntelliJ IDEA 的 <strong class="typo-strong">File</strong> 菜单或 <strong class="typo-strong">Welcome screen</strong> 中，选择创建一个新项目然后在向导的第一步中，在左侧栏中<!--
--->选择 <strong class="typo-strong">Kotlin</strong> 然后在右侧栏中选择 <strong class="typo-strong">Native | Gradle</strong>。</p>
-<p class="typo-para"><img alt="向导第一步" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/wizard.png"/></p>
-<p class="typo-para">在对话框中单击 <strong class="typo-strong">Next</strong>，然后在下一步中确保选中 <strong class="typo-strong">Automatically import this project on changes in build script</strong> 已勾选。这在开始时非常有用<!--
--->可以确保自动导入对构建脚本的任何即时更改。</p>
-<p class="typo-para"><img alt="向导第二步" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/wizard-2.png"/></p>
-<p class="typo-para">单击 <strong class="typo-strong">Next</strong> 后，输入项目的路径和名称。</p>
-<p class="typo-para"><img alt="向导第三步" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/wizard-3.png"/></p>
-<p class="typo-para">这将完成该过程并在 IDE 中打开新创建的项目。 默认情况下，向导将创建必要的
-<code>Sample&lt;TARGET&gt;.kt</code> 文件，并提供用于将一些字符串写入标准输出的代码。 请注意，<code>&lt;TARGET&gt;</code> 会根据在其上创建项目<!--
--->的操作系统（Windows、Linux、macOS）而有所不同。</p>
-<p class="typo-para"><img alt="项目" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/IDE-1.png"/></p>
-<p class="typo-para">要运行项目，只需使用相应的快捷方式或从 Run 菜单中调用 <a class="typo-link" href="https://www.jetbrains.com/help/idea/running-applications.html">IDE 中的 Run 命令</a>。</p>
-<p class="typo-para"><img alt="运行" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/IDE-2.png"/></p>
-<p class="typo-para">该示例项目可以作为 Kotlin/Native 任何新项目的基础。</p>
-<h2 class="typo-header typo-h2" id="下一步是什么">下一步是什么？</h2>
-<p class="typo-para">有关更多信息，请查看：</p>
+<p class="typo-para">To get started, install the latest version of <a class="typo-link" href="http://www.jetbrains.com/idea/download/index.html">IntelliJ IDEA</a>. The tutorial is applicable to both IntelliJ IDEA Community Edition and the Ultimate Edition.</p>
+<h2 class="typo-header typo-h2" id="create-a-new-kotlinnative-project-in-intellij-idea">Create a new Kotlin/Native project in IntelliJ IDEA</h2>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">In IntelliJ IDEA, select <strong class="typo-strong">File</strong> | <strong class="typo-strong">New</strong> | <strong class="typo-strong">Project</strong>.</li>
+<li class="typo-list__item">In the panel on the left, select <strong class="typo-strong">Kotlin</strong>.</li>
+<li class="typo-list__item">
+<p class="typo-para">Enter a project name, select <strong class="typo-strong">Native Application</strong> as the project template, and click <strong class="typo-strong">Next</strong>.</p>
+<p class="typo-para"><img alt="Create a native application" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-new-project-intellij-1.png"/></p>
+<p class="typo-para">By default, your project will use Gradle with Kotlin DSL as the build system.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">Kotlin/Native doesn't support Maven and IntelliJ IDEA native builder.</p>
+</blockquote>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Accept the default configuration on the next screen and click <strong class="typo-strong">Finish</strong>.</p>
+<p class="typo-para"><img alt="Configure a native application" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-new-project-intellij-2.png"/></p>
+</li>
+</ol>
+<p class="typo-para">Your project will open. By default, the wizard creates the necessary <code>main.kt</code> file with code that prints "Hello, Kotlin/Native!" to the standard output.</p>
+<p class="typo-para">The <code>build.gradle.kts</code> file contains the project settings. Read more about these settings in the <a class="typo-link" href="/docs/reference/mpp-dsl-reference.html">Kotlin Multiplatform Gradle DSL reference</a>.</p>
+<h2 class="typo-header typo-h2" id="run-the-application">Run the application</h2>
+<p class="typo-para">Start the application by clicking <strong class="typo-strong">Run</strong> next to the run configuration at the top of the screen.</p>
+<p class="typo-para"><img alt="Run the application" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-run-app.png"/></p>
+<p class="typo-para">IntelliJ IDEA opens the <strong class="typo-strong">Run</strong> tab and shows the output:
+<img alt="Application output" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-output-1.png"/></p>
+<h2 class="typo-header typo-h2" id="update-the-application">Update the application</h2>
+<h3 class="typo-header typo-h3" id="count-the-letters-in-your-name">Count the letters in your name</h3>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">
+<p class="typo-para">Open the file <code>main.kt</code> in <code>src/&lt;your_app_name&gt;Main/kotlin</code>.</p>
+<p class="typo-para">The <code>src</code> directory contains the Kotlin source files and resources. The file <code>main.kt</code> includes sample code that prints "Hello, Kotlin/Native!" using the <a class="typo-link" href="/api/latest/jvm/stdlib/stdlib/kotlin.io/println.html"><code>println()</code></a> function.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Add code to read the input. Use the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.io/read-line.html"><code>readLine()</code></a> function to read the input value and assign it to the <code>name</code> variable.</p>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+    // Read the input value.
+    println("Hello, enter your name:")
+    val name = readLine()
+}
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">Eliminate the whitespaces and count the letters:
+    <ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">Check that the provided name is not <code>null</code> with the <a class="typo-link" href="/docs/reference/null-safety.html#safe-calls">safe call operator <code>?.</code></a>.</li>
+<li class="typo-list__item">Use the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.text/replace.html"><code>replace()</code></a> function to remove the empty spaces in the name.</li>
+<li class="typo-list__item">Use the scope function <a class="typo-link" href="/docs/reference/scope-functions.html#let"><code>let</code></a> to run the function within the object context.</li>
+<li class="typo-list__item">Use a <a class="typo-link" href="/docs/reference/basic-types.html#string-templates">string template</a> to insert your name length into the string by adding a dollar sign <code>$</code> and enclosing it in curly braces – <code>${it.length}</code>.
+<code>it</code> is the default name of a <a class="typo-link" href="/docs/reference/coding-conventions.html#lambda-parameters">lambda parameter</a>.</li>
+</ul>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+    // Read the input value.
+    println("Hello, enter your name:")
+    val name = readLine()
+    // Count the letters in the name.
+    name?.replace(" ", "")?.let {
+        println("Your name contains ${it.length} letters")
+    }
+}
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Report a null value using the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin/error.html"><code>error()</code></a> function after the <a class="typo-link" href="/docs/reference/null-safety.html#elvis-operator">Elvis operator <code>?:</code></a>.</p>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+    // Read the input value.
+    println("Hello, enter your name:")
+    val name = readLine()
+    // Count the letters in the name.
+    name?.replace(" ", "")?.let {
+        println("Your name contains ${it.length} letters")
+    } ?: error("Error while reading input from the terminal: the value can't be null.")
+}
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Save the changes and run the application.</p>
+<p class="typo-para">IntelliJ IDEA opens the <strong class="typo-strong">Run</strong> tab and shows the output.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Enter your name and enjoy the result:</p>
+<p class="typo-para"><img alt="Application output" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-output-2.png"/></p>
+</li>
+</ol>
+<h3 class="typo-header typo-h3" id="count-the-unique-letters-in-your-name">Count the unique letters in your name</h3>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">
+<p class="typo-para">Open the file <code>main.kt</code> in <code>src/&lt;your_app_name&gt;Main/kotlin</code>.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Declare the new <a class="typo-link" href="/docs/reference/extensions.html#extension-functions">extension function</a> <code>countDistinctCharacters()</code> for <code>String</code>:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><a class="typo-link" href="/docs/reference/native/gradle_plugin.html">Kotlin/Native Gradle 插件</a></li>
-<li class="typo-list__item"><a class="typo-link" href="/docs/reference/mpp-discover-project.html">Multiplatform Projects</a></li>
+<li class="typo-list__item">Convert the name to lowercase using the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.text/to-lower-case.html"><code>toLowerCase()</code></a> function.</li>
+<li class="typo-list__item">Convert the input string to a list of characters using the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.text/to-list.html"><code>toList()</code></a> function.</li>
+<li class="typo-list__item">Select only the distinct characters in your name using the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.collections/distinct.html"><code>distinct()</code></a> function.</li>
+<li class="typo-list__item">Count the distinct characters using the <a class="typo-link" href="/api/latest/jvm/stdlib/kotlin.collections/count.html"><code>count()</code></a> function.</li>
+</ul>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun String.countDistinctCharacters() = toLowerCase().toList().distinct().count()
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Use the <code>countDistinctCharacters()</code> function to count the unique letters in your name.</p>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun String.countDistinctCharacters() = toLowerCase().toList().distinct().count()
+
+fun main() {
+    // Read the input value.
+    println("Hello, enter your name:")
+    val name = readLine()
+    // Count the letters in the name.
+    name?.replace(" ", "")?.let {
+        println("Your name contains ${it.length} letters")
+        // Print the number of unique letters.
+        println("Your name contains ${it.countDistinctCharacters()} unique letters")
+    } ?: error("Error while reading input from the terminal: the value can't be null.")
+}
+</code></pre>
+</div>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Save the changes and run the application.</p>
+<p class="typo-para">IntelliJ IDEA opens the <strong class="typo-strong">Run</strong> tab and shows the output.</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Enter your name and enjoy the result:</p>
+<p class="typo-para"><img alt="Application output" class="typo-image" src="/assets/images/tutorials/native/using-intellij-idea/native-output-3.png"/></p>
+</li>
+</ol>
+<h2 class="typo-header typo-h2" id="下一步是什么">下一步是什么？</h2>
+<p class="typo-para">Once you have created your first application, you can go to Kotlin hands-on labs and complete long-form tutorials on Kotlin/Native.</p>
+<p class="typo-para">For Kotlin/Native, the following hands-on labs are currently available:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="https://play.kotlinlang.org/hands-on/Kotlin%20Native%20Concurrency/00_Introduction">Learn about the concurrency model in Kotlin/Native</a> shows you how to build a command-line application and work with states in a multi-threaded environment.</li>
+<li class="typo-list__item"><a class="typo-link" href="https://play.kotlinlang.org/hands-on/Introduction%20to%20Kotlin%20Native/01_Introduction">Creating an HTTP Client in Kotlin/Native</a> explains how to create a native HTTP client and interoperate with C libraries.</li>
 </ul>
 
         </article>
@@ -1017,7 +1143,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+<script src="/_assets/common.js?&amp;v=c8ac9ac3e4effac4f1d0be407b8e1bbe"></script>
     <script src="/_assets/tutorial.js?&amp;v=d126368e2f171f6d5b11127b873d1854"></script>
 </body>
 </html>

@@ -78,12 +78,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
+    <!--
+    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+        <div class="banner-item title">
+            Join our Kotlin 1.4 Online Event on October 12–15 →
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+    -->
 </div>        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout" data-nosnippet="true">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" target="_blank" class="global-header-logo__version">v1.4.0</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1546,8 +1554,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <h3 class="typo-header typo-h3" id="应用风格指南">应用风格指南</h3>
 <p class="typo-para">如需根据本风格指南配置 IntelliJ 格式化程序，请安装 Kotlin 插件
 1.2.20 或更高版本，转到 <strong class="typo-strong">Settings | Editor | Code Style | Kotlin</strong>，点击右<!--
--->上角的 <strong class="typo-strong">Set from…</strong> 链接，并从菜单中选择 <strong class="typo-strong">Predefined style | Kotlin style guide</strong>。</p>
-<p class="typo-para">如需验证代码已按风格指南格式化，请转到探查设置（Inspections）并启用
+-->上角的 <strong class="typo-strong">Set from…</strong> 链接，并从菜单中选择 <strong class="typo-strong">Kotlin style guide</strong>。</p>
+<p class="typo-para">如需验证代码已按风格指南格式化，请转到 <strong class="typo-strong">Settings | Editor | Inspections</strong> 并启用
 <strong class="typo-strong">Kotlin | Style issues | File is not formatted according to project settings</strong> 探查项。
 验证风格指南中描述的其他问题（如命名约定）的附加探查项默认已启用。</p>
 <h2 class="typo-header typo-h2" id="源代码组织">源代码组织</h2>
@@ -1693,8 +1701,10 @@ val USER_NAME_FIELD = "UserName"
 }
 </code></pre>
 </div>
-<p class="typo-para">（注意：在 Kotlin 中，分号是可选的，因此换行很重要。语言设计采用
-Java 风格的花括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。）</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">在 Kotlin 中，分号是可选的，因此换行很重要。语言设计采用 
+Java 风格的花括号格式，如果尝试使用不同的格式化风格，那么可能会遇到意外的行为。</p>
+</blockquote>
 <h3 class="typo-header typo-h3" id="横向空白">横向空白</h3>
 <p class="typo-para">在二元操作符左右留空格（<code>a + b</code>）。例外：不要在“range to”操作符（<code>0..i</code>）左右留空格。</p>
 <p class="typo-para">不要在一元运算符左右留空格（<code>a++</code>）</p>
@@ -1854,7 +1864,7 @@ package foo.bar
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun longMethodName(
     argument: ArgumentType = defaultValue,
-    argument2: AnotherArgumentType
+    argument2: AnotherArgumentType,
 ): ReturnType {
     // 函数体
 }
@@ -2005,6 +2015,205 @@ try {
    -&gt;
    context.configureEnv(environment)
 }
+</code></pre>
+</div>
+<h3 class="typo-header typo-h3" id="trailing-commas">Trailing commas</h3>
+<p class="typo-para">A trailing comma is a comma symbol after the last item of a series of elements:</p>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">class Person(
+    val firstName: String,
+    val lastName: String,
+    val age: Int, // trailing comma
+)
+</code></pre>
+</div>
+<p class="typo-para">Using trailing commas has several benefits:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">It makes version-control diffs cleaner – as all the focus is on the changed value.</li>
+<li class="typo-list__item">It makes adding and reordering elements – there is no need to add or delete the comma if you manipulate elements.</li>
+<li class="typo-list__item">It simplifies code generation, for example, for object initializers. The last element can also have a comma.</li>
+</ul>
+<p class="typo-para">Trailing commas are entirely optional – your code will still work without them. The Kotlin style guide encourages the use of trailing commas at the declaration site and leaves it optional for the call site.</p>
+<p class="typo-para">To enable trailing commas in the IntelliJ IDEA formatter, go to <strong class="typo-strong">Settings | Editor | Code Style | Kotlin</strong>, 
+open the <strong class="typo-strong">Other</strong> tab and select the <strong class="typo-strong">Use trailing comma</strong> option.</p>
+<p class="typo-para">Kotlin supports trailing commas in the following cases:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><a class="typo-link" href="#enumerations">Enumerations</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#value-arguments">Value arguments</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#class-properties-and-parameters">Class properties and parameters</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#function-value-parameters">Function value parameters</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#parameters-with-optional-type-including-setters">Parameters with optional type (including setters)</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#indexing-suffix">Indexing suffix</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#lambda-parameters">Lambda parameters</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#when-entry"><code>when</code> entry</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#collection-literals-in-annotations">Collection literals (in annotations)</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#type-arguments">Type arguments</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#type-parameters">Type parameters</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#destructuring-declarations">Destructuring declarations</a></li>
+</ul>
+<h4 class="typo-header typo-h4" id="enumerations">Enumerations</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">enum class Direction {
+    NORTH,
+    SOUTH,
+    WEST,
+    EAST, // trailing comma
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="value-arguments">Value arguments</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun shift(x: Int, y: Int) { /*...*/ }
+
+shift(
+    25,
+    20, // trailing comma
+)
+
+val colors = listOf(
+    "red",
+    "green",
+    "blue", // trailing comma
+)
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="class-properties-and-parameters">Class properties and parameters</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">class Customer(
+    val name: String,
+    val lastName: String, // trailing comma
+)
+
+class Customer(
+    val name: String,
+    lastName: String, // trailing comma
+)
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="function-value-parameters">Function value parameters</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun powerOf(
+    number: Int, 
+    exponent: Int, // trailing comma
+) { /*...*/ }
+
+constructor(
+    x: Comparable&lt;Number&gt;,
+    y: Iterable&lt;Number&gt;, // trailing comma
+) {}
+
+fun print(
+    vararg quantity: Int,
+    description: String, // trailing comma
+) {}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="parameters-with-optional-type-including-setters">Parameters with optional type (including setters)</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">val sum: (Int, Int, Int) -&gt; Int = fun(
+    x,
+    y,
+    z, // trailing comma
+): Int {
+    return x + y + x
+}
+println(sum(8, 8, 8))
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="indexing-suffix">Indexing suffix</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">class Surface {
+    operator fun get(x: Int, y: Int) = 2 * x + 4 * y - 10
+}
+fun getZValue(mySurface: Surface, xValue: Int, yValue: Int) =
+    mySurface[
+        xValue,
+        yValue, // trailing comma
+    ]
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="lambda-parameters">Lambda parameters</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun main() {
+    val x = {
+            x: Comparable&lt;Number&gt;,
+            y: Iterable&lt;Number&gt;, // trailing comma
+        -&gt;
+        println("1")
+    }
+
+    println(x)
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="when-entry"><code>when</code> entry</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun isReferenceApplicable(myReference: KClass&lt;*&gt;) = when (myReference) {
+    Comparable::class,
+    Iterable::class,
+    String::class, // trailing comma
+        -&gt; true
+    else -&gt; false
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="collection-literals-in-annotations">Collection literals (in annotations)</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">annotation class ApplicableFor(val services: Array&lt;String&gt;)
+
+@ApplicableFor([
+    "serializer",
+    "balancer",
+    "database",
+    "inMemoryCache", // trailing comma
+])
+fun run() {}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="type-arguments">Type arguments</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">fun &lt;T1, T2&gt; foo() {}
+
+fun main() {
+    foo&lt;
+            Comparable&lt;Number&gt;,
+            Iterable&lt;Number&gt;, // trailing comma
+            &gt;()
+}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="type-parameters">Type parameters</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">class MyMap&lt;
+        MyKey,
+        MyValue, // trailing comma
+        &gt; {}
+</code></pre>
+</div>
+<h4 class="typo-header typo-h4" id="destructuring-declarations">Destructuring declarations</h4>
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">data class Car(val manufacturer: String, val model: String, val year: Int)
+val myCar = Car("Tesla", "Y", 2019)
+
+val (
+    manufacturer,
+    model,
+    year, // trailing comma
+) = myCar
+
+val cars = listOf&lt;Car&gt;()
+fun printMeanValue() {
+    var meanValue: Int = 0
+    for ((
+        _,
+        _,
+        year, // trailing comma
+    ) in cars) {
+        meanValue += year
+    }
+    println(meanValue/cars.size)
+}
+printMeanValue()
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="文档注释">文档注释</h2>
@@ -2382,7 +2591,7 @@ val a = """if(a &gt; 1) {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+<script src="/_assets/common.js?&amp;v=c8ac9ac3e4effac4f1d0be407b8e1bbe"></script>
     <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>

@@ -78,12 +78,20 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <div class="banner-item underline" style="margin-right:0px;">购买</div>
     </a>
     <div class="close-head-banner"></div>
+    <!--
+    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+        <div class="banner-item title">
+            Join our Kotlin 1.4 Online Event on October 12–15 →
+        </div>
+    </a>
+    <div class="close-head-banner"></div>
+    -->
 </div>        </div>
     </div>
 <header class="global-header">
     <div class="global-header-panel">
         <div class="g-layout" data-nosnippet="true">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.0" target="_blank" class="global-header-logo__version">v1.4.0</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
 <nav class="global-nav">
     <div class="nav-links">
             <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
@@ -1544,35 +1552,48 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 All of this functionality would require about 1.3 MB as a JavaScript file.
 一个简单的 "Hello, world" 应用程序仅需要控制台例程，整个程序只有几 KB。</li>
 </ul>
-<p class="typo-para">Kotlin/JS Gradle 插件在构建生产包时会自动处理 DCE，例如：使用 <code>browserProductionWebpack</code> 任务。开发捆绑任务不包括 DCE。</p>
+<p class="typo-para">Kotlin/JS Gradle 插件在构建<strong class="typo-strong">生产包</strong>时会自动处理 DCE，例如：使用 <code>browserProductionWebpack</code> 任务。<strong class="typo-strong">开发包</strong>任务（例如 <code>browserDevelopmentWebpack</code>）不包含 DCE。</p>
 <h2 class="typo-header typo-h2" id="从-dce-排除的声明">从 DCE 排除的声明</h2>
 <p class="typo-para">有时，即使未在模块中使用函数或类，也可能需要在结果 JavaScript 代码中保留一个函数或一个类，
 例如：如果要在客户端 JavaScript 代码中使用它，则可能会保留该函数或类。</p>
 <p class="typo-para">为了避免某些声明被删除，请将 <code>dceTask</code> 代码块添加到 Gradle 构建脚本中，并将这些声明列为 <code>keep</code> 函数的参数。
 参数必须是声明的完整限定名，并且模块名称为前缀：
 <code>moduleName.dot.separated.package.name.declarationName</code></p>
-<div class="multi-language-sample" data-lang="groovy">
-<div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">kotlin.target.browser {
-    dceTask {
-        keep 'myKotlinJSModule.org.example.getName', 'myKotlinJSModule.org.example.User'
+<blockquote class="note typo-quote">
+<p class="typo-para">函数与模块名称在生成的 JavaScript 代码中会被<a class="typo-link" href="js-to-kotlin-interop.html#jsname-注解">修饰</a>，除非指定了其他名称。为了避免消除这些函数，请在 <code>keep</code> 参数中使用修饰的名称 as they appear in the generated JavaScript code。</p>
+</blockquote>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    js {
+        browser {
+            dceTask {
+                keep("myKotlinJSModule.org.example.getName", "myKotlinJSModule.org.example.User" )
+            }
+            binaries.executable()
+        }
     }
 }
 </code></pre>
 </div>
-</div>
-<div class="multi-language-sample" data-lang="kotlin">
-<div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">kotlin.target.browser {
-    dceTask {
-        keep("myKotlinJSModule.org.example.getName", "myKotlinJSModule.org.example.User" )
+<p class="typo-para">If you want to keep a whole package or module from elimination, you can use its fully qualified name as it appears in the generated JavaScript code.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">Keeping whole packages or modules from elimination can prevent DCE from removing many unused declarations. Because of this, it is preferable to select individual declarations which should be excluded from DCE one by one.</p>
+</blockquote>
+<h2 class="typo-header typo-h2" id="disabling-dce">Disabling DCE</h2>
+<p class="typo-para">To turn off DCE completely, use the <code>devMode</code> option in the <code>dceTask</code>:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">kotlin {
+    js {
+        browser {
+            dceTask {
+                dceOptions.devMode = true
+            }
+        }
+        binaries.executable()
     }
 }
 </code></pre>
 </div>
-</div>
-<p class="typo-para">请注意，带有参数的函数名称在生成的 JavaScript 代码中会被<a class="typo-link" href="js-to-kotlin-interop.html#jsname-注解">修饰</a>，除非指定了其他名称。
-为了避免消除这些函数，请在 <code>keep</code> 参数中使用修饰的名称。</p>
 
         </article>
     </div>
@@ -1703,7 +1724,7 @@ All of this functionality would require about 1.3 MB as a JavaScript file.
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=02aab4e0a4be79567299335059fe4adc"></script>
+<script src="/_assets/common.js?&amp;v=c8ac9ac3e4effac4f1d0be407b8e1bbe"></script>
     <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>
