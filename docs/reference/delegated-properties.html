@@ -46,12 +46,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9fd19d0e1fddd9585c5461203e2d99b3">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=69c23527b2c858b83879d528fb5770d2">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=9377ef31169c8f79145bb4c173c29b34">
 
 
     <title>委托属性 - Kotlin 语言中文站</title>
 
-    <link rel="stylesheet" href="/_assets/common.css?&amp;v=9e6fbfc1663315f135a0fd5e146c021a"/>
+    <link rel="stylesheet" href="/_assets/common.css?&amp;v=d8b8aabbc5984eebed30b59359903b28"/>
 </head>
 <body class=" page-old-styled ">
 <!-- Google Tag Manager (noscript) -->
@@ -90,34 +90,91 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 <header class="global-header">
     <div class="global-header-panel">
-        <div class="g-layout" data-nosnippet="true">
+        <div data-nosnippet="true" class="global-header-logo-box">
             <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+        </div>
 <nav class="global-nav">
-    <div class="nav-links">
-            <a href="https://www.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
+    <ul class="nav-links">
+        <li class="nav-item nav-item-solutions" data-tab-id="solutions">
+            <span class="nav-item-link">Solutions</span>
+            <div class="solutions-menu solutions-menu-is-hidden">
+                <ul class="solutions-menu-list">
+                    <li class="solutions-menu-item"><a class="solutions-menu-item-link"
+                                                       href="https://www.jetbrains.com/lp/mobilecrossplatform/"
+                                                       target="_blank">Mobile cross-platform ↗</a></li>
+                    <li class="solutions-menu-item">
+                        <a class="solutions-menu-item-link" href="/lp/server-side/"
+                           target="_blank">
+                            Server-side ↗
+                        </a></li>
+                    <li class="solutions-menu-item">
+                        <a class="solutions-menu-item-link"
+                           href="/docs/reference/native-overview.html"
+                           target="_blank">
+                            Native
+                        </a></li>
+                    <li class="solutions-menu-item">
+                        <a class="solutions-menu-item-link"
+                           href="/docs/reference/js-overview.html"
+                           target="_blank">Web development
+                        </a></li>
+                    <li class="solutions-menu-item">
+                        <a class="solutions-menu-item-link"
+                           href="/docs/reference/data-science-overview.html"
+                           target="_blank">
+                            Data science
+                        </a></li>
+                    <li class="solutions-menu-item">
+                        <a class="solutions-menu-item-link solutions-menu-item-link-external"
+                           href="/docs/reference/android-overview.html"
+                           target="_blank">
+                            Android</a>
+                    </li>
+                </ul>
+            </div>
+        </li>
+            <li class="nav-item" data-tab-id="博客"><a href="https://www.kotliner.cn/"
+                                                                   class="nav-item-link   nav-item-link-external"
+ target="_blank" >
                 博客
             </a>
-            <a href="https://discuss.kotliner.cn/" class="nav-item  nav-item-external" target="_blank" >
+            </li>
+            <li class="nav-item" data-tab-id="论坛"><a href="https://discuss.kotliner.cn/"
+                                                                   class="nav-item-link   nav-item-link-external"
+ target="_blank" >
                 论坛
             </a>
-            <a href="/docs/reference/" class="nav-item ">
-                学习
+            </li>
+            <li class="nav-item" data-tab-id="文档"><a href="/docs/reference/"
+                                                                   class="nav-item-link  nav-item-link-is_active "
+>
+                文档
             </a>
-            <a href="/community/" class="nav-item ">
+            </li>
+            <li class="nav-item" data-tab-id="社区"><a href="/community/"
+                                                                   class="nav-item-link  "
+>
                 社区
             </a>
-            <a href="/education/" class="nav-item ">
+            </li>
+            <li class="nav-item" data-tab-id="教学"><a href="/education/"
+                                                                   class="nav-item-link  "
+>
                 教学
             </a>
-            <a href="https://play.kotlinlang.org" class="nav-item  nav-item-external" target="_blank" >
+            </li>
+            <li class="nav-item" data-tab-id="演练"><a href="https://play.kotlinlang.org"
+                                                                   class="nav-item-link   nav-item-link-external"
+ target="_blank" >
                 演练
             </a>
-    </div>
+            </li>
+
+    </ul>
     <div class="search-button">
         <div class="icon"></div>
     </div>
-</nav>        </div>
-    </div>
+</nav>    </div>
 </header>        <div class="g-layout global-content">
             <nav class="docs-nav-new">
                 <div class="kto-tabs">
@@ -1642,16 +1699,16 @@ fun main() {
 </div>
 <p class="typo-para">如果你想截获赋值并“否决”它们，那么使用 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.properties/-delegates/vetoable.html"><code>vetoable()</code></a> 取代 <code>observable()</code>。
 在属性被赋新值生效<em>之前</em>会调用传递给 <code>vetoable</code> 的处理程序。</p>
-<h2 class="typo-header typo-h2" id="delegating-to-another-property">Delegating to another property</h2>
-<p class="typo-para">Since Kotlin 1.4, a property can delegate its getter and setter to another property. Such delegation is available for
-both top-level and class properties (member and extension). The delegate property can be:</p>
+<h2 class="typo-header typo-h2" id="委托给另一个属性">委托给另一个属性</h2>
+<p class="typo-para">从 Kotlin 1.4 开始，一个属性可以把它的 getter 与 setter 委托给另一个属性。这种委托<!--
+-->对于顶层和类的属性（成员和扩展）都可用。该委托属性可以为：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">a top-level property</li>
-<li class="typo-list__item">a member or an extension property of the same class</li>
-<li class="typo-list__item">a member or an extension property of another class</li>
+<li class="typo-list__item">顶层属性</li>
+<li class="typo-list__item">同一个类的成员或扩展属性</li>
+<li class="typo-list__item">另一个类的成员或扩展属性</li>
 </ul>
-<p class="typo-para">To delegate a property to another property, use the proper <code>::</code> qualifier in the delegate name, for example, <code>this::delegate</code> or
-<code>MyClass::delegate</code>.</p>
+<p class="typo-para">为将一个属性委托给另一个属性，应在委托名称中使用恰当的 <code>::</code> 限定符，例如，<code>this::delegate</code> 或
+<code>MyClass::delegate</code>。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">var topLevelInt: Int = 0
 
@@ -1667,8 +1724,8 @@ var MyClass.extDelegated: Int by ::topLevelInt
 //sampleEnd
 </code></pre>
 </div>
-<p class="typo-para">This may be useful, for example, when you want to rename a property in a backward-compatible way: you introduce a new property,
-annotate the old one with the <code>@Deprecated</code> annotation, and delegate its implementation.</p>
+<p class="typo-para">这是很有用的，例如，当想要以一种向后兼容的方式重命名一个属性的时候：引入一个新的属性、
+使用 <code>@Deprecated</code> 注解来注解旧的属性、并委托其实现。</p>
 <div class="sample" theme="idea">
 <pre><code class="language-kotlin">class MyClass {
    var newName: Int = 0
@@ -1678,7 +1735,7 @@ annotate the old one with the <code>@Deprecated</code> annotation, and delegate 
 
 fun main() {
    val myClass = MyClass()
-   // Notification: 'oldName: Int' is deprecated.
+   // 通知：'oldName: Int' is deprecated.
    // Use 'newName' instead
    myClass.oldName = 42
    println(myClass.newName) // 42
@@ -2054,7 +2111,7 @@ val delegate: Int by provider
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=c8ac9ac3e4effac4f1d0be407b8e1bbe"></script>
+<script src="/_assets/common.js?&amp;v=f151420d75becf12606f53796dade4c6"></script>
     <script src="/_assets/reference.js?&amp;v=42db5638a201ca172b1b2d12bd88c10c"></script>
 </body>
 </html>
