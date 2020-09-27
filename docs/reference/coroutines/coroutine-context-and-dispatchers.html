@@ -1630,8 +1630,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">协程上下文是各种不同元素的集合。其中主元素是协程中的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>，
 我们在前面的文档中见过它以及它的调度器，而本文将对它进行介绍。</p>
 <h3 class="typo-header typo-h3" id="调度器与线程">调度器与线程</h3>
-<p class="typo-para">协程上下文包含一个 <em>协程调度器</em> （参见 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>）它确定了哪些线程或与线程<!--
--->相对应的协程执行。协程调度器可以将协程限制在<!--
+<p class="typo-para">协程上下文包含一个 <em>协程调度器</em> （参见 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-dispatcher/index.html">CoroutineDispatcher</a>）它确定了相关的协程在哪个线程或哪些线程<!--
+-->上执行。协程调度器可以将协程限制在<!--
 -->一个特定的线程执行，或将它分派到一个线程池，亦或是让它不受限地运行。</p>
 <p class="typo-para">所有的协程构建器诸如 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> 和 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 接收一个可选的
 <a class="typo-link" href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.coroutines/-coroutine-context/">CoroutineContext</a> 

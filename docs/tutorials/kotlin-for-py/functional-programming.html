@@ -588,6 +588,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
     </div>
 
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/coroutines/debug-coroutines-with-idea.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Debug coroutines using IntelliJ IDEA</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/tutorials/coroutines/debug-flow-with-idea.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Debug Kotlin Flow using IntelliJ IDEA</span>
+            </a>
+    </div>
+
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
@@ -1162,7 +1180,7 @@ println(t)
 }?.memberFunctionB()
 </code></pre>
 </div>
-<p class="typo-para">在 <code>apply</code> 块中，<code>this 是指 </code>maybeNull<code>。在 </code>memberPropertyA<code>，</code>memberPropertyB<code> 与 </code>memberFunctionA<code> 之前有一个隐含的 </code>this<code>（除非这些在 </code>maybeNull<code> 上不存在，在这种情况下将在包含的作用域中查找它们）。此后，也可以在 </code>maybeNull<code> 上调用 </code>memberFunctionB()`。</p>
+<p class="typo-para">在 <code>apply</code> 块中，<code>this</code> 是指 <code>maybeNull</code>。在 <code>memberPropertyA</code>，<code>memberPropertyB</code> 与 <code>memberFunctionA</code> 之前有一个隐含的 <code>this</code>（除非这些在 <code>maybeNull</code> 上不存在，在这种情况下将在包含的作用域中查找它们）。此后，也可以在 <code>maybeNull</code> 上调用 <code>memberFunctionB()</code>。</p>
 <p class="typo-para">如果发现 <code>this</code> 语法令人困惑，那么可以改用 <code>also</code>，它以普通的 lambda 作为参数：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">maybeNull?.also {

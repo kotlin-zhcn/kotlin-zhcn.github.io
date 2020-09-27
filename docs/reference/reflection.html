@@ -1602,11 +1602,49 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 Kotlin 让语言中的函数和属性做为一等公民、并对其自省（即在运行时获悉<!--
 -->一个名称或者一个属性或函数的类型）与简单地使用函数式或响应式风格紧密相关。</p>
 <blockquote class="note typo-quote">
-<p class="typo-para">在 Java 平台上，使用反射功能所需的运行时组件作为单独的
-JAR 文件（<code>kotlin-reflect.jar</code>）分发。这样做是为了减少不使用反射功能的应用程序所需的<!--
--->运行时库的大小。如果你需要使用反射，请确保该 .jar文件添加到项目的
-classpath 中。</p>
+<p class="typo-para">On the JavaScript platform, only class references are currently supported. <a class="typo-link" href="js-reflection.html">Learn more about reflection in Kotlin/JS</a>.</p>
 </blockquote>
+<h2 class="typo-header typo-h2" id="jvm-dependency">JVM dependency</h2>
+<p class="typo-para">On the JVM platform, the runtime component required for using the reflection features is distributed as a separate
+artifact <code>kotlin-reflect.jar</code> in the Kotlin compiler distribution. This is done to reduce the required size of the runtime
+library for applications that do not use reflection features.</p>
+<p class="typo-para">To use reflection in a Gradle or Maven project, add the dependency on <code>kotlin-reflect</code>:</p>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">In Gradle:
+    <div class="multi-language-sample" data-lang="groovy">
+<div class="sample" data-highlight-only="" mode="groovy" theme="idea">
+<pre><code class="language-groovy">dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.4.10"
+}
+</code></pre>
+</div>
+</div>
+<div class="multi-language-sample" data-lang="kotlin">
+<div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
+<pre><code class="language-kotlin">dependencies {
+  implementation("org.jetbrains.kotlin:kotlin-reflect:1.4.10")
+}
+</code></pre>
+</div>
+</div>
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">In Maven:</li>
+</ul>
+<div auto-indent="false" class="sample" data-highlight-only="" mode="xml" theme="idea">
+<pre><code class="language-xml">&lt;dependencies&gt;
+    &lt;dependency&gt;
+        &lt;groupId&gt;org.jetbrains.kotlin&lt;/groupId&gt;
+        &lt;artifactId&gt;kotlin-reflect&lt;/artifactId&gt;
+    &lt;/dependency&gt;
+&lt;/dependencies&gt;
+</code></pre>
+</div>
+</li>
+</ul>
+<p class="typo-para">If you don't use Gradle or Maven, make sure you have <code>kotlin-reflect.jar</code> in the classpath of your project.
+In other supported cases (IntelliJ IDEA projects, using command-line compiler or Ant),
+it is added by default. In command-line compiler and Ant, you can use <code>-no-reflect</code> compiler option to exclude
+<code>kotlin-reflect.jar</code> from the classpath.</p>
 <h2 class="typo-header typo-h2" id="类引用">类引用</h2>
 <p class="typo-para">最基本的反射功能是获取 Kotlin 类的运行时引用。要获取对<!--
 -->静态已知的 Kotlin 类的引用，可以使用 <em>类字面值</em> 语法：</p>
@@ -1765,7 +1803,7 @@ fun main() {
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="与-java-反射的互操作性">与 Java 反射的互操作性</h3>
-<p class="typo-para">在Java平台上，标准库包含反射类的扩展，它提供了与 Java
+<p class="typo-para">在 JVM 平台上，标准库包含反射类的扩展，它提供了与 Java
 反射对象之间映射（参见 <code>kotlin.reflect.jvm</code> 包）。
 例如，要查找一个用作 Kotlin 属性 getter 的 幕后字段或 Java方法，可以这样写：</p>
 <div class="sample" data-highlight-only="" theme="idea">
