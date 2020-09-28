@@ -96,33 +96,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <nav class="global-nav">
     <ul class="nav-links">
         <li class="nav-item nav-item-solutions" data-tab-id="solutions">
-            <span class="nav-item-link">Solutions</span>
+            <span class="nav-item-link">解决方案</span>
             <div class="solutions-menu solutions-menu-is-hidden">
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/mobile/"
-                           target="_blank">Mobile cross-platform ↗</a></li>
+                           target="_blank">移动跨平台 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
-                            Server-side ↗
+                            服务器端 ↗
                         </a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link"
                            href="/docs/reference/native-overview.html"
                            target="_blank">
-                            Native
+                            原生开发
                         </a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link"
                            href="/docs/reference/js-overview.html"
-                           target="_blank">Web development
+                           target="_blank">Web 开发
                         </a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link"
                            href="/docs/reference/data-science-overview.html"
                            target="_blank">
-                            Data science
+                            数据科学
                         </a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link solutions-menu-item-link-external"
@@ -1598,31 +1598,28 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </a>
                 
 <h1 class="typo-header typo-h1" id="函数式sam接口">函数式（SAM）接口</h1>
-<p class="typo-para">An interface with only one abstract method is called a <em>functional interface</em>, or a <em>Single Abstract
-Method (SAM) interface</em>. The functional interface can have several non-abstract members but only one abstract member.</p>
-<p class="typo-para">To declare a functional interface in Kotlin, use the <code>fun</code> modifier.</p>
+<p class="typo-para">只有一个抽象方法的接口称为<em>函数式接口</em>或 <em>SAM（单一抽象方法）</em>接口。函数式接口可以有多个非抽象成员，但只能有一个抽象成员。</p>
+<p class="typo-para">可以用 <code>fun</code> 修饰符在 Kotlin 中声明一个函数式接口。</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun interface KRunnable {
    fun invoke()
 }
 </code></pre>
 </div>
-<h2 class="typo-header typo-h2" id="sam-conversions">SAM conversions</h2>
-<p class="typo-para">For functional interfaces, you can use SAM conversions that help make your code more concise and readable by using
-<a class="typo-link" href="lambdas.html#lambda-expressions-and-anonymous-functions">lambda expressions</a>.</p>
-<p class="typo-para">Instead of creating a class that implements a functional interface manually, you can use a lambda expression.
-With a SAM conversion, Kotlin can convert any lambda expression whose signature matches
-the signature of the interface's single method into an instance of a class that implements the interface.</p>
-<p class="typo-para">For example, consider the following Kotlin functional interface:</p>
+<h2 class="typo-header typo-h2" id="sam-转换">SAM 转换</h2>
+<p class="typo-para">对于函数式接口，可以通过 <a class="typo-link" href="lambdas.html#lambda-expressions-and-anonymous-functions">lambda 表达式</a>实现 SAM 转换，从而使代码更简洁、更有可读性。</p>
+<p class="typo-para">使用 lambda 表达式可以替代手动创建实现函数式接口的类。
+通过 SAM 转换， Kotlin 可以将其签名与接口的单个抽象方法的签名匹配的任何 lambda 表达式转换为实现该接口的类的实例。</p>
+<p class="typo-para">例如，有这样一个 Kotlin 函数式接口：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">fun interface IntPredicate {
    fun accept(i: Int): Boolean
 }
 </code></pre>
 </div>
-<p class="typo-para">If you don't use a SAM conversion, you will need to write code like this:</p>
+<p class="typo-para">如果不使用 SAM 转换，那么你需要像这样编写代码：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// Creating an instance of a class
+<pre><code class="language-kotlin">// 创建一个类的实例
 val isEven = object : IntPredicate {
    override fun accept(i: Int): Boolean {
        return i % 2 == 0
@@ -1630,13 +1627,13 @@ val isEven = object : IntPredicate {
 }
 </code></pre>
 </div>
-<p class="typo-para">By leveraging Kotlin's SAM conversion, you can write the following equivalent code instead:</p>
+<p class="typo-para">通过利用 Kotlin 的 SAM 转换，可以改为以下等效代码：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// Creating an instance using lambda
+<pre><code class="language-kotlin">// 通过 lambda 表达式创建一个实例
 val isEven = IntPredicate { it % 2 == 0 }
 </code></pre>
 </div>
-<p class="typo-para">A short lambda expression replaces all the unnecessary code.</p>
+<p class="typo-para">可以通过更短的 lambda 表达式替换所有不必要的代码。</p>
 <div class="sample" data-min-compiler-version="1.4-M1" theme="idea">
 <pre><code class="language-kotlin">fun interface IntPredicate {
    fun accept(i: Int): Boolean
@@ -1649,13 +1646,11 @@ fun main() {
 }
 </code></pre>
 </div>
-<p class="typo-para">You can also use <a class="typo-link" href="java-interop.html#sam-conversions">SAM conversions for Java interfaces</a>.</p>
-<h2 class="typo-header typo-h2" id="functional-interfaces-vs-type-aliases">Functional interfaces vs. type aliases</h2>
-<p class="typo-para">Functional interfaces and <a class="typo-link" href="type-aliases.html">type aliases</a> serve different purposes. Type aliases are just names for
-existing types – they don't create a new type, while functional interfaces do.</p>
-<p class="typo-para">Type aliases can have only one member, while functional interfaces can have multiple non-abstract members and one abstract member.
-Functional interfaces can also implement and extend other interfaces.</p>
-<p class="typo-para">Considering the above, functional interfaces are more flexible and provide more capabilities than type aliases.</p>
+<p class="typo-para">你也可以使用 <a class="typo-link" href="java-interop.html#sam-conversions">Java 接口上的 SAM 转换</a>。</p>
+<h2 class="typo-header typo-h2" id="函数式接口与类型别名比较">函数式接口与类型别名比较</h2>
+<p class="typo-para">函数式接口和<a class="typo-link" href="type-aliases.html">类型别名</a>用途并不相同。类型别名只是现有类型的名称——它们不会创建新的类型，而函数式接口却会创建新类型。</p>
+<p class="typo-para">类型别名只能有一个成员，而函数式接口可以有多个非抽象成员以及一个抽象成员。函数式接口还可以实现以及继承其他接口。</p>
+<p class="typo-para">考虑到上述情况，函数式接口比类型别名更灵活并且提供了更多的功能。</p>
 
         </article>
     </div>
