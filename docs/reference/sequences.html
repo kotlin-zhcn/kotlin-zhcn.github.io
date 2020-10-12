@@ -309,6 +309,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="版本发布与路线图">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">版本发布与路线图</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/releases.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 版本发布</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/roadmap.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 路线图</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="开始">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -1641,7 +1669,7 @@ val numbersSequence = numbers.asSequence()
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">fun main() {
 //sampleStart
-    val oddNumbersLessThan10 = generateSequence(1) { if (it &lt; 10) it + 2 else null }
+    val oddNumbersLessThan10 = generateSequence(1) { if (it + 2 &lt; 10) it + 2 else null }
     println(oddNumbersLessThan10.count())
 //sampleEnd
 }

@@ -32,7 +32,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Open Graph data -->
 <meta property="og:title" content=""/>
 <meta property="og:type" content="website"/>
-<meta property="og:url" content="https://www.kotlincn.net/docs/reference/keyword-reference.html"/>
+<meta property="og:url" content="https://www.kotlincn.net/roadmap.html"/>
 <meta property="og:image" content="https://www.kotlincn.net/assets/images/open-graph/kotlin_250x250.png"/>
     <meta property="og:description" content="">
 <meta property="og:site_name" content="Kotlin"/>
@@ -49,7 +49,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
-    <title>关键字与操作符 - Kotlin 语言中文站</title>
+    <title>Kotlin 路线图 - Kotlin 语言中文站</title>
 
     <link rel="stylesheet" href="/_assets/common.css?&amp;v=d8b8aabbc5984eebed30b59359903b28"/>
 </head>
@@ -146,7 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             </a>
             </li>
             <li class="nav-item" data-tab-id="文档"><a href="/docs/reference/"
-                                                                   class="nav-item-link  nav-item-link-is_active "
+                                                                   class="nav-item-link  "
 >
                 文档
             </a>
@@ -176,13 +176,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 </nav>    </div>
 </header>        <div class="g-layout global-content">
-            <nav class="docs-nav-new">
-                <div class="kto-tabs">
-                        <a class="kto-tabs__item kto-tabs__item_active" href="/docs/reference/">语言指南</a>
-                        <a class="kto-tabs__item" href="/docs/tutorials/">教程</a>
-                        <a class="kto-tabs__item" href="/docs/books.html">图书</a>
-                </div>
-            </nav>
 
     <div class="g-grid">
 
@@ -326,12 +319,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <a href="/roadmap.html"
-               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
-            >
-                <span class="marker"></span>
-                <span class="text">Kotlin 路线图</span>
-            </a>
+            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
+                <div class="marker"></div>
+                <div class="text">Kotlin 路线图</div>
+            </div>
     </div>
 
     </div>
@@ -1182,10 +1173,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
-            <div class="tree-item-title tree-leaf-title js-item-title js-leaf-title is_active ">
-                <div class="marker"></div>
-                <div class="text">关键字与操作符</div>
-            </div>
+            <a href="/docs/reference/keyword-reference.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">关键字与操作符</span>
+            </a>
     </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
@@ -1617,7 +1610,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         </aside>
 
         <article role="main" class="page-content g-9">
-<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/docs/reference/keyword-reference.md"
+<a href="https://github.com/hltj/kotlin-web-site-cn/edit/master/pages/roadmap.md"
    class="page-link-to-github"
    target="_blank"
    title="在 GitHub 上编辑本页">
@@ -1625,212 +1618,290 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <span class="text">改进翻译</span>
 </a>
                 
-<h1 class="typo-header typo-h1" id="关键字与操作符">关键字与操作符</h1>
-<h2 class="typo-header typo-h2" id="硬关键字">硬关键字</h2>
-<p class="typo-para">以下符号会始终解释为关键字，不能用作标识符：</p>
+<h1 class="typo-header typo-h1" id="kotlin-路线图">Kotlin 路线图</h1>
+<table class="typo-table">
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">最后修改时间</strong></td>
+<td class="typo-table__column">2020 年 10 月</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">预计时效</strong></td>
+<td class="typo-table__column">6 个月，到 2021 年 3 月</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">下次更新时间</strong></td>
+<td class="typo-table__column">2021 年 1 月</td>
+</tr>
+</table>
+<p class="typo-para">欢迎来看 Kotlin 路线图！一窥 Kotlin 团队的工作重点。</p>
+<p class="typo-para">关于路线图有以下几点注意事项：</p>
+<ol class="typo-list typo-list_type_ordered">
+<li class="typo-list__item">描述了团队正在投入的主要领域。</li>
+<li class="typo-list__item">这不是团队正在做的所有事情的详尽清单，只列了最大的项目。</li>
+<li class="typo-list__item">没有在指定版本中交付指定特性或修复的承诺。</li>
+<li class="typo-list__item">列出了一些被推迟并且团队在不久的将来<strong class="typo-strong">不会</strong>关注的事情。</li>
+<li class="typo-list__item">没有什么是一成不变的，我们会随着进展调整事项的优先级，并且大约每三个月更新一次路线图。</li>
+</ol>
+<p class="typo-para">如果对路线图或者其中某些点有任何问题或反馈，请随时发布到 <a class="typo-link" href="https://youtrack.jetbrains.com/issues/KT?q=%23%7BRoadmap%20Item%7D%20">YouTrack tickets</a> 或者 Kotlin Slack（<a class="typo-link" href="https://surveys.jetbrains.com/s3/kotlin-slack-sign-up?_ga=2.60878444.1901676095.1599823213-394965905.1588600024">获取邀请</a>）的 <a class="typo-link" href="https://kotlinlang.slack.com/archives/C01AAJSG3V4">#kotlin-roadmap</a> 频道中。</p>
+<h2 class="typo-header typo-h2" id="关键优先事项">关键优先事项</h2>
+<p class="typo-para">The goal of this roadmap is to give you a big picture. Here’s a list of our key priorities – the areas we are investing the most effort into:</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>as</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">用于<a class="typo-link" href="typecasts.html#不安全的转换操作符">类型转换</a></li>
-<li class="typo-list__item">为<a class="typo-link" href="packages.html#导入">导入指定一个别名</a></li>
+<li class="typo-list__item"><strong class="typo-strong">Fast turnaround</strong>: making the change-test-debug cycle really fast.</li>
+<li class="typo-list__item"><strong class="typo-strong">New compiler</strong>: a rewrite of the Kotlin compiler optimized for speed, parallelism, and unification. Later we will also work on pluggability.</li>
+<li class="typo-list__item"><strong class="typo-strong">Fast and smooth IDE</strong>: improving the stability and performance of the Kotlin IDE.</li>
+<li class="typo-list__item"><strong class="typo-strong">Kotlin for JVM server-side development</strong>: expanding support for server-side use cases across the Kotlin ecosystem.</li>
+<li class="typo-list__item"><strong class="typo-strong">Kotlin Multiplatform Mobile</strong>: improving the user experience and feature set for sharing code on mobile platforms.</li>
 </ul>
+<h2 class="typo-header typo-h2" id="以子系统划分的-kotlin-路线图">以子系统划分的 Kotlin 路线图</h2>
+<p class="typo-para">This table describes the biggest projects that we’re working on.</p>
+<table class="typo-table">
+<tr class="typo-table__row">
+<th>子系统</th>
+<th>当前聚焦</th>
+<th>推迟后续</th>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Language</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><p class="typo-para">Support JVM records<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42430" target="_blank">KT-42430</a>)</p></li>
+<li class="typo-list__item"><p class="typo-para">Support JVM sealed classes<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42433" target="_blank">KT-42433</a>)</p></li>
+<li class="typo-list__item"><p class="typo-para">Release inline classes as stable, secure Valhalla compatibility<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42434" target="_blank">KT-42434</a>)</p></li>
+<li class="typo-list__item"><p class="typo-para">Prototype multiple receivers<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42435" target="_blank">KT-42435</a>)</p></li>
+</ul>
+</td>
+<td class="typo-table__column">
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Compiler core</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Bootstrap the new compiler (make the new Kotlin compiler compile itself)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42285" target="_blank">KT-42285</a>)</p>
 </li>
-<li class="typo-list__item"><code>as?</code> 用于<a class="typo-link" href="typecasts.html#安全的可空转换操作符">安全类型转换</a></li>
-<li class="typo-list__item"><code>break</code> <a class="typo-link" href="returns.html">终止循环的执行</a></li>
-<li class="typo-list__item"><code>class</code> 声明一个<a class="typo-link" href="classes.html">类</a></li>
-<li class="typo-list__item"><code>continue</code> <a class="typo-link" href="returns.html">继续最近层循环的下一步</a></li>
-<li class="typo-list__item"><code>do</code> 开始一个 <a class="typo-link" href="control-flow.html#while-循环">do/while 循环</a>（后置条件的循环）</li>
-<li class="typo-list__item"><code>else</code> 定义一个 <a class="typo-link" href="control-flow.html#if-表达式">if 表达式</a>条件为 false 时执行的分支</li>
-<li class="typo-list__item"><code>false</code> 指定<a class="typo-link" href="basic-types.html#布尔">布尔类型</a>的“假”值</li>
-<li class="typo-list__item"><code>for</code> 开始一个 <a class="typo-link" href="control-flow.html#for-循环">for 循环</a></li>
-<li class="typo-list__item"><code>fun</code> 声明一个<a class="typo-link" href="functions.html">函数</a></li>
-<li class="typo-list__item"><code>if</code> 开始一个 <a class="typo-link" href="control-flow.html#if-表达式">if 表达式</a></li>
-<li class="typo-list__item"><code>in</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">指定在 <a class="typo-link" href="control-flow.html#for-循环">for 循环</a>中迭代的对象</li>
-<li class="typo-list__item">用作中缀操作符以检测一个值属于<a class="typo-link" href="ranges.html">一个区间</a>、
-一个集合或者其他<a class="typo-link" href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
-<li class="typo-list__item">在 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
-<li class="typo-list__item">将一个类型参数标记为<a class="typo-link" href="generics.html#声明处型变">逆变</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>!in</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">用作中缀操作符以检测一个值<strong class="typo-strong">不</strong>属于<a class="typo-link" href="ranges.html">一个区间</a>、
-一个集合或者其他<a class="typo-link" href="operator-overloading.html#in">定义“contains”方法</a>的实体</li>
-<li class="typo-list__item">在 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
-</ul>
-</li>
-<li class="typo-list__item"><code>interface</code> 声明一个<a class="typo-link" href="interfaces.html">接口</a></li>
-<li class="typo-list__item"><code>is</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">检测<a class="typo-link" href="typecasts.html#is-与-is-操作符">一个值具有指定类型</a></li>
-<li class="typo-list__item">在 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
-</ul>
-</li>
-<li class="typo-list__item"><code>!is</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">检测<a class="typo-link" href="typecasts.html#is-与-is-操作符">一个值<strong class="typo-strong">不</strong>具有指定类型</a></li>
-<li class="typo-list__item">在 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式中</a>用于上述目的</li>
-</ul>
-</li>
-<li class="typo-list__item"><code>null</code> 是表示不指向任何对象的对象引用的常量</li>
-<li class="typo-list__item"><code>object</code> 同时声明<a class="typo-link" href="object-declarations.html">一个类及其实例</a></li>
-<li class="typo-list__item"><code>package</code> 指定<a class="typo-link" href="packages.html">当前文件的包</a></li>
-<li class="typo-list__item"><code>return</code> <a class="typo-link" href="returns.html">从最近层的函数或匿名函数返回</a></li>
-<li class="typo-list__item"><code>super</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><a class="typo-link" href="classes.html#调用超类实现">引用一个方法或属性的超类实现</a></li>
-<li class="typo-list__item"><a class="typo-link" href="classes.html#继承">在次构造函数中调用超类构造函数</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>this</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">引用<a class="typo-link" href="this-expressions.html">当前接收者</a></li>
-<li class="typo-list__item"><a class="typo-link" href="classes.html#构造函数">在次构造函数中调用同一个类的另一个构造函数</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>throw</code> <a class="typo-link" href="exceptions.html">抛出一个异常</a></li>
-<li class="typo-list__item"><code>true</code> 指定<a class="typo-link" href="basic-types.html#布尔">布尔类型</a>的“真”值</li>
-<li class="typo-list__item"><code>try</code> <a class="typo-link" href="exceptions.html">开始一个异常处理块</a></li>
-<li class="typo-list__item"><code>typealias</code> 声明一个<a class="typo-link" href="type-aliases.html">类型别名</a></li>
-<li class="typo-list__item"><code>typeof</code> 保留以供未来使用</li>
-<li class="typo-list__item"><code>val</code> 声明一个只读<a class="typo-link" href="properties.html">属性</a>或<a class="typo-link" href="basic-syntax.html#defining-variables">局部变量</a></li>
-<li class="typo-list__item"><code>var</code> 声明一个可变<a class="typo-link" href="properties.html">属性</a>或<a class="typo-link" href="basic-syntax.html#defining-variables">局部变量</a></li>
-<li class="typo-list__item"><code>when</code> 开始一个 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式</a>（执行其中一个给定分支）</li>
-<li class="typo-list__item"><code>while</code> 开始一个 <a class="typo-link" href="control-flow.html#while-循环">while 循环</a>（前置条件的循环）</li>
-</ul>
-<h2 class="typo-header typo-h2" id="软关键字">软关键字</h2>
-<p class="typo-para">以下符号在适用的上下文中充当关键字，而在<!--
--->其他上下文中可用作标识符：</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>by</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><a class="typo-link" href="delegation.html">将接口的实现委托给另一个对象</a></li>
-<li class="typo-list__item"><a class="typo-link" href="delegated-properties.html">将属性访问器的实现委托给另一个对象</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>catch</code> 开始一个<a class="typo-link" href="exceptions.html">处理指定异常类型</a>的块</li>
-<li class="typo-list__item"><code>constructor</code> 声明一个<a class="typo-link" href="classes.html#构造函数">主构造函数或次构造函数</a></li>
-<li class="typo-list__item"><code>delegate</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>dynamic</code> 引用一个 Kotlin/JS 代码中的<a class="typo-link" href="dynamic-type.html">动态类型</a></li>
-<li class="typo-list__item"><code>field</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>file</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>finally</code> 开始一个<a class="typo-link" href="exceptions.html">当 try 块退出时总会执行的块</a></li>
-<li class="typo-list__item"><code>get</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">声明<a class="typo-link" href="properties.html#getters-与-setters">属性的 getter</a></li>
-<li class="typo-list__item">用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>import</code> <a class="typo-link" href="packages.html">将另一个包中的声明导入当前文件</a></li>
-<li class="typo-list__item"><code>init</code> 开始一个<a class="typo-link" href="classes.html#构造函数">初始化块</a></li>
-<li class="typo-list__item"><code>param</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>property</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>receiver</code>用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>set</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">声明<a class="typo-link" href="properties.html#getters-与-setters">属性的 setter</a></li>
-<li class="typo-list__item">用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>setparam</code> 用作<a class="typo-link" href="annotations.html#注解使用处目标">注解使用处目标</a></li>
-<li class="typo-list__item"><code>where</code> 指定<a class="typo-link" href="generics.html#上界">泛型类型参数的约束</a></li>
-</ul>
-<h2 class="typo-header typo-h2" id="修饰符关键字">修饰符关键字</h2>
-<p class="typo-para">以下符号作为声明中修饰符列表中的关键字，并可用作其他上下文中<!--
--->的标识符：</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>actual</code> 表示<a class="typo-link" href="multiplatform.html">多平台项目</a>中的一个平台相关实现</li>
-<li class="typo-list__item"><code>abstract</code> 将一个类或成员标记为<a class="typo-link" href="classes.html#抽象类">抽象</a></li>
-<li class="typo-list__item"><code>annotation</code> 声明一个<a class="typo-link" href="annotations.html">注解类</a></li>
-<li class="typo-list__item"><code>companion</code> 声明一个<a class="typo-link" href="object-declarations.html#伴生对象">伴生对象</a></li>
-<li class="typo-list__item"><code>const</code> 将属性标记为<a class="typo-link" href="properties.html#编译期常量">编译期常量</a></li>
-<li class="typo-list__item"><code>crossinline</code> 禁止<a class="typo-link" href="inline-functions.html#非局部返回">传递给内联函数的 lambda 中的非局部返回</a></li>
-<li class="typo-list__item"><code>data</code> 指示编译器<a class="typo-link" href="data-classes.html">为类生成典型成员</a></li>
-<li class="typo-list__item"><code>enum</code> 声明一个<a class="typo-link" href="enum-classes.html">枚举</a></li>
-<li class="typo-list__item"><code>expect</code> 将一个声明标记为<a class="typo-link" href="multiplatform.html">平台相关</a>，并期待在平台模块中实现。</li>
-<li class="typo-list__item"><code>external</code> 将一个声明标记为不是在 Kotlin 中实现（通过 <a class="typo-link" href="java-interop.html#在-kotlin-中使用-jni">JNI</a> 访问或者在 <a class="typo-link" href="js-interop.html#external-修饰符">JavaScript</a> 中实现）</li>
-<li class="typo-list__item"><code>final</code> 禁止<a class="typo-link" href="classes.html#覆盖方法">成员覆盖</a></li>
-<li class="typo-list__item"><code>infix</code> 允许以<a class="typo-link" href="functions.html#中缀表示法">中缀表示法</a>调用函数</li>
-<li class="typo-list__item"><code>inline</code> 告诉编译器<a class="typo-link" href="inline-functions.html">在调用处内联传给它的函数和 lambda 表达式</a></li>
-<li class="typo-list__item"><code>inner</code> 允许在<a class="typo-link" href="nested-classes.html">嵌套类</a>中引用外部类实例</li>
-<li class="typo-list__item"><code>internal</code> 将一个声明标记为<a class="typo-link" href="visibility-modifiers.html">在当前模块中可见</a></li>
-<li class="typo-list__item"><code>lateinit</code> 允许<a class="typo-link" href="properties.html#延迟初始化属性与变量">在构造函数之外初始化非空属性</a></li>
-<li class="typo-list__item"><code>noinline</code> 关闭<a class="typo-link" href="inline-functions.html#禁用内联">传给内联函数的 lambda 表达式的内联</a></li>
-<li class="typo-list__item"><code>open</code> 允许<a class="typo-link" href="classes.html#继承">一个类子类化或覆盖成员</a></li>
-<li class="typo-list__item"><code>operator</code> 将一个函数标记为<a class="typo-link" href="operator-overloading.html">重载一个操作符或者实现一个约定</a></li>
-<li class="typo-list__item"><code>out</code> 将类型参数标记为<a class="typo-link" href="generics.html#声明处型变">协变</a></li>
-<li class="typo-list__item"><code>override</code> 将一个成员标记为<a class="typo-link" href="classes.html#覆盖方法">超类成员的覆盖</a></li>
-<li class="typo-list__item"><code>private</code> 将一个声明标记为<a class="typo-link" href="visibility-modifiers.html">在当前类或文件中可见</a></li>
-<li class="typo-list__item"><code>protected</code> 将一个声明标记为<a class="typo-link" href="visibility-modifiers.html">在当前类及其子类中可见</a></li>
-<li class="typo-list__item"><code>public</code> 将一个声明标记为<a class="typo-link" href="visibility-modifiers.html">在任何地方可见</a></li>
-<li class="typo-list__item"><code>reified</code> 将内联函数的类型参数标记为<a class="typo-link" href="inline-functions.html#具体化的类型参数">在运行时可访问</a></li>
-<li class="typo-list__item"><code>sealed</code> 声明一个<a class="typo-link" href="sealed-classes.html">密封类</a>（限制子类化的类）</li>
-<li class="typo-list__item"><code>suspend</code> 将一个函数或 lambda 表达式标记为挂起式（可用做<a class="typo-link" href="coroutines.html">协程</a>）</li>
-<li class="typo-list__item"><code>tailrec</code> 将一个函数标记为<a class="typo-link" href="functions.html#尾递归函数">尾递归</a>（允许编译器将递归替换为迭代）</li>
-<li class="typo-list__item"><code>vararg</code> 允许<a class="typo-link" href="functions.html#可变数量的参数varargs">一个参数传入可变数量的参数</a></li>
-</ul>
-<h2 class="typo-header typo-h2" id="特殊标识符">特殊标识符</h2>
-<p class="typo-para">以下标识符由编译器在指定上下文中定义，并且可以用作其他上下文中的常规<!--
--->标识符：</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>field</code> 用在属性访问器内部来引用该<a class="typo-link" href="properties.html#幕后字段">属性的幕后字段</a></li>
-<li class="typo-list__item"><code>it</code> 用在 lambda 表达式内部来<a class="typo-link" href="lambdas.html#it单个参数的隐式名称">隐式引用其参数</a></li>
-</ul>
-<h2 class="typo-header typo-h2" id="操作符和特殊符号">操作符和特殊符号</h2>
-<p class="typo-para">Kotlin 支持以下操作符和特殊符号：</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>+</code>、 <code>-</code>、 <code>*</code>、 <code>/</code>、 <code>%</code> —— 数学操作符
-    <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>*</code> 也用于<a class="typo-link" href="functions.html#可变数量的参数varargs">将数组传递给 vararg 参数</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>=</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">赋值操作符</li>
-<li class="typo-list__item">也用于指定<a class="typo-link" href="functions.html#默认参数">参数的默认值</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>+=</code>、 <code>-=</code>、 <code>*=</code>、 <code>/=</code>、 <code>%=</code> —— <a class="typo-link" href="operator-overloading.html#assignments">广义赋值操作符</a></li>
-<li class="typo-list__item"><code>++</code>、 <code>--</code> —— <a class="typo-link" href="operator-overloading.html#递增与递减">递增与递减操作符</a></li>
-<li class="typo-list__item"><code>&amp;&amp;</code>、 <code>||</code>、 <code>!</code> —— 逻辑“与”、“或”、“非”操作符（对于位运算，请使用相应的<a class="typo-link" href="basic-types.html#运算">中缀函数</a>）</li>
-<li class="typo-list__item"><code>==</code>、 <code>!=</code> —— <a class="typo-link" href="operator-overloading.html#equals">相等操作符</a>（对于非原生类型会翻译为调用 <code>equals()</code>）</li>
-<li class="typo-list__item"><code>===</code>、 <code>!==</code> —— <a class="typo-link" href="equality.html#引用相等">引用相等操作符</a></li>
-<li class="typo-list__item"><code>&lt;</code>、 <code>&gt;</code>、 <code>&lt;=</code>、 <code>&gt;=</code> —— <a class="typo-link" href="operator-overloading.html#comparison">比较操作符</a>（对于非原生类型会翻译为调用 <code>compareTo()</code>）</li>
-<li class="typo-list__item"><code>[</code>、 <code>]</code> —— <a class="typo-link" href="operator-overloading.html#indexed">索引访问操作符</a>（会翻译为调用 <code>get</code> 与 <code>set</code>）</li>
-<li class="typo-list__item"><code>!!</code> <a class="typo-link" href="null-safety.html#-操作符">断言一个表达式非空</a></li>
-<li class="typo-list__item"><code>?.</code> 执行<a class="typo-link" href="null-safety.html#安全的调用">安全调用</a>（如果接收者非空，就调用一个方法或访问一个属性）</li>
-<li class="typo-list__item"><code>?:</code> 如果左侧的值为空，就取右侧的值（<a class="typo-link" href="null-safety.html#elvis-操作符">elvis 操作符</a>）</li>
-<li class="typo-list__item"><code>::</code> 创建一个<a class="typo-link" href="reflection.html#函数引用">成员引用</a>或者一个<a class="typo-link" href="reflection.html#类引用">类引用</a></li>
-<li class="typo-list__item"><code>..</code> 创建一个<a class="typo-link" href="ranges.html">区间</a></li>
-<li class="typo-list__item"><code>:</code> 分隔声明中的名称与类型</li>
-<li class="typo-list__item"><code>?</code> 将类型标记为<a class="typo-link" href="null-safety.html#可空类型与非空类型">可空</a></li>
-<li class="typo-list__item"><code>-&gt;</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">分隔 <a class="typo-link" href="lambdas.html#lambda-表达式语法">lambda 表达式</a>的参数与主体</li>
-<li class="typo-list__item">分隔在<a class="typo-link" href="lambdas.html#函数类型">函数类型</a>中的参数类型与返回类型声明</li>
-<li class="typo-list__item">分隔 <a class="typo-link" href="control-flow.html#when-表达式">when 表达式</a>分支的条件与代码体</li>
-</ul>
-</li>
-<li class="typo-list__item"><code>@</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">引入一个<a class="typo-link" href="annotations.html#用法">注解</a></li>
-<li class="typo-list__item">引入或引用一个<a class="typo-link" href="returns.html#break-与-continue-标签">循环标签</a></li>
-<li class="typo-list__item">引入或引用一个 <a class="typo-link" href="returns.html#返回到标签">lambda 表达式标签</a></li>
-<li class="typo-list__item">引用一个来自外部作用域的 <a class="typo-link" href="this-expressions.html#限定的-this">“this”表达式</a></li>
-<li class="typo-list__item">引用一个<a class="typo-link" href="classes.html#调用超类实现">外部超类</a></li>
-</ul>
-</li>
-<li class="typo-list__item"><code>;</code> 分隔位于同一行的多个语句</li>
-<li class="typo-list__item"><code>$</code> 在<a class="typo-link" href="basic-types.html#字符串模板">字符串模版</a>中引用变量或者表达式</li>
-<li class="typo-list__item"><code>_</code>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">在 <a class="typo-link" href="lambdas.html#下划线用于未使用的变量自-11-起">lambda 表达式</a>中代替未使用的参数</li>
-<li class="typo-list__item">在<a class="typo-link" href="multi-declarations.html#下划线用于未使用的变量自-11-起">解构声明</a>中代替未使用的参数</li>
-</ul>
+<li class="typo-list__item">
+<p class="typo-para">Maintain the current compiler (bug-fixing only)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42286" target="_blank">KT-42286</a>)</p>
 </li>
 </ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><p class="typo-para">⏸ Stable Compiler Plugin API</p></li>
+<li class="typo-list__item"><p class="typo-para">⏸ Scripting improvements</p></li>
+</ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Kotlin/JVM</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Make the new JVM IR backend stable<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42287" target="_blank">KT-42287</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Maintain the old JVM backend by fixing critical bugs<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42288" target="_blank">KT-42288</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Kotlin/JS</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Make the new JS IR backend stable<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42289" target="_blank">KT-42289</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve Dukat support<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42290" target="_blank">KT-42290</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Maintain the old JS backend by fixing critical bugs<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42291" target="_blank">KT-42291</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple"><li class="typo-list__item">⏸ ES6 support</li></ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Kotlin/WASM</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Prototype a compiler for Wasm GC proposal<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42292" target="_blank">KT-42292</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<p class="typo-para">Note: Wasm support in <a class="typo-link" href="https://kotlinlang.org/docs/reference/native-overview.html" target="_blank">Kotlin/Native</a> (through LLVM) will be deprecated and removed</p>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Kotlin/Native</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Provide binary compatibility between incremental releases<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42293" target="_blank">KT-42293</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve compilation time<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42294" target="_blank">KT-42294</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Runtime performance: improve object allocation times<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42295" target="_blank">KT-42295</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Prototype a new garbage collector<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42296" target="_blank">KT-42296</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve exporting Kotlin code to Objective-C<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42297" target="_blank">KT-42297</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">⏸ Support ARM Mac &amp; Catalyst<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-39834" target="_blank">KT-39834</a>)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-39833" target="_blank">KT-39833</a>)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-40442" target="_blank">KT-40442</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">⏸ Direct interoperability with Swift</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">⏸ Interoperability with C++</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">⏸ Support Alpine Linux<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-38876" target="_blank">KT-38876</a>)</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Kotlin Multiplatform</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">KMM plugin: Fix major bugs<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42299" target="_blank">KT-42299</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">KMM plugin: Run common tests on Android devices<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42298" target="_blank">KT-42298</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve dependency management for iOS<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42301" target="_blank">KT-42301</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve Gradle &amp; Compiler error messages<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42303" target="_blank">KT-42303</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">⏸ Sharing code between JVM and Android</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">⏸ KMM plugin: support for IntelliJ IDEA</p>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">IDE</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Improve IDE performance<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42304" target="_blank">KT-42304</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve cross-language support in the Inline Method and Change Signature refactorings<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42306" target="_blank">KT-42306</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Prototype IDE plugin with the new compiler frontend<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42307" target="_blank">KT-42307</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Move the Kotlin plugin to the IntelliJ platform development infrastructure<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42308" target="_blank">KT-42308</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<p class="typo-para">Note: Kotlin support for VSCode or other IDEs is not on the roadmap for the Kotlin team. Community initiatives in this respect are welcome.</p>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Build tools</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Improve incremental compilation performance in Gradle<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42309" target="_blank">KT-42309</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Support the Gradle configuration cache<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42310" target="_blank">KT-42310</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Decrease time for opening Gradle projects<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42311" target="_blank">KT-42311</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><p class="typo-para">⏸ Improvements in Kotlin Maven support</p></li>
+</ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Libraries</strong>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item">
+<p class="typo-para">Support <code>java.nio.Path</code> extension in the standard library<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42436" target="_blank">KT-42436</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Make multiplatform <code>kotlin.text</code> API locale-agnostic by default<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42437" target="_blank">KT-42437</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve usability of multi-threaded coroutines library for Kotlin/Native<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42314" target="_blank">KT-42314</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve <code>kotlinx-datetime</code> library<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42315" target="_blank">KT-42315</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve <code>kotlinx-serialization</code> (release v1.1)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42316" target="_blank">KT-42316</a>)</p>
+</li>
+<li class="typo-list__item">
+<p class="typo-para">Improve <code>kotlinx-coroutines</code> (release v1.4)<br/>(<a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-42317" target="_blank">KT-42317</a>)</p>
+</li>
+</ul>
+</td>
+<td class="typo-table__column">
+<ul class="typo-list typo-list_type_simple">
+<li class="typo-list__item"><p class="typo-para">⏸ <code>kotlinx-cli</code></p></li>
+<li class="typo-list__item"><p class="typo-para">⏸ <code>binary-compatibility-validator</code></p></li>
+<li class="typo-list__item"><p class="typo-para">⏸ <code>kotlinx-io</code></p></li>
+<li class="typo-list__item"><p class="typo-para">⏸ Any new multiplatform libraries</p></li>
+</ul>
+</td>
+</tr>
+<tr class="typo-table__row">
+<td class="typo-table__column"><strong class="typo-strong">Ktor</strong>
+</td>
+<td class="typo-table__column">
+<p class="typo-para"><a class="typo-link" href="https://blog.jetbrains.com/ktor/2020/08/10/ktor-roadmap-for-2020-2021/" target="_blank">Ktor roadmap</a></p>
+</td>
+<td class="typo-table__column">
+</td>
+</tr>
+</table>
 
         </article>
     </div>

@@ -309,6 +309,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="版本发布与路线图">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">版本发布与路线图</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/releases.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 版本发布</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/roadmap.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 路线图</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="开始">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -1620,7 +1648,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!--- END -->
 <h2 class="typo-header typo-h2" id="异常处理">异常处理</h2>
 <p class="typo-para">本节内容涵盖了异常处理与在异常上取消。
-我们已经知道取消协程会在挂起点抛出 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>
+我们已经知道被取消的协程会在挂起点抛出 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-cancellation-exception/index.html">CancellationException</a>
 并且它会被协程的机制所忽略。在这里我们会看看在取消过程中抛出异常或同一个协程的<!--
 -->多个子协程抛出异常时会发生什么。</p>
 <h3 class="typo-header typo-h3" id="异常的传播">异常的传播</h3>

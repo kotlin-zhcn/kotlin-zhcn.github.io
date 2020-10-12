@@ -209,7 +209,7 @@ This section describes common options, but if you use a different approach, you 
 </ul>
 <h4 class="typo-header typo-h4" id="option-1-configure-in-the-build-and-settings-files">Option 1. Configure in the build and settings files</h4>
 <ol class="typo-list typo-list_type_ordered">
-<li class="typo-list__item">In the <code>plugins</code> block within <code>build.gradle</code> (<code>build.gradle.kts</code>), change the <code>KOTLIN-EAP-VERSION</code> to the actual EAP version, such as <code>1.4.0-rc</code>. Available EAP versions are listed <a class="typo-link" href="index.html#build-details">here</a>.<br/>
+<li class="typo-list__item">In the <code>plugins</code> block within <code>build.gradle</code> (<code>build.gradle.kts</code>), change the <code>KOTLIN-EAP-VERSION</code> to the actual EAP version, such as <code>1.4.20-M1</code>. Available EAP versions are listed <a class="typo-link" href="index.html#build-details">here</a>.<br/>
 Alternatively, you can specify the EAP version in the <code>pluginManagement</code> block in <code>settings.gradle</code> (<code>settings.gradle.kts</code>) – see <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugin_version_management">Gradle documentation</a> for details.</li>
 <li class="typo-list__item">In the <code>repositories</code> block, specify the EAP repository – <a class="typo-link" href="https://dl.bintray.com/kotlin/kotlin-eap">https://dl.bintray.com/kotlin/kotlin-eap</a> – for dependencies.</li>
 </ol>
@@ -217,14 +217,14 @@ Alternatively, you can specify the EAP version in the <code>pluginManagement</co
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-   id 'java' 
-   id 'org.jetbrains.kotlin.multiplatform' version 'KOTLIN-EAP-VERSION'
+    id 'java' 
+    id 'org.jetbrains.kotlin.multiplatform' version 'KOTLIN-EAP-VERSION'
 }
 
 repositories {
-   mavenCentral()
-   maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-   maven { url 'https://kotlin.bintray.com/kotlinx' }
+    mavenCentral()
+    maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    maven { url 'https://kotlin.bintray.com/kotlinx' }
 }
 </code></pre>
 </div>
@@ -232,13 +232,13 @@ repositories {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-   java
-   kotlin("multiplatform") version "KOTLIN-EAP-VERSION"
+    java
+    kotlin("multiplatform") version "KOTLIN-EAP-VERSION"
 }
 repositories {
-   mavenCentral()
-   maven ("https://dl.bintray.com/kotlin/kotlin-eap")
-   maven ("https://kotlin.bintray.com/kotlinx")
+    mavenCentral()
+    maven ("https://dl.bintray.com/kotlin/kotlin-eap")
+    maven ("https://kotlin.bintray.com/kotlinx")
 }
 </code></pre>
 </div>
@@ -249,11 +249,11 @@ repositories {
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">pluginManagement {
-   repositories {
-       mavenCentral()
-       gradlePluginPortal()
-       maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
-   }
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+        maven { url 'https://dl.bintray.com/kotlin/kotlin-eap' }
+    }
 }
 </code></pre>
 </div>
@@ -261,18 +261,18 @@ repositories {
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">pluginManagement { 
-   repositories { 
-       mavenCentral() 
-       gradlePluginPortal() 
-       maven ("https://dl.bintray.com/kotlin/kotlin-eap") 
-         }
+    repositories { 
+        mavenCentral() 
+        gradlePluginPortal() 
+        maven ("https://dl.bintray.com/kotlin/kotlin-eap") 
+    }
 }
 </code></pre>
 </div>
 </div>
 <h4 class="typo-header typo-h4" id="option-2-configure-in-the-build-file-only">Option 2. Configure in the build file only</h4>
 <ol class="typo-list typo-list_type_ordered">
-<li class="typo-list__item">In <code>build.gradle</code> (<code>build.gradle.kts</code>), change the <code>KOTLIN-EAP-VERSION</code> in the <code>buildscript</code> block to the actual EAP version, such as <code>1.4.0-rc</code>.<br/>
+<li class="typo-list__item">In <code>build.gradle</code> (<code>build.gradle.kts</code>), change the <code>KOTLIN-EAP-VERSION</code> in the <code>buildscript</code> block to the actual EAP version, such as <code>1.4.20-M1</code>.<br/>
 Available EAP versions are listed <a class="typo-link" href="index.html#build-details">here</a>.</li>
 <li class="typo-list__item">Add the EAP repository – <a class="typo-link" href="https://dl.bintray.com/kotlin/kotlin-eap">https://dl.bintray.com/kotlin/kotlin-eap</a> – to the <code>buildscript</code> block.</li>
 <li class="typo-list__item">In the <code>repositories</code> block, specify the EAP repository for dependencies.</li>
@@ -282,7 +282,7 @@ Available EAP versions are listed <a class="typo-link" href="index.html#build-de
     repositories {
         mavenCentral()
         gradlePluginPortal()
-       maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
     }
 
     dependencies {
@@ -310,11 +310,11 @@ see <a class="typo-link" href="index.html#build-details">EAP build details</a>.<
 <p class="typo-para">If there are incompatible changes in next EAP versions, we release a new version of the library.</p>
 </blockquote>
 <p class="typo-para">Here is an example.</p>
-<p class="typo-para">For the <strong class="typo-strong">kotlinx.coroutines</strong> library, add the version number – <code>1.3.8-1.4.0-rc</code> – that is compatible with <code>1.4.0-rc</code>.</p>
+<p class="typo-para">For the <strong class="typo-strong">kotlinx.coroutines</strong> library, add the version number – <code>1.3.9</code> – that is compatible with <code>1.4.20-M1</code>.</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">dependencies {
-   implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-1.4.0-rc"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9"
 }
 </code></pre>
 </div>
@@ -322,13 +322,13 @@ see <a class="typo-link" href="index.html#build-details">EAP build details</a>.<
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">dependencies {
-   implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.8-1.4.0-rc")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9")
 }
 </code></pre>
 </div>
 </div>
 <h2 class="typo-header typo-h2" id="configure-in-maven">Configure in Maven</h2>
-<p class="typo-para">In the sample Maven project definition, replace <code>KOTLIN-EAP-VERSION</code> with the actual version, such as <code>1.4.0-rc</code>. 
+<p class="typo-para">In the sample Maven project definition, replace <code>KOTLIN-EAP-VERSION</code> with the actual version, such as <code>1.4.20-M1</code>. 
 Available EAP versions are listed <a class="typo-link" href="index.html#build-details">here</a>.</p>
 <div class="sample" mode="xml" theme="idea">
 <pre><code class="language-xml">&lt;project ...&gt;

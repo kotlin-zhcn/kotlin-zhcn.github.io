@@ -309,6 +309,34 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </div>
 
                 <div class="tree-item tree-branch js-item js-branch _opened"
+         data-id="版本发布与路线图">
+
+        <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
+            <div class="marker"></div>
+            <div class="text">版本发布与路线图</div>
+        </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/releases.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 版本发布</span>
+            </a>
+    </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/roadmap.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">Kotlin 路线图</span>
+            </a>
+    </div>
+
+    </div>
+
+                <div class="tree-item tree-branch js-item js-branch _opened"
          data-id="开始">
 
         <div class="tree-item-title tree-branch-title js-item-title js-branch-title is_active">
@@ -1645,7 +1673,7 @@ in the Kotlin Gradle DSL).</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy"> plugins {
      id 'org.jetbrains.kotlin.jvm' version '1.4.10'
-     id 'org.jetbrains.kotlin.plugin.serialization' '1.4.10'  
+     id 'org.jetbrains.kotlin.plugin.serialization' version '1.4.10'  
  }
 </code></pre>
 </div>
@@ -1661,11 +1689,11 @@ in the Kotlin Gradle DSL).</p>
 </div>
 </li>
 <li class="typo-list__item">
-<p class="typo-para">Add the JSON serialization library dependency:<code>org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC</code></p>
+<p class="typo-para">Add the JSON serialization library dependency:<code>org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0</code></p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy"> dependencies {
-     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC'
+     implementation 'org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0'
  } 
 </code></pre>
 </div>
@@ -1673,7 +1701,7 @@ in the Kotlin Gradle DSL).</p>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin"> dependencies {
-     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0-RC")
+     implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.0.0")
  } 
 </code></pre>
 </div>
