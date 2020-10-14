@@ -100,7 +100,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="solutions-menu solutions-menu-is-hidden">
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
-                        <a class="solutions-menu-item-link" href="/lp/mobile/"
+                        <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
                            target="_blank">移动跨平台 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
@@ -1691,8 +1691,8 @@ interface Collection&lt;E&gt; …… {
 因为我们不知道什么对象符合那个未知的 <code>E</code> 的子类型。
 反过来，该限制可以让<code>Collection&lt;String&gt;</code>表示为<code>Collection&lt;? extends Object&gt;</code>的子类型。
 简而言之，带 <strong class="typo-strong">extends</strong> 限定（<strong class="typo-strong">上界</strong>）的通配符类型使得类型是<strong class="typo-strong">协变的（covariant）</strong>。</p>
-<p class="typo-para">理解为什么这个技巧能够工作的关键相当简单：如果只能从集合中获取项目，那么使用 <code>String</code> 的集合，
-并且从其中读取 <code>Object</code> 也没问题 。反过来，如果只能向集合中 <em>放入</em> 项目，就可以用
+<p class="typo-para">理解为什么这个技巧能够工作的关键相当简单：如果只能从集合中获取元素，那么使用 <code>String</code> 的集合，
+并且从其中读取 <code>Object</code> 也没问题 。反过来，如果只能向集合中 <em>放入</em> 元素，就可以用
 <code>Object</code> 集合并向其中放入 <code>String</code>：在 Java 中有 <code>List&lt;? super String&gt;</code> 是 <code>List&lt;Object&gt;</code> 的一个<strong class="typo-strong">超类</strong>。</p>
 <p class="typo-para">后者称为<strong class="typo-strong">逆变性（contravariance）</strong>，并且对于 <code>List &lt;? super String&gt;</code> 你只能调用接受 String 作为参数的方法
 （例如，你可以调用 <code>add(String)</code> 或者 <code>set(int, String)</code>），当然<!--
@@ -1700,7 +1700,7 @@ interface Collection&lt;E&gt; …… {
 <p class="typo-para">Joshua Bloch 称那些你只能从中<strong class="typo-strong">读取</strong>的对象为<strong class="typo-strong">生产者</strong>，并称那些你只能<strong class="typo-strong">写入</strong>的对象为<strong class="typo-strong">消费者</strong>。他建议：“<em>为了灵活性最大化，在表示生产者或消费者的输入参数上使用通配符类型</em>”，并提出了以下助记符：</p>
 <p class="typo-para"><em>PECS 代表生产者-Extends、消费者-Super（Producer-Extends, Consumer-Super）。</em></p>
 <p class="typo-para"><em>注意</em>：如果你使用一个生产者对象，如 <code>List&lt;? extends Foo&gt;</code>，在该对象上不允许调用 <code>add()</code> 或 <code>set()</code>。但这并不意味着<!--
--->该对象是<strong class="typo-strong">不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有项目，因为 <code>clear()</code>
+-->该对象是<strong class="typo-strong">不可变的</strong>：例如，没有什么阻止你调用 <code>clear()</code>从列表中删除所有元素，因为 <code>clear()</code>
 根本无需任何参数。通配符（或其他类型的型变）保证的唯一的事情是<strong class="typo-strong">类型安全</strong>。不可变性完全是另一回事。</p>
 <h3 class="typo-header typo-h3" id="声明处型变">声明处型变</h3>
 <p class="typo-para">假设有一个泛型接口 <code>Source&lt;T&gt;</code>，该接口中不存在任何以 <code>T</code> 作为参数的方法，只是方法返回 <code>T</code> 类型值：</p>
