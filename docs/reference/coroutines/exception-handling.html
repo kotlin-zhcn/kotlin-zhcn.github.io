@@ -1695,28 +1695,28 @@ Caught ArithmeticException
 </code></pre>
 <!--- TEST EXCEPTION-->
 <h3 class="typo-header typo-h3" id="coroutineexceptionhandler">CoroutineExceptionHandler</h3>
-<p class="typo-para">It is possible to customize the default behavior of printing <strong class="typo-strong">uncaught</strong> exceptions to the console.
-<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> context element on a <em>root</em> coroutine can be used as generic <code>catch</code> block for
-this root coroutine and all its children where custom exception handling may take place.
-It is similar to <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.uncaughtExceptionHandler</code></a>.
-You cannot recover from the exception in the <code>CoroutineExceptionHandler</code>. The coroutine had already completed
-with the corresponding exception when the handler is called. Normally, the handler is used to
-log the exception, show some kind of error message, terminate, and/or restart the application.</p>
+<p class="typo-para">将<strong class="typo-strong">未捕获</strong>异常打印到控制台的默认行为是可自定义的。
+<em>根</em>协程中的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a> 上下文元素可以被用于这个根协程<!--
+-->通用的 <code>catch</code> 块，及其所有可能自定义了异常处理的子协程。
+它类似于 <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.uncaughtExceptionHandler</code></a> 。
+你无法从 <code>CoroutineExceptionHandler</code> 的异常中恢复。当调用处理者的时候，协程已经完成<!--
+-->并带有相应的异常。通常，该处理者用于<!--
+-->记录异常，显示某种错误消息，终止和（或）重新启动应用程序。</p>
 <p class="typo-para">在 JVM 中可以重定义一个全局的异常处理者来将所有的协程通过
 <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html"><code>ServiceLoader</code></a> 注册到 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-exception-handler/index.html">CoroutineExceptionHandler</a>。
 全局异常处理者就如同
 <a class="typo-link" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Thread.html#setDefaultUncaughtExceptionHandler(java.lang.Thread.UncaughtExceptionHandler)"><code>Thread.defaultUncaughtExceptionHandler</code></a> 
 一样，在没有更多的指定的异常处理者被注册的时候被使用。
-在 Android 中， <code>uncaughtExceptionPreHandler</code> 被设置在全局协程异常处理者中。</p>
-<p class="typo-para"><code>CoroutineExceptionHandler</code> is invoked only on <strong class="typo-strong">uncaught</strong> exceptions — exceptions that were not handled in any other way.
-In particular, all <em>children</em> coroutines (coroutines created in the context of another <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a>) delegate handling of
-their exceptions to their parent coroutine, which also delegates to the parent, and so on until the root,
-so the <code>CoroutineExceptionHandler</code> installed in their context is never used. 
-In addition to that, <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> builder always catches all exceptions and represents them in the resulting <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/index.html">Deferred</a> object, 
-so its <code>CoroutineExceptionHandler</code> has no effect either.</p>
+在 Android 中，<code>uncaughtExceptionPreHandler</code> 被设置在全局协程异常处理者中。</p>
+<p class="typo-para"><code>CoroutineExceptionHandler</code> 仅在<strong class="typo-strong">未捕获</strong>的异常上调用 — 没有以其他任何方式处理的异常。
+特别是，所有<em>子</em>协程（在另一个 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-job/index.html">Job</a> 上下文中创建的协程）委托&lt;!–
+它们的父协程处理它们的异常，然后它们也委托给其父协程，以此类推直到根协程，
+因此永远不会使用在其上下文中设置的 <code>CoroutineExceptionHandler</code>。
+除此之外，<a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/async.html">async</a> 构建器始终会捕获所有异常并将其表示在结果 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-deferred/index.html">Deferred</a> 对象中，
+因此它的 <code>CoroutineExceptionHandler</code> 也无效。</p>
 <blockquote class="typo-quote">
-<p class="typo-para">Coroutines running in supervision scope do not propagate exceptions to their parent and are
-excluded from this rule. A further <a class="typo-link" href="#supervision">Supervision</a> section of this document gives more details.</p>
+<p class="typo-para">在监督作用域内运行的协程不会将异常传播到其父协程，并且<!--
+-->会从此规则中排除。本文档的另一个小节——<a class="typo-link" href="#监督">监督</a>提供了更多细节。</p>
 </blockquote>
 <div class="sample" data-min-compiler-version="1.3" theme="idea">
 <pre><code class="language-kotlin">import kotlinx.coroutines.*
@@ -1726,10 +1726,10 @@ fun main() = runBlocking {
     val handler = CoroutineExceptionHandler { _, exception -&gt; 
         println("CoroutineExceptionHandler got $exception") 
     }
-    val job = GlobalScope.launch(handler) { // root coroutine, running in GlobalScope
+    val job = GlobalScope.launch(handler) { // 根协程，运行在 GlobalScope 中
         throw AssertionError()
     }
-    val deferred = GlobalScope.async(handler) { // also root, but async instead of launch
+    val deferred = GlobalScope.async(handler) { // 同样是根协程，但使用 async 代替了 launch
         throw ArithmeticException() // 没有打印任何东西，依赖用户去调用 deferred.await()
     }
     joinAll(job, deferred)

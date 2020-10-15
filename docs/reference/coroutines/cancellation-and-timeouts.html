@@ -1637,6 +1637,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="typo-list__item"><a class="typo-link" href="#在-finally-中释放资源">在 <code>finally</code> 中释放资源</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#运行不能取消的代码块">运行不能取消的代码块</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#超时">超时</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#asynchronous-timeout-and-resources">Asynchronous timeout and resources</a></li>
 </ul>
 </li>
 </ul>
@@ -1921,6 +1922,100 @@ I'm sleeping 2 ...
 Result is null
 </code></pre>
 <!--- TEST -->
+<h3 class="typo-header typo-h3" id="asynchronous-timeout-and-resources">Asynchronous timeout and resources</h3>
+<!-- 
+  NOTE: Don't change this section name. It is being referenced to from within KDoc of withTimeout functions.
+-->
+<p class="typo-para">The timeout event in <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/with-timeout.html">withTimeout</a> is asynchronous with respect to the code running in its block and may happen at any time,
+even right before the return from inside of the timeout block. Keep this in mind if you open or acquire some
+resource inside the block that needs closing or release outside of the block.</p>
+<p class="typo-para">For example, here we imitate a closeable resource with the <code>Resource</code> class, that simply keeps track of how many times 
+it was created by incrementing the <code>acquired</code> counter and decrementing this counter from its <code>close</code> function.
+Let us run a lot of coroutines with the small timeout try acquire this resource from inside
+of the <code>withTimeout</code> block after a bit of delay and release it from outside.</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+//sampleStart
+var acquired = 0
+
+class Resource {
+    init { acquired++ } // Acquire the resource
+    fun close() { acquired-- } // Release the resource
+}
+
+fun main() {
+    runBlocking {
+        repeat(100_000) { // Launch 100K coroutines
+            launch { 
+                val resource = withTimeout(60) { // Timeout of 60 ms
+                    delay(50) // Delay for 50 ms
+                    Resource() // Acquire a resource and return it from withTimeout block     
+                }
+                resource.close() // Release the resource
+            }
+        }
+    }
+    // Outside of runBlocking all coroutines have completed
+    println(acquired) // Print the number of resources still acquired
+}
+//sampleEnd
+</code></pre>
+</div>
+<blockquote class="typo-quote">
+<p class="typo-para">You can get the full code <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-08.kt">here</a>.</p>
+</blockquote>
+<!--- CLEAR -->
+<p class="typo-para">If you run the above code you'll see that it does not always print zero, though it may depend on the timings 
+of your machine you may need to tweak timeouts in this example to actually see non-zero values.</p>
+<blockquote class="typo-quote">
+<p class="typo-para">Note, that incrementing and decrementing <code>acquired</code> counter here from 100K coroutines is completely safe,
+since it always happens from the same main thread. More on that will be explained in the next chapter
+on coroutine context.</p>
+</blockquote>
+<p class="typo-para">To workaround this problem you can store a reference to the resource in the variable as opposed to returning it 
+from the <code>withTimeout</code> block.</p>
+<div class="sample" data-min-compiler-version="1.3" theme="idea">
+<pre><code class="language-kotlin">import kotlinx.coroutines.*
+
+var acquired = 0
+
+class Resource {
+    init { acquired++ } // Acquire the resource
+    fun close() { acquired-- } // Release the resource
+}
+
+fun main() {
+//sampleStart
+    runBlocking {
+        repeat(100_000) { // Launch 100K coroutines
+            launch { 
+                var resource: Resource? = null // Not acquired yet
+                try {
+                    withTimeout(60) { // Timeout of 60 ms
+                        delay(50) // Delay for 50 ms
+                        resource = Resource() // Store a resource to the variable if acquired      
+                    }
+                    // We can do something else with the resource here
+                } finally {  
+                    resource?.close() // Release the resource if it was acquired
+                }
+            }
+        }
+    }
+    // Outside of runBlocking all coroutines have completed
+    println(acquired) // Print the number of resources still acquired
+//sampleEnd
+}
+</code></pre>
+</div>
+<blockquote class="typo-quote">
+<p class="typo-para">You can get the full code <a class="typo-link" href="https://github.com/hltj/kotlinx.coroutines-cn/blob/master/kotlinx-coroutines-core/jvm/test/guide/example-cancel-09.kt">here</a>.</p>
+</blockquote>
+<p class="typo-para">This example always prints zero. Resources do not leak.</p>
+<!--- TEST 
+0
+-->
 <!--- MODULE kotlinx-coroutines-core -->
 <!--- INDEX kotlinx.coroutines -->
 <!--- END -->
