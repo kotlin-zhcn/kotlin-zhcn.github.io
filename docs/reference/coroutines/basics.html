@@ -1669,7 +1669,7 @@ World!
 </code></pre>
 <!--- TEST -->
 <p class="typo-para">本质上，协程是轻量级的线程。
-它们在某些 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">CoroutineScope</a> 上下文中与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> <em>协程构建器</em> 一起启动。
+它们在某些 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 上下文中与 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/launch.html">launch</a> <em>协程构建器</em> 一起启动。
 这里我们在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动了一个新的协程，这意味着新协程的<!--
 -->生命周期只受整个应用程序的生命周期限制。</p>
 <p class="typo-para">可以将
@@ -1784,7 +1784,7 @@ World!
 我们可以在执行操作所在的指定作用域内启动协程，
 而不是像通常使用线程（线程总是全局的）那样在 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-global-scope/index.html">GlobalScope</a> 中启动。</p>
 <p class="typo-para">在我们的示例中，我们使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/run-blocking.html">runBlocking</a> 协程构建器将  <code>main</code> 函数转换为协程。
-包括 <code>runBlocking</code> 在内的每个协程构建器都将 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/coroutine-scope.html">CoroutineScope</a> 的实例添加到其代码块所在的作用域中。
+包括 <code>runBlocking</code> 在内的每个协程构建器都将 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/-coroutine-scope/index.html">CoroutineScope</a> 的实例添加到其代码块所在的作用域中。
 我们可以在这个作用域中启动协程而无需显式 <code>join</code> 之，因为<!--
 -->外部协程（示例中的 <code>runBlocking</code>）直到在其作用域中启动的所有协程<!--
 -->都执行完毕后才会结束。因此，可以将我们的示例简化为：</p>

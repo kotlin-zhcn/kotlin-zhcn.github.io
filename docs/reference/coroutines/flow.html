@@ -1824,16 +1824,16 @@ I'm not blocked 3
 3
 </code></pre>
 <!--- TEST -->
-<p class="typo-para">注意使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 的代码与先前示例的下述区别：</p>
+<p class="typo-para">注意使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/index.html">Flow</a> 的代码与先前示例的下述区别：</p>
 <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">名为 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">flow</a> 的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 类型构建器函数。</li>
+<li class="typo-list__item">名为 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow/index.html">flow</a> 的 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/flow.html">Flow</a> 类型构建器函数。</li>
 <li class="typo-list__item"><code>flow { ... }</code> 构建块中的代码可以挂起。</li>
 <li class="typo-list__item">函数 <code>simple</code> 不再标有 <code>suspend</code> 修饰符。</li>
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/-flow-collector/emit.html">emit</a> 函数 <em>发射</em> 值。</li>
 <li class="typo-list__item">流使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/collect.html">collect</a> 函数 <em>收集</em> 值。</li>
 </ul>
 <blockquote class="typo-quote">
-<p class="typo-para">我们可以在 <code>simple</code> 的 <code>flow { ... }</code> 函数体内使用 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a> 代替 <code>Thread.sleep</code>
+<p class="typo-para">我们可以在 <code>simple</code> 的 <code>flow { ... }</code> 函数体内使用 <code>Thread.sleep</code> 代替 <a class="typo-link" href="https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines/delay.html">delay</a>
 以观察主线程在本案例中被阻塞了。</p>
 </blockquote>
 <h3 class="typo-header typo-h3" id="流是冷的">流是冷的</h3>
