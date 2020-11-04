@@ -1103,17 +1103,17 @@ println(c.get())
 </div>
 <p class="typo-para">所有这些都已经启动，我们所需要的只是收集结果：</p>
 <div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">val sum = deferred.map { it.await().toLong() }.sum()
+<pre><code class="language-kotlin">val sum = deferred.sumOf { it.await().toLong() }
 </code></pre>
 </div>
-<p class="typo-para">这里我们简单从每个协程等待并取得它的执行结果，接下来将使用标准库的 <code>sum()</code> 函数来将所有结果叠加到一起。但编译器理所当然地抱怨道：</p>
+<p class="typo-para">这里我们简单从每个协程等待并取得它的执行结果，接下来将使用标准库的 <code>sumOf()</code> 函数来将所有结果叠加到一起。但编译器理所当然地抱怨道：</p>
 <blockquote class="typo-quote">
 <p class="typo-para">挂起函数只被允许在协程或另一个挂起函数中调用</p>
 </blockquote>
 <p class="typo-para"><code>await()</code> 不能在协程外调用，因为它需要挂起直至计算结束，并且只有协程可以被无阻塞的挂起。因此，让我们将它们放到协程中：</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">runBlocking {
-    val sum = deferred.map { it.await().toLong() }.sum()
+    val sum = deferred.sumOf { it.await().toLong() }
     println("Sum: $sum")
 }
 </code></pre>
