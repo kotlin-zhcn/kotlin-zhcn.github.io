@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=3c5e8c0dcdeb7da76bddd83e1f3f78cb">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
     <title>编码规范 - Kotlin 语言中文站</title>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <div class="close-head-banner"></div>
     <!--
-    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/kotlin-multiplatform-survey?utm_source=Twitter&utm_medium=Social&utm_campaign=The%20first%20KMP%20Survey%20" target="_blank">
         <div class="banner-item title">
-            Join our Kotlin 1.4 Online Event on October 12–15 →
+            Take part in the first Kotlin Multiplatform user survey!
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div data-nosnippet="true" class="global-header-logo-box">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" target="_blank" class="global-header-logo__version">v1.4.20</a>
         </div>
 <nav class="global-nav">
     <ul class="nav-links">
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
-                           target="_blank">移动跨平台 ↗</a></li>
+                           target="_blank">多平台移动端 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
@@ -269,6 +269,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="marker"></div>
             <div class="text">新特性</div>
         </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew1420.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">What&#39;s New in 1.4.20</span>
+            </a>
+    </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew14.html"
@@ -1658,7 +1667,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="typo-para">如果 Kotlin 文件包含单个类（以及可能相关的顶层声明），那么文件名应该与<!--
 -->该类的名称相同，并追加 .kt 扩展名。如果文件包含多个类或只包含顶层声明，
 那么选择一个描述该文件所包含内容的名称，并以此命名该文件。
-使用首字母大写的<a class="typo-link" href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰风格</a>（例如 <code>ProcessDeclarations.kt</code>）。</p>
+使用首字母大写的<a class="typo-link" href="https://zh.wikipedia.org/wiki/%E9%A7%9D%E5%B3%B0%E5%BC%8F%E5%A4%A7%E5%B0%8F%E5%AF%AB">驼峰风格</a>（也称为 Pascal 风格），
+例如 <code>ProcessDeclarations.kt</code>。</p>
 <p class="typo-para">文件的名称应该描述文件中代码的作用。因此，应避免在文件名中使用<!--
 -->诸如“Util”之类的无意义词语。</p>
 <h3 class="typo-header typo-h3" id="源文件组织">源文件组织</h3>
@@ -1735,7 +1745,7 @@ fun Foo(): Foo { return FooImpl() }
 </div>
 <h3 class="typo-header typo-h3" id="属性名">属性名</h3>
 <p class="typo-para">常量名称（标有 <code>const</code> 的属性，或者保存不可变数据的没有自定义 <code>get</code> 函数<!--
--->的顶层/对象 <code>val</code> 属性）应该使用大写、下划线分隔的名称：</p>
+-->的顶层/对象 <code>val</code> 属性）应该使用大写、下划线分隔的名称 (<a class="typo-link" href="https://en.wikipedia.org/wiki/Snake_case">screaming snake case</a>) names:</p>
 <div class="sample" data-highlight-only="" theme="idea">
 <pre><code class="language-kotlin">const val MAX_COUNT = 8
 val USER_NAME_FIELD = "UserName"
@@ -1751,7 +1761,7 @@ val USER_NAME_FIELD = "UserName"
 <pre><code class="language-kotlin">val PersonComparator: Comparator&lt;Person&gt; = /*...*/
 </code></pre>
 </div>
-<p class="typo-para">对于枚举常量，可以使用大写、下划线分隔的名称
+<p class="typo-para">对于枚举常量，可以使用大写、下划线分隔的名称 (<a class="typo-link" href="https://en.wikipedia.org/wiki/Snake_case">screaming snake case</a>)
 （<code>enum class Color { RED, GREEN }</code>）也可使用首字母大写的常规驼峰名称，具体取决于用途。</p>
 <h4 class="typo-header typo-h4" id="幕后属性的名称">幕后属性的名称</h4>
 <p class="typo-para">如果一个类有两个概念上相同的属性，一个是公共 API 的一部分，另一个是实现<!--
@@ -1969,11 +1979,11 @@ fun foo() = 1        // 良好
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="表达式函数体格式化">表达式函数体格式化</h3>
-<p class="typo-para">如果函数的表达式函数体与函数声明不适合放在同一行，那么将 <code>=</code> 留在第一行。
-将表达式函数体缩进 4 个空格。</p>
+<p class="typo-para">如果函数的表达式函数体与函数声明不适合放在同一行，那么将 <code>=</code> 留在第一，
+并将表达式函数体缩进 4 个空格。</p>
 <div auto-indent="false" class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">fun f(x: String) =
-    x.length
+<pre><code class="language-kotlin">fun f(x: String, y: String, z: String) =
+    veryLongFunctionCallWithManyWords(andLongParametersToo(), x, y, z)
 </code></pre>
 </div>
 <h3 class="typo-header typo-h3" id="属性格式化">属性格式化</h3>
@@ -2397,6 +2407,8 @@ fun foo(a: String = "a") { /*……*/ }
 typealias PersonIndex = Map&lt;String, Person&gt;
 </code></pre>
 </div>
+<p class="typo-para">If you use a private or internal type alias for avoiding name collision, prefer the <code>import … as …</code> mentioned in 
+<a class="typo-link" href="packages.html">Packages and Imports</a>.</p>
 <h3 class="typo-header typo-h3" id="lambda-表达式参数">Lambda 表达式参数</h3>
 <p class="typo-para">在简短、非嵌套的 lambda 表达式中建议使用 <code>it</code> 用法而不是<!--
 -->显式声明参数。而在有参数的嵌套 lambda 表达式中，始终应该显式声明参数。</p>
@@ -2676,7 +2688,7 @@ val a = """if(a &gt; 1) {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=2ed2564275d494894b8d3464c0819acf"></script>
+<script src="/_assets/common.js?&amp;v=51d58726a11aac091f9e039860993c36"></script>
     <script src="/_assets/reference.js?&amp;v=681cd1b2ad3aab332b850e3441c075dc"></script>
 </body>
 </html>

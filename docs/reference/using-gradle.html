@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=3c5e8c0dcdeb7da76bddd83e1f3f78cb">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
     <title>使用 Gradle - Kotlin 语言中文站</title>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <div class="close-head-banner"></div>
     <!--
-    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/kotlin-multiplatform-survey?utm_source=Twitter&utm_medium=Social&utm_campaign=The%20first%20KMP%20Survey%20" target="_blank">
         <div class="banner-item title">
-            Join our Kotlin 1.4 Online Event on October 12–15 →
+            Take part in the first Kotlin Multiplatform user survey!
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div data-nosnippet="true" class="global-header-logo-box">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" target="_blank" class="global-header-logo__version">v1.4.20</a>
         </div>
 <nav class="global-nav">
     <ul class="nav-links">
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
-                           target="_blank">移动跨平台 ↗</a></li>
+                           target="_blank">多平台移动端 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
@@ -269,6 +269,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="marker"></div>
             <div class="text">新特性</div>
         </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew1420.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">What&#39;s New in 1.4.20</span>
+            </a>
+    </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew14.html"
@@ -1630,12 +1639,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
  and <a class="typo-link" href="#configuring-dependencies">configure dependencies</a>.</p>
 <h2 class="typo-header typo-h2" id="插件与版本">插件与版本</h2>
 <p class="typo-para">使用 <a class="typo-link" href="https://docs.gradle.org/current/userguide/plugins.html#sec:plugins_block">Gradle 插件 DSL</a> 应用 Kotlin Gradle 插件。</p>
-<p class="typo-para">Kotlin Gradle 插件 1.4.10 适用于 Gradle 5.4 及更高版本。The <code>kotlin-multiplatform</code> plugin
+<p class="typo-para">Kotlin Gradle 插件 1.4.20 适用于 Gradle 5.4 及更高版本。The <code>kotlin-multiplatform</code> plugin
 requires Gradle 6.0 or later.</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.＜……＞' version '1.4.10'
+    id 'org.jetbrains.kotlin.＜……＞' version '1.4.20'
 }
 </code></pre>
 </div>
@@ -1643,7 +1652,7 @@ requires Gradle 6.0 or later.</p>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("＜……＞") version "1.4.10"
+    kotlin("＜……＞") version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1658,7 +1667,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.multiplatform' version '1.4.10'
+    id 'org.jetbrains.kotlin.multiplatform' version '1.4.20'
 }
 </code></pre>
 </div>
@@ -1666,7 +1675,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("multiplatform") version "1.4.10"
+    kotlin("multiplatform") version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1676,7 +1685,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.4.10"
+    id "org.jetbrains.kotlin.jvm" version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1684,7 +1693,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("jvm") version "1.4.10"
+    kotlin("jvm") version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1729,7 +1738,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-highlight-only="" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.js' version '1.4.10'
+    id 'org.jetbrains.kotlin.js' version '1.4.20'
 }
 </code></pre>
 </div>
@@ -1737,7 +1746,7 @@ require the <code>kotlin-multiplatform</code> plugin. <a class="typo-link" href=
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-    kotlin("js") version "1.4.10"
+    kotlin("js") version "1.4.20"
 }
 </code></pre>
 </div>
@@ -2000,20 +2009,20 @@ or <code>gradleTestKit()</code>, which are not available in the source sets depe
 <h2 class="typo-header typo-h2" id="增量编译">增量编译</h2>
 <p class="typo-para">Kotlin Gradle 插件支持支持增量编译。增量编译会跟踪多次构建之间<!--
 -->源文件的变更，因此只会编译这些变更所影响的文件。</p>
-<p class="typo-para">Kotlin/JVM 与 Kotlin/JS 项目均支持增量编译。</p>
-<p class="typo-para">有几种方法可以覆盖默认设置：</p>
+<p class="typo-para">Kotlin/JVM 与 Kotlin/JS 项目均支持增量编译 and is enabled by default since Kotlin 1.1.1。</p>
+<p class="typo-para">有几种方法可以禁用该设置：</p>
 <ul class="typo-list typo-list_type_simple">
 <li class="typo-list__item">Add the following line to the <code>gradle.properties</code> or <code>local.properties</code> file:
     <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item"><code>kotlin.incremental=＜值＞</code> 用于 Kotlin/JVM</li>
-<li class="typo-list__item"><code>kotlin.incremental.js=＜值＞</code> 用于 Kotlin/JS 项目。<br/>
-<code>＜值＞</code> 是一个反应增量编译用法的布尔值。</li>
+<li class="typo-list__item"><code>kotlin.incremental=false</code> 用于 Kotlin/JVM</li>
+<li class="typo-list__item"><code>kotlin.incremental.js=false</code> 用于 Kotlin/JS 项目。</li>
 </ul>
 </li>
-<li class="typo-list__item">As the command line parameter, use 带有反映增量编译用法的布尔值的 <code>-Pkotlin.incremental</code> 或者 <code>-Pkotlin.incremental.js</code>
-参数。<br/>
-  请注意，这样用法中，该参数必须添加到后续每个子构建，并且任何具有禁用增量编译的构建都会<!--
--->使增量缓存失效。</li>
+<li class="typo-list__item">
+<p class="typo-para">As the command line parameter, use <code>-Pkotlin.incremental=false</code> 或者 <code>-Pkotlin.incremental.js=false</code>。</p>
+<p class="typo-para">请注意，这样用法中，该参数必须添加到后续每个子构建，并且任何具有禁用增量编译的构建都会<!--
+-->使增量缓存失效。</p>
+</li>
 </ul>
 <p class="typo-para">请注意，任何情况下首次构建都不会是增量的。</p>
 <h2 class="typo-header typo-h2" id="gradle-构建缓存支持">Gradle 构建缓存支持</h2>
@@ -2166,7 +2175,7 @@ tasks.withType&lt;KotlinCompile&gt;().configureEach {
 <tr class="typo-table__row">
 <td class="typo-table__column"><code>jvmTarget</code></td>
 <td class="typo-table__column">生成的 JVM 字节码的目标版本</td>
-<td class="typo-table__column">"1.6"、 "1.8"、 "9"、 "10"、 "11"、 "12"、 "13"、 "14"</td>
+<td class="typo-table__column">"1.6"、 "1.8"、 "9"、 "10"、 "11"、 "12"、 "13"、 "14", "15"</td>
 <td class="typo-table__column">"1.6"</td>
 </tr>
 <tr class="typo-table__row">
@@ -2416,7 +2425,7 @@ Gradle Kotlin DSL 所生成扩展的引用问题。为了解决这个问题，�
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=2ed2564275d494894b8d3464c0819acf"></script>
+<script src="/_assets/common.js?&amp;v=51d58726a11aac091f9e039860993c36"></script>
     <script src="/_assets/reference.js?&amp;v=681cd1b2ad3aab332b850e3441c075dc"></script>
 </body>
 </html>

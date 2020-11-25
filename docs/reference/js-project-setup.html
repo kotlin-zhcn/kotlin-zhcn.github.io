@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=3c5e8c0dcdeb7da76bddd83e1f3f78cb">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
     <title>搭建 Kotlin/JS 项目 - Kotlin 语言中文站</title>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <div class="close-head-banner"></div>
     <!--
-    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/kotlin-multiplatform-survey?utm_source=Twitter&utm_medium=Social&utm_campaign=The%20first%20KMP%20Survey%20" target="_blank">
         <div class="banner-item title">
-            Join our Kotlin 1.4 Online Event on October 12–15 →
+            Take part in the first Kotlin Multiplatform user survey!
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div data-nosnippet="true" class="global-header-logo-box">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" target="_blank" class="global-header-logo__version">v1.4.20</a>
         </div>
 <nav class="global-nav">
     <ul class="nav-links">
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
-                           target="_blank">移动跨平台 ↗</a></li>
+                           target="_blank">多平台移动端 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
@@ -269,6 +269,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="marker"></div>
             <div class="text">新特性</div>
         </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew1420.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">What&#39;s New in 1.4.20</span>
+            </a>
+    </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew14.html"
@@ -1631,15 +1640,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 开发中常用的例程的帮助程序。例如，该插件会在后台下载 <a class="typo-link" href="https://yarnpkg.com/">Yarn</a> 软件包管理器，
 用于管理 <a class="typo-link" href="https://www.npmjs.com/">npm</a> 依赖，并且可以使用
 <a class="typo-link" href="https://webpack.js.org/">webpack</a> 由 Kotlin 项目构建 JavaScript 包。 Dependency management and configuration adjustments can be done to a large part directly from the Gradle build file, with the option to override automatically generated configurations for full control.</p>
-<p class="typo-para">要在 IntelliJ IDEA 中创建 Kotlin/JS 项目，请转至 <strong class="typo-strong">文件(File) | 新建(New) | 项目(Project)</strong>，
-并勾选 <strong class="typo-strong">Gradle | Kotlin/JS for browser</strong> 或 <strong class="typo-strong">Kotlin/JS for Node.js</strong>。请不要勾选 <strong class="typo-strong">Java</strong> 复选框。 If you want to use the Kotlin DSL for Gradle, make sure to check the <strong class="typo-strong">Kotlin DSL build script</strong> option.</p>
-<p class="typo-para"><img alt="New project wizard" class="typo-image" src="/assets/images/reference/js-project-setup/wizard.png"/></p>
+<p class="typo-para">要在 IntelliJ IDEA 中创建 Kotlin/JS 项目，请转至 <strong class="typo-strong">文件(File) | 新建(New) | 项目(Project)</strong>。 Then select <strong class="typo-strong">Kotlin</strong> and choose a 
+Kotlin/JS target that suits you best. Don't forget to choose the language for the build script: Groovy or Kotlin.</p>
+<p class="typo-para"><img alt="New project wizard" class="typo-image" src="/assets/images/reference/js-project-setup/js-project-wizard.png"/></p>
 <p class="typo-para">另外，你可以在 Gradle build file (<code>build.gradle</code> or <code>build.gradle.kts</code>) 中手动将 <code>org.jetbrains.kotlin.js</code> 插件应用于 Gradle 项目。</p>
 <!--suppress ALL -->
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-    id 'org.jetbrains.kotlin.js' version '1.4.10'
+    id 'org.jetbrains.kotlin.js' version '1.4.20'
 }
 </code></pre>
 </div>
@@ -1647,7 +1656,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" mode="kotlin" theme="idea">
 <pre><code class="language-kotlin">plugins {
-     kotlin("js") version "1.4.10"
+     kotlin("js") version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1667,6 +1676,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="typo-list__item"><a class="typo-link" href="#配置-test-任务">配置 test 任务</a></li>
 <li class="typo-list__item">为浏览器项目配置 <a class="typo-link" href="#配置-webpack-绑定">webpack 绑定</a>与<a class="typo-link" href="#调整模块名">模块名</a></li>
 <li class="typo-list__item"><a class="typo-link" href="#分发目标目录">分发目标目录</a>与<a class="typo-link" href="#调整模块名">模块名</a></li>
+<li class="typo-list__item"><a class="typo-link" href="#packagejson-customization">Project's <code>package.json</code> file</a></li>
 </ul>
 <h2 class="typo-header typo-h2" id="选择执行环境">选择执行环境</h2>
 <p class="typo-para">Kotlin/JS 项目可以针对两个不同的执行环境：</p>
@@ -1871,6 +1881,8 @@ To make adjustments to the configuration used by Karma, place your additional co
 可以在 <code>build/js/packages/projectName/webpack.config.js</code> 中找到该文件。</p>
 <p class="typo-para">最常见的 webpack 调整可以直接通过 Gradle 构建文件中的
 <code>kotlin.js.browser.webpackTask</code> 配置块进行。</p>
+<p class="typo-para">You can also configure common webpack settings to use in bundling, running, and testing tasks in the <code>commonWebpackConfig</code>
+block.</p>
 <p class="typo-para">如果要进一步调整 webpack 配置，请将其他配置文件放在项目根目录中名为 <code>webpack.config.d</code> 的目录中。
 在构建项目时，所有 <code>.js</code> 配置文件都会自动被合并到
 <code>build/js/packages/projectName/webpack.config.js</code> 文件中。
@@ -1902,7 +1914,17 @@ To make adjustments to the configuration used by Karma, place your additional co
 <p class="typo-para">Note that these tasks will only be available if your target is configured to generate executable files (via <code>binaries.executable()</code>).</p>
 <h2 class="typo-header typo-h2" id="configuring-css">Configuring CSS</h2>
 <p class="typo-para">The Kotlin/JS Gradle plugin also provides support for webpack's <a class="typo-link" href="https://webpack.js.org/loaders/css-loader/">CSS</a> and <a class="typo-link" href="https://webpack.js.org/loaders/style-loader/">style</a> loaders. While all options can be changed by directly modifying the <a class="typo-link" href="#configuring-webpack-bundling">webpack configuration files</a> that are used to build your project, the most commonly used settings are available directly from the <code>build.gradle(.kts)</code> file.</p>
-<p class="typo-para">To turn on CSS support in your project, set the <code>cssSupport.enabled</code> flag in the Gradle build file for <code>webpackTask</code>, <code>runTask</code>, and <code>testTask</code> respectively. This configuration is also enabled by default when creating a new project using the wizard.</p>
+<p class="typo-para">To turn on CSS support in your project, set the <code>cssSupport.enabled</code> flag in the Gradle build file in the <code>commonWbpackConfig</code> block. This configuration is also enabled by default when creating a new project using the wizard.</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-groovy">browser {
+    commonWebpackConfig {
+        cssSupport.enabled = true
+    }
+    binaries.executable()
+}
+</code></pre>
+</div>
+<p class="typo-para">Alternatively, you can add CSS support for selected tasks, such as <code>webpackTask</code>, <code>runTask</code>, and <code>testTask</code>.</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">webpackTask {
    cssSupport.enabled = true
@@ -1983,6 +2005,32 @@ testTask {
 </code></pre>
 </div>
 <p class="typo-para">Note that this does not affect the webpacked output in <code>build/distributions</code>.</p>
+<h2 class="typo-header typo-h2" id="packagejson-customization">package.json customization</h2>
+<p class="typo-para">The <code>package.json</code> file holds the metadata of a JavaScript package. Popular package registries such as npm require all 
+published packages to have such a file. They use it to track and manage package publications.</p>
+<p class="typo-para">The Kotlin/JS Gradle plugin automatically generates <code>package.json</code> for Kotlin/JS projects during build time. By default, 
+the file contains essential data: name, version, license, and dependencies, and some other package attributes.</p>
+<p class="typo-para">Aside from basic package attributes, <code>package.json</code> can define how a JavaScript project should behave, for example,
+identifying scripts that are available to run.</p>
+<p class="typo-para">You can add custom entries to the project's <code>package.json</code> via the Gradle DSL. To add custom fields to your <code>package.json</code>,
+use the <code>customField</code> function in the compilations <code>packageJson</code> block:</p>
+<div class="sample" mode="groovy" theme="idea">
+<pre><code class="language-kotlin">kotlin {
+    js {
+        compilations["main"].packageJson {
+            customField("hello", mapOf("one" to 1, "two" to 2))
+        }
+    }
+}
+</code></pre>
+</div>
+<p class="typo-para">When you build the project, this code will add the following block to the <code>package.json</code> file:</p>
+<pre><code>"hello": {
+  "one": 1,
+  "two": 2
+}
+</code></pre>
+<p class="typo-para">Learn more about writing <code>package.json</code> files for npm registry in the <a class="typo-link" href="https://docs.npmjs.com/cli/v6/configuring-npm/package-json">npm docs</a>.</p>
 <h2 class="typo-header typo-h2" id="troubleshooting">Troubleshooting</h2>
 <p class="typo-para">When building a Kotlin/JS project using Kotlin 1.3.xx, you may encounter a Gradle error if one of your dependencies (or any transitive dependency) was built using Kotlin 1.4 or higher: <code>Could not determine the dependencies of task ':client:jsTestPackageJson'.</code> / <code>Cannot choose between the following variants</code>. This is a known problem, a workaround is provided <a class="typo-link" href="https://youtrack.jetbrains.com/issue/KT-40226">here</a>.</p>
 
@@ -2115,7 +2163,7 @@ testTask {
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=2ed2564275d494894b8d3464c0819acf"></script>
+<script src="/_assets/common.js?&amp;v=51d58726a11aac091f9e039860993c36"></script>
     <script src="/_assets/reference.js?&amp;v=681cd1b2ad3aab332b850e3441c075dc"></script>
 </body>
 </html>

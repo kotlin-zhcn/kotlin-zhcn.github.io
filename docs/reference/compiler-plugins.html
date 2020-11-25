@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=3c5e8c0dcdeb7da76bddd83e1f3f78cb">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
     <title>编译器插件 - Kotlin 语言中文站</title>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <div class="close-head-banner"></div>
     <!--
-    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/kotlin-multiplatform-survey?utm_source=Twitter&utm_medium=Social&utm_campaign=The%20first%20KMP%20Survey%20" target="_blank">
         <div class="banner-item title">
-            Join our Kotlin 1.4 Online Event on October 12–15 →
+            Take part in the first Kotlin Multiplatform user survey!
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div data-nosnippet="true" class="global-header-logo-box">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" target="_blank" class="global-header-logo__version">v1.4.20</a>
         </div>
 <nav class="global-nav">
     <ul class="nav-links">
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
-                           target="_blank">移动跨平台 ↗</a></li>
+                           target="_blank">多平台移动端 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
@@ -269,6 +269,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="marker"></div>
             <div class="text">新特性</div>
         </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew1420.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">What&#39;s New in 1.4.20</span>
+            </a>
+    </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew14.html"
@@ -1652,7 +1661,7 @@ apply plugin: "kotlin-allopen"
 <p class="typo-para">另一种方式是使用 <code>plugins</code> 块启用之：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.allopen" version "1.4.10"
+  id "org.jetbrains.kotlin.plugin.allopen" version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1723,7 +1732,7 @@ apply plugin: "kotlin-spring" // 取代 "kotlin-allopen"
 <p class="typo-para">或者使用 Gradle 插件 DSL：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.spring" version "1.4.10"
+  id "org.jetbrains.kotlin.plugin.spring" version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1783,7 +1792,7 @@ apply plugin: "kotlin-noarg"
 <p class="typo-para">或者使用 Gradle 插件 DSL：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.noarg" version "1.4.10"
+  id "org.jetbrains.kotlin.plugin.noarg" version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1849,7 +1858,7 @@ apply plugin: "kotlin-jpa"
 <p class="typo-para">或者使用 Gradle 插件 DSL：</p>
 <div class="sample" mode="groovy" theme="idea">
 <pre><code class="language-groovy">plugins {
-  id "org.jetbrains.kotlin.plugin.jpa" version "1.4.10"
+  id "org.jetbrains.kotlin.plugin.jpa" version "1.4.20"
 }
 </code></pre>
 </div>
@@ -1948,81 +1957,8 @@ apply plugin: "kotlin-sam-with-receiver"
 </code></pre>
 </div>
 <h2 class="typo-header typo-h2" id="parcelable-实现生成器"><code>Parcelable</code> 实现生成器</h2>
-<p class="typo-para">Android 扩展插件提供了 <a class="typo-link" href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> 实现生成器。</p>
-<p class="typo-para">用 <code>@Parcelize</code> 标注该类，然后会自动生成一个 <code>Parcelable</code> 实现。</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">import kotlinx.android.parcel.Parcelize
-
-@Parcelize
-class User(val firstName: String, val lastName: String, val age: Int): Parcelable
-</code></pre>
-</div>
-<p class="typo-para"><code>@Parcelize</code> 要求在主构造函数中声明所有序列化的属性。Android 扩展程序会针对每个属性发出警告，并在类主体中声明一个幕后字段。
-此外，如果某些主要构造函数参数不是属性，则无法应用 <code>@Parcelize</code>。</p>
-<p class="typo-para">如果类需要更高级的序列化逻辑，请在伴生类中编写：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">@Parcelize
-data class User(val firstName: String, val lastName: String, val age: Int) : Parcelable {
-    private companion object : Parceler&lt;User&gt; {
-        override fun User.write(parcel: Parcel, flags: Int) {
-            // Custom write implementation
-        }
-
-        override fun create(parcel: Parcel): User {
-            // Custom read implementation
-        }
-    }
-}
-</code></pre>
-</div>
-<h3 class="typo-header typo-h3" id="已支持类型">已支持类型</h3>
-<p class="typo-para"><code>@Parcelize</code> 支持多种类型：</p>
-<ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">基本类型（及其装箱版）；</li>
-<li class="typo-list__item">对象与枚举；</li>
-<li class="typo-list__item"><code>String</code>、<code>CharSequence</code>；</li>
-<li class="typo-list__item"><code>Exception</code>；</li>
-<li class="typo-list__item"><code>Size</code>、<code>SizeF</code>、<code>Bundle</code>、<code>IBinder</code>、<code>IInterface</code>、<code>FileDescriptor</code>；</li>
-<li class="typo-list__item"><code>SparseArray</code>、<code>SparseIntArray</code>、<code>SparseLongArray</code>、<code>SparseBooleanArray</code>；</li>
-<li class="typo-list__item">所有 <code>Serializable</code>（是的，<code>Date</code> 也受支持）与 <code>Parcelable</code> 实现；</li>
-<li class="typo-list__item">所有已支持类型的集合：<code>List</code>（映射到 <code>ArrayList</code>），<code>Set</code> 映射到 <code>LinkedHashSet</code>，<code>Map</code> 映射到 <code>LinkedHashMap</code>；
-    <ul class="typo-list typo-list_type_simple">
-<li class="typo-list__item">还有一些具体的实现：<code>ArrayList</code>、<code>LinkedList</code>、<code>SortedSet</code>、<code>NavigableSet</code>、<code>HashSet</code>、<code>LinkedHashSet</code>、<code>TreeSet</code>、<code>SortedMap</code>、<code>NavigableMap</code>、<code>HashMap</code>、<code>LinkedHashMap</code>、<code>TreeMap</code>、<code>ConcurrentHashMap</code>；</li>
-</ul>
-</li>
-<li class="typo-list__item">所有受支持的数组类型；</li>
-<li class="typo-list__item">所有受支持的类型的可空版本。</li>
-</ul>
-<h3 class="typo-header typo-h3" id="自定义-parceler">自定义 <code>Parceler</code></h3>
-<p class="typo-para">即使不直接支持的类型，也可以为其编写 <code>Parceler</code> 映射对象。</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">class ExternalClass(val value: Int)
-
-object ExternalClassParceler : Parceler&lt;ExternalClass&gt; {
-    override fun create(parcel: Parcel) = ExternalClass(parcel.readInt())
-
-    override fun ExternalClass.write(parcel: Parcel, flags: Int) {
-        parcel.writeInt(value)
-    }
-}
-</code></pre>
-</div>
-<p class="typo-para">可以使用 <code>@TypeParceler</code> 或 <code>@WriteWith</code> 标注应用外部包裹程序：</p>
-<div class="sample" data-highlight-only="" theme="idea">
-<pre><code class="language-kotlin">// Class-local parceler
-@Parcelize
-@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;()
-class MyClass(val external: ExternalClass)
-
-// Property-local parceler
-@Parcelize
-class MyClass(@TypeParceler&lt;ExternalClass, ExternalClassParceler&gt;() val external: ExternalClass)
-
-// Type-local parceler
-@Parcelize
-class MyClass(val external: @WriteWith&lt;ExternalClassParceler&gt;() ExternalClass)
-</code></pre>
-</div>
+<p class="typo-para"><code>kotlin-parcelize</code> compiler plugin provides a <a class="typo-link" href="https://developer.android.com/reference/android/os/Parcelable"><code>Parcelable</code></a> implementation generator.
+To learn how to use it, refer to the <a class="typo-link" href="https://developer.android.com/kotlin/parcelize">Android documentation</a>.</p>
 
         </article>
     </div>
@@ -2153,7 +2089,7 @@ class MyClass(val external: @WriteWith&lt;ExternalClassParceler&gt;() ExternalCl
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=2ed2564275d494894b8d3464c0819acf"></script>
+<script src="/_assets/common.js?&amp;v=51d58726a11aac091f9e039860993c36"></script>
     <script src="/_assets/reference.js?&amp;v=681cd1b2ad3aab332b850e3441c075dc"></script>
 </body>
 </html>

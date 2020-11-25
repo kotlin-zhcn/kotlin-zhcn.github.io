@@ -46,7 +46,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <!-- Social Media tag Ends -->
 
 
-<link rel="stylesheet" href="/_assets/styles.css?&amp;v=9715a3b870064ca2d8644a4a7a75e145">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
+<link rel="stylesheet" href="/_assets/styles.css?&amp;v=3c5e8c0dcdeb7da76bddd83e1f3f78cb">    <link rel="stylesheet" href="/_assets/reference.css?&amp;v=5bdde618fe0b500104da95d46627e95a">
 
 
     <title>发布多平台库 - Kotlin 语言中文站</title>
@@ -79,9 +79,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     </a>
     <div class="close-head-banner"></div>
     <!--
-    <a class="banner-text" href="https://kotlinlang.org/lp/event-14/" target="_blank">
+    <a class="banner-text" href="https://surveys.jetbrains.com/s3/kotlin-multiplatform-survey?utm_source=Twitter&utm_medium=Social&utm_campaign=The%20first%20KMP%20Survey%20" target="_blank">
         <div class="banner-item title">
-            Join our Kotlin 1.4 Online Event on October 12–15 →
+            Take part in the first Kotlin Multiplatform user survey!
         </div>
     </a>
     <div class="close-head-banner"></div>
@@ -91,7 +91,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <header class="global-header">
     <div class="global-header-panel">
         <div data-nosnippet="true" class="global-header-logo-box">
-            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.10" target="_blank" class="global-header-logo__version">v1.4.10</a>
+            <a class="global-header-logo" href="/">Kotlin</a> <a href="https://github.com/JetBrains/kotlin/releases/tag/v1.4.20" target="_blank" class="global-header-logo__version">v1.4.20</a>
         </div>
 <nav class="global-nav">
     <ul class="nav-links">
@@ -101,7 +101,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 <ul class="solutions-menu-list">
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="https://kotlinlang.org/lp/mobile/"
-                           target="_blank">移动跨平台 ↗</a></li>
+                           target="_blank">多平台移动端 ↗</a></li>
                     <li class="solutions-menu-item">
                         <a class="solutions-menu-item-link" href="/lp/server-side/"
                            target="_blank">
@@ -269,6 +269,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             <div class="marker"></div>
             <div class="text">新特性</div>
         </div>
+
+                    <div class="tree-item tree-leaf js-item js-leaf ">
+            <a href="/docs/reference/whatsnew1420.html"
+               class="tree-item-title tree-leaf-title js-item-title js-leaf-title "
+            >
+                <span class="marker"></span>
+                <span class="text">What&#39;s New in 1.4.20</span>
+            </a>
+    </div>
 
                     <div class="tree-item tree-leaf js-item js-leaf ">
             <a href="/docs/reference/whatsnew14.html"
@@ -1640,23 +1649,33 @@ version = "1.0"
 
 publishing {
     repositories {
-        maven{
+        maven {
             //...
         }
     }
 }
 </code></pre>
 </div>
-<p class="typo-para">Publications are automatically created for each target that can be built on the current host, except for the Android target, 
+<p class="typo-para">You can also use <a class="typo-link" href="https://github.com/bintray/gradle-bintray-plugin"><code>gradle-bintray-plugin</code></a> for publishing multiplatform libraries. 
+However, this plugin does not support publishing Gradle module metadata required for <a class="typo-link" href="mpp-share-on-platforms.html#share-code-on-similar-platforms">hierarchical structure support</a>.
+Use <a class="typo-link" href="https://github.com/bintray/gradle-bintray-plugin/issues/229#issuecomment-473123891">this workaround</a> to enable metadata publishing 
+or migrate to the <a class="typo-link" href="https://docs.gradle.org/current/userguide/publishing_maven.html"><code>maven-publish</code> plugin</a>.</p>
+<h2 class="typo-header typo-h2" id="structure-of-publications">Structure of publications</h2>
+<p class="typo-para">When used with <code>maven-publish</code>, the Kotlin plugin automatically creates publications for each target that can be built on the current host, except for the Android target, 
 which needs an <a class="typo-link" href="#publish-an-android-library">additional step to configure publishing</a>.</p>
-<p class="typo-para">Publications of a multiplatform library include an additional 'root' publication <code>kotlinMultiplatform</code> that stands for the 
+<p class="typo-para">Publications of a multiplatform library include an additional <em>root</em> publication <code>kotlinMultiplatform</code> that stands for the 
 whole library and is automatically resolved to the appropriate platform-specific artifacts when added as a dependency to the common source set. 
 Learn more about <a class="typo-link" href="mpp-add-dependencies.html">adding dependencies</a>.</p>
-<p class="typo-para">This <code>kotlinMultiplatform</code> publication does not include any artifacts and only references the other publications as its 
-variants. However, it may need the sources and documentation artifacts if that is required by the repository. In that case, 
+<p class="typo-para">This <code>kotlinMultiplatform</code> publication includes metadata artifacts and references the other publications as its variants.</p>
+<blockquote class="note typo-quote">
+<p class="typo-para">You must not add an empty artifact without a classifier to the root module of your library to meet the requirements of repositories 
+such as Maven Central, as this will result in a conflict with metadata artifacts that are included in this module.</p>
+</blockquote>
+<p class="typo-para">The <code>kotlinMultiplatform</code> publication may also need the sources and documentation artifacts if that is required by the repository. In that case, 
 add those artifacts by using <a class="typo-link" href="https://docs.gradle.org/current/javadoc/org/gradle/api/publish/maven/MavenPublication.html#artifact-java.lang.Object-"><code>artifact(...)</code></a> 
 in the publication's scope.</p>
-<p class="typo-para">To avoid duplicate publications of modules that can be built on several platforms (like JVM, JS, Kotlin metadata), 
+<h2 class="typo-header typo-h2" id="avoid-duplicate-publications">Avoid duplicate publications</h2>
+<p class="typo-para">To avoid duplicate publications of modules that can be built on several platforms (like JVM and JS), 
 configure the publishing tasks for these modules to run conditionally.</p>
 <p class="typo-para">You can detect the platform in the script, introduce a flag such as <code>isMainHost</code> and set it to <code>true</code> for the main target 
 platform. Alternatively, you can pass the flag from an external source, for example, from CI configuration.</p>
@@ -1669,14 +1688,15 @@ a publication that can be published from multiple platforms will be published on
     js()
     mingwX64()
     linuxX64()
-
-    // Note that the Kotlin metadata is here, too.
-
-    configure([targets["metadata"], jvm(), js()]) {
-        mavenPublication { targetPublication -&gt;
-            tasks.withType(AbstractPublishToMaven)
-                    .matching { it.publication == targetPublication }
-                    .all { onlyIf { findProperty("isMainHost") == "true" } }
+    def publicationsFromMainHost = 
+        [jvm(), js()].collect { it.name } + "kotlinMultiplatform"
+    publishing {
+        publications {
+            matching { it.name in publicationsFromMainHost }.all { targetPublication -&gt;
+                tasks.withType(AbstractPublishToMaven)
+                        .matching { it.publication == targetPublication }
+                        .all { onlyIf { findProperty("isMainHost") == "true" } }
+            }
         }
     }
 }
@@ -1690,15 +1710,16 @@ a publication that can be published from multiple platforms will be published on
     js()
     mingwX64()
     linuxX64()
-
-    // Note that the Kotlin metadata is here, too.
-
-    configure(listOf(targets["metadata"], jvm(), js())) {
-        mavenPublication {
-            val targetPublication = this@mavenPublication
-            tasks.withType&lt;AbstractPublishToMaven&gt;()
-                    .matching { it.publication == targetPublication }
-                    .all { onlyIf { findProperty("isMainHost") == "true" } }
+    val publicationsFromMainHost = 
+        listOf(jvm(), js()).map { it.name } + "kotlinMultiplatform"
+    publishing {
+        publications {
+            matching { it.name in publicationsFromMainHost }.all {
+                val targetPublication = this@all
+                tasks.withType&lt;AbstractPublishToMaven&gt;()
+                        .matching { it.publication == targetPublication }
+                        .all { onlyIf { findProperty("isMainHost") == "true" } }
+            }
         }
     }
 }
@@ -1899,7 +1920,7 @@ as those will be merged into one dependencies list.</p>
         <div class="search-popup__results"></div>
     </div>
 </div>
-<script src="/_assets/common.js?&amp;v=2ed2564275d494894b8d3464c0819acf"></script>
+<script src="/_assets/common.js?&amp;v=51d58726a11aac091f9e039860993c36"></script>
     <script src="/_assets/reference.js?&amp;v=681cd1b2ad3aab332b850e3441c075dc"></script>
 </body>
 </html>
