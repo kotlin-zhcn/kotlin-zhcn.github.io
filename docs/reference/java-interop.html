@@ -2299,7 +2299,12 @@ javaObj.removeIndicesVarArg(*array)
 <h2 class="typo-header typo-h2" id="java-反射">Java 反射</h2>
 <p class="typo-para">Java 反射适用于 Kotlin 类，反之亦然。如上所述，你可以使用 <code>instance::class.java</code>,
 <code>ClassName::class.java</code> 或者 <code>instance.javaClass</code> 通过 <code>java.lang.Class</code> 来进入 Java 反射。
-You may also use <code>ClassName::class.javaObjectType</code> for getting primitive types wrappers.</p>
+Do not use <code>ClassName.javaClass</code> for this purpose because it refers to <code>ClassName</code>'s companion object class,
+which is the same as <code>ClassName.Companion::class.java</code> and not <code>ClassName::class.java</code>.</p>
+<p class="typo-para">For each primitive type, there are two different Java classes, and Kotlin provides ways to get both. For
+example, <code>Int::class.java</code> will return the class instance representing the primitive type itself,
+corresponding to <code>Integer.TYPE</code> in Java. To get the class of the corresponding wrapper type, use
+<code>Int::class.javaObjectType</code>, which is equivalent of Java's <code>Integer.class</code>.</p>
 <p class="typo-para">其他支持的情况包括为一个 Kotlin 属性获取一个 Java 的 getter/setter 方法或者幕后字段、为一个 Java 字段获取一个 <code>KProperty</code>、为一个 <code>KFunction</code> 获取一个 Java 方法或者构造函数，反之亦然。</p>
 <h2 class="typo-header typo-h2" id="sam-转换">SAM 转换</h2>
 <p class="typo-para">Kotlin 支持 Java 以及 <a class="typo-link" href="fun-interfaces.html">Kotlin 接口</a>的 SAM 转换。

@@ -1734,7 +1734,7 @@ fun displayDate() {
 <p class="typo-para">如果使用 Gradle 构建模块，可以添加如下参数：</p>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">compileKotlin {
+<pre><code class="language-groovy">tasks.withType(KotlinCompile).configureEach {
     kotlinOptions {
         freeCompilerArgs += "-Xopt-in=org.mylibrary.OptInAnnotation"
     }
@@ -1744,7 +1744,7 @@ fun displayDate() {
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">tasks.withType&lt;KotlinCompile&gt;().all {
+<pre><code class="language-kotlin">tasks.withType&lt;KotlinCompile&gt;().configureEach {
     kotlinOptions.freeCompilerArgs += "-Xopt-in=org.mylibrary.OptInAnnotation"
 }
 </code></pre>

@@ -1695,7 +1695,7 @@ a publication that can be published from multiple platforms will be published on
             matching { it.name in publicationsFromMainHost }.all { targetPublication -&gt;
                 tasks.withType(AbstractPublishToMaven)
                         .matching { it.publication == targetPublication }
-                        .all { onlyIf { findProperty("isMainHost") == "true" } }
+                        .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
             }
         }
     }
@@ -1718,7 +1718,7 @@ a publication that can be published from multiple platforms will be published on
                 val targetPublication = this@all
                 tasks.withType&lt;AbstractPublishToMaven&gt;()
                         .matching { it.publication == targetPublication }
-                        .all { onlyIf { findProperty("isMainHost") == "true" } }
+                        .configureEach { onlyIf { findProperty("isMainHost") == "true" } }
             }
         }
     }

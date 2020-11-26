@@ -2524,7 +2524,7 @@ If using Kotlin Gradle DSL, mark custom compilations <code>by creating</code>.</
             }
 
             // Create a test task to run the tests produced by this compilation:
-            tasks.create('jvmIntegrationTest', Test) {
+            tasks.register('jvmIntegrationTest', Test) {
                 /* ... */
             }
         }
@@ -2546,7 +2546,7 @@ If using Kotlin Gradle DSL, mark custom compilations <code>by creating</code>.</
                 }
 
                 // Create a test task to run the tests produced by this compilation:
-                tasks.create&lt;Test&gt;("integrationTest") {
+                tasks.register&lt;Test&gt;("integrationTest") {
                     /* ... */
                 }
             }

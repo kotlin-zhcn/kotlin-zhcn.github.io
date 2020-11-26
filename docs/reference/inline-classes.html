@@ -1776,16 +1776,20 @@ fun main() {
 <h3 class="typo-header typo-h3" id="在-gradle-中启用内联类">在 Gradle 中启用内联类</h3>
 <div class="multi-language-sample" data-lang="groovy">
 <div class="sample" data-lang="groovy" mode="groovy" theme="idea">
-<pre><code class="language-groovy">compileKotlin {
-    kotlinOptions.freeCompilerArgs += ["-Xinline-classes"]
+<pre><code class="language-groovy">kotlin {
+    sourceSets.all {
+        languageSettings.enableLanguageFeature('InlineClasses')
+    }
 }
 </code></pre>
 </div>
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">tasks.withType&lt;KotlinCompile&gt; {
-    kotlinOptions.freeCompilerArgs += "-Xinline-classes"
+<pre><code class="language-kotlin">kotlin {
+    sourceSets.all {
+        languageSettings.enableLanguageFeature("InlineClasses")
+    }
 }
 </code></pre>
 </div>

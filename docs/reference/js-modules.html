@@ -1675,7 +1675,7 @@ kotlin {
 </div>
 <div class="multi-language-sample" data-lang="kotlin">
 <div class="sample" data-highlight-only="" data-lang="kotlin" mode="kotlin" theme="idea">
-<pre><code class="language-kotlin">tasks.withType(KotlinJsCompile::class.java).named("compileKotlinJs") {
+<pre><code class="language-kotlin">tasks.named&lt;KotlinJsCompile&gt;("compileKotlinJs").configure {
     kotlinOptions.moduleKind = "commonjs"
 }
 </code></pre>
