@@ -1,3 +1,3 @@
 # kotlin-zhcn.github.io
 Kotlin 编程语言中文站：https://www.kotlincn.net/  
-还可以同时关注 GitBook 上的电子书：[gitbook.com/book/hltj/kotlin-reference-chinese](https://www.gitbook.com/book/hltj/kotlin-reference-chinese/details)。
+还可以同时关注 GitBook 电子书：[ref-book.kotlincn.net](https://ref-book.kotlincn.net/)。
